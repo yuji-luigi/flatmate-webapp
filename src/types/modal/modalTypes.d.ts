@@ -1,0 +1,1 @@
+type ModalType = 'threads' | 'maintenances';

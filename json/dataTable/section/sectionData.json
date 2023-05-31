@@ -1,0 +1,239 @@
+[
+	{
+		"name": "Board",
+		"roles": [
+			"admin",
+			"user",
+			"super_admin"
+		],
+		"contents": [
+			{
+				"entity": "posts",
+				"entitySingle": "post",
+				"title": "Posts",
+				"subtitle": "subtitle",
+				"navbarTitle": "posts",
+				"link": "/dashboard/posts",
+				"createButton": "",
+				"icon": "posts"
+			},
+			{
+				"entity": "maintenances",
+				"title": "maintenances",
+				"subtitle": "subtitle",
+				"navbarTitle": "maintenances",
+				"link": "/dashboard/maintenances",
+				"createButton": "",
+				"icon": "posts"
+			}
+		]
+	},
+	{
+		"name": "main",
+		"roles": [
+			"super_admin",
+			"admin",
+			"user"
+		],
+		"contents": [
+			{
+				"entity": "home",
+				"entitySingle": "home",
+				"title": "welcome to dashboard",
+				"subtitle": "subtitle",
+				"navbarTitle": "Dashboard",
+				"link": "/dashboard/home",
+				"createButton": "",
+				"icon": "Dashboard"
+			},
+			{
+				"entity": "statistics",
+				"entitySingle": "statistic",
+				"title": "Statistics",
+				"subtitle": "subtitle",
+				"navbarTitle": "Statistics",
+				"link": "/dashboard/statistics",
+				"createButton": "",
+				"icon": "Statistic"
+			},
+			{
+				"entity": "notifications",
+				"entitySingle": "notification",
+				"title": "Notifications",
+				"subtitle": "subtitle",
+				"navbarTitle": "Notifications",
+				"link": "/dashboard/notifications",
+				"createButton": "New Notification",
+				"icon": "Notification"
+			},
+			{
+				"entity": "bookmarks",
+				"entitySingle": "bookmark",
+				"title": "Bookmarks",
+				"subtitle": "subtitle",
+				"navbarTitle": "Bookmark",
+				"link": "/dashboard/bookmarks",
+				"createButton": "New Bookmark",
+				"icon": "Dashboard"
+			},
+			{
+				"entity": "comments",
+				"entitySingle": "comment",
+				"title": "Comments",
+				"subtitle": "subtitle",
+				"navbarTitle": "Comment",
+				"link": "/dashboard/comments",
+				"createButton": "New Comment",
+				"icon": "Dashboard",
+				"hide": true
+			}
+		]
+	},
+	{
+		"name": "setups",
+		"roles": [
+			"super_admin",
+			"admin",
+			"user"
+		],
+		"contents": [
+			{
+				"entity": "fundRules",
+				"entitySingle": "fundRule",
+				"title": "FundRules",
+				"subtitle": "subtitle",
+				"navbarTitle": "Fund rule",
+				"link": "/dashboard/fundRules",
+				"createButton": "New Fund Rule",
+				"icon": "Dashboard"
+			},
+			{
+				"entity": "proposals",
+				"entitySingle": "proposal",
+				"title": "Proposals",
+				"subtitle": "subtitle",
+				"navbarTitle": "Proposal",
+				"link": "/dashboard/proposals",
+				"createButton": "New Proposal",
+				"icon": "Dashboard"
+			},
+			{
+				"entity": "funds",
+				"entitySingle": "fund",
+				"title": "Funds",
+				"subtitle": "subtitle",
+				"navbarTitle": "Fund",
+				"link": "/dashboard/funds",
+				"createButton": "New Fund",
+				"icon": "Dashboard"
+			},
+			{
+				"entity": "tags",
+				"entitySingle": "tag",
+				"title": "Tags",
+				"subtitle": "subtitle",
+				"navbarTitle": "Tag",
+				"link": "/dashboard/tags",
+				"createButton": "New Tag",
+				"icon": "Dashboard"
+			}
+		]
+	},
+	{
+		"name": "admin",
+		"roles": [
+			"super_admin",
+			"admin"
+		],
+		"contents": [
+			{
+				"entity": "threads",
+				"entitySingle": "thread",
+				"title": "Threads",
+				"subtitle": "subtitle",
+				"navbarTitle": "Thread",
+				"link": "/dashboard/threads",
+				"createButton": "New Thread",
+				"icon": "Dashboard"
+			},
+			{
+				"entity": "spaces",
+				"entitySingle": "space",
+				"title": "spaces",
+				"subtitle": "subtitle",
+				"navbarTitle": "spaces",
+				"link": "/dashboard/spaces",
+				"createButton": "New Space",
+				"icon": "Dashboard"
+			},
+			{
+				"entity": "users",
+				"entitySingle": "user",
+				"title": "Users",
+				"subtitle": "subtitle",
+				"navbarTitle": "User",
+				"link": "/dashboard/users",
+				"createButton": "New User",
+				"icon": "Dashboard"
+			},
+			{
+				"entity": "maintainers",
+				"entitySingle": "maintainer",
+				"title": "Maintainers",
+				"subtitle": "subtitle",
+				"navbarTitle": "Maintainer",
+				"link": "/dashboard/maintainers",
+				"createButton": "New Maintainer",
+				"icon": "Dashboard"
+			}
+		]
+	},
+	{
+		"name": "Sensitive",
+		"roles": [
+			"super_admin"
+		],
+		"contents": [
+			{
+				"entity": "uploads",
+				"entitySingle": "upload",
+				"title": "uploads",
+				"subtitle": "subtitle",
+				"navbarTitle": "uploads",
+				"link": "/dashboard/uploads",
+				"createButton": "New Wallet",
+				"icon": "Dashboard"
+			},
+			{
+				"entity": "wallets",
+				"entitySingle": "wallet",
+				"title": "Wallets",
+				"subtitle": "subtitle",
+				"navbarTitle": "Wallets",
+				"link": "/dashboard/wallets",
+				"createButton": "New Wallet",
+				"icon": "Dashboard"
+			},
+			{
+				"entity": "userSettings",
+				"entitySingle": "userSetting",
+				"title": "UserSettings",
+				"subtitle": "subtitle",
+				"navbarTitle": "User setting",
+				"link": "/dashboard/userSettings",
+				"createButton": "",
+				"icon": "Dashboard"
+			},
+			{
+				"entity": "organizations",
+				"entitySingle": "organization",
+				"title": "organizations",
+				"subtitle": "subtitle",
+				"navbarTitle": "organizations",
+				"link": "/dashboard/organizations",
+				"createButton": "New Owner",
+				"icon": "Dashboard"
+			}
+		]
+	}
+]

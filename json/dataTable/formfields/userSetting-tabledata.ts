@@ -1,0 +1,31 @@
+export const userSettingTableData: Array<FormFieldInterface> = [
+  {
+    id: 'pushNotification',
+    name: 'pushNotification',
+    label: 'pushNotification',
+    placeholder: '',
+    type: 'boolean',
+    required: true,
+    priority: 1,
+  },
+  {
+    id: 'smsNotification',
+    name: 'smsNotification',
+    label: 'smsNotification',
+    placeholder: '',
+    type: 'boolean',
+    required: true,
+    priority: 1,
+  },
+  {
+    id: 'user',
+    name: 'user',
+    label: 'created by',
+    type: 'select',
+    multi: true,
+    _entity: 'users',
+    selectValues: ['name'],
+    required: false,
+    priority: 2,
+  },
+];
