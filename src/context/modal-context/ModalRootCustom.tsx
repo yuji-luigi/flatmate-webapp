@@ -16,7 +16,7 @@ type BaseModalParams = {
   title: string;
   centered?: boolean;
   children: React.ReactNode;
-  onCancel: () => void;
+  onCancel?: () => void;
   onConfirm: (data: any) => void;
 };
 
@@ -59,7 +59,7 @@ export function ModalRootCustom() {
   const isAlert = modals.type === 'alert';
 
   const handleCancel = () => {
-    modals.onCancel();
+    modals.onCancel?.();
     close();
   };
   const handleConfirm = (data: any) => {
@@ -79,14 +79,14 @@ export function ModalRootCustom() {
             display="flex"
             sx={{ flexDirection: isMobile ? 'column' : 'row', gap: 8, justifyContent: 'end' }}
           >
-            <Button sx={modals.sx.cancel} onClick={handleCancel}>
-              {modals.labels.cancel}
+            <Button variant="outline" sx={modals.sx.cancel} onClick={handleCancel}>
+              {modals.labels.cancel || 'Cancel'}
             </Button>
             <Button
               sx={{ ...modals.sx.confirm, backgroundColor: isAlert ? 'red' : '' }}
               onClick={handleConfirm}
             >
-              {modals.labels.confirm}
+              {modals.labels.confirm || 'Confirm'}
             </Button>
           </Box>
         </Stack>

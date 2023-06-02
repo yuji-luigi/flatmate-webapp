@@ -13,6 +13,7 @@ import {
   Stack,
   Divider,
   Button,
+  SelectItem,
 } from '@mantine/core';
 import React, { ReactElement, useEffect } from 'react';
 import Layout from '../../../layouts';
@@ -34,7 +35,14 @@ import { Icons } from '../../../data/icons';
 import PostFeedCard from '../../../components/posts/feed/PostFeedCard';
 import { lorem100 } from '../../../_mock/strings';
 import { maintainersTableData } from '../../../../json/dataTable/formfields/maintainersTableData';
-
+import { use_ModalContext } from '../../../context/modal-context/_ModalContext';
+import CrudSelect from '../../../components/input/crud-inputs/CrudSelect';
+const spaceFormField = {
+  id: 'space',
+  label: 'Space',
+  required: true,
+  helperText: 'Select a space',
+};
 const useStyles = createStyles((theme) => ({
   container: {
     // paddingInline: 'auto',
@@ -108,6 +116,9 @@ const getMaintainer = async (id?: string) => {
 const MaintainerDetailsPage = () => {
   const { cx, classes, theme } = useStyles();
   const router = useRouter();
+
+  const { openModal, openConfirmModal } = use_ModalContext();
+
   const _entity = getWordNextToFromUrl() as Sections;
   const {
     data: document,
@@ -145,10 +156,29 @@ const MaintainerDetailsPage = () => {
     company: document?.company,
     address: document?.address,
   };
-  const handleAddMaintainer = () => {
+  const handleAddMaintainer = async () => {
     console.log('add maintainer');
     console.log(document?._id);
     console.log(document?.name);
+    // fetch mainSpaces of organization
+    const res = await axiosInstance.get(`${PATH_API.getSpaceSelections}`);
+    console.log(res.data.data);
+    const data: SelectItem[] = res.data.data.map((space: SpaceModel) => ({
+      value: space._id,
+      label: space.name,
+    }));
+    openConfirmModal({
+      title: 'Add Maintainer to Building',
+      labels: {
+        confirm: 'Confirm',
+        cancel: 'Cancel',
+      },
+      centered: true,
+      children: '',
+      type: 'confirm',
+
+      onConfirm: function (data: any): void {},
+    });
   };
 
   const profileSide = (
