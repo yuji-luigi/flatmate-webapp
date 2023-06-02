@@ -60,7 +60,7 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
   const jwtToken = context.req.cookies.jwt;
   try {
     const rawThread = await axiosInstance.get(
-      `${process.env.NEXT_PUBLIC_API_URL}/maintenances/${context.query.crudId}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/maintenances/${context.query.documentId}`,
       {
         headers: {
           Authorization: `Bearer ${jwtToken}`,

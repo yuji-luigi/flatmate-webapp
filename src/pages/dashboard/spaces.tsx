@@ -7,14 +7,22 @@ import Layout from '../../layouts';
 import Page from '../../components/Page';
 import { CrudDrawerDefault } from '../../components/drawer/CrudDrawerDefault';
 import { useCrudSelectors, useCrudSliceStore } from '../../redux/features/crud/crudSlice';
+import { PATH_DASHBOARD } from '../../path/page-paths';
+import { useCookieContext } from '../../context/CookieContext';
 
 const HeadSpaceTable = () => {
   const entity = 'spaces';
+  const router = useRouter();
+  const { currentSpace } = useCookieContext();
   const { fetchCrudDocumentsWithPagination } = useCrudSliceStore();
-
   useEffect(() => {
-    fetchCrudDocumentsWithPagination({ entity, query: '?isHead=true' });
-  }, [entity]); // include parentId: string | undefined to update on change page
+    if (currentSpace) {
+      router.push(`${PATH_DASHBOARD.childrenSpace}/${currentSpace._id}`);
+      return;
+    }
+    // router.push(PATH_DASHBOARD.enterSpace)
+    fetchCrudDocumentsWithPagination({ entity, query: '?isMain=true' });
+  }, [entity, currentSpace?._id]); // include parentId: string | undefined to update on change page
 
   return (
     <Page>

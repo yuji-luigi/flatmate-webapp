@@ -10,8 +10,8 @@ import { useCookieContext } from '../../../context/CookieContext';
 import Link from 'next/link';
 import { PATH_DASHBOARD } from '../../../path/page-paths';
 
-const getSpaceAsCookie = async (spaceId: string) => {
-  const res = await axiosInstance.get(`${PATH_API.spaceCookie}/${spaceId}`, {
+const getSpaceAsCookie = async (crudId: string) => {
+  const res = await axiosInstance.get(`${PATH_API.spaceCookie}/${crudId}`, {
     withCredentials: true,
   });
 
@@ -20,7 +20,7 @@ const getSpaceAsCookie = async (spaceId: string) => {
 
 /**
  * in this page todo
- * 1. get spaceId from url
+ * 1. get crudId from url
  * 2. get space as jwt from server
  * 3. redirect to dashboard.
  *
@@ -30,9 +30,9 @@ const getSpaceAsCookie = async (spaceId: string) => {
 
 const EnterSpacePage = () => {
   const router = useRouter();
-  const { spaceId } = router.query;
+  const { documentId } = router.query;
   const { setCurrentSpace } = useCookieContext();
-  const { data, error, isLoading } = useSWR(spaceId, getSpaceAsCookie);
+  const { data, error, isLoading } = useSWR(documentId, getSpaceAsCookie);
   if (isLoading) return <div>loading</div>;
   if (error) return <div>error</div>;
   if (!data) {

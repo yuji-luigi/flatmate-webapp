@@ -12,6 +12,7 @@ import {
   Avatar,
   Stack,
   Divider,
+  Button,
 } from '@mantine/core';
 import React, { ReactElement, useEffect } from 'react';
 import Layout from '../../../layouts';
@@ -136,13 +137,41 @@ const MaintainerDetailsPage = () => {
         coverUrl: document.cover?.url,
       }
     : ({} as DataProp);
+  // create about data
+  const aboutData = {
+    // title: 'About',
+    email: document?.email,
+    tel: document?.tel,
+    company: document?.company,
+    address: document?.address,
+  };
+  const handleAddMaintainer = () => {
+    console.log('add maintainer');
+    console.log(document?._id);
+    console.log(document?.name);
+  };
+
+  const profileSide = (
+    <ProfileSide
+      contents={
+        <>
+          <Button onClick={handleAddMaintainer} variant="outline" color="yellow">
+            Add Maintainer to Building
+          </Button>
+          <AboutCard aboutData={aboutData} />
+          <></>
+        </>
+      }
+      aboutData={aboutData}
+    />
+  );
 
   return (
     <Container className={classes.container}>
       <Box className={classes.box}>
         <Box className={classes.cardMain}>
           <ProfileCover formFields={maintainersTableData} data={data} />
-          {isMobile && <ProfileSide />}
+          {isMobile && profileSide}
           <PostFeedCard
             createdBy={{ name: 'No name user' } as UserModel}
             title="The First Job!"
@@ -151,7 +180,7 @@ const MaintainerDetailsPage = () => {
             attachments={[]}
           />
         </Box>
-        {!isMobile && <ProfileSide />}
+        {!isMobile && profileSide}
       </Box>
     </Container>
   );

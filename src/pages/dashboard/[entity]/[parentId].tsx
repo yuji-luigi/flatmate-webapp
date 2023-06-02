@@ -1,23 +1,24 @@
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
 import React, { ReactElement, useEffect } from 'react';
-import axiosInstance from '../../../../utils/axios-instance';
+import axiosInstance from '../../../utils/axios-instance';
 
-import { UsersTable } from '../../../../components/datatable/UsersTable';
-import Layout from '../../../../layouts';
-import { TableSectionHeader } from '../../../../sections/dashboard_sections/datatable_section/TableSectionHeader';
-import Page from '../../../../components/Page';
-import useLayoutContext from '../../../../../hooks/useLayoutContext';
-import { CrudDrawerDefault } from '../../../../components/drawer/CrudDrawerDefault';
-import {
-  /* useCrudSelectors, */ useCrudSliceStore,
-} from '../../../../redux/features/crud/crudSlice';
-import { usePaginationContext } from '../../../../context/PaginationContext';
+import { UsersTable } from '../../../components/datatable/UsersTable';
+import Layout from '../../../layouts';
+import { TableSectionHeader } from '../../../sections/dashboard_sections/datatable_section/TableSectionHeader';
+import Page from '../../../components/Page';
+import useLayoutContext from '../../../../hooks/useLayoutContext';
+import { CrudDrawerDefault } from '../../../components/drawer/CrudDrawerDefault';
+import { /* useCrudSelectors, */ useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
+import { usePaginationContext } from '../../../context/PaginationContext';
+import { useCookieContext } from '../../../context/CookieContext';
 
 const fetcher = (args: string) => axiosInstance.get(args).then((res) => res.data?.data);
 
 const ChildrenTablePage = () => {
   const { query }: { query: ParsedQueryCustom } = useRouter();
+  // get currentSpace from context
+  const { currentSpace } = useCookieContext();
   const { fetchLinkedChildrenWithPagination } = useCrudSliceStore();
   // const { crudStatus } = useCrudSelectors(query.entity);
   const { paginationQuery } = usePaginationContext();
@@ -52,7 +53,7 @@ const ChildrenTablePage = () => {
       // setBreadcrumbs({ title: parentData.name, href: parentData._id });
       setChildrenBreadcrumbs({ title: parentData.name, href: parentData._id });
     }
-  }, [parentData, paginationQuery]);
+  }, [parentData, paginationQuery, currentSpace?._id]);
 
   // console.log(query.parentId);
 

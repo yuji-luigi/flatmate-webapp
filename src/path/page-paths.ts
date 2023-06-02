@@ -5,7 +5,7 @@ export const AUTH = {
   SIGNUP: '/sign-up',
 };
 
-export const PATH_AFTER_LOGIN = '/dashboard/home';
+export const PATH_AFTER_LOGIN = '/dashboard/posts';
 
 // export const PATH_ROOT {}
 
@@ -24,6 +24,7 @@ export enum PATH_DASHBOARD {
   signup = '/sign-up',
   maintainers = '/dashboard/maintainers',
   maintainersSearch = '/dashboard/maintainers/search',
+  childrenSpace = '/dashboard/spaces',
 }
 export enum CARD_LINK_PATH {
   posts = PATH_DASHBOARD.posts,

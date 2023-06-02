@@ -2,6 +2,17 @@ import { Box, Card, createStyles } from '@mantine/core';
 import React from 'react';
 import AboutCard from './AboutCard';
 
+interface Props {
+  aboutData: {
+    title?: string;
+    email?: string;
+    tel?: string;
+    company?: string;
+    address?: string;
+  };
+  contents: React.ReactNode;
+}
+
 const useStyles = createStyles((theme) => ({
   sideBox: {
     width: '30%',
@@ -17,20 +28,19 @@ const useStyles = createStyles((theme) => ({
     },
   },
 }));
-const ProfileSide = () => {
+const ProfileSide = ({ aboutData = {}, contents }: Props) => {
   const { cx, classes, theme } = useStyles();
 
   return (
     <Box className={classes.sideBox}>
-      <AboutCard
-        title=""
-        email="mario.japan@nintendo.com"
-        phone="34289890987"
-        company="super mario plumbers"
-        address="via contardo ferrini 2/d lissone MB"
-      />
-      <Card>side card</Card>
-      <Card>side card</Card>
+      {contents}
+      {/* <AboutCard
+        title={aboutData.title || ''}
+        email={aboutData.email || ''}
+        tel={aboutData.tel || ''}
+        company={aboutData.company || ''}
+        address={aboutData.address || ''}
+      /> */}
     </Box>
   );
 };

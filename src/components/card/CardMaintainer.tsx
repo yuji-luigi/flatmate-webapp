@@ -66,7 +66,7 @@ export function CardMaintainer({
       <Card.Section
         component="a"
         sx={{
-          backgroundImage: `url(${maintainer.logo?.url || PATH_IMAGE.flatmateLogo1})`,
+          backgroundImage: `url(${maintainer.cover?.url || PATH_IMAGE.flatmateLogo1})`,
           height: 140,
           backgroundPosition: 'center',
           backgroundSize: 'cover',

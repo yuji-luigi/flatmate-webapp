@@ -1,3 +1,5 @@
+import { PATH_DASHBOARD } from '../../../src/path/page-paths';
+
 export const spacesTableData: Array<FormFieldInterface> = [
   {
     id: 'name',
@@ -6,7 +8,7 @@ export const spacesTableData: Array<FormFieldInterface> = [
     placeholder: 'Building East/Quarto oggiaro district(whole city as building)',
     type: 'text',
     cellType: 'link-children',
-    linkRoot: '/dashboard/spaces/access/',
+    linkRoot: PATH_DASHBOARD.childrenSpace,
     linkKey: '_id',
     required: true,
     priority: 1,
