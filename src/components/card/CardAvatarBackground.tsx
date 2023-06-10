@@ -11,7 +11,6 @@ import {
   createStyles,
   rem,
   Tooltip,
-  Sx,
 } from '@mantine/core';
 import { Icons } from '../../data/icons';
 import { IMAGES_ARRAY, PATH_IMAGE } from '../../lib/image-paths';
@@ -38,28 +37,19 @@ const useStyles = createStyles((theme) => ({
 
 const ICON_SIZE = 16;
 
-export interface UserCardData {
-  _id: string;
-  avatar?: UploadModel;
-  cover?: UploadModel;
-  name: string;
-  email?: string;
-  address?: string;
-  company?: string;
-  type?: string;
-  active?: boolean;
-  badges?: string[];
-  badgeIcon?: JSX.Element;
-  badgeSx?: Sx;
-}
-
-export function CardMaintainer({ data, entity }: { data: UserCardData; entity: Sections }) {
+export function CardMaintainer({
+  maintainer,
+  entity,
+}: {
+  maintainer: MaintainerModel;
+  entity: Sections;
+}) {
   const { classes, theme } = useStyles();
   const dark = theme.colorScheme === 'dark';
   return (
     <Card
       component={Link}
-      href={`${entity}/${data._id}`}
+      href={`${entity}/${maintainer._id}`}
       shadow="sm"
       padding="lg"
       radius="md"
@@ -76,7 +66,7 @@ export function CardMaintainer({ data, entity }: { data: UserCardData; entity: S
       <Card.Section
         component="a"
         sx={{
-          backgroundImage: `url(${data.cover?.url || PATH_IMAGE.flatmateLogo1})`,
+          backgroundImage: `url(${maintainer.cover?.url || PATH_IMAGE.flatmateLogo1})`,
           height: 140,
           backgroundPosition: 'center',
           backgroundSize: 'cover',
@@ -84,10 +74,10 @@ export function CardMaintainer({ data, entity }: { data: UserCardData; entity: S
         }}
         // href="https://mantine.dev/"
       ></Card.Section>
-      {/* <Image src={data.avatar.url} height={160} alt="Norway" /> */}
+      {/* <Image src={maintainer.avatar.url} height={160} alt="Norway" /> */}
       {/* </Card.Section> */}
       <Avatar
-        src={data.avatar?.url || getRandomItemFromArray(IMAGES_ARRAY)}
+        src={maintainer.avatar?.url || getRandomItemFromArray(IMAGES_ARRAY)}
         size={80}
         radius={80}
         mx="auto"
@@ -100,50 +90,29 @@ export function CardMaintainer({ data, entity }: { data: UserCardData; entity: S
           variant="light"
           sx={{ position: 'absolute', transform: 'translate(0, -24px)' }}
         >
-          {data.type}
+          {maintainer.type}
         </Badge>
       </Group>
 
       <Stack spacing={4}>
-        {data.name && (
-          <Text size="lg" weight={800}>
-            {data.name}
-          </Text>
-        )}
-
-        {data.company && (
-          <TextWithIcon icon={<Icons.buildings size={ICON_SIZE} />} text={data.company} />
-        )}
-
-        {data.email && (
-          <TextWithIcon
-            sx={{ marginBottom: 4 }}
-            icon={<Icons.mail size={ICON_SIZE} />}
-            text={data.email}
-          />
-        )}
-        {data.address && (
-          <TextWithIcon
-            sx={{ marginBottom: 4 }}
-            icon={<Icons.mapPin size={ICON_SIZE} />}
-            text={data.address}
-          />
-        )}
-
-        <Group>
-          {data.badges?.map((badge) => (
-            <BadgeWithToolTip
-              icon={data.badgeIcon}
-              text={badge || 'add address'}
-              disabled={!badge}
-              sx={{ ...data.badgeSx }}
-            />
-          ))}
-        </Group>
+        <Text size="lg" weight={800}>
+          {maintainer.name}
+        </Text>
+        <TextWithIcon icon={<Icons.buildings size={ICON_SIZE} />} text={maintainer.company} />
+        <TextWithIcon
+          sx={{ marginBottom: 4 }}
+          icon={<Icons.mail size={ICON_SIZE} />}
+          text={maintainer.email}
+        />
+        <BadgeWithToolTip
+          icon={<Icons.mapPin size={ICON_SIZE} />}
+          text={maintainer.address || 'add address'}
+          disabled={!maintainer.address}
+        />
       </Stack>
 
       {/* <Text lineClamp={5} size="sm" color="dimmed">
-        {data.description}
+        {maintainer.description}
       </Text> */}
 
       {/* <Button variant="light" color="blue" fullWidth mt="md" radius="md">

@@ -27,7 +27,7 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-const fetchSpaceSelections = async (user: UserModel) => {
+export const fetchSpaceSelections = async (user?: UserModel | null) => {
   if (!user) return null;
   const res = await axiosInstance.get(PATH_API.getSpaceSelections);
   return res.data?.data;

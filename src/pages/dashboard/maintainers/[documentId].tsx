@@ -14,8 +14,9 @@ import {
   Divider,
   Button,
   SelectItem,
+  Select,
 } from '@mantine/core';
-import React, { ReactElement, useEffect } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import Layout from '../../../layouts';
 import ProfileCover, { DataProp } from '../../../components/profile/ProfileCover';
 import { useCrudSelectors, useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
@@ -37,6 +38,9 @@ import { lorem100 } from '../../../_mock/strings';
 import { maintainersTableData } from '../../../../json/dataTable/formfields/maintainersTableData';
 import { use_ModalContext } from '../../../context/modal-context/_ModalContext';
 import CrudSelect from '../../../components/input/crud-inputs/CrudSelect';
+import AddMaintainerModal from '../../../sections/single_maintenance_section/AddMaintainerModal';
+import CardWithTitle from '../../../components/profile/side/CardWithTitle';
+import TextWithIcon from '../../../components/text/TextWithIcon';
 const spaceFormField = {
   id: 'space',
   label: 'Space',
@@ -54,24 +58,14 @@ const useStyles = createStyles((theme) => ({
     flexDirection: 'row',
     justifyContent: 'center',
     gap: 16,
-    // height: rem(100),
-    // backgroundColor: theme.colors.blue[6],
-
-    // Media query with value from theme
-    // [`@media (max-width: ${em(getBreakpointValue(theme.breakpoints.xl) - 1)})`]: {
-    //   backgroundColor: theme.colors.pink[6],
-    // },
 
     // Simplify media query writing with theme functions
     [theme.fn.smallerThan('sm')]: {
       flexDirection: 'column',
-      // backgroundColor: theme.cdolors.yellow[6],
     },
 
     // Static media query
-    [`@media (max-width: ${em(800)})`]: {
-      // backgroundColor: theme.colors.orange[6],
-    },
+    [`@media (max-width: ${em(800)})`]: {},
   },
   cardMain: {
     display: 'flex',
@@ -117,6 +111,9 @@ const MaintainerDetailsPage = () => {
   const { cx, classes, theme } = useStyles();
   const router = useRouter();
 
+  const [space, setSpace] = useState<string | null>(null);
+  // const ref = React.useRef<HTMLInputElement>(null);
+
   const { openModal, openConfirmModal } = use_ModalContext();
 
   const _entity = getWordNextToFromUrl() as Sections;
@@ -157,28 +154,20 @@ const MaintainerDetailsPage = () => {
     address: document?.address,
   };
   const handleAddMaintainer = async () => {
-    console.log('add maintainer');
-    console.log(document?._id);
-    console.log(document?.name);
-    // fetch mainSpaces of organization
-    const res = await axiosInstance.get(`${PATH_API.getSpaceSelections}`);
-    console.log(res.data.data);
-    const data: SelectItem[] = res.data.data.map((space: SpaceModel) => ({
-      value: space._id,
-      label: space.name,
-    }));
+    // setSpaces(data);
+    // setIsOpened(true);
     openConfirmModal({
+      type: 'custom',
       title: 'Add Maintainer to Building',
-      labels: {
-        confirm: 'Confirm',
-        cancel: 'Cancel',
-      },
       centered: true,
-      children: '',
-      type: 'confirm',
-
-      onConfirm: function (data: any): void {},
+      children: <AddMaintainerModal />,
+      onConfirm: function (data: any): void {
+        throw new Error('Function not implemented.');
+      },
     });
+  };
+  const setMaintainerToSpace = async () => {
+    console.log(space);
   };
 
   const profileSide = (
@@ -189,7 +178,23 @@ const MaintainerDetailsPage = () => {
             Add Maintainer to Building
           </Button>
           <AboutCard aboutData={aboutData} />
-          <></>
+
+          <CardWithTitle titleSx={{ fontSize: 24 }} title="Condominium/Office">
+            {document.spaces.length ? (
+              document.spaces?.map((space: SpaceModel) => (
+                <TextWithIcon
+                  icon={<Icons.buildings />}
+                  // iconSize={16}
+                  // iconColor={theme.colors.blue[6]}
+                  text={space.name}
+                  // textSize={1 6}
+                  // textColor={theme.colors.gray[7]}
+                />
+              ))
+            ) : (
+              <Text>No spaces assigned</Text>
+            )}
+          </CardWithTitle>
         </>
       }
       aboutData={aboutData}
@@ -197,22 +202,24 @@ const MaintainerDetailsPage = () => {
   );
 
   return (
-    <Container className={classes.container}>
-      <Box className={classes.box}>
-        <Box className={classes.cardMain}>
-          <ProfileCover formFields={maintainersTableData} data={data} />
-          {isMobile && profileSide}
-          <PostFeedCard
-            createdBy={{ name: 'No name user' } as UserModel}
-            title="The First Job!"
-            body={lorem100}
-            images={RANDOM_UPLOAD_MODELS}
-            attachments={[]}
-          />
+    <>
+      <Container className={classes.container}>
+        <Box className={classes.box}>
+          <Box className={classes.cardMain}>
+            <ProfileCover formFields={maintainersTableData} data={data} />
+            {isMobile && profileSide}
+            <PostFeedCard
+              createdBy={{ name: 'No name user' } as UserModel}
+              title="The First Job!"
+              body={lorem100}
+              images={RANDOM_UPLOAD_MODELS}
+              attachments={[]}
+            />
+          </Box>
+          {!isMobile && profileSide}
         </Box>
-        {!isMobile && profileSide}
-      </Box>
-    </Container>
+      </Container>
+    </>
   );
 };
 

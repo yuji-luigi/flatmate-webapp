@@ -10,4 +10,5 @@ interface UserModel extends MongooseBaseModel {
   password: string;
   phone?: string;
   avatar?: UploadModel;
+  organization: string;
 }

@@ -2,6 +2,8 @@ import { useDisclosure, useMediaQuery } from '@mantine/hooks';
 import { Modal, Group, Button, Stack, Box, Sx } from '@mantine/core';
 import { use_ModalContext } from './_ModalContext';
 import { CrudModal } from './CrudModal';
+import { ReactNode } from 'react';
+import CustomModal from './CustomModal';
 
 export interface _ModalContextStates {
   isOpenModal: boolean;
@@ -38,8 +40,11 @@ interface CrudModalParams extends BaseModalParams {
   formFields: FormFieldInterface[];
   crudDocument?: AllModels;
 }
+interface CustomModalParams extends BaseModalParams {
+  type: 'custom';
+}
 
-export type OpenConfirmModalParams = ConfirmAlertModalParams | CrudModalParams;
+export type OpenConfirmModalParams = ConfirmAlertModalParams | CrudModalParams | CustomModalParams;
 
 export type ModalProps = OpenConfirmModalParams & {
   id: string;
@@ -67,30 +72,33 @@ export function ModalRootCustom() {
     close();
   };
 
+  if (!opened) return null;
+
+  if (modals.type === 'custom') {
+    return <CustomModal />;
+  }
   if (modals.type === 'crud') {
     return <CrudModal />;
   }
   return (
-    <>
-      <Modal opened={opened} centered={modals.centered} onClose={close} title={modals.title}>
-        <Stack>
-          {modals.children}
-          <Box
-            display="flex"
-            sx={{ flexDirection: isMobile ? 'column' : 'row', gap: 8, justifyContent: 'end' }}
+    <Modal opened={opened} centered={modals.centered} onClose={close} title={modals.title}>
+      {modals.children}
+      <Stack>
+        <Box
+          display="flex"
+          sx={{ flexDirection: isMobile ? 'column' : 'row', gap: 8, justifyContent: 'end' }}
+        >
+          <Button variant="outline" sx={modals.sx.cancel} onClick={handleCancel}>
+            {modals.labels.cancel || 'Cancel'}
+          </Button>
+          <Button
+            sx={{ ...modals.sx.confirm, backgroundColor: isAlert ? 'red' : '' }}
+            onClick={handleConfirm}
           >
-            <Button variant="outline" sx={modals.sx.cancel} onClick={handleCancel}>
-              {modals.labels.cancel || 'Cancel'}
-            </Button>
-            <Button
-              sx={{ ...modals.sx.confirm, backgroundColor: isAlert ? 'red' : '' }}
-              onClick={handleConfirm}
-            >
-              {modals.labels.confirm || 'Confirm'}
-            </Button>
-          </Box>
-        </Stack>
-      </Modal>
-    </>
+            {modals.labels.confirm || 'Confirm'}
+          </Button>
+        </Box>
+      </Stack>
+    </Modal>
   );
 }

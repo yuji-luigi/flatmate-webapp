@@ -38,7 +38,6 @@ const ProfileCover = ({
   const coverInputRef = useRef<HTMLInputElement>(null);
   const { openConfirmModal } = use_ModalContext();
 
-  console.log(data.avatarUrl);
   const [selectedImage, setSelectedImage] = useState<string | undefined>(data.avatarUrl);
   const [selectedCover, setSelectedCover] = useState<string | undefined>(data.coverUrl);
 

@@ -15,16 +15,19 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-interface Prop {
+interface Props {
   title?: string;
-  aboutData: {
-    company?: string;
-    tel?: string;
-    email?: string;
-    address?: string;
-  };
+  aboutData: AboutData;
 }
-const AboutCard = ({ aboutData, title }: Prop) => {
+
+export interface AboutData {
+  company?: string;
+  tel?: string;
+  email?: string;
+  address?: string;
+}
+
+const AboutCard = ({ aboutData, title }: Props) => {
   const { classes, cx, theme } = useStyles();
   return (
     <Card className={classes.card}>

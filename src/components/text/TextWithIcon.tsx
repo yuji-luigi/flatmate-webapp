@@ -1,4 +1,4 @@
-import { Card, Title, Text, createStyles, Sx } from '@mantine/core';
+import { Card, Title, Text, createStyles, Sx, Box } from '@mantine/core';
 import { Icon123 } from '@tabler/icons-react';
 import React from 'react';
 import { Icons } from '../../data/icons';
@@ -19,7 +19,7 @@ const TextWithIcon = ({ icon, text, sx }: { icon: ReactJSXElement; text: string;
   const { classes, cx, theme } = useStyles();
   return (
     <Text className={classes.textRows} sx={sx}>
-      {icon}
+      <Box sx={{ height: '100%', alignItems: 'center' }}>{icon}</Box>
       {text}
     </Text>
   );

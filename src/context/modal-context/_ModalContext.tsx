@@ -6,6 +6,7 @@ import {
   ModalRootCustom,
   OpenConfirmModalParams,
 } from './ModalRootCustom';
+import { Box } from '@mantine/core';
 
 const defaultModalValues: ModalProps = {
   title: '',
