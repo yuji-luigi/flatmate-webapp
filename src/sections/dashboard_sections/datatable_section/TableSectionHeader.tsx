@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { Box, Button, Group, Stack, Sx, createStyles } from '@mantine/core';
+import { Box, Button, Container, Group, Stack, Sx, createStyles } from '@mantine/core';
 import { useEffect } from 'react';
 import { sectionData } from '../../../data';
 import { useDrawerContext } from '../../../context/DataTableDrawerContext';
@@ -9,26 +9,9 @@ import { useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
 import { PATH_API } from '../../../path/api-routes';
 import axiosInstance from '../../../utils/axios-instance';
 import { Sections } from '../../../types/general/data/sections-type';
+import { dashboardStyle } from '../../../styles/global-useStyles';
 
-const useStyles = createStyles(() => ({
-  headerWrapper: {
-    display: 'flex',
-    width: '100%',
-    flexDirection: 'row',
-    alignItems: 'end',
-    justifyContent: 'space-between',
-    // paddingInline: 10,
-    paddingTop: 30,
-    // paddingInline: 32,
-  },
-  title: {
-    marginBlock: 5,
-  },
-  button: {
-    minWidth: 150,
-    // marginLeft: 40,
-  },
-}));
+const useStyles = dashboardStyle;
 function instanceOfParentDataInterface(object: any): object is ParentDataInterface {
   return 'name' in object;
 }
@@ -107,7 +90,7 @@ export function TableSectionHeader({
   };
 
   return (
-    <Box px={40}>
+    <Container className={classes.mainContainer}>
       <Group className={classes.headerWrapper} sx={sx}>
         {/* <div > */}
         <Stack>
@@ -128,6 +111,6 @@ export function TableSectionHeader({
         {/* <CrudDrawerDefault /> */}
       </Group>
       {children}
-    </Box>
+    </Container>
   );
 }

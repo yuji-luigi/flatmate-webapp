@@ -41,65 +41,14 @@ import CrudSelect from '../../../components/input/crud-inputs/CrudSelect';
 import AddMaintainerModal from '../../../sections/single_maintenance_section/AddMaintainerModal';
 import CardWithTitle from '../../../components/profile/side/CardWithTitle';
 import TextWithIcon from '../../../components/text/TextWithIcon';
+import { profilePageStyle } from '../../../styles/global-useStyles';
 const spaceFormField = {
   id: 'space',
   label: 'Space',
   required: true,
   helperText: 'Select a space',
 };
-const useStyles = createStyles((theme) => ({
-  container: {
-    // paddingInline: 'auto',
-    paddingBlock: 32,
-  },
-  box: {
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    gap: 16,
-
-    // Simplify media query writing with theme functions
-    [theme.fn.smallerThan('sm')]: {
-      flexDirection: 'column',
-    },
-
-    // Static media query
-    [`@media (max-width: ${em(800)})`]: {},
-  },
-  cardMain: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: 16,
-    width: '70%',
-    [theme.fn.smallerThan('md')]: {
-      width: '60%', // backgroundColor: theme.cdolors.yellow[6],
-    },
-    [theme.fn.smallerThan('sm')]: {
-      width: '100%', // backgroundColor: theme.cdolors.yellow[6],
-    },
-  },
-  sideBox: {
-    width: '30%',
-    gap: 16,
-    display: 'flex',
-    flexDirection: 'column',
-    [theme.fn.smallerThan('md')]: {
-      width: '100%', // backgroundColor: theme.cdolors.yellow[6],
-    },
-    [theme.fn.smallerThan('sm')]: {
-      width: '100%', // backgroundColor: theme.cdolors.yellow[6],
-      // flexDirection: 'row',
-    },
-  },
-  feedCard: {
-    minHeight: 200,
-  },
-  feedContent: {
-    padding: 16,
-    paddingInline: 24,
-  },
-}));
+const useStyles = profilePageStyle;
 
 const getMaintainer = async (id?: string) => {
   if (!id) return;
@@ -197,7 +146,6 @@ const MaintainerDetailsPage = () => {
           </CardWithTitle>
         </>
       }
-      aboutData={aboutData}
     />
   );
 

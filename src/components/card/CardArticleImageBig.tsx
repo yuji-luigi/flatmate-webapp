@@ -9,7 +9,7 @@ const useStyles = createStyles((theme) => ({
     // height: 300,
     // flex: '1 auto',
     padding: 10,
-    border: '1px solid red',
+    // border: '1px solid red',
     gridRowEnd: 'span 2',
     '&:hover': {
       transform: 'scale(1.01)',
@@ -24,7 +24,15 @@ const useStyles = createStyles((theme) => ({
   description: { fontFamily: `Greycliff CF, ${theme.fontFamily}`, fontWeight: 600 },
 }));
 
-const CardArticleImageBig = ({ article }: { article: ThreadModel }) => {
+export interface CardArticleImageBigData {
+  title?: string;
+  description?: string;
+  images?: { url: string }[];
+  createdAt?: string;
+  _id: string;
+}
+
+const CardArticleImageBig = ({ article }: { article: CardArticleImageBigData }) => {
   const { classes } = useStyles();
 
   return (
@@ -41,7 +49,7 @@ const CardArticleImageBig = ({ article }: { article: ThreadModel }) => {
         <Text className={classes.title} align="center" my={5} mb={10}>
           {article.title}
         </Text>
-        {article.images[0].url && (
+        {article.images?.[0]?.url && (
           <AspectRatio ratio={1920 / 1080}>
             <Image src={article.images[0].url} />
           </AspectRatio>

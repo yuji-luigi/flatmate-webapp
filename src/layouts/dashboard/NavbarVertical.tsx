@@ -20,6 +20,7 @@ import { useMediaQuery } from '@mantine/hooks';
 import { PATH_DASHBOARD } from '../../path/page-paths';
 import { ColorSchemeToggle } from '../../components/color-schemeToggle/ColorSchemeToggle';
 import { MouseEventHandler } from 'react';
+import { ProfilePopover } from '../../components/navigation/ProfilePopover';
 
 const useStyles = createStyles((theme /* , _params, getRef */) => {
   const icon = getStylesRef('icon') as string;
@@ -193,13 +194,7 @@ export function NavbarVertical() {
     >
       <ScrollArea>
         <Navbar.Section grow>
-          <Group className={classes.header} position="left">
-            <Avatar size={50} />
-            <div className={classes.flexVertical}>
-              <Text fw={700}>{user?.name}</Text>
-              <Text fw={500}>{user?.email}</Text>
-            </div>
-          </Group>
+          <ProfilePopover />
         </Navbar.Section>
         {links.map((navbarData) => navbarData)}
 

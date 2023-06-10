@@ -25,6 +25,7 @@ export enum PATH_DASHBOARD {
   maintainers = '/dashboard/maintainers',
   maintainersSearch = '/dashboard/maintainers/search',
   childrenSpace = '/dashboard/spaces',
+  spaceSettings = '/dashboard/space-settings',
 }
 export enum CARD_LINK_PATH {
   posts = PATH_DASHBOARD.posts,

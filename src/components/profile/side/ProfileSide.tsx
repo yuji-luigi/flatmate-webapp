@@ -3,13 +3,6 @@ import React from 'react';
 import AboutCard from './AboutCard';
 
 interface Props {
-  aboutData: {
-    title?: string;
-    email?: string;
-    tel?: string;
-    company?: string;
-    address?: string;
-  };
   contents: React.ReactNode;
 }
 
@@ -28,21 +21,10 @@ const useStyles = createStyles((theme) => ({
     },
   },
 }));
-const ProfileSide = ({ aboutData = {}, contents }: Props) => {
+const ProfileSide = ({ contents }: Props) => {
   const { cx, classes, theme } = useStyles();
 
-  return (
-    <Box className={classes.sideBox}>
-      {contents}
-      {/* <AboutCard
-        title={aboutData.title || ''}
-        email={aboutData.email || ''}
-        tel={aboutData.tel || ''}
-        company={aboutData.company || ''}
-        address={aboutData.address || ''}
-      /> */}
-    </Box>
-  );
+  return <Box className={classes.sideBox}>{contents}</Box>;
 };
 
 export default ProfileSide;

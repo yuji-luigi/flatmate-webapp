@@ -8,6 +8,7 @@ import {
   Box,
   Stack,
   BackgroundImage,
+  Sx,
 } from '@mantine/core';
 import Link from 'next/link';
 import { threadId } from 'worker_threads';
@@ -28,7 +29,7 @@ const useStyles = createStyles((theme) => ({
     // display: 'flex',
     // flexDirection: 'column',
     // gridRowEnd: 'span 1',
-    // cursor: 'pointer',
+    cursor: 'pointer',
     // '&:hover': {
     //   backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[0],
     // },
@@ -46,6 +47,10 @@ const useStyles = createStyles((theme) => ({
     position: 'absolute',
     background: 'linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%)',
     zIndex: 10,
+    '&:hover': {
+      backgroundColor:
+        theme.colorScheme === 'dark' ? 'rgba(255,255,255,0.5)' : 'rgba(255,255,255,0.5)',
+    },
   },
 
   title: {
@@ -77,7 +82,7 @@ const useStyles = createStyles((theme) => ({
 export interface CardData {
   _id: string;
   name: string;
-  address: string;
+  address?: string;
   createdAt: string;
   user?: UserModel;
 }
@@ -89,6 +94,7 @@ interface CardArticleImageDescFooterVerticalProps {
   // date: string;
   href?: string;
   onClick?: () => void;
+  sx?: Sx;
 
   data: CardData;
   // data: SpaceModel | OrganizationModel;
@@ -98,6 +104,7 @@ export function CardArticleVerticalTextBottom({
   // title,
   data,
   href,
+  sx,
   onClick,
 }: CardArticleImageDescFooterVerticalProps) {
   // const description =
@@ -105,7 +112,7 @@ export function CardArticleVerticalTextBottom({
   const { classes, cx } = useStyles();
   const router = useRouter();
   const content = (
-    <Card withBorder radius="md" p={0} className={classes.card} onClick={onClick}>
+    <Card withBorder radius="md" p={0} className={classes.card} onClick={onClick} sx={sx}>
       <BackgroundImage
         className={classes.bgImage}
         src={image || PATH_IMAGE.rootSpaceCard1}
@@ -133,12 +140,16 @@ export function CardArticleVerticalTextBottom({
                 {data.user?.name}
               </Text>
             </Group>
-            <Text className={classes.text} size="xs" color="dimmed">
-              •
-            </Text>
-            <Text size="xs" color="dimmed">
-              {data.createdAt}
-            </Text>
+            {data.createdAt && (
+              <>
+                <Text className={classes.text} size="xs" color="dimmed">
+                  •
+                </Text>
+                <Text size="xs" color="dimmed">
+                  {data.createdAt}
+                </Text>
+              </>
+            )}
           </Group>
         </div>
       </BackgroundImage>

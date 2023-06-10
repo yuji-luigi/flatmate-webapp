@@ -43,6 +43,7 @@ import {
   IconMail as mail,
   IconPencil as pencil,
   IconPhoneCall as phoneCall,
+  IconSettings as setting,
   // IconCardboards as posts,
 } from '@tabler/icons-react';
 
@@ -88,6 +89,7 @@ export const Icons = {
   mail,
   pencil,
   phoneCall,
+  setting,
   // TablerIcon,
 } as const;
 // export {
