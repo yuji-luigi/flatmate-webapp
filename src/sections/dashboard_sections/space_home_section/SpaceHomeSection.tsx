@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
 import Layout from '../../../layouts';
-import { Box, Button, Container, Text } from '@mantine/core';
+import { Box, Button, Container, Tabs, Text } from '@mantine/core';
 import { dashboardStyle, profilePageStyle } from '../../../styles/global-useStyles';
 import ProfileSide from '../../../components/profile/side/ProfileSide';
 import AboutCard from '../../../components/profile/side/AboutCard';
@@ -15,10 +15,30 @@ import ProfileCover from '../../../components/profile/ProfileCover';
 import { RANDOM_UPLOAD_MODELS } from '../../../lib/image-paths';
 import { useMediaQuery } from '@mantine/hooks';
 import { useCrudSelectors } from '../../../redux/features/crud/crudSlice';
+import { IconMessageCircle, IconSettings, IconCoin } from '@tabler/icons-react';
+import { SpacePostSection } from './SpacePostSection';
+import { SpaceMaintenanceSection } from './SpaceMaintenanceSection';
+import { TabList } from '../../../components/profile/tab/TabList';
+import { TabPanels } from '../../../components/profile/tab/TabPanels';
 
 // use style from global-useStyles
 const useStyles = dashboardStyle;
 const useStyles2 = profilePageStyle;
+
+const TabListConfig = [
+  {
+    label: 'Posts',
+    value: 'posts',
+    icon: <IconMessageCircle size="0.8rem" />,
+    component: <SpacePostSection />,
+  },
+  {
+    label: 'Maintenance',
+    value: 'maintenance',
+    icon: <IconMessageCircle size="0.8rem" />,
+    component: <SpaceMaintenanceSection />,
+  },
+];
 
 const SpaceHomeSection = () => {
   const router = useRouter();
@@ -44,34 +64,37 @@ const SpaceHomeSection = () => {
       }
     />
   );
-  console.log(document);
   return (
     <Container className={classes.container}>
-      <Box className={classes.box}>
-        <Box className={classes.cardMain}>
-          <ProfileCover
-            noAvatar
-            entity={entity}
-            formFields={maintainersTableData}
-            data={{
-              title: document.name,
-              _id: document._id,
-              subtitle: document.address,
-              avatarUrl: document.avatar?.url,
-              coverUrl: document.cover?.url,
-            }}
-          />
-          {isMobile && profileSide}
-          <PostFeedCard
-            createdBy={{ name: 'No name user' } as UserModel}
-            title="The First Job!"
-            body={lorem100}
-            images={RANDOM_UPLOAD_MODELS}
-            attachments={[]}
-          />
+      <Tabs>
+        <Box className={classes.box}>
+          <Box className={classes.cardMain}>
+            <ProfileCover
+              noAvatar
+              entity={entity}
+              formFields={maintainersTableData}
+              data={{
+                title: document.name,
+                _id: document._id,
+                subtitle: document.address,
+                avatarUrl: document.avatar?.url,
+                coverUrl: document.cover?.url,
+              }}
+            />
+            <TabList list={TabListConfig} />
+            {isMobile && profileSide}
+            <TabPanels list={TabListConfig} />
+            <PostFeedCard
+              createdBy={{ name: 'No name user' } as UserModel}
+              title="The First Job!"
+              body={lorem100}
+              images={RANDOM_UPLOAD_MODELS}
+              attachments={[]}
+            />
+          </Box>
+          {!isMobile && profileSide}
         </Box>
-        {!isMobile && profileSide}
-      </Box>
+      </Tabs>
     </Container>
   );
 };

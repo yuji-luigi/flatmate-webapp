@@ -9,6 +9,7 @@ import {
   Text,
   createStyles,
   em,
+  Sx,
 } from '@mantine/core';
 import React from 'react';
 import { Icons } from '../../../data/icons';
@@ -30,13 +31,21 @@ interface PostFeedCardProps {
   body: string;
   attachments: UploadModel[];
   images: UploadModel[];
+  sx?: Sx;
 }
 
-const PostFeedCard = ({ createdBy, title, body, attachments, images }: PostFeedCardProps) => {
+const PostFeedCard = ({
+  createdBy,
+  title,
+  body,
+  attachments,
+  images,
+  sx = {},
+}: PostFeedCardProps) => {
   const { cx, classes, theme } = useStyles();
 
   return (
-    <Card className={classes.feedCard}>
+    <Card className={classes.feedCard} sx={sx}>
       <Group sx={{ height: 80, width: '100%', display: 'flex', justifyContent: 'space-between' }}>
         <Group sx={{ height: '100%' }}>
           <Avatar src="https://picsum.photos/410/300" radius={90} size={80} />
