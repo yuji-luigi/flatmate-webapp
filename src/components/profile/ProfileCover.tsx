@@ -1,5 +1,15 @@
-import React, { ChangeEvent, MouseEventHandler, useRef, useState } from 'react';
-import { Card, Avatar, Text, Paper, Box, Group, ActionIcon, Button } from '@mantine/core';
+import React, { ChangeEvent, MouseEventHandler, useEffect, useRef, useState } from 'react';
+import {
+  Card,
+  Avatar,
+  Text,
+  Paper,
+  Box,
+  Group,
+  ActionIcon,
+  Button,
+  createStyles,
+} from '@mantine/core';
 import { Icons } from '../../data/icons';
 import {
   setSubmitting,
@@ -16,9 +26,60 @@ import { useModalContext } from '@mantine/core/lib/Modal/Modal.context';
 import { use_ModalContext } from '../../context/modal-context/_ModalContext';
 import { Sections } from '../../types/general/data/sections-type';
 
+const useStyles = createStyles((theme) => ({
+  card: {
+    borderRadius: 12,
+    position: 'relative',
+    width: '100%',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    minHeight: '200px',
+    display: 'flex',
+    alignItems: 'flex-end',
+  },
+  lightBox: {
+    transition: 'opacity 200ms ease-in-out',
+    top: 0,
+    left: 0,
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    background: 'rgba(0, 0, 0, 0.7)',
+    color: '#fff',
+    fontSize: '14px',
+    fontWeight: 500,
+    opacity: 0,
+    '&:hover': {
+      opacity: 0.7,
+    },
+  },
+  avatarWrapper: {
+    position: 'relative',
+    display: 'inline-block',
+    zIndex: 50,
+  },
+  avatarEditBox: {
+    position: 'absolute',
+    top: 0,
+    borderRadius: 100,
+    background: 'black',
+    height: 100,
+    width: 100,
+    opacity: 0,
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'end',
+    justifyContent: 'center',
+    transition: 'all 200ms ease-in-out',
+    '&:hover': {
+      opacity: 0.7,
+    },
+  },
+}));
 export interface DataProp {
+  _id?: string;
   title: string;
-  subtitle: string;
+  subtitle?: string;
   avatarUrl?: string;
   coverUrl?: string;
   backgroundImage?: string;
@@ -27,13 +88,20 @@ export interface DataProp {
 const ProfileCover = ({
   data,
   formFields,
+  entity,
+  noAvatar = false,
 }: {
   data: DataProp;
+  entity?: Sections;
+  noAvatar?: boolean;
   formFields?: FormFieldInterface[];
 }) => {
   const { documentId } = useRouter().query;
-  const _entity = getWordNextToFromUrl() as Sections;
+  const _entity = entity || (getWordNextToFromUrl() as Sections);
   const { updateCrudDocument } = useCrudSliceStore();
+
+  const { classes } = useStyles();
+
   const { selectDocumentById, selectedCrudDocument } = useCrudSelectors(_entity);
   const coverInputRef = useRef<HTMLInputElement>(null);
   const { openConfirmModal } = use_ModalContext();
@@ -72,7 +140,7 @@ const ProfileCover = ({
 
       updateCrudDocument({
         entity: _entity,
-        documentId: documentId as string,
+        documentId: data._id || (documentId as string),
         updateData: { [field]: uploadIdData[field][0] },
       });
     } catch (error) {
@@ -102,46 +170,22 @@ const ProfileCover = ({
       },
     });
   };
-
+  useEffect(() => {
+    setSelectedCover(data.coverUrl);
+    setSelectedImage(data.avatarUrl);
+  }, [data.avatarUrl, data.coverUrl]);
   return (
     <Card
       shadow="sm"
       padding="lg"
-      sx={{
-        borderRadius: 12,
-        position: 'relative',
-        width: '100%',
-        // width: '100%',
+      className={classes.card}
+      style={{
         backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${
           selectedCover || 'https://picsum.photos/410/300'
         })`,
-
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        minHeight: '200px',
-        display: 'flex',
-        alignItems: 'flex-end',
       }}
     >
-      <Box
-        onClick={handleLightBoxClicked}
-        sx={{
-          transition: 'opacity 200ms ease-in-out',
-          '&:hover': {
-            opacity: 0.7,
-          },
-          top: 0,
-          left: 0,
-          position: 'absolute',
-          width: '100%',
-          height: '100%',
-          background: 'rgba(0, 0, 0, 0.7)',
-          color: '#fff',
-          fontSize: '14px',
-          fontWeight: 500,
-          opacity: 0, // Initially hidden
-        }}
-      >
+      <Box onClick={handleLightBoxClicked} className={classes.lightBox}>
         <Group position="right">
           <input
             id="cover-input"
@@ -156,57 +200,34 @@ const ProfileCover = ({
           </Button>
         </Group>
       </Box>
-      <Group sx={{ justifyContent: 'space-between', width: '100%' }}>
+      <Group style={{ justifyContent: 'space-between', width: '100%' }}>
         <Group>
-          <Box
-            sx={{
-              position: 'relative',
-              display: 'inline-block',
-              zIndex: 50,
-            }}
-          >
-            <label htmlFor="avatar-input">
-              <Avatar
-                sx={{ cursor: 'pointer' }}
-                size={100}
-                radius={80}
-                src={selectedImage}
-                alt={data.title + ' avatar'}
-                style={{ marginRight: '1rem' }}
-              />
-              <input
-                id="avatar-input"
-                type="file"
-                accept="image/*"
-                style={{ display: 'none' }}
-                onChange={handleImageChange}
-              />
-              <Box
-                sx={{
-                  position: 'absolute',
-                  top: 0,
-                  borderRadius: 100,
-                  background: 'black',
-                  height: 100,
-                  width: 100,
-                  opacity: 0,
-                  cursor: 'pointer',
-                  display: 'flex',
-                  alignItems: 'end',
-                  justifyContent: 'center',
-                  transition: 'all 200ms ease-in-out',
-                  '&:hover': {
-                    opacity: 0.7,
-                  },
-                }}
-              >
-                <Text fw={800} mb={8}>
-                  Edit
-                </Text>
-              </Box>
-            </label>
-          </Box>
-          <Box sx={{ alignSelf: 'start' }}>
+          {
+            <Box className={classes.avatarWrapper}>
+              <label htmlFor="avatar-input">
+                <Avatar
+                  style={{ cursor: 'pointer', marginRight: '1rem' }}
+                  size={100}
+                  radius={80}
+                  src={selectedImage}
+                  alt={data.title + ' avatar'}
+                />
+                <input
+                  id="avatar-input"
+                  type="file"
+                  accept="image/*"
+                  style={{ display: 'none' }}
+                  onChange={handleImageChange}
+                />
+                <Box className={classes.avatarEditBox}>
+                  <Text fw={800} mb={8}>
+                    Edit
+                  </Text>
+                </Box>
+              </label>
+            </Box>
+          }
+          <Box style={{ alignSelf: 'start' }}>
             <Text weight={700} size="xl">
               {data.title}
             </Text>
