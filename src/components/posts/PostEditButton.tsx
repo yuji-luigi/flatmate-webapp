@@ -39,7 +39,6 @@ const PostEditButton = ({ data, entity }: { data: AllModels; entity: Sections })
       router.push(PATH_DASHBOARD.posts);
     }
   };
-  console.log(user?._id === data.user._id || user?.role === 'super_admin');
   return (
     <>
       {(user?._id === data.user._id || user?.role === 'super_admin') && (

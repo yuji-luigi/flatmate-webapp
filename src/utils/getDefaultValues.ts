@@ -59,12 +59,22 @@ export function getDefaultValues(
     }
 
     // fallbackValues
+    if (field.type === 'attachment' || field.type === 'image') {
+      if (field.multi) {
+        obj.media = { ...obj.media, [path]: crudDocument[path] || [] };
+        return obj;
+      }
+      // set id of the file
+      obj.media = { ...obj.media, [path]: crudDocument[path] || '' };
+      return obj;
+    }
 
     if (field.multi) {
       obj[path] = [];
     } else {
       obj[path] = fallbackValues[field.type];
     }
+
     return obj;
 
     // ! TODO: remove all autopopulate
@@ -118,5 +128,23 @@ const fallbackValues = {
   'date-range': new Date(Date.now()),
   attachment: null,
   image: null,
+
   color: '',
+};
+
+const getFallbackValues = (obj: any, crudDocument: any, path: string) => {
+  return {
+    text: '',
+    'long-text': '',
+    boolean: false,
+    checkbox: false,
+    select: null,
+    'static-select': null,
+    number: 0,
+    currency: 0,
+    avatar: null,
+    date: new Date(Date.now()),
+    'date-range': new Date(Date.now()),
+    color: '',
+  };
 };

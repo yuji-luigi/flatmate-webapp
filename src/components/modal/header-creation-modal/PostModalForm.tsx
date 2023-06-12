@@ -58,6 +58,7 @@ const PostModalForm = () => {
       media: undefined,
     };
     const media = structuredClone(form.values.media);
+    console.log(media);
     if (media && hasMedia(media)) {
       try {
         const uploadIdData = await uploadFileAndGetModelId(extractUploadingMedia(media), 'threads');
