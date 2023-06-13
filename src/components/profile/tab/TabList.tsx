@@ -9,7 +9,7 @@ interface List {
 }
 export const TabList = ({ list }: { list: List[] }) => {
   return (
-    <Tabs.List>
+    <Tabs.List position="right">
       {list.map((item) => (
         <Tabs.Tab icon={item.icon} value={item.value}>
           {item.label}

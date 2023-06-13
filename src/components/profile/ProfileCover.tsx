@@ -25,7 +25,6 @@ import { useRouter } from 'next/router';
 import { useModalContext } from '@mantine/core/lib/Modal/Modal.context';
 import { use_ModalContext } from '../../context/modal-context/_ModalContext';
 import { Sections } from '../../types/general/data/sections-type';
-import { TabProfile } from './tab/TabProfile';
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -228,7 +227,7 @@ const ProfileCover = ({
               </label>
             </Box>
           }
-          <Box style={{ alignSelf: 'start' }}>
+          <Box style={{ alignSelf: 'center' }}>
             <Text weight={700} size="xl">
               {data.title}
             </Text>

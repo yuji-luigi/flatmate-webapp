@@ -66,7 +66,7 @@ const SpaceHomeSection = () => {
   );
   return (
     <Container className={classes.container}>
-      <Tabs>
+      <Tabs placement="right" defaultValue={TabListConfig[0].value}>
         <Box className={classes.box}>
           <Box className={classes.cardMain}>
             <ProfileCover
