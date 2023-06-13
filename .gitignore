@@ -41,8 +41,6 @@ storybook-static
 .history
 pnpm-lock.yaml
 
-next.config.js
-next.config.js
 
 .vscode
 # typescript
