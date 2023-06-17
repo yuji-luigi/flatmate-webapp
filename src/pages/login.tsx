@@ -79,9 +79,9 @@ const LoginPage = ({ user }: { user?: UserModel }) => {
               <b>
                 <span>-demo account-</span>
                 <br />
-                email: demo@testing.com
+                email: contardo@admin.com
                 <br />
-                password: demo123
+                password: user$$$
               </b>
             </div>
             <br />
