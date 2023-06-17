@@ -52,7 +52,7 @@ const MaintainerList = ({ entity }: { entity: Sections }) => {
       >
         {crudDocuments.map((maintainer, i) => {
           let badge = maintainer.spaces
-            .filter((space: SpaceModel) => space.organization._id === user?.organization)
+            .filter((space: SpaceModel) => space.organization?._id === user?.organization)
             .map((space: SpaceModel) => space.name);
           badge = badge.length > 0 ? badge : ['Not assigned to any space'];
           return (

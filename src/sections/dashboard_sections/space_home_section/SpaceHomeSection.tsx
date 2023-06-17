@@ -42,6 +42,10 @@ const TabListConfig = [
 
 const SpaceHomeSection = () => {
   const router = useRouter();
+
+  const { crudDocuments: maintainers }: { crudDocuments: MaintainerModel[] } =
+    useCrudSelectors('maintainers');
+
   const { classes: classes1 } = useStyles();
   const entity = 'spaces';
   // combine styles
@@ -51,19 +55,31 @@ const SpaceHomeSection = () => {
   const isMobile = useMediaQuery('(max-width: 800px)');
   const { selectedCrudDocument: document }: { selectedCrudDocument: SpaceModel } =
     useCrudSelectors(entity);
-
-  const profileSide = (
+  console.log(maintainers);
+  // const profileSide = <ProfileSide contents={null}></ProfileSide>;
+  const profileSide = maintainers.length ? (
     <ProfileSide
       contents={
         <>
           {/* <AboutCard aboutData={aboutData} /> */}
-          <CardWithTitle titleSx={{ fontSize: 24 }} title="Condominium/Office">
-            <Text>No spaces assigned</Text>
+          <CardWithTitle titleSx={{ fontSize: 24 }} title="Maintainers">
+            {maintainers.map((maintainer) => {
+              const Icon = Icons[maintainer.type as keyof typeof Icons] || Icons.Carpenter;
+              return (
+                <TextWithIcon
+                  key={maintainer._id}
+                  icon={<Icon />}
+                  sx={{ marginBottom: 10 }}
+                  text={maintainer.name}
+                />
+              );
+            })}
           </CardWithTitle>
         </>
       }
     />
-  );
+  ) : null;
+
   return (
     <Container className={classes.container}>
       <Tabs placement="right" defaultValue={TabListConfig[0].value}>

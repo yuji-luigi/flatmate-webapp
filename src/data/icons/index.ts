@@ -44,7 +44,14 @@ import {
   IconPencil as pencil,
   IconPhoneCall as phoneCall,
   IconSettings as setting,
-  // IconCardboards as posts,
+  IconTestPipe as plumber,
+  // plumber icon
+  IconHammer as hammer,
+  IconBath as bath,
+  IconTools as tools,
+  IconDropletFilled as drop,
+  // IconWall as wall,
+  IconBolt as electric,
 } from '@tabler/icons-react';
 
 export const Icons = {
@@ -90,31 +97,7 @@ export const Icons = {
   pencil,
   phoneCall,
   setting,
-  // TablerIcon,
+  Plumber: drop,
+  Carpenter: hammer,
+  Electrician: electric,
 } as const;
-// export {
-//   Icon2fa as authentication,
-//   IconBellRinging as notifications,
-//   IconDashboard as home,
-//   IconDatabaseImport as database,
-//   IconFingerprint as security,
-//   IconHomeStats as statistics,
-//   IconKey as key,
-//   IconReceipt2 as receipt,
-//   IconSettings as userSettings,
-//   IconSwitchHorizontal as switch,
-//   IconLogout as logout,
-//   IconUser as User,
-//   IconBook as bookmarks,
-//   IconMessage as comments,
-//   IconBuilding as buildings,
-//   IconRuler as fundRules,
-//   IconReceipt as proposals,
-//   IconBusinessplan as funds,
-//   IconBlockquote as threads,
-//   IconAlien as instances,
-//   IconTag as tags,
-//   IconAlertCircle as Alert,
-//   // TablerIcon,
-
-// } from "@tabler/icons";

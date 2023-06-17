@@ -18,10 +18,10 @@ const useStyles = createStyles((theme) => ({
 const TextWithIcon = ({ icon, text, sx }: { icon: ReactJSXElement; text: string; sx?: Sx }) => {
   const { classes, cx, theme } = useStyles();
   return (
-    <Text className={classes.textRows} sx={sx}>
-      <Box sx={{ height: '100%', alignItems: 'center' }}>{icon}</Box>
-      {text}
-    </Text>
+    <Box className={classes.textRows} sx={sx}>
+      <Box>{icon}</Box>
+      <Text>{text}</Text>
+    </Box>
   );
 };
 

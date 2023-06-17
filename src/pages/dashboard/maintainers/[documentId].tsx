@@ -115,6 +115,7 @@ const MaintainerDetailsPage = () => {
       },
     });
   };
+
   const setMaintainerToSpace = async () => {
     console.log(space);
   };
@@ -131,14 +132,7 @@ const MaintainerDetailsPage = () => {
           <CardWithTitle titleSx={{ fontSize: 24 }} title="Condominium/Office">
             {document.spaces.length ? (
               document.spaces?.map((space: SpaceModel) => (
-                <TextWithIcon
-                  icon={<Icons.buildings />}
-                  // iconSize={16}
-                  // iconColor={theme.colors.blue[6]}
-                  text={space.name}
-                  // textSize={1 6}
-                  // textColor={theme.colors.gray[7]}
-                />
+                <TextWithIcon key={space._id} icon={<Icons.buildings />} text={space.name} />
               ))
             ) : (
               <Text>No spaces assigned</Text>

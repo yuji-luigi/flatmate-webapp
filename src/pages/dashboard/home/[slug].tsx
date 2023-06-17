@@ -12,6 +12,7 @@ import { useCookieContext } from '../../../context/CookieContext';
 import { getCookie } from 'cookies-next';
 import SpaceHomeSection from '../../../sections/dashboard_sections/space_home_section/SpaceHomeSection';
 import { useRouter } from 'next/router';
+import axios from 'axios';
 
 interface Props {
   space: SpaceModel;
@@ -38,36 +39,45 @@ PostsPage.getLayout = function getLayout(page: ReactElement) {
   return <Layout variant="dashboard">{page}</Layout>;
 };
 
-export async function getServerSideProps(context: GetServerSidePropsContext) {
-  try {
-    const jwtToken = context.req.cookies.jwt;
+export async function getStaticPaths() {
+  // Generate paths for buildings
+  const mainSpaces = await axiosInstance.get(
+    `${process.env.NEXT_PUBLIC_API_URL}/spaces/ssg-paths?ssg_secret=${process.env.NEXT_PUBLIC_SSG_SECRET}`
+  );
+  const paths = mainSpaces.data.data.map((space: SpaceModel) => ({ params: { slug: space } }));
+  return {
+    paths,
+    fallback: false, // false or "blocking"
+  };
+}
 
-    const res = await axiosInstance.get(`${process.env.NEXT_PUBLIC_API_URL}/spaces/home`, {
-      headers: {
-        Authorization: `Bearer ${jwtToken}`,
-        space: context.req.cookies.space || '',
-        organization: context.req.cookies.organization || '',
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-      },
-    });
+export async function getStaticProps({ params }: { params: { slug: string } }) {
+  // try {
+  const slug = params.slug;
+  const res = await axiosInstance.get(
+    `${process.env.NEXT_PUBLIC_API_URL}/spaces/static-props/${slug}`,
+    {
+      params: { ssg_secret: process.env.NEXT_PUBLIC_SSG_SECRET },
+    }
+  );
+  const data = res.data.data;
+  // const data = ~await res.json();
 
-    // const data = (await res.data.data) as Record<string, any>;
-
-    const { space, maintainers, maintenances, threads } = res.data.data || [];
-
-    return {
-      props: {
-        space,
-        maintainers,
-        maintenances,
-        threads,
-      },
-    };
-  } catch (error: any) {
-    return {
-      redirect: {
-        destination: '/error',
-      },
-    };
-  }
+  // const data = await res.json();
+  const { space, maintainers, maintenances, threads } = data || [];
+  return {
+    props: {
+      space,
+      maintainers,
+      maintenances,
+      threads,
+    },
+  };
+  // } catch (error) {
+  //   return {
+  //     redirect: {
+  //       destination: '/error',
+  //     },
+  //   };
+  // }
 }

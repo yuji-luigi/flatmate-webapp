@@ -12,5 +12,8 @@ interface MaintainerModel extends MongooseBaseModel {
   isIndividual: boolean;
   // organizations: IOrganization[];
   // spaces: ISpaces[];
+  type: MaintainerType;
   createdBy: string | IUser;
 }
+
+type MaintainerType = 'carpenter' | 'electrician' | 'plumber';

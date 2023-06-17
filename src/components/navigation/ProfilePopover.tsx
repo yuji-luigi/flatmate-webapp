@@ -106,6 +106,7 @@ export function ProfilePopover() {
           {/* // todo: onhover change color */}
           {popoverList.map((list) => (
             <Link
+              key={list.title}
               className={cx(classes.link, {
                 [classes.linkActive]: false,
               })}
