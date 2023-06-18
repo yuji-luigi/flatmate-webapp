@@ -76,7 +76,7 @@ const useStyles = createStyles((theme) => ({
     },
   },
 }));
-export interface DataProp {
+export interface CoverDataProp {
   _id?: string;
   title: string;
   subtitle?: string;
@@ -91,7 +91,7 @@ const ProfileCover = ({
   entity,
   noAvatar = false,
 }: {
-  data: DataProp;
+  data: CoverDataProp;
   entity?: Sections;
   noAvatar?: boolean;
   formFields?: FormFieldInterface[];

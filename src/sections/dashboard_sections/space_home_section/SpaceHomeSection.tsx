@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
 import Layout from '../../../layouts';
-import { Box, Button, Container, Tabs, Text } from '@mantine/core';
+import { ActionIcon, Box, Button, Container, Group, Tabs, Text } from '@mantine/core';
 import { dashboardStyle, profilePageStyle } from '../../../styles/global-useStyles';
 import ProfileSide from '../../../components/profile/side/ProfileSide';
 import AboutCard from '../../../components/profile/side/AboutCard';
@@ -20,6 +20,8 @@ import { SpacePostSection } from './SpacePostSection';
 import { SpaceMaintenanceSection } from './SpaceMaintenanceSection';
 import { TabList } from '../../../components/profile/tab/TabList';
 import { TabPanels } from '../../../components/profile/tab/TabPanels';
+import { MaintainerList } from './maintainerCard/MaintainerList';
+import { SettingButtonSpaceHome } from './SettingButtonSpaceHome';
 
 // use style from global-useStyles
 const useStyles = dashboardStyle;
@@ -45,6 +47,8 @@ const SpaceHomeSection = () => {
 
   const { crudDocuments: maintainers }: { crudDocuments: MaintainerModel[] } =
     useCrudSelectors('maintainers');
+  const { crudDocuments: maintenances }: { crudDocuments: MaintenanceModel[] } =
+    useCrudSelectors('maintenances');
 
   const { classes: classes1 } = useStyles();
   const entity = 'spaces';
@@ -55,34 +59,29 @@ const SpaceHomeSection = () => {
   const isMobile = useMediaQuery('(max-width: 800px)');
   const { selectedCrudDocument: document }: { selectedCrudDocument: SpaceModel } =
     useCrudSelectors(entity);
-  console.log(maintainers);
+
   // const profileSide = <ProfileSide contents={null}></ProfileSide>;
-  const profileSide = maintainers.length ? (
+  const profileSide = (
     <ProfileSide
       contents={
         <>
-          {/* <AboutCard aboutData={aboutData} /> */}
           <CardWithTitle titleSx={{ fontSize: 24 }} title="Maintainers">
-            {maintainers.map((maintainer) => {
-              const Icon = Icons[maintainer.type as keyof typeof Icons] || Icons.Carpenter;
-              return (
-                <TextWithIcon
-                  key={maintainer._id}
-                  icon={<Icon />}
-                  sx={{ marginBottom: 10 }}
-                  text={maintainer.name}
-                />
-              );
-            })}
+            <MaintainerList maintainers={maintainers} />
+          </CardWithTitle>
+          <CardWithTitle titleSx={{ fontSize: 24 }} title="Maintenaces">
+            {maintenances.map((maintenance) => (
+              <Text>{maintenance.title}</Text>
+            ))}
           </CardWithTitle>
         </>
       }
     />
-  ) : null;
+  );
 
   return (
-    <Container className={classes.container}>
-      <Tabs placement="right" defaultValue={TabListConfig[0].value}>
+    <Box className={classes.container}>
+      <SettingButtonSpaceHome />
+      <Tabs placement="right" defaultValue={TabListConfig[0].value} sx={{ width: '100%' }}>
         <Box className={classes.box}>
           <Box className={classes.cardMain}>
             <ProfileCover
@@ -97,8 +96,8 @@ const SpaceHomeSection = () => {
                 coverUrl: document.cover?.url,
               }}
             />
-            <TabList list={TabListConfig} />
             {isMobile && profileSide}
+            <TabList list={TabListConfig} />
             <TabPanels list={TabListConfig} />
             <PostFeedCard
               createdBy={{ name: 'No name user' } as UserModel}
@@ -111,7 +110,7 @@ const SpaceHomeSection = () => {
           {!isMobile && profileSide}
         </Box>
       </Tabs>
-    </Container>
+    </Box>
   );
 };
 

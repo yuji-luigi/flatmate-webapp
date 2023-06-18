@@ -1,4 +1,5 @@
 interface SpaceModel extends MongooseBaseModel {
+  name: string;
   avatar?: UploadModel;
   cover?: UploadModel;
   organization: OrganizationModel;

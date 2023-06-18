@@ -18,7 +18,7 @@ import {
 } from '@mantine/core';
 import React, { ReactElement, useEffect, useState } from 'react';
 import Layout from '../../../layouts';
-import ProfileCover, { DataProp } from '../../../components/profile/ProfileCover';
+import ProfileCover, { CoverDataProp } from '../../../components/profile/ProfileCover';
 import { useCrudSelectors, useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
 import { useRouter } from 'next/router';
 import { getWordNextToFromUrl } from '../../../utils/helper-functions';
@@ -93,7 +93,7 @@ const MaintainerDetailsPage = () => {
         avatarUrl: document.avatar?.url,
         coverUrl: document.cover?.url,
       }
-    : ({} as DataProp);
+    : ({} as CoverDataProp);
   // create about data
   const aboutData = {
     // title: 'About',

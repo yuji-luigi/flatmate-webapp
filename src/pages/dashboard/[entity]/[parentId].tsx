@@ -31,7 +31,7 @@ const ChildrenTablePage = () => {
   //   `/${PATH_API.linkedChildren}/${query.entity}/${query.parentId}`,
   //   fetcher
   // );
-  const { data: parentData, error: parentError } = useSWR<MongooseBaseModel>(
+  const { data: parentData, error: parentError } = useSWR<MongooseBaseModel & { name: string }>(
     `/${query.entity}/${query.parentId}`,
     fetcher
   );

@@ -26,8 +26,8 @@ export const dashboardStyle = createStyles(() => ({
 
 export const profilePageStyle = createStyles((theme) => ({
   container: {
-    // paddingInline: 'auto',
     paddingBlock: 32,
+    marginInline: 16,
   },
   box: {
     width: '100%',

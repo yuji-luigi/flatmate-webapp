@@ -47,37 +47,37 @@ export async function getStaticPaths() {
   const paths = mainSpaces.data.data.map((space: SpaceModel) => ({ params: { slug: space } }));
   return {
     paths,
-    fallback: false, // false or "blocking"
+    fallback: 'blocking', // false or "blocking"
   };
 }
 
 export async function getStaticProps({ params }: { params: { slug: string } }) {
-  // try {
-  const slug = params.slug;
-  const res = await axiosInstance.get(
-    `${process.env.NEXT_PUBLIC_API_URL}/spaces/static-props/${slug}`,
-    {
-      params: { ssg_secret: process.env.NEXT_PUBLIC_SSG_SECRET },
-    }
-  );
-  const data = res.data.data;
-  // const data = ~await res.json();
+  try {
+    const slug = params.slug;
+    const res = await axiosInstance.get(
+      `${process.env.NEXT_PUBLIC_API_URL}/spaces/static-props/${slug}`,
+      {
+        params: { ssg_secret: process.env.NEXT_PUBLIC_SSG_SECRET },
+      }
+    );
+    const data = res.data.data;
+    // const data = ~await res.json();
 
-  // const data = await res.json();
-  const { space, maintainers, maintenances, threads } = data || [];
-  return {
-    props: {
-      space,
-      maintainers,
-      maintenances,
-      threads,
-    },
-  };
-  // } catch (error) {
-  //   return {
-  //     redirect: {
-  //       destination: '/error',
-  //     },
-  //   };
-  // }
+    // const data = await res.json();
+    const { space, maintainers, maintenances, threads } = data || [];
+    return {
+      props: {
+        space,
+        maintainers,
+        maintenances,
+        threads,
+      },
+    };
+  } catch (error) {
+    return {
+      redirect: {
+        destination: '/error',
+      },
+    };
+  }
 }

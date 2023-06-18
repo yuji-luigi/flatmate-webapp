@@ -31,6 +31,7 @@ export enum PATH_API {
   uploads = 'upload-files',
   spaces = 'spaces',
   spaceCookie = 'spaces/cookie',
+  spaceSlug = 'spaces/slug',
   getSpaceSelections = 'spaces/selections',
   organization = 'organizations',
   maintainers = 'maintainers',
