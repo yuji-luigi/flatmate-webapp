@@ -15,24 +15,7 @@ interface FormFieldInterface {
   label: string;
   placeholder?: string;
 
-  type:
-    | 'text'
-    | 'long-text'
-    | 'boolean'
-    | 'checkbox'
-    | 'select'
-    | 'static-select'
-    | 'number'
-    | 'currency'
-    | 'avatar'
-    | 'date'
-    | 'date-range'
-    | 'attachment'
-    | 'image'
-    // | 'dropzone'
-    // | 'dropzone-button'
-    // | 'link-children'
-    | 'color';
+  type: FormTypes;
 
   /**
    *  type refers to form type. this cellType specifically
@@ -79,6 +62,7 @@ interface FormFieldInterface {
    * since this current field doesn't have the file url. it should be string or string[]
    * */
   preview?: string;
+  col?: Col;
 }
 
 // interface FileFormType  {
@@ -91,3 +75,34 @@ interface SelectOption extends React.ComponentPropsWithoutRef<'div'> {
   value: string;
   label: string;
 }
+type Col = {
+  xs: number;
+  sm: number;
+  md: number;
+  lg: number;
+};
+
+type FormTypes =
+  | 'text'
+  | 'long-text'
+  | 'password'
+  | 'boolean'
+  | 'checkbox'
+  | 'checkbox-group'
+  | 'select'
+  | 'static-select'
+  | 'number'
+  | 'currency'
+  | 'avatar'
+  | 'date'
+  | 'date-range'
+  | 'attachment'
+  | 'image'
+  // | 'dropzone'
+  // | 'dropzone-button'
+  // | 'link-children'
+  | 'color'
+  | 'radius-group'
+  | 'radio-group'
+  | 'switch-group'
+  | 'pin-input';

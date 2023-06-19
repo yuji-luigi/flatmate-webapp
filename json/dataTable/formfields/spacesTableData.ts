@@ -22,23 +22,7 @@ export const spacesTableData: Array<FormFieldInterface> = [
     required: true,
     priority: 1,
   },
-  {
-    id: 'isTail',
-    name: 'isTail',
-    label: 'Tip of the space?',
-    placeholder: 'Golden street 334',
-    type: 'boolean',
-    required: true,
-    priority: 1,
-  },
-  {
-    id: 'isMain',
-    name: 'isMain',
-    label: 'Main space?',
-    type: 'boolean',
-    required: true,
-    priority: 1,
-  },
+
   {
     id: 'password',
     name: 'password',
@@ -72,5 +56,22 @@ export const spacesTableData: Array<FormFieldInterface> = [
     grantTo: ['super_admin'],
     required: false,
     priority: 100,
+  },
+  {
+    id: 'isTail',
+    name: 'isTail',
+    label: 'Tip of the space?',
+    placeholder: 'Golden street 334',
+    type: 'boolean',
+    required: true,
+    priority: 1,
+  },
+  {
+    id: 'isMain',
+    name: 'isMain',
+    label: 'Main space?',
+    type: 'boolean',
+    required: true,
+    priority: 1,
   },
 ];

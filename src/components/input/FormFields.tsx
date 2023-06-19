@@ -14,6 +14,8 @@ import CrudSelectMulti from './crud-inputs/CrudSelectMulti';
 import CrudSelect from './crud-inputs/CrudSelect';
 import CrudDatePicker from './crud-inputs/CrudDatePicker';
 import CrudSwitch from './crud-inputs/CrudSwitch';
+import RadioGroup from './crud-inputs/RadioGroup';
+import SwitchGroup from './crud-inputs/SwitchGroup';
 // import { FormFieldInterface } from '../../types/general/data/dataTable/formField-types';
 interface Props {
   formField: FormFieldInterface;
@@ -22,125 +24,36 @@ interface Props {
   form: UseFormReturnType<Record<string, unknown>>;
   // submitButton?: ReactNode;
 }
-const FormFields = ({
-  formField,
-  // initialValues,
-  form,
-  // submitButton,
-  ...others
-}: Props) => {
+const FormFields = ({ formField, form, ...others }: Props) => {
   const options = useGetSelectOptions(formField);
 
-  // const { addCrud } = useCrudSlice(entity);
+  switch (formField.type) {
+    case 'text':
+      return <CrudTextInput form={form} formField={formField} {...others} />;
 
-  // const form = useForm<LoginFormValues>({
-  //   initialValues,
-  // TODO: Make Validate function and set by string value from formField.
-  // validate: 'email' uses this email validator.
-  //   validate: {
-  //     email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
-  //   },
-  // });
-  // const onSubmit = (e: FormEvent) => {
-  //   e.preventDefault();
-  //   addCrud({ entity, newDocument: form.values });
-  // };
-  return (
-    <>
-      {formField.type === 'text' && (
-        <CrudTextInput form={form} formField={formField} {...others} />
-        // <TextInput
-        //   key={formField.id}
-        //   name={formField.name}
-        //   label={formField.label}
-        //   placeholder={formField.placeholder}
-        //   size="md"
-        //   mt={10}
-        //   {...others}
-        //   {...form.getInputProps(formField.name || formField.id)}
-        // />
-      )}
+    case 'long-text':
+      return <CrudTextArea form={form} formField={formField} {...others} />;
 
-      {formField.type === 'long-text' && (
-        <CrudTextArea form={form} formField={formField} {...others} />
-        // <Textarea
-        //   name={formField.name}
-        //   label={formField.label}
-        //   placeholder={formField.placeholder}
-        //   size="md"
-        //   mt={10}
-        //   {...others}
-        //   {...form.getInputProps(formField.name || formField.id)}
-        // />
-      )}
-      {formField.type === 'select' &&
-        (formField.multi ? (
-          <CrudSelectMulti form={form} formField={formField} options={options} {...others} />
-        ) : (
-          // <MultiSelect
-          //   searchable
-          //   data={options}
-          //   name={formField.name}
-          //   label={formField.label}
-          //   placeholder={formField.placeholder}
-          //   size="md"
-          //   mt={10}
-          //   {...others}
-          //   {...form.getInputProps(formField.name || formField.id)}
-          // />
-          <CrudSelect form={form} formField={formField} options={options} {...others} />
-          // <Select
-          //   searchable
-          //   data={options}
-          //   name={formField.name}
-          //   label={formField.label}
-          //   placeholder={formField.placeholder}
-          //   size="md"
-          //   mt={10}
-          //   {...others}
-          //   {...form.getInputProps(formField.name || formField.id)}
-          // />
-        ))}
-      {formField.type === 'static-select' && (
+    case 'select':
+      return formField.multi ? (
+        <CrudSelectMulti form={form} formField={formField} options={options} {...others} />
+      ) : (
+        <CrudSelect form={form} formField={formField} options={options} {...others} />
+      );
+
+    case 'static-select':
+      return (
         <CrudSelect form={form} formField={formField} options={formField.options!} {...others} />
-        // <Select
-        //   multiple={formField.multi}
-        //   data={formField.options!}
-        //   name={formField.name}
-        //   label={formField.label}
-        //   placeholder={formField.placeholder}
-        //   size="md"
-        //   mt={10}
-        //   {...others}
-        //   {...form.getInputProps(formField.name || formField.id)}
-        // />
-      )}
-      {formField.type === 'date' && (
-        <CrudDatePicker form={form} formField={formField} {...others} />
-        // <DatePicker
-        //   // name={formField.name}
-        //   // label={formField.label}
-        //   placeholder={formField.placeholder}
-        //   size="md"
-        //   mt={10}
-        //   {...others}
-        //   {...form.getInputProps(formField.name || formField.id)}
-        // />
-      )}
-      {formField.type === 'boolean' && (
-        <CrudSwitch form={form} formField={formField} {...others} />
-        // <Switch
-        //   checked={form.values[formField.name]}
-        //   name={formField.name}
-        //   label={formField.label}
-        //   placeholder={formField.placeholder}
-        //   size="md"
-        //   mt={10}
-        //   {...others}
-        //   {...form.getInputProps(formField.name || formField.id)}
-        // />
-      )}
-      {formField.type === 'checkbox' && (
+      );
+
+    case 'date':
+      return <CrudDatePicker form={form} formField={formField} {...others} />;
+
+    case 'boolean':
+      return <CrudSwitch form={form} formField={formField} {...others} />;
+
+    case 'checkbox':
+      return (
         <Checkbox
           checked={form.values[formField.name]}
           name={formField.name}
@@ -151,18 +64,15 @@ const FormFields = ({
           {...others}
           {...form.getInputProps(formField.name || formField.id)}
         />
-      )}
-      {/* {formField.type === 'date-range' && (
-        <DateRangePicker
-          name={formField.name}
-          label={formField.label}
-          placeholder={formField.placeholder}
-          size="md"
-          {...form.getInputProps(formField.name || formField.id)}
-        />
-      )} */}
-    </>
-  );
+      );
+    case 'radio-group':
+      return <RadioGroup form={form} formField={formField} {...others} />;
+    case 'switch-group':
+      return <SwitchGroup form={form} formField={formField} {...others} />;
+
+    default:
+      return null;
+  }
 };
 
 export default FormFields;
