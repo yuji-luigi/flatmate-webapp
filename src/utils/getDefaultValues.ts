@@ -114,7 +114,25 @@ export function getDefaultValues(
   return defaultValueObj || {};
 }
 
-const fallbackValues = {
+type FallBackValues = {
+  [key: string]: any;
+  // text: string;
+  // 'long-text': string;
+  // boolean: boolean;
+  // checkbox: boolean;
+  // select: string | null;
+  // 'static-select': string | null;
+  // number: number;
+  // currency: number;
+  // avatar: string | null;
+  // date: Date;
+  // 'date-range': Date;
+  // attachment: string | null;
+  // image: string | null;
+  // color: string;
+};
+
+const fallbackValues: FallBackValues = {
   text: '',
   'long-text': '',
   boolean: false,

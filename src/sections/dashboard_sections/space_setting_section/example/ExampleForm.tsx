@@ -20,7 +20,7 @@ const ExampleForm = () => {
       <Paper radius="md" sx={{ padding: 24 }} withBorder>
         <Grid justify="center" grow gutter="xl" sx={{ columnGap: 8, margin: 0 }}>
           {spacesTableData.map((field, index) => {
-            const { col }: { col: ColProps } = field;
+            const { col }: { col?: ColProps } = field;
             return (
               <Grid.Col
                 // span={6}
