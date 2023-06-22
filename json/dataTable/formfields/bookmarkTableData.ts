@@ -33,7 +33,7 @@ export const bookmarkTableData: Array<FormFieldInterface> = [
     name: 'note',
     label: 'note',
     placeholder: 'note',
-    type: 'long-text',
+    type: 'text-area',
     required: true,
     priority: 1,
   },

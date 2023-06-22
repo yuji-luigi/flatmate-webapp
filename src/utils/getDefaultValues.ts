@@ -117,7 +117,7 @@ export function getDefaultValues(
 type FallBackValues = {
   [key: string]: any;
   // text: string;
-  // 'long-text': string;
+  // 'text-area': string;
   // boolean: boolean;
   // checkbox: boolean;
   // select: string | null;
@@ -134,7 +134,7 @@ type FallBackValues = {
 
 const fallbackValues: FallBackValues = {
   text: '',
-  'long-text': '',
+  'text-area': '',
   boolean: false,
   checkbox: false,
   select: null,
@@ -153,7 +153,7 @@ const fallbackValues: FallBackValues = {
 const getFallbackValues = (obj: any, crudDocument: any, path: string) => {
   return {
     text: '',
-    'long-text': '',
+    'text-area': '',
     boolean: false,
     checkbox: false,
     select: null,

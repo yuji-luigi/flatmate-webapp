@@ -122,7 +122,7 @@ export const exampleFormFields /* : (typelerProps & { col?: ColProps })[] */ = [
     },
   },
   {
-    type: 'long-text',
+    type: 'text-area',
     name: 'comments',
     label: 'Comments',
     withAsterisk: true,

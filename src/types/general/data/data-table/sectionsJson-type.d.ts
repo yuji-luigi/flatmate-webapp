@@ -57,7 +57,7 @@ interface ISectionDataObject {
 
 // type FieldType =
 //   | "text"
-//   | "long-text"
+//   | "text-area"
 //   | "boolean"
 //   | "select"
 //   | "static-select"

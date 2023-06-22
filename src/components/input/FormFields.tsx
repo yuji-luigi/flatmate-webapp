@@ -31,7 +31,7 @@ const FormFields = ({ formField, form, ...others }: Props) => {
     case 'text':
       return <CrudTextInput form={form} formField={formField} {...others} />;
 
-    case 'long-text':
+    case 'text-area':
       return <CrudTextArea form={form} formField={formField} {...others} />;
 
     case 'select':

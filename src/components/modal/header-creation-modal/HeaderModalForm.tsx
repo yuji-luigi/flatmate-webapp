@@ -157,7 +157,7 @@ const HeaderModalForm = ({ entity }: { entity: 'threads' | 'maintenances' }) => 
           form={form}
           formField={formField}
           key={formField.id}
-          minRows={formField.type === 'long-text' ? 10 : 3}
+          minRows={formField.type === 'text-area' ? 10 : 3}
         />
       ))}
       {isSuperAdmin && (

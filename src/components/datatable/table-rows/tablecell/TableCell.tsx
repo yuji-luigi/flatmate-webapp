@@ -39,7 +39,7 @@ const TableCell = ({
         </Group>
       )}
 
-      {(cellConfig.type === 'text' || cellConfig.type === 'long-text') && (
+      {(cellConfig.type === 'text' || cellConfig.type === 'text-area') && (
         <Group spacing="sm">
           <Text size="md" weight={500}>
             {cellData}

@@ -12,99 +12,121 @@ import {
   Checkbox,
   Anchor,
   Stack,
+  Grid,
+  MultiSelect,
+  Sx,
 } from '@mantine/core';
 // import { GoogleButton, TwitterButton } from '../SocialButtons/SocialButtons';
 import { GoogleIcon } from '../../../components/social-buttons/GoogleIcon';
 import { GoogleButton } from '../../../components/social-buttons/SocialButtons';
+import { useCrudSelectors } from '../../../redux/features/crud/crudSlice';
+import { SpaceSlugResponse } from '../../../types/api-response/space-response';
 
-export function FormSpaceSetting(props: PaperProps) {
-  const [type, toggle] = useToggle(['login', 'register']);
+interface FormSpaceSettingProps {
+  paperProp?: PaperProps;
+  data: SpaceSlugResponse;
+  sx?: Sx;
+}
+
+export function FormSpaceSetting(props: FormSpaceSettingProps) {
+  const { data, paperProp } = props;
+  const { space, maintainers } = data;
+  // const [type, toggle] = useToggle(['login', 'register']);
   const form = useForm({
     initialValues: {
-      email: '',
-      name: '',
-      password: '',
-      terms: true,
+      name: space.name,
+      address: space.address,
+      admins: [space.administrator],
+      maintainers: maintainers,
+      password: space.password || '',
     },
 
     validate: {
-      email: (val) => (/^\S+@\S+$/.test(val) ? null : 'Invalid email'),
       password: (val) => (val.length <= 6 ? 'Password should include at least 6 characters' : null),
     },
   });
 
   return (
     <Paper radius="md" p="xl" withBorder {...props}>
-      <Text size="lg" weight={500}>
-        Welcome to Mantine, {type} with
+      <Text size="lg" weight={500} mb={8}>
+        Settings for the building/space
       </Text>
 
       <form onSubmit={form.onSubmit(() => {})}>
-        <Stack>
-          {type === 'register' && (
+        <Grid grow>
+          <Item>
             <TextInput
               label="Name"
-              placeholder="Your name"
+              placeholder="Name building"
               value={form.values.name}
               onChange={(event) => form.setFieldValue('name', event.currentTarget.value)}
               radius="md"
             />
-          )}
-
-          <TextInput
-            required
-            label="Email"
-            placeholder="hello@mantine.dev"
-            value={form.values.email}
-            onChange={(event) => form.setFieldValue('email', event.currentTarget.value)}
-            error={form.errors.email && 'Invalid email'}
-            radius="md"
-          />
-
-          <PasswordInput
-            required
-            label="Password"
-            placeholder="Your password"
-            value={form.values.password}
-            onChange={(event) => form.setFieldValue('password', event.currentTarget.value)}
-            error={form.errors.password && 'Password should include at least 6 characters'}
-            radius="md"
-          />
-
-          {type === 'register' && (
-            <Checkbox
-              label="I accept terms and conditions"
-              checked={form.values.terms}
-              onChange={(event) => form.setFieldValue('terms', event.currentTarget.checked)}
+          </Item>
+          <Item>
+            <TextInput
+              required
+              label="Address"
+              placeholder="Address"
+              value={form.values.address}
+              onChange={(event) => form.setFieldValue('address', event.currentTarget.value)}
+              error={form.errors.address && 'Invalid email'}
+              radius="md"
             />
-          )}
-        </Stack>
-        <Divider label="Or continue with email" labelPosition="center" my="lg" />
+          </Item>
+          <Item>
+            <MultiSelect
+              required
+              name="admins"
+              label="Administrators"
+              placeholder=""
+              data={['admin1', 'admin2', 'admin3']}
+              onChange={(selectedValues) => form.setFieldValue('admins', selectedValues)}
+              error={form.errors.admins && 'Invalid email'}
+              radius="md"
+            />
+          </Item>
+          <Item>
+            <MultiSelect
+              required
+              name="maintainers"
+              label="Maintainers"
+              placeholder=""
+              data={['idraulica', 'strutturale', 'muratore']}
+              onChange={(event) => form.setFieldValue('admins', event)}
+              error={form.errors.admins && 'Invalid email'}
+              radius="md"
+            />
+          </Item>
+          <Item>
+            <PasswordInput
+              required
+              label="Password"
+              placeholder="Your password"
+              value={form.values.password}
+              onChange={(event) => form.setFieldValue('password', event.currentTarget.value)}
+              error={form.errors.password && 'Password should include at least 6 characters'}
+              radius="md"
+            />
+          </Item>
+        </Grid>
 
-        <Group grow mb="md" mt="md">
+        {/* <Group grow mb="md" mt="md">
           <GoogleButton radius="xl">Google</GoogleButton>
           <GoogleButton radius="xl">Google</GoogleButton>
 
-          {/* <TwitterButton radius="xl">Twitter</TwitterButton> */}
-        </Group>
+        </Group> */}
 
-        <Group position="apart" mt="xl">
-          <Anchor
-            component="button"
-            type="button"
-            color="dimmed"
-            onClick={() => toggle()}
-            size="xs"
-          >
-            {type === 'register'
-              ? 'Already have an account? Login'
-              : "Don't have an account? Register"}
-          </Anchor>
+        <Group position="right" mt="xl">
           <Button type="submit" radius="xl">
-            {upperFirst(type)}
+            Submit
           </Button>
         </Group>
       </form>
     </Paper>
   );
 }
+
+const Item = ({ ...others }: any) => {
+  return <Grid.Col xs={12} sm={12} md={12} lg={5} xl={5} {...others} />;
+};

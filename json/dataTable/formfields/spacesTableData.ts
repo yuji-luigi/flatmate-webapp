@@ -74,4 +74,5 @@ export const spacesTableData: Array<FormFieldInterface> = [
     required: true,
     priority: 1,
   },
+  
 ];

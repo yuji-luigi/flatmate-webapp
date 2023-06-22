@@ -9,6 +9,7 @@ import {
   ActionIcon,
   Button,
   createStyles,
+  Sx,
 } from '@mantine/core';
 import { Icons } from '../../data/icons';
 import {
@@ -90,11 +91,13 @@ const ProfileCover = ({
   formFields,
   entity,
   noAvatar = false,
+  sx,
 }: {
   data: CoverDataProp;
   entity?: Sections;
   noAvatar?: boolean;
   formFields?: FormFieldInterface[];
+  sx?: Sx;
 }) => {
   const { documentId } = useRouter().query;
   const _entity = entity || (getWordNextToFromUrl() as Sections);
@@ -178,6 +181,7 @@ const ProfileCover = ({
     <Card
       shadow="sm"
       padding="lg"
+      sx={sx}
       className={classes.card}
       style={{
         backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${

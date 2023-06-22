@@ -84,7 +84,7 @@ type Col = {
 
 type FormTypes =
   | 'text'
-  | 'long-text'
+  | 'text-area'
   | 'password'
   | 'boolean'
   | 'checkbox'
@@ -98,9 +98,6 @@ type FormTypes =
   | 'date-range'
   | 'attachment'
   | 'image'
-  // | 'dropzone'
-  // | 'dropzone-button'
-  // | 'link-children'
   | 'color'
   | 'radius-group'
   | 'radio-group'
