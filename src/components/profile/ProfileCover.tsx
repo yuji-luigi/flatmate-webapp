@@ -206,7 +206,7 @@ const ProfileCover = ({
       </Box>
       <Group style={{ justifyContent: 'space-between', width: '100%' }}>
         <Group>
-          {
+          {!noAvatar && (
             <Box className={classes.avatarWrapper}>
               <label htmlFor="avatar-input">
                 <Avatar
@@ -230,7 +230,7 @@ const ProfileCover = ({
                 </Box>
               </label>
             </Box>
-          }
+          )}
           <Box style={{ alignSelf: 'center' }}>
             <Text weight={700} size="xl">
               {data.title}

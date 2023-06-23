@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
 import Layout from '../../../layouts';
-import { Box, Button, Container, Text } from '@mantine/core';
+import { Box, Button, Card, Container, Grid, Text } from '@mantine/core';
 import { dashboardStyle, profilePageStyle } from '../../../styles/global-useStyles';
 import ProfileSide from '../../../components/profile/side/ProfileSide';
 import AboutCard from '../../../components/profile/side/AboutCard';
@@ -14,7 +14,7 @@ import PostFeedCard from '../../../components/posts/feed/PostFeedCard';
 import ProfileCover, { CoverDataProp } from '../../../components/profile/ProfileCover';
 import { RANDOM_UPLOAD_MODELS } from '../../../lib/image-paths';
 import { useMediaQuery } from '@mantine/hooks';
-import { FormSpaceSetting } from '../../../sections/dashboard_sections/space_setting_section/FormSpaceSetting';
+import { SpaceSettingForm } from '../../../sections/dashboard_sections/space_setting_section/SpaceSettingForm';
 import useSWR from 'swr';
 import axiosInstance, { AxiosResDataGeneric } from '../../../utils/axios-instance';
 import { PATH_API } from '../../../path/api-routes';
@@ -23,6 +23,7 @@ import LoadingScreen from '../../../components/screen/LoadingScreen';
 import ExampleForm from '../../../sections/dashboard_sections/space_setting_section/example/ExampleForm';
 import { useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
 import { SpaceSlugResponse } from '../../../types/api-response/space-response';
+import { SpaceSettingMaintainersSection } from '../../../sections/dashboard_sections/space_setting_section/maintainers_section/SpaceSettingMaintainersSection';
 
 // use style from global-useStyles
 const useStyles = dashboardStyle;
@@ -62,15 +63,28 @@ const SpaceSettingSinglePage = () => {
   };
 
   return (
-    <Box className={classes.container}>
-      <Box className={classes.box}>
-        {/* <Box className={classes.cardMain}> */}
-        <ProfileCover sx={{ height: 300 }} formFields={maintainersTableData} data={coverData} />
-        <FormSpaceSetting data={data} sx={{ width: '100%' }} />
-        {/* <ExampleForm /> */}
-        {/* </Box> */}
-      </Box>
-    </Box>
+    <Grid className={classes.container}>
+      {/* <Box className={classes.box}> */}
+      {/* <Box className={classes.cardMain}> */}
+      <Grid.Col md={12} lg={5}>
+        <ProfileCover
+          noAvatar
+          sx={{ height: '100%' }}
+          formFields={maintainersTableData}
+          data={coverData}
+        />
+      </Grid.Col>
+      <Grid.Col md={12} lg={7}>
+        <SpaceSettingForm data={data} sx={{ width: '100%' }} />
+      </Grid.Col>
+      <Grid.Col span={12}>
+        <SpaceSettingMaintainersSection maintainers={data.maintainers} />
+      </Grid.Col>
+
+      {/* <ExampleForm /> */}
+      {/* </Box> */}
+      {/* </Box> */}
+    </Grid>
   );
 };
 

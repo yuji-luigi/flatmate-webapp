@@ -22,13 +22,13 @@ import { GoogleButton } from '../../../components/social-buttons/SocialButtons';
 import { useCrudSelectors } from '../../../redux/features/crud/crudSlice';
 import { SpaceSlugResponse } from '../../../types/api-response/space-response';
 
-interface FormSpaceSettingProps {
+interface SpaceSettingFormProps {
   paperProp?: PaperProps;
   data: SpaceSlugResponse;
   sx?: Sx;
 }
 
-export function FormSpaceSetting(props: FormSpaceSettingProps) {
+export function SpaceSettingForm(props: SpaceSettingFormProps) {
   const { data, paperProp } = props;
   const { space, maintainers } = data;
   // const [type, toggle] = useToggle(['login', 'register']);
@@ -47,7 +47,7 @@ export function FormSpaceSetting(props: FormSpaceSettingProps) {
   });
 
   return (
-    <Paper radius="md" p="xl" withBorder {...props}>
+    <Paper radius="lg" p="xl" withBorder {...props}>
       <Text size="lg" weight={500} mb={8}>
         Settings for the building/space
       </Text>

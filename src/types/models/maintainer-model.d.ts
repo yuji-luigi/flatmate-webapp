@@ -1,18 +1,19 @@
 interface MaintainerModel extends MongooseBaseModel {
   name: string;
   company: string;
-  avatar?: UploadModel;
+  cover?: IUpload | string;
+  avatar?: IUpload;
   homepage: string;
   type: string;
   tel: string;
   email: string;
-  cover?: UploadModel;
+  logo: IUpload;
   description: string;
   address: string;
   isIndividual: boolean;
-  // organizations: IOrganization[];
-  // spaces: ISpaces[];
-  type: MaintainerType;
+  spaces: ISpace[];
+  password: string;
+  isInSpace: boolean;
   createdBy: string | IUser;
 }
 
