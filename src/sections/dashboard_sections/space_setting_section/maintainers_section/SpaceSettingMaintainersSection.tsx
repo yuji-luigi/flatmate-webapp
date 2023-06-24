@@ -1,7 +1,8 @@
-import { Divider, Paper, Text } from '@mantine/core';
+import { Box, Divider, Paper, Stack, Text } from '@mantine/core';
 import React from 'react';
 import { UserInfoIcons } from '../../../../components/card/UserInfoIcons';
 import { SpaceSettingMaintainerCard } from './SpaceSettingMaintainerCard';
+import { PaperWithTitle } from '../../../../components/paper/PaperWithTitle';
 
 export const SpaceSettingMaintainersSection = ({
   maintainers,
@@ -20,16 +21,21 @@ export const SpaceSettingMaintainersSection = ({
 
   const list = Object.keys(maintainersByType).map((key) => {
     return (
-      <>
-        <Text>{key}</Text>
-        {maintainersByType[key].map((maintainer) => (
-          <SpaceSettingMaintainerCard maintainer={maintainer} />
-        ))}
-        <Divider />
-      </>
+      <Box>
+        <Text component="h1">{key}</Text>
+        <Stack sx={{ gap: 12 }}>
+          {maintainersByType[key].map((maintainer) => (
+            <SpaceSettingMaintainerCard maintainer={maintainer} />
+          ))}
+        </Stack>
+      </Box>
     );
   });
-
+  return (
+    <PaperWithTitle title="Maintainers of the building/space" sx={{ marginBottom: 20 }}>
+      <Stack sx={{ gap: 32 }}>{list}</Stack>
+    </PaperWithTitle>
+  );
   return (
     <Paper radius="lg" p="xl" withBorder>
       <Text size="lg" weight={500} mb={8}>
@@ -41,7 +47,7 @@ export const SpaceSettingMaintainersSection = ({
           <SpaceSettingMaintainerCard maintainer={maintainer} />
         </>
       ))} */}
-      {list}
+      <Stack sx={{ gap: 32 }}>{list}</Stack>
     </Paper>
   );
 };
