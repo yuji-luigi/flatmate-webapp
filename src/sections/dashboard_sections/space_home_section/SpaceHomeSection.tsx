@@ -22,6 +22,7 @@ import { TabList } from '../../../components/profile/tab/TabList';
 import { TabPanels } from '../../../components/profile/tab/TabPanels';
 import { MaintainerList } from './maintainerCard/MaintainerList';
 import { SettingButtonSpaceHome } from './SettingButtonSpaceHome';
+import { MaintainerModel } from '../../../types/models/maintainer-model';
 
 // use style from global-useStyles
 const useStyles = dashboardStyle;

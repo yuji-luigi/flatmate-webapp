@@ -1,3 +1,5 @@
+import { MAINTAINER_TYPES } from '../../lib/enums';
+
 interface MaintainerModel extends MongooseBaseModel {
   name: string;
   company: string;
@@ -17,4 +19,4 @@ interface MaintainerModel extends MongooseBaseModel {
   createdBy: string | IUser;
 }
 
-type MaintainerType = 'carpenter' | 'electrician' | 'plumber';
+type MaintainerType = keyof typeof MAINTAINER_TYPES;

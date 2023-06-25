@@ -2,6 +2,8 @@ import { createStyles, Avatar, Text, Group, Card, Stack, Badge, Box } from '@man
 import { IconPhoneCall, IconAt } from '@tabler/icons-react';
 import { Icons } from '../../../../data/icons';
 import { MaintainerCardLeftSection } from './MaintainerCardLeftSection';
+import { MaintainerCardRightSection } from './MaintainerCardRightSection';
+import { MaintainerModel } from '../../../../types/models/maintainer-model';
 const useStyles = createStyles((theme) => ({
   icon: {
     color: theme.colorScheme === 'dark' ? theme.colors.dark[3] : theme.colors.gray[5],
@@ -26,30 +28,7 @@ export function SpaceSettingMaintainerCard({ maintainer }: SpaceSettingMaintaine
         <Avatar src={maintainer.avatar?.url || ''} size={160} radius="md" />
         <Group grow align="start" sx={{ width: '100%' }}>
           <MaintainerCardLeftSection maintainer={maintainer} />
-          <Stack justify="flex-start" spacing={5}>
-            <Box>
-              <Text fz="md" tt="uppercase" fw={700} c="dimmed">
-                - Works At -
-              </Text>
-
-              {maintainer.spaces.map((space) => (
-                <Badge fz="sm" className={classes.name}>
-                  {space.name}
-                </Badge>
-              ))}
-            </Box>
-            <Box>
-              <Text fz="md" tt="uppercase" fw={700} c="dimmed">
-                - Works Summary -
-              </Text>
-
-              {maintainer.spaces.map((space) => (
-                <Badge fz="sm" className={classes.name}>
-                  {space.name}
-                </Badge>
-              ))}
-            </Box>
-          </Stack>
+          <MaintainerCardRightSection maintainer={maintainer} />
         </Group>
       </Group>
     </Card>

@@ -19,6 +19,7 @@ import Link from 'next/link';
 import { Sections } from '../../types/general/data/sections-type';
 import TextWithIcon from '../text/TextWithIcon';
 import BadgeWithToolTip from '../text/BadgeWithToolTip';
+import { MaintainerModel } from '../../types/models/maintainer-model';
 
 const useStyles = createStyles((theme) => ({
   card: {

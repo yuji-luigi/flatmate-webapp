@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { Box, Button, Container, Group, Stack, Sx, createStyles } from '@mantine/core';
+import { Box, Button, Container, Group, Stack, Sx, createStyles, Text } from '@mantine/core';
 import { useEffect } from 'react';
 import { sectionData } from '../../../data';
 import { useDrawerContext } from '../../../context/DataTableDrawerContext';
@@ -90,11 +90,13 @@ export function TableSectionHeader({
   };
 
   return (
-    <Container className={classes.mainContainer}>
+    <>
       <Group className={classes.headerWrapper} sx={sx}>
         {/* <div > */}
-        <Stack>
-          <h1 className={classes.title}>{title}</h1>
+        <Stack align="start" justify="flex-start">
+          <Text size={32} fw={700}>
+            {title}
+          </Text>
           <BreadcrumbsCustom />
         </Stack>
         {section.createButton && (
@@ -111,6 +113,6 @@ export function TableSectionHeader({
         {/* <CrudDrawerDefault /> */}
       </Group>
       {children}
-    </Container>
+    </>
   );
 }

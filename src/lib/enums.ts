@@ -6,3 +6,9 @@ export const FONT_SIZES = {
 export const UPLOAD_FOLDERS = {
   threads: 'threads',
 };
+
+export const MAINTAINER_TYPES = {
+  Plumber: 'Plumber',
+  Carpenter: 'Carpenter',
+  Electrician: 'Electrician',
+};

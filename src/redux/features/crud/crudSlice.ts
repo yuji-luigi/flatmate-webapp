@@ -1,3 +1,4 @@
+import { ModalType } from './../../../../.history/src/types/modal/modalTypes.d_20230308221225';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import {
   fetchCrudDocumentsWithPagination,
@@ -8,6 +9,7 @@ import {
   addLinkedChildrenDocumentDataTable,
   deleteLinkedChildDocumentWithPagination,
   addCrudDocument,
+  fetchCrudDocumentsInfiniteScroll,
 } from '../crudAsyncThunks';
 // import { sectionData } from '../../../data';
 import { flattenSectionData } from '../../../data';
@@ -113,6 +115,22 @@ export const crudSlice = createSlice({
         state.reduxdb[entity].totalDocuments = totalDocuments;
       })
       .addCase(fetchCrudDocumentsWithPagination.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message;
+      })
+      // INFINITE SCROLL
+      .addCase(fetchCrudDocumentsInfiniteScroll.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(fetchCrudDocumentsInfiniteScroll.fulfilled, (state, action) => {
+        const { entity, documents, totalDocuments, isChildrenTree } = action.payload;
+        state.status = 'succeed';
+        state.reduxdb[entity].isChildrenTree = isChildrenTree;
+        const prevDocuments = state.reduxdb[entity].documentsArray;
+        state.reduxdb[entity].documentsArray = [...prevDocuments, documents];
+        state.reduxdb[entity].totalDocuments = totalDocuments + prevDocuments.length;
+      })
+      .addCase(fetchCrudDocumentsInfiniteScroll.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
       })
@@ -247,6 +265,9 @@ export const useCrudSliceStore = () => {
     fetchCrudDocumentsWithPagination(data: FetchCrudPayload) {
       appDispatch(fetchCrudDocumentsWithPagination(data));
     },
+    fetchCrudDocumentsInfiniteScroll(data: FetchCrudPayload) {
+      appDispatch(fetchCrudDocumentsInfiniteScroll(data));
+    },
     /** get children documents from api and set in documentsArray in redux */
     fetchLinkedChildrenWithPagination(data: FetchLinkedChildrenPayload) {
       appDispatch(fetchLinkedChildrenWithPagination(data));
@@ -294,7 +315,7 @@ export const useCrudSliceStore = () => {
 };
 
 /** Returns Array of Documents of the entity: whole array of entity */
-const useCrudDocuments = (entity?: Sections): AllModels[] =>
+const useCrudDocuments = <ModelType>(entity?: Sections): ModelType[] =>
   useAppSelector((state) => state.crud.reduxdb?.[entity || '']?.documentsArray);
 
 /** returns string if api sent message */
@@ -315,15 +336,15 @@ const useIsChildrenTree = (entity?: Sections): boolean =>
   useAppSelector((state) => state.crud.reduxdb?.[entity || '']?.isChildrenTree);
 
 /** Returns selected Document of the entity or if not selected returns null  */
-const useSelectedDocument = (entity?: Sections): AllModels =>
+const useSelectedDocument = <ModelType>(entity?: Sections): ModelType =>
   useAppSelector((state) => state.crud.reduxdb?.[entity || '']?.selectedDocument || {});
 
 /** Hook for selector. this time need do pass entity when initialize the hook. */
-export const useCrudSelectors = (entity?: Sections) => ({
+export const useCrudSelectors = <ModelType = AllModels>(entity?: Sections) => ({
   /** Returns Array of Documents of the entity: whole array of entity */
-  crudDocuments: useCrudDocuments(entity) || [],
+  crudDocuments: useCrudDocuments<ModelType>(entity) || [],
   /** Returns selected Document of the entity */
-  selectedCrudDocument: useSelectedDocument(entity) || null,
+  selectedCrudDocument: useSelectedDocument<ModelType>(entity) || null,
   /** returns string if error is present. to show flash on the screen */
   crudError: useCrudError(),
   /** returns string if api sent message */

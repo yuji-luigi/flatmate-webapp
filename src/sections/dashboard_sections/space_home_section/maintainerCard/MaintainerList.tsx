@@ -2,6 +2,7 @@ import React from 'react';
 import { Icons } from '../../../../data/icons';
 import TextWithIcon from '../../../../components/text/TextWithIcon';
 import { Text } from '@mantine/core';
+import { MaintainerModel } from '../../../../types/models/maintainer-model';
 
 export const MaintainerList = ({ maintainers }: { maintainers: MaintainerModel[] }) => {
   if (!maintainers.length) return <Text>No maintainer to the space</Text>;

@@ -44,6 +44,23 @@ export const fetchCrudDocumentsWithPagination = createAsyncThunk(
   }
 );
 
+export const fetchCrudDocumentsInfiniteScroll = createAsyncThunk(
+  'cruds/dataTable/fetchCrudDocumentsInfiniteScroll',
+  async ({ entity, query, isChildrenTree = false, queryObject = {} }: FetchCrudPayload) => {
+    const _entity = entity === 'posts' ? 'threads' : entity;
+    const res = await axiosInstance.get<AxiosResData>(
+      `${_entity}/${PATH_API_DATA_TABLE_ROOT}${query || ''}`,
+      { params: queryObject }
+    );
+    return {
+      entity: _entity,
+      isChildrenTree,
+      documents: res.data.data,
+      totalDocuments: res.data.totalDocuments,
+    };
+  }
+);
+
 export const fetchLinkedChildrenWithPagination = createAsyncThunk(
   'cruds/dataTable/fetchCrudDocumentsWithPagination',
   async ({ entity, query, /* isChildrenTree = true, */ parentId }: FetchLinkedChildrenPayload) => {

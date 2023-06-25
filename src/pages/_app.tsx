@@ -23,6 +23,7 @@ import { myColors } from '../lib/custom-colors';
 import { CookieContextProvider } from '../context/CookieContext';
 import { _ModalContextProvider } from '../context/modal-context/_ModalContext';
 import '../styles/global.css';
+import { FilterContextProvider } from '../context/FilterContext';
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -74,8 +75,10 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
                   <PaginationContextProvider>
                     <DrawerContextProvider>
                       <_ModalContextProvider>
-                        <Notifications />
-                        {getLayout(<Component {...pageProps} />)}
+                        <FilterContextProvider>
+                          <Notifications />
+                          {getLayout(<Component {...pageProps} />)}
+                        </FilterContextProvider>
                       </_ModalContextProvider>
                     </DrawerContextProvider>
                   </PaginationContextProvider>

@@ -40,6 +40,7 @@ const ICON_SIZE = 16;
 
 export interface UserCardData {
   _id: string;
+  slug: string;
   avatar?: UploadModel;
   cover?: UploadModel;
   name: string;
@@ -59,7 +60,7 @@ export function CardMaintainer({ data, entity }: { data: UserCardData; entity: S
   return (
     <Card
       component={Link}
-      href={`${entity}/${data._id}`}
+      href={`${entity}/detail/${data.slug}`}
       shadow="sm"
       padding="lg"
       radius="md"

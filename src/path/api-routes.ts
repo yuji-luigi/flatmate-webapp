@@ -35,6 +35,7 @@ export enum PATH_API {
   getSpaceSelections = 'spaces/selections',
   organization = 'organizations',
   maintainers = 'maintainers',
+  maintainersSlug = 'maintainers/slug',
   organizationAll = 'organizations/all',
   organizationCookie = 'organizations/cookie',
   getOrganizationsAndSpaces = 'organizations/spaces',

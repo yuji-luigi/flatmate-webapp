@@ -10,6 +10,12 @@ import { current } from '@reduxjs/toolkit';
 import { fetchSpaceSelections } from '../../../pages/choose-root-space';
 import useAuth from '../../../../hooks/useAuth';
 import { Icons } from '../../../data/icons';
+import { QueryFilterToApi } from '../../../components/datatable/filter/QueryFilterToApi';
+import { maintainersTableData } from '../../../../json/dataTable/formfields/maintainersTableData';
+import { QueryFilterToWeb } from '../../../components/datatable/filter/QueryFilterWeb';
+import { filterList } from '../../../components/datatable/filter/logic/applyFilter';
+import useTable, { getComparator } from '../../../../hooks/useTable';
+import { useFilter } from '../../../../hooks/useFilter';
 
 /**
  * 1. fetch all the maintainers from database with redux.
@@ -37,19 +43,45 @@ const useStyles = createStyles((theme) => ({
     justifyContent: 'center',
     gap: 24,
   },
+  QueryFilterToApi: {
+    gridColumn: '1 / -1', // This makes it span across all columns.
+    // height: 'px', // Or you can use 'min-content', 'max-content' or any other valid value.
+  },
 }));
 
 const MaintainerList = ({ entity }: { entity: Sections }) => {
   const { classes, cx, theme } = useStyles();
   const { user } = useAuth();
   const { crudDocuments } = useCrudSelectors(entity);
-  console.log(crudDocuments);
+  const { filters } = useFilter();
+  const { order, orderBy } = useTable({
+    defaultOrderBy: 'createDate',
+    defaultDense: true,
+    defaultRowsPerPage: 10,
+  });
+
+  const filteredList = [];
+
+  const handleFilter = () => {
+    filterList({
+      list: crudDocuments,
+      filters,
+      formFields: maintainersTableData,
+      comparator: getComparator(order, orderBy),
+    });
+  };
   return (
     <>
       <Box
         className={classes.pinContainer}
-        py="xl" /* cols={2} breakpoints={[{ maxWidth: 'sm', cols: 1 }]} */
+        /* cols={2} breakpoints={[{ maxWidth: 'sm', cols: 1 }]} */
       >
+        <QueryFilterToWeb
+          entity={entity}
+          className={classes.QueryFilterToApi}
+          formFields={maintainersTableData}
+          setFilter={handleFilter}
+        />
         {crudDocuments.map((maintainer, i) => {
           let badge = maintainer.spaces
             .filter((space: SpaceModel) => space.organization?._id === user?.organization)
@@ -64,6 +96,7 @@ const MaintainerList = ({ entity }: { entity: Sections }) => {
                 // email: maintainer.email,
                 // address: maintainer.address,
                 company: maintainer.company,
+                slug: maintainer.slug,
                 // badgeIcon: <Icons.check />,
                 badges: badge,
                 badgeSx: { paddingBlock: 8, maxWidth: 100 },
@@ -79,5 +112,4 @@ const MaintainerList = ({ entity }: { entity: Sections }) => {
     </>
   );
 };
-
 export default MaintainerList;
