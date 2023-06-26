@@ -2,6 +2,10 @@ import { useEffect } from 'react';
 import { useCrudSelectors, useCrudSliceStore } from '../../src/redux/features/crud/crudSlice';
 import { createLabelFromArrayStr } from '../../src/utils/helper-functions';
 import { Sections } from '../../src/types/general/data/sections-type';
+import {
+  FormFieldInterface,
+  SelectOption,
+} from '../../src/types/general/data/data-table/formField-types';
 // import { useCrudSlice } from '../redux-hooks/useCrudSlice';
 
 export const useGetSelectOptions = (formField: FormFieldInterface): Array<SelectOption> | [] => {

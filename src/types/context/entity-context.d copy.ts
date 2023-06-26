@@ -8,7 +8,8 @@ interface StateVariable<T> {
 
 export type FilterContextType = {
   selectFilters: Array<SelectFilterType>;
-  setSelectFilters: (filters: Array<SelectFilterType>) => void;
+  setSelectFilters: (newFilter: { field: string; value: string }) => void;
+  // setSelectFilters: (filters: Array<SelectFilterType>) => void;
   textFilter: string;
   setTextFilter: (text: string) => void;
   dateFilters: Date | null;
@@ -20,7 +21,7 @@ export type FilterContextType = {
   filters: Filters;
 };
 
-type SelectFilterType = { entity: string; value: Primitives };
+type SelectFilterType = { field: string; value: Primitives };
 type Primitives = string | number | boolean | null | undefined;
 
 type BooleanFilterType = { field: string; value: boolean };

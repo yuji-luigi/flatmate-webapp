@@ -1,3 +1,5 @@
+import { FormFieldInterface } from '../../../src/types/general/data/data-table/formField-types';
+
 export const notificationsTableData: Array<FormFieldInterface> = [
   {
     id: 'title',

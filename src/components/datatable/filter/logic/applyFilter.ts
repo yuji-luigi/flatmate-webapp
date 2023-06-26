@@ -4,8 +4,10 @@ type FilterListArgs = {
   list: any[];
   filters: Filters;
   formFields: FormFieldInterface[];
+  comparator: (a: any, b: any) => number;
 };
 export function filterList({ list, filters, formFields, comparator }: FilterListArgs) {
+  const { selectFilters, textFilter, dateFilters, booleanFilters } = filters;
   // corresponds to condition in CrudTableToolBar
   const selectSearchField = formFields.filter(
     (field) => field.type === 'select' && field.filterSearch
@@ -56,8 +58,9 @@ export function filterList({ list, filters, formFields, comparator }: FilterList
     list = list.filter((item) =>
       selectFilters.every((filter) => {
         // filterSelect value is all then returns true. show all select of the entity
-        if (filter.value === 'all') return true;
-        let dataCompare = item[filter.entity]?._id || item[filter.entity] || [];
+        if (!filter.value) return true;
+        // if (filter.value === 'all') return true;
+        let dataCompare = item[filter.field]?._id || item[filter.field] || [];
         // Metto nel array cosi filtro funziona anche data è un array
         dataCompare = !Array.isArray(dataCompare) ? [dataCompare] : dataCompare;
         dataCompare = dataCompare.map((data) => data._id || data);
@@ -105,25 +108,22 @@ export function filterList({ list, filters, formFields, comparator }: FilterList
           }
       ]
        */
-    list = list.filter((item) =>
-      dateFilters.every((filter) => {
-        // filterSelect value is all then returns true. show all select of the entity
-        if (filter.value === 'all') return true;
-        // check the same input name as dateFilter.inputName
-        // same one needs to compare the value of the datepicker and list value,
-        // check the condition of the value
-
-        // if the value matches according to the condition given in the formFields(need to specify in the formFields ex: same, gt, lt)
-
-        let dataCompare = item[filter.inputName];
-
-        // Metto nel array cosi filtro funziona anche data è un array
-        dataCompare = !Array.isArray(dataCompare) ? [dataCompare] : dataCompare;
-        dataCompare = dataCompare.map((data) => data._id || data);
-        return dataCompare.some((data) => data === filter.value);
-        // return   dataCompare === filter.value;
-      })
-    );
+    //   list = list.filter((item) =>
+    //     dateFilters.every((filter) => {
+    //       // filterSelect value is all then returns true. show all select of the entity
+    //       if (filter.value === 'all') return true;
+    //       // check the same input name as dateFilter.inputName
+    //       // same one needs to compare the value of the datepicker and list value,
+    //       // check the condition of the value
+    //       // if the value matches according to the condition given in the formFields(need to specify in the formFields ex: same, gt, lt)
+    //       let dataCompare = item[filter.inputName];
+    //       // Metto nel array cosi filtro funziona anche data è un array
+    //       dataCompare = !Array.isArray(dataCompare) ? [dataCompare] : dataCompare;
+    //       dataCompare = dataCompare.map((data) => data._id || data);
+    //       return dataCompare.some((data) => data === filter.value);
+    //       // return   dataCompare === filter.value;
+    //     })
+    //   );
   }
 
   return list;

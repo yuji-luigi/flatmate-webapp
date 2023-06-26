@@ -1,4 +1,65 @@
-interface FormFieldInterface {
+import { SelectProps, TextInputProps, TextareaProps } from '@mantine/core';
+
+type BaseFormType = {
+  id: string;
+  name: string;
+  label: string;
+  placeholder?: string;
+  required?: boolean;
+  type: FormTypes;
+  cellType?: CellTypes;
+  multi?: boolean;
+  col?: Col;
+};
+
+export type TextFormType = {} & BaseFormType & TextInputProps;
+
+export type SelectFormType = {
+  type: 'select';
+  _entity: Sections;
+  /** query when fetch select options from server   */
+  query: Record<string, string | number | boolean>;
+} & BaseFormType &
+  SelectProps;
+
+export type StaticSelectFormFieldType = {
+  type: 'static-select';
+  options: Array<SelectOption | string>;
+} & BaseFormType &
+  SelectProps;
+
+export type CheckBoxFormFieldType = {
+  type: 'checkbox-group';
+  options: Array<SelectOption | string>;
+} & BaseFormType;
+
+export type LinkChildrenFormFieldType = {
+  type: 'text';
+  cellType: 'link-children';
+  linkRoot: string;
+  linkKey: string;
+} & BaseFormType;
+
+export type TextAreaFormFieldType = {
+  type: 'text-area';
+} & BaseFormType &
+  TextareaProps;
+
+export type UploadFormFieldType = {
+  type: 'image' | 'attachment';
+  accept: 'image/*' | 'application/pdf' | null | undefined;
+} & BaseFormType;
+
+export type FormFieldTypes =
+  | TextFormType
+  | SelectFormType
+  | StaticSelectFormFieldType
+  | CheckBoxFormFieldType
+  | LinkChildrenFormFieldType
+  | TextAreaFormFieldType
+  | UploadFormFieldType;
+
+export interface FormFieldInterface {
   /**
    * id and name of the field.
    *  Dot(.) is not allowed.
@@ -81,14 +142,15 @@ type Col = {
   md: number;
   lg: number;
 };
+type CellTypes = 'link-children';
 
 type FormTypes =
   | 'text'
   | 'text-area'
   | 'password'
-  | 'boolean'
-  | 'checkbox'
   | 'checkbox-group'
+  | 'radio-group'
+  | 'switch-group'
   | 'select'
   | 'static-select'
   | 'number'
@@ -99,7 +161,4 @@ type FormTypes =
   | 'attachment'
   | 'image'
   | 'color'
-  | 'radius-group'
-  | 'radio-group'
-  | 'switch-group'
   | 'pin-input';

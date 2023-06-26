@@ -12,7 +12,7 @@ import useAuth from '../../../../hooks/useAuth';
 import { Icons } from '../../../data/icons';
 import { QueryFilterToApi } from '../../../components/datatable/filter/QueryFilterToApi';
 import { maintainersTableData } from '../../../../json/dataTable/formfields/maintainersTableData';
-import { QueryFilterToWeb } from '../../../components/datatable/filter/QueryFilterWeb';
+import { QueryFilterWeb } from '../../../components/datatable/filter/QueryFilterWeb';
 import { filterList } from '../../../components/datatable/filter/logic/applyFilter';
 import useTable, { getComparator } from '../../../../hooks/useTable';
 import { useFilter } from '../../../../hooks/useFilter';
@@ -60,29 +60,25 @@ const MaintainerList = ({ entity }: { entity: Sections }) => {
     defaultRowsPerPage: 10,
   });
 
-  const filteredList = [];
+  const filteredList = filterList({
+    list: crudDocuments,
+    filters,
+    formFields: maintainersTableData,
+    comparator: getComparator(order, orderBy),
+  });
 
-  const handleFilter = () => {
-    filterList({
-      list: crudDocuments,
-      filters,
-      formFields: maintainersTableData,
-      comparator: getComparator(order, orderBy),
-    });
-  };
   return (
     <>
       <Box
         className={classes.pinContainer}
         /* cols={2} breakpoints={[{ maxWidth: 'sm', cols: 1 }]} */
       >
-        <QueryFilterToWeb
+        <QueryFilterWeb
           entity={entity}
           className={classes.QueryFilterToApi}
           formFields={maintainersTableData}
-          setFilter={handleFilter}
         />
-        {crudDocuments.map((maintainer, i) => {
+        {filteredList.map((maintainer, i) => {
           let badge = maintainer.spaces
             .filter((space: SpaceModel) => space.organization?._id === user?.organization)
             .map((space: SpaceModel) => space.name);

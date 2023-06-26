@@ -1,6 +1,7 @@
 import { TextInput } from '@mantine/core';
 import React from 'react';
 import { UseFormReturnTypeCustom } from '../input_interfaces/useForm_interface';
+import { FormFieldInterface } from '../../../types/general/data/data-table/formField-types';
 
 interface Prop {
   formField: FormFieldInterface;

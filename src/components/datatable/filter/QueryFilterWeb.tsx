@@ -3,24 +3,32 @@ import React from 'react';
 import { Sections } from '../../../types/general/data/sections-type';
 import { useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
 import { createQuery } from '../../../utils/helper-functions';
+import { useFilter } from '../../../../hooks/useFilter';
+import {
+  FormFieldInterface,
+  StaticSelectFormFieldType,
+} from '../../../types/general/data/data-table/formField-types';
+import { TextFilterInput } from './TextFilterInput';
+import { SelectFilterInput } from './SelectFilterInput';
 
-export const QueryFilterToWeb = ({
+export const QueryFilterWeb = ({
   className,
   formFields,
   entity,
-  setFilter,
-}: {
+}: // setFilter,
+{
   className: string;
   formFields: FormFieldInterface[];
   entity: Sections;
-  setFilter: () => void;
+  // setFilter: () => void;
 }) => {
   const { fetchCrudDocumentsInfiniteScroll } = useCrudSliceStore();
   const query = {};
+
+  const {} = useFilter();
+
   // const query = createQuery(formFields);
-  const initQuery = (text: string) => {
-    setFilter(text);
-  };
+  const initQuery = (text: string) => {};
 
   const selectFilter = formFields.filter(
     (field) => field.type === 'select' || field.type === 'static-select'
@@ -28,14 +36,9 @@ export const QueryFilterToWeb = ({
 
   return (
     <Group className={className} sx={{ marginTop: 32 }}>
-      <TextInput onChange={(event) => initQuery(event.target.value)} placeholder="Search" />
+      <TextFilterInput />
       {selectFilter.map((field) => (
-        <Select
-          key={field.name}
-          data={field.options || []}
-          aria-placeholder={field.label}
-          placeholder={field.label}
-        />
+        <SelectFilterInput key={field.id} formField={field as StaticSelectFormFieldType} />
       ))}
     </Group>
   );

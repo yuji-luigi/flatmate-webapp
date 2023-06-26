@@ -5,9 +5,10 @@ import { Dispatch, SetStateAction } from 'react';
 
 export const FilterContext = createContext<FilterContextType>({
   selectFilters: [],
-  setSelectFilters: function (
-    filters: { entity: string; value: string | number | boolean | null | undefined }[]
-  ): void {},
+  setSelectFilters: function (filters: { field: string; value: string }[]): void {},
+  // setSelectFilters: function (
+  //   filters: { entity: string; value: string | number | boolean | null | undefined }[]
+  // ): void {},
   textFilter: '',
   setTextFilter: function (text: string): void {},
   dateFilters: null,
@@ -24,21 +25,22 @@ export const FilterContext = createContext<FilterContextType>({
 
 export const useFilterStore = (): FilterContextType => {
   const [selectFilters, setSelectFilters] = useState<
-    { entity: string; value: string | number | boolean | null | undefined }[]
+    { field: string; value: string | number | boolean | null | undefined }[]
   >([]);
   const [textFilter, setTextFilter] = useState<string>('');
   const [dateFilters, setDateFilters] = useState<Date | null>(null);
   const [booleanFilters, setBooleanFilters] = useState<{ field: string; value: boolean }[]>([]);
 
   // genericly add select filters
-  const handleSelectFilter = (newFilter: { entity: string; value: string }) => {
-    const { entity } = newFilter;
+  const handleSelectFilter = (newFilter: { field: string; value: string }) => {
+    const { field } = newFilter;
     setSelectFilters((prev) => {
-      const array = prev.filter((filter) => filter.entity !== entity);
+      console.log(prev);
+      const array = prev.filter((filter) => filter.field !== field);
       // check if filterd one is empty array
       if (!array.length) return [newFilter];
       // if not empty add to array
-      return [...prev.filter((filter) => filter.entity !== entity), newFilter];
+      return [...prev.filter((filter) => filter.field !== field), newFilter];
     });
   };
 
@@ -85,14 +87,14 @@ export const useFilterStore = (): FilterContextType => {
     setBooleanFilters((prev) => [...prev, data]);
     // return setPage(0);
   };
-
+  console.log(selectFilters);
   return {
     booleanFilters,
     setBooleanFilters,
     dateFilters,
     setDateFilters,
     selectFilters,
-    setSelectFilters,
+    setSelectFilters: handleSelectFilter,
     textFilter,
     setTextFilter,
     filters: {
