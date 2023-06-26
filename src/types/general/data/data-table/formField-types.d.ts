@@ -10,9 +10,15 @@ type BaseFormType = {
   cellType?: CellTypes;
   multi?: boolean;
   col?: Col;
+  textSearch?: boolean;
+  priority?: number;
 };
 
-export type TextFormType = {} & BaseFormType & TextInputProps;
+export type TextFormType = { type: 'text' | 'number' } & BaseFormType & TextInputProps;
+
+type BaseSelectFormType = {
+  filterSearch?: boolean;
+} & Omit<SelectProps, 'data'>; // omit data property from SelectProps
 
 export type SelectFormType = {
   type: 'select';
@@ -20,17 +26,19 @@ export type SelectFormType = {
   /** query when fetch select options from server   */
   query: Record<string, string | number | boolean>;
 } & BaseFormType &
+  BaseSelectFormType &
   SelectProps;
 
 export type StaticSelectFormFieldType = {
   type: 'static-select';
   options: Array<SelectOption | string>;
 } & BaseFormType &
-  SelectProps;
+  BaseSelectFormType;
 
 export type CheckBoxFormFieldType = {
   type: 'checkbox-group';
   options: Array<SelectOption | string>;
+  filterSearch?: boolean;
 } & BaseFormType;
 
 export type LinkChildrenFormFieldType = {
@@ -133,7 +141,7 @@ export interface FormFieldInterface {
 
 interface SelectOption extends React.ComponentPropsWithoutRef<'div'> {
   /** both must be string or null */
-  value: string;
+  value: string | number | boolean;
   label: string;
 }
 type Col = {

@@ -1,9 +1,13 @@
 import { Filters } from '../../../../types/context/entity-context.d copy';
+import {
+  FormFieldInterface,
+  FormFieldTypes,
+} from '../../../../types/general/data/data-table/formField-types';
 
 type FilterListArgs = {
   list: any[];
   filters: Filters;
-  formFields: FormFieldInterface[];
+  formFields: FormFieldTypes[];
   comparator: (a: any, b: any) => number;
 };
 export function filterList({ list, filters, formFields, comparator }: FilterListArgs) {
@@ -12,14 +16,16 @@ export function filterList({ list, filters, formFields, comparator }: FilterList
   const selectSearchField = formFields.filter(
     (field) => field.type === 'select' && field.filterSearch
   );
-  const dateSearchField = formFields.filter(
-    (field) => field.type === 'date-picker' && field.filterSearch
-  );
+  // const dateSearchField = formFields.filter(
+  //   (field) => field.type === 'date-picker' && field.filterSearch
+  // );
+  const dateSearchField: FormFieldTypes[] = [];
   const textSearchField = formFields
     .filter((field) => field.textSearch !== false)
     .map((field) => field.name);
+
   const booleanSearchField = formFields.filter(
-    (field) => field.type === 'boolean' && field.filterSearch
+    (field) => field.type === 'checkbox-group' && field.filterSearch
   );
   const stabilizedThis = list.map((el, index) => [el, index]);
 
@@ -63,8 +69,8 @@ export function filterList({ list, filters, formFields, comparator }: FilterList
         let dataCompare = item[filter.field]?._id || item[filter.field] || [];
         // Metto nel array cosi filtro funziona anche data è un array
         dataCompare = !Array.isArray(dataCompare) ? [dataCompare] : dataCompare;
-        dataCompare = dataCompare.map((data) => data._id || data);
-        return dataCompare.some((data) => data === filter.value);
+        dataCompare = dataCompare.map((data: any) => data._id || data);
+        return dataCompare.some((data: any) => data === filter.value);
         // return   dataCompare === filter.value;
       })
     );

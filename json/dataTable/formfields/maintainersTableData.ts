@@ -1,6 +1,9 @@
-import { FormFieldInterface } from '../../../src/types/general/data/data-table/formField-types';
+import {
+  FormFieldInterface,
+  FormFieldTypes,
+} from '../../../src/types/general/data/data-table/formField-types';
 
-export const maintainersTableData: Array<FormFieldInterface> = [
+export const maintainersTableData: Array<FormFieldTypes> = [
   {
     id: 'name',
     name: 'name',
@@ -85,7 +88,11 @@ export const maintainersTableData: Array<FormFieldInterface> = [
     id: 'isIndividual',
     name: 'isIndividual',
     label: 'Is individual',
-    type: 'boolean',
+    type: 'checkbox-group',
+    options: [
+      { label: 'Yes', value: true },
+      { label: 'No', value: false },
+    ],
     required: false,
     priority: 6,
   },
