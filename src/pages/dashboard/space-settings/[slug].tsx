@@ -1,27 +1,20 @@
 import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
 import Layout from '../../../layouts';
-import { Box, Button, Card, Container, Grid, Text } from '@mantine/core';
+import { Grid } from '@mantine/core';
 import { dashboardStyle, profilePageStyle } from '../../../styles/global-useStyles';
-import ProfileSide from '../../../components/profile/side/ProfileSide';
-import AboutCard from '../../../components/profile/side/AboutCard';
-import CardWithTitle from '../../../components/profile/side/CardWithTitle';
-import TextWithIcon from '../../../components/text/TextWithIcon';
-import { Icons } from '../../../data/icons';
+
 import { maintainersTableData } from '../../../../json/dataTable/formfields/maintainersTableData';
-import { lorem100 } from '../../../_mock/strings';
-import PostFeedCard from '../../../components/posts/feed/PostFeedCard';
+
 import ProfileCover, { CoverDataProp } from '../../../components/profile/ProfileCover';
-import { RANDOM_UPLOAD_MODELS } from '../../../lib/image-paths';
-import { useMediaQuery } from '@mantine/hooks';
+
 import { SpaceSettingForm } from '../../../sections/dashboard_sections/space_setting_section/SpaceSettingForm';
 import useSWR from 'swr';
 import axiosInstance, { AxiosResDataGeneric } from '../../../utils/axios-instance';
 import { PATH_API } from '../../../path/api-routes';
 import { AxiosError } from 'axios';
 import LoadingScreen from '../../../components/screen/LoadingScreen';
-import ExampleForm from '../../../sections/dashboard_sections/space_setting_section/example/ExampleForm';
-import { useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
+
 import { SpaceSlugResponse } from '../../../types/api-response/space-response';
 import { SpaceSettingMaintainersSection } from '../../../sections/dashboard_sections/space_setting_section/maintainers_section/SpaceSettingMaintainersSection';
 
@@ -80,10 +73,6 @@ const SpaceSettingSinglePage = () => {
       <Grid.Col span={12}>
         <SpaceSettingMaintainersSection maintainers={data.maintainers} />
       </Grid.Col>
-
-      {/* <ExampleForm /> */}
-      {/* </Box> */}
-      {/* </Box> */}
     </Grid>
   );
 };

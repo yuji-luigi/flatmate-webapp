@@ -1,11 +1,11 @@
-type Roles = 'user' | 'admin' | 'super_admin';
+import { UserRoles } from '../../lib/enums';
 
 interface UserModel extends MongooseBaseModel {
   surname: string;
   name: string;
   email: string;
   active: boolean;
-  role: Roles;
+  role: UserRoles;
   rootSpaces: Array<string>;
   password: string;
   phone?: string;

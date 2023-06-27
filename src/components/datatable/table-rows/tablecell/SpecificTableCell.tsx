@@ -1,5 +1,6 @@
 import { Group, Text } from '@mantine/core';
 import Link from 'next/link';
+import { FormFieldTypes } from '../../../../types/general/data/data-table/formField-types';
 
 export function SpecificTableCell({
   rowData,
@@ -7,21 +8,23 @@ export function SpecificTableCell({
   cellConfig,
 }: {
   cellData: string;
-  cellConfig: FormFieldInterface;
+  cellConfig: FormFieldTypes;
   rowData: any;
 }) {
-  const href = `${cellConfig.linkRoot || ''}/${rowData[cellConfig.linkKey!] || ''}`;
-  return (
-    <>
-      {cellConfig.cellType === 'link-children' && (
-        <Group spacing="sm">
-          <Link href={href || ''}>
-            <Text size="sm" weight={500}>
-              {cellData}
-            </Text>
-          </Link>
-        </Group>
-      )}
-    </>
-  );
+  if (cellConfig.cellType === 'link-children' && cellConfig.type === 'text') {
+    const href = `${cellConfig.linkRoot || ''}/${rowData[cellConfig.linkKey!] || ''}`;
+    return (
+      <>
+        {cellConfig.cellType === 'link-children' && (
+          <Group spacing="sm">
+            <Link href={href || ''}>
+              <Text size="sm" weight={500}>
+                {cellData}
+              </Text>
+            </Link>
+          </Group>
+        )}
+      </>
+    );
+  }
 }

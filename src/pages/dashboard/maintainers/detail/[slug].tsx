@@ -42,6 +42,7 @@ import AddMaintainerModal from '../../../../sections/single_maintenance_section/
 import CardWithTitle from '../../../../components/profile/side/CardWithTitle';
 import TextWithIcon from '../../../../components/text/TextWithIcon';
 import { profilePageStyle } from '../../../../styles/global-useStyles';
+import { UserModel } from '../../../../types/models/user-model';
 const spaceFormField = {
   id: 'space',
   label: 'Space',

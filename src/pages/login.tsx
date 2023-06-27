@@ -12,6 +12,7 @@ import { AUTH } from '../path/page-paths';
 import LoginForm from '../sections/login_signup_section/LoginForm';
 import DashboardTopPage from './dashboard/statistics';
 import { DeleteAlertModal } from '../components/modal/DeleteAlertModal';
+import { UserModel } from '../types/models/user-model';
 
 const useStyles = createStyles((theme) => ({
   wrapper: {

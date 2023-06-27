@@ -1,4 +1,6 @@
-export const uploadsTableData: Array<FormFieldInterface> = [
+import { FormFieldTypes } from '../../../src/types/general/data/data-table/formField-types';
+
+export const uploadsTableData: Array<FormFieldTypes> = [
   {
     id: 'title',
     name: 'title',
@@ -34,7 +36,7 @@ export const uploadsTableData: Array<FormFieldInterface> = [
     type: 'image',
     multi: true,
     // type: 'dropzone',
-    selectValues: ['name'],
+    // selectValues: ['name'],
     required: false,
     priority: 2,
   },
@@ -44,7 +46,7 @@ export const uploadsTableData: Array<FormFieldInterface> = [
     multi: true,
     label: 'Attachments',
     type: 'attachment',
-    selectValues: ['name'],
+    // selectValues: ['name'],
     required: false,
     priority: 2,
   },
@@ -63,7 +65,8 @@ export const uploadsTableData: Array<FormFieldInterface> = [
     id: 'isImportant',
     name: 'isImportant',
     label: 'Important',
-    type: 'checkbox',
+    options: ['Yes', 'No'],
+    type: 'checkbox-group',
     required: false,
     priority: 2,
   },

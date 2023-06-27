@@ -22,6 +22,7 @@ import { DateInputProps as MantineDateInputProps } from '@mantine/dates';
 import { ReactNode } from 'react';
 // import { FieldValues, UseFormReturn } from 'react-hook-form';
 import { UseFormReturnTypeCustom } from '../../../../components/input/input_interfaces/useForm_interface';
+import { FormFieldTypes } from './formField-types';
 
 export type Option<OtherProps = {}> = {
   label: ReactNode;
@@ -36,7 +37,7 @@ export type Controlled<T> = {
   label: ReactNode;
   name: string;
   form: UseFormReturnTypeCustom;
-  formField: FormFieldInterface;
+  formField: FormFieldTypes;
 } & T;
 export type Orientation =
   | { orientation?: 'horizontal'; orientationProps?: GroupProps }

@@ -1,5 +1,6 @@
 import { Badge, Box, useMantineTheme } from '@mantine/core';
 import TableCell from './TableCell';
+import { FormFieldTypes } from '../../../../types/general/data/data-table/formField-types';
 
 export const colors: Record<string, string> = {
   engineer: 'blue',
@@ -14,7 +15,7 @@ const BadgeCell = ({
   color,
   rowData,
 }: {
-  cellConfig: FormFieldInterface;
+  cellConfig: FormFieldTypes;
   // TODO: type
   rowData: any;
   cellData: string;

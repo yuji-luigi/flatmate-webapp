@@ -14,8 +14,9 @@ import { Button, Group, Select, createStyles, Text, Box, Container } from '@mant
 import Link from 'next/link';
 import { PATH_DASHBOARD } from '../../../path/page-paths';
 import MaintainerList from '../../../sections/dashboard_sections/maintainers-section/MaintainerList';
-import { QueryFilterToApi } from '../../../components/datatable/filter/QueryFilterToApiToApi';
 import { HeaderContainer } from '../../../components/datatable/header/HeaderContainer';
+import { maintainersTableData } from '../../../../json/dataTable/formfields/maintainersTableData';
+import { QueryFilterWeb } from '../../../components/datatable/filter/QueryFilterWeb';
 
 const useStyles = createStyles((theme) => ({
   secondButton: {
@@ -59,6 +60,7 @@ const MaintainerPage = () => {
     <Page title="Maintainers">
       <HeaderContainer>
         <TableSectionHeader overridingEntity="maintainers" />
+        <QueryFilterWeb entity={entity} formFields={maintainersTableData} />
       </HeaderContainer>
       <MaintainerList entity={entity} />
       <CrudDrawerDefault overridingEntity="maintainers" />

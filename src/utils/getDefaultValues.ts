@@ -1,7 +1,8 @@
+import { FormFieldTypes } from '../types/general/data/data-table/formField-types';
 import { _get, _set } from './helper-functions';
 
 export function getDefaultValues(
-  formFields: FormFieldInterface[],
+  formFields: FormFieldTypes[],
   crudDocument: AllModels = {},
   parentId?: string
 ) {
@@ -78,14 +79,14 @@ export function getDefaultValues(
     return obj;
 
     // ! TODO: remove all autopopulate
-    if (field.type === 'boolean' || field.type === 'checkbox') {
-      obj[path] = crudDocument?.[path] || false;
-      return obj;
-    }
-    if (field.type === 'date') {
-      obj[path] = crudDocument?.[path] || new Date(Date.now());
-      return obj;
-    }
+    // if (field.type === 'boolean' || field.type === 'checkbox') {
+    //   obj[path] = crudDocument?.[path] || false;
+    //   return obj;
+    // }
+    // if (field.type === 'date') {
+    //   obj[path] = crudDocument?.[path] || new Date(Date.now());
+    //   return obj;
+    // }
     if (field.type === 'select' && field.multi) {
       obj[path] = crudDocument?.[path] || [];
       return obj;

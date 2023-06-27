@@ -1,10 +1,12 @@
-export const userSettingTableData: Array<FormFieldInterface> = [
+import { FormFieldTypes } from '../../../src/types/general/data/data-table/formField-types';
+
+export const userSettingTableData: Array<FormFieldTypes> = [
   {
     id: 'pushNotification',
     name: 'pushNotification',
     label: 'pushNotification',
     placeholder: '',
-    type: 'boolean',
+    type: 'radio-group',
     required: true,
     priority: 1,
   },
@@ -13,7 +15,7 @@ export const userSettingTableData: Array<FormFieldInterface> = [
     name: 'smsNotification',
     label: 'smsNotification',
     placeholder: '',
-    type: 'boolean',
+    type: 'radio-group',
     required: true,
     priority: 1,
   },

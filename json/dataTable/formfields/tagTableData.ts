@@ -1,4 +1,6 @@
-export const tagTableData: Array<FormFieldInterface> = [
+import { FormFieldTypes } from '../../../src/types/general/data/data-table/formField-types';
+
+export const tagTableData: Array<FormFieldTypes> = [
   {
     id: 'name',
     name: 'name',

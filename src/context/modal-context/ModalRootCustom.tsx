@@ -4,6 +4,7 @@ import { use_ModalContext } from './_ModalContext';
 import { CrudModal } from './CrudModal';
 import { ReactNode } from 'react';
 import CustomModal from './CustomModal';
+import { FormFieldTypes } from '../../types/general/data/data-table/formField-types';
 
 export interface _ModalContextStates {
   isOpenModal: boolean;
@@ -24,7 +25,7 @@ type BaseModalParams = {
 
 interface ConfirmAlertModalParams extends BaseModalParams {
   type: 'confirm' | 'alert';
-  formFields?: FormFieldInterface[];
+  formFields?: FormFieldTypes[];
   sx?: {
     confirm?: Sx;
     cancel?: Sx;
@@ -37,7 +38,7 @@ interface ConfirmAlertModalParams extends BaseModalParams {
 
 interface CrudModalParams extends BaseModalParams {
   type: 'crud';
-  formFields: FormFieldInterface[];
+  formFields: FormFieldTypes[];
   crudDocument?: AllModels;
 }
 interface CustomModalParams extends BaseModalParams {

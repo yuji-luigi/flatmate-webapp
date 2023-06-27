@@ -12,3 +12,7 @@ export const MAINTAINER_TYPES = {
   Carpenter: 'Carpenter',
   Electrician: 'Electrician',
 };
+
+export const USER_ROLES = ['admin', 'user', 'maintainer', 'super_admin'] as const;
+
+export type UserRoles = (typeof USER_ROLES)[number];

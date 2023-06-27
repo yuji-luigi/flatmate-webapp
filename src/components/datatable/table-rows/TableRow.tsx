@@ -9,6 +9,7 @@ import { useDrawerContext } from '../../../context/DataTableDrawerContext';
 import { usePaginationContext } from '../../../context/PaginationContext';
 import { useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
 import { Sections } from '../../../types/general/data/sections-type';
+import { FormFieldTypes } from '../../../types/general/data/data-table/formField-types';
 
 export function TableRow({
   rowData,
@@ -17,7 +18,7 @@ export function TableRow({
 }: {
   overridingEntity?: Sections;
   rowData: AllModels;
-  sectionFormFields: Array<FormFieldInterface>;
+  sectionFormFields: Array<FormFieldTypes>;
 }) {
   const { paginationQuery } = usePaginationContext();
 

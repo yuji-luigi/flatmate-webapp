@@ -56,8 +56,8 @@ const MaintainerList = ({ entity }: { entity: Sections }) => {
   const { filters } = useFilter();
   const { order, orderBy } = useTable({
     defaultOrderBy: 'createDate',
-    defaultDense: true,
-    defaultRowsPerPage: 10,
+    // defaultDense: true,
+    // defaultRowsPerPage: 10,
   });
 
   const filteredList = filterList({
@@ -73,11 +73,11 @@ const MaintainerList = ({ entity }: { entity: Sections }) => {
         className={classes.pinContainer}
         /* cols={2} breakpoints={[{ maxWidth: 'sm', cols: 1 }]} */
       >
-        <QueryFilterWeb
+        {/* <QueryFilterWeb
           entity={entity}
           className={classes.QueryFilterToApi}
           formFields={maintainersTableData}
-        />
+        /> */}
         {filteredList.map((maintainer, i) => {
           let badge = maintainer.spaces
             .filter((space: SpaceModel) => space.organization?._id === user?.organization)

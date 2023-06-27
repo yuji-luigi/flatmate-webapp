@@ -69,7 +69,7 @@ export const maintenancesTableData: Array<FormFieldInterface> = [
     id: 'isIndividual',
     name: 'isIndividual',
     label: 'Individuale',
-    type: 'boolean',
+    type: 'radio-group',
     required: false,
     priority: 0,
   },

@@ -1,4 +1,6 @@
-export const threadTableData: Array<FormFieldInterface> = [
+import { FormFieldTypes } from '../../../src/types/general/data/data-table/formField-types';
+
+export const threadTableData: Array<FormFieldTypes> = [
   {
     id: 'title',
     name: 'title',
@@ -35,7 +37,7 @@ export const threadTableData: Array<FormFieldInterface> = [
     multi: true,
     // type: 'dropzone',
     accept: 'image/*',
-    selectValues: ['name'],
+    // selectValues: ['name'],
     required: false,
     priority: 2,
   },
@@ -46,7 +48,7 @@ export const threadTableData: Array<FormFieldInterface> = [
     label: 'Attachments',
     accept: '',
     type: 'attachment',
-    selectValues: ['name'],
+    // selectValues: ['name'],
     required: false,
     priority: 2,
   },
@@ -65,7 +67,8 @@ export const threadTableData: Array<FormFieldInterface> = [
     id: 'isImportant',
     name: 'isImportant',
     label: 'Important',
-    type: 'checkbox',
+    options: ['Important'],
+    type: 'checkbox-group',
     required: false,
     priority: 2,
   },

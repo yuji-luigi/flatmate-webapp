@@ -12,6 +12,9 @@ type BaseFormType = {
   col?: Col;
   textSearch?: boolean;
   priority?: number;
+  badge?: boolean;
+  grantTo?: UserRoles[];
+  noTable?: boolean;
 };
 
 export type TextFormType = { type: 'text' | 'number' } & BaseFormType & TextInputProps;
@@ -23,21 +26,22 @@ type BaseSelectFormType = {
 export type SelectFormType = {
   type: 'select';
   _entity: Sections;
+  selectValues: Array<string>;
   /** query when fetch select options from server   */
-  query: Record<string, string | number | boolean>;
+  query?: Record<string, string | number | boolean>;
 } & BaseFormType &
   BaseSelectFormType &
-  SelectProps;
+  Omit<SelectProps, 'data'>;
 
 export type StaticSelectFormFieldType = {
   type: 'static-select';
-  options: Array<SelectOption | string>;
+  options: Array<SelectItem | string>;
 } & BaseFormType &
   BaseSelectFormType;
 
 export type CheckBoxFormFieldType = {
   type: 'checkbox-group';
-  options: Array<SelectOption | string>;
+  options: Array<SelectItem | string>;
   filterSearch?: boolean;
 } & BaseFormType;
 
@@ -55,7 +59,18 @@ export type TextAreaFormFieldType = {
 
 export type UploadFormFieldType = {
   type: 'image' | 'attachment';
-  accept: 'image/*' | 'application/pdf' | null | undefined;
+  accept?: 'image/*' | 'application/pdf' | null | string | undefined;
+} & BaseFormType;
+
+export type RadioGroupFormFieldType = {
+  type: 'radio-group';
+} & BaseFormType;
+
+export type AvatarFormFieldType = {
+  type: 'avatar';
+} & BaseFormType;
+export type ColorFormFieldType = {
+  type: 'color';
 } & BaseFormType;
 
 export type FormFieldTypes =
@@ -65,6 +80,9 @@ export type FormFieldTypes =
   | CheckBoxFormFieldType
   | LinkChildrenFormFieldType
   | TextAreaFormFieldType
+  | RadioGroupFormFieldType
+  | AvatarFormFieldType
+  | ColorFormFieldType
   | UploadFormFieldType;
 
 export interface FormFieldInterface {

@@ -1,4 +1,6 @@
-export const statisticsTableData: Array<FormFieldInterface> = [
+import { FormFieldTypes } from '../../../src/types/general/data/data-table/formField-types';
+
+export const statisticsTableData: Array<FormFieldTypes> = [
   {
     id: 'avatar',
     name: 'avatar',

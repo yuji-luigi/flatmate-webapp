@@ -3,6 +3,11 @@ import React from 'react';
 import { Sections } from '../../../types/general/data/sections-type';
 import { useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
 import { createQuery } from '../../../utils/helper-functions';
+import {
+  FormFieldTypes,
+  SelectFormType,
+  StaticSelectFormFieldType,
+} from '../../../types/general/data/data-table/formField-types';
 const useStyles = createStyles((theme) => ({
   pinContainer: {
     display: 'grid',
@@ -23,7 +28,7 @@ export const QueryFilterToApi = ({
   entity,
 }: {
   className: string;
-  formFields: FormFieldInterface[];
+  formFields: FormFieldTypes[];
   entity: Sections;
 }) => {
   const { fetchCrudDocumentsInfiniteScroll } = useCrudSliceStore();
@@ -34,8 +39,8 @@ export const QueryFilterToApi = ({
   };
 
   const selectFilter = formFields.filter(
-    (field) => field.type === 'select' || field.type === 'static-select'
-  );
+    (field) => field.type === 'static-select'
+  ) as StaticSelectFormFieldType[];
 
   return (
     <Group className={className} sx={{ marginTop: 32 }}>

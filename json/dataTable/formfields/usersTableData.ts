@@ -1,4 +1,6 @@
-export const usersTableData: Array<FormFieldInterface> = [
+import { FormFieldTypes } from '../../../src/types/general/data/data-table/formField-types';
+
+export const usersTableData: Array<FormFieldTypes> = [
   {
     id: 'name',
     name: 'name',

@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import BadgeCell from './table-rows/tablecell/BadgeCell';
 // import BadgeCell from './table-rows/tablecell/BadgeCell';
 import TableCell from './table-rows/tablecell/TableCell';
+import { FormFieldTypes } from '../../types/general/data/data-table/formField-types';
 
 function isObject(value: any): boolean {
   return value && typeof value === 'object' && !Array.isArray(value) && typeof value !== 'string';
@@ -12,7 +13,7 @@ export function TableCellDecorator({
   cellConfig,
 }: {
   rowData: UsersTableRow;
-  cellConfig: FormFieldInterface;
+  cellConfig: FormFieldTypes;
 }) {
   /**
    * cellData can be an array of objects or a single object or a string.

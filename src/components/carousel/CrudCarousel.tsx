@@ -8,6 +8,7 @@ import { useCrudSelectors } from '../../redux/features/crud/crudSlice';
 import axiosInstance from '../../utils/axios-instance';
 import ImageSlide from './ImageSlide';
 import { Sections } from '../../types/general/data/sections-type';
+import { FormFieldTypes } from '../../types/general/data/data-table/formField-types';
 // import { Image } from '@mantine/core';
 
 type ImageType = File | UploadModel;
@@ -19,7 +20,7 @@ function CrudCarousel({
 }: {
   images: File[] | UploadModel[];
   entity: Sections;
-  formField: FormFieldInterface;
+  formField: FormFieldTypes;
 }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const {} = useCrudSelectors();

@@ -1,6 +1,7 @@
 import { PATH_DASHBOARD } from '../../../src/path/page-paths';
+import { FormFieldTypes } from '../../../src/types/general/data/data-table/formField-types';
 
-export const spacesTableData: Array<FormFieldInterface> = [
+export const spacesTableData: Array<FormFieldTypes> = [
   {
     id: 'name',
     name: 'name',
@@ -62,7 +63,7 @@ export const spacesTableData: Array<FormFieldInterface> = [
     name: 'isTail',
     label: 'Tip of the space?',
     placeholder: 'Golden street 334',
-    type: 'boolean',
+    type: 'radio-group',
     required: true,
     priority: 1,
   },
@@ -70,9 +71,8 @@ export const spacesTableData: Array<FormFieldInterface> = [
     id: 'isMain',
     name: 'isMain',
     label: 'Main space?',
-    type: 'boolean',
+    type: 'radio-group',
     required: true,
     priority: 1,
   },
-  
 ];

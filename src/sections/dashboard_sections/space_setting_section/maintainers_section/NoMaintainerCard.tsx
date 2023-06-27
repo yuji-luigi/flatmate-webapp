@@ -7,7 +7,7 @@ export const NoMaintainerCard = ({ type }: { type: string }) => {
   return (
     <Card
       component={Link}
-      href={`${PATH_DASHBOARD.maintainers}`}
+      href={`${PATH_DASHBOARD.maintainers}?type=${type}`}
       sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}
     >
       {' '}

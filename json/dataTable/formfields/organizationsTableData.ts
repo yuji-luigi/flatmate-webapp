@@ -63,7 +63,7 @@ export const organizationsTableData: Array<FormFieldInterface> = [
   //   id: 'isPublic',
   //   name: 'isPublic',
   //   label: 'Public Organization',
-  //   type: 'boolean',
+  //   type: 'radio-group',
   //   required: false,
   //   priority: 2,
   // },

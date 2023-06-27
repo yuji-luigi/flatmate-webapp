@@ -6,6 +6,7 @@ import { createQuery } from '../../../utils/helper-functions';
 import { useFilter } from '../../../../hooks/useFilter';
 import {
   FormFieldInterface,
+  FormFieldTypes,
   StaticSelectFormFieldType,
 } from '../../../types/general/data/data-table/formField-types';
 import { TextFilterInput } from './TextFilterInput';
@@ -17,15 +18,13 @@ export const QueryFilterWeb = ({
   entity,
 }: // setFilter,
 {
-  className: string;
-  formFields: FormFieldInterface[];
+  className?: string;
+  formFields: FormFieldTypes[];
   entity: Sections;
   // setFilter: () => void;
 }) => {
   const { fetchCrudDocumentsInfiniteScroll } = useCrudSliceStore();
   const query = {};
-
-  const {} = useFilter();
 
   // const query = createQuery(formFields);
   const initQuery = (text: string) => {};

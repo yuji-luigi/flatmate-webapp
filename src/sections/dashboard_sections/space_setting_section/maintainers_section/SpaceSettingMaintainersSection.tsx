@@ -1,4 +1,15 @@
-import { Avatar, Box, Card, Divider, Paper, Stack, Text } from '@mantine/core';
+import {
+  ActionIcon,
+  Avatar,
+  Box,
+  Button,
+  Card,
+  Divider,
+  Group,
+  Paper,
+  Stack,
+  Text,
+} from '@mantine/core';
 import React from 'react';
 import { UserInfoIcons } from '../../../../components/card/UserInfoIcons';
 import { SpaceSettingMaintainerCard } from './SpaceSettingMaintainerCard';
@@ -6,6 +17,9 @@ import { PaperWithTitle } from '../../../../components/paper/PaperWithTitle';
 import { MaintainerModel } from '../../../../types/models/maintainer-model';
 import { MAINTAINER_TYPES } from '../../../../lib/enums';
 import { NoMaintainerCard } from './NoMaintainerCard';
+import { Icons } from '../../../../data/icons';
+import Link from 'next/link';
+import { PATH_DASHBOARD } from '../../../../path/page-paths';
 
 export const SpaceSettingMaintainersSection = ({
   maintainers,
@@ -25,7 +39,18 @@ export const SpaceSettingMaintainersSection = ({
   const list = Object.keys(MAINTAINER_TYPES).map((type) => {
     return (
       <Box>
-        <Text component="h1">{type}</Text>
+        <Group>
+          <Text component="h1">{type}</Text>
+          <ActionIcon
+            component="a"
+            href={`/dashboard/maintainers/?type=${type}`}
+            // href={`${PATH_DASHBOARD.maintainers}?type=${type}`}
+            variant="light"
+            color="blue"
+          >
+            <Icons.plus />
+          </ActionIcon>
+        </Group>
         <Stack sx={{ gap: 12 }}>
           {maintainersByType[type]?.map((maintainer) => (
             <SpaceSettingMaintainerCard maintainer={maintainer} />

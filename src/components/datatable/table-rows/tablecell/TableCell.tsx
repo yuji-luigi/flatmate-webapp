@@ -2,6 +2,7 @@ import React from 'react';
 import { Group, Avatar, Text } from '@mantine/core';
 import { SpecificTableCell } from './SpecificTableCell';
 import { FieldTypes } from '../../../../../json/dataTable/formfields';
+import { FormFieldTypes } from '../../../../types/general/data/data-table/formField-types';
 // import { IconPencil, IconTrash } from '@tabler/icons-react';
 // import { UsersTableRow } from '../../../../types/general/data/datatable/objects';
 export const jobColors: Record<string, string> = {
@@ -16,7 +17,7 @@ const TableCell = ({
   rowData,
 }: {
   cellData: string;
-  cellConfig: FormFieldInterface;
+  cellConfig: FormFieldTypes;
   rowData: any;
 }) => {
   if (cellConfig.noTable) {
