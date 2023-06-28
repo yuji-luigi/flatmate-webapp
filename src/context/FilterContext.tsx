@@ -5,7 +5,7 @@ import { Dispatch, SetStateAction } from 'react';
 
 export const FilterContext = createContext<FilterContextType>({
   selectFilters: [],
-  setSelectFilters: function (filters: { field: string; value: string }[]): void {},
+  setSelectFilters: (filters: { field: string; value: string }) => void {},
   // setSelectFilters: function (
   //   filters: { entity: string; value: string | number | boolean | null | undefined }[]
   // ): void {},
