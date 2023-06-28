@@ -1,9 +1,10 @@
 import { MultiSelect, Select, SelectItem, Switch, TextInput } from '@mantine/core';
 import React from 'react';
 import { UseFormReturnTypeCustom } from '../input_interfaces/useForm_interface';
+import { FormFieldTypes } from '../../../types/general/data/data-table/formField-types';
 
 interface Prop {
-  formField: FormFieldInterface;
+  formField: FormFieldTypes;
   form: UseFormReturnTypeCustom;
   // checked: boolean;
 }

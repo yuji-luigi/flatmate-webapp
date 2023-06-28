@@ -26,6 +26,7 @@ import { useRouter } from 'next/router';
 import { useModalContext } from '@mantine/core/lib/Modal/Modal.context';
 import { use_ModalContext } from '../../context/modal-context/_ModalContext';
 import { Sections } from '../../types/general/data/sections-type';
+import { FormFieldTypes } from '../../types/general/data/data-table/formField-types';
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -96,7 +97,7 @@ const ProfileCover = ({
   data: CoverDataProp;
   entity?: Sections;
   noAvatar?: boolean;
-  formFields?: FormFieldInterface[];
+  formFields?: FormFieldTypes[];
   sx?: Sx;
 }) => {
   const { documentId } = useRouter().query;

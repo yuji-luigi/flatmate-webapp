@@ -11,7 +11,7 @@ export function SpecificTableCell({
   cellConfig: FormFieldTypes;
   rowData: any;
 }) {
-  if (cellConfig.cellType === 'link-children' && cellConfig.type === 'text') {
+  if ('linkRoot' in cellConfig && cellConfig.cellType === 'link-children') {
     const href = `${cellConfig.linkRoot || ''}/${rowData[cellConfig.linkKey!] || ''}`;
     return (
       <>
@@ -27,4 +27,5 @@ export function SpecificTableCell({
       </>
     );
   }
+  throw new Error(`Cell type not found. cellConfig.cellType: ${cellConfig.cellType}`);
 }

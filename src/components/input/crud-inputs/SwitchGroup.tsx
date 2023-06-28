@@ -1,9 +1,10 @@
-import { Group, Stack, Switch } from '@mantine/core';
+import { Group, SelectItem, Stack, Switch } from '@mantine/core';
 
 import ErrorMessage from './ErrorMessage';
 import { SwitchGroupProps } from '../../../types/general/data/data-table';
+import { FormFieldTypes } from '../../../types/general/data/data-table/formField-types';
 
-function SwitchGroup(props: SwitchGroupProps) {
+function SwitchGroup(props: FormFieldTypes) {
   const {
     label,
     name,
@@ -35,7 +36,7 @@ function SwitchGroup(props: SwitchGroupProps) {
     >
       {/* eslint-disable @typescript-eslint/no-shadow */}
       <Orientation mt="xs" {...orientationProps}>
-        {options.map((option, index) => {
+        {options.map((option: SelectItem, index: number) => {
           const { label, value, ...rest } = option;
           return <Switch key={`${label}-${index}`} value={value} label={label} {...rest} />;
         })}

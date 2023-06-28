@@ -31,6 +31,7 @@ import { PATH_API } from '../../../path/api-routes';
 import { convertToSelectItems } from '../../../utils/helper-functions';
 import OrganizationSpaceSelect from '../../select-custom/OrganizationSpaceSelect';
 import { getCookie } from 'cookies-next';
+import { FormFieldTypes } from '../../../types/general/data/data-table/formField-types';
 const config = {
   headers: {
     'Content-Type': 'multipart/form-data',
@@ -53,7 +54,7 @@ const HeaderModalForm = ({ entity }: { entity: 'threads' | 'maintenances' }) => 
   const { isSuperAdmin } = useAuth();
   // const [submitting, setSubmitting] = useState(false);
   const { submitting } = useCrudSelectors(entity);
-  const sectionFormFields: FormFieldInterface[] = formFields[entity];
+  const sectionFormFields: FormFieldTypes[] = formFields[entity];
   const { setSubmitting, resetCrudStatus, createCrudDocument } = useCrudSliceStore();
   const { crudStatus, crudError } = useCrudSelectors();
   const initialValues = useMemo(() => getDefaultValues(sectionFormFields), []);

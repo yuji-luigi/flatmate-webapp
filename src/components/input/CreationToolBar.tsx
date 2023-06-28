@@ -8,10 +8,11 @@ import CreationToolBarIconButton from './CreationToolBarIconButton';
 import PreviewFileZone from './PreviewFileZone';
 import { UseFormReturnTypeCustom } from './input_interfaces/useForm_interface';
 import { Sections } from '../../types/general/data/sections-type';
+import { FormFieldTypes } from '../../types/general/data/data-table/formField-types';
 
 interface Props {
   form: UseFormReturnTypeCustom;
-  formFields: FormFieldInterface[];
+  formFields: FormFieldTypes[];
   submitButton?: ReactNode;
   /**
    *  need to pass down from drawer.

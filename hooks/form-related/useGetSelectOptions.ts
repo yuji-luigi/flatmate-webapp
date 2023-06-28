@@ -4,11 +4,15 @@ import { createLabelFromArrayStr } from '../../src/utils/helper-functions';
 import { Sections } from '../../src/types/general/data/sections-type';
 import {
   FormFieldInterface,
+  FormFieldTypes,
+  SelectFormType,
   SelectOption,
 } from '../../src/types/general/data/data-table/formField-types';
+import { SelectItem } from '@mantine/core';
 // import { useCrudSlice } from '../redux-hooks/useCrudSlice';
 
-export const useGetSelectOptions = (formField: FormFieldInterface): Array<SelectOption> | [] => {
+export const useGetSelectOptions = (formField: SelectFormType): Array<SelectItem | string> | [] => {
+  if (formField.type !== 'select') return [];
   // const options: Array<SelectOption> = [];
   // const [idleDocuments, setIdleDocuments] = useState<SelectOption[]>([]);
   /** fetch with query,  */

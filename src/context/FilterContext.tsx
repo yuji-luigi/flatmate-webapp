@@ -1,6 +1,6 @@
 import { ChangeEvent, createContext, ReactNode, useState } from 'react';
 import { Sections } from '../types/general/data/sections-type';
-import { FilterContextType } from '../types/context/entity-context.d copy';
+import { FilterContextType } from '../types/context/filter-context.';
 import { Dispatch, SetStateAction } from 'react';
 
 export const FilterContext = createContext<FilterContextType>({

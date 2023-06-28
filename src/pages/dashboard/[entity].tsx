@@ -13,6 +13,7 @@ import { usePaginationContext } from '../../context/PaginationContext';
 import { Sections } from '../../types/general/data/sections-type';
 import { Box } from '@mantine/core';
 import { HeaderContainer } from '../../components/datatable/header/HeaderContainer';
+import { FormFieldTypes } from '../../types/general/data/data-table/formField-types';
 
 const CrudPage = () => {
   const { query, push } = useRouter();
@@ -22,7 +23,7 @@ const CrudPage = () => {
 
   const { fetchCrudDocumentsWithPagination } = useCrudSliceStore();
   const { crudDocuments, isChildrenTree } = useCrudSelectors(entity);
-  formFields as FormFieldsType;
+  formFields as FormFieldTypes;
   useEffect(() => {
     if (!sections.includes(entity)) {
       push('/dashboard/home');

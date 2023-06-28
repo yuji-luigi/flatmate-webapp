@@ -11,6 +11,7 @@ import { TableSectionHeader } from '../../../sections/dashboard_sections/datatab
 import { Sections } from '../../../types/general/data/sections-type';
 import formFields from '../../../../json/dataTable/formfields';
 import Layout from '../../../layouts';
+import { FormFieldTypes } from '../../../types/general/data/data-table/formField-types';
 
 const MaintainerSearchPage = () => {
   const { query, push } = useRouter();
@@ -20,7 +21,7 @@ const MaintainerSearchPage = () => {
 
   const { fetchCrudDocumentsWithPagination } = useCrudSliceStore();
   const { crudDocuments, isChildrenTree } = useCrudSelectors(entity);
-  formFields as FormFieldsType;
+  formFields as FormFieldTypes;
   useEffect(() => {
     if (!sections.includes(entity)) {
       push('/dashboard/home');

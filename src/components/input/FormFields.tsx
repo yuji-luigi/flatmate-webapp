@@ -16,16 +16,20 @@ import CrudDatePicker from './crud-inputs/CrudDatePicker';
 import CrudSwitch from './crud-inputs/CrudSwitch';
 import RadioGroup from './crud-inputs/RadioGroup';
 import SwitchGroup from './crud-inputs/SwitchGroup';
+import {
+  FormFieldTypes,
+  SelectFormType,
+} from '../../types/general/data/data-table/formField-types';
 // import { FormFieldInterface } from '../../types/general/data/dataTable/formField-types';
 interface Props {
-  formField: FormFieldInterface;
+  formField: FormFieldTypes;
   // initialValues: Record<string, any>;
   minRows?: number;
   form: UseFormReturnType<Record<string, unknown>>;
   // submitButton?: ReactNode;
 }
 const FormFields = ({ formField, form, ...others }: Props) => {
-  const options = useGetSelectOptions(formField);
+  const options = useGetSelectOptions(formField as SelectFormType);
 
   switch (formField.type) {
     case 'text':

@@ -17,6 +17,7 @@ import MaintainerList from '../../../sections/dashboard_sections/maintainers-sec
 import { HeaderContainer } from '../../../components/datatable/header/HeaderContainer';
 import { maintainersTableData } from '../../../../json/dataTable/formfields/maintainersTableData';
 import { QueryFilterWeb } from '../../../components/datatable/filter/QueryFilterWeb';
+import { FormFieldTypes } from '../../../types/general/data/data-table/formField-types';
 
 const useStyles = createStyles((theme) => ({
   secondButton: {
@@ -41,7 +42,7 @@ const MaintainerPage = () => {
 
   const { fetchCrudDocumentsWithPagination } = useCrudSliceStore();
   const { crudDocuments, isChildrenTree } = useCrudSelectors(entity);
-  formFields as FormFieldsType;
+  formFields as FormFieldTypes;
 
   useEffect(() => {
     /** type guard */

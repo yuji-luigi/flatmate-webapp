@@ -1,9 +1,10 @@
 import { Checkbox, MultiSelect, Select, SelectItem, Switch, TextInput } from '@mantine/core';
 import React from 'react';
 import { UseFormReturnTypeCustom } from '../input_interfaces/useForm_interface';
+import { CheckBoxFormFieldType } from '../../../types/general/data/data-table/formField-types';
 
 interface Prop {
-  formField: FormFieldInterface;
+  formField: CheckBoxFormFieldType;
   form: UseFormReturnTypeCustom;
   // checked: boolean;
 }

@@ -17,6 +17,7 @@ import ModalContent from './ModalContent';
 import { useState } from 'react';
 import { useCrudSelectors, useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
 import { notifications } from '@mantine/notifications';
+import { SectionDataJsonWithRoles } from '../../../types/general/data/data-table/sectionsJson-type';
 
 export function HeaderCreationModal() {
   const [opened, { open, close }] = useDisclosure(false);

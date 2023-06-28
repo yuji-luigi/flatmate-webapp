@@ -28,6 +28,7 @@ import { sections, flattenSectionData, entities, sectionData } from '../../data'
 
 import { extractUploadingMedia, uploadFileAndGetModelId } from '../../utils/upload-helper';
 import { Sections } from '../../types/general/data/sections-type';
+import { FormFieldTypes } from '../../types/general/data/data-table/formField-types';
 
 const useStyles = createStyles(() => ({
   drawer: {
@@ -50,7 +51,7 @@ export function CrudDrawerDefault({ overridingEntity = '' }: { overridingEntity?
   const { user } = useAuth();
   const parentId = query.parentId as string;
   const paginationQuery = usePaginationQuery();
-  const sectionFormFields: FormFieldInterface[] = allFormFields[entity];
+  const sectionFormFields: FormFieldTypes[] = allFormFields[entity];
   const { closeDrawer, drawerIsOpen } = useDrawerContext();
 
   const {

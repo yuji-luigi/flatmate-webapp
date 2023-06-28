@@ -5,10 +5,11 @@ import { UseFormReturnType } from '@mantine/form';
 import { useRef, useState } from 'react';
 import { Carousel } from '@mantine/carousel';
 import Image from 'next/image';
+import { FormFieldTypes } from '../../types/general/data/data-table/formField-types';
 
 interface Props extends Partial<DropzoneProps> {
   form: UseFormReturnType<Record<string, unknown>>;
-  formField: FormFieldInterface;
+  formField: FormFieldTypes;
 }
 
 export function DropzoneCustomImage(props: Props) {

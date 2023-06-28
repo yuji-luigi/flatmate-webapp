@@ -16,6 +16,7 @@ import { UseFormReturnTypeCustom } from '../../input/input_interfaces/useForm_in
 import { useRouter } from 'next/router';
 import { hasMedia } from '../../../redux/features/crudAsyncThunks';
 import { uploadFileAndGetModelId, extractUploadingMedia } from '../../../utils/upload-helper';
+import { FormFieldTypes } from '../../../types/general/data/data-table/formField-types';
 const config = {
   headers: {
     'Content-Type': 'multipart/form-data',
@@ -38,7 +39,7 @@ const PostModalForm = () => {
 
   const { classes } = useStyles();
   const [submitting, setSubmitting] = useState(false);
-  const sectionFormFields: FormFieldInterface[] = allFormFields.threads;
+  const sectionFormFields: FormFieldTypes[] = allFormFields.threads;
   const { createCrudDocumentWithPagination } = useCrudSliceStore();
   const { crudMessage, crudStatus } = useCrudSelectors();
   const initialValues = useMemo(() => getDefaultValues(sectionFormFields), []);

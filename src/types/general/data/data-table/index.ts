@@ -63,7 +63,7 @@ export type CheckboxGroupProps = Controlled<
   Omit<MantineCheckboxGroupProps, 'children'> & Options<CheckboxProps> & Orientation
 >;
 export type RadioGroupProps = Controlled<
-  Omit<MantineRadioGroupProps, 'children'> & Options<RadioProps> & Orientation
+  Omit<MantineRadioGroupProps, 'children' & 'form'> & Options<RadioProps> & Orientation
 >;
 export type SwitchGroupProps = Controlled<
   Omit<MantineSwitchGroupProps, 'children'> & Options<SwitchProps> & Orientation

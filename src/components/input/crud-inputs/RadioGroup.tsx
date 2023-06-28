@@ -1,10 +1,11 @@
-import { Group, Radio, RadioProps, Stack } from '@mantine/core';
+import { Group, Radio, RadioProps, SelectItem, Stack } from '@mantine/core';
 
 import ErrorMessage from './ErrorMessage';
 import { ReactNode } from 'react';
 import { RadioGroupProps } from '../../../types/general/data/data-table';
+import { FormFieldTypes } from '../../../types/general/data/data-table/formField-types';
 
-function RadioGroup(props: RadioGroupProps) {
+function RadioGroup(props: FormFieldTypes) {
   const {
     form,
     label,
@@ -40,7 +41,7 @@ function RadioGroup(props: RadioGroupProps) {
     >
       {/* eslint-disable @typescript-eslint/no-shadow */}
       <Orientation mt="xs" {...orientationProps}>
-        {options.map((option, index) => {
+        {options.map((option: SelectItem, index: number) => {
           const { label, value, ...rest } = option;
           return <Radio key={`${label}-${index}`} value={value} label={label} {...rest} />;
         })}

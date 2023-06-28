@@ -1,4 +1,4 @@
-import { Filters } from '../../../../types/context/entity-context.d copy';
+import { Filters } from '../../../../types/context/filter-context.';
 import {
   FormFieldInterface,
   FormFieldTypes,
@@ -13,9 +13,9 @@ type FilterListArgs = {
 export function filterList({ list, filters, formFields, comparator }: FilterListArgs) {
   const { selectFilters, textFilter, dateFilters, booleanFilters } = filters;
   // corresponds to condition in CrudTableToolBar
-  const selectSearchField = formFields.filter(
-    (field) => field.type === 'select' && field.filterSearch
-  );
+  // const selectSearchField = formFields.filter(
+  //   (field) => field.type === 'select' && field.filterSearch
+  // );
   // const dateSearchField = formFields.filter(
   //   (field) => field.type === 'date-picker' && field.filterSearch
   // );
@@ -24,9 +24,9 @@ export function filterList({ list, filters, formFields, comparator }: FilterList
     .filter((field) => field.textSearch !== false)
     .map((field) => field.name);
 
-  const booleanSearchField = formFields.filter(
-    (field) => field.type === 'checkbox-group' && field.filterSearch
-  );
+  // const booleanSearchField = formFields.filter(
+  //   (field) => field.type === 'checkbox-group' && field.filterSearch
+  // );
   const stabilizedThis = list.map((el, index) => [el, index]);
 
   stabilizedThis.sort((a, b) => {
@@ -60,7 +60,7 @@ export function filterList({ list, filters, formFields, comparator }: FilterList
   }
   if (list.length === 0) return list;
 
-  if (selectSearchField && selectFilters.length) {
+  if (/* selectSearchField && */ selectFilters.length) {
     list = list.filter((item) =>
       selectFilters.every((filter) => {
         // filterSelect value is all then returns true. show all select of the entity
@@ -75,7 +75,7 @@ export function filterList({ list, filters, formFields, comparator }: FilterList
       })
     );
   }
-  if (booleanSearchField && booleanFilters.length) {
+  if (/* booleanSearchField && */ booleanFilters.length) {
     list = list.filter((item) => {
       return booleanFilters.every((booleanFilter) => {
         return item[booleanFilter.field] === booleanFilter.value;

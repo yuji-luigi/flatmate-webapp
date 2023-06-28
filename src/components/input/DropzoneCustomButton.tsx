@@ -3,10 +3,11 @@ import { Box, Button, Group, Text } from '@mantine/core';
 import { Dropzone } from '@mantine/dropzone';
 import { UseFormReturnType } from '@mantine/form';
 import Image from 'next/image';
+import { FormFieldTypes } from '../../types/general/data/data-table/formField-types';
 
 interface Props {
   form: UseFormReturnType<Record<string, unknown>>;
-  formField: FormFieldInterface;
+  formField: FormFieldTypes;
 }
 
 export function DropzoneCustomButton({ form, formField }: Props) {

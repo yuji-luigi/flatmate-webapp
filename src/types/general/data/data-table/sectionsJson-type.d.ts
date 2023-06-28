@@ -1,3 +1,5 @@
+import { FormFieldTypes } from './formField-types';
+
 interface SectionDataJson {
   entity: string;
   title: string;
@@ -73,5 +75,5 @@ type CellStyles = 'badge' | '';
 // type FieldType = FieldTypes[FieldTypes[keyof typeof FieldTypes]];
 
 type FormFieldsType = {
-  [key: string]: Array<FormFieldInterFace>;
+  [key: string]: Array<FormFieldTypes>;
 };

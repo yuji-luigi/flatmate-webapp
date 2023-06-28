@@ -8,11 +8,12 @@ import { useDisclosure } from '@mantine/hooks';
 import CarouselBasic from '../carousel/CarouselBasic';
 import CrudCarousel from '../carousel/CrudCarousel';
 import { Sections } from '../../types/general/data/sections-type';
+import { FormFieldTypes } from '../../types/general/data/data-table/formField-types';
 // import CarouselBasic from '../carousel/CarouselBasic';
 
 interface Prop {
   form: UseFormReturnTypeWithMedia;
-  formField: FormFieldInterface;
+  formField: FormFieldTypes;
   /** @Link ./CreationToolBar.tsx */
   entity: Sections;
 }

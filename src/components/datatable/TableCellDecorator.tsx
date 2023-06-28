@@ -25,12 +25,16 @@ export function TableCellDecorator({
   let tableCell =
     typeof cellData === 'string' ? (
       <TableCell cellData={cellData} cellConfig={cellConfig} rowData={rowData} />
-    ) : typeof cellData === 'object' && !Array.isArray(cellData) ? (
+    ) : cellConfig.type === 'select' &&
+      cellConfig.multi &&
+      cellConfig.cellType !== 'link-children' &&
+      !Array.isArray(cellData) ? (
+      // ) : typeof cellData === 'object' && !Array.isArray(cellData) ? (
       <TableCell
         key={cellData._id}
         cellData={
           cellConfig.selectValues
-            ?.map((key) => cellData[key])
+            ?.map((key: string) => cellData[key])
             // .concat('')
             .join('-') || ''
         }
@@ -42,7 +46,11 @@ export function TableCellDecorator({
   /**
    * if the cellData is an array, then we need to render multiple cells.
    */
-  if (Array.isArray(cellData)) {
+  if (
+    Array.isArray(cellData) &&
+    cellConfig.type === 'select' &&
+    cellConfig.cellType !== 'link-children'
+  ) {
     tableCell = (
       <>
         {cellData.map((cellData) => {
@@ -52,7 +60,7 @@ export function TableCellDecorator({
               key={key}
               cellData={
                 cellConfig.selectValues
-                  ?.map((key) => cellData[key])
+                  ?.map((key: string) => cellData[key])
                   // .concat('')
                   .join('-') || ''
               }
@@ -74,7 +82,7 @@ export function TableCellDecorator({
               rowData={rowData}
               cellData={
                 cellConfig.selectValues
-                  ?.map((key) => cellData[key])
+                  ?.map((key: string) => cellData[key])
                   // .concat('')
                   .join('-') || ''
               }

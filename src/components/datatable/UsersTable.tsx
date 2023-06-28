@@ -14,6 +14,7 @@ import { useCrudSelectors, useCrudSliceStore } from '../../redux/features/crud/c
 import { DataTableModal } from '../modal/data-table-modal/DataTableModal';
 import { useDisclosure } from '@mantine/hooks';
 import { Sections } from '../../types/general/data/sections-type';
+import { FormFieldTypes } from '../../types/general/data/data-table/formField-types';
 
 export function UsersTable({ overridingEntity = '' }: { overridingEntity?: Sections }) {
   const ROWS_PER_PAGE = 10;
@@ -35,7 +36,7 @@ export function UsersTable({ overridingEntity = '' }: { overridingEntity?: Secti
     return <h1>Please provide the formField.json file to display the table</h1>;
   }
 
-  sectionFormFields.sort((a, b) => a.priority - b.priority);
+  sectionFormFields.sort((a: FormFieldTypes, b: FormFieldTypes) => a.priority - b.priority);
 
   const TOTAL = Math.floor((totalDocumentsCount - 1) / ROWS_PER_PAGE) + 1;
 
