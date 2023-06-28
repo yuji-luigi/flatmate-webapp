@@ -1,4 +1,3 @@
-import { ModalType } from './../../../../.history/src/types/modal/modalTypes.d_20230308221225';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import {
   fetchCrudDocumentsWithPagination,
