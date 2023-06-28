@@ -18,6 +18,7 @@ import { organizationsTableData as organizations } from './organizationsTableDat
 import { spacesTableData as spaces } from './spacesTableData';
 import { uploadsTableData as uploads } from './uploadsTableData';
 import { maintenancesTableData as maintenances } from './maintenancesTableData';
+import { FormFieldTypes } from '../../../src/types/general/data/data-table/formField-types';
 
 // /**
 //  * typing support when making conditions in jsx (tabelcell component)
@@ -39,7 +40,7 @@ export enum FieldTypes {
  * type for the json files
  *
  * */
-const allFormFields: FormFieldsType = {
+const allFormFields: FormFieldTypes = {
   billing,
   users,
   statistics,
