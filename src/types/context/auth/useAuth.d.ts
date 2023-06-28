@@ -1,3 +1,4 @@
+import { UserModel } from '../../models/user-model';
 export interface IUser {
   _id: string;
   name: string | undefined;

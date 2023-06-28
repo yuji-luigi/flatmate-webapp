@@ -1,6 +1,6 @@
 import { UserRoles } from '../../lib/enums';
 
-interface UserModel extends MongooseBaseModel {
+export interface UserModel extends MongooseBaseModel {
   surname: string;
   name: string;
   email: string;
