@@ -15,6 +15,7 @@ import React from 'react';
 import { Icons } from '../../../data/icons';
 import AttachmentsRow from '../AttachmentsRow';
 import CarouselBasic from '../../carousel/CarouselBasic';
+import { UserModel } from '../../../types/models/user-model';
 const useStyles = createStyles((theme) => ({
   feedCard: {
     minHeight: 200,
