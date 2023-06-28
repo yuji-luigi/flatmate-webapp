@@ -1,4 +1,5 @@
 import { Avatar, Text, Button, Paper } from '@mantine/core';
+import { UserModel } from '../../types/models/user-model';
 
 interface UserInfoActionProps {
   avatar: string;
