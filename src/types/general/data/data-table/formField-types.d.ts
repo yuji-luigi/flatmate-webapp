@@ -15,7 +15,7 @@ type BaseFormType = {
   badge?: boolean;
   grantTo?: UserRoles[];
   noTable?: boolean;
-} & LinkChildrenFormFieldType;
+};
 
 export type TextFormType = { type: 'text' | 'number' } & BaseFormType & TextInputProps;
 
@@ -46,7 +46,7 @@ export type CheckBoxFormFieldType = {
 } & BaseFormType;
 
 export type LinkChildrenFormFieldType = {
-  // type: 'text';
+  type: 'text';
   cellType: 'link-children';
   linkRoot: string;
   linkKey: string;
