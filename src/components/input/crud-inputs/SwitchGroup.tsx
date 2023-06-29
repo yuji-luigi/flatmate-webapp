@@ -4,7 +4,7 @@ import ErrorMessage from './ErrorMessage';
 import { SwitchGroupProps } from '../../../types/general/data/data-table';
 import { FormFieldTypes } from '../../../types/general/data/data-table/formField-types';
 
-function SwitchGroup(props: FormFieldTypes) {
+function SwitchGroup(props: SwitchGroupProps) {
   const {
     label,
     name,
@@ -36,10 +36,10 @@ function SwitchGroup(props: FormFieldTypes) {
     >
       {/* eslint-disable @typescript-eslint/no-shadow */}
       <Orientation mt="xs" {...orientationProps}>
-        {options.map((option: SelectItem, index: number) => {
+        {/* {options.map((option: SelectItem, index: number) => {
           const { label, value, ...rest } = option;
           return <Switch key={`${label}-${index}`} value={value} label={label} {...rest} />;
-        })}
+        })} */}
       </Orientation>
     </Switch.Group>
   );

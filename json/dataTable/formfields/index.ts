@@ -40,7 +40,7 @@ export enum FieldTypes {
  * type for the json files
  *
  * */
-const allFormFields: FormFieldTypes = {
+const allFormFields: Record<string, FormFieldTypes[]> = {
   billing,
   users,
   statistics,
@@ -50,6 +50,7 @@ const allFormFields: FormFieldTypes = {
   comments,
   fundRules,
   funds,
+
   instances,
   proposals,
   tags,

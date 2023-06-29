@@ -8,7 +8,10 @@ import CreationToolBarIconButton from './CreationToolBarIconButton';
 import PreviewFileZone from './PreviewFileZone';
 import { UseFormReturnTypeCustom } from './input_interfaces/useForm_interface';
 import { Sections } from '../../types/general/data/sections-type';
-import { FormFieldTypes } from '../../types/general/data/data-table/formField-types';
+import {
+  FormFieldTypes,
+  UploadFormFieldType,
+} from '../../types/general/data/data-table/formField-types';
 
 interface Props {
   form: UseFormReturnTypeCustom;
@@ -35,12 +38,10 @@ function CreationToolBar({ form, formFields, submitButton, entity }: Props) {
       attachmentInputRef.current.click();
     }
   };
-  const imageFormField = formFields.find((field) => field.type === 'image');
-  const attachmentFormField = formFields.find((field) => field.type === 'attachment');
+
   const uploadFormFields = formFields.filter(
     (field) => field.type === 'image' || field.type === 'attachment'
-  );
-  const files = form.values.media?.[imageFormField?.name || ''] || [];
+  ) as UploadFormFieldType[];
   //todo: need to iterate over the formFields and create a upload icon for each one
   return (
     <Stack>

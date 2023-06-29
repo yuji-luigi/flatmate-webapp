@@ -90,8 +90,8 @@ export const maintainersTableData: Array<FormFieldTypes> = [
     label: 'Is individual',
     type: 'checkbox-group',
     options: [
-      { label: 'Yes', value: true },
-      { label: 'No', value: false },
+      { label: 'Yes', value: 'true' },
+      { label: 'No', value: 'false' },
     ],
     required: false,
     priority: 6,

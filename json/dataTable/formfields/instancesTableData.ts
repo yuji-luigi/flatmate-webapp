@@ -1,6 +1,9 @@
-import { FormFieldInterface } from '../../../src/types/general/data/data-table/formField-types';
+import {
+  FormFieldInterface,
+  FormFieldTypes,
+} from '../../../src/types/general/data/data-table/formField-types';
 
-export const instancesTableData: Array<FormFieldInterface> = [
+export const instancesTableData: Array<FormFieldTypes> = [
   {
     id: 'name',
     name: 'name',
@@ -30,20 +33,20 @@ export const instancesTableData: Array<FormFieldInterface> = [
     required: false,
     priority: 2,
   },
-  {
-    id: 'type',
-    name: 'type',
-    label: 'created by',
-    type: 'static-select',
-    multi: true,
-    options: [
-      { label: 'user', value: 'user' },
-      { label: 'space', value: 'space' },
-    ],
-    selectValues: ['name'],
-    required: false,
-    priority: 2,
-  },
+  // {
+  //   id: 'type',
+  //   name: 'type',
+  //   label: 'created by',
+  //   type: 'static-select',
+  //   multi: true,
+  //   options: [
+  //     { label: 'user', value: 'user' },
+  //     { label: 'space', value: 'space' },
+  //   ],
+  //   selectValues: ['name'],
+  //   required: false,
+  //   priority: 2,
+  // },
   {
     id: 'user',
     name: 'user',

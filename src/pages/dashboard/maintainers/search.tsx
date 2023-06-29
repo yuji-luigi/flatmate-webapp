@@ -21,7 +21,7 @@ const MaintainerSearchPage = () => {
 
   const { fetchCrudDocumentsWithPagination } = useCrudSliceStore();
   const { crudDocuments, isChildrenTree } = useCrudSelectors(entity);
-  formFields as FormFieldTypes;
+  formFields;
   useEffect(() => {
     if (!sections.includes(entity)) {
       push('/dashboard/home');

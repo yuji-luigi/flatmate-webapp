@@ -1,6 +1,9 @@
-import { FormFieldInterface } from '../../../src/types/general/data/data-table/formField-types';
+import {
+  FormFieldInterface,
+  FormFieldTypes,
+} from '../../../src/types/general/data/data-table/formField-types';
 
-export const bookmarkTableData: Array<FormFieldInterface> = [
+export const bookmarkTableData: Array<FormFieldTypes> = [
   {
     id: 'title',
     name: 'title',
@@ -39,14 +42,14 @@ export const bookmarkTableData: Array<FormFieldInterface> = [
     required: true,
     priority: 1,
   },
-  {
-    id: 'createdAt',
-    name: 'createdAt',
-    label: 'Created date',
-    placeholder: '',
-    type: 'text',
-    noForm: true,
-    required: false,
-    priority: 1,
-  },
+  // {
+  //   id: 'createdAt',
+  //   name: 'createdAt',
+  //   label: 'Created date',
+  //   placeholder: '',
+  //   type: 'text',
+  //   noForm: true,
+  //   required: false,
+  //   priority: 1,
+  // },
 ];

@@ -53,9 +53,10 @@ const ChooseRootSpacePage = () => {
   }
   if (!rootSpaces || isLoading) return <p>loading</p>;
 
-  const handleSpaceSelected = async (spaceId: string) => {
-    await axiosInstance.get(`${PATH_API.spaceCookie}/${spaceId}`);
-    router.push(PATH_DASHBOARD.root);
+  const handleSpaceSelected = async (mainSpace: SpaceModel) => {
+    await axiosInstance.get(`${PATH_API.spaceCookie}/${mainSpace._id}`);
+    // router.push(PATH_DASHBOARD.root);
+    router.push(`${PATH_DASHBOARD.root}/${mainSpace.slug}`);
   };
 
   return (
@@ -78,7 +79,7 @@ const ChooseRootSpacePage = () => {
           <CardArticleVerticalTextBottom
             key={rootSpace._id}
             data={rootSpace as CardData}
-            onClick={() => handleSpaceSelected(rootSpace._id)}
+            onClick={() => handleSpaceSelected(rootSpace)}
             // href={`${hrefRoot}/${rootSpace._id}`}
           />
         ))}

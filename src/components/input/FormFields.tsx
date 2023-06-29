@@ -50,29 +50,29 @@ const FormFields = ({ formField, form, ...others }: Props) => {
         <CrudSelect form={form} formField={formField} options={formField.options!} {...others} />
       );
 
-    case 'date':
-      return <CrudDatePicker form={form} formField={formField} {...others} />;
+    // case 'date':
+    //   return <CrudDatePicker form={form} formField={formField} {...others} />;
 
-    case 'boolean':
-      return <CrudSwitch form={form} formField={formField} {...others} />;
+    // case 'boolean':
+    //   return <CrudSwitch form={form} formField={formField} {...others} />;
 
-    case 'checkbox':
-      return (
-        <Checkbox
-          checked={form.values[formField.name]}
-          name={formField.name}
-          label={formField.label}
-          placeholder={formField.placeholder}
-          size="md"
-          mt={10}
-          {...others}
-          {...form.getInputProps(formField.name || formField.id)}
-        />
-      );
-    case 'radio-group':
-      return <RadioGroup form={form} formField={formField} {...others} />;
-    case 'switch-group':
-      return <SwitchGroup form={form} formField={formField} {...others} />;
+    // case 'checkbox':
+    //   return (
+    //     <Checkbox
+    //       checked={form.values[formField.name]}
+    //       name={formField.name}
+    //       label={formField.label}
+    //       placeholder={formField.placeholder}
+    //       size="md"
+    //       mt={10}
+    //       {...others}
+    //       {...form.getInputProps(formField.name || formField.id)}
+    //     />
+    //   );
+    // case 'radio-group':
+    //   return <RadioGroup form={form} formField={formField} {...others} />;
+    // case 'switch-group':
+    //   return <SwitchGroup form={form} formField={formField} {...others} />;
 
     default:
       return null;

@@ -1,23 +1,26 @@
-import { FormFieldInterface } from '../../../src/types/general/data/data-table/formField-types';
+import {
+  FormFieldInterface,
+  FormFieldTypes,
+} from '../../../src/types/general/data/data-table/formField-types';
 
-export const billingsTableData: Array<FormFieldInterface> = [
-  {
-    id: 'amount',
-    name: 'amount',
-    label: 'Amount',
-    type: 'currency',
-    required: true,
-    priority: 4,
-  },
-  {
-    id: 'to',
-    name: 'to',
-    label: 'To',
-    type: 'select',
-    _entity: 'users',
-    required: false,
-    priority: 5,
-  },
+export const billingsTableData: Array<FormFieldTypes> = [
+  // {
+  //   id: 'amount',
+  //   name: 'amount',
+  //   label: 'Amount',
+  //   type: 'currency',
+  //   required: true,
+  //   priority: 4,
+  // },
+  // {
+  //   id: 'to',
+  //   name: 'to',
+  //   label: 'To',
+  //   type: 'select',
+  //   _entity: 'users',
+  //   required: false,
+  //   priority: 5,
+  // },
   {
     id: 'organization',
     name: 'organization',

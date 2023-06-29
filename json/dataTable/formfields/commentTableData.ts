@@ -1,6 +1,9 @@
-import { FormFieldInterface } from '../../../src/types/general/data/data-table/formField-types';
+import {
+  FormFieldInterface,
+  FormFieldTypes,
+} from '../../../src/types/general/data/data-table/formField-types';
 
-export const commentTableData: Array<FormFieldInterface> = [
+export const commentTableData: Array<FormFieldTypes> = [
   {
     id: 'title',
     name: 'title',

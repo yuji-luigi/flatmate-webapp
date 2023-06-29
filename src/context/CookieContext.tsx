@@ -56,7 +56,7 @@ const useStore = () => {
       setCurrentSpace(decodedSpace);
     },
     resetCurrentSpace: () =>
-      setCurrentSpace({ _id: 'no space', name: '', address: '', organization: '' }),
+      setCurrentSpace({ _id: 'no space', name: '', address: '', organization: '', slug: '' }),
     currentOrganization,
     setCurrentOrganization,
   };

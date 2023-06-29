@@ -3,9 +3,12 @@ import { Group, Radio, RadioProps, SelectItem, Stack } from '@mantine/core';
 import ErrorMessage from './ErrorMessage';
 import { ReactNode } from 'react';
 import { RadioGroupProps } from '../../../types/general/data/data-table';
-import { FormFieldTypes } from '../../../types/general/data/data-table/formField-types';
+import {
+  FormFieldTypes,
+  RadioGroupFormFieldType,
+} from '../../../types/general/data/data-table/formField-types';
 
-function RadioGroup(props: FormFieldTypes) {
+function RadioGroup(props: RadioGroupProps) {
   const {
     form,
     label,
@@ -40,12 +43,12 @@ function RadioGroup(props: FormFieldTypes) {
       // {...restField}
     >
       {/* eslint-disable @typescript-eslint/no-shadow */}
-      <Orientation mt="xs" {...orientationProps}>
+      {/* <Orientation mt="xs" {...orientationProps}>
         {options.map((option: SelectItem, index: number) => {
           const { label, value, ...rest } = option;
           return <Radio key={`${label}-${index}`} value={value} label={label} {...rest} />;
         })}
-      </Orientation>
+      </Orientation> */}
     </Radio.Group>
   );
 }

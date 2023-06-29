@@ -3,13 +3,16 @@ import { UseFormReturnType } from '@mantine/form';
 import React from 'react';
 import { Icons } from '../../data/icons';
 import { UseFormReturnTypeCustom } from './input_interfaces/useForm_interface';
-import { FormFieldTypes } from '../../types/general/data/data-table/formField-types';
+import {
+  FormFieldTypes,
+  UploadFormFieldType,
+} from '../../types/general/data/data-table/formField-types';
 
 const CreationToolBarIconButton = ({
   formField,
   form,
 }: {
-  formField: FormFieldTypes;
+  formField: UploadFormFieldType;
   form: UseFormReturnTypeCustom;
 }) => {
   const inputRef = React.useRef<HTMLInputElement>(null);

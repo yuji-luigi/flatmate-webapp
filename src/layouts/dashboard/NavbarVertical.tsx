@@ -21,6 +21,7 @@ import { PATH_DASHBOARD } from '../../path/page-paths';
 import { ColorSchemeToggle } from '../../components/color-schemeToggle/ColorSchemeToggle';
 import { MouseEventHandler } from 'react';
 import { ProfilePopover } from '../../components/navigation/ProfilePopover';
+import { useCookieContext } from '../../context/CookieContext';
 
 const useStyles = createStyles((theme /* , _params, getRef */) => {
   const icon = getStylesRef('icon') as string;
@@ -147,6 +148,8 @@ export function NavbarVertical() {
   const isMediaScreen = useMediaQuery('(max-width: 750px)');
   const isSuperAdmin = user?.role === 'super_admin';
 
+  const { currentSpace } = useCookieContext();
+
   const chooseText = isSuperAdmin ? 'Organization' : 'Space';
 
   const filteredSectionData = sectionData.filter((data) => data.name !== 'others');
@@ -160,7 +163,13 @@ export function NavbarVertical() {
         {section.roles?.includes(user.role) && (
           <>
             <p>{section.name}</p>
+            {/* contents are sections: Top, posts,,, */}
             {section.contents.map((navbarContent) => {
+              const isTOP = navbarContent.navbarTitle === 'Top';
+              const href =
+                isTOP && currentSpace
+                  ? `${navbarContent.link}/${currentSpace?.slug}`
+                  : navbarContent.link;
               const Icon = Icons[navbarContent.entity as IconIndexTypes] || Icons.home;
               return (
                 <Link

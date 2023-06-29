@@ -1,6 +1,9 @@
-import { FormFieldInterface } from '../../../src/types/general/data/data-table/formField-types';
+import {
+  FormFieldInterface,
+  FormFieldTypes,
+} from '../../../src/types/general/data/data-table/formField-types';
 
-export const fundRuleTableData: Array<FormFieldInterface> = [
+export const fundRuleTableData: Array<FormFieldTypes> = [
   {
     id: 'executeCondition',
     name: 'executeCondition',

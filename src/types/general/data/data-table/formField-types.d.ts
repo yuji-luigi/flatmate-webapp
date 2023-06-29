@@ -1,4 +1,4 @@
-import { SelectProps, TextInputProps, TextareaProps } from '@mantine/core';
+import { SelectItem, SelectProps, TextInputProps, TextareaProps } from '@mantine/core';
 
 type BaseFormType = {
   id: string;
@@ -11,7 +11,7 @@ type BaseFormType = {
   multi?: boolean;
   col?: Col;
   textSearch?: boolean;
-  priority?: number;
+  priority: number;
   badge?: boolean;
   grantTo?: UserRoles[];
   noTable?: boolean;
@@ -35,13 +35,13 @@ export type SelectFormType = {
 
 export type StaticSelectFormFieldType = {
   type: 'static-select';
-  options: Array<SelectOption | string>;
+  options: Array<SelectItem | string>;
 } & BaseFormType &
   BaseSelectFormType;
 
 export type CheckBoxFormFieldType = {
   type: 'checkbox-group';
-  options: Array<SelectOption | string>;
+  options: Array<SelectItem | string>;
   filterSearch?: boolean;
 } & BaseFormType;
 
@@ -59,7 +59,7 @@ export type TextAreaFormFieldType = {
 
 export type UploadFormFieldType = {
   type: 'image' | 'attachment';
-  accept?: 'image/*' | 'application/pdf' | null | string | undefined;
+  accept?: 'image/*' | 'application/pdf' | string;
 } & BaseFormType;
 
 export type RadioGroupFormFieldType = {
@@ -82,6 +82,7 @@ export type FormFieldTypes =
   | RadioGroupFormFieldType
   | AvatarFormFieldType
   | ColorFormFieldType
+  | LinkChildrenFormFieldType
   | UploadFormFieldType;
 
 export interface FormFieldInterface {
@@ -124,7 +125,7 @@ export interface FormFieldInterface {
   badge?: boolean;
   selectValues?: Array<string>;
   /** Type select. static options*/
-  options?: Array<SelectOption | string>;
+  options?: Array<SelectItem | string>;
   /**
    * Hide the input from the form but still send the data
    * inside formData. -> noForm is opposite

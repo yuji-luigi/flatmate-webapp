@@ -23,7 +23,6 @@ const CrudPage = () => {
 
   const { fetchCrudDocumentsWithPagination } = useCrudSliceStore();
   const { crudDocuments, isChildrenTree } = useCrudSelectors(entity);
-  formFields as FormFieldTypes;
   useEffect(() => {
     if (!sections.includes(entity)) {
       push('/dashboard/home');

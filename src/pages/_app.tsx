@@ -1,29 +1,22 @@
-import { GetServerSidePropsContext, NextPage } from 'next';
-import { useState, ReactElement, ReactNode } from 'react';
-import { AppProps } from 'next/app';
+import { ColorScheme, ColorSchemeProvider, MantineProvider } from '@mantine/core';
+import { Notifications } from '@mantine/notifications';
 import { getCookie, setCookie } from 'cookies-next';
+import { GetServerSidePropsContext, NextPage } from 'next';
+import { AppProps } from 'next/app';
 import Head from 'next/head';
-import {
-  MantineProvider,
-  ColorScheme,
-  ColorSchemeProvider,
-  MantineTheme,
-  Tuple,
-} from '@mantine/core';
+import { ReactElement, ReactNode, useState } from 'react';
 import { Provider as ReduxProvider } from 'react-redux';
-import { AuthProvider } from '../context/JWTContext';
-import reduxStore from '../redux/store';
 import { DashboardLayoutContextProvider } from '../context/DashboardLayoutContext';
 import { DrawerContextProvider } from '../context/DataTableDrawerContext';
+import { AuthProvider } from '../context/JWTContext';
 import { PaginationContextProvider } from '../context/PaginationContext';
-import { Notifications } from '@mantine/notifications';
-import { DeepPartial } from '@reduxjs/toolkit';
 import { myColors } from '../lib/custom-colors';
+import reduxStore from '../redux/store';
 // import { CurrentSpaceContextProvider } from '../context/CurrentSpaceContext';
 import { CookieContextProvider } from '../context/CookieContext';
+import { FilterContextProvider } from '../context/FilterContext';
 import { _ModalContextProvider } from '../context/modal-context/_ModalContext';
 import '../styles/global.css';
-import { FilterContextProvider } from '../context/FilterContext';
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -46,7 +39,7 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
   return (
     <>
       <Head>
-        <title>Mantine next example</title>
+        <title>Flatmates© </title>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
         <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />

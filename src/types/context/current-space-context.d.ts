@@ -8,4 +8,5 @@ interface CurrentSpace {
   name: string;
   address: string;
   organization: string;
+  slug: string;
 }

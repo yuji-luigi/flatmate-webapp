@@ -42,7 +42,7 @@ const MaintainerPage = () => {
 
   const { fetchCrudDocumentsWithPagination } = useCrudSliceStore();
   const { crudDocuments, isChildrenTree } = useCrudSelectors(entity);
-  formFields as FormFieldTypes;
+  formFields;
 
   useEffect(() => {
     /** type guard */
