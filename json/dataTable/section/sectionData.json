@@ -8,6 +8,16 @@
 		],
 		"contents": [
 			{
+				"entity": "home",
+				"entitySingle": "home",
+				"title": "",
+				"subtitle": "",
+				"navbarTitle": "TOP",
+				"link": "/dashboard/home",
+				"createButton": "",
+				"icon": "Dashboard"
+			},
+			{
 				"entity": "posts",
 				"entitySingle": "post",
 				"title": "Posts",
@@ -36,16 +46,6 @@
 			"user"
 		],
 		"contents": [
-			{
-				"entity": "home",
-				"entitySingle": "home",
-				"title": "welcome to dashboard",
-				"subtitle": "subtitle",
-				"navbarTitle": "Dashboard",
-				"link": "/dashboard/home",
-				"createButton": "",
-				"icon": "Dashboard"
-			},
 			{
 				"entity": "statistics",
 				"entitySingle": "statistic",

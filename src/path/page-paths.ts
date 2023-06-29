@@ -11,7 +11,8 @@ export const PATH_AFTER_LOGIN = '/dashboard/posts';
 
 export enum PATH_DASHBOARD {
   // root = '/dashboard',
-  root = '/dashboard/posts',
+  /** the initial page after login is root */
+  root = '/dashboard/home',
   posts = '/dashboard/posts',
   maintenances = '/dashboard/maintenances',
   dashboard = '/dashboard/home',
