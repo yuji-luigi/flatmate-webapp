@@ -10,7 +10,7 @@ import {
   Text,
 } from '@mantine/core';
 
-import FormFields from '../../input/FormFields';
+import FormFields from '../../../components/input/FormFields';
 import formFields from '../../../../json/dataTable/formfields';
 import { useState, FormEvent, useMemo, useEffect } from 'react';
 import { useCrudSelectors, useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
@@ -19,19 +19,20 @@ import { FormCustom } from '../../../context/FormContextProvider';
 import { getDefaultValues } from '../../../utils/getDefaultValues';
 import { notifications } from '@mantine/notifications';
 import axiosInstance from '../../../utils/axios-instance';
-import CreationToolBar from '../../input/CreationToolBar';
+import CreationToolBar from '../../../components/input/CreationToolBar';
 import { UPLOAD_FOLDERS } from '../../../lib/enums';
-import { UseFormReturnTypeCustom } from '../../input/input_interfaces/useForm_interface';
+import { UseFormReturnTypeCustom } from '../../../components/input/input_interfaces/useForm_interface';
 import { useRouter } from 'next/router';
 import { hasMedia } from '../../../redux/features/crudAsyncThunks';
 import { uploadFileAndGetModelId, extractUploadingMedia } from '../../../utils/upload-helper';
 import { useDisclosure } from '@mantine/hooks';
 import useAuth from '../../../../hooks/useAuth';
 import { PATH_API } from '../../../path/api-routes';
-import { convertToSelectItems } from '../../../utils/helper-functions';
-import OrganizationSpaceSelect from '../../select-custom/OrganizationSpaceSelect';
+import { convertToSelectItems, sleep } from '../../../utils/helper-functions';
+import OrganizationSpaceSelect from '../../../components/select-custom/OrganizationSpaceSelect';
 import { getCookie } from 'cookies-next';
 import { FormFieldTypes } from '../../../types/general/data/data-table/formField-types';
+import { useSimpleDisclosureContext } from '../../../context/SimpleDisclosureContext';
 const config = {
   headers: {
     'Content-Type': 'multipart/form-data',
@@ -52,6 +53,7 @@ const useStyles = createStyles(() => ({
 const HeaderModalForm = ({ entity }: { entity: 'threads' | 'maintenances' }) => {
   const { classes } = useStyles();
   const { isSuperAdmin } = useAuth();
+  const { close } = useSimpleDisclosureContext();
   // const [submitting, setSubmitting] = useState(false);
   const { submitting } = useCrudSelectors(entity);
   const sectionFormFields: FormFieldTypes[] = formFields[entity];
@@ -67,6 +69,16 @@ const HeaderModalForm = ({ entity }: { entity: 'threads' | 'maintenances' }) => 
 
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
+
+    setSubmitting(true);
+    notifications.show({
+      id: 'submit',
+      message: 'Sending data to the server. Please wait...',
+      autoClose: false,
+      loading: true,
+    });
+    // force to wait for 1.5 seconds to show the loading notification
+    await sleep(1500);
 
     let reqBody: Record<string, any> = {
       ...form.values,
@@ -89,21 +101,7 @@ const HeaderModalForm = ({ entity }: { entity: 'threads' | 'maintenances' }) => 
         return;
       }
     }
-
     createCrudDocument({ entity, newDocument: reqBody });
-    // createCrudDocumentWithPagination({
-    //   entity,
-    //   newDocument: reqBody,
-    //   // config,
-    // });
-
-    notifications.show({
-      id: 'submit',
-      message: 'Sending data to the server. Please wait...',
-      autoClose: false,
-      loading: true,
-    });
-    setSubmitting(true);
   };
 
   useEffect(() => {
@@ -118,6 +116,7 @@ const HeaderModalForm = ({ entity }: { entity: 'threads' | 'maintenances' }) => 
       });
       setSubmitting(false);
       form.reset();
+      close();
       // router.reload();
     }
     if (crudStatus === 'failed') {
@@ -133,16 +132,7 @@ const HeaderModalForm = ({ entity }: { entity: 'threads' | 'maintenances' }) => 
       setSubmitting(false);
     }
   }, [crudStatus]);
-  // useEffect(() => {}, []);
-  // async function getOrganizations() {
-  //   const rawOrganizations = await axiosInstance.get(PATH_API.organizationAll);
-  //   setOrganizationOptions(convertToSelectItems(rawOrganizations.data.data));
-  // }
-  // async function organizationSelected(organizationId: string) {
-  //   console.log(organizationId);
-  //   const rawSpaces = await axiosInstance.get(`${PATH_API.spaces}`, { params: { isMain: true } });
-  //   setSpaceOptions(convertToSelectItems(rawSpaces.data.data));
-  // }
+
   return (
     <form className={classes.form} onSubmit={onSubmit}>
       {submitting && (

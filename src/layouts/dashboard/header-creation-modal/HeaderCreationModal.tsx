@@ -1,14 +1,7 @@
 import { useDisclosure } from '@mantine/hooks';
 
-import { Menu, Modal, Button, Group, Text, ActionIcon } from '@mantine/core';
-import {
-  IconSettings,
-  IconSearch,
-  IconPhoto,
-  IconMessageCircle,
-  IconTrash,
-  IconArrowsLeftRight,
-} from '@tabler/icons-react';
+import { Menu, Modal, ActionIcon } from '@mantine/core';
+
 import { Icons } from '../../../data/icons';
 import { allSectionArrayWithRoles } from '../../../data';
 
@@ -18,9 +11,11 @@ import { useState } from 'react';
 import { useCrudSelectors, useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
 import { notifications } from '@mantine/notifications';
 import { SectionDataJsonWithRoles } from '../../../types/general/data/data-table/sectionsJson-type';
+import { useSimpleDisclosureCtx } from '../../../../hooks/useSimpleDisclosureCtx';
 
 export function HeaderCreationModal() {
-  const [opened, { open, close }] = useDisclosure(false);
+  // const [opened, { open, close }] = useDisclosure(false);
+  const { close, open, opened } = useSimpleDisclosureCtx();
   const [modalType, setModalType] = useState<ModalType | null>(null);
   const [section, setSection] = useState<SectionDataJsonWithRoles | null>(null);
 
@@ -30,18 +25,8 @@ export function HeaderCreationModal() {
     setSection(allSectionArrayWithRoles.find((section) => section.entity === type) || null);
     setModalType(type);
     open();
-    // if (submitting) {
-    //   notifications.hide('submit');
-    //   notifications.show({
-    //     title: 'Upload is cancelled',
-    //     message: 'Upload cancelled because you opened a popup',
-    //   });
-    // }
-    // setSubmitting(false);
   };
   const handleClose = () => {
-    // setSection(allSectionArrayWithRoles.find((section) => section.entity === type) || null);
-    // setModalType(type);
     close();
     if (submitting) {
       notifications.hide('submit');
@@ -52,6 +37,7 @@ export function HeaderCreationModal() {
     }
     setSubmitting(false);
   };
+
   return (
     <>
       <Menu shadow="lg">
