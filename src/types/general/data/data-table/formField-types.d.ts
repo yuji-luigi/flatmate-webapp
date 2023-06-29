@@ -35,13 +35,13 @@ export type SelectFormType = {
 
 export type StaticSelectFormFieldType = {
   type: 'static-select';
-  options: Array<SelectItem | string>;
+  options: Array<SelectOption | string>;
 } & BaseFormType &
   BaseSelectFormType;
 
 export type CheckBoxFormFieldType = {
   type: 'checkbox-group';
-  options: Array<SelectItem | string>;
+  options: Array<SelectOption | string>;
   filterSearch?: boolean;
 } & BaseFormType;
 
