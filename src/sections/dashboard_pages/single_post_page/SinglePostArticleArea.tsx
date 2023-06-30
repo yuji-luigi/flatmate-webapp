@@ -1,7 +1,7 @@
 import { Card, Group, ActionIcon, createStyles, Divider, Box, Text } from '@mantine/core';
 import { IconHeart, IconBookmark, IconShare } from '@tabler/icons-react';
 import React from 'react';
-import CarouselBasic from '../../components/carousel/CarouselBasic';
+import CarouselBasic from '../../../components/carousel/CarouselBasic';
 
 const useStyles = createStyles((theme) => ({
   // card: {
@@ -48,15 +48,15 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-const SingleMaintenanceArticleArea = ({ maintenance }: { maintenance: MaintenanceModel }) => {
+const SinglePostArticleArea = ({ thread }: { thread: ThreadModel }) => {
   const { classes, cx, theme } = useStyles();
 
   return (
     <Card className={classes.articleArea}>
       <Text fz="md" fw={500} color="dimmed" lineClamp={4}>
-        {maintenance.description}
+        {thread.description}
       </Text>
-      <CarouselBasic images={maintenance.images} />
+      <CarouselBasic images={thread.images} />
       <Group position="right" spacing={8} mt={10}>
         <ActionIcon className={classes.action}>
           <IconHeart size="1rem" color={theme.colors.red[6]} />
@@ -72,4 +72,4 @@ const SingleMaintenanceArticleArea = ({ maintenance }: { maintenance: Maintenanc
   );
 };
 
-export default SingleMaintenanceArticleArea;
+export default SinglePostArticleArea;

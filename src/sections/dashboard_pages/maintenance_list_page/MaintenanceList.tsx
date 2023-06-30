@@ -1,7 +1,7 @@
 import React from 'react';
-import { CardArticleImageDescFooter } from '../../components/card/CardArticleImageDescFooter';
-import { CardArticleSmall } from '../../components/card/CardArticleSmall';
-import { CARD_LINK_PATH, PATH_DASHBOARD } from '../../path/page-paths';
+import { CardArticleImageDescFooter } from '../../../components/card/CardArticleImageDescFooter';
+import { CardArticleSmall } from '../../../components/card/CardArticleSmall';
+import { CARD_LINK_PATH, PATH_DASHBOARD } from '../../../path/page-paths';
 
 const MaintenanceList = ({ maintenance }: { maintenance: MaintenanceModel }) => {
   return (

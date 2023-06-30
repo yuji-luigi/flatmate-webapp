@@ -24,9 +24,9 @@ import Layout from '../../../layouts';
 import CarouselBasic from '../../../components/carousel/CarouselBasic';
 import useAuth from '../../../../hooks/useAuth';
 import PostEditButton from '../../../components/posts/PostEditButton';
-import SinglePostArticleArea from '../../../sections/single_maintenance_section/SingleMaintenanceArticleArea';
-import RelatedArticlesArea from '../../../sections/single_maintenance_section/RelatedArticleArea';
-import SingleMaintenanceHeading from '../../../sections/single_maintenance_section/SingleMaintenanceHeading';
+import SinglePostArticleArea from '../../../sections/dashboard_pages/maintenance_detail_page/SingleMaintenanceArticleArea';
+import RelatedArticlesArea from '../../../sections/dashboard_pages/maintenance_detail_page/RelatedArticleArea';
+import SingleMaintenanceHeading from '../../../sections/dashboard_pages/maintenance_detail_page/SingleMaintenanceHeading';
 import { CrudDrawerDefault } from '../../../components/drawer/CrudDrawerDefault';
 
 const useStyles = createStyles((theme) => ({

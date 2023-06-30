@@ -7,7 +7,7 @@ import { CrudDrawerDefault } from '../../../components/drawer/CrudDrawerDefault'
 import { usePaginationContext } from '../../../context/PaginationContext';
 import { sections } from '../../../data';
 import { useCrudSliceStore, useCrudSelectors } from '../../../redux/features/crud/crudSlice';
-import { TableSectionHeader } from '../../../sections/dashboard_sections/datatable_section/TableSectionHeader';
+import { TableSectionHeader } from '../../../sections/dashboard_pages/datatable_section/TableSectionHeader';
 import { Sections } from '../../../types/general/data/sections-type';
 import formFields from '../../../../json/dataTable/formfields';
 import Layout from '../../../layouts';

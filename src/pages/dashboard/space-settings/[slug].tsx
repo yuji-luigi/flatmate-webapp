@@ -8,7 +8,7 @@ import { maintainersTableData } from '../../../../json/dataTable/formfields/main
 
 import ProfileCover, { CoverDataProp } from '../../../components/profile/ProfileCover';
 
-import { SpaceSettingForm } from '../../../sections/dashboard_sections/space_setting_section/SpaceSettingForm';
+import { SpaceSettingForm } from '../../../sections/dashboard_pages/space_setting_section/SpaceSettingForm';
 import useSWR from 'swr';
 import axiosInstance, { AxiosResDataGeneric } from '../../../utils/axios-instance';
 import { PATH_API } from '../../../path/api-routes';
@@ -16,7 +16,7 @@ import { AxiosError } from 'axios';
 import LoadingScreen from '../../../components/screen/LoadingScreen';
 
 import { SpaceSlugResponse } from '../../../types/api-response/space-response';
-import { SpaceSettingMaintainersSection } from '../../../sections/dashboard_sections/space_setting_section/maintainers_section/SpaceSettingMaintainersSection';
+import { SpaceSettingMaintainersSection } from '../../../sections/dashboard_pages/space_setting_section/maintainers_section/SpaceSettingMaintainersSection';
 
 // use style from global-useStyles
 const useStyles = dashboardStyle;

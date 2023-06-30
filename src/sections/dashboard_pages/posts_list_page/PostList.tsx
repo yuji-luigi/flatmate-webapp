@@ -1,7 +1,7 @@
 import React from 'react';
-import { CardArticleImageDescFooter } from '../../components/card/CardArticleImageDescFooter';
-import { CardArticleSmall } from '../../components/card/CardArticleSmall';
-import { CARD_LINK_PATH } from '../../path/page-paths';
+import { CardArticleImageDescFooter } from '../../../components/card/CardArticleImageDescFooter';
+import { CardArticleSmall } from '../../../components/card/CardArticleSmall';
+import { CARD_LINK_PATH } from '../../../path/page-paths';
 
 const PostList = ({ thread }: { thread: ThreadModel }) => {
   return (

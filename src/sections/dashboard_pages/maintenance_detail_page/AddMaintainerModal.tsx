@@ -1,14 +1,17 @@
 import { Button, Group, MultiSelect, Select, SelectItem, Stack } from '@mantine/core';
 import React from 'react';
 import useSWR from 'swr';
-import { PATH_API } from '../../path/api-routes';
-import axiosInstance from '../../utils/axios-instance';
-import { useCookieContext } from '../../context/CookieContext';
-import LoadingScreen from '../../components/screen/LoadingScreen';
+import { PATH_API } from '../../../path/api-routes';
+import axiosInstance from '../../../utils/axios-instance';
+import { useCookieContext } from '../../../context/CookieContext';
+import LoadingScreen from '../../../components/screen/LoadingScreen';
 import { AxiosError } from 'axios';
-import useAuth from '../../../hooks/useAuth';
+import useAuth from '../../../../hooks/useAuth';
 import { useForm } from '@mantine/form';
 import { useRouter } from 'next/router';
+import { useCrudSelectors, useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
+import { getWordNextToFromUrl } from '../../../utils/helper-functions';
+import { Sections } from '../../../types/general/data/sections-type';
 
 const fetchMainSpaces = async () => {
   const res = await axiosInstance.get(`${PATH_API.getSpaceSelections}`);
@@ -17,13 +20,15 @@ const fetchMainSpaces = async () => {
 
 const AddMaintainerModal = () => {
   // get organizationId from cookie context
-  const { currentOrganization } = useCookieContext();
+  const { currentOrganization, currentSpace } = useCookieContext();
   const { user } = useAuth();
   const router = useRouter();
+  const _entity = getWordNextToFromUrl();
+  const { selectedCrudDocument } = useCrudSelectors(_entity as Sections);
 
   const form = useForm({
     initialValues: {
-      spaces: [],
+      spaces: [currentSpace?._id],
     },
   });
 
@@ -40,13 +45,12 @@ const AddMaintainerModal = () => {
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(form.values);
+    if (form.values.spaces.length === 0) return;
     // call api to add maintainer with axiosInstance in utils
     const res = await axiosInstance.put(
-      `${PATH_API.maintainers}/${router.query.documentId}`,
+      `${PATH_API.maintainers}/${selectedCrudDocument?._id}`,
       form.values
     );
-    console.log(res.data.data);
   };
 
   return (

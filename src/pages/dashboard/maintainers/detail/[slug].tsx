@@ -38,7 +38,7 @@ import { lorem100 } from '../../../../_mock/strings';
 import { maintainersTableData } from '../../../../../json/dataTable/formfields/maintainersTableData';
 import { use_ModalContext } from '../../../../context/modal-context/_ModalContext';
 import CrudSelect from '../../../../components/input/crud-inputs/CrudSelect';
-import AddMaintainerModal from '../../../../sections/single_maintenance_section/AddMaintainerModal';
+import AddMaintainerModal from '../../../../sections/dashboard_pages/maintenance_detail_page/AddMaintainerModal';
 import CardWithTitle from '../../../../components/profile/side/CardWithTitle';
 import TextWithIcon from '../../../../components/text/TextWithIcon';
 import { profilePageStyle } from '../../../../styles/global-useStyles';
