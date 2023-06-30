@@ -87,7 +87,6 @@ export const useFilterStore = (): FilterContextType => {
     setBooleanFilters((prev) => [...prev, data]);
     // return setPage(0);
   };
-  console.log(selectFilters);
   return {
     booleanFilters,
     setBooleanFilters,
