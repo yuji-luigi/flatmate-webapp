@@ -13,7 +13,7 @@ import { Sections } from '../../../types/general/data/sections-type';
 import { Button, Group, Select, createStyles, Text, Box, Container } from '@mantine/core';
 import Link from 'next/link';
 import { PATH_DASHBOARD } from '../../../path/page-paths';
-import MaintainerList from '../../../sections/dashboard_pages/maintainers_section/MaintainerList';
+import MaintainerList from '../../../sections/dashboard_pages/maintainers_page/MaintainerList';
 import { HeaderContainer } from '../../../components/datatable/header/HeaderContainer';
 import { maintainersTableData } from '../../../../json/dataTable/formfields/maintainersTableData';
 import { QueryFilterWeb } from '../../../components/datatable/filter/QueryFilterWeb';

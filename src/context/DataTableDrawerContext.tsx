@@ -41,7 +41,7 @@ const useStore = () => {
   return {
     drawerIsOpen,
     openDrawer: () => setDrawerIsOpen(true),
-    /** every time close the drawer set selectedDocument to null */
+    /** every time close the drawer set singleCrudDocument to null */
     closeDrawer: (entity?: Sections) => {
       if (entity) {
         selectCrudDocument({ entity, document: null });

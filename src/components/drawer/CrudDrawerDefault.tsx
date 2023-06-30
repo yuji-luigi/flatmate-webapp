@@ -61,7 +61,7 @@ export function CrudDrawerDefault({ overridingEntity = '' }: { overridingEntity?
     createLinkedChildDocumentWithPagination,
   } = useCrudSliceStore();
   const {
-    selectedCrudDocument: selectedDocument,
+    selectedCrudDocument: singleCrudDocument,
     crudStatus,
     crudError,
   } = useCrudSelectors(entity);
@@ -71,8 +71,8 @@ export function CrudDrawerDefault({ overridingEntity = '' }: { overridingEntity?
    * defined here
    */
   const initialValues = useMemo(
-    () => getDefaultValues(sectionFormFields, selectedDocument),
-    [selectedDocument]
+    () => getDefaultValues(sectionFormFields, singleCrudDocument),
+    [singleCrudDocument]
   );
 
   const form = useForm({
@@ -127,7 +127,7 @@ export function CrudDrawerDefault({ overridingEntity = '' }: { overridingEntity?
     }
 
     /** Create new Document */
-    if (!selectedDocument._id) {
+    if (!singleCrudDocument._id) {
       if (parentId) {
         createLinkedChildDocumentWithPagination({
           entity,
@@ -140,11 +140,11 @@ export function CrudDrawerDefault({ overridingEntity = '' }: { overridingEntity?
       }
     }
     /** Modify selected document */
-    if (selectedDocument._id) {
+    if (singleCrudDocument._id) {
       updateCrudDocument({
         entity,
         updateData: reqBody,
-        documentId: selectedDocument._id,
+        documentId: singleCrudDocument._id,
         parentId: query.parentId as string,
       });
     }
@@ -201,14 +201,14 @@ export function CrudDrawerDefault({ overridingEntity = '' }: { overridingEntity?
 
   useEffect(() => {
     form.setValues(initialValues);
-  }, [selectedDocument._id]);
+  }, [singleCrudDocument._id]);
 
   useEffect(() => {
     form.setValues(initialValues);
   }, [drawerIsOpen]);
 
   const entityText = capitalize(sectionJson?.entitySingle);
-  const submitText = selectedDocument._id ? `Update ${entityText}!` : `Add ${entityText}!`;
+  const submitText = singleCrudDocument._id ? `Update ${entityText}!` : `Add ${entityText}!`;
 
   if (!drawerIsOpen) return null;
   return (

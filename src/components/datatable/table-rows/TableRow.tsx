@@ -32,7 +32,7 @@ export function TableRow({
 
   /** get runtime value of the entity */
   const entity = overridingEntity || (query.entity as Sections);
-  // const selectedDocument = getSelectedDocument(entity);
+  // const singleCrudDocument = getSelectedDocument(entity);
   // const { deleteCrudDocumentWithPagination: old } = useCrudSlice();
   // const onModify = (): void => {
   //   selectCrudDocument({ entity, document: rowData });

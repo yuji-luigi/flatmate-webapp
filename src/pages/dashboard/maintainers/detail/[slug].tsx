@@ -21,7 +21,7 @@ import Layout from '../../../../layouts';
 import ProfileCover, { CoverDataProp } from '../../../../components/profile/ProfileCover';
 import { useCrudSelectors, useCrudSliceStore } from '../../../../redux/features/crud/crudSlice';
 import { useRouter } from 'next/router';
-import { getWordNextToFromUrl } from '../../../../utils/helper-functions';
+import { getEntityFromUrl } from '../../../../utils/helper-functions';
 import { Sections } from '../../../../types/general/data/sections-type';
 import useSWR from 'swr';
 import axiosInstance from '../../../../utils/axios-instance';
@@ -43,6 +43,8 @@ import CardWithTitle from '../../../../components/profile/side/CardWithTitle';
 import TextWithIcon from '../../../../components/text/TextWithIcon';
 import { profilePageStyle } from '../../../../styles/global-useStyles';
 import { UserModel } from '../../../../types/models/user-model';
+import { BuildingCard } from '../../../../sections/dashboard_pages/maintainer_detail_page/BuildingCard';
+import { AddRemoveButton } from '../../../../sections/dashboard_pages/maintainer_detail_page/AddRemoveButton';
 const spaceFormField = {
   id: 'space',
   label: 'Space',
@@ -66,40 +68,41 @@ const MaintainerDetailsPage = () => {
 
   const { openModal, openConfirmModal } = use_ModalContext();
 
-  const _entity = getWordNextToFromUrl() as Sections;
+  const _entity = getEntityFromUrl();
+  console.log('entity', _entity);
   const {
-    data: document,
+    data: fetchedData,
     error,
     isLoading,
   } = useSWR(['maintainer', router.query.slug], () => getMaintainer(router.query.slug as string));
 
-  const { setCrudDocument } = useCrudSliceStore();
+  const { setSingleCrudDocument } = useCrudSliceStore();
 
   const isMobile = useMediaQuery('(max-width: 800px)');
 
   useEffect(() => {
-    if (document) {
-      setCrudDocument({ entity: _entity, document });
+    if (fetchedData) {
+      setSingleCrudDocument({ entity: _entity, document: fetchedData });
     }
-  }, [document?._id]);
+  }, [fetchedData?._id]);
 
   if (isLoading) return 'isLoading';
 
-  const data = document
+  const data = fetchedData
     ? {
-        title: document.name,
-        subtitle: document.company,
-        avatarUrl: document.avatar?.url,
-        coverUrl: document.cover?.url,
+        title: fetchedData.name,
+        subtitle: fetchedData.company,
+        avatarUrl: fetchedData.avatar?.url,
+        coverUrl: fetchedData.cover?.url,
       }
     : ({} as CoverDataProp);
   // create about data
   const aboutData = {
     // title: 'About',
-    email: document?.email,
-    tel: document?.tel,
-    company: document?.company,
-    address: document?.address,
+    email: fetchedData?.email,
+    tel: fetchedData?.tel,
+    company: fetchedData?.company,
+    address: fetchedData?.address,
   };
   const handleAddMaintainer = async () => {
     // setSpaces(data);
@@ -123,20 +126,12 @@ const MaintainerDetailsPage = () => {
     <ProfileSide
       contents={
         <>
-          <Button onClick={handleAddMaintainer} variant="outline" color="yellow">
+          <AddRemoveButton onClick={handleAddMaintainer} />
+          {/* <Button onClick={handleAddMaintainer} variant="outline" color="yellow">
             Add Maintainer to Building
-          </Button>
+          </Button> */}
           <AboutCard aboutData={aboutData} />
-
-          <CardWithTitle titleSx={{ fontSize: 24 }} title="Condominium/Office">
-            {document.spaces.length ? (
-              document.spaces?.map((space: SpaceModel) => (
-                <TextWithIcon key={space._id} icon={<Icons.buildings />} text={space.name} />
-              ))
-            ) : (
-              <Text>No spaces assigned</Text>
-            )}
-          </CardWithTitle>
+          <BuildingCard />
         </>
       }
     />

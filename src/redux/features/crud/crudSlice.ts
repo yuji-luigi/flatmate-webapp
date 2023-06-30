@@ -25,8 +25,8 @@ const reduxdb: Reduxdb = flattenSectionData.reduce<Reduxdb>((totalData, currentD
       entity: currentData.entity as Sections,
       documentsArray: [],
       totalDocuments: 0,
-      selectedDocument: null,
-      selectedDocuments: [],
+      singleCrudDocument: null,
+      singleCrudDocuments: [],
       isChildrenTree: false,
     },
   };
@@ -59,22 +59,22 @@ export const crudSlice = createSlice({
       );
       state.reduxdb[entity].documentsArray[documentIndex] = document;
     },
-    /** to reset selectedDocument, set document to null */
+    /** to reset singleCrudDocument, set document to null */
     selectCrudDocument: (state, action: PayloadAction<SelectCrudPayload>) => {
       // eslint-disable-next-line prefer-const
       let { entity, documentId, document } = action.payload;
       /** if both are null/undefined clean up the state */
       if (!documentId && !document) {
-        state.reduxdb[entity].selectedDocument = null;
+        state.reduxdb[entity].singleCrudDocument = null;
         return;
       }
       /** if the payload is object set itself in the store */
       if (document) {
-        state.reduxdb[entity].selectedDocument = document;
+        state.reduxdb[entity].singleCrudDocument = document;
       } else {
         /** if id is present then find from existing documents array */
-        state.reduxdb[entity].selectedDocument =
-          // state.reduxdb[entity].selectedDocument.find((doc: AllModels) => doc._id === documentId) ||
+        state.reduxdb[entity].singleCrudDocument =
+          // state.reduxdb[entity].singleCrudDocument.find((doc: AllModels) => doc._id === documentId) ||
           state.reduxdb[entity].documentsArray.find((doc: AllModels) => doc._id === documentId) ||
           null;
       }
@@ -82,9 +82,9 @@ export const crudSlice = createSlice({
     resetStatus: (state) => {
       state.status = 'idle';
     },
-    setCrudDocument: (state, action) => {
+    setSingleCrudDocument: (state, action) => {
       const { document, entity } = action.payload;
-      state.reduxdb[entity].selectedDocument = document;
+      state.reduxdb[entity].singleCrudDocument = document;
     },
     setCrudDocuments: (state, action) => {
       const { entity, documents, totalDocuments, isChildrenTree } = action.payload;
@@ -201,8 +201,8 @@ export const crudSlice = createSlice({
           return document;
         });
         state.reduxdb[entity].documentsArray = updatedDocuments;
-        // if (state.reduxdb[entity].selectedDocument) {
-        state.reduxdb[entity].selectedDocument = updatedDocument;
+        // if (state.reduxdb[entity].singleCrudDocument) {
+        state.reduxdb[entity].singleCrudDocument = updatedDocument;
         // }
       })
       /**
@@ -246,7 +246,7 @@ export const {
   setSubmitting,
   deleteCrud,
   resetStatus,
-  setCrudDocument,
+  setSingleCrudDocument,
   updateCrudDocumentInStore,
 } = crudSlice.actions;
 
@@ -294,15 +294,15 @@ export const useCrudSliceStore = () => {
     deleteLinkedChildDocumentWithPagination(data: DeleteLinkedChildrenPayload) {
       appDispatch(deleteLinkedChildDocumentWithPagination(data));
     },
-    /** set object in selectedDocument in Reduxdb*/
+    /** set object in singleCrudDocument in Reduxdb*/
     selectCrudDocument(data: SelectCrudPayload) {
       appDispatch(selectCrudDocument(data));
     },
     setCrudDocuments(data: SetCrudDocumentsPayload) {
       appDispatch(setCrudDocuments(data));
     },
-    setCrudDocument(data: SetCrudDocumentPayload) {
-      appDispatch(setCrudDocument(data));
+    setSingleCrudDocument(data: SetCrudDocumentPayload) {
+      appDispatch(setSingleCrudDocument(data));
     },
     setSubmitting(bool: boolean) {
       appDispatch(setSubmitting(bool));
@@ -314,7 +314,7 @@ export const useCrudSliceStore = () => {
 };
 
 /** Returns Array of Documents of the entity: whole array of entity */
-const useCrudDocuments = <ModelType>(entity?: Sections): ModelType[] =>
+const useCrudDocuments = <ModelType>(entity?: Sections) =>
   useAppSelector((state) => state.crud.reduxdb?.[entity || '']?.documentsArray);
 
 /** returns string if api sent message */
@@ -336,7 +336,7 @@ const useIsChildrenTree = (entity?: Sections): boolean =>
 
 /** Returns selected Document of the entity or if not selected returns null  */
 const useSelectedDocument = <ModelType>(entity?: Sections): ModelType =>
-  useAppSelector((state) => state.crud.reduxdb?.[entity || '']?.selectedDocument || {});
+  useAppSelector((state) => state.crud.reduxdb?.[entity || '']?.singleCrudDocument || {});
 
 /** Hook for selector. this time need do pass entity when initialize the hook. */
 export const useCrudSelectors = <ModelType = AllModels>(entity?: Sections) => ({

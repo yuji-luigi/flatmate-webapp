@@ -10,7 +10,7 @@ import useAuth from '../../../../hooks/useAuth';
 import { useForm } from '@mantine/form';
 import { useRouter } from 'next/router';
 import { useCrudSelectors, useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
-import { getWordNextToFromUrl } from '../../../utils/helper-functions';
+import { getEntityFromUrl } from '../../../utils/helper-functions';
 import { Sections } from '../../../types/general/data/sections-type';
 
 const fetchMainSpaces = async () => {
@@ -23,7 +23,7 @@ const AddMaintainerModal = () => {
   const { currentOrganization, currentSpace } = useCookieContext();
   const { user } = useAuth();
   const router = useRouter();
-  const _entity = getWordNextToFromUrl();
+  const _entity = getEntityFromUrl();
   const { selectedCrudDocument } = useCrudSelectors(_entity as Sections);
 
   const form = useForm({

@@ -3,11 +3,11 @@ interface ReduxDbEntity<Entity> {
   documentsArray: Array<Entity> | [];
   totalDocuments: number;
   /** document */
-  selectedDocument: AllModels | null;
+  singleCrudDocument: AllModels | null;
   /** now leave this */
   isChildrenTree: boolean;
-  /** _id of selectedDocuments  */
-  selectedDocuments: string[] | [];
+  /** _id of singleCrudDocuments  */
+  singleCrudDocuments: string[] | [];
 }
 
 interface Reduxdb {

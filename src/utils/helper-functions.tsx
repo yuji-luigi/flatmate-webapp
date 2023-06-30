@@ -4,6 +4,7 @@
 
 import { PATH_API } from '../path/api-routes';
 import { MixedMediaType, UploadingMediaType } from '../types/data/media/media-types';
+import { Sections, isSection, sectionsArray } from '../types/general/data/sections-type';
 import axiosInstance from './axios-instance';
 
 type ALotOfNumbers = number;
@@ -153,7 +154,16 @@ export const convertToSelectItems = (
   });
 };
 
-export function getWordNextToFromUrl(url = window.location.pathname, keyword = 'dashboard') {
+export function getEntityFromUrl(url = window.location.pathname, keyword = 'dashboard'): Sections {
+  const regex = new RegExp(`${keyword}\\/(\\w+)`);
+  const match = regex.exec(url);
+  if (match && isSection(match[1])) {
+    return match[1];
+  }
+  throw new Error('entity is not valid. getEntityFromUrl');
+}
+
+export function getWordNextFromUrl(url = window.location.pathname, keyword = 'dashboard') {
   const regex = new RegExp(`${keyword}\\/(\\w+)`);
   const match = regex.exec(url);
   return match ? match[1] : null;

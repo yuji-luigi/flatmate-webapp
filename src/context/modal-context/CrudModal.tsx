@@ -10,7 +10,7 @@ import CreationToolBar from '../../components/input/CreationToolBar';
 import FormFields from '../../components/input/FormFields';
 import { useForm } from '@mantine/form';
 import { UseFormReturnTypeCustom } from '../../components/input/input_interfaces/useForm_interface';
-import { getWordNextToFromUrl, sleep } from '../../utils/helper-functions';
+import { getEntityFromUrl, sleep } from '../../utils/helper-functions';
 import { Sections } from '../../types/general/data/sections-type';
 import { useRouter } from 'next/router';
 import { useCrudSliceStore } from '../../redux/features/crud/crudSlice';
@@ -32,7 +32,7 @@ const useStyles = createStyles(() => ({
 
 export function CrudModal() {
   const { classes } = useStyles();
-  const entity = getWordNextToFromUrl() as Sections;
+  const entity = getEntityFromUrl() as Sections;
   const { query } = useRouter();
   const parentId: string = query.parentId as string;
 

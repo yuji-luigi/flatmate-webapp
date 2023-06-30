@@ -22,11 +22,11 @@ interface Props {
 }
 
 export default function PostsPage({ space, maintainers, maintenances, threads }: Props) {
-  const { setCrudDocument, setCrudDocuments } = useCrudSliceStore();
+  const { setSingleCrudDocument, setCrudDocuments } = useCrudSliceStore();
   const { currentSpace } = useCookieContext();
   const router = useRouter();
   useEffect(() => {
-    setCrudDocument({ entity: 'spaces', document: space });
+    setSingleCrudDocument({ entity: 'spaces', document: space });
     setCrudDocuments({ entity: 'maintainers', documents: maintainers });
     setCrudDocuments({ entity: 'maintenances', documents: maintenances });
     setCrudDocuments({ entity: 'threads', documents: threads });

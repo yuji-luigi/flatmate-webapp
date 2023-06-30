@@ -5,32 +5,7 @@
  *   entity: "Sections"
  * }
  */
-// export type Sections =
-//   | 'home'
-//   | 'statistics'
-//   | 'notifications'
-//   | 'billing'
-//   | 'users'
-//   | 'buildings'
-//   | 'bookmarks'
-//   | 'comments'
-//   | 'funds'
-//   | 'areas'
-//   | 'floors'
-//   | 'fundRules'
-//   | 'instances'
-//   | 'notifications'
-//   | 'proposals'
-//   | 'tags'
-//   | 'threads'
-//   | 'userSettings'
-//   | 'wallets'
-//   | 'organizations'
-//   | 'events'
-//   | 'spaces'
-//   | 'uploads'
-//   | 'maintenances'
-//   | '';
+
 export type Sections = (typeof sectionsArray)[number];
 
 export const sectionsArray = [
@@ -51,6 +26,7 @@ export const sectionsArray = [
   'proposals',
   'tags',
   'threads',
+  'maintainers',
   'userSettings',
   'wallets',
   'organizations',
@@ -59,4 +35,8 @@ export const sectionsArray = [
   'uploads',
   'maintenances',
   '',
-];
+] as const;
+
+export function isSection(section: string): section is Sections {
+  return sectionsArray.includes(section as Sections);
+}
