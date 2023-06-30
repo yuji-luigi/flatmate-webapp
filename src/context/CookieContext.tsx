@@ -33,9 +33,12 @@ const useStore = () => {
     if (!currentSpace) {
       const spaceJWT = getCookie('space');
       if (typeof spaceJWT === 'boolean') return;
-      // const spaceJWT = localStorage?.getItem('spaceToken');
-      const decodedSpace = spaceJWT ? jwtDecode<CurrentSpace>(spaceJWT) : null;
-      setCurrentSpace(decodedSpace);
+      try {
+        const decodedSpace = spaceJWT ? jwtDecode<CurrentSpace>(spaceJWT) : null;
+        setCurrentSpace(decodedSpace);
+      } catch (error) {
+        console.error('Error decoding JWT:', error); // Check if there's an error in jwtDecode
+      }
     }
   }, []);
 
