@@ -314,7 +314,7 @@ export const useCrudSliceStore = () => {
 };
 
 /** Returns Array of Documents of the entity: whole array of entity */
-const useCrudDocuments = <ModelType>(entity?: Sections) =>
+const useCrudDocuments = <ModelType>(entity?: Sections): ModelType[] =>
   useAppSelector((state) => state.crud.reduxdb?.[entity || '']?.documentsArray);
 
 /** returns string if api sent message */

@@ -36,6 +36,7 @@ import { sleep } from '../../utils/helper-functions';
 import useAuth from '../../../hooks/useAuth';
 import { PATH_DASHBOARD } from '../../path/page-paths';
 import { getCookie } from 'cookies-next';
+import { useEffect } from 'react';
 
 const useStyles = createStyles((theme) => ({
   link: {
@@ -135,7 +136,7 @@ export function HomepageHeader() {
 
   const { user } = useAuth();
   const { classes, theme } = useStyles();
-  const { push } = useRouter();
+  const { push, pathname } = useRouter();
 
   function handleEnterClicked() {
     if (getCookie('spaceName')) {
@@ -147,6 +148,9 @@ export function HomepageHeader() {
     closeDrawer();
   }
 
+  useEffect(() => {
+    closeDrawer();
+  }, [pathname]);
   const links = mockdata.map((item) => (
     <UnstyledButton className={classes.subLink} key={item.title}>
       <Group noWrap align="flex-start">
@@ -258,7 +262,7 @@ export function HomepageHeader() {
         onClose={closeDrawer}
         size="100%"
         padding="md"
-        title="Navigation"
+        title="Flatmates"
         className={classes.hiddenDesktop}
         zIndex={1000000}
       >

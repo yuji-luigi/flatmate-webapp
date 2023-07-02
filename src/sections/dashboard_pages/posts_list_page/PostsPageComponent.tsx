@@ -24,6 +24,7 @@ import PostList from './PostList';
 import { useCrudSelectors } from '../../../redux/features/crud/crudSlice';
 // import { useCurrentSpaceContext } from '../../context/CurrentSpaceContext';
 import { useCookieContext } from '../../../context/CookieContext';
+import { useMediaQuery } from '@mantine/hooks';
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 interface TypeMock {
@@ -67,8 +68,8 @@ export default function PostListPageComponent() {
   const { classes, cx, theme } = useStyles();
   const { crudDocuments: threads } = useCrudSelectors('threads');
   const { currentSpace } = useCookieContext();
-  return (
-    // <Container mx="auto" py="xl">
+  const isMobile = useMediaQuery('(max-width: 600px)');
+  const contents = (
     <Box
       className={classes.pinContainer}
       py="xl" /* cols={2} breakpoints={[{ maxWidth: 'sm', cols: 1 }]} */
@@ -78,6 +79,7 @@ export default function PostListPageComponent() {
         <PostList key={thread._id} thread={thread} />
       ))}
     </Box>
-    // </Container>
   );
+
+  return <>{isMobile ? <Container>{contents}</Container> : <>{contents}</>}</>;
 }

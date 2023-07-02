@@ -27,7 +27,7 @@ const useStyles = createStyles((theme /* , _params, getRef */) => {
   const icon = getStylesRef('icon') as string;
   return {
     navbar: {
-      zIndex: 5,
+      zIndex: 500,
     },
     header: {
       paddingBottom: theme.spacing.md,
@@ -67,27 +67,6 @@ const useStyles = createStyles((theme /* , _params, getRef */) => {
       display: 'flex',
       flexDirection: 'column',
     },
-
-    // linkLabel: {
-    //   ...theme.fn.focusStyles(),
-    //   display: 'flex',
-    //   alignItems: 'center',
-    //   textDecoration: 'none',
-    //   fontSize: theme.fontSizes.sm,
-    //   color: theme.colorScheme === 'dark' ? theme.colors.dark[1] : theme.colors.gray[7],
-    //   padding: `${theme.spacing.xs}px ${theme.spacing.sm}px`,
-    //   borderRadius: theme.radius.sm,
-    //   fontWeight: 500,
-
-    //   '&:hover': {
-    //     backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
-    //     color: theme.colorScheme === 'dark' ? theme.white : theme.black,
-
-    //     [`& .${icon}`]: {
-    //       color: theme.colorScheme === 'dark' ? theme.white : theme.black,
-    //     },
-    //   },
-    // },
 
     linkIcon: {
       ref: icon,
@@ -151,7 +130,7 @@ export function NavbarVertical() {
   const { currentSpace } = useCookieContext();
 
   const chooseText = isSuperAdmin ? 'Organization' : 'Space';
-
+  // const isMobile = useMediaQuery('(max-width: 600px)');
   const filteredSectionData = sectionData.filter((data) => data.name !== 'others');
   const chooseHref = isSuperAdmin
     ? PATH_DASHBOARD.chooseOrganization
@@ -198,7 +177,7 @@ export function NavbarVertical() {
       fixed
       hidden={!isOpen}
       hiddenBreakpoint="md"
-      width={{ sm: 300 }}
+      width={{ base: 200, sm: 300 }}
       p="md"
     >
       <ScrollArea>

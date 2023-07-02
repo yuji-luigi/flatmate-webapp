@@ -1,6 +1,6 @@
 interface ReduxDbEntity<Entity> {
   entity: Sections;
-  documentsArray: Array<Entity> | [];
+  documentsArray: any[] | [];
   totalDocuments: number;
   /** document */
   singleCrudDocument: AllModels | null;

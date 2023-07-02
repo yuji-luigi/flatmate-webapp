@@ -87,6 +87,35 @@ const HeaderModalForm = ({ entity }: { entity: 'threads' | 'maintenances' }) => 
 
     const media = structuredClone(form.values.media);
 
+    useEffect(() => {
+      if (crudStatus === 'succeed' && submitting) {
+        notifications.hide('submit');
+        notifications.show({
+          color: 'teal',
+          loading: false,
+          id: 'success',
+          message: 'Successfully created a new thread.',
+          autoClose: 5000,
+        });
+        setSubmitting(false);
+        form.reset();
+        close();
+        // router.reload();
+      }
+      if (crudStatus === 'failed') {
+        notifications.hide('submit');
+        notifications.show({
+          color: 'red',
+          loading: false,
+          id: 'failed',
+          message: crudError,
+          autoClose: 5000,
+        });
+        resetCrudStatus();
+        setSubmitting(false);
+      }
+    }, [crudStatus]);
+
     if (media && hasMedia(media)) {
       try {
         const uploadIdData = await uploadFileAndGetModelId(extractUploadingMedia(media), 'threads');
@@ -103,35 +132,6 @@ const HeaderModalForm = ({ entity }: { entity: 'threads' | 'maintenances' }) => 
     }
     createCrudDocument({ entity, newDocument: reqBody });
   };
-
-  useEffect(() => {
-    if (crudStatus === 'succeed' && submitting) {
-      notifications.hide('submit');
-      notifications.show({
-        color: 'teal',
-        loading: false,
-        id: 'success',
-        message: 'Successfully created a new thread.',
-        autoClose: 5000,
-      });
-      setSubmitting(false);
-      form.reset();
-      close();
-      // router.reload();
-    }
-    if (crudStatus === 'failed') {
-      notifications.hide('submit');
-      notifications.show({
-        color: 'red',
-        loading: false,
-        id: 'failed',
-        message: crudError,
-        autoClose: 5000,
-      });
-      resetCrudStatus();
-      setSubmitting(false);
-    }
-  }, [crudStatus]);
 
   return (
     <form className={classes.form} onSubmit={onSubmit}>

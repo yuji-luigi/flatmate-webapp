@@ -55,7 +55,7 @@ export function UsersTable({ overridingEntity = '' }: { overridingEntity?: Secti
             <TableHeader overridingEntity={overridingEntity} />
 
             <tbody>
-              {crudDocuments?.map((rowData: { _id: string }) => (
+              {crudDocuments?.map((rowData) => (
                 <TableRow
                   overridingEntity={overridingEntity}
                   key={rowData._id}

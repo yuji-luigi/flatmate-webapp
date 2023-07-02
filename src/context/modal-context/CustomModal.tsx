@@ -10,22 +10,6 @@ const CustomModal = () => {
   return (
     <Modal opened={opened} centered={modals.centered} onClose={close} title={modals.title}>
       {modals.children}
-      {/* <Stack>
-    <Box
-      display="flex"
-      sx={{ flexDirection: isMobile ? 'column' : 'row', gap: 8, justifyContent: 'end' }}
-    >
-      <Button variant="outline" sx={modals.sx.cancel} onClick={}>
-        {modals.labels.cancel || 'Cancel'}
-      </Button>
-      <Button
-        sx={{ ...modals.sx.confirm, backgroundColor: isAlert ? 'red' : '' }}
-        onClick={handleConfirm}
-      >
-        {modals.labels.confirm || 'Confirm'}
-      </Button>
-    </Box>
-  </Stack> */}
     </Modal>
   );
 };

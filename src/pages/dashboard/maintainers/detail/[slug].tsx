@@ -77,6 +77,7 @@ const MaintainerDetailsPage = () => {
   } = useSWR(['maintainer', router.query.slug], () => getMaintainer(router.query.slug as string));
 
   const { setSingleCrudDocument } = useCrudSliceStore();
+  const { selectedCrudDocument: document } = useCrudSelectors(_entity);
 
   const isMobile = useMediaQuery('(max-width: 800px)');
 
@@ -116,10 +117,6 @@ const MaintainerDetailsPage = () => {
         throw new Error('Function not implemented.');
       },
     });
-  };
-
-  const setMaintainerToSpace = async () => {
-    console.log(space);
   };
 
   const profileSide = (
