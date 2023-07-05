@@ -10,12 +10,13 @@ interface Prop {
 const CrudTextArea = ({ formField, form, ...others }: Prop) => {
   return (
     <Textarea
-      name={formField.name}
-      label={formField.label}
+      // name={formField.name}
+      // label={formField.label}
       placeholder={formField.placeholder}
       size="md"
       mt={10}
       {...others}
+      {...formField}
       {...form.getInputProps(formField.name || formField.id)}
     />
   );

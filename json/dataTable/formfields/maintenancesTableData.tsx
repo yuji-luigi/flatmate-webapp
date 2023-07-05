@@ -1,3 +1,4 @@
+import { MaintainerSelect } from '../../../src/components/input/custom-inputs/MaintainerSelect';
 import { MAINTAINER_TYPES, MAINTAINER_TYPES_ARRAY } from '../../../src/lib/enums';
 import { FormFieldTypes } from '../../../src/types/general/data/data-table/formField-types';
 
@@ -14,7 +15,8 @@ export const maintenancesTableData: Array<FormFieldTypes> = [
     id: 'description',
     name: 'description',
     label: 'Description of the maintenance',
-    type: 'text',
+    type: 'text-area',
+    minRows: 5,
     required: false,
     priority: 0,
   },
@@ -27,32 +29,41 @@ export const maintenancesTableData: Array<FormFieldTypes> = [
     priority: 0,
   },
   {
-    id: 'attachments',
-    name: 'attachments',
-    label: 'Files',
-    type: 'attachment',
-    required: false,
+    id: 'maintainer',
+    name: 'maintainer',
+    label: 'Maintainer',
+    type: 'select',
+    required: true,
+    _entity: 'maintainers',
+    selectValues: ['name', 'email'],
     priority: 0,
   },
-
+  {
+    id: 'maintainer',
+    name: 'maintainer',
+    label: 'Maintainer',
+    type: 'custom',
+    required: true,
+    component: MaintainerSelect,
+    priority: 0,
+  },
+  // {
+  //   id: 'attachments',
+  //   name: 'attachments',
+  //   label: 'Files',
+  //   type: 'attachment',
+  //   required: false,
+  //   priority: 0,
+  // },
   {
     id: 'type',
     name: 'type',
     label: 'Type of maintenance',
     type: 'static-select',
-
     options: [...MAINTAINER_TYPES_ARRAY],
     // _entity: 'maintenances',
     // selectValues: ['name'],
     required: false,
     priority: 0,
   },
-  // {
-  //   id: 'tags',
-  //   name: 'tags',
-  //   label: 'Tag',
-  //   type: 'text',
-  //   required: false,
-  //   priority: 0,
-  // },
 ];

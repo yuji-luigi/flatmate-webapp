@@ -1,6 +1,6 @@
 import { Checkbox, MultiSelect, Select, Switch, Textarea, TextInput } from '@mantine/core';
 import { UseFormReturnType } from '@mantine/form';
-import React, { CSSProperties, ReactNode } from 'react';
+import React, { Component, CSSProperties, ReactNode } from 'react';
 import Image from 'next/image';
 import { DatePicker } from '@mantine/dates';
 import { useGetSelectOptions } from '../../../hooks/form-related/useGetSelectOptions';
@@ -48,6 +48,13 @@ const FormFields = ({ formField, form, ...others }: Props) => {
     case 'static-select':
       return (
         <CrudSelect form={form} formField={formField} options={formField.options!} {...others} />
+      );
+    case 'custom':
+      const CustomComponent = formField.component;
+      return (
+        <>
+          <CustomComponent form={form} formField={formField} {...others} />
+        </>
       );
 
     // case 'date':

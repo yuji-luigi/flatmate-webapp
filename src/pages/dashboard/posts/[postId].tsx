@@ -45,7 +45,6 @@ const useStyles = createStyles((theme) => ({
 
 const PostIdPage = ({ thread }: { thread: ThreadModel }) => {
   const { classes, cx, theme } = useStyles();
-
   const { query }: { query: ParsedQueryCustom } = useRouter();
   const { selectCrudDocument } = useCrudSliceStore();
   const { selectedCrudDocument: _thread } = useCrudSelectors('threads');

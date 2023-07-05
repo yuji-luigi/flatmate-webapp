@@ -58,7 +58,7 @@ const useStyles = createStyles((theme) => ({
   avatarWrapper: {
     position: 'relative',
     display: 'inline-block',
-    zIndex: 50,
+    zIndex: 20,
   },
   avatarEditBox: {
     position: 'absolute',

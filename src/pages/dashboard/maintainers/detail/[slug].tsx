@@ -136,7 +136,7 @@ const MaintainerDetailsPage = () => {
 
   return (
     <>
-      <Container className={classes.container}>
+      <Box className={classes.container}>
         <Box className={classes.box}>
           <Box className={classes.cardMain}>
             <ProfileCover formFields={maintainersTableData} data={data} />
@@ -151,12 +151,12 @@ const MaintainerDetailsPage = () => {
           </Box>
           {!isMobile && profileSide}
         </Box>
-      </Container>
+      </Box>
     </>
   );
 };
 
 MaintainerDetailsPage.getLayout = function getLayout(page: ReactElement) {
-  return <Layout>{page}</Layout>;
+  return <Layout variant="dashboard">{page}</Layout>;
 };
 export default MaintainerDetailsPage;

@@ -112,13 +112,6 @@ const SpaceHomeSection = () => {
             {isMobile && profileSide}
             <TabList list={TabListConfig} />
             <TabPanels list={TabListConfig} />
-            <PostFeedCard
-              createdBy={{ name: 'No name user' } as UserModel}
-              title="The First Job!"
-              body={lorem100}
-              images={RANDOM_UPLOAD_MODELS}
-              attachments={[]}
-            />
           </Box>
           {!isMobile && profileSide}
         </Box>

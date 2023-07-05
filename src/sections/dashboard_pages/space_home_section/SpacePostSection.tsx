@@ -12,11 +12,12 @@ export const SpacePostSection = () => {
     <>
       {crudDocuments.map((thread) => (
         <PostFeedCard
-          createdBy={{ name: 'No name user' } as UserModel}
+          createdBy={thread.user}
           title={thread.title}
           body={thread.description}
           images={thread.images}
-          attachments={[]}
+          attachments={thread.attachments || []}
+          createdAt={new Date(thread.createdAt)}
           sx={{ marginBottom: 24 }}
         />
       ))}

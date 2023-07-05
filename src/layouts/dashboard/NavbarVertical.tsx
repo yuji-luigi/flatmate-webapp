@@ -27,7 +27,7 @@ const useStyles = createStyles((theme /* , _params, getRef */) => {
   const icon = getStylesRef('icon') as string;
   return {
     navbar: {
-      zIndex: 500,
+      zIndex: 50,
     },
     header: {
       paddingBottom: theme.spacing.md,

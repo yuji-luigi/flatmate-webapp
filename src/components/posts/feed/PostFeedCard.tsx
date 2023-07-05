@@ -10,12 +10,14 @@ import {
   createStyles,
   em,
   Sx,
+  ActionIcon,
 } from '@mantine/core';
 import React from 'react';
 import { Icons } from '../../../data/icons';
 import AttachmentsRow from '../AttachmentsRow';
 import CarouselBasic from '../../carousel/CarouselBasic';
 import { UserModel } from '../../../types/models/user-model';
+import useAuth from '../../../../hooks/useAuth';
 const useStyles = createStyles((theme) => ({
   feedCard: {
     minHeight: 200,
@@ -32,6 +34,7 @@ interface PostFeedCardProps {
   body: string;
   attachments: UploadModel[];
   images: UploadModel[];
+  createdAt: Date;
   sx?: Sx;
 }
 
@@ -41,26 +44,36 @@ const PostFeedCard = ({
   body,
   attachments,
   images,
+  createdAt,
   sx = {},
 }: PostFeedCardProps) => {
   const { cx, classes, theme } = useStyles();
+  const { user } = useAuth();
 
   return (
     <Card className={classes.feedCard} sx={sx}>
       <Group sx={{ height: 80, width: '100%', display: 'flex', justifyContent: 'space-between' }}>
         <Group sx={{ height: '100%' }}>
-          <Avatar src="https://picsum.photos/410/300" radius={90} size={80} />
+          <Avatar
+            src={createdBy.avatar?.url || 'https://picsum.photos/410/300'}
+            radius={90}
+            size={80}
+          />
           <Stack spacing={0} justify="flex-end" style={{ height: '100%', alignItems: 'flex-end' }}>
             <Text size="lg" weight="bold">
               {createdBy.name}
             </Text>
-            <Text>{new Intl.DateTimeFormat('en-US').format(new Date())}</Text>
+            <Text>{new Intl.DateTimeFormat('en-US').format(createdAt)}</Text>
           </Stack>
         </Group>
 
-        <Box sx={{ alignSelf: 'start' }}>
-          <Icons.edit />
-        </Box>
+        {user?._id === createdBy._id && (
+          <Box sx={{ alignSelf: 'start' }}>
+            <ActionIcon onClick={() => window.alert('edit fired: PostFeedCard.tsx')}>
+              <Icons.dots />
+            </ActionIcon>
+          </Box>
+        )}
       </Group>
 
       <Box className={classes.feedContent}>
@@ -68,8 +81,12 @@ const PostFeedCard = ({
         <Text>{body}</Text>
       </Box>
       <CarouselBasic images={images} />
-      <Divider mb={16} />
-      <AttachmentsRow attachments={attachments} />
+      {!!attachments.length && (
+        <>
+          <Divider mb={16} />
+          <AttachmentsRow attachments={attachments} />
+        </>
+      )}
     </Card>
   );
 };

@@ -73,6 +73,11 @@ export type ColorFormFieldType = {
   type: 'color';
 } & BaseFormType;
 
+export type CustomFormFieldType = {
+  type: 'custom';
+  component: React.FC<any>;
+} & BaseFormType;
+
 export type FormFieldTypes =
   | TextFormType
   | SelectFormType
@@ -83,6 +88,7 @@ export type FormFieldTypes =
   | AvatarFormFieldType
   | ColorFormFieldType
   | LinkChildrenFormFieldType
+  | CustomFormFieldType
   | UploadFormFieldType;
 
 export interface FormFieldInterface {
@@ -187,4 +193,5 @@ type FormTypes =
   | 'attachment'
   | 'image'
   | 'color'
+  | 'custom'
   | 'pin-input';

@@ -50,6 +50,7 @@ import {
   IconBath as bath,
   IconTools as tools,
   IconDropletFilled as drop,
+  IconDots as dots,
   // IconWall as wall,
   IconBolt as electric,
 } from '@tabler/icons-react';
@@ -100,4 +101,5 @@ export const Icons = {
   Plumber: drop,
   Carpenter: hammer,
   Electrician: electric,
+  dots,
 } as const;

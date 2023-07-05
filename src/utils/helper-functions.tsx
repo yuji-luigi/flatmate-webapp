@@ -25,7 +25,7 @@ export const createLabelFromArrayStr = (
     return label;
   }
 
-  const index = clonedArr.shift()!;
+  const index = clonedArr.shift();
   const gotLabel = document[index];
   label += label ? `${label} - ${gotLabel}` : gotLabel;
 
