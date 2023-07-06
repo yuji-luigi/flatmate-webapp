@@ -11,7 +11,7 @@ export const TabList = ({ list }: { list: List[] }) => {
   return (
     <Tabs.List position="right">
       {list.map((item) => (
-        <Tabs.Tab icon={item.icon} value={item.value}>
+        <Tabs.Tab icon={item.icon} value={item.value} key={item.label}>
           {item.label}
         </Tabs.Tab>
       ))}

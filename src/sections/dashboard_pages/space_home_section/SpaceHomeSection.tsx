@@ -78,7 +78,7 @@ const SpaceHomeSection = () => {
           </CardWithTitle>
           <CardWithTitle titleSx={{ fontSize: 24 }} title="Maintenaces">
             {maintenances.map((maintenance) => (
-              <Text>{maintenance.title}</Text>
+              <Text key={maintenance._id}>{maintenance.title}</Text>
             ))}
           </CardWithTitle>
         </>
@@ -90,7 +90,6 @@ const SpaceHomeSection = () => {
     router.push('/404');
     return <LoadingOverlay visible />;
   }
-
   return (
     <Box className={classes.container}>
       <SettingButtonSpaceHome />

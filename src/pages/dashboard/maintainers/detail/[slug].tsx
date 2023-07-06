@@ -69,7 +69,6 @@ const MaintainerDetailsPage = () => {
   const { openModal, openConfirmModal } = use_ModalContext();
 
   const _entity = getEntityFromUrl();
-  console.log('entity', _entity);
   const {
     data: fetchedData,
     error,

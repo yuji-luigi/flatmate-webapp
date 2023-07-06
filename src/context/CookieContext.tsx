@@ -4,6 +4,7 @@ import jwtDecode from 'jwt-decode';
 import { useRouter } from 'next/router';
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 import { useCrudSliceStore } from '../redux/features/crud/crudSlice';
+import { sections } from '../data';
 
 export const CookieContext = createContext<CookieContextState>({
   currentSpace: null,
@@ -42,8 +43,10 @@ const useStore = () => {
     }
   }, []);
 
+  // this is breaking SRP
+  // when header selected space or organization changes then the documents in the current section(entity in url) will be updated
   useEffect(() => {
-    if (!currentSpace?._id) return;
+    if (!currentSpace?._id || !sections.includes(entity)) return;
     fetchCrudDocumentsWithPagination({ entity });
   }, [currentSpace?._id]);
 

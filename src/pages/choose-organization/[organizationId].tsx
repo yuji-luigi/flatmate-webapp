@@ -43,7 +43,6 @@ const ChooseSpaceInOrganizationPage = () => {
       setCurrentOrganization(router.query.organizationId);
     }
   }, []);
-
   const { data: spaces } = useSWR<SpaceModel[] | null, AxiosError>(
     router.query.organizationId,
     fetchSpaces

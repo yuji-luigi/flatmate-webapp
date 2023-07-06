@@ -24,8 +24,7 @@ interface Props {
 
 export default function PostsPage({ space, maintainers, maintenances, threads }: Props) {
   const { setSingleCrudDocument, setCrudDocuments } = useCrudSliceStore();
-  const { currentSpace } = useCookieContext();
-  const router = useRouter();
+
   useEffect(() => {
     setSingleCrudDocument({ entity: 'spaces', document: space });
     setCrudDocuments({ entity: 'maintainers', documents: maintainers });

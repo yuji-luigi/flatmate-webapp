@@ -38,7 +38,6 @@ const ChooseRootSpacePage = () => {
   const { user } = useAuth();
   const { classes, cx, theme } = useStyles();
   const router = useRouter();
-
   const title = user?.role === 'super_admin' ? 'Choose organization' : 'Choose space';
   const hrefRoot = CARD_LINK_PATH.rootSpaceSelected;
   const {

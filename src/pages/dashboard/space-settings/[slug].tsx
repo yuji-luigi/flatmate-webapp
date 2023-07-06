@@ -41,7 +41,6 @@ const SpaceSettingSinglePage = () => {
   const { classes: classes2 } = useStyles2();
   // put 2 styles together in one object
   const classes = { ...classes1, ...classes2 };
-
   const { data, error, isLoading } = useSWR<SpaceSlugResponse | null, AxiosError>(slug, () =>
     spaceFetcher(slug)
   );

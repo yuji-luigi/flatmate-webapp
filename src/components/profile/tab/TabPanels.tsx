@@ -11,7 +11,9 @@ export const TabPanels = ({ list }: { list: List[] }) => {
   return (
     <>
       {list.map((item) => (
-        <Tabs.Panel value={item.value}>{item.component}</Tabs.Panel>
+        <Tabs.Panel key={item.label} value={item.value}>
+          {item.component}
+        </Tabs.Panel>
       ))}
     </>
   );
