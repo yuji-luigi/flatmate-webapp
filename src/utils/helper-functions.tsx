@@ -156,10 +156,13 @@ export const convertToSelectItems = (
 
 export function getEntityFromUrl(url = window.location.pathname, keyword = 'dashboard'): Sections {
   const regex = new RegExp(`${keyword}\\/(\\w+)`);
-  const match = regex.exec(url);
-  if (match && isSection(match[1])) {
-    return match[1];
+  let match = regex.exec(url)?.[1];
+  match = transformMatchForExceptions(match);
+  if (match && isSection(match)) {
+    return match;
   }
+  console.log(match);
+  debugger;
   throw new Error('entity is not valid. getEntityFromUrl');
 }
 
@@ -167,4 +170,11 @@ export function getWordNextFromUrl(url = window.location.pathname, keyword = 'da
   const regex = new RegExp(`${keyword}\\/(\\w+)`);
   const match = regex.exec(url);
   return match ? match[1] : null;
+}
+
+function transformMatchForExceptions(match: string | undefined) {
+  if (match === 'space') {
+    return 'spaces';
+  }
+  return match;
 }

@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import Layout from '../../../layouts';
 import { Grid } from '@mantine/core';
 import { dashboardStyle, profilePageStyle } from '../../../styles/global-useStyles';
@@ -17,6 +17,8 @@ import LoadingScreen from '../../../components/screen/LoadingScreen';
 
 import { SpaceSlugResponse } from '../../../types/api-response/space-response';
 import { SpaceSettingMaintainersSection } from '../../../sections/dashboard_pages/space_setting_section/maintainers_section/SpaceSettingMaintainersSection';
+import { useCookieContext } from '../../../context/CookieContext';
+import { PATH_DASHBOARD } from '../../../path/page-paths';
 
 // use style from global-useStyles
 const useStyles = dashboardStyle;
@@ -36,6 +38,8 @@ const SpaceSettingSinglePage = () => {
   const router = useRouter();
   const slug = router.query.slug as string;
 
+  const { currentSpace } = useCookieContext();
+
   const { classes: classes1 } = useStyles();
   // combine styles
   const { classes: classes2 } = useStyles2();
@@ -44,6 +48,12 @@ const SpaceSettingSinglePage = () => {
   const { data, error, isLoading } = useSWR<SpaceSlugResponse | null, AxiosError>(slug, () =>
     spaceFetcher(slug)
   );
+
+  useEffect(() => {
+    if (currentSpace && currentSpace.slug) {
+      router.push(`${PATH_DASHBOARD.spaceSettings}/${currentSpace.slug}`);
+    }
+  }, [currentSpace?.slug]);
 
   if (!data) return <LoadingScreen />;
   const { space, maintainers } = data;

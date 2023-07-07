@@ -78,6 +78,7 @@ const ChooseRootSpacePage = () => {
           <CardArticleVerticalTextBottom
             key={rootSpace._id}
             data={rootSpace as CardData}
+            image={rootSpace.cover?.url}
             onClick={() => handleSpaceSelected(rootSpace)}
             // href={`${hrefRoot}/${rootSpace._id}`}
           />

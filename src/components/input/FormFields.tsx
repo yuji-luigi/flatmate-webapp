@@ -34,17 +34,14 @@ const FormFields = ({ formField, form, ...others }: Props) => {
   switch (formField.type) {
     case 'text':
       return <CrudTextInput form={form} formField={formField} {...others} />;
-
     case 'text-area':
       return <CrudTextArea form={form} formField={formField} {...others} />;
-
     case 'select':
       return formField.multi ? (
         <CrudSelectMulti form={form} formField={formField} options={options} {...others} />
       ) : (
         <CrudSelect form={form} formField={formField} options={options} {...others} />
       );
-
     case 'static-select':
       return (
         <CrudSelect form={form} formField={formField} options={formField.options!} {...others} />
