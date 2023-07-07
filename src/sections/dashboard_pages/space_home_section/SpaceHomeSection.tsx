@@ -97,14 +97,13 @@ const SpaceHomeSection = () => {
         <Box className={classes.box}>
           <Box className={classes.cardMain}>
             <ProfileCover
-              noAvatar
               entity={entity}
               formFields={maintainersTableData}
               data={{
                 title: document.name,
                 _id: document._id,
                 subtitle: document.address,
-                avatarUrl: document.avatar?.url,
+                avatarUrl: document.cover?.url,
                 coverUrl: document.cover?.url,
               }}
             />

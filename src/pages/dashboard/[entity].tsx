@@ -43,7 +43,7 @@ const CrudPage = () => {
   }, [paginationQuery, entity, query.parentId]);
 
   return (
-    <Page>
+    <Page title={`Flatmates | ${entity}`}>
       {/* <Box px={32}> */}
       <HeaderContainer>
         <TableSectionHeader />

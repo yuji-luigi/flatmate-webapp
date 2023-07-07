@@ -9,6 +9,7 @@ export const SpaceMaintenanceSection = () => {
     <>
       {crudDocuments.map((thread) => (
         <PostFeedCard
+          createdAt={thread.createdAt}
           key={thread._id}
           createdBy={{ name: 'No name user' } as UserModel}
           title={thread.title}

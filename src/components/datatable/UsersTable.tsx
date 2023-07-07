@@ -1,4 +1,4 @@
-import { Table, ScrollArea, Pagination, Divider } from '@mantine/core';
+import { Table, ScrollArea, Pagination, Divider, Container, Box } from '@mantine/core';
 import { useState, useEffect } from 'react';
 
 import { useRouter } from 'next/router';
@@ -15,10 +15,13 @@ import { DataTableModal } from '../modal/data-table-modal/DataTableModal';
 import { useDisclosure } from '@mantine/hooks';
 import { Sections } from '../../types/general/data/sections-type';
 import { FormFieldTypes } from '../../types/general/data/data-table/formField-types';
+import { dashboardStyle } from '../../styles/global-useStyles';
 
 export function UsersTable({ overridingEntity = '' }: { overridingEntity?: Sections }) {
   const ROWS_PER_PAGE = 10;
   // const TOTAL = Math.ceil(users.length / ROWS_PER_PAGE);
+  const { classes } = dashboardStyle();
+
   const [page, setPage] = useState(1);
   const { setPagination, paginationQuery } = usePaginationContext();
   const { query }: { query: ParsedQueryCustom } = useRouter();
@@ -46,7 +49,7 @@ export function UsersTable({ overridingEntity = '' }: { overridingEntity?: Secti
   }
 
   return (
-    <>
+    <Box className={classes.dataTableContainer}>
       <ScrollArea>
         {!crudDocuments.length && crudStatus === 'loading' ? (
           <p>loading</p>
@@ -69,6 +72,6 @@ export function UsersTable({ overridingEntity = '' }: { overridingEntity?: Secti
         <Divider sx={{ marginBottom: 20 }} />
       </ScrollArea>
       <Pagination value={page} onChange={(pageNumber) => onPageChange(pageNumber)} total={TOTAL} />
-    </>
+    </Box>
   );
 }

@@ -1,6 +1,8 @@
 import { createStyles, em } from '@mantine/core';
 
-export const dashboardStyle = createStyles(() => ({
+//Todo: document where to use this
+// dataTableContainer class is used in dashboard datatables
+export const dashboardStyle = createStyles((theme, params, variations) => ({
   mainContainer: {
     paddingInline: 40,
     paddingTop: 30,
@@ -21,6 +23,14 @@ export const dashboardStyle = createStyles(() => ({
   button: {
     minWidth: 150,
     // marginLeft: 40,
+  },
+  dataTableContainer: {
+    [theme.fn.largerThan('md')]: {
+      paddingInline: 40,
+    },
+    [theme.fn.smallerThan('md')]: {
+      paddingInline: 20,
+    },
   },
 }));
 

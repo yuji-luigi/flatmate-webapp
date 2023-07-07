@@ -12,6 +12,7 @@ import { CrudDrawerDefault } from '../../../components/drawer/CrudDrawerDefault'
 import { /* useCrudSelectors, */ useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
 import { usePaginationContext } from '../../../context/PaginationContext';
 import { useCookieContext } from '../../../context/CookieContext';
+import { HeaderContainer } from '../../../components/datatable/header/HeaderContainer';
 
 const fetcher = (args: string) => axiosInstance.get(args).then((res) => res.data?.data);
 
@@ -65,8 +66,10 @@ const ChildrenTablePage = () => {
   }
 
   return (
-    <Page>
-      <TableSectionHeader />
+    <Page title={`${query.entity}`}>
+      <HeaderContainer>
+        <TableSectionHeader />
+      </HeaderContainer>
       <UsersTable />
       <CrudDrawerDefault />
     </Page>

@@ -21,11 +21,13 @@ export const createLabelFromArrayStr = (
 ): string => {
   const clonedArr = [...arr];
 
-  if (!arr.length) {
+  if (!clonedArr.length) {
     return label;
   }
 
   const index = clonedArr.shift();
+  if (!index) return label;
+
   const gotLabel = document[index];
   label += label ? `${label} - ${gotLabel}` : gotLabel;
 

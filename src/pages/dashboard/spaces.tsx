@@ -9,6 +9,7 @@ import { CrudDrawerDefault } from '../../components/drawer/CrudDrawerDefault';
 import { useCrudSelectors, useCrudSliceStore } from '../../redux/features/crud/crudSlice';
 import { PATH_DASHBOARD } from '../../path/page-paths';
 import { useCookieContext } from '../../context/CookieContext';
+import { HeaderContainer } from '../../components/datatable/header/HeaderContainer';
 
 const HeadSpaceTable = () => {
   const entity = 'spaces';
@@ -25,11 +26,12 @@ const HeadSpaceTable = () => {
   }, [entity, currentSpace?._id]); // include parentId: string | undefined to update on change page
 
   return (
-    <Page>
-      <div>
+    <Page title="Flatmates | Spaces(building)">
+      <HeaderContainer>
         <TableSectionHeader overridingEntity="spaces" />
-        <Tables overridingEntity="spaces" />
-      </div>
+      </HeaderContainer>
+      <Tables overridingEntity="spaces" />
+
       <CrudDrawerDefault overridingEntity="spaces" />
     </Page>
   );

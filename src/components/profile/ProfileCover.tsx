@@ -185,13 +185,15 @@ const ProfileCover = ({
       sx={sx}
       className={classes.card}
       style={{
+        // backgroundSize: 'object-fit',
+        // backgroundRepeat: 'no-repeat',
         backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${
           selectedCover || 'https://picsum.photos/410/300'
         })`,
       }}
     >
       <Box onClick={handleLightBoxClicked} className={classes.lightBox}>
-        <Group position="right">
+        {/* <Group position="right">
           <input
             id="cover-input"
             type="file"
@@ -203,7 +205,7 @@ const ProfileCover = ({
           <Button m={8} color="dark" onClick={onChangeCoverClicked}>
             Change cover
           </Button>
-        </Group>
+        </Group> */}
       </Box>
       <Group style={{ justifyContent: 'space-between', width: '100%' }}>
         <Group>

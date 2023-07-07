@@ -141,8 +141,9 @@ const MaintainerDetailsPage = () => {
             <ProfileCover formFields={maintainersTableData} data={data} />
             {isMobile && profileSide}
             <PostFeedCard
+              createdAt={new Date()}
               createdBy={{ name: 'No name user' } as UserModel}
-              title="The First Job!"
+              title="The First Job! maintainers detail page!"
               body={lorem100}
               images={RANDOM_UPLOAD_MODELS}
               attachments={[]}

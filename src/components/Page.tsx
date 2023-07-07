@@ -13,7 +13,7 @@ interface props {
 const Page = forwardRef<void, props>(({ children, title = '', meta, ...other }, ref) => (
   <>
     <Head>
-      <title>{`${title} | Flatmates`}</title>
+      <title>{` Flatmates | ${title} `}</title>
       {meta}
     </Head>
     <div {...other}>{children}</div>
