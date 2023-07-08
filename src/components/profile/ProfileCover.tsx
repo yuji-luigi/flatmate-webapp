@@ -17,7 +17,7 @@ import {
   useCrudSelectors,
   useCrudSliceStore,
 } from '../../redux/features/crud/crudSlice';
-import { getEntityFromUrl } from '../../utils/helper-functions';
+import { getEntityFromUrl } from '../../utils/helpers/helper-functions';
 import axiosInstance from '../../utils/axios-instance';
 import { PATH_API } from '../../path/api-routes';
 import { extractUploadingMedia, uploadFileAndGetModelId } from '../../utils/upload-helper';

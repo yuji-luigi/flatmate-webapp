@@ -18,7 +18,7 @@ export const SpacePostSection = () => {
           body={thread.description}
           images={thread.images}
           attachments={thread.attachments || []}
-          createdAt={new Date(thread.createdAt)}
+          createdAt={thread.createdAt}
           sx={{ marginBottom: 24 }}
         />
       ))}

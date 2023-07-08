@@ -1,4 +1,8 @@
-import { getPsuedoID, getRandomNumber, getRandomNumberOne } from '../utils/helper-functions';
+import {
+  getPsuedoID,
+  getRandomNumber,
+  getRandomNumberOne,
+} from '../utils/helpers/helper-functions';
 
 export const PATH_IMAGE = {
   rootSpaceCard1: '/images/haussmann-buildings3.png',

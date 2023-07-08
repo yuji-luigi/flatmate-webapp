@@ -32,7 +32,7 @@ import {
 import Link from 'next/link';
 import { ColorSchemeToggle } from '../../components/color-schemeToggle/ColorSchemeToggle';
 import { useCloseDrawer } from '../../context/DataTableDrawerContext';
-import { sleep } from '../../utils/helper-functions';
+import { sleep } from '../../utils/helpers/helper-functions';
 import useAuth from '../../../hooks/useAuth';
 
 const useStyles = createStyles((theme) => ({

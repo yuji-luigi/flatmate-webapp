@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import React, { ReactElement } from 'react';
+import React, { Fragment, ReactElement } from 'react';
 import Layout from '../../../layouts';
 import {
   ActionIcon,
@@ -8,6 +8,8 @@ import {
   Container,
   Group,
   LoadingOverlay,
+  NavLink,
+  Stack,
   Tabs,
   Text,
 } from '@mantine/core';
@@ -29,10 +31,13 @@ import { SpacePostSection } from './SpacePostSection';
 import { SpaceMaintenanceSection } from './SpaceMaintenanceSection';
 import { TabList } from '../../../components/profile/tab/TabList';
 import { TabPanels } from '../../../components/profile/tab/TabPanels';
-import { MaintainerList } from './maintainerCard/MaintainerList';
+import { MaintainerList } from './side-cards/maintainerCard/MaintainerList';
 import { SettingButtonSpaceHome } from './SettingButtonSpaceHome';
 import { MaintainerModel } from '../../../types/models/maintainer-model';
 import { UserModel } from '../../../types/models/user-model';
+import { intlDateFormat } from '../../../utils/helpers/date-formatters';
+import Link from 'next/link';
+import { MaintenanceListCard } from './side-cards/maintenance-card/MaintenancesCard';
 
 // use style from global-useStyles
 const useStyles = dashboardStyle;
@@ -76,11 +81,21 @@ const SpaceHomeSection = () => {
           <CardWithTitle titleSx={{ fontSize: 24 }} title="Maintainers">
             <MaintainerList maintainers={maintainers} />
           </CardWithTitle>
-          <CardWithTitle titleSx={{ fontSize: 24 }} title="Maintenaces">
+          <MaintenanceListCard />
+          {/* <CardWithTitle titleSx={{ fontSize: 24 }} title="Maintenaces">
             {maintenances.map((maintenance) => (
-              <Text key={maintenance._id}>{maintenance.title}</Text>
+              <Fragment key={maintenance._id}>
+                <Link className={classes1.navList} href="" key={maintenance._id}>
+                  <Stack spacing={0}>
+                    <Text fw={800} size="lg">
+                      {maintenance.title.toUpperCase()}
+                    </Text>
+                    <Text fw="lighter">{maintenance._createdAt}</Text>
+                  </Stack>
+                </Link>
+              </Fragment>
             ))}
-          </CardWithTitle>
+          </CardWithTitle> */}
         </>
       }
     />

@@ -18,7 +18,7 @@ import useAuth from '../../../../hooks/useAuth';
 import { useForm } from '@mantine/form';
 import { useRouter } from 'next/router';
 import { useCrudSelectors, useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
-import { getEntityFromUrl, sleep } from '../../../utils/helper-functions';
+import { getEntityFromUrl, sleep } from '../../../utils/helpers/helper-functions';
 import { Sections } from '../../../types/general/data/sections-type';
 import { use_ModalContext } from '../../../context/modal-context/_ModalContext';
 import { hideNotification, notifications } from '@mantine/notifications';

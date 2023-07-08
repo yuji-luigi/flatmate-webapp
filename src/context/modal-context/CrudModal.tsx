@@ -10,7 +10,7 @@ import CreationToolBar from '../../components/input/CreationToolBar';
 import FormFields from '../../components/input/FormFields';
 import { useForm } from '@mantine/form';
 import { UseFormReturnTypeCustom } from '../../components/input/input_interfaces/useForm_interface';
-import { getEntityFromUrl, sleep } from '../../utils/helper-functions';
+import { getEntityFromUrl, sleep } from '../../utils/helpers/helper-functions';
 import { Sections } from '../../types/general/data/sections-type';
 import { useRouter } from 'next/router';
 import { useCrudSliceStore } from '../../redux/features/crud/crudSlice';

@@ -13,7 +13,7 @@ import allFormFields from '../../../json/dataTable/formfields';
 import { Icons } from '../../data/icons';
 import { errorNotificationData } from '../../data/showNofification/notificationObjects';
 // import { useCrudSlice } from '../../../hooks/redux-hooks/useCrudSlice';
-import { capitalize, sleep } from '../../utils/helper-functions';
+import { capitalize, sleep } from '../../utils/helpers/helper-functions';
 import { getDefaultValues } from '../../utils/getDefaultValues';
 // import classes from "./CrudDrawerDefault.module.css";
 import FormFields from '../input/FormFields';

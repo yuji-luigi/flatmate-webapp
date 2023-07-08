@@ -13,9 +13,6 @@ export const dashboardStyle = createStyles((theme, params, variations) => ({
     flexDirection: 'row',
     alignItems: 'end',
     justifyContent: 'space-between',
-    // paddingInline: 10,
-
-    // paddingInline: 32,
   },
   title: {
     marginBlock: 5,
@@ -31,6 +28,25 @@ export const dashboardStyle = createStyles((theme, params, variations) => ({
     [theme.fn.smallerThan('md')]: {
       paddingInline: 20,
     },
+  },
+  navList: {
+    // textDecoration: 'none',
+    ...theme.fn.focusStyles(),
+    display: 'flex',
+    alignItems: 'center',
+    textDecoration: 'none',
+    fontSize: theme.fontSizes.sm,
+    color: theme.colorScheme === 'dark' ? theme.colors.dark[1] : theme.colors.gray[7],
+    padding: `${theme.spacing.xs} ${theme.spacing.sm}`,
+    borderRadius: theme.radius.sm,
+    fontWeight: 500,
+    '&:hover': {
+      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[0],
+      color: theme.colorScheme === 'dark' ? theme.white : theme.black,
+    },
+  },
+  justifyEnd: {
+    justifyContent: 'flex-end',
   },
 }));
 

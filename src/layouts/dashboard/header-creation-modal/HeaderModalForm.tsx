@@ -28,7 +28,7 @@ import { uploadFileAndGetModelId, extractUploadingMedia } from '../../../utils/u
 import { useDisclosure } from '@mantine/hooks';
 import useAuth from '../../../../hooks/useAuth';
 import { PATH_API } from '../../../path/api-routes';
-import { convertToSelectItems, sleep } from '../../../utils/helper-functions';
+import { convertToSelectItems, sleep } from '../../../utils/helpers/helper-functions';
 import OrganizationSpaceSelect from '../../../components/select-custom/OrganizationSpaceSelect';
 import { getCookie } from 'cookies-next';
 import { FormFieldTypes } from '../../../types/general/data/data-table/formField-types';

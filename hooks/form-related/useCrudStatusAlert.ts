@@ -2,7 +2,7 @@ import { hideNotification, showNotification, cleanNotifications } from '@mantine
 import { useEffect } from 'react';
 import { errorNotificationData } from '../../src/data/showNofification/notificationObjects';
 import { useCrudSelectors } from '../../src/redux/features/crud/crudSlice';
-import { sleep } from '../../src/utils/helper-functions';
+import { sleep } from '../../src/utils/helpers/helper-functions';
 
 // const useCrudStatusAlert = (entity) => {
 

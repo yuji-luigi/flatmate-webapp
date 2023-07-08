@@ -32,11 +32,12 @@ import {
 import Link from 'next/link';
 import { ColorSchemeToggle } from '../../components/color-schemeToggle/ColorSchemeToggle';
 import { useCloseDrawer } from '../../context/DataTableDrawerContext';
-import { sleep } from '../../utils/helper-functions';
+import { sleep } from '../../utils/helpers/helper-functions';
 import useAuth from '../../../hooks/useAuth';
 import { PATH_DASHBOARD } from '../../path/page-paths';
 import { getCookie } from 'cookies-next';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { useCookieContext } from '../../context/CookieContext';
 
 const useStyles = createStyles((theme) => ({
   link: {
@@ -133,24 +134,18 @@ const mockdata = [
 
 export function HomepageHeader() {
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false);
-
+  const { currentSpace } = useCookieContext();
   const { user } = useAuth();
   const { classes, theme } = useStyles();
   const { push, pathname } = useRouter();
 
-  function handleEnterClicked() {
-    if (getCookie('spaceName')) {
-      push(PATH_DASHBOARD.root);
-      closeDrawer();
-      return;
-    }
-    push(PATH_DASHBOARD.chooseRootSpace);
-    closeDrawer();
-  }
-
   useEffect(() => {
     closeDrawer();
   }, [pathname]);
+
+  const hrefEnter = currentSpace
+    ? `${PATH_DASHBOARD.dashboard}/${currentSpace.slug} `
+    : PATH_DASHBOARD.chooseRootSpace;
   const links = mockdata.map((item) => (
     <UnstyledButton className={classes.subLink} key={item.title}>
       <Group noWrap align="flex-start">
@@ -238,7 +233,9 @@ export function HomepageHeader() {
                 <Button variant="default" component={Link} href={PATH_DASHBOARD.logout}>
                   Logout
                 </Button>
-                <Button onClick={handleEnterClicked}>Enter</Button>
+                <Button component={Link} href={hrefEnter}>
+                  Enter
+                </Button>
               </>
             ) : (
               <>
@@ -273,22 +270,6 @@ export function HomepageHeader() {
             Home
           </a>
 
-          {/* <UnstyledButton className={classes.link} onClick={toggleLinks}>
-            <Center inline>
-              <Box component="span" mr={5}>
-                Features
-              </Box>
-              <IconChevronDown size={16} color={theme.primaryColor} />
-            </Center>
-          </UnstyledButton>
-          <Collapse in={linksOpened}>{links}</Collapse> */}
-          {/* <a href="#" className={classes.link}>
-            Learn
-          </a> */}
-          {/* <a href="#" className={classes.link}>
-            Academy
-          </a> */}
-
           <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} />
 
           <Group position="center" grow pb="xl" px="md">
@@ -304,7 +285,7 @@ export function HomepageHeader() {
                 <Button component={Link} href={PATH_DASHBOARD.logout}>
                   Logout
                 </Button>
-                <Button component={Link} href={PATH_DASHBOARD.chooseRootSpace}>
+                <Button component={Link} href={hrefEnter}>
                   Enter
                 </Button>
               </>

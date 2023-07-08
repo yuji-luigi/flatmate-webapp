@@ -2,7 +2,7 @@ import { Button, Skeleton } from '@mantine/core';
 import React, { useState } from 'react';
 import { useCrudSelectors, useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
 import { useCookieContext } from '../../../context/CookieContext';
-import { getEntityFromUrl, sleep } from '../../../utils/helper-functions';
+import { getEntityFromUrl, sleep } from '../../../utils/helpers/helper-functions';
 import { MaintainerModel } from '../../../types/models/maintainer-model';
 import axiosInstance from '../../../utils/axios-instance';
 import { PATH_API } from '../../../path/api-routes';

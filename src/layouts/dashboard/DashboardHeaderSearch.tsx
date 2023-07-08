@@ -16,7 +16,7 @@ import { lowerFirst, useMediaQuery } from '@mantine/hooks';
 import axiosInstance from '../../utils/axios-instance';
 import { useEffect, useState } from 'react';
 import { PATH_API } from '../../path/api-routes';
-import { convertToSelectItems } from '../../utils/helper-functions';
+import { convertToSelectItems } from '../../utils/helpers/helper-functions';
 import { getCookies, getCookie } from 'cookies-next';
 import { useRouter } from 'next/router';
 import jwtDecode from 'jwt-decode';

@@ -24,6 +24,7 @@ export enum PATH_DASHBOARD {
   login = '/login',
   signup = '/sign-up',
   maintainers = '/dashboard/maintainers',
+  maintainersDetail = '/dashboard/maintainers/detail',
   maintainersSearch = '/dashboard/maintainers/search',
   childrenSpace = '/dashboard/spaces',
   spaceSettings = '/dashboard/space-settings',

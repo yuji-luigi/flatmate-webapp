@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useCrudSelectors, useCrudSliceStore } from '../../src/redux/features/crud/crudSlice';
-import { createLabelFromArrayStr } from '../../src/utils/helper-functions';
+import { createLabelFromArrayStr } from '../../src/utils/helpers/helper-functions';
 import { Sections } from '../../src/types/general/data/sections-type';
 import {
   FormFieldInterface,

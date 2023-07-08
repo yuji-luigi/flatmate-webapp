@@ -21,7 +21,7 @@ import Layout from '../../../../layouts';
 import ProfileCover, { CoverDataProp } from '../../../../components/profile/ProfileCover';
 import { useCrudSelectors, useCrudSliceStore } from '../../../../redux/features/crud/crudSlice';
 import { useRouter } from 'next/router';
-import { getEntityFromUrl } from '../../../../utils/helper-functions';
+import { getEntityFromUrl } from '../../../../utils/helpers/helper-functions';
 import { Sections } from '../../../../types/general/data/sections-type';
 import useSWR from 'swr';
 import axiosInstance from '../../../../utils/axios-instance';

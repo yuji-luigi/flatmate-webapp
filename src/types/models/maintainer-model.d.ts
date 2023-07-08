@@ -17,6 +17,7 @@ interface MaintainerModel extends MongooseBaseModel {
   password: string;
   isInSpace: boolean;
   createdBy: string | IUser;
+  slug: string;
 }
 
 type MaintainerType = keyof typeof MAINTAINER_TYPES;

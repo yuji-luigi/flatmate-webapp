@@ -144,11 +144,6 @@ export function NavbarVertical() {
             <p>{section.name}</p>
             {/* contents are sections: Top, posts,,, */}
             {section.contents.map((navbarContent) => {
-              const isTOP = navbarContent.navbarTitle === 'Top';
-              const href =
-                isTOP && currentSpace
-                  ? `${navbarContent.link}/${currentSpace?.slug}`
-                  : navbarContent.link;
               const Icon = Icons[navbarContent.entity as IconIndexTypes] || Icons.home;
               return (
                 <Link

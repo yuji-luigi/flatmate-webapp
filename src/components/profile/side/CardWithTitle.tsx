@@ -12,6 +12,7 @@ const useStyles = createStyles((theme) => ({
     display: 'flex',
     gap: 9,
     flexDirection: 'column',
+    paddingInline: 16,
   },
 }));
 
@@ -29,9 +30,9 @@ const CardWithTitle = ({ title, children, titleSx }: Prop) => {
           {title}
         </Title>
       )}
-      <Box className={classes.textsContainer} sx={{}}>
+      <Card.Section className={classes.textsContainer} sx={{}}>
         {children}
-      </Box>
+      </Card.Section>
     </Card>
   );
 };

@@ -18,6 +18,7 @@ import AttachmentsRow from '../AttachmentsRow';
 import CarouselBasic from '../../carousel/CarouselBasic';
 import { UserModel } from '../../../types/models/user-model';
 import useAuth from '../../../../hooks/useAuth';
+import { intlDateFormat } from '../../../utils/helpers/date-formatters';
 const useStyles = createStyles((theme) => ({
   feedCard: {
     minHeight: 200,
@@ -34,7 +35,8 @@ interface PostFeedCardProps {
   body: string;
   attachments: UploadModel[];
   images: UploadModel[];
-  createdAt: Date;
+  /** convert to date in the component */
+  createdAt: string;
   sx?: Sx;
 }
 
@@ -63,7 +65,7 @@ const PostFeedCard = ({
             <Text size="lg" weight="bold">
               {createdBy.name}
             </Text>
-            <Text>{new Intl.DateTimeFormat('en-US').format(createdAt)}</Text>
+            <Text>{intlDateFormat(createdAt)}</Text>
           </Stack>
         </Group>
 

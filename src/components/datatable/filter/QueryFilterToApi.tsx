@@ -2,7 +2,7 @@ import { Group, Select, TextInput, createStyles } from '@mantine/core';
 import React from 'react';
 import { Sections } from '../../../types/general/data/sections-type';
 import { useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
-import { createQuery } from '../../../utils/helper-functions';
+import { createQuery } from '../../../utils/helpers/helper-functions';
 import {
   FormFieldTypes,
   SelectFormType,

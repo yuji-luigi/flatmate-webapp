@@ -4,7 +4,7 @@ import axiosInstance from '../../utils/axios-instance';
 import { PATH_API } from '../../path/api-routes';
 import { useRouter } from 'next/router';
 import { useCookieContext } from '../../context/CookieContext';
-import { convertToSelectItems } from '../../utils/helper-functions';
+import { convertToSelectItems } from '../../utils/helpers/helper-functions';
 import useAuth from '../../../hooks/useAuth';
 import useLayoutContext from '../../../hooks/useLayoutContext';
 import { useMediaQuery } from '@mantine/hooks';

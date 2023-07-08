@@ -2,10 +2,10 @@
 // export const getFormFieldsJson = async (str: string): Promise<Array<any>> =>{
 //   const import(`../../data/datatable/formFields/index${str}`);}
 
-import { PATH_API } from '../path/api-routes';
-import { MixedMediaType, UploadingMediaType } from '../types/data/media/media-types';
-import { Sections, isSection, sectionsArray } from '../types/general/data/sections-type';
-import axiosInstance from './axios-instance';
+import { PATH_API } from '../../path/api-routes';
+import { MixedMediaType, UploadingMediaType } from '../../types/data/media/media-types';
+import { Sections, isSection, sectionsArray } from '../../types/general/data/sections-type';
+import axiosInstance from '../axios-instance';
 
 type ALotOfNumbers = number;
 export const getRandomNumber = (): ALotOfNumbers => Math.ceil(Math.pow(10, 10) * Math.random());
@@ -37,33 +37,6 @@ export const createLabelFromArrayStr = (
 // eslint-disable-next-line no-promise-executor-return
 export const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-// import _cloneDeep from 'lodash/cloneDeep';
-
-// export const setQueryForDataFetching = (originalQueries: string[], query = '', headerQuery = []) => {
-//     // metto tutto insieme (queries, headerQuery)
-//     const queries = [...originalQueries, ...headerQuery];
-//     // check if object is passed as queries
-//     if(!Array.isArray(queries)){
-//         return `?${queries.key}=${queries.value}`;
-//     }
-//     // Check if no more execution
-//     if(!queries.length) {
-//         return query;
-//     }
-//     // Don't modify arguments.
-//     let clonedQuery = query;
-//     const targetQuery =queries.shift();
-//     // store new queries array without index 0 to pass to recursion fn
-//     // check if cloneQuery. First time ?key=value
-//     if(!clonedQuery){
-//         clonedQuery = `?${targetQuery.key}=${targetQuery.value}`;
-//         return setQueryForDataFetching(queries, clonedQuery);
-//     }
-//     // Here add new query to the string.
-//     clonedQuery += `&${targetQuery.key}=${targetQuery.value}`;
-//     return setQueryForDataFetching(queries, clonedQuery);
-
-// };
 export function isObjectEmpty(value: Record<any, any> | any) {
   return (
     Object.prototype.toString.call(value) === '[object Object]' && JSON.stringify(value) === '{}'

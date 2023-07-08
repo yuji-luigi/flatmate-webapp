@@ -5,7 +5,7 @@ import { Icons } from '../../../data/icons';
 import { useCrudSelectors } from '../../../redux/features/crud/crudSlice';
 import { Skeleton, Text } from '@mantine/core';
 import { get } from 'http';
-import { getEntityFromUrl } from '../../../utils/helper-functions';
+import { getEntityFromUrl } from '../../../utils/helpers/helper-functions';
 import { Sections } from '../../../types/general/data/sections-type';
 export const BuildingCard = () => {
   const _entity = getEntityFromUrl();
