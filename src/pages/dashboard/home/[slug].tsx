@@ -22,7 +22,7 @@ interface Props {
   threads: ThreadModel[];
 }
 
-export default function PostsPage({ space, maintainers, maintenances, threads }: Props) {
+export default function HomePageSlug({ space, maintainers, maintenances, threads }: Props) {
   const { setSingleCrudDocument, setCrudDocuments } = useCrudSliceStore();
 
   useEffect(() => {
@@ -35,7 +35,7 @@ export default function PostsPage({ space, maintainers, maintenances, threads }:
   return <SpaceHomeSection /* threads={threads} */ />;
 }
 
-PostsPage.getLayout = function getLayout(page: ReactElement) {
+HomePageSlug.getLayout = function getLayout(page: ReactElement) {
   return <Layout variant="dashboard">{page}</Layout>;
 };
 

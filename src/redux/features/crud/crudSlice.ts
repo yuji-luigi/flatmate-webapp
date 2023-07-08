@@ -17,8 +17,8 @@ import { Sections } from '../../../types/general/data/sections-type';
 // import { appDispatch } from '../../store';
 /* eslint-disable no-param-reassign */
 
-// flat section data since it is nested
-const reduxdb: Reduxdb = flattenSectionData.reduce<Reduxdb>((totalData, currentData) => {
+// flat section data since it is nested. export for testing
+export const reduxdb: Reduxdb = flattenSectionData.reduce<Reduxdb>((totalData, currentData) => {
   totalData = {
     ...totalData,
     [currentData.entity as Sections]: {

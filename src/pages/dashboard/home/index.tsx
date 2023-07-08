@@ -21,7 +21,7 @@ interface Props {
   threads: ThreadModel[];
 }
 
-export default function PostsPage({ space, maintainers, maintenances, threads }: Props) {
+export default function DashboardHomePage({ space, maintainers, maintenances, threads }: Props) {
   const { setSingleCrudDocument, setCrudDocuments } = useCrudSliceStore();
   const { currentSpace } = useCookieContext();
   const router = useRouter();
@@ -35,7 +35,7 @@ export default function PostsPage({ space, maintainers, maintenances, threads }:
   return <SpaceHomeSection /* threads={threads} */ />;
 }
 
-PostsPage.getLayout = function getLayout(page: ReactElement) {
+DashboardHomePage.getLayout = function getLayout(page: ReactElement) {
   return <Layout variant="dashboard">{page}</Layout>;
 };
 
