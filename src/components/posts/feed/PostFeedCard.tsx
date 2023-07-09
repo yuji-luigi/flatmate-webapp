@@ -36,7 +36,7 @@ interface PostFeedCardProps {
   attachments: UploadModel[];
   images: UploadModel[];
   /** convert to date in the component */
-  createdAt: string;
+  createdAt: string | Date;
   sx?: Sx;
 }
 
