@@ -38,7 +38,7 @@ const ChooseRootSpacePage = () => {
   const { user } = useAuth();
   const { classes, cx, theme } = useStyles();
   const router = useRouter();
-  const title = user?.role === 'super_admin' ? 'Choose organization' : 'Choose space';
+  const title = user?.role === 'super_admin' ? 'Choose organization' : 'Which building to operate?';
   const hrefRoot = CARD_LINK_PATH.rootSpaceSelected;
   const {
     data: rootSpaces,
@@ -59,16 +59,12 @@ const ChooseRootSpacePage = () => {
   };
 
   return (
-    <Stack>
-      <Group position="apart" align="center" pt={16}>
+    <Stack p={32}>
+      <Group position="apart" align="center">
         <Text variant="text" size={36} weight={600} align="center">
           {title}
         </Text>
-        <Button component={Link} href={PATH_DASHBOARD.logout}>
-          logout
-        </Button>
       </Group>
-      <Divider />
 
       <Box
         className={classes.pinContainer}
@@ -89,40 +85,5 @@ const ChooseRootSpacePage = () => {
 };
 
 ChooseRootSpacePage.getLayout = (page: ReactElement) => <Layout variant="main">{page}</Layout>;
-
-// export async function getServerSideProps(context: GetServerSidePropsContext) {
-//   const jwtToken = context.req.cookies.jwt;
-//   const res = await axiosInstance.get<AxiosResDataMeResponse<UserModel>>(`${PATH_AUTH.me}`, {
-//     headers: {
-//       Authorization: `Bearer ${jwtToken}`,
-//       // 'Content-Type': 'application/x-www-form-urlencoded',
-//     },
-//   });
-
-//   const user = res.data.user;
-
-//   if (user?.role === 'super_admin') {
-//     return {
-//       redirect: {
-//         destination: '/choose-organization',
-//         permanent: false,
-//       },
-//     };
-//   }
-
-//   // get space of the user
-//   const rootSpaces = await axiosInstance.get(`${PATH_API.getSpaceSelections}/`, {
-//     headers: {
-//       Authorization: `Bearer ${jwtToken}`,
-//       // 'Content-Type': 'application/x-www-form-urlencoded',
-//     },
-//     params,
-//     // params: { $in: [...user?.rootSpaces, '$_id'] },
-//     // params: { _id: { $in: user?.rootSpaces } },
-//     // params: { _id: user?.rootSpaces },
-//   });
-
-//   return { props: { rootSpaces: rootSpaces.data.data || [] } };
-// }
 
 export default ChooseRootSpacePage;

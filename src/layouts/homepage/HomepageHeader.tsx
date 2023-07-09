@@ -17,6 +17,7 @@ import {
   Drawer,
   Collapse,
   ScrollArea,
+  Stack,
 } from '@mantine/core';
 // import { MantineLogo } from '@mantine/ds';
 import { useDisclosure } from '@mantine/hooks';
@@ -163,6 +164,29 @@ export function HomepageHeader() {
       </Group>
     </UnstyledButton>
   ));
+
+  const logNav = user ? (
+    <>
+      <Button variant="default" component={Link} href={PATH_DASHBOARD.logout}>
+        Logout
+      </Button>
+      {currentSpace && (
+        <Button component={Link} href={hrefEnter}>
+          Enter
+        </Button>
+      )}
+    </>
+  ) : (
+    <>
+      <Button component={Link} variant="default" href={PATH_DASHBOARD.login}>
+        Log in
+      </Button>
+      <Button component={Link} href={PATH_DASHBOARD.signup}>
+        Sign up
+      </Button>
+    </>
+  );
+
   // return null;
   return (
     <Box sx={{ marginBottom: 59 }}>
@@ -174,7 +198,7 @@ export function HomepageHeader() {
             <Link href="/" className={classes.link}>
               Home
             </Link>
-            <HoverCard width={600} position="bottom" radius="md" shadow="md" withinPortal>
+            {/* <HoverCard width={600} position="bottom" radius="md" shadow="md" withinPortal>
               <HoverCard.Target>
                 <a href="#" className={classes.link}>
                   <Center inline>
@@ -218,35 +242,11 @@ export function HomepageHeader() {
                   </Group>
                 </div>
               </HoverCard.Dropdown>
-            </HoverCard>
-            <a href="#" className={classes.link}>
-              Learn
-            </a>
-            <a href="#" className={classes.link}>
-              Academy
-            </a>
+            </HoverCard> */}
           </Group>
 
           <Group className={classes.hiddenMobile}>
-            {user ? (
-              <>
-                <Button variant="default" component={Link} href={PATH_DASHBOARD.logout}>
-                  Logout
-                </Button>
-                <Button component={Link} href={hrefEnter}>
-                  Enter
-                </Button>
-              </>
-            ) : (
-              <>
-                <Button component={Link} variant="default" href={PATH_DASHBOARD.login}>
-                  Log in
-                </Button>
-                <Button component={Link} href={PATH_DASHBOARD.signup}>
-                  Sign up
-                </Button>
-              </>
-            )}
+            {logNav}
             <ColorSchemeToggle variant="outline" />
           </Group>
 
@@ -272,25 +272,9 @@ export function HomepageHeader() {
 
           <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} />
 
-          <Group position="center" grow pb="xl" px="md">
-            <Button component={Link} href={PATH_DASHBOARD.login} variant="default">
-              Log in
-            </Button>
-
-            <Button component={Link} href={PATH_DASHBOARD.signup}>
-              Sign up
-            </Button>
-            {user && (
-              <>
-                <Button component={Link} href={PATH_DASHBOARD.logout}>
-                  Logout
-                </Button>
-                <Button component={Link} href={hrefEnter}>
-                  Enter
-                </Button>
-              </>
-            )}
-          </Group>
+          <Stack pb="xl" px="md">
+            {logNav}
+          </Stack>
         </ScrollArea>
       </Drawer>
     </Box>

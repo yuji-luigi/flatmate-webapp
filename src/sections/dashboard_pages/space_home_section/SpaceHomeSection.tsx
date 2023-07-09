@@ -47,13 +47,19 @@ const TabListConfig = [
   {
     label: 'Posts',
     value: 'posts',
-    icon: <IconMessageCircle size="0.8rem" />,
+    icon: <Icons.article size="0.8rem" />,
     component: <SpacePostSection />,
   },
   {
     label: 'Maintenance',
     value: 'maintenance',
-    icon: <IconMessageCircle size="0.8rem" />,
+    icon: <Icons.maintenance size="0.8rem" />,
+    component: <SpaceMaintenanceSection />,
+  },
+  {
+    label: 'Invoice',
+    value: 'invoice',
+    icon: <Icons.invoice size="0.8rem" />,
     component: <SpaceMaintenanceSection />,
   },
 ];

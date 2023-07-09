@@ -55,9 +55,9 @@ const SingleMaintenanceHeading = ({ maintenance }: { maintenance: MaintenanceMod
         {maintenance.title}
       </Text>
       <Group align="center">
-        <Avatar src={maintenance.user.image} size={50} radius="xl" mr={0} />
+        <Avatar src={maintenance.createdBy.image} size={50} radius="xl" mr={0} />
         <Text fz="sm" inline>
-          {maintenance.user.name}
+          {maintenance.createdBy.name}
         </Text>
         <Text fz="sm" inline>
           {maintenance._createdAt}

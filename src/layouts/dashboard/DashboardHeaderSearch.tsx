@@ -131,7 +131,7 @@ export function DashboardHeaderSearch() {
       <div className={classes.inner}>
         <Group>
           <Burger className={classes.burger} opened={isOpen} onClick={toggleBarOpen} size="sm" />
-          <LogoBanner transparent />
+          <LogoBanner link="/" transparent />
           <Group ml={5} spacing={5} className={classes.links}>
             {items}
           </Group>

@@ -30,9 +30,9 @@ const CardWithTitle = ({ title, children, titleSx }: Prop) => {
           {title}
         </Title>
       )}
-      <Card.Section className={classes.textsContainer} sx={{}}>
+      <Box className={classes.textsContainer} sx={{}}>
         {children}
-      </Card.Section>
+      </Box>
     </Card>
   );
 };

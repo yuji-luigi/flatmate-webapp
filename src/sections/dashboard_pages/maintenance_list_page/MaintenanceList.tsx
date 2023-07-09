@@ -10,7 +10,7 @@ const MaintenanceList = ({ maintenance }: { maintenance: MaintenanceModel }) => 
         <CardArticleSmall
           key={maintenance.title}
           data={maintenance}
-          author={maintenance.user}
+          author={maintenance.createdBy}
           category={maintenance.tags?.toString() || 'tech'}
           date={maintenance.createdAt}
           image={maintenance.images[0]?.url}
@@ -26,7 +26,7 @@ const MaintenanceList = ({ maintenance }: { maintenance: MaintenanceModel }) => 
           link={maintenance._id}
           title={maintenance.title}
           description={maintenance.description}
-          author={maintenance.user}
+          author={maintenance.createdBy}
           rating={'40' }
           sx={{ width: 300 }}
         />

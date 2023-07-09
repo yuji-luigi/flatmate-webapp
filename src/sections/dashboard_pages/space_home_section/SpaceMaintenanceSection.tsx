@@ -2,19 +2,20 @@ import React from 'react';
 import { useCrudSelectors } from '../../../redux/features/crud/crudSlice';
 import PostFeedCard from '../../../components/posts/feed/PostFeedCard';
 import { UserModel } from '../../../types/models/user-model';
+import MaintenanceFeedCard from '../../../components/posts/feed/MaintenanceeFeedCard';
 
 export const SpaceMaintenanceSection = () => {
-  const { crudDocuments } = useCrudSelectors('maintenances');
+  const { crudDocuments } = useCrudSelectors<MaintenanceModel>('maintenances');
   return (
     <>
-      {crudDocuments.map((thread) => (
-        <PostFeedCard
-          createdAt={thread.createdAt}
-          key={thread._id}
-          createdBy={{ name: 'No name user' } as UserModel}
-          title={thread.title}
-          body={thread.description}
-          images={thread.images}
+      {crudDocuments.map((maintenance) => (
+        <MaintenanceFeedCard
+          createdAt={maintenance.createdAt}
+          key={maintenance._id}
+          createdBy={maintenance.createdBy}
+          title={maintenance.title}
+          body={maintenance.description}
+          images={maintenance.images}
           attachments={[]}
           sx={{ marginBottom: 24 }}
         />

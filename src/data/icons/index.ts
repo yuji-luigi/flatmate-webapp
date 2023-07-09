@@ -53,6 +53,7 @@ import {
   IconDots as dots,
   // IconWall as wall,
   IconBolt as electric,
+  IconFileInvoice as invoice,
 } from '@tabler/icons-react';
 
 export const Icons = {
@@ -102,4 +103,5 @@ export const Icons = {
   Carpenter: hammer,
   Electrician: electric,
   dots,
+  invoice,
 } as const;

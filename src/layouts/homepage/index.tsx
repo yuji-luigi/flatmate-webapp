@@ -9,7 +9,6 @@ export function HomepageLayout(props: PropWithChildren) {
   return (
     <>
       <HomepageHeader />
-      {/* <HomepageHeaderUpdated /> */}
       {props.children}
       <ColorSchemeToggle />
     </>

@@ -16,10 +16,10 @@ interface MaintenanceModel extends MongooseBaseModel {
     | 'survey'
     | 'question'
     | 'discussion';
-  headSpace?: string | SpaceModel;
-  user: IUser | string;
+  createdBy: IUser | string;
   isImportant: boolean;
   owner: IOwner | string;
+  mainSpace: SpaceModel;
   /** formatted in some way. from api schema level */
   _createdAt: string;
 }

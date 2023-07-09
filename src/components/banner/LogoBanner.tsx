@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface LogoBannerProps {
   transparent?: boolean;
@@ -7,6 +8,7 @@ interface LogoBannerProps {
   alt?: string;
   width?: number | null;
   height?: number | null;
+  link?: string;
 }
 
 const LOGO_PATH = {
@@ -20,8 +22,9 @@ export function LogoBanner({
   alt = '',
   width = null,
   height = null,
+  link,
 }: LogoBannerProps) {
-  return (
+  const image = (
     <Image
       src={src || transparent ? LOGO_PATH.transparent : LOGO_PATH.black}
       alt={alt || 'flate mates logo'}
@@ -30,4 +33,8 @@ export function LogoBanner({
       priority
     />
   );
+  // if there is a link, return the image wrapped in a link
+  if (link) return <Link href={link}>{image}</Link>;
+  // otherwise, return the image
+  return image;
 }
