@@ -30,7 +30,7 @@ const useStyles = createStyles((theme) => ({
 }));
 
 interface PostFeedCardProps {
-  createdBy: UserModel;
+  createdBy?: UserModel;
   title: string;
   body: string;
   attachments: UploadModel[];
@@ -57,19 +57,19 @@ const PostFeedCard = ({
       <Group sx={{ height: 80, width: '100%', display: 'flex', justifyContent: 'space-between' }}>
         <Group sx={{ height: '100%' }}>
           <Avatar
-            src={createdBy.avatar?.url || 'https://picsum.photos/410/300'}
+            src={createdBy?.avatar?.url || 'https://picsum.photos/410/300'}
             radius={90}
             size={80}
           />
           <Stack spacing={0} justify="flex-end" style={{ height: '100%', alignItems: 'flex-end' }}>
             <Text size="lg" weight="bold">
-              {createdBy.name}
+              {createdBy?.name}
             </Text>
             <Text>{intlDateFormat(createdAt)}</Text>
           </Stack>
         </Group>
 
-        {user?._id === createdBy._id && (
+        {user?._id === createdBy?._id && (
           <Box sx={{ alignSelf: 'start' }}>
             <ActionIcon onClick={() => window.alert('edit fired: PostFeedCard.tsx')}>
               <Icons.dots />
