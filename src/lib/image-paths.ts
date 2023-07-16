@@ -19,6 +19,7 @@ export const PATH_IMAGE = {
     txt: '/file_images/txt-file.png',
     xls: '/file_images/xls.png',
   },
+  unlock: '/images/unlock.png',
 };
 
 const a = getRandomNumberOne;

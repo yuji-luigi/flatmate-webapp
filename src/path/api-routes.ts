@@ -37,6 +37,7 @@ export enum PATH_API {
   maintainers = 'maintainers',
   maintainersSlug = 'maintainers/slug',
   maintainersSpace = 'maintainers/spaces',
+  maintenanceFileUpload = 'maintenances/file-upload',
   organizationAll = 'organizations/all',
   organizationCookie = 'organizations/cookie',
   getOrganizationsAndSpaces = 'organizations/spaces',

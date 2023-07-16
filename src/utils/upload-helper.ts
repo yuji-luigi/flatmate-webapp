@@ -152,3 +152,24 @@ export async function handleUploadMediaData(mediaData: MixedMediaType, entity: s
 
   return ids;
 }
+export function isCustomFile(value: any): value is CustomFile {
+  if (value.field && value.previewvalue && value instanceof File) return true;
+  return false;
+}
+
+export type CustomFile = File & { field: string; preview: string };
+
+export async function handleUploadFiles(files: CustomFile[]) {
+  const formData = new FormData();
+
+  files.forEach((file, index) => {
+    // You can set the key to be the file name or any other custom key
+    formData.append(file.field, file, file.name);
+  });
+  const response = await axiosInstance.post(PATH_API.uploads, formData, {
+    withCredentials: true,
+    headers: { 'Content-Type': 'multipart/form-data' },
+  });
+
+  return response.data.data;
+}
