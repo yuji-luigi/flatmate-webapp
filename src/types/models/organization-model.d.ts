@@ -1,4 +1,5 @@
 interface OrganizationModel extends MongooseBaseModel {
+  name: string;
   phone: string;
   email: string;
   address: string;

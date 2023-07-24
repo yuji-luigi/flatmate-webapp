@@ -17,6 +17,7 @@ export function DropzoneMantine(props: Partial<DropzoneProps> & { form: UseFormR
       img.onload = function () {
         const newFile = Object.assign(file, {
           preview: URL.createObjectURL(file),
+          field: file.name,
         });
         setFile(newFile);
         props.form.setFieldValue('invoice', newFile);

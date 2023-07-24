@@ -1,5 +1,6 @@
 import { PATH_API } from '../path/api-routes';
 import { MixedMediaType, UploadingMediaType } from '../types/data/media/media-types';
+import { Sections } from '../types/general/data/sections-type';
 import axiosInstance, { uploadConfig } from './axios-instance';
 
 interface MediaParam {
@@ -153,20 +154,40 @@ export async function handleUploadMediaData(mediaData: MixedMediaType, entity: s
   return ids;
 }
 export function isCustomFile(value: any): value is CustomFile {
-  if (value.field && value.previewvalue && value instanceof File) return true;
+  if (value.folder && value.preview && value instanceof File) {
+    return true;
+  }
   return false;
 }
 
-export type CustomFile = File & { field: string; preview: string };
+export type CustomFile = File & { field: string; folder: string; preview: string };
 
-export async function handleUploadFiles(files: CustomFile[]) {
+export async function handleUploadWithoutLogin({
+  files,
+  mainSpace,
+  organizationName,
+  entity,
+  endpoint,
+}: {
+  files: File;
+  mainSpace: string;
+  organizationName: string;
+  entity: Sections;
+  endpoint: PATH_API;
+}) {
   const formData = new FormData();
-
-  files.forEach((file, index) => {
-    // You can set the key to be the file name or any other custom key
-    formData.append(file.field, file, file.name);
-  });
-  const response = await axiosInstance.post(PATH_API.uploads, formData, {
+  if (Array.isArray(files)) {
+    files.forEach((file, index) => {
+      // You can set the key to be the file name or any other custom key
+      formData.append(file.field, file, file.name);
+    });
+  } else {
+    formData.append('0', files, files.name);
+    formData.append('mainSpace', mainSpace);
+    formData.append('organizationName', organizationName);
+    formData.append('entity', entity);
+  }
+  const response = await axiosInstance.post(endpoint, formData, {
     withCredentials: true,
     headers: { 'Content-Type': 'multipart/form-data' },
   });

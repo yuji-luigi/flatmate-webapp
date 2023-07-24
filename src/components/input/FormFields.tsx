@@ -1,21 +1,13 @@
-import { Checkbox, MultiSelect, Select, Switch, Textarea, TextInput } from '@mantine/core';
 import { UseFormReturnType } from '@mantine/form';
-import React, { Component, CSSProperties, ReactNode } from 'react';
-import Image from 'next/image';
-import { DatePicker } from '@mantine/dates';
+import React from 'react';
+
 import { useGetSelectOptions } from '../../../hooks/form-related/useGetSelectOptions';
-import { Dropzone } from '@mantine/dropzone';
-import { DropzoneCustomImage } from './DropzoneCustomImage';
-import { DropzoneCustomButton } from './DropzoneCustomButton';
-import CreationToolBar from './CreationToolBar';
+
 import CrudTextInput from './crud-inputs/CrudTextInput';
 import CrudTextArea from './crud-inputs/CrudTextArea';
 import CrudSelectMulti from './crud-inputs/CrudSelectMulti';
 import CrudSelect from './crud-inputs/CrudSelect';
-import CrudDatePicker from './crud-inputs/CrudDatePicker';
-import CrudSwitch from './crud-inputs/CrudSwitch';
-import RadioGroup from './crud-inputs/RadioGroup';
-import SwitchGroup from './crud-inputs/SwitchGroup';
+
 import {
   FormFieldTypes,
   SelectFormType,

@@ -29,6 +29,7 @@ export enum PATH_API {
    * */
   linkedChildren = 'linkedChildren',
   uploads = 'upload-files',
+  uploadsMaintenance = 'upload-files/maintenance-file',
   spaces = 'spaces',
   spaceCookie = 'spaces/cookie',
   spaceSlug = 'spaces/slug',
@@ -38,8 +39,10 @@ export enum PATH_API {
   maintainersSlug = 'maintainers/slug',
   maintainersSpace = 'maintainers/spaces',
   maintenanceFileUpload = 'maintenances/file-upload',
+  maintenanceAuthFileUpload = 'maintenances/auth/file-upload',
   organizationAll = 'organizations/all',
   organizationCookie = 'organizations/cookie',
+  invoices = 'invoices',
   getOrganizationsAndSpaces = 'organizations/spaces',
   getOrganizationsForAdmin = 'organizations/selections/super-admin',
 }
