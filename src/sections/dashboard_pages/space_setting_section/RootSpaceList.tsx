@@ -5,7 +5,7 @@ import { CardArticleVerticalTextBottom } from '../../../components/card/CardVert
 import { fetchSpaceSelections } from '../../../pages/choose-root-space';
 import useSWR from 'swr';
 import { Box, createStyles } from '@mantine/core';
-import { PATH_DASHBOARD } from '../../../path/page-paths';
+import { PATH_CLIENT } from '../../../path/page-paths';
 
 const useStyles = createStyles((theme) => ({
   pinContainer: {
@@ -43,7 +43,7 @@ const RootSpaceList = () => {
             address: space.address,
             createdAt: '',
           }}
-          href={`${PATH_DASHBOARD.spaceSettings}/${space._id}`}
+          href={`${PATH_CLIENT.spaceSettings}/${space._id}`}
           sx={{ height: 200, width: 400 }}
           // onClick={() => handleSpaceSelected(rootSpace._id)}
           // // href={`${hrefRoot}/${rootSpace._id}`}

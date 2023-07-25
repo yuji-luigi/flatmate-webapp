@@ -11,7 +11,7 @@ import {
   CardArticleVerticalTextBottom,
   CardData,
 } from '../../components/card/CardVerticalTextBottom';
-import { PATH_DASHBOARD } from '../../path/page-paths';
+import { PATH_CLIENT } from '../../path/page-paths';
 import { Box, Button, Divider, Group, Stack, createStyles, Text } from '@mantine/core';
 import useAuth from '../../../hooks/useAuth';
 import Link from 'next/link';
@@ -53,7 +53,7 @@ const ChooseSpaceInOrganizationPage = () => {
   );
   const handleSpaceSelected = async (spaceId: string) => {
     await axiosInstance.get(`${PATH_API.spaceCookie}/${spaceId}`);
-    router.push(PATH_DASHBOARD.root);
+    router.push(PATH_CLIENT.root);
   };
   if (!spaces) return <p>loading...</p>;
   return (
@@ -72,7 +72,7 @@ const ChooseSpaceInOrganizationPage = () => {
         {user?.role === 'super_admin' && (
           <CardArticleVerticalTextCenter
             data={{
-              href: PATH_DASHBOARD.chooseOrganization,
+              href: PATH_CLIENT.chooseOrganization,
               _id: '',
               name: 'Back',
               address: '',

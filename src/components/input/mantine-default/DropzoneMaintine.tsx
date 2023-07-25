@@ -1,5 +1,5 @@
 import { Group, Text, useMantineTheme, rem, Image as MantineImage } from '@mantine/core';
-import { IconUpload, IconPhoto, IconX } from '@tabler/icons-react';
+import { IconUpload, IconPhoto, IconX, IconFile } from '@tabler/icons-react';
 import { Dropzone, DropzoneProps, FileWithPath, IMAGE_MIME_TYPE } from '@mantine/dropzone';
 import { useCallback, useState } from 'react';
 import { PATH_IMAGE } from '../../../lib/image-paths';
@@ -55,12 +55,12 @@ export function DropzoneMantine(props: Partial<DropzoneProps> & { form: UseFormR
             />
           </Dropzone.Reject>
           <Dropzone.Idle>
-            <IconPhoto size="3.2rem" stroke={1.5} />
+            <IconFile size="3.2rem" stroke={1.5} />
           </Dropzone.Idle>
 
           <div>
             <Text size="xl" inline>
-              Drag images here or click to select files
+              Drag file here or click to select file
             </Text>
             <Text size="sm" color="dimmed" inline mt={7}>
               Attach as many files as you like, each file should not exceed 5mb

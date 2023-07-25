@@ -18,7 +18,7 @@ import LoadingScreen from '../../../components/screen/LoadingScreen';
 import { SpaceSlugResponse } from '../../../types/api-response/space-response';
 import { SpaceSettingMaintainersSection } from '../../../sections/dashboard_pages/space_setting_section/maintainers_section/SpaceSettingMaintainersSection';
 import { useCookieContext } from '../../../context/CookieContext';
-import { PATH_DASHBOARD } from '../../../path/page-paths';
+import { PATH_CLIENT } from '../../../path/page-paths';
 
 // use style from global-useStyles
 const useStyles = dashboardStyle;
@@ -51,7 +51,7 @@ const SpaceSettingSinglePage = () => {
 
   useEffect(() => {
     if (currentSpace && currentSpace.slug) {
-      router.push(`${PATH_DASHBOARD.spaceSettings}/${currentSpace.slug}`);
+      router.push(`${PATH_CLIENT.spaceSettings}/${currentSpace.slug}`);
     }
   }, [currentSpace?.slug]);
 

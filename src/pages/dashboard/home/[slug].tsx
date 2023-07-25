@@ -1,18 +1,10 @@
-import { createStyles, SimpleGrid, Card, Image, Text, Container, AspectRatio } from '@mantine/core';
-import fetch from 'node-fetch';
-
-import { GetServerSidePropsContext } from 'next';
 import { ReactElement, useEffect } from 'react';
 import Layout from '../../../layouts';
-import PostsPageSection from '../../../sections/dashboard_pages/posts_list_page/PostsPageComponent';
+
 import axiosInstance from '../../../utils/axios-instance';
 import { useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
-// import { useCurrentSpaceContext } from '../../../context/CurrentSpaceContext';
-import { useCookieContext } from '../../../context/CookieContext';
-import { getCookie } from 'cookies-next';
 import SpaceHomeSection from '../../../sections/dashboard_pages/space_home_section/SpaceHomeSection';
-import { useRouter } from 'next/router';
-import axios from 'axios';
+
 import { MaintainerModel } from '../../../types/models/maintainer-model';
 
 interface Props {

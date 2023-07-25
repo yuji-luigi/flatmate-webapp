@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 // hooks
 import useAuth from '../../hooks/useAuth';
 // routes
-import { PATH_DASHBOARD } from '../path/page-paths';
+import { PATH_CLIENT } from '../path/page-paths';
 
 // ----------------------------------------------------------------------
 
@@ -15,8 +15,8 @@ export default function GuestGuard({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (isAuthenticated) {
-      // push(PATH_DASHBOARD.root);
-      push(PATH_DASHBOARD.chooseRootSpace);
+      // push(PATH_CLIENT.root);
+      push(PATH_CLIENT.chooseRootSpace);
     }
   }, [isAuthenticated]);
   return <>{children}</>;

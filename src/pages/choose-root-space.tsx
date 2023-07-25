@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react';
 import useAuth from '../../hooks/useAuth';
 import { Box, Button, Divider, Group, Stack, Text, createStyles } from '@mantine/core';
 import { CardArticleVerticalTextBottom, CardData } from '../components/card/CardVerticalTextBottom';
-import { CARD_LINK_PATH, PATH_DASHBOARD } from '../path/page-paths';
+import { CARD_LINK_PATH, PATH_CLIENT } from '../path/page-paths';
 import axiosInstance from '../utils/axios-instance';
 import { PATH_API } from '../path/api-routes';
 
@@ -47,15 +47,15 @@ const ChooseRootSpacePage = () => {
   } = useSWR<SpaceModel[] | null, AxiosError>(user, fetchSpaceSelections);
 
   if (user?.role === 'super_admin') {
-    router.push(PATH_DASHBOARD.chooseOrganization);
+    router.push(PATH_CLIENT.chooseOrganization);
     return null;
   }
   if (!rootSpaces || isLoading) return <p>loading</p>;
 
   const handleSpaceSelected = async (mainSpace: SpaceModel) => {
     await axiosInstance.get(`${PATH_API.spaceCookie}/${mainSpace._id}`);
-    // router.push(PATH_DASHBOARD.root);
-    router.push(`${PATH_DASHBOARD.root}/${mainSpace.slug}`);
+    // router.push(PATH_CLIENT.root);
+    router.push(`${PATH_CLIENT.root}/${mainSpace.slug}`);
   };
 
   return (

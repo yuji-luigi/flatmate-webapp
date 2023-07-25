@@ -1,13 +1,13 @@
 import { Avatar, Card, Stack, Text } from '@mantine/core';
 import Link from 'next/link';
 import React from 'react';
-import { PATH_DASHBOARD } from '../../../../path/page-paths';
+import { PATH_CLIENT } from '../../../../path/page-paths';
 
 export const NoMaintainerCard = ({ type }: { type: string }) => {
   return (
     <Card
       component={Link}
-      href={`${PATH_DASHBOARD.maintainers}?type=${type}`}
+      href={`${PATH_CLIENT.maintainers}?type=${type}`}
       sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}
     >
       {' '}

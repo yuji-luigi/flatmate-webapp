@@ -17,7 +17,7 @@ import { sectionData } from '../../data';
 
 import { Icons } from '../../data/icons';
 import { useMediaQuery } from '@mantine/hooks';
-import { PATH_DASHBOARD } from '../../path/page-paths';
+import { PATH_CLIENT } from '../../path/page-paths';
 import { ColorSchemeToggle } from '../../components/color-schemeToggle/ColorSchemeToggle';
 import { MouseEventHandler } from 'react';
 import { ProfilePopover } from '../../components/navigation/ProfilePopover';
@@ -133,8 +133,8 @@ export function NavbarVertical() {
   // const isMobile = useMediaQuery('(max-width: 600px)');
   const filteredSectionData = sectionData.filter((data) => data.name !== 'others');
   const chooseHref = isSuperAdmin
-    ? PATH_DASHBOARD.chooseOrganization
-    : PATH_DASHBOARD.chooseRootSpace;
+    ? PATH_CLIENT.chooseOrganization
+    : PATH_CLIENT.chooseRootSpace;
   if (!user) return null;
   const links = sectionData.map((section, i) => {
     return (

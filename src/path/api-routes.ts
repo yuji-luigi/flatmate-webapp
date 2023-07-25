@@ -42,7 +42,7 @@ export enum PATH_API {
   maintenanceAuthFileUpload = 'maintenances/auth/file-upload',
   organizationAll = 'organizations/all',
   organizationCookie = 'organizations/cookie',
-  invoices = 'invoices',
+  checks = 'checks',
   getOrganizationsAndSpaces = 'organizations/spaces',
   getOrganizationsForAdmin = 'organizations/selections/super-admin',
 }

@@ -5,7 +5,7 @@ import Link from 'next/link';
 import maintenances from '../../../../../pages/dashboard/maintenances';
 import { dashboardStyle } from '../../../../../styles/global-useStyles';
 import { useCrudSelectors } from '../../../../../redux/features/crud/crudSlice';
-import { PATH_DASHBOARD } from '../../../../../path/page-paths';
+import { PATH_CLIENT } from '../../../../../path/page-paths';
 
 const LIST_LIMIT = 5;
 
@@ -24,7 +24,7 @@ export const MaintenanceListCard = () => {
         <Fragment key={maintenance._id}>
           <Link
             className={classes1.navList}
-            href={`${PATH_DASHBOARD.maintenances}/${maintenance._id}`}
+            href={`${PATH_CLIENT.maintenances}/${maintenance._id}`}
             key={maintenance._id}
           >
             <Stack spacing={0}>

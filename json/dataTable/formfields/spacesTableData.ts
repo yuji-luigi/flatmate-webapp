@@ -1,4 +1,4 @@
-import { PATH_DASHBOARD } from '../../../src/path/page-paths';
+import { PATH_CLIENT } from '../../../src/path/page-paths';
 import { FormFieldTypes } from '../../../src/types/general/data/data-table/formField-types';
 
 export const spacesTableData: Array<FormFieldTypes> = [
@@ -9,7 +9,7 @@ export const spacesTableData: Array<FormFieldTypes> = [
     placeholder: 'Building East/Quarto oggiaro district(whole city as building)',
     type: 'text',
     cellType: 'link-children',
-    linkRoot: PATH_DASHBOARD.childrenSpace,
+    linkRoot: PATH_CLIENT.childrenSpace,
     linkKey: '_id',
     required: true,
     priority: 1,

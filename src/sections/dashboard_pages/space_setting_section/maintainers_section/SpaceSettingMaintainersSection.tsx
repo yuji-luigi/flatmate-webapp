@@ -19,7 +19,7 @@ import { MAINTAINER_TYPES } from '../../../../lib/enums';
 import { NoMaintainerCard } from './NoMaintainerCard';
 import { Icons } from '../../../../data/icons';
 import Link from 'next/link';
-import { PATH_DASHBOARD } from '../../../../path/page-paths';
+import { PATH_CLIENT } from '../../../../path/page-paths';
 
 export const SpaceSettingMaintainersSection = ({
   maintainers,
@@ -44,7 +44,7 @@ export const SpaceSettingMaintainersSection = ({
           <ActionIcon
             component="a"
             href={`/dashboard/maintainers/?type=${type}`}
-            // href={`${PATH_DASHBOARD.maintainers}?type=${type}`}
+            // href={`${PATH_CLIENT.maintainers}?type=${type}`}
             variant="light"
             color="blue"
           >

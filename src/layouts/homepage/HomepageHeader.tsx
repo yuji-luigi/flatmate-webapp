@@ -35,7 +35,7 @@ import { ColorSchemeToggle } from '../../components/color-schemeToggle/ColorSche
 import { useCloseDrawer } from '../../context/DataTableDrawerContext';
 import { sleep } from '../../utils/helpers/helper-functions';
 import useAuth from '../../../hooks/useAuth';
-import { PATH_DASHBOARD } from '../../path/page-paths';
+import { PATH_CLIENT } from '../../path/page-paths';
 import { getCookie } from 'cookies-next';
 import { useEffect, useState } from 'react';
 import { useCookieContext } from '../../context/CookieContext';
@@ -145,8 +145,8 @@ export function HomepageHeader() {
   }, [pathname]);
 
   const hrefEnter = currentSpace
-    ? `${PATH_DASHBOARD.dashboard}/${currentSpace.slug} `
-    : PATH_DASHBOARD.chooseRootSpace;
+    ? `${PATH_CLIENT.dashboard}/${currentSpace.slug} `
+    : PATH_CLIENT.chooseRootSpace;
   const links = mockdata.map((item) => (
     <UnstyledButton className={classes.subLink} key={item.title}>
       <Group noWrap align="flex-start">
@@ -167,7 +167,7 @@ export function HomepageHeader() {
 
   const logNav = user ? (
     <>
-      <Button variant="default" component={Link} href={PATH_DASHBOARD.logout}>
+      <Button variant="default" component={Link} href={PATH_CLIENT.logout}>
         Logout
       </Button>
       {currentSpace && (
@@ -178,10 +178,10 @@ export function HomepageHeader() {
     </>
   ) : (
     <>
-      <Button component={Link} variant="default" href={PATH_DASHBOARD.login}>
+      <Button component={Link} variant="default" href={PATH_CLIENT.login}>
         Log in
       </Button>
-      <Button component={Link} href={PATH_DASHBOARD.signup}>
+      <Button component={Link} href={PATH_CLIENT.signup}>
         Sign up
       </Button>
     </>

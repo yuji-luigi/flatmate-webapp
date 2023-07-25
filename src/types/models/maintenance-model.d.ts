@@ -22,4 +22,5 @@ interface MaintenanceModel extends MongooseBaseModel {
   mainSpace: SpaceModel;
   /** formatted in some way. from api schema level */
   _createdAt: string;
+  organization: OrganizationModel;
 }

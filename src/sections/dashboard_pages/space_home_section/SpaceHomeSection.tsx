@@ -1,32 +1,16 @@
 import { useRouter } from 'next/router';
-import React, { Fragment, ReactElement } from 'react';
-import Layout from '../../../layouts';
-import {
-  ActionIcon,
-  Box,
-  Button,
-  Container,
-  Group,
-  LoadingOverlay,
-  NavLink,
-  Stack,
-  Tabs,
-  Text,
-} from '@mantine/core';
+import React from 'react';
+import { Box, LoadingOverlay, Tabs } from '@mantine/core';
 import { dashboardStyle, profilePageStyle } from '../../../styles/global-useStyles';
 import ProfileSide from '../../../components/profile/side/ProfileSide';
-import AboutCard from '../../../components/profile/side/AboutCard';
 import CardWithTitle from '../../../components/profile/side/CardWithTitle';
-import TextWithIcon from '../../../components/text/TextWithIcon';
 import { Icons } from '../../../data/icons';
 import { maintainersTableData } from '../../../../json/dataTable/formfields/maintainersTableData';
-import { lorem100 } from '../../../_mock/strings';
-import PostFeedCard from '../../../components/posts/feed/PostFeedCard';
+
 import ProfileCover from '../../../components/profile/ProfileCover';
-import { RANDOM_UPLOAD_MODELS } from '../../../lib/image-paths';
 import { useMediaQuery } from '@mantine/hooks';
 import { useCrudSelectors } from '../../../redux/features/crud/crudSlice';
-import { IconMessageCircle, IconSettings, IconCoin } from '@tabler/icons-react';
+
 import { SpacePostSection } from './SpacePostSection';
 import { SpaceMaintenanceSection } from './SpaceMaintenanceSection';
 import { TabList } from '../../../components/profile/tab/TabList';
@@ -34,9 +18,6 @@ import { TabPanels } from '../../../components/profile/tab/TabPanels';
 import { MaintainerList } from './side-cards/maintainerCard/MaintainerList';
 import { SettingButtonSpaceHome } from './SettingButtonSpaceHome';
 import { MaintainerModel } from '../../../types/models/maintainer-model';
-import { UserModel } from '../../../types/models/user-model';
-import { intlDateFormat } from '../../../utils/helpers/date-formatters';
-import Link from 'next/link';
 import { MaintenanceListCard } from './side-cards/maintenance-card/MaintenancesCard';
 
 // use style from global-useStyles
@@ -88,20 +69,6 @@ const SpaceHomeSection = () => {
             <MaintainerList maintainers={maintainers} />
           </CardWithTitle>
           <MaintenanceListCard />
-          {/* <CardWithTitle titleSx={{ fontSize: 24 }} title="Maintenaces">
-            {maintenances.map((maintenance) => (
-              <Fragment key={maintenance._id}>
-                <Link className={classes1.navList} href="" key={maintenance._id}>
-                  <Stack spacing={0}>
-                    <Text fw={800} size="lg">
-                      {maintenance.title.toUpperCase()}
-                    </Text>
-                    <Text fw="lighter">{maintenance._createdAt}</Text>
-                  </Stack>
-                </Link>
-              </Fragment>
-            ))}
-          </CardWithTitle> */}
         </>
       }
     />

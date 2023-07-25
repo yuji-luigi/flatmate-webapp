@@ -11,6 +11,7 @@ import { showNotification } from '@mantine/notifications';
 import { Icons } from '../../../data/icons';
 import { ApiError } from 'next/dist/server/api-utils';
 import { useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
+import { sleep } from '../../../utils/helpers/helper-functions';
 
 export const PinVerifCard = ({ setPinOk }: { setPinOk: (bool: boolean) => void }) => {
   const { query, push } = useRouter();
@@ -31,6 +32,7 @@ export const PinVerifCard = ({ setPinOk }: { setPinOk: (bool: boolean) => void }
           AxiosResDataGeneric<{ maintenance: MaintenanceModel }>
         >(endpoint, { pin: value });
         setSingleCrudDocument({ entity: 'maintenances', document: rawRes.data.data.maintenance });
+        await sleep(1000);
         setPinOk(true);
       } catch (error: any) {
         showNotification({

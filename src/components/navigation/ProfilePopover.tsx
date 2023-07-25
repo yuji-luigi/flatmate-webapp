@@ -13,7 +13,7 @@ import {
 import useAuth from '../../../hooks/useAuth';
 import Link from 'next/link';
 import { Icons } from '../../data/icons';
-import { PATH_DASHBOARD } from '../../path/page-paths';
+import { PATH_CLIENT } from '../../path/page-paths';
 
 const useStyles = createStyles((theme /* , _params, getRef */) => {
   const icon = getStylesRef('icon') as string;
@@ -82,7 +82,7 @@ const popoverList = [
   {
     title: 'Setting condominium',
     icon: <Icons.userSettings />,
-    link: PATH_DASHBOARD.spaceSettings,
+    link: PATH_CLIENT.spaceSettings,
   },
 ];
 export function ProfilePopover() {

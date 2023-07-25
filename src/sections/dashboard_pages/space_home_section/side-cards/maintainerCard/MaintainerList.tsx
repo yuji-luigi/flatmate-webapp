@@ -4,7 +4,7 @@ import TextWithIcon from '../../../../../components/text/TextWithIcon';
 import { Stack, Text } from '@mantine/core';
 import { MaintainerModel } from '../../../../../types/models/maintainer-model';
 import Link from 'next/link';
-import { PATH_DASHBOARD } from '../../../../../path/page-paths';
+import { PATH_CLIENT } from '../../../../../path/page-paths';
 import { dashboardStyle } from '../../../../../styles/global-useStyles';
 
 export const MaintainerList = ({ maintainers }: { maintainers: MaintainerModel[] }) => {
@@ -20,7 +20,7 @@ export const MaintainerList = ({ maintainers }: { maintainers: MaintainerModel[]
           <Fragment key={maintainer.slug}>
             <Link
               className={classes1.navList}
-              href={`${PATH_DASHBOARD.maintainersDetail}/${maintainer.slug}`}
+              href={`${PATH_CLIENT.maintainersDetail}/${maintainer.slug}`}
               key={maintainer._id}
             >
               <Stack spacing={0}>

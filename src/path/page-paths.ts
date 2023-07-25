@@ -9,7 +9,7 @@ export const PATH_AFTER_LOGIN = '/dashboard/posts';
 
 // export const PATH_ROOT {}
 
-export enum PATH_DASHBOARD {
+export enum PATH_CLIENT {
   // root = '/dashboard',
   /** the initial page after login is root */
   root = '/dashboard/home',
@@ -28,10 +28,11 @@ export enum PATH_DASHBOARD {
   maintainersSearch = '/dashboard/maintainers/search',
   childrenSpace = '/dashboard/spaces',
   spaceSettings = '/dashboard/space-settings',
+  uploadSuccess = '/upload-success',
 }
 export enum CARD_LINK_PATH {
-  posts = PATH_DASHBOARD.posts,
-  maintenances = PATH_DASHBOARD.maintenances,
-  rootSpaceSelected = PATH_DASHBOARD.rootSpaceSelected,
-  // organizationCookie = PATH_DASHBOARD.organizationCookie,
+  posts = PATH_CLIENT.posts,
+  maintenances = PATH_CLIENT.maintenances,
+  rootSpaceSelected = PATH_CLIENT.rootSpaceSelected,
+  // organizationCookie = PATH_CLIENT.organizationCookie,
 }

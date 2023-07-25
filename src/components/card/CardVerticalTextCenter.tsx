@@ -11,7 +11,7 @@ import {
 } from '@mantine/core';
 import Link from 'next/link';
 import { threadId } from 'worker_threads';
-import { CARD_LINK_PATH, PATH_DASHBOARD } from '../../path/page-paths';
+import { CARD_LINK_PATH, PATH_CLIENT } from '../../path/page-paths';
 import { useRouter } from 'next/router';
 import { PATH_IMAGE } from '../../lib/image-paths';
 import { UserModel } from '../../types/models/user-model';

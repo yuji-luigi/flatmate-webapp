@@ -6,7 +6,7 @@ import {
   CardArticleVerticalTextBottom,
   CardData,
 } from '../../components/card/CardVerticalTextBottom';
-import { CARD_LINK_PATH, PATH_DASHBOARD } from '../../path/page-paths';
+import { CARD_LINK_PATH, PATH_CLIENT } from '../../path/page-paths';
 import axiosInstance from '../../utils/axios-instance';
 import { PATH_API } from '../../path/api-routes';
 import { CardArticleVerticalTextCenter } from '../../components/card/CardVerticalTextCenter';
@@ -36,7 +36,7 @@ const ChooseOrganizationPage = () => {
 
   useEffect(() => {
     if (user?.role !== 'super_admin') {
-      router.push(PATH_DASHBOARD.chooseRootSpace);
+      router.push(PATH_CLIENT.chooseRootSpace);
       return;
     }
 
@@ -46,7 +46,7 @@ const ChooseOrganizationPage = () => {
   }, [user?.role]);
 
   const title = user?.role === 'super_admin' ? 'Choose organization' : 'Choose space';
-  const hrefRoot = PATH_DASHBOARD.chooseOrganization;
+  const hrefRoot = PATH_CLIENT.chooseOrganization;
 
   if (user?.role !== 'super_admin') {
     return null;
@@ -66,7 +66,7 @@ const ChooseOrganizationPage = () => {
         {user?.role === 'super_admin' && (
           <CardArticleVerticalTextCenter
             data={{
-              href: PATH_DASHBOARD.root,
+              href: PATH_CLIENT.root,
               _id: '',
               name: ' Browse all organizations',
               address: '',

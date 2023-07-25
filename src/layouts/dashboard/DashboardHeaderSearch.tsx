@@ -9,7 +9,7 @@ import { LogoBanner } from '../../components/banner/LogoBanner';
 import { Icons } from '../../data/icons';
 import { HeaderCreationModal } from './header-creation-modal/HeaderCreationModal';
 import useAuth from '../../../hooks/useAuth';
-import { PATH_DASHBOARD } from '../../path/page-paths';
+import { PATH_CLIENT } from '../../path/page-paths';
 // import { useCurrentSpaceContext } from '../../context/CurrentSpaceContext';
 import { useCookieContext } from '../../context/CookieContext';
 import { lowerFirst, useMediaQuery } from '@mantine/hooks';
