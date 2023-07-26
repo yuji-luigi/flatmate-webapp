@@ -2,6 +2,7 @@ import React from 'react';
 import { CardArticleImageDescFooter } from '../../../components/card/CardArticleImageDescFooter';
 import { CardArticleSmall } from '../../../components/card/CardArticleSmall';
 import { CARD_LINK_PATH, PATH_CLIENT } from '../../../path/page-paths';
+import { MaintenanceModel } from '../../../types/models/maintenance-model';
 
 const MaintenanceList = ({ maintenance }: { maintenance: MaintenanceModel }) => {
   return (

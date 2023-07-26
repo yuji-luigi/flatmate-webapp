@@ -14,6 +14,7 @@
 				"subtitle": "",
 				"navbarTitle": "TOP",
 				"link": "/dashboard/home",
+				"importButton": "",
 				"createButton": "",
 				"icon": "Dashboard"
 			},
@@ -24,6 +25,7 @@
 				"subtitle": "subtitle",
 				"navbarTitle": "posts",
 				"link": "/dashboard/posts",
+				"importButton": "",
 				"createButton": "",
 				"icon": "posts"
 			},
@@ -33,6 +35,7 @@
 				"subtitle": "subtitle",
 				"navbarTitle": "maintenances",
 				"link": "/dashboard/maintenances",
+				"importButton": "",
 				"createButton": "",
 				"icon": "posts"
 			}
@@ -53,6 +56,7 @@
 				"subtitle": "subtitle",
 				"navbarTitle": "Statistics",
 				"link": "/dashboard/statistics",
+				"importButton": "",
 				"createButton": "",
 				"icon": "Statistic"
 			},
@@ -63,6 +67,7 @@
 				"subtitle": "subtitle",
 				"navbarTitle": "Notifications",
 				"link": "/dashboard/notifications",
+				"importButton": "",
 				"createButton": "New Notification",
 				"icon": "Notification"
 			},
@@ -73,6 +78,7 @@
 				"subtitle": "subtitle",
 				"navbarTitle": "Bookmark",
 				"link": "/dashboard/bookmarks",
+				"importButton": "",
 				"createButton": "New Bookmark",
 				"icon": "Dashboard"
 			},
@@ -83,6 +89,7 @@
 				"subtitle": "subtitle",
 				"navbarTitle": "Comment",
 				"link": "/dashboard/comments",
+				"importButton": "",
 				"createButton": "New Comment",
 				"icon": "Dashboard",
 				"hide": true
@@ -104,6 +111,7 @@
 				"subtitle": "subtitle",
 				"navbarTitle": "Fund rule",
 				"link": "/dashboard/fundRules",
+				"importButton": "",
 				"createButton": "New Fund Rule",
 				"icon": "Dashboard"
 			},
@@ -114,6 +122,7 @@
 				"subtitle": "subtitle",
 				"navbarTitle": "Proposal",
 				"link": "/dashboard/proposals",
+				"importButton": "",
 				"createButton": "New Proposal",
 				"icon": "Dashboard"
 			},
@@ -124,6 +133,7 @@
 				"subtitle": "subtitle",
 				"navbarTitle": "Fund",
 				"link": "/dashboard/funds",
+				"importButton": "",
 				"createButton": "New Fund",
 				"icon": "Dashboard"
 			},
@@ -134,6 +144,7 @@
 				"subtitle": "subtitle",
 				"navbarTitle": "Tag",
 				"link": "/dashboard/tags",
+				"importButton": "",
 				"createButton": "New Tag",
 				"icon": "Dashboard"
 			}
@@ -153,6 +164,7 @@
 				"subtitle": "subtitle",
 				"navbarTitle": "Thread",
 				"link": "/dashboard/threads",
+				"importButton": "",
 				"createButton": "New Thread",
 				"icon": "Dashboard"
 			},
@@ -163,6 +175,7 @@
 				"subtitle": "subtitle",
 				"navbarTitle": "spaces",
 				"link": "/dashboard/spaces",
+				"importButton": "",
 				"createButton": "New Space",
 				"icon": "Dashboard"
 			},
@@ -173,6 +186,7 @@
 				"subtitle": "subtitle",
 				"navbarTitle": "User",
 				"link": "/dashboard/users",
+				"importButton": "import Excel",
 				"createButton": "New User",
 				"icon": "Dashboard"
 			},
@@ -183,6 +197,7 @@
 				"subtitle": "subtitle",
 				"navbarTitle": "Maintainer",
 				"link": "/dashboard/maintainers",
+				"importButton": "",
 				"createButton": "New Maintainer",
 				"icon": "Dashboard"
 			}
@@ -201,6 +216,7 @@
 				"subtitle": "subtitle",
 				"navbarTitle": "uploads",
 				"link": "/dashboard/uploads",
+				"importButton": "",
 				"createButton": "New Wallet",
 				"icon": "Dashboard"
 			},
@@ -211,6 +227,7 @@
 				"subtitle": "subtitle",
 				"navbarTitle": "Wallets",
 				"link": "/dashboard/wallets",
+				"importButton": "",
 				"createButton": "New Wallet",
 				"icon": "Dashboard"
 			},
@@ -221,6 +238,7 @@
 				"subtitle": "subtitle",
 				"navbarTitle": "User setting",
 				"link": "/dashboard/userSettings",
+				"importButton": "",
 				"createButton": "",
 				"icon": "Dashboard"
 			},
@@ -231,6 +249,7 @@
 				"subtitle": "subtitle",
 				"navbarTitle": "organizations",
 				"link": "/dashboard/organizations",
+				"importButton": "",
 				"createButton": "New Owner",
 				"icon": "Dashboard"
 			}

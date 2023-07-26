@@ -6,6 +6,7 @@ import maintenances from '../../../../../pages/dashboard/maintenances';
 import { dashboardStyle } from '../../../../../styles/global-useStyles';
 import { useCrudSelectors } from '../../../../../redux/features/crud/crudSlice';
 import { PATH_CLIENT } from '../../../../../path/page-paths';
+import { MaintenanceModel } from '../../../../../types/models/maintenance-model';
 
 const LIST_LIMIT = 5;
 

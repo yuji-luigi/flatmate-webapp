@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { Box, Button, Container, Group, Stack, Sx, createStyles, Text } from '@mantine/core';
 import { useEffect } from 'react';
-import { sectionData } from '../../../data';
+import { flattenSectionData, sectionData } from '../../../data';
 import { useDrawerContext } from '../../../context/DataTableDrawerContext';
 import { BreadcrumbsCustom } from './BreadcrumbsCustom';
 import useLayoutContext from '../../../../hooks/useLayoutContext';
@@ -10,6 +10,7 @@ import { PATH_API } from '../../../path/api-routes';
 import axiosInstance from '../../../utils/axios-instance';
 import { Sections } from '../../../types/general/data/sections-type';
 import { dashboardStyle } from '../../../styles/global-useStyles';
+import { CrudButtons } from './components/CrudButtons';
 
 const useStyles = dashboardStyle;
 function instanceOfParentDataInterface(object: any): object is ParentDataInterface {
@@ -26,10 +27,6 @@ export function TableSectionHeader({
 }) {
   /** define open state for crudDrawer component */
 
-  const { openDrawer } = useDrawerContext();
-
-  const { selectCrudDocument } = useCrudSliceStore();
-
   const { setBreadcrumbs, breadcrumbs, setPrevBreadcrumbs, parentData } = useLayoutContext();
 
   /** use style defined above */
@@ -41,14 +38,6 @@ export function TableSectionHeader({
   let { entity } = query;
   entity = overridingEntity || entity; // if overridingEntity is present entity is set to override one
 
-  /**
-   *  getSection json data to show the page headings  sectionData is array of objects
-   *  so find by data.slice === entity.
-   *  maybe slice rename to entity
-   */
-  const flattenSectionData = sectionData.flatMap((data) =>
-    data.contents.flatMap((content) => content)
-  );
   const section = flattenSectionData.find((data) => data.entity === entity);
 
   useEffect(() => {
@@ -72,45 +61,27 @@ export function TableSectionHeader({
   }
   /** define openDrawer function. Button onClick openDrawer */
 
-  function handleOpenDrawer() {
-    if (typeof entity !== 'undefined') {
-      selectCrudDocument({ entity, document: null });
-    }
-    openDrawer();
-  }
+  // function handleOpenDrawer() {
+  //   if (typeof entity !== 'undefined') {
+  //     selectCrudDocument({ entity, document: null });
+  //   }
+  //   openDrawer();
+  // }
 
   let { title } = section;
   if (query.parentId && instanceOfParentDataInterface(parentData)) {
     title = parentData.name;
   }
-
-  const deleteAllUploads = async () => {
-    console.log('delete all uploads');
-    await axiosInstance.delete(`${PATH_API.uploads}/delete-all`);
-  };
-
   return (
     <>
       <Group className={classes.headerWrapper} sx={sx}>
-        {/* <div > */}
         <Stack align="start" justify="flex-start">
           <Text size={32} fw={700}>
             {title}
           </Text>
           <BreadcrumbsCustom />
         </Stack>
-        {section.createButton && (
-          <Button onClick={handleOpenDrawer} className={classes.button}>
-            <h3>{section.createButton}</h3>
-          </Button>
-        )}
-        {/* {query.entity === 'uploads' && (
-        <Button color="red" onClick={deleteAllUploads} className={classes.button}>
-          <h3>Delete All!!</h3>
-        </Button>
-      )} */}
-        {/* </div> */}
-        {/* <CrudDrawerDefault /> */}
+        <CrudButtons entity={entity} section={section} />
       </Group>
       {children}
     </>

@@ -7,7 +7,7 @@ import Layout from '../../layouts';
 import { sections } from '../../data';
 import Page from '../../components/Page';
 import { CrudDrawerDefault } from '../../components/drawer/CrudDrawerDefault';
-import { useCrudSelectors, useCrudSliceStore } from '../../redux/features/crud/crudSlice';
+import { useCrudSliceStore } from '../../redux/features/crud/crudSlice';
 import { usePaginationContext } from '../../context/PaginationContext';
 import { Sections } from '../../types/general/data/sections-type';
 import { HeaderContainer } from '../../components/datatable/header/HeaderContainer';
@@ -40,12 +40,10 @@ const CrudPage = () => {
 
   return (
     <Page title={`Flatmates | ${entity}`}>
-      {/* <Box px={32}> */}
       <HeaderContainer>
         <TableSectionHeader />
       </HeaderContainer>
       <Tables />
-      {/* </Box> */}
       <CrudDrawerDefault />
     </Page>
   );
