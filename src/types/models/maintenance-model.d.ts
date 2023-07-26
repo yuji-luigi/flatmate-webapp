@@ -1,3 +1,5 @@
+import { CheckInterface } from './check-type';
+
 interface MaintenanceModel extends MongooseBaseModel {
   title: string;
   images: UploadModel[] | [];
@@ -20,6 +22,8 @@ interface MaintenanceModel extends MongooseBaseModel {
   isImportant: boolean;
   owner: IOwner | string;
   mainSpace: SpaceModel;
+  receipts: string | CheckInterface[];
+  invoices: string | CheckInterface[];
   /** formatted in some way. from api schema level */
   _createdAt: string;
   organization: OrganizationModel;

@@ -49,7 +49,6 @@ const SpaceHomeSection = () => {
   const router = useRouter();
 
   const { crudDocuments: maintainers } = useCrudSelectors<MaintainerModel>('maintainers');
-  const { crudDocuments: maintenances } = useCrudSelectors<MaintenanceModel>('maintenances');
 
   const { classes: classes1 } = useStyles();
   const entity = 'spaces';

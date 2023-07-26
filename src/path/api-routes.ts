@@ -43,6 +43,7 @@ export enum PATH_API {
   organizationAll = 'organizations/all',
   organizationCookie = 'organizations/cookie',
   checks = 'checks',
+  checksShowFile = 'checks/show-file',
   getOrganizationsAndSpaces = 'organizations/spaces',
   getOrganizationsForAdmin = 'organizations/selections/super-admin',
 }

@@ -9,16 +9,7 @@ export const SpaceMaintenanceSection = () => {
   return (
     <>
       {crudDocuments.map((maintenance) => (
-        <MaintenanceFeedCard
-          createdAt={maintenance.createdAt}
-          key={maintenance._id}
-          createdBy={maintenance.createdBy}
-          title={maintenance.title}
-          body={maintenance.description}
-          images={maintenance.images}
-          attachments={[]}
-          sx={{ marginBottom: 24 }}
-        />
+        <MaintenanceFeedCard maintenance={maintenance} sx={{ marginBottom: 24 }} />
       ))}
     </>
   );
