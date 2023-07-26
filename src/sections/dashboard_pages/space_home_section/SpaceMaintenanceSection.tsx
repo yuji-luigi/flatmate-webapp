@@ -3,6 +3,7 @@ import { useCrudSelectors } from '../../../redux/features/crud/crudSlice';
 import PostFeedCard from '../../../components/posts/feed/PostFeedCard';
 import { UserModel } from '../../../types/models/user-model';
 import MaintenanceFeedCard from '../../../components/posts/feed/MaintenanceeFeedCard';
+import { MaintenanceModel } from '../../../types/models/maintenance-model';
 
 export const SpaceMaintenanceSection = () => {
   const { crudDocuments } = useCrudSelectors<MaintenanceModel>('maintenances');

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { threadId } from 'worker_threads';
 import { CARD_LINK_PATH, PATH_CLIENT } from '../../path/page-paths';
 import { useRouter } from 'next/router';
+import { MaintenanceModel } from '../../types/models/maintenance-model';
 
 const useStyles = createStyles((theme) => ({
   link: {

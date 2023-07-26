@@ -1,5 +1,6 @@
 import { Stack, Group, Text, Avatar, createStyles, rem } from '@mantine/core';
 import React from 'react';
+import { MaintenanceModel } from '../../../types/models/maintenance-model';
 
 const useStyles = createStyles((theme) => ({
   card: {

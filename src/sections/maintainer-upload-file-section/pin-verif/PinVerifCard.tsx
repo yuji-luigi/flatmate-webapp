@@ -12,6 +12,7 @@ import { Icons } from '../../../data/icons';
 import { ApiError } from 'next/dist/server/api-utils';
 import { useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
 import { sleep } from '../../../utils/helpers/helper-functions';
+import { MaintenanceModel } from '../../../types/models/maintenance-model';
 
 export const PinVerifCard = ({ setPinOk }: { setPinOk: (bool: boolean) => void }) => {
   const { query, push } = useRouter();

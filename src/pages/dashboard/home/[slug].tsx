@@ -6,6 +6,7 @@ import { useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
 import SpaceHomeSection from '../../../sections/dashboard_pages/space_home_section/SpaceHomeSection';
 
 import { MaintainerModel } from '../../../types/models/maintainer-model';
+import { MaintenanceModel } from '../../../types/models/maintenance-model';
 
 interface Props {
   space: SpaceModel;

@@ -2,6 +2,7 @@ import { Card, Group, ActionIcon, createStyles, Divider, Box, Text } from '@mant
 import { IconHeart, IconBookmark, IconShare } from '@tabler/icons-react';
 import React from 'react';
 import CarouselBasic from '../../../components/carousel/CarouselBasic';
+import { MaintenanceModel } from '../../../types/models/maintenance-model';
 
 const useStyles = createStyles((theme) => ({
   // card: {

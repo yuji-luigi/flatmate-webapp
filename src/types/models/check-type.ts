@@ -1,4 +1,5 @@
 import { MaintainerModel } from './maintainer-model';
+import { MaintenanceModel } from './maintenance-model';
 
 export const checkTypes = ['invoices', 'receipts'] as const;
 export type CheckType = (typeof checkTypes)[number];

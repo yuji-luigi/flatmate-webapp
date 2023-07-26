@@ -13,6 +13,7 @@ import { getCookie } from 'cookies-next';
 import SpaceHomeSection from '../../../sections/dashboard_pages/space_home_section/SpaceHomeSection';
 import { useRouter } from 'next/router';
 import { MaintainerModel } from '../../../types/models/maintainer-model';
+import { MaintenanceModel } from '../../../types/models/maintenance-model';
 
 interface Props {
   space: SpaceModel;

@@ -22,6 +22,7 @@ import { useRouter } from 'next/router';
 import { PATH_CLIENT } from '../../../path/page-paths';
 import { sleep } from '../../../utils/helpers/helper-functions';
 import { notifications, showNotification } from '@mantine/notifications';
+import { MaintenanceModel } from '../../../types/models/maintenance-model';
 
 const useStyles = createStyles((theme) => ({
   inputGroup: {

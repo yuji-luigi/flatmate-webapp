@@ -28,6 +28,7 @@ import SinglePostArticleArea from '../../../sections/dashboard_pages/maintenance
 import RelatedArticlesArea from '../../../sections/dashboard_pages/maintenance_detail_page/RelatedArticleArea';
 import SingleMaintenanceHeading from '../../../sections/dashboard_pages/maintenance_detail_page/SingleMaintenanceHeading';
 import { CrudDrawerDefault } from '../../../components/drawer/CrudDrawerDefault';
+import { MaintenanceModel } from '../../../types/models/maintenance-model';
 
 const useStyles = createStyles((theme) => ({
   main: {
