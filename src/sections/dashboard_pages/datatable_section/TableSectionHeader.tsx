@@ -10,7 +10,7 @@ import { PATH_API } from '../../../path/api-routes';
 import axiosInstance from '../../../utils/axios-instance';
 import { Sections } from '../../../types/general/data/sections-type';
 import { dashboardStyle } from '../../../styles/global-useStyles';
-import { CrudButtons } from './components/CrudButtons';
+import { CrudTableButtons } from './components/CrudTableButtons';
 
 const useStyles = dashboardStyle;
 function instanceOfParentDataInterface(object: any): object is ParentDataInterface {
@@ -81,7 +81,7 @@ export function TableSectionHeader({
           </Text>
           <BreadcrumbsCustom />
         </Stack>
-        <CrudButtons entity={entity} section={section} />
+        <CrudTableButtons entity={entity} section={section} />
       </Group>
       {children}
     </>

@@ -34,7 +34,6 @@ export function CrudModal() {
   const { classes } = useStyles();
   const entity = getEntityFromUrl() as Sections;
   const { query } = useRouter();
-  const parentId: string = query.parentId as string;
 
   const isMobile = useMediaQuery('(max-width: 600px)');
   const { isOpenModal: opened, closeModal: close, modals } = use_ModalContext();

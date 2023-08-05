@@ -48,7 +48,7 @@ const useStore = () => {
 
       const newModalValues: ModalProps = {
         id: modalId,
-        centered: false,
+        centered: true,
         sx: {},
         labels: {},
         ...modal,

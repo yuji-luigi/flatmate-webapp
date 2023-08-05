@@ -29,6 +29,7 @@ export enum PATH_API {
    * */
   linkedChildren = 'linkedChildren',
   uploads = 'upload-files',
+  importExcel = 'import-excel',
   uploadsMaintenance = 'upload-files/maintenance-file',
   spaces = 'spaces',
   spaceCookie = 'spaces/cookie',

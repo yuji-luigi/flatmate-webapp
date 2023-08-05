@@ -24,21 +24,6 @@ interface Props {
   entity: Sections;
 }
 function CreationToolBar({ form, formFields, submitButton, entity }: Props) {
-  const imageInputRef = useRef<HTMLInputElement>(null);
-  const attachmentInputRef = useRef<HTMLInputElement>(null);
-
-  const handleImage = () => {
-    if (imageInputRef.current) {
-      imageInputRef.current.click();
-    }
-  };
-
-  const handleAttachment = () => {
-    if (attachmentInputRef.current) {
-      attachmentInputRef.current.click();
-    }
-  };
-
   const uploadFormFields = formFields.filter(
     (field) => field.type === 'image' || field.type === 'attachment'
   ) as UploadFormFieldType[];
