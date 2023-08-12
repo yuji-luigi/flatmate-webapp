@@ -1,3 +1,6 @@
+import { Sections } from '../types/general/data/sections-type';
+import { AuthTokenModel, HiddenAuthTokenInterface } from '../types/models/auth-token-model';
+
 export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 export type GetPathFunc = (path: string) => string;
 /**
@@ -47,7 +50,39 @@ export enum PATH_API {
   checksShowFile = 'checks/show-file',
   getOrganizationsAndSpaces = 'organizations/spaces',
   getOrganizationsForAdmin = 'organizations/selections/super-admin',
+  authTokens = 'auth-tokens',
 }
+
+const all = (entity: string) => `${entity}`;
+const byId = (entity: string, id: string) => `${entity}/${id}`;
+const getExcelEndpoint = (excelRoute: string, entity: string) => `${excelRoute}/${entity}`;
+// const getQrCodeEndpoint = ({qrCodeRoute, entity}) => `${qrCodeRoute}/${entity}`;
+
+export const _PATH_API = {
+  linkedChildren: {
+    root: PATH_API.linkedChildren,
+    get: (entity: string) => all(entity),
+    create: (entity: string) => all(entity),
+    updateById: (entity: string, id: string) => byId(entity, id),
+    getById: (entity: string, id: string) => byId(entity, id),
+  },
+  uploads: {
+    root: PATH_API.uploads,
+    create: () => all(PATH_API.uploads),
+    updateById: (id: string) => byId(PATH_API.uploads, id),
+    getById: (id: string) => byId(PATH_API.uploads, id),
+  },
+  importExcel: {
+    root: PATH_API.importExcel,
+    users: getExcelEndpoint(PATH_API.importExcel, 'users'),
+  },
+  authTokens: {
+    root: PATH_API.authTokens,
+    getById: (id: string) => byId(PATH_API.authTokens, id),
+    qrCode: ({ entity, authToken }: { entity: Sections; authToken: HiddenAuthTokenInterface }) =>
+      `${PATH_API.authTokens}/${entity}/${authToken.linkId}/${authToken._id}`,
+  },
+};
 
 export const PATH_API_DATA_TABLE_ROOT = 'with-pagination';
 

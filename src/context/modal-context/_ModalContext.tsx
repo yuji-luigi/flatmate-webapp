@@ -39,7 +39,7 @@ const useStore = () => {
   // Function to open a confirm modal
   const openConfirmModal = useCallback(
     (
-      modal: // ...otherProps
+      params: // ...otherProps
       OpenConfirmModalParams
     ) => {
       setIsModalOpen(true);
@@ -51,7 +51,7 @@ const useStore = () => {
         centered: true,
         sx: {},
         labels: {},
-        ...modal,
+        ...params,
       };
 
       // Add the modal to the modals array

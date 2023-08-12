@@ -10,6 +10,8 @@ import { DeleteAlertModal } from '../../modal/DeleteAlertModal';
 import { use_ModalContext } from '../../../context/modal-context/_ModalContext';
 import { Text } from '@mantine/core';
 import { Sections } from '../../../types/general/data/sections-type';
+import { IconQrcode } from '@tabler/icons-react';
+import { QrCodeButton } from './tablecell/action-cells/QrCodeButton';
 export function ActionCells({
   rowData,
   overridingEntity,
@@ -77,9 +79,13 @@ export function ActionCells({
         <ActionIcon onClick={onModify}>
           <IconPencil size={16} stroke={1.5} />
         </ActionIcon>
+        <ActionIcon onClick={onModify}>
+          <IconPencil size={16} stroke={1.5} />
+        </ActionIcon>
         <ActionIcon color="red" onClick={onDelete}>
           <IconTrash size={16} stroke={1.5} />
         </ActionIcon>
+        {rowData.authToken && <QrCodeButton authToken={rowData.authToken} />}
       </Group>
     </td>
   );
