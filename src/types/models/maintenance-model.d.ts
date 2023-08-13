@@ -26,5 +26,6 @@ interface MaintenanceModel extends MongooseBaseModel {
   invoices: string | CheckInterface[];
   /** formatted in some way. from api schema level */
   _createdAt: string;
+  createdBy: IUser;
   organization: OrganizationModel;
 }

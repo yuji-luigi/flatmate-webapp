@@ -14,6 +14,8 @@ const UserRegisterByTokenPage = () => {
   const [pinOk, setPinOk] = useState<boolean>(false); // todo: need to check if pin is ok or not
   const [checkType, setCheckType] = useState<CheckType | null>(null); // todo: need to check if pin is ok or not
   const [submitting, setSubmitting] = useState<boolean>(false);
+  const pinVerifEndpoint = `auth-tokens`;
+
   return (
     <Container className={classes.container}>
       {!checkType && (
@@ -43,7 +45,7 @@ const UserRegisterByTokenPage = () => {
         )}
       </Transition>
 
-      {!pinOk && <PinVerifCard setPinOk={setPinOk} />}
+      {!pinOk && <PinVerifCard setPinOk={setPinOk} endpoint={pinVerifEndpoint} />}
     </Container>
   );
 };

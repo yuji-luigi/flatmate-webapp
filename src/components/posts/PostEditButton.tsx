@@ -41,7 +41,7 @@ const PostEditButton = ({ data, entity }: { data: AllModels; entity: Sections })
   };
   return (
     <>
-      {(user?._id === data.user._id || user?.role === 'super_admin') && (
+      {(user?._id === data.createdBy._id || user?.role === 'super_admin') && (
         <Group position="right" mb={10}>
           <Menu shadow="lg">
             <Menu.Target>

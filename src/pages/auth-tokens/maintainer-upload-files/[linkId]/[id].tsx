@@ -15,7 +15,7 @@ const MaintainerUploadFileAuthPage = () => {
   const [checkType, setCheckType] = useState<CheckType | null>(null); // todo: need to check if pin is ok or not
   const [submitting, setSubmitting] = useState<boolean>(false);
 
-  const endpoint = `${PATH_API.maintenanceFileUpload}/${query.linkId}/${query.id}`;
+  const pinVerifEndpoint = `${PATH_API.maintenanceFileUpload}/${query.linkId}/${query.id}`;
 
   return (
     <Container className={classes.container}>
@@ -46,7 +46,7 @@ const MaintainerUploadFileAuthPage = () => {
         )}
       </Transition>
 
-      {!pinOk && <PinVerifCard setPinOk={setPinOk} />}
+      {!pinOk && <PinVerifCard setPinOk={setPinOk} endpoint={pinVerifEndpoint} />}
     </Container>
   );
 };

@@ -26,7 +26,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/maintenances`, {
     headers: {
       Authorization: `Bearer ${jwtToken}`,
-      // 'Content-Type': 'application/x-www-form-urlencoded',
       space: context.req.cookies.space || '',
       organization: context.req.cookies.organization || '',
     },

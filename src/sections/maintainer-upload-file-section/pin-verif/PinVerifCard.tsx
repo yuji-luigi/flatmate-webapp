@@ -14,12 +14,17 @@ import { useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
 import { sleep } from '../../../utils/helpers/helper-functions';
 import { MaintenanceModel } from '../../../types/models/maintenance-model';
 
-export const PinVerifCard = ({ setPinOk }: { setPinOk: (bool: boolean) => void }) => {
+export const PinVerifCard = ({
+  setPinOk,
+  endpoint,
+}: {
+  setPinOk: (bool: boolean) => void;
+  endpoint: string;
+}) => {
   const { query, push } = useRouter();
   const [submitting, setSubmitting] = useState<boolean>(false);
   const { setSingleCrudDocument } = useCrudSliceStore();
 
-  const endpoint = `${PATH_API.maintenanceAuthFileUpload}/${query.linkId}/${query.id}`;
   const handleChange = (value: string) => {
     if (value.length === 6) {
       setSubmitting(true);

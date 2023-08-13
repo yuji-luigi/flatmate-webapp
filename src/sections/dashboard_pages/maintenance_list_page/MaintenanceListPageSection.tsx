@@ -64,7 +64,6 @@ const useStyles = createStyles((theme) => ({
 export default function MaintenanceListPageSection() {
   const { classes, cx, theme } = useStyles();
   const { crudDocuments: maintenances } = useCrudSelectors('maintenances');
-
   return (
     // <Container mx="auto" py="xl">
     <Box
