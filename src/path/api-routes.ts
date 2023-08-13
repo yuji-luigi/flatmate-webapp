@@ -79,8 +79,6 @@ export const _PATH_API = {
   authTokens: {
     root: PATH_API.authTokens,
     getById: (id: string) => byId(PATH_API.authTokens, id),
-    qrCode: ({ entity, authToken }: { entity: Sections; authToken: HiddenAuthTokenInterface }) =>
-      `${PATH_API.authTokens}/${entity}/${authToken.linkId}/${authToken._id}`,
   },
 };
 

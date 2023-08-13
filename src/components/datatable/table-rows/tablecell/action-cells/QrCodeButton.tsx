@@ -11,6 +11,7 @@ import { API_BASE_URL } from '../../../../../path/api-routes';
 import { _PATH_API } from '../../../../../path/api-routes';
 import { getEntityFromUrl } from '../../../../../utils/helpers/helper-functions';
 import axiosInstance, { AxiosResDataGeneric } from '../../../../../utils/axios-instance';
+import { _PATH_CLIENT } from '../../../../../path/page-paths';
 const getQrCodeUrl = (authToken: AuthTokenModel) => {
   return `${API_BASE_URL}/${authToken._id}`;
 };
@@ -29,7 +30,8 @@ export const QrCodeButton = ({ authToken }: { authToken: string }) => {
       type: 'custom',
       children: (
         <Card sx={{ background: 'white' }}>
-          <QRCode value={_PATH_API.authTokens.qrCode({ entity: 'users', authToken: payload })} />
+          {_PATH_CLIENT.authTokens.qrCode({ entity: 'users', authToken: payload })}
+          <QRCode value={_PATH_CLIENT.authTokens.qrCode({ entity: 'users', authToken: payload })} />
         </Card>
       ),
       onConfirm: () => {},

@@ -17,6 +17,12 @@ const nextConfig = (phase) => {
       if (isStaging) return 'http://generic.host:5001/api/v1';
       return 'RESTURL_SPEAKERS:not (isDev,isProd && !isStaging,isProd && isStaging)';
     })(),
+    NEXT_PUBLIC_FRONTEND_URL: (() => {
+      if (isDev) return 'http://generic.host:3000';
+      if (isProd) return 'https://flatmates.yuji-luigi.com';
+      if (isStaging) return 'http://generic.host:3000';
+      return 'RESTURL_SPEAKERS:not (isDev,isProd && !isStaging,isProd && isStaging)';
+    })(),
     NEXT_PUBLIC_SSG_SECRET: 'secretforssgishereman%^()_',
   };
 
