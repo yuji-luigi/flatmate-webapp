@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { PATH_API } from '../../../../path/api-routes';
 import { Container, Transition } from '@mantine/core';
-import classes from './FileAuth.module.css';
+import classes from '../../FileAuth.module.css';
 
 import { useState } from 'react';
 import { PinVerifCard } from '../../../../sections/maintainer-upload-file-section/pin-verif/PinVerifCard';
