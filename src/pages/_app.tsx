@@ -54,9 +54,10 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
           <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
             <MantineProvider
               theme={{
-                colors: myColors,
+                // colors: myColors,
                 primaryColor: 'yellow',
-                // primaryColor: 'sw-dark-blue',
+                // Default gradient used in components that support `variant="gradient"` (Button, ThemeIcon, etc.)
+                defaultGradient: { deg: 45, from: 'yellow', to: 'gold' }, // primaryColor: 'sw-dark-blue',
                 colorScheme,
                 fontFamily: 'Lato, sans-serif',
               }}

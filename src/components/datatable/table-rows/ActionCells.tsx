@@ -85,7 +85,7 @@ export function ActionCells({
         <ActionIcon color="red" onClick={onDelete}>
           <IconTrash size={16} stroke={1.5} />
         </ActionIcon>
-        {rowData.authToken && <QrCodeButton authToken={rowData.authToken} />}
+        {rowData.authToken && <QrCodeButton rowData={rowData} />}
       </Group>
     </td>
   );

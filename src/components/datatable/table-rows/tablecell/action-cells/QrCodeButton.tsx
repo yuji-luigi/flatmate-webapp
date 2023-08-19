@@ -1,13 +1,13 @@
 import { ActionIcon, Box, Button, Card, Group, Stack } from '@mantine/core';
 import { IconQrcode } from '@tabler/icons-react';
-import React from 'react';
+import React, { useState } from 'react';
 import {
   AuthTokenModel,
   HiddenAuthTokenInterface,
 } from '../../../../../types/models/auth-token-model';
 import { use_ModalContext } from '../../../../../context/modal-context/_ModalContext';
 import QRCode from 'react-qr-code';
-import { API_BASE_URL } from '../../../../../path/api-routes';
+import { API_BASE_URL, PATH_API } from '../../../../../path/api-routes';
 import { _PATH_API } from '../../../../../path/api-routes';
 import { getEntityFromUrl } from '../../../../../utils/helpers/helper-functions';
 import axiosInstance, { AxiosResDataGeneric } from '../../../../../utils/axios-instance';
@@ -16,17 +16,26 @@ const getQrCodeUrl = (authToken: AuthTokenModel) => {
   return `${API_BASE_URL}/${authToken._id}`;
 };
 
-export const QrCodeButton = ({ authToken }: { authToken: string }) => {
+export const QrCodeButton = ({ rowData }: { rowData: any }) => {
   const { openConfirmModal } = use_ModalContext();
+  const { authToken: authTokenId }: { authToken: string } = rowData;
   const _entity = getEntityFromUrl();
+  const [authToken, setAuthToken] = useState<null | HiddenAuthTokenInterface>(null);
+
   const sendEmailToUser = async () => {
-    console.log('send email to user');
+    try {
+      const rawResult = await axiosInstance.get(
+        _PATH_API.users.sendTokenEmail({ id: rowData._id })
+      );
+      console.log(rawResult);
+    } catch (error) {}
   };
   const generateQrCode = async () => {
     const rawAuthToken = await axiosInstance.get<AxiosResDataGeneric<HiddenAuthTokenInterface>>(
-      _PATH_API.authTokens.getById(authToken)
+      _PATH_API.authTokens.getById(authTokenId)
     );
     const payload = rawAuthToken.data.data;
+    setAuthToken(payload);
     openConfirmModal({
       title: 'QR Code',
       type: 'custom',

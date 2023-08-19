@@ -106,7 +106,7 @@ const ProfileCover = ({
 
   const { classes } = useStyles();
 
-  const { selectDocumentById, selectedCrudDocument } = useCrudSelectors(_entity);
+  const { selectDocumentById, crudDocument } = useCrudSelectors(_entity);
   const coverInputRef = useRef<HTMLInputElement>(null);
   const { openConfirmModal } = use_ModalContext();
 
@@ -158,10 +158,10 @@ const ProfileCover = ({
   const handleEditClicked = () => {
     console.log('edit clicked');
     if (!formFields) return console.log('formFields not defined');
-    console.log(selectedCrudDocument);
+    console.log(crudDocument);
     openConfirmModal({
       type: 'crud',
-      crudDocument: selectedCrudDocument,
+      crudDocument: crudDocument,
       formFields,
       title: `Edit ${_entity}`,
       children: undefined,

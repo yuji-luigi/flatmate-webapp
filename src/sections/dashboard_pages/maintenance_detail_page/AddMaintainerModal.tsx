@@ -39,8 +39,8 @@ const AddMaintainerModal = () => {
   const { user } = useAuth();
   const router = useRouter();
   const _entity = getEntityFromUrl();
-  const { selectedCrudDocument, crudError, crudStatus } = useCrudSelectors(_entity);
-  const { setSingleCrudDocument, resetCrudStatus } = useCrudSliceStore();
+  const { crudDocument, crudError, crudStatus } = useCrudSelectors(_entity);
+  const { setCrudDocument, resetCrudStatus } = useCrudSliceStore();
 
   const form = useForm({
     initialValues: {
@@ -73,11 +73,11 @@ const AddMaintainerModal = () => {
     // call api to add maintainer with axiosInstance in utils
     try {
       const rawMaintainer = await axiosInstance.put(
-        `${PATH_API.maintainers}/${selectedCrudDocument?._id}`,
+        `${PATH_API.maintainers}/${crudDocument?._id}`,
         form.values
       );
       // update crud document
-      setSingleCrudDocument({ entity: _entity, document: rawMaintainer.data.data });
+      setCrudDocument({ entity: _entity, document: rawMaintainer.data.data });
       notifications.show({ id: '1', message: 'Maintainer added to building' });
       closeModal();
     } catch (error: any) {

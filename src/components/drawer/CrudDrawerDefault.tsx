@@ -60,11 +60,7 @@ export function CrudDrawerDefault({ overridingEntity = '' }: { overridingEntity?
     updateCrudDocument,
     createLinkedChildDocumentWithPagination,
   } = useCrudSliceStore();
-  const {
-    selectedCrudDocument: singleCrudDocument,
-    crudStatus,
-    crudError,
-  } = useCrudSelectors(entity);
+  const { crudDocument: singleCrudDocument, crudStatus, crudError } = useCrudSelectors(entity);
 
   /**
    * initialValues

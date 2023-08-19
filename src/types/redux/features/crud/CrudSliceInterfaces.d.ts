@@ -57,7 +57,7 @@ interface UseCrudSliceReturnTypes {
   /** Returns Array of Documents of the entity: whole array of entity */
   crudDocuments: Array<AllModels>;
   /** Returns selected Document of the entity. need to set to null every time creation of new document happens  */
-  selectedCrudDocument: AllModels | null;
+  crudDocument: AllModels | null;
   /** returns string if error is present. to show flash on the screen */
   crudError: string | null | undefined;
   /** returns string if api sent message */

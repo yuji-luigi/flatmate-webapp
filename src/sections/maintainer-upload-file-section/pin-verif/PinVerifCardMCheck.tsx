@@ -26,7 +26,7 @@ export const PinVerifCardMCheck = ({
 }) => {
   const { query, push } = useRouter();
   const [submitting, setSubmitting] = useState<boolean>(false);
-  const { setSingleCrudDocument } = useCrudSliceStore();
+  const { setCrudDocument } = useCrudSliceStore();
 
   const handleChange = (value: string) => {
     if (value.length === 6) {
@@ -40,7 +40,7 @@ export const PinVerifCardMCheck = ({
         const rawRes = await axiosInstance.post<
           AxiosResDataGeneric<{ maintenance: MaintenanceModel }>
         >(endpoint, { pin: value });
-        setSingleCrudDocument({ entity: 'maintenances', document: rawRes.data.data.maintenance });
+        setCrudDocument({ entity: 'maintenances', document: rawRes.data.data.maintenance });
         await sleep(1000);
         setPinOk(true);
       } catch (error: any) {

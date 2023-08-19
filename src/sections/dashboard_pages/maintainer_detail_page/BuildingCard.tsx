@@ -9,7 +9,7 @@ import { getEntityFromUrl } from '../../../utils/helpers/helper-functions';
 import { Sections } from '../../../types/general/data/sections-type';
 export const BuildingCard = () => {
   const _entity = getEntityFromUrl();
-  const { selectedCrudDocument: document } = useCrudSelectors(_entity as Sections);
+  const { crudDocument: document } = useCrudSelectors(_entity as Sections);
   if (!document.spaces) return <Skeleton />;
   return (
     <CardWithTitle titleSx={{ fontSize: 24 }} title="Condominium/Office">

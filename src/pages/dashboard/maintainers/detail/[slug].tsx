@@ -75,14 +75,14 @@ const MaintainerDetailsPage = () => {
     isLoading,
   } = useSWR(['maintainer', router.query.slug], () => getMaintainer(router.query.slug as string));
 
-  const { setSingleCrudDocument } = useCrudSliceStore();
-  const { selectedCrudDocument: document } = useCrudSelectors(_entity);
+  const { setCrudDocument } = useCrudSliceStore();
+  const { crudDocument: document } = useCrudSelectors(_entity);
 
   const isMobile = useMediaQuery('(max-width: 800px)');
 
   useEffect(() => {
     if (fetchedData) {
-      setSingleCrudDocument({ entity: _entity, document: fetchedData });
+      setCrudDocument({ entity: _entity, document: fetchedData });
     }
   }, [fetchedData?._id]);
 

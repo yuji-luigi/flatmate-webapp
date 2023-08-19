@@ -11,11 +11,11 @@ import { notifications } from '@mantine/notifications';
 
 export const AddRemoveButton = ({ onClick }: { onClick: () => void }) => {
   const _entity = getEntityFromUrl();
-  const { setSingleCrudDocument } = useCrudSliceStore();
+  const { setCrudDocument } = useCrudSliceStore();
 
   const [submitting, setSubmitting] = useState(false);
 
-  const { selectedCrudDocument: document } = useCrudSelectors<MaintainerModel>(_entity);
+  const { crudDocument: document } = useCrudSelectors<MaintainerModel>(_entity);
   const { currentSpace } = useCookieContext();
   const { openConfirmModal } = use_ModalContext();
   const handleRemove = function () {
@@ -52,7 +52,7 @@ export const AddRemoveButton = ({ onClick }: { onClick: () => void }) => {
       const res = await axiosInstance.delete(
         `${PATH_API.maintainersSpace}?maintainer=${document._id}&space=${currentSpace._id}`
       );
-      setSingleCrudDocument({ entity: _entity, document: res.data.data });
+      setCrudDocument({ entity: _entity, document: res.data.data });
       notifications.show({
         title: 'Success',
         message: 'Maintainer removed from building',

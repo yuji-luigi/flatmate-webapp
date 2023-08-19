@@ -16,10 +16,10 @@ interface Props {
 }
 
 export default function HomePageSlug({ space, maintainers, maintenances, threads }: Props) {
-  const { setSingleCrudDocument, setCrudDocuments } = useCrudSliceStore();
+  const { setCrudDocument, setCrudDocuments } = useCrudSliceStore();
 
   useEffect(() => {
-    setSingleCrudDocument({ entity: 'spaces', document: space });
+    setCrudDocument({ entity: 'spaces', document: space });
     setCrudDocuments({ entity: 'maintainers', documents: maintainers });
     setCrudDocuments({ entity: 'maintenances', documents: maintenances });
     setCrudDocuments({ entity: 'threads', documents: threads });

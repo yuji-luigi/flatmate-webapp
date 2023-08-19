@@ -25,7 +25,7 @@ export const usersTableData: Array<FormFieldTypes> = [
     type: 'static-select',
     options: [{ label: 'admin', value: 'admin' }, 'user'],
     // options: [{ value: 'static-slect-value', label: 'static-label' }],
-
+    grantTo: ['super_admin', 'admin'],
     required: true,
     priority: 3,
   },
@@ -49,7 +49,8 @@ export const usersTableData: Array<FormFieldTypes> = [
     id: 'password',
     name: 'password',
     label: 'Password',
-    type: 'text',
+    type: 'password',
+    password: true,
     required: true,
     noTable: true,
     priority: 6,
@@ -62,8 +63,11 @@ export const usersTableData: Array<FormFieldTypes> = [
     _entity: 'spaces',
     query: { isMain: true },
     selectValues: ['name'],
+    grantTo: ['super_admin', 'admin'],
+
     multi: true,
     required: false,
+
     priority: 100,
   },
   // {

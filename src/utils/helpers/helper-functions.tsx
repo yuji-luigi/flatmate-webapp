@@ -129,7 +129,10 @@ export const convertToSelectItems = (
   });
 };
 
-export function getEntityFromUrl(url = window.location.pathname, keyword = 'dashboard'): Sections {
+export function getEntityFromUrl(
+  url: string = window.location.pathname,
+  keyword: string = 'dashboard'
+): Sections {
   const regex = new RegExp(`${keyword}\\/(\\w+)`);
   let match = regex.exec(url)?.[1];
   match = transformMatchForExceptions(match);
@@ -137,7 +140,6 @@ export function getEntityFromUrl(url = window.location.pathname, keyword = 'dash
     return match;
   }
   console.log(match);
-  debugger;
   throw new Error('entity is not valid. getEntityFromUrl');
 }
 

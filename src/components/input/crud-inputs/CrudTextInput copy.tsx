@@ -1,18 +1,19 @@
-import { TextInput } from '@mantine/core';
+import { PasswordInput, TextInput } from '@mantine/core';
 import React from 'react';
 import { UseFormReturnTypeCustom } from '../input_interfaces/useForm_interface';
 import {
   FormFieldInterface,
+  PasswordFormType,
   TextFormType,
 } from '../../../types/general/data/data-table/formField-types';
 
 interface Prop {
-  formField: TextFormType;
+  formField: PasswordFormType;
   form: UseFormReturnTypeCustom;
 }
-const CrudTextInput = ({ formField, form, ...others }: Prop) => {
+const CrudPasswordInput = ({ formField, form, ...others }: Prop) => {
   return (
-    <TextInput
+    <PasswordInput
       key={formField.id}
       name={formField.name}
       label={formField.label}
@@ -20,10 +21,10 @@ const CrudTextInput = ({ formField, form, ...others }: Prop) => {
       size="md"
       // sx={{ width: '100%' }}
       mt={10}
-      {...others}
+      // {...others}
       {...form.getInputProps(formField.name || formField.id)}
     />
   );
 };
 
-export default CrudTextInput;
+export default CrudPasswordInput;

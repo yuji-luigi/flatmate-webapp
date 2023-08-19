@@ -12,6 +12,7 @@ import {
   FormFieldTypes,
   SelectFormType,
 } from '../../types/general/data/data-table/formField-types';
+import CrudPasswordInput from './crud-inputs/CrudTextInput copy';
 // import { FormFieldInterface } from '../../types/general/data/dataTable/formField-types';
 interface Props {
   formField: FormFieldTypes;
@@ -26,6 +27,8 @@ const FormFields = ({ formField, form, ...others }: Props) => {
   switch (formField.type) {
     case 'text':
       return <CrudTextInput form={form} formField={formField} {...others} />;
+    case 'password':
+      return <CrudPasswordInput form={form} formField={formField} {...others} />;
     case 'text-area':
       return <CrudTextArea form={form} formField={formField} {...others} />;
     case 'select':

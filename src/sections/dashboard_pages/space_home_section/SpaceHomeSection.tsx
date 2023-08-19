@@ -57,7 +57,7 @@ const SpaceHomeSection = () => {
   // put 2 styles together in one object
   const classes = { ...classes1, ...classes2 };
   const isMobile = useMediaQuery('(max-width: 800px)');
-  const { selectedCrudDocument: document } = useCrudSelectors<SpaceModel>(entity);
+  const { crudDocument: document } = useCrudSelectors<SpaceModel>(entity);
 
   // const profileSide = <ProfileSide contents={null}></ProfileSide>;
   const profileSide = (

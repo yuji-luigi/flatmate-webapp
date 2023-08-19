@@ -1,4 +1,5 @@
 import { SelectItem, SelectProps, TextInputProps, TextareaProps } from '@mantine/core';
+import { PasswordInputProps } from '.';
 
 type BaseFormType = {
   id: string;
@@ -17,7 +18,10 @@ type BaseFormType = {
   noTable?: boolean;
 };
 
-export type TextFormType = { type: 'text' | 'number' } & BaseFormType & TextInputProps;
+export type TextFormType = { type: 'text' | 'number'; password?: boolean } & BaseFormType &
+  TextInputProps;
+
+export type PasswordFormType = { type: 'password' } & BaseFormType & PasswordInputProps;
 
 type BaseSelectFormType = {
   filterSearch?: boolean;
@@ -89,6 +93,7 @@ export type FormFieldTypes =
   | ColorFormFieldType
   | LinkChildrenFormFieldType
   | CustomFormFieldType
+  | PasswordFormType
   | UploadFormFieldType;
 
 export interface FormFieldInterface {

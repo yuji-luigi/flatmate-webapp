@@ -43,7 +43,7 @@ export const CheckInputTabCard = ({
   const { classes } = useStyles();
   const router = useRouter();
   const [submitting, setSubmitting] = useState<boolean>(false);
-  const { selectedCrudDocument: maintenance } = useCrudSelectors<MaintenanceModel>('maintenances');
+  const { crudDocument: maintenance } = useCrudSelectors<MaintenanceModel>('maintenances');
   const form = useForm({
     initialValues: {
       invoice: new File([], 'invoice'),

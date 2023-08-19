@@ -7,7 +7,7 @@ import { sleep } from '../../src/utils/helpers/helper-functions';
 // const useCrudStatusAlert = (entity) => {
 
 //   const {
-//     selectedCrudDocument: singleCrudDocument,
+//     crudDocument: singleCrudDocument,
 //     crudStatus,
 //     crudError,
 //   } = useCrudSelectors(entity);

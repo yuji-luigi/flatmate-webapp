@@ -82,7 +82,7 @@ export const crudSlice = createSlice({
     resetStatus: (state) => {
       state.status = 'idle';
     },
-    setSingleCrudDocument: (state, action) => {
+    setCrudDocument: (state, action) => {
       const { document, entity } = action.payload;
       state.reduxdb[entity].singleCrudDocument = document;
     },
@@ -246,7 +246,7 @@ export const {
   setSubmitting,
   deleteCrud,
   resetStatus,
-  setSingleCrudDocument,
+  setCrudDocument,
   updateCrudDocumentInStore,
 } = crudSlice.actions;
 
@@ -301,8 +301,8 @@ export const useCrudSliceStore = () => {
     setCrudDocuments(data: SetCrudDocumentsPayload) {
       appDispatch(setCrudDocuments(data));
     },
-    setSingleCrudDocument(data: SetCrudDocumentPayload) {
-      appDispatch(setSingleCrudDocument(data));
+    setCrudDocument(data: SetCrudDocumentPayload) {
+      appDispatch(setCrudDocument(data));
     },
     setSubmitting(bool: boolean) {
       appDispatch(setSubmitting(bool));
@@ -335,7 +335,7 @@ const useIsChildrenTree = (entity?: Sections): boolean =>
   useAppSelector((state) => state.crud.reduxdb?.[entity || '']?.isChildrenTree);
 
 /** Returns selected Document of the entity or if not selected returns null  */
-const useSelectedDocument = <ModelType>(entity?: Sections): ModelType =>
+const useCrudDocument = <ModelType>(entity?: Sections): ModelType =>
   useAppSelector((state) => state.crud.reduxdb?.[entity || '']?.singleCrudDocument || {});
 
 /** Hook for selector. this time need do pass entity when initialize the hook. */
@@ -343,7 +343,7 @@ export const useCrudSelectors = <ModelType = AllModels>(entity?: Sections) => ({
   /** Returns Array of Documents of the entity: whole array of entity */
   crudDocuments: useCrudDocuments<ModelType>(entity) || [],
   /** Returns selected Document of the entity */
-  selectedCrudDocument: useSelectedDocument<ModelType>(entity) || null,
+  crudDocument: useCrudDocument<ModelType>(entity) || null,
   /** returns string if error is present. to show flash on the screen */
   crudError: useCrudError(),
   /** returns string if api sent message */

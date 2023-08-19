@@ -51,6 +51,7 @@ export enum PATH_API {
   getOrganizationsAndSpaces = 'organizations/spaces',
   getOrganizationsForAdmin = 'organizations/selections/super-admin',
   authTokens = 'auth-tokens',
+  users = 'users',
 }
 
 const all = (entity: string) => `${entity}`;
@@ -78,10 +79,16 @@ export const _PATH_API = {
   },
   authTokens: {
     root: PATH_API.authTokens,
-    verifyPin: ({ linkId, id }: { linkId?: string; id?: string }) =>
-      `${PATH_API.authTokens}/verify-pin/${linkId}/${id}`,
+    sendEmail: ({}) => all(PATH_API.authTokens),
+    verifyPin: ({ linkId, id, entity }: { linkId?: string; id?: string; entity: string }) =>
+      `${PATH_API.authTokens}/verify-pin/${linkId}/${id}/${entity}`,
     getById: (id: string) => byId(PATH_API.authTokens, id),
     verifUser: (id: string) => byId(PATH_API.authTokens, id),
+  },
+  users: {
+    root: PATH_API.users,
+    sendTokenEmail: ({ id }: { id: string }) => `${PATH_API.users}/send-token-email/${id}`,
+    updateById: (id: string) => byId(PATH_API.users, id),
   },
 };
 

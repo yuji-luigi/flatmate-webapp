@@ -1,7 +1,7 @@
 import { Card, LoadingOverlay, Stack, Group, Title, PinInput } from '@mantine/core';
 import React, { useCallback, useState } from 'react';
 import { PATH_IMAGE } from '../../../lib/image-paths';
-import classes from '../maintainer-upload-file-section.module.css';
+import classes from './PinVerifCard.module.css';
 import { useRouter } from 'next/router';
 import { _PATH_API } from '../../../path/api-routes';
 import axiosInstance, { AxiosResDataGeneric } from '../../../utils/axios-instance';
@@ -9,14 +9,18 @@ import useSWR from 'swr';
 import Image from 'next/image';
 import { showNotification } from '@mantine/notifications';
 import { Icons } from '../../../data/icons';
+import { useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
 
+export interface PinVerifCardProps {
+  setPinOk: (bool: boolean) => void;
+}
 /**
  * @description Send pin code get boolean from server
  */
-export const PinVerifCard = ({ setPinOk }: { setPinOk: (bool: boolean) => void }) => {
+export const UserRegisterPinVerifCard = ({ setPinOk }: PinVerifCardProps) => {
   const { query }: { query: ParsedQueryCustom } = useRouter();
   const [submitting, setSubmitting] = useState<boolean>(false);
-
+  const { setCrudDocument } = useCrudSliceStore();
   const handleChange = (value: string) => {
     if (value.length === 6) {
       setSubmitting(true);
@@ -27,11 +31,12 @@ export const PinVerifCard = ({ setPinOk }: { setPinOk: (bool: boolean) => void }
     async (value: string) => {
       try {
         const rawRes = await axiosInstance.post<AxiosResDataGeneric<boolean>>(
-          _PATH_API.authTokens.verifyPin({ id: query.id, linkId: query.linkId }),
-          { pin: value }
+          _PATH_API.authTokens.verifyPin({ id: query.id, linkId: query.linkId, entity: 'users' }),
+          { pin: value, entity: 'users' }
         );
         //
-        setPinOk(rawRes.data.data);
+        setPinOk(true);
+        setCrudDocument({ entity: 'users', document: rawRes.data.data });
       } catch (error: any) {
         showNotification({
           icon: <Icons.alert />,

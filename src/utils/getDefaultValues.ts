@@ -54,7 +54,7 @@ export function getDefaultValues(
       obj[path] = crudDocument?.[path] || null;
       // password is always empty
       if (path === 'password') {
-        obj[path] = undefined;
+        obj[path] = '';
       }
       return obj;
     }

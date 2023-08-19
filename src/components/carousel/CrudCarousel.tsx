@@ -26,7 +26,7 @@ function CrudCarousel({
   const {} = useCrudSelectors();
   // const currentImage= useRef<File | UploadModel>()
   const currentImage = images[currentImageIndex];
-  const { selectedCrudDocument } = useCrudSelectors(entity);
+  const { crudDocument } = useCrudSelectors(entity);
   const handleDelete = async (image: ImageType) => {
     const isFile = image instanceof File;
     console.log(`root entity for the deleting image is ${entity}`);
@@ -35,7 +35,7 @@ function CrudCarousel({
     }
     if (window.confirm('Are you sure you want to delete this image?')) {
       const res = await axiosInstance.delete(
-        `${PATH_API.uploads}/${entity}/${selectedCrudDocument._id}/${formField.name}/${image._id}`
+        `${PATH_API.uploads}/${entity}/${crudDocument._id}/${formField.name}/${image._id}`
       );
       console.log(res.data.data);
     }
