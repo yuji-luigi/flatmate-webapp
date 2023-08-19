@@ -4,7 +4,7 @@ import { Container, Transition } from '@mantine/core';
 import classes from '../../FileAuth.module.css';
 
 import { useState } from 'react';
-import { PinVerifCard } from '../../../../sections/maintainer-upload-file-section/pin-verif/PinVerifCard';
+import { PinVerifCardMCheck } from '../../../../sections/maintainer-upload-file-section/pin-verif/PinVerifCardMCheck';
 import { CheckInputTabCard } from '../../../../sections/maintainer-upload-file-section/invoice-receipt-input/CheckInputTabCard';
 import { ChooseTypeCard } from '../../../../sections/maintainer-upload-file-section/ChooseTypeCard';
 import { CheckType } from '../../../../types/models/check-type';
@@ -46,7 +46,7 @@ const MaintainerUploadFileAuthPage = () => {
         )}
       </Transition>
 
-      {!pinOk && <PinVerifCard setPinOk={setPinOk} endpoint={pinVerifEndpoint} />}
+      {!pinOk && <PinVerifCardMCheck setPinOk={setPinOk} endpoint={pinVerifEndpoint} />}
     </Container>
   );
 };

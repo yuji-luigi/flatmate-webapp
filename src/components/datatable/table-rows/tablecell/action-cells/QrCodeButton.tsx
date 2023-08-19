@@ -1,4 +1,4 @@
-import { ActionIcon, Card } from '@mantine/core';
+import { ActionIcon, Box, Button, Card, Group, Stack } from '@mantine/core';
 import { IconQrcode } from '@tabler/icons-react';
 import React from 'react';
 import {
@@ -19,8 +19,10 @@ const getQrCodeUrl = (authToken: AuthTokenModel) => {
 export const QrCodeButton = ({ authToken }: { authToken: string }) => {
   const { openConfirmModal } = use_ModalContext();
   const _entity = getEntityFromUrl();
+  const sendEmailToUser = async () => {
+    console.log('send email to user');
+  };
   const generateQrCode = async () => {
-    console.log(_PATH_API.authTokens.getById(authToken));
     const rawAuthToken = await axiosInstance.get<AxiosResDataGeneric<HiddenAuthTokenInterface>>(
       _PATH_API.authTokens.getById(authToken)
     );
@@ -29,10 +31,20 @@ export const QrCodeButton = ({ authToken }: { authToken: string }) => {
       title: 'QR Code',
       type: 'custom',
       children: (
-        <Card sx={{ background: 'white' }}>
-          {_PATH_CLIENT.authTokens.qrCode({ entity: 'users', authToken: payload })}
-          <QRCode value={_PATH_CLIENT.authTokens.qrCode({ entity: 'users', authToken: payload })} />
-        </Card>
+        <>
+          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+            <Box sx={{ background: 'white', display: 'flex', justifyContent: 'center' }}>
+              <QRCode
+                style={{ padding: '10px' }}
+                value={_PATH_CLIENT.authTokens.qrCode({ entity: 'users', authToken: payload })}
+              />
+            </Box>
+          </Box>
+          <Stack spacing={16} px={80} mt={24}>
+            <Button onClick={sendEmailToUser}>Send Email</Button>
+            <Button variant="outline">Back</Button>
+          </Stack>
+        </>
       ),
       onConfirm: () => {},
     });

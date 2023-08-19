@@ -14,7 +14,10 @@ import { useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
 import { sleep } from '../../../utils/helpers/helper-functions';
 import { MaintenanceModel } from '../../../types/models/maintenance-model';
 
-export const PinVerifCard = ({
+/**
+ * @description Send pin code after verified get maintenance and set maintenance in redux store
+ */
+export const PinVerifCardMCheck = ({
   setPinOk,
   endpoint,
 }: {

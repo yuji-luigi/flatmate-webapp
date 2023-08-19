@@ -2,19 +2,20 @@ import { Container, Transition } from '@mantine/core';
 import React, { useState } from 'react';
 import { ChooseTypeCard } from '../../../../sections/maintainer-upload-file-section/ChooseTypeCard';
 import { CheckInputTabCard } from '../../../../sections/maintainer-upload-file-section/invoice-receipt-input/CheckInputTabCard';
-import { PinVerifCard } from '../../../../sections/maintainer-upload-file-section/pin-verif/PinVerifCard';
+import { PinVerifCardMCheck } from '../../../../sections/maintainer-upload-file-section/pin-verif/PinVerifCardMCheck';
 import classes from '../../FileAuth.module.css';
 import { CheckType } from '../../../../types/models/check-type';
 import useSWR from 'swr';
 import axiosInstance from '../../../../utils/axios-instance';
-import { API_BASE_URL } from '../../../../path/api-routes';
+import { API_BASE_URL, _PATH_API } from '../../../../path/api-routes';
 import { GetServerSidePropsContext } from 'next';
+import { HiddenAuthTokenInterface } from '../../../../types/models/auth-token-model';
+import { PinVerifCard } from '../../../../components/card/auth/PinVerifCard';
 
 const UserRegisterByTokenPage = () => {
   const [pinOk, setPinOk] = useState<boolean>(false); // todo: need to check if pin is ok or not
   const [checkType, setCheckType] = useState<CheckType | null>(null); // todo: need to check if pin is ok or not
   const [submitting, setSubmitting] = useState<boolean>(false);
-  const pinVerifEndpoint = `auth-tokens`;
 
   return (
     <Container className={classes.container}>
@@ -45,7 +46,7 @@ const UserRegisterByTokenPage = () => {
         )}
       </Transition>
 
-      {!pinOk && <PinVerifCard setPinOk={setPinOk} endpoint={pinVerifEndpoint} />}
+      {!pinOk && <PinVerifCard setPinOk={setPinOk} />}
     </Container>
   );
 };
