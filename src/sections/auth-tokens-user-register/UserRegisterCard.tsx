@@ -19,6 +19,10 @@ import allFormFields from '../../../json/dataTable/formfields';
 import { getDefaultValues } from '../../utils/getDefaultValues';
 import axiosInstance from '../../utils/axios-instance';
 import { _PATH_API } from '../../path/api-routes';
+import { showNotification } from '@mantine/notifications';
+import { errorNotificationData } from '../../data/showNofification/notificationObjects';
+import { useRouter } from 'next/router';
+import { PATH_AFTER_LOGIN } from '../../path/page-paths';
 
 const useStyles = createStyles((theme) => ({
   formContainer: {
@@ -43,6 +47,7 @@ export const UserRegisterCard = ({
   setCheckType: (type: CheckType | null) => void;
 }) => {
   const { classes } = useStyles();
+  const { push } = useRouter();
   const { crudDocument: user } = useCrudSelectors('users');
   const formFields = allFormFields.users;
   const initialValues = useMemo(() => getDefaultValues(formFields, user), [user]);
@@ -51,9 +56,22 @@ export const UserRegisterCard = ({
   }) as UseFormReturnTypeCustom;
 
   const onSubmit = async (e: FormEvent) => {
-    console.log('form.values', form.values);
-    const rawRes = await axiosInstance.put(_PATH_API.users.updateById(user._id), form.values);
-    console.log(rawRes.data.data);
+    try {
+      e.preventDefault();
+      const rawRes = await axiosInstance.put(_PATH_API.users.onBoarding(user._id), form.values);
+      console.log(rawRes.data.data);
+      showNotification({
+        title: 'Success',
+        message: 'You have successfully registered',
+        color: 'blue',
+      });
+      push(PATH_AFTER_LOGIN);
+    } catch (error: any) {
+      showNotification({
+        ...errorNotificationData,
+        message: error.message || error,
+      });
+    }
   };
   return (
     <Card px={32} py={40}>

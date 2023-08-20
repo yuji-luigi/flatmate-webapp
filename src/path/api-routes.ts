@@ -52,6 +52,7 @@ export enum PATH_API {
   getOrganizationsForAdmin = 'organizations/selections/super-admin',
   authTokens = 'auth-tokens',
   users = 'users',
+  onBoarding = 'on-boarding',
 }
 
 const all = (entity: string) => `${entity}`;
@@ -89,6 +90,7 @@ export const _PATH_API = {
     root: PATH_API.users,
     sendTokenEmail: ({ id }: { id: string }) => `${PATH_API.users}/send-token-email/${id}`,
     updateById: (id: string) => byId(PATH_API.users, id),
+    onBoarding: (id: string) => `${PATH_API.users}/on-boarding/${id}`,
   },
 };
 
