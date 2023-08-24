@@ -23,6 +23,8 @@ import { showNotification } from '@mantine/notifications';
 import { errorNotificationData } from '../../data/showNofification/notificationObjects';
 import { useRouter } from 'next/router';
 import { PATH_AFTER_LOGIN } from '../../path/page-paths';
+import { sleep } from '../../utils/helpers/helper-functions';
+import useAuth from '../../../hooks/useAuth';
 
 const useStyles = createStyles((theme) => ({
   formContainer: {
@@ -47,6 +49,7 @@ export const UserRegisterCard = ({
   setCheckType: (type: CheckType | null) => void;
 }) => {
   const { classes } = useStyles();
+  const { login } = useAuth();
   const { push } = useRouter();
   const { crudDocument: user } = useCrudSelectors('users');
   const formFields = allFormFields.users;
@@ -55,16 +58,26 @@ export const UserRegisterCard = ({
     initialValues,
   }) as UseFormReturnTypeCustom;
 
+  //! Todo send authToken to backend to verify user again
   const onSubmit = async (e: FormEvent) => {
     try {
       e.preventDefault();
+      if (!form.values.password) {
+        showNotification({
+          ...errorNotificationData,
+          message: 'Please enter a password',
+        });
+        return;
+      }
       const rawRes = await axiosInstance.put(_PATH_API.users.onBoarding(user._id), form.values);
-      console.log(rawRes.data.data);
       showNotification({
         title: 'Success',
         message: 'You have successfully registered',
         color: 'blue',
       });
+      const { data } = rawRes.data;
+      await sleep(1000);
+      login(user.email, form.values.password as string);
       push(PATH_AFTER_LOGIN);
     } catch (error: any) {
       showNotification({

@@ -215,6 +215,7 @@ export function CrudDrawerDefault({ overridingEntity = '' }: { overridingEntity?
       title="Register"
       padding="xl"
       size="xl"
+      position="right"
     >
       <Icons.close onClick={handleCloseDrawer} />
       <form className={classes.form} onSubmit={onSubmit}>
