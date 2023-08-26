@@ -20,6 +20,7 @@ import Link from 'next/link';
 import { Sections } from '../../types/general/data/sections-type';
 import TextWithIcon from '../text/TextWithIcon';
 import BadgeWithToolTip from '../text/BadgeWithToolTip';
+import { UploadModel } from '../../types/models/upload-model';
 
 const useStyles = createStyles((theme) => ({
   card: {

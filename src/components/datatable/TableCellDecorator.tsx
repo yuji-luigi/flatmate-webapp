@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
-import BadgeCell from './table-rows/tablecell/BadgeCell';
+import BadgeCell from './table-rows/tablecell/crud-cells/BadgeCell';
 // import BadgeCell from './table-rows/tablecell/BadgeCell';
-import TableCell from './table-rows/tablecell/TableCell';
+import TableCellController from './table-rows/tablecell/TableCellController';
 import { FormFieldTypes } from '../../types/general/data/data-table/formField-types';
 
 function isObject(value: any): boolean {
@@ -20,17 +20,25 @@ export function TableCellDecorator({
    */
   const cellData = rowData[cellConfig.name];
 
-  let badgeCell = <BadgeCell cellConfig={cellConfig} color={''} rowData={rowData} cellData={''} />;
+  let badgeCell = (
+    <BadgeCell
+      key={cellConfig.id}
+      cellConfig={cellConfig}
+      color={''}
+      rowData={rowData}
+      cellData={''}
+    />
+  );
 
   let tableCell =
     typeof cellData === 'string' ? (
-      <TableCell cellData={cellData} cellConfig={cellConfig} rowData={rowData} />
+      <TableCellController cellData={cellData} cellConfig={cellConfig} rowData={rowData} />
     ) : cellConfig.type === 'select' &&
       cellConfig.multi &&
       cellConfig.cellType !== 'link-children' &&
       !Array.isArray(cellData) ? (
       // ) : typeof cellData === 'object' && !Array.isArray(cellData) ? (
-      <TableCell
+      <TableCellController
         key={cellData._id}
         cellData={
           cellConfig.selectValues
@@ -56,7 +64,7 @@ export function TableCellDecorator({
         {cellData.map((cellData) => {
           const key = typeof cellData === 'string' ? cellData : cellData._id;
           return (
-            <TableCell
+            <TableCellController
               key={key}
               cellData={
                 cellConfig.selectValues
@@ -72,11 +80,12 @@ export function TableCellDecorator({
       </>
     );
     badgeCell = (
-      <>
+      <Fragment key={cellConfig.id}>
         {cellData.map((cellData) => {
+          console.log(cellData._id);
           return (
             <BadgeCell
-              key={cellData._id}
+              key={cellData?._id || cellData}
               cellConfig={cellConfig}
               color={cellData.color as string}
               rowData={rowData}
@@ -89,17 +98,17 @@ export function TableCellDecorator({
             />
           );
         })}
-      </>
+      </Fragment>
     );
   }
 
-  // decorate the TableCell component before render.
+  // decorate the TableCellController component before render.
   // EX put style: Array<string> then decorate the cell based on the style.
   if (cellConfig.noTable) return null;
 
-  if (cellConfig.badge) {
-    return badgeCell;
-  }
+  // if (cellConfig.badge) {
+  //   return badgeCell;
+  // }
 
   return tableCell;
 }

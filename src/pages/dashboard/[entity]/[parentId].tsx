@@ -13,6 +13,7 @@ import { /* useCrudSelectors, */ useCrudSliceStore } from '../../../redux/featur
 import { usePaginationContext } from '../../../context/PaginationContext';
 import { useCookieContext } from '../../../context/CookieContext';
 import { HeaderContainer } from '../../../components/datatable/header/HeaderContainer';
+import { MongooseBaseModel } from '../../../types/models/mongoose-base-model';
 
 const fetcher = (args: string) => axiosInstance.get(args).then((res) => res.data?.data);
 

@@ -10,6 +10,7 @@ import { useCrudSliceStore } from '../../redux/features/crud/crudSlice';
 // import { useCurrentSpaceContext } from '../../context/CurrentSpaceContext';
 import { useCookieContext } from '../../context/CookieContext';
 import { getCookie } from 'cookies-next';
+import { ThreadModel } from '../../types/models/thread-model';
 
 export default function PostsPage({ threads }: { threads: ThreadModel[] }) {
   const { setCrudDocuments } = useCrudSliceStore();

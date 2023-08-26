@@ -1,6 +1,7 @@
 import { CheckInterface } from './check-type';
+import { MongooseBaseModel } from './mongoose-base-model';
 
-interface MaintenanceModel extends MongooseBaseModel {
+export interface MaintenanceModel extends MongooseBaseModel {
   title: string;
   images: UploadModel[] | [];
   description: string;

@@ -1,4 +1,4 @@
-interface UserSettingModel extends MongooseBaseModel {
+export interface UserSettingModel extends MongooseBaseModel {
   pushNotification: boolean;
   smsNotification: boolean;
   administrator: string | UserModel;

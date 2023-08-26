@@ -20,7 +20,7 @@ import { getDefaultValues } from '../../utils/getDefaultValues';
 import axiosInstance from '../../utils/axios-instance';
 import { _PATH_API } from '../../path/api-routes';
 import { showNotification } from '@mantine/notifications';
-import { errorNotificationData } from '../../data/showNofification/notificationObjects';
+import { constructErrorNotificationData } from '../../data/showNofification/notificationObjects';
 import { useRouter } from 'next/router';
 import { PATH_AFTER_LOGIN } from '../../path/page-paths';
 import { sleep } from '../../utils/helpers/helper-functions';
@@ -64,7 +64,7 @@ export const UserRegisterCard = ({
       e.preventDefault();
       if (!form.values.password) {
         showNotification({
-          ...errorNotificationData,
+          ...constructErrorNotificationData,
           message: 'Please enter a password',
         });
         return;
@@ -81,7 +81,7 @@ export const UserRegisterCard = ({
       push(PATH_AFTER_LOGIN);
     } catch (error: any) {
       showNotification({
-        ...errorNotificationData,
+        ...constructErrorNotificationData,
         message: error.message || error,
       });
     }

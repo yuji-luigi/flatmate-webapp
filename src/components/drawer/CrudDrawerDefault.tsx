@@ -11,7 +11,7 @@ import { useRouter } from 'next/router';
 import { FormEvent, useEffect, useState, useMemo } from 'react';
 import allFormFields from '../../../json/dataTable/formfields';
 import { Icons } from '../../data/icons';
-import { errorNotificationData } from '../../data/showNofification/notificationObjects';
+import { constructErrorNotificationData } from '../../data/showNofification/notificationObjects';
 // import { useCrudSlice } from '../../../hooks/redux-hooks/useCrudSlice';
 import { capitalize, sleep } from '../../utils/helpers/helper-functions';
 import { getDefaultValues } from '../../utils/getDefaultValues';
@@ -181,7 +181,7 @@ export function CrudDrawerDefault({ overridingEntity = '' }: { overridingEntity?
       }
       if (crudError && crudStatus === 'failed') {
         hideNotification('submit');
-        notifications.show(errorNotificationData(crudError, 5000));
+        notifications.show(constructErrorNotificationData(crudError, 5000));
         setSubmitting(false);
         sleep(5000).then(() => {
           notifications.hide('error');

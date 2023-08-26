@@ -43,7 +43,7 @@ export type Orientation =
   | { orientation?: 'horizontal'; orientationProps?: GroupProps }
   | { orientation?: 'vertical'; orientationProps?: StackProps };
 export type TextInputProps = Controlled<MantineTextInputProps>;
-export type PasswordInputProps = Controlled<MantinePasswordInputProps>;
+export type PasswordInputCustomProps = Controlled<MantinePasswordInputProps>;
 export type TextareaProps = Controlled<MantineTextareaProps>;
 export type NumberInputProps = Controlled<MantineNumberInputProps>;
 export type DateInputProps = Controlled<MantineDateInputProps>;
@@ -75,7 +75,7 @@ export type ControllerProps =
   | ({ control: 'file-input' } & FileInputProps<boolean>)
   | ({ control: 'multi-select' } & MultiSelectProps)
   | ({ control: 'number-input' } & NumberInputProps)
-  | ({ control: 'password-input' } & PasswordInputProps)
+  | ({ control: 'password-input' } & PasswordInputCustomProps)
   | ({ control: 'pin-input' } & PinInputProps)
   | ({ control: 'radio-group' } & RadioGroupProps)
   | ({ control: 'select' } & SelectProps)

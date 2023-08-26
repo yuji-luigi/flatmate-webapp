@@ -1,4 +1,6 @@
-interface SpaceModel extends MongooseBaseModel {
+import { MongooseBaseModel } from './mongoose-base-model';
+
+export interface SpaceModel extends MongooseBaseModel {
   name: string;
   avatar?: UploadModel;
   cover?: UploadModel;

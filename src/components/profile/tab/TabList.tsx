@@ -5,7 +5,8 @@ interface List {
   icon: React.ReactNode;
   label: string;
   value: string;
-  component: React.ReactNode;
+  component: () => JSX.Element;
+  // component: React.ReactNode;
 }
 export const TabList = ({ list }: { list: List[] }) => {
   return (

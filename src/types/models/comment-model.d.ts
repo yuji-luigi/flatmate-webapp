@@ -1,4 +1,6 @@
-interface CommentModel extends MongooseBaseModel {
+import { MongooseBaseModel } from './mongoose-base-model';
+
+export interface CommentModel extends MongooseBaseModel {
   title: string;
   body?: string;
   password: string;

@@ -32,6 +32,7 @@ import { selectCrudDocument } from '../../../redux/features/crud/crudSlice';
 import { useCrudSliceStore, useCrudSelectors } from '../../../redux/features/crud/crudSlice';
 import { useRouter } from 'next/router';
 import { threadId } from 'worker_threads';
+import { ThreadModel } from '../../../types/models/thread-model';
 
 const useStyles = createStyles((theme) => ({
   main: {

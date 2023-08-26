@@ -1,3 +1,4 @@
+import { UploadModel } from '../types/models/upload-model';
 import {
   getPsuedoID,
   getRandomNumber,

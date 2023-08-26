@@ -1,4 +1,6 @@
-interface ThreadModel extends MongooseBaseModel {
+import { MongooseBaseModel } from './mongoose-base-model';
+
+export interface ThreadModel extends MongooseBaseModel {
   title: string;
   images: UploadModel[] | [];
   description: string;

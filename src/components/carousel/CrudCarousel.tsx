@@ -9,6 +9,7 @@ import axiosInstance from '../../utils/axios-instance';
 import ImageSlide from './ImageSlide';
 import { Sections } from '../../types/general/data/sections-type';
 import { FormFieldTypes } from '../../types/general/data/data-table/formField-types';
+import { UploadModel } from '../../types/models/upload-model';
 // import { Image } from '@mantine/core';
 
 type ImageType = File | UploadModel;

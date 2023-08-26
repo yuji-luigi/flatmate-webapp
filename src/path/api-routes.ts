@@ -92,7 +92,7 @@ export const _PATH_API = {
     updateById: (id: string) => byId(PATH_API.users, id),
     onBoarding: (id: string) => `${PATH_API.users}/on-boarding/${id}`,
   },
-};
+} as const;
 
 export const PATH_API_DATA_TABLE_ROOT = 'with-pagination';
 

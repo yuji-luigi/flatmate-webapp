@@ -14,6 +14,8 @@ import SpaceHomeSection from '../../../sections/dashboard_pages/space_home_secti
 import { useRouter } from 'next/router';
 import { MaintainerModel } from '../../../types/models/maintainer-model';
 import { MaintenanceModel } from '../../../types/models/maintenance-model';
+import { SpaceModel } from '../../../types/models/space-model';
+import { ThreadModel } from '../../../types/models/thread-model';
 
 interface Props {
   space: SpaceModel;

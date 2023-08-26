@@ -16,6 +16,7 @@ import { QueryFilterWeb } from '../../../components/datatable/filter/QueryFilter
 import { filterList } from '../../../components/datatable/filter/logic/applyFilter';
 import useTable, { getComparator } from '../../../../hooks/useTable';
 import { useFilter } from '../../../../hooks/useFilter';
+import { SpaceModel } from '../../../types/models/space-model';
 
 /**
  * 1. fetch all the maintainers from database with redux.

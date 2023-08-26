@@ -14,6 +14,7 @@ import { getEntityFromUrl, sleep } from '../../utils/helpers/helper-functions';
 import { Sections } from '../../types/general/data/sections-type';
 import { useRouter } from 'next/router';
 import { useCrudSliceStore } from '../../redux/features/crud/crudSlice';
+import { UploadModel } from '../../types/models/upload-model';
 
 const useStyles = createStyles(() => ({
   modal: {

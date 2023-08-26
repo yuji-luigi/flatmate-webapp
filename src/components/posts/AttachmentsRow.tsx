@@ -4,6 +4,7 @@ import { PATH_IMAGE } from '../../lib/image-paths';
 import Image from 'next/image';
 import Link from 'next/link';
 import { LinkedImage } from '../image/LinkedImage';
+import { UploadModel } from '../../types/models/upload-model';
 
 const AttachmentsRow = ({ attachments }: { attachments?: UploadModel[] }) => {
   return (

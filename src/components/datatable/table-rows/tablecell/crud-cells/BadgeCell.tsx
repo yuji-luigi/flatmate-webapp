@@ -1,6 +1,6 @@
 import { Badge, Box, useMantineTheme } from '@mantine/core';
-import TableCell from './TableCell';
-import { FormFieldTypes } from '../../../../types/general/data/data-table/formField-types';
+import TableCellController from '../TableCellController';
+import { FormFieldTypes } from '../../../../../types/general/data/data-table/formField-types';
 
 export const colors: Record<string, string> = {
   engineer: 'blue',
@@ -33,7 +33,7 @@ const BadgeCell = ({
     //   }}
     //   // variant={theme.colorScheme === 'dark' ? 'light' : 'outline'}
     // >
-    //   <TableCell cellData={cellData} cellConfig={cellConfig} rowData={rowData} />
+    //   <TableCellController cellData={cellData} cellConfig={cellConfig} rowData={rowData} />
     // </Box>
 
     // return (
@@ -41,7 +41,7 @@ const BadgeCell = ({
       color={colors[color || '__null']}
       variant={theme.colorScheme === 'dark' ? 'light' : 'outline'}
     >
-      <TableCell cellData={cellData} cellConfig={cellConfig} rowData={rowData} />
+      <TableCellController cellData={cellData} cellConfig={cellConfig} rowData={rowData} />
     </Badge>
   );
 };

@@ -1,6 +1,6 @@
 import { hideNotification, showNotification, cleanNotifications } from '@mantine/notifications';
 import { useEffect } from 'react';
-import { errorNotificationData } from '../../src/data/showNofification/notificationObjects';
+import { constructErrorNotificationData } from '../../src/data/showNofification/notificationObjects';
 import { useCrudSelectors } from '../../src/redux/features/crud/crudSlice';
 import { sleep } from '../../src/utils/helpers/helper-functions';
 
@@ -23,7 +23,7 @@ import { sleep } from '../../src/utils/helpers/helper-functions';
 //        }
 //        if (crudError) {
 //          hideNotification('submit');
-//          showNotification(errorNotificationData(crudError, 5000));
+//          showNotification(constructErrorNotificationData(crudError, 5000));
 //          setSubmitting(false);
 //          sleep(5000).then(() => cleanNotifications());
 //        }

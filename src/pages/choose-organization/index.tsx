@@ -12,6 +12,8 @@ import { PATH_API } from '../../path/api-routes';
 import { CardArticleVerticalTextCenter } from '../../components/card/CardVerticalTextCenter';
 import { useRouter } from 'next/router';
 import Layout from '../../layouts';
+import { OrganizationModel } from '../../types/models/organization-model';
+import { SpaceModel } from '../../types/models/space-model';
 
 const useStyles = createStyles((theme) => ({
   pinContainer: {

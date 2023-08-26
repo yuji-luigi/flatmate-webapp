@@ -1,10 +1,12 @@
 import { useDisclosure, useMediaQuery } from '@mantine/hooks';
-import { Modal, Group, Button, Stack, Box, Sx } from '@mantine/core';
+import { Modal, Group, Button, Stack, Box, Sx, LoadingOverlay } from '@mantine/core';
 import { use_ModalContext } from './_ModalContext';
 import { CrudModal } from './CrudModal';
-import { ReactNode } from 'react';
+import { ReactNode, useState } from 'react';
 import CustomModal from './CustomModal';
 import { FormFieldTypes } from '../../types/general/data/data-table/formField-types';
+import { showNotification } from '@mantine/notifications';
+import { constructErrorNotificationData } from '../../data/showNofification/notificationObjects';
 
 export interface _ModalContextStates {
   isOpenModal: boolean;
@@ -20,7 +22,7 @@ type BaseModalParams = {
   centered?: boolean;
   children: React.ReactNode;
   onCancel?: () => void;
-  onConfirm: (data: any) => void;
+  onConfirm: (data: any) => void | Promise<void>;
 };
 
 interface ConfirmAlertModalParams extends BaseModalParams {
@@ -63,14 +65,22 @@ export function ModalRootCustom() {
   const isMobile = useMediaQuery('(max-width: 600px)');
   const { isOpenModal: opened, closeModal: close, modals } = use_ModalContext();
   const isAlert = modals.type === 'alert';
-
+  const [submitting, setSubmitting] = useState(false);
   const handleCancel = () => {
     modals.onCancel?.();
     close();
   };
-  const handleConfirm = (data: any) => {
-    modals.onConfirm(data);
-    close();
+  const handleConfirm = async (data: any) => {
+    try {
+      setSubmitting(true);
+
+      await modals.onConfirm(data);
+      close();
+    } catch (error: any) {
+      showNotification(constructErrorNotificationData(error.message || error));
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   if (!opened) return null;
@@ -100,6 +110,7 @@ export function ModalRootCustom() {
           </Button>
         </Box>
       </Stack>
+      {submitting && <LoadingOverlay visible />}
     </Modal>
   );
 }

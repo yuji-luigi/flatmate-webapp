@@ -1,4 +1,6 @@
-interface FundModel extends MongooseBaseModel {
+import { MongooseBaseModel } from './mongoose-base-model';
+
+export interface FundModel extends MongooseBaseModel {
   amount?: number;
   fundRules?: string[] | FundModelRule[] | undefined;
   building?: string | Building;

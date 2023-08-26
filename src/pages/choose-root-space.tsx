@@ -12,6 +12,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Layout from '../layouts';
 import { UserModel } from '../types/models/user-model';
+import { SpaceModel } from '../types/models/space-model';
 const useStyles = createStyles((theme) => ({
   pinContainer: {
     // position: 'absolute',

@@ -1,4 +1,4 @@
-import { Button, Group, createStyles } from '@mantine/core';
+import { Button, Group, LoadingOverlay, createStyles } from '@mantine/core';
 import React, { ChangeEvent, useCallback, useRef, useState } from 'react';
 import { FlattenSectionData } from '../../../../data';
 import { useCrudSliceStore } from '../../../../redux/features/crud/crudSlice';
@@ -8,6 +8,8 @@ import { dashboardStyle } from '../../../../styles/global-useStyles';
 import { use_ModalContext } from '../../../../context/modal-context/_ModalContext';
 import axiosInstance from '../../../../utils/axios-instance';
 import { PATH_API } from '../../../../path/api-routes';
+import { sleep } from '../../../../utils/helpers/helper-functions';
+import { showNotification } from '@mantine/notifications';
 const useStyles = dashboardStyle;
 const useStyles2 = createStyles({
   displayNone: {
@@ -21,12 +23,11 @@ export const CrudTableButtons = ({
   section: FlattenSectionData;
   entity: Sections;
 }) => {
-  const { selectCrudDocument } = useCrudSliceStore();
+  const { selectCrudDocument, setCrudDocuments } = useCrudSliceStore();
   const { openDrawer } = useDrawerContext();
   const { openConfirmModal } = use_ModalContext();
   const { classes } = useStyles();
   const { classes: classes2 } = useStyles2();
-
   const fileInput = useRef<HTMLInputElement>(null);
 
   const handleImportClicked = useCallback(() => {
@@ -58,18 +59,43 @@ export const CrudTableButtons = ({
       },
       title: `Import excel file: ${file?.name}`,
       async onConfirm(data) {
-        const formData = new FormData();
-        formData.append('file', file);
-        const rawRes = await axiosInstance.post(`${entity}/${PATH_API.importExcel}`, formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        });
-        console.log(rawRes.data.data);
+        await confirmEvent(file);
+        // const formData = new FormData();
+        // formData.append('file', file);
+        // const rawRes = await axiosInstance.post(`${entity}/${PATH_API.importExcel}`, formData, {
+        //   headers: {
+        //     'Content-Type': 'multipart/form-data',
+        //   },
+        // });
+        // await sleep(1000);
+        // console.log(rawRes.data.data);
+        // showNotification({
+        //   title: 'Action Success',
+        //   message: 'Import success!!',
+        //   color: 'green',
+        // });
+        // setCrudDocuments({ entity, documents: rawRes.data.data });
       },
       children: undefined,
     });
   }
+  const confirmEvent = async (file: File) => {
+    const formData = new FormData();
+    formData.append('file', file);
+    const rawRes = await axiosInstance.post(`${entity}/${PATH_API.importExcel}`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    await sleep(1000);
+    console.log(rawRes.data.data);
+    showNotification({
+      title: 'Action Success',
+      message: 'Import success!!',
+      color: 'green',
+    });
+    setCrudDocuments({ entity, documents: rawRes.data.data });
+  };
   return (
     <Group>
       {section.createButton && (

@@ -19,6 +19,7 @@ import CarouselBasic from '../../carousel/CarouselBasic';
 import { UserModel } from '../../../types/models/user-model';
 import useAuth from '../../../../hooks/useAuth';
 import { intlDateFormat } from '../../../utils/helpers/date-formatters';
+import { UploadModel } from '../../../types/models/upload-model';
 const useStyles = createStyles((theme) => ({
   feedCard: {
     minHeight: 200,

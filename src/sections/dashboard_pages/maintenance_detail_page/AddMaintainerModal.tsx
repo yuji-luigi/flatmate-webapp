@@ -22,6 +22,7 @@ import { getEntityFromUrl, sleep } from '../../../utils/helpers/helper-functions
 import { Sections } from '../../../types/general/data/sections-type';
 import { use_ModalContext } from '../../../context/modal-context/_ModalContext';
 import { hideNotification, notifications } from '@mantine/notifications';
+import { SpaceModel } from '../../../types/models/space-model';
 
 const fetchMainSpaces = async () => {
   const res = await axiosInstance.get(`${PATH_API.getSpaceSelections}`);

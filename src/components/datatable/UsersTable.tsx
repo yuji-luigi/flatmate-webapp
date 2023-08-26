@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import { TableRow } from './table-rows/TableRow';
 
 import TableHeader from './table-rows/TableHeader';
-// import TableCell from './table-rows/tablecell/TableCell';
+// import TableCellController from './table-rows/tablecell/TableCellController';
 import formFields from '../../../json/dataTable/formfields';
 // import { useCrudSlice } from '../../../hooks/redux-hooks/useCrudSlice';
 import { usePaginationContext } from '../../context/PaginationContext';

@@ -1,4 +1,6 @@
-interface OrganizationModel extends MongooseBaseModel {
+import { MongooseBaseModel } from './mongoose-base-model';
+
+export interface OrganizationModel extends MongooseBaseModel {
   name: string;
   phone: string;
   email: string;

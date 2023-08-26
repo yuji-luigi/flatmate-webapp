@@ -7,6 +7,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { PATH_API } from '../../path/api-routes';
 import axiosInstance, { AxiosResData, uploadConfig } from '../../utils/axios-instance';
+import { UploadModel } from '../../types/models/upload-model';
 
 interface MediaField {
   [key: string]: File[] | UploadModel[] | [];

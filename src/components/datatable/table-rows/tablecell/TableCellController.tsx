@@ -1,6 +1,6 @@
 import React from 'react';
 import { Group, Avatar, Text } from '@mantine/core';
-import { SpecificTableCell } from './SpecificTableCell';
+import { SpecificTableCell } from './crud-cells/SpecificTableCell';
 import { FieldTypes } from '../../../../../json/dataTable/formfields';
 import { FormFieldTypes } from '../../../../types/general/data/data-table/formField-types';
 // import { IconPencil, IconTrash } from '@tabler/icons-react';
@@ -11,7 +11,7 @@ export const jobColors: Record<string, string> = {
   designer: 'pink',
 };
 
-const TableCell = ({
+const TableCellController = ({
   cellData,
   cellConfig,
   rowData,
@@ -59,6 +59,11 @@ const TableCell = ({
           {cellData}
         </Text>
       )}
+      {cellConfig.type === 'select' && (
+        <Text size="xs" weight={500}>
+          {cellData}
+        </Text>
+      )}
 
       {/*
         <Badge
@@ -83,4 +88,4 @@ const TableCell = ({
     </>
   );
 };
-export default TableCell;
+export default TableCellController;

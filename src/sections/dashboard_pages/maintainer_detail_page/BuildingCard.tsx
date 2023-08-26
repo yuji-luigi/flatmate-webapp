@@ -7,6 +7,7 @@ import { Skeleton, Text } from '@mantine/core';
 import { get } from 'http';
 import { getEntityFromUrl } from '../../../utils/helpers/helper-functions';
 import { Sections } from '../../../types/general/data/sections-type';
+import { SpaceModel } from '../../../types/models/space-model';
 export const BuildingCard = () => {
   const _entity = getEntityFromUrl();
   const { crudDocument: document } = useCrudSelectors(_entity as Sections);

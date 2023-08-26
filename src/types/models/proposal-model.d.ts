@@ -1,4 +1,6 @@
-interface ProposalModel extends MongooseBaseModel {
+import { MongooseBaseModel } from './mongoose-base-model';
+
+export interface ProposalModel extends MongooseBaseModel {
   amount?: number | undefined;
   description?: string | undefined;
   fundRule?: string | FundModelRule | undefined;

@@ -6,6 +6,7 @@ import { fetchSpaceSelections } from '../../../pages/choose-root-space';
 import useSWR from 'swr';
 import { Box, createStyles } from '@mantine/core';
 import { PATH_CLIENT } from '../../../path/page-paths';
+import { SpaceModel } from '../../../types/models/space-model';
 
 const useStyles = createStyles((theme) => ({
   pinContainer: {

@@ -3,6 +3,7 @@ import { Carousel } from '@mantine/carousel';
 import { Box } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import Image from 'next/image';
+import { UploadModel } from '../../types/models/upload-model';
 
 function CarouselBasic({ images }: { images: File[] | UploadModel[] }) {
   const myRef = useRef<HTMLDivElement>(null);

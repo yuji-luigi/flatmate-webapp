@@ -16,6 +16,7 @@ import { Box, Button, Divider, Group, Stack, createStyles, Text } from '@mantine
 import useAuth from '../../../hooks/useAuth';
 import Link from 'next/link';
 import { useCookieContext } from '../../context/CookieContext';
+import { SpaceModel } from '../../types/models/space-model';
 const useStyles = createStyles((theme) => ({
   pinContainer: {
     display: 'grid',

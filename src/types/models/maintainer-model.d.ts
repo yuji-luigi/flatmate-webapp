@@ -1,6 +1,7 @@
 import { MAINTAINER_TYPES } from '../../lib/enums';
+import { MongooseBaseModel } from './mongoose-base-model';
 
-interface MaintainerModel extends MongooseBaseModel {
+export interface MaintainerModel extends MongooseBaseModel {
   name: string;
   company: string;
   cover?: IUpload | string;

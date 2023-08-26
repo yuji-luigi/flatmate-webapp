@@ -3,6 +3,7 @@ import { useCrudSelectors } from '../../../redux/features/crud/crudSlice';
 import PostFeedCard from '../../../components/posts/feed/PostFeedCard';
 import { Box, Container, createStyles } from '@mantine/core';
 import { UserModel } from '../../../types/models/user-model';
+import { ThreadModel } from '../../../types/models/thread-model';
 
 const useStyle = createStyles((theme) => ({}));
 

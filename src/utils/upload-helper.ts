@@ -1,6 +1,7 @@
 import { PATH_API } from '../path/api-routes';
 import { MixedMediaType, UploadingMediaType } from '../types/data/media/media-types';
 import { Sections } from '../types/general/data/sections-type';
+import { UploadModel } from '../types/models/upload-model';
 import axiosInstance, { uploadConfig } from './axios-instance';
 
 interface MediaParam {

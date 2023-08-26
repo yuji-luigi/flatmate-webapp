@@ -19,6 +19,7 @@ import { MaintainerList } from './side-cards/maintainerCard/MaintainerList';
 import { SettingButtonSpaceHome } from './SettingButtonSpaceHome';
 import { MaintainerModel } from '../../../types/models/maintainer-model';
 import { MaintenanceListCard } from './side-cards/maintenance-card/MaintenancesCard';
+import { SpaceModel } from '../../../types/models/space-model';
 
 // use style from global-useStyles
 const useStyles = dashboardStyle;
@@ -29,25 +30,24 @@ const TabListConfig = [
     label: 'Posts',
     value: 'posts',
     icon: <Icons.article size="0.8rem" />,
-    component: <SpacePostSection />,
+    component: SpacePostSection,
   },
   {
     label: 'Maintenance',
     value: 'maintenance',
     icon: <Icons.maintenance size="0.8rem" />,
-    component: <SpaceMaintenanceSection />,
+    component: SpaceMaintenanceSection,
   },
   {
     label: 'Invoice',
     value: 'invoice',
     icon: <Icons.invoice size="0.8rem" />,
-    component: <SpaceMaintenanceSection />,
+    component: SpaceMaintenanceSection,
   },
 ];
 
 const SpaceHomeSection = () => {
   const router = useRouter();
-
   const { crudDocuments: maintainers } = useCrudSelectors<MaintainerModel>('maintainers');
 
   const { classes: classes1 } = useStyles();
@@ -59,7 +59,6 @@ const SpaceHomeSection = () => {
   const isMobile = useMediaQuery('(max-width: 800px)');
   const { crudDocument: document } = useCrudSelectors<SpaceModel>(entity);
 
-  // const profileSide = <ProfileSide contents={null}></ProfileSide>;
   const profileSide = (
     <ProfileSide
       contents={
@@ -80,7 +79,12 @@ const SpaceHomeSection = () => {
   return (
     <Box className={classes.container}>
       <SettingButtonSpaceHome />
-      <Tabs placement="right" defaultValue={TabListConfig[0].value} sx={{ width: '100%' }}>
+      <Tabs
+        placement="right"
+        keepMounted={false}
+        defaultValue={TabListConfig[0].value}
+        sx={{ width: '100%' }}
+      >
         <Box className={classes.box}>
           <Box className={classes.cardMain}>
             <ProfileCover

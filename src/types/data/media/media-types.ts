@@ -1,3 +1,5 @@
+import { UploadModel } from '../../models/upload-model';
+
 export interface MixedMediaType {
   [key: string]: Array<UploadModel | File>;
 }

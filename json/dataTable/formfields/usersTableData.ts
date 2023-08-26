@@ -19,6 +19,14 @@ export const usersTableData: Array<FormFieldTypes> = [
     priority: 2,
   },
   {
+    id: 'active',
+    name: 'active',
+    label: 'Active',
+    type: 'boolean',
+    required: false,
+    priority: 2,
+  },
+  {
     id: 'role',
     name: 'role',
     label: 'Ruolo',

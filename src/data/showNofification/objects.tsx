@@ -1,6 +1,6 @@
 import { Icons } from '../icons';
 
-export const errorNotificationData = (data: string, ms: number = 1000) => {
+export const constructErrorNotificationData = (data: string, ms: number = 1000) => {
   return {
     title: 'Error',
     color: 'red',
