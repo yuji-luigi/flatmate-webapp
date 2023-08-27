@@ -74,7 +74,7 @@ function getCellValueRecursive({
   value: any;
   selectValues: Array<string>;
 }) {
-  if (selectValues.length === 0) {
+  if (selectValues?.length === 0) {
     return value;
   }
   if (isObject(value)) {
@@ -82,6 +82,12 @@ function getCellValueRecursive({
       value: value[selectValues[0]],
       selectValues: selectValues.slice(1),
     });
+  }
+  // now it is an array of objects
+  if (Array.isArray(value)) {
+    return value.map((item) =>
+      getCellValueRecursive({ value: item[selectValues[0]], selectValues: selectValues.slice(1) })
+    );
   }
 
   return null;
@@ -94,7 +100,8 @@ function handleObjectType({ value, cellConfig }: { value: any; cellConfig: FormF
         return '';
       }
       if (typeof value[0] === 'object') {
-        return getCellValueRecursive({ value, selectValues: cellConfig.selectValues }).join(' ');
+        // do not join if it is an array of objects. return the array. then handle array of objects create correct component/cell
+        return getCellValueRecursive({ value, selectValues: cellConfig.selectValues }).join(',');
       }
       return value.map((item) => item.toString());
     }
