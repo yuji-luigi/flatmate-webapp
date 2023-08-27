@@ -4,10 +4,10 @@ import { FormFieldTypes } from '../../../../../types/general/data/data-table/for
 
 export function SpecificTableCell({
   rowData,
-  cellData,
+  cellValue,
   cellConfig,
 }: {
-  cellData: string;
+  cellValue: string;
   cellConfig: FormFieldTypes;
   rowData: any;
 }) {
@@ -19,7 +19,7 @@ export function SpecificTableCell({
           <Group spacing="sm">
             <Link href={href || ''}>
               <Text size="sm" weight={500}>
-                {cellData}
+                {cellValue}
               </Text>
             </Link>
           </Group>

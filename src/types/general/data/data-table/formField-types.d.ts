@@ -13,9 +13,15 @@ type BaseFormType = {
   col?: Col;
   textSearch?: boolean;
   priority: number;
-  badge?: boolean;
   grantTo?: UserRoles[];
   noTable?: boolean;
+  badge?: BadgeField;
+};
+
+type BadgeCellConfig = BaseFormType & { badge: BadgeField };
+
+export type BadgeField = {
+  color: string;
 };
 
 export type TextFormType = { type: 'text' | 'number'; password?: boolean } & BaseFormType &
@@ -179,7 +185,6 @@ type Col = {
   md: number;
   lg: number;
 };
-type CellTypes = 'link-children';
 
 type FormTypes =
   | 'text'
@@ -199,4 +204,5 @@ type FormTypes =
   | 'image'
   | 'color'
   | 'custom'
+  | 'boolean'
   | 'pin-input';

@@ -47,7 +47,6 @@ export function TableRow({
     },
     []
   );
-
   return (
     <tr key={rowData._id}>
       {/*
