@@ -16,13 +16,13 @@ export const useGetSelectOptions = (formField: SelectFormType): Array<SelectItem
   // const options: Array<SelectOption> = [];
   // const [idleDocuments, setIdleDocuments] = useState<SelectOption[]>([]);
   /** fetch with query,  */
-  const { fetchCrudDocumentsWithPagination } = useCrudSliceStore();
+  const { fetchCrudDocuments } = useCrudSliceStore();
   const { crudDocuments } = useCrudSelectors(formField._entity as Sections);
-  // const { fetchCrudDocumentsWithPagination, crudDocuments } = useCrudSlice(formField._entity);
+  // const { fetchCrudDocuments, crudDocuments } = useCrudSlice(formField._entity);
 
   useEffect(() => {
     if (formField.type === 'select') {
-      fetchCrudDocumentsWithPagination({
+      fetchCrudDocuments({
         entity: formField._entity!,
         queryObject: formField.query,
       });

@@ -22,8 +22,6 @@ interface Props {
   // submitButton?: ReactNode;
 }
 const FormFields = ({ formField, form, ...others }: Props) => {
-  const options = useGetSelectOptions(formField as SelectFormType);
-
   switch (formField.type) {
     case 'text':
       return <CrudTextInput form={form} formField={formField} {...others} />;
@@ -33,14 +31,12 @@ const FormFields = ({ formField, form, ...others }: Props) => {
       return <CrudTextArea form={form} formField={formField} {...others} />;
     case 'select':
       return formField.multi ? (
-        <CrudSelectMulti form={form} formField={formField} options={options} {...others} />
+        <CrudSelectMulti form={form} formField={formField} {...others} />
       ) : (
-        <CrudSelect form={form} formField={formField} options={options} {...others} />
+        <CrudSelect form={form} formField={formField} {...others} />
       );
     case 'static-select':
-      return (
-        <CrudSelect form={form} formField={formField} options={formField.options!} {...others} />
-      );
+      return <CrudSelect form={form} formField={formField} {...others} />;
     case 'custom':
       const CustomComponent = formField.component;
       return (

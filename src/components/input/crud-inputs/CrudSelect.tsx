@@ -5,13 +5,15 @@ import {
   SelectFormType,
   StaticSelectFormFieldType,
 } from '../../../types/general/data/data-table/formField-types';
+import { useGetSelectOptions } from '../../../../hooks/form-related/useGetSelectOptions';
 
 interface Prop {
   formField: SelectFormType | StaticSelectFormFieldType;
   form: UseFormReturnTypeCustom;
-  options: (string | SelectItem)[];
 }
-const CrudSelect = ({ formField, form, options, ...others }: Prop) => {
+const CrudSelect = ({ formField, form, ...others }: Prop) => {
+  const options = useGetSelectOptions(formField as SelectFormType);
+
   return (
     <Select
       searchable
