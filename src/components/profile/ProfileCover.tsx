@@ -226,11 +226,13 @@ const ProfileCover = ({
                   style={{ display: 'none' }}
                   onChange={handleImageChange}
                 />
-                <Box className={classes.avatarEditBox}>
-                  <Text fw={800} mb={8}>
-                    Edit
-                  </Text>
-                </Box>
+                {formFields && (
+                  <Box className={classes.avatarEditBox}>
+                    <Text fw={800} mb={8}>
+                      Edit
+                    </Text>
+                  </Box>
+                )}
               </label>
             </Box>
           )}

@@ -69,12 +69,7 @@ const SpaceSettingSinglePage = () => {
       {/* <Box className={classes.box}> */}
       {/* <Box className={classes.cardMain}> */}
       <Grid.Col md={12} lg={5}>
-        <ProfileCover
-          noAvatar
-          sx={{ height: '100%' }}
-          formFields={maintainersTableData}
-          data={coverData}
-        />
+        <ProfileCover noAvatar sx={{ height: '100%' }} data={coverData} />
       </Grid.Col>
       <Grid.Col md={12} lg={7}>
         <SpaceSettingForm data={data} sx={{ width: '100%' }} />
