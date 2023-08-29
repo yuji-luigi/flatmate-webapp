@@ -28,6 +28,22 @@ export const HTTP_MULTIPART_CONFIG = {
   withCredentials: true,
 };
 
+export const fetchCrudDocuments = createAsyncThunk(
+  'cruds/dataTable/fetchCrudDocuments',
+  async ({ entity, query, isChildrenTree = false, queryObject = {} }: FetchCrudPayload) => {
+    const _entity = entity === 'posts' ? 'threads' : entity;
+    const res = await axiosInstance.get<AxiosResData>(`${_entity}${query || ''}`, {
+      params: queryObject,
+    });
+    return {
+      entity: _entity,
+      isChildrenTree,
+      documents: res.data.data,
+      totalDocuments: res.data.totalDocuments,
+    };
+  }
+);
+
 export const fetchCrudDocumentsWithPagination = createAsyncThunk(
   'cruds/dataTable/fetchCrudDocumentsWithPagination',
   async ({ entity, query, isChildrenTree = false, queryObject = {} }: FetchCrudPayload) => {

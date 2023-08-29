@@ -5,7 +5,6 @@ import { dashboardStyle, profilePageStyle } from '../../../styles/global-useStyl
 import ProfileSide from '../../../components/profile/side/ProfileSide';
 import CardWithTitle from '../../../components/profile/side/CardWithTitle';
 import { Icons } from '../../../data/icons';
-import { maintainersTableData } from '../../../../json/dataTable/formfields/maintainersTableData';
 
 import ProfileCover from '../../../components/profile/ProfileCover';
 import { useMediaQuery } from '@mantine/hooks';
@@ -20,6 +19,7 @@ import { SettingButtonSpaceHome } from './SettingButtonSpaceHome';
 import { MaintainerModel } from '../../../types/models/maintainer-model';
 import { MaintenanceListCard } from './side-cards/maintenance-card/MaintenancesCard';
 import { SpaceModel } from '../../../types/models/space-model';
+import { spacesTableData } from '../../../../json/dataTable/formfields/spacesTableData';
 
 // use style from global-useStyles
 const useStyles = dashboardStyle;
@@ -89,7 +89,7 @@ const SpaceHomeSection = () => {
           <Box className={classes.cardMain}>
             <ProfileCover
               entity={entity}
-              formFields={maintainersTableData}
+              formFields={spacesTableData}
               data={{
                 title: document.name,
                 _id: document._id,

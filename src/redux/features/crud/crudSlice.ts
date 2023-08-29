@@ -9,6 +9,7 @@ import {
   deleteLinkedChildDocumentWithPagination,
   addCrudDocument,
   fetchCrudDocumentsInfiniteScroll,
+  fetchCrudDocuments,
 } from '../crudAsyncThunks';
 // import { sectionData } from '../../../data';
 import { flattenSectionData } from '../../../data';
@@ -114,6 +115,20 @@ export const crudSlice = createSlice({
         state.reduxdb[entity].totalDocuments = totalDocuments;
       })
       .addCase(fetchCrudDocumentsWithPagination.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message;
+      })
+      .addCase(fetchCrudDocuments.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(fetchCrudDocuments.fulfilled, (state, action) => {
+        const { entity, documents, totalDocuments, isChildrenTree } = action.payload;
+        state.status = 'succeed';
+        state.reduxdb[entity].isChildrenTree = isChildrenTree;
+        state.reduxdb[entity].documentsArray = documents;
+        state.reduxdb[entity].totalDocuments = totalDocuments;
+      })
+      .addCase(fetchCrudDocuments.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
       })
@@ -259,6 +274,10 @@ export const useCrudSliceStore = () => {
     /** update single document in array without calling api. with already new document fetched. or updated in some how */
     updateCrudDocumentInStore(data: UpdateCrudDocumentInStorePayload) {
       appDispatch(crudSlice.actions.updateCrudDocumentInStore(data));
+    },
+    /** get documents from api and set in documentsArray in redux */
+    fetchCrudDocuments(data: FetchCrudPayload) {
+      appDispatch(fetchCrudDocuments(data));
     },
     /** get documents from api and set in documentsArray in redux */
     fetchCrudDocumentsWithPagination(data: FetchCrudPayload) {

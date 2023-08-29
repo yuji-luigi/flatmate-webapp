@@ -1,5 +1,5 @@
 import { useToggle, upperFirst } from '@mantine/hooks';
-import { useForm } from '@mantine/form';
+import { UseFormReturnType, useForm } from '@mantine/form';
 import {
   TextInput,
   PasswordInput,
@@ -21,6 +21,14 @@ import { GoogleIcon } from '../../../components/social-buttons/GoogleIcon';
 import { GoogleButton } from '../../../components/social-buttons/SocialButtons';
 import { useCrudSelectors } from '../../../redux/features/crud/crudSlice';
 import { SpaceSlugResponse } from '../../../types/api-response/space-response';
+import CrudSelectMulti from '../../../components/input/crud-inputs/CrudSelectMulti';
+import { usersTableData } from '../../../../json/dataTable/formfields/usersTableData';
+import { UseFormReturnTypeCustom } from '../../../components/input/input_interfaces/useForm_interface';
+import { getDefaultValues } from '../../../utils/getDefaultValues';
+import { useMemo } from 'react';
+import CrudTextInput from '../../../components/input/crud-inputs/CrudTextInput';
+import { spacesTableData } from '../../../../json/dataTable/formfields/spacesTableData';
+import FormFields from '../../../components/input/FormFields';
 
 interface SpaceSettingFormProps {
   paperProp?: PaperProps;
@@ -32,19 +40,20 @@ export function SpaceSettingForm(props: SpaceSettingFormProps) {
   const { data, paperProp } = props;
   const { space, maintainers } = data;
   // const [type, toggle] = useToggle(['login', 'register']);
+  const initialValues = useMemo(() => getDefaultValues(spacesTableData, data.space), []);
   const form = useForm({
-    initialValues: {
+    initialValues /* : {
       name: space.name,
       address: space.address,
       admins: [space.administrator],
       maintainers: maintainers,
       password: space.password || '',
-    },
+    }, */,
 
     validate: {
       password: (val) => (val.length <= 6 ? 'Password should include at least 6 characters' : null),
     },
-  });
+  }) as UseFormReturnTypeCustom;
 
   return (
     <Paper radius="lg" p="xl" withBorder {...props}>
@@ -55,59 +64,9 @@ export function SpaceSettingForm(props: SpaceSettingFormProps) {
       <form onSubmit={form.onSubmit(() => {})}>
         <Grid grow>
           <Item>
-            <TextInput
-              label="Name"
-              placeholder="Name building"
-              value={form.values.name}
-              onChange={(event) => form.setFieldValue('name', event.currentTarget.value)}
-              radius="md"
-            />
-          </Item>
-          <Item>
-            <TextInput
-              required
-              label="Address"
-              placeholder="Address"
-              value={form.values.address}
-              onChange={(event) => form.setFieldValue('address', event.currentTarget.value)}
-              error={form.errors.address && 'Invalid email'}
-              radius="md"
-            />
-          </Item>
-          <Item>
-            <MultiSelect
-              required
-              name="admins"
-              label="Administrators"
-              placeholder=""
-              data={['admin1', 'admin2', 'admin3']}
-              onChange={(selectedValues) => form.setFieldValue('admins', selectedValues)}
-              error={form.errors.admins && 'Invalid email'}
-              radius="md"
-            />
-          </Item>
-          <Item>
-            <MultiSelect
-              required
-              name="maintainers"
-              label="Maintainers"
-              placeholder=""
-              data={['idraulica', 'strutturale', 'muratore']}
-              onChange={(event) => form.setFieldValue('admins', event)}
-              error={form.errors.admins && 'Invalid email'}
-              radius="md"
-            />
-          </Item>
-          <Item>
-            <PasswordInput
-              required
-              label="Password"
-              placeholder="Your password"
-              value={form.values.password}
-              onChange={(event) => form.setFieldValue('password', event.currentTarget.value)}
-              error={form.errors.password && 'Password should include at least 6 characters'}
-              radius="md"
-            />
+            {spacesTableData.map((formField) => (
+              <FormFields formField={formField} form={form} />
+            ))}
           </Item>
         </Grid>
 
