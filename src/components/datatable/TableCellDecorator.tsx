@@ -4,7 +4,7 @@ import TableCellController from './table-rows/tablecell/crud-cells/TableCellCont
 import { FormFieldTypes } from '../../types/general/data/data-table/formField-types';
 import BadgeCellDecorator from './table-rows/tablecell/crud-cells/BadgeCellDecorator';
 
-function isObject(value: any): value is 'object' {
+function isObject(value: any): boolean {
   return value && typeof value === 'object' && !Array.isArray(value) && typeof value !== 'string';
 }
 
@@ -60,44 +60,37 @@ function getCellValue({ rowData, cellConfig }: { rowData: any; cellConfig: FormF
   };
 
   const returnValue = valueObject[valueType];
-
+  // console.log(returnValue);
+  // console.log(cellConfig.name);
+  // console.log('\n');
   return isFunction(returnValue) ? returnValue() : returnValue;
 }
 
 // recursively get the value of the cell indexed by the selectValues array.
 function getCellValueRecursive({
-  object,
   value,
   selectValues,
 }: {
-  object: Record<string, string> | Array<string | Record<string, string>>;
-  value?: string;
+  value: any;
   selectValues: Array<string>;
-}): string[] {
-  if (selectValues?.length === 0 && value) {
-    return [value];
+}) {
+  if (selectValues?.length === 0) {
+    return value;
   }
-  if (!Array.isArray(object)) {
+  if (isObject(value)) {
     return getCellValueRecursive({
-      object,
-      value: object[selectValues[0]],
+      value: value[selectValues[0]],
       selectValues: selectValues.slice(1),
     });
   }
   // now it is an array of objects
-  if (Array.isArray(object)) {
-    const result = object.map((item) =>
-      getCellValueRecursive({
-        object,
-        value: [...value, item[selectValues[0]]],
-        selectValues: selectValues.slice(1),
-      })
+  if (Array.isArray(value)) {
+    return value.map((item) =>
+      getCellValueRecursive({ value: item[selectValues[0]], selectValues: selectValues.slice(1) })
     );
-    console.log(result);
-    return result;
   }
 
-  return [''];
+  return null;
 }
 
 function handleObjectType({ value, cellConfig }: { value: any; cellConfig: FormFieldTypes }) {
@@ -108,9 +101,7 @@ function handleObjectType({ value, cellConfig }: { value: any; cellConfig: FormF
       }
       if (typeof value[0] === 'object') {
         // do not join if it is an array of objects. return the array. then handle array of objects create correct component/cell
-        return getCellValueRecursive({ object: value, selectValues: cellConfig.selectValues }).join(
-          ','
-        );
+        return getCellValueRecursive({ value, selectValues: cellConfig.selectValues }).join(',');
       }
       return value.map((item) => item.toString());
     }
