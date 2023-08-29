@@ -24,15 +24,15 @@ export const spacesTableData: Array<FormFieldTypes> = [
     priority: 1,
   },
 
-  {
-    id: 'password',
-    name: 'password',
-    label: 'password',
-    type: 'text',
-    // multi: true,
-    required: false,
-    priority: 2,
-  },
+  // {
+  //   id: 'password',
+  //   name: 'password',
+  //   label: 'password',
+  //   type: 'text',
+  //   // multi: true,
+  //   required: false,
+  //   priority: 2,
+  // },
 
   {
     id: 'admins',
