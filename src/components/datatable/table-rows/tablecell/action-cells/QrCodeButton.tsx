@@ -20,13 +20,7 @@ const getQrCodeUrl = (authToken: AuthTokenModel) => {
 export const QrCodeButton = ({ rowData }: { rowData: any }) => {
   const { openConfirmModal } = use_ModalContext();
   const { authToken: authTokenId }: { authToken: string } = rowData;
-  // const sendEmailToUser = async () => {
-  //   try {
-  //     const rawResult = await axiosInstance.get(
-  //       _PATH_API.users.sendTokenEmail({ id: rowData._id })
-  //     );
-  //   } catch (error) {}
-  // };
+
   const generateQrCode = async () => {
     const rawAuthToken = await axiosInstance.get<AxiosResDataGeneric<HiddenAuthTokenInterface>>(
       _PATH_API.authTokens.getById(authTokenId)

@@ -45,13 +45,13 @@ export type SelectFormType = {
 
 export type StaticSelectFormFieldType = {
   type: 'static-select';
-  options: Array<SelectItem | string>;
+  options: Array<SelectItem>;
 } & BaseFormType &
   BaseSelectFormType;
 
 export type CheckBoxFormFieldType = {
   type: 'checkbox-group';
-  options: Array<SelectItem | string>;
+  options: Array<SelectItem>;
   filterSearch?: boolean;
 } & BaseFormType;
 
@@ -142,7 +142,7 @@ export interface FormFieldInterface {
   badge?: boolean;
   selectValues?: Array<string>;
   /** Type select. static options*/
-  options?: Array<SelectItem | string>;
+  options?: Array<SelectItem>;
   /**
    * Hide the input from the form but still send the data
    * inside formData. -> noForm is opposite

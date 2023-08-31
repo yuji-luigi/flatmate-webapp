@@ -122,8 +122,8 @@ export function NavbarVertical() {
   const { classes, cx } = useStyles();
   const { user, logout } = useAuth();
   const [active, setActive] = useState('');
-  const { isOpen } = useLayoutContext();
-  const { asPath } = useRouter();
+  const { isOpen, closeBar } = useLayoutContext();
+  const { asPath, query } = useRouter();
   const isMediaScreen = useMediaQuery('(max-width: 750px)');
   const isSuperAdmin = user?.role === 'super_admin';
 
@@ -132,9 +132,7 @@ export function NavbarVertical() {
   const chooseText = isSuperAdmin ? 'Organization' : 'Space';
   // const isMobile = useMediaQuery('(max-width: 600px)');
   const filteredSectionData = sectionData.filter((data) => data.name !== 'others');
-  const chooseHref = isSuperAdmin
-    ? PATH_CLIENT.chooseOrganization
-    : PATH_CLIENT.chooseRootSpace;
+  const chooseHref = isSuperAdmin ? PATH_CLIENT.chooseOrganization : PATH_CLIENT.chooseRootSpace;
   if (!user) return null;
   const links = sectionData.map((section, i) => {
     return (
@@ -165,6 +163,7 @@ export function NavbarVertical() {
   });
 
   useEffect(() => setActive(asPath), [asPath]);
+  useEffect(() => closeBar(), [query.entity]);
 
   return (
     <Navbar
@@ -182,14 +181,6 @@ export function NavbarVertical() {
         {links.map((navbarData) => navbarData)}
 
         <Navbar.Section className={classes.footer}>
-          {/* <Button
-            className={cx(classes.button, classes.link)}
-            // className={cx(classes.button, classes.link)}
-            onClick={(event) => event.preventDefault()}
-          >
-            <Icons.switch className={classes.linkIcon} stroke={1.5} />
-            <span>Change account</span>
-          </Button> */}
           <Button variant="outline" className={cx(classes.button, classes.link)} onClick={logout}>
             <Icons.logout className={classes.linkIcon} stroke={1.5} />
             <span>Logout</span>

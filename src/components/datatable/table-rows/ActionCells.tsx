@@ -79,9 +79,6 @@ export function ActionCells({
         <ActionIcon onClick={onModify}>
           <IconPencil size={16} stroke={1.5} />
         </ActionIcon>
-        <ActionIcon onClick={onModify}>
-          <IconPencil size={16} stroke={1.5} />
-        </ActionIcon>
         <ActionIcon color="red" onClick={onDelete}>
           <IconTrash size={16} stroke={1.5} />
         </ActionIcon>
