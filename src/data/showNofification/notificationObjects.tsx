@@ -22,9 +22,11 @@ export const constructErrorNotificationData = (
 export const NOTIFICATIONS = {
   LOADING: {
     email: {
+      id: 'email-submit',
       title: 'Loading',
       message: 'Email sending...',
       color: 'blue',
+      // autoClose: 700,
       loading: true,
     },
   },

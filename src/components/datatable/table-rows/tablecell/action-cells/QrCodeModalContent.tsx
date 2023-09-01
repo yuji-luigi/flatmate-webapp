@@ -7,7 +7,7 @@ import { _PATH_API } from '../../../../../path/api-routes';
 import axiosInstance from '../../../../../utils/axios-instance';
 import { Sections } from '../../../../../types/general/data/sections-type';
 import { MongooseBaseModel } from '../../../../../types/models/mongoose-base-model';
-import { showNotification } from '@mantine/notifications';
+import { hideNotification, showNotification } from '@mantine/notifications';
 import {
   NOTIFICATIONS,
   constructErrorNotificationData,
@@ -30,12 +30,13 @@ export const QrCodeModalContent = ({
     try {
       if (_entity === 'users') {
         setIsLoading(true);
+        showNotification(NOTIFICATIONS.LOADING.email);
         const rawResult = await axiosInstance.get(
           _PATH_API[_entity].sendTokenEmail({ id: rowData._id })
         );
-        showNotification(NOTIFICATIONS.LOADING.email);
         await sleep(700);
         setIsLoading(false);
+        hideNotification(NOTIFICATIONS.LOADING.email.id);
         showNotification(NOTIFICATIONS.SUCCESS.email);
         closeModal();
       }
