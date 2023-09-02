@@ -94,7 +94,11 @@ export const CrudTableButtons = ({
       message: 'Import success!!',
       color: 'green',
     });
-    setCrudDocuments({ entity, documents: rawRes.data.data });
+    setCrudDocuments({
+      entity,
+      documents: rawRes.data.data,
+      totalDocuments: rawRes.data.totalDocuments,
+    });
   };
   return (
     <Group>

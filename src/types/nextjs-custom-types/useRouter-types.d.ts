@@ -5,4 +5,5 @@ interface ParsedQueryCustom extends ParsedUrlQuery {
   parentId?: string;
   postId?: string;
   organizationId?: string;
+  slug: string | string[];
 }

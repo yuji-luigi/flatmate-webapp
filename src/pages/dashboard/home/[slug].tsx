@@ -9,6 +9,7 @@ import { MaintainerModel } from '../../../types/models/maintainer-model';
 import { MaintenanceModel } from '../../../types/models/maintenance-model';
 import { SpaceModel } from '../../../types/models/space-model';
 import { ThreadModel } from '../../../types/models/thread-model';
+import { useRouter } from 'next/router';
 
 interface Props {
   space: SpaceModel;
@@ -18,6 +19,8 @@ interface Props {
 }
 
 export default function HomePageSlug({ space, maintainers, maintenances, threads }: Props) {
+  // const {query}: {query: ParsedQueryCustom} = useRouter()
+  // const spaceId = query.slug
   const { setCrudDocument, setCrudDocuments } = useCrudSliceStore();
 
   useEffect(() => {

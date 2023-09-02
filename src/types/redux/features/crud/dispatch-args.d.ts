@@ -71,6 +71,7 @@ interface SetCrudDocumentsPayload {
   entity?: Sections;
   documents: AllModels;
   isChildrenTree?: boolean;
+  totalDocuments?: number;
 }
 interface SetCrudDocumentPayload {
   entity?: Sections;
