@@ -56,7 +56,7 @@ export enum PATH_API {
 }
 
 const all = (entity: string) => `${entity}`;
-const byId = (entity: string, id: string) => `${entity}/${id}`;
+const byId = (entity: string, _id: string) => `${entity}/${_id}`;
 const getExcelEndpoint = (excelRoute: string, entity: string) => `${excelRoute}/${entity}`;
 // const getQrCodeEndpoint = ({qrCodeRoute, entity}) => `${qrCodeRoute}/${entity}`;
 
@@ -65,14 +65,14 @@ export const _PATH_API = {
     root: PATH_API.linkedChildren,
     get: (entity: string) => all(entity),
     create: (entity: string) => all(entity),
-    updateById: (entity: string, id: string) => byId(entity, id),
-    getById: (entity: string, id: string) => byId(entity, id),
+    updateById: (entity: string, _id: string) => byId(entity, _id),
+    getById: (entity: string, _id: string) => byId(entity, _id),
   },
   uploads: {
     root: PATH_API.uploads,
     create: () => all(PATH_API.uploads),
-    updateById: (id: string) => byId(PATH_API.uploads, id),
-    getById: (id: string) => byId(PATH_API.uploads, id),
+    updateById: (_id: string) => byId(PATH_API.uploads, _id),
+    getById: (_id: string) => byId(PATH_API.uploads, _id),
   },
   importExcel: {
     root: PATH_API.importExcel,
@@ -81,16 +81,17 @@ export const _PATH_API = {
   authTokens: {
     root: PATH_API.authTokens,
     sendEmail: ({}) => all(PATH_API.authTokens),
-    verifyPin: ({ linkId, id, entity }: { linkId?: string; id?: string; entity: string }) =>
-      `${PATH_API.authTokens}/verify-pin/${linkId}/${id}/${entity}`,
-    getById: (id: string) => byId(PATH_API.authTokens, id),
-    verifUser: (id: string) => byId(PATH_API.authTokens, id),
+    verifyPin: ({ linkId, _id, entity }: { linkId?: string; _id?: string; entity: string }) =>
+      `${PATH_API.authTokens}/verify-pin/${linkId}/${_id}/${entity}`,
+    getById: (_id: string) => byId(PATH_API.authTokens, _id),
+    verifUser: (_id: string) => byId(PATH_API.authTokens, _id),
   },
   users: {
     root: PATH_API.users,
-    sendTokenEmail: ({ id }: { id: string }) => `${PATH_API.users}/send-token-email/${id}`,
-    updateById: (id: string) => byId(PATH_API.users, id),
-    onBoarding: (id: string) => `${PATH_API.users}/on-boarding/${id}`,
+    sendTokenEmail: ({ _id }: { _id: string }) => `${PATH_API.users}/${_id}/send-token-email`,
+    updateById: (_id: string) => byId(PATH_API.users, _id),
+    onBoarding: (_id: string) => `${PATH_API.users}/${_id}/on-boarding`,
+    getAuthToken: (_id: string) => `${PATH_API.users}/${_id}/${PATH_API.authTokens}`,
   },
 } as const;
 

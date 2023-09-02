@@ -13,17 +13,20 @@ import { getEntityFromUrl } from '../../../../../utils/helpers/helper-functions'
 import axiosInstance, { AxiosResDataGeneric } from '../../../../../utils/axios-instance';
 import { _PATH_CLIENT } from '../../../../../path/page-paths';
 import { QrCodeModalContent } from './QrCodeModalContent';
+import { MongooseBaseModel } from '../../../../../types/models/mongoose-base-model';
 const getQrCodeUrl = (authToken: AuthTokenModel) => {
   return `${API_BASE_URL}/${authToken._id}`;
 };
 
-export const QrCodeButton = ({ rowData }: { rowData: any }) => {
+const showQrCode = () => ['users'].includes(getEntityFromUrl());
+
+export const QrCodeButton = ({ rowData }: { rowData: MongooseBaseModel }) => {
   const { openConfirmModal } = use_ModalContext();
-  const { authToken: authTokenId }: { authToken: string } = rowData;
+  const { _id } = rowData;
 
   const generateQrCode = async () => {
     const rawAuthToken = await axiosInstance.get<AxiosResDataGeneric<HiddenAuthTokenInterface>>(
-      _PATH_API.authTokens.getById(authTokenId)
+      _PATH_API.users.getAuthToken(_id)
     );
     const payload = rawAuthToken.data.data;
 
@@ -34,7 +37,7 @@ export const QrCodeButton = ({ rowData }: { rowData: any }) => {
       onConfirm: () => {},
     });
   };
-  if (!rowData.authToken) {
+  if (!showQrCode()) {
     return null;
   }
   return (

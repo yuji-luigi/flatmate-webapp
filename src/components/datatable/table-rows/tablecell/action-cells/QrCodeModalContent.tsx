@@ -32,7 +32,7 @@ export const QrCodeModalContent = ({
         setIsLoading(true);
         showNotification(NOTIFICATIONS.LOADING.email);
         const rawResult = await axiosInstance.get(
-          _PATH_API[_entity].sendTokenEmail({ id: rowData._id })
+          _PATH_API[_entity].sendTokenEmail({ _id: rowData._id })
         );
         await sleep(700);
         setIsLoading(false);
@@ -41,7 +41,10 @@ export const QrCodeModalContent = ({
         closeModal();
       }
     } catch (error: any) {
-      showNotification(NOTIFICATIONS.ERROR.general({ data: error }));
+      console.error(error);
+      setIsLoading(false);
+      await sleep(700);
+      showNotification(NOTIFICATIONS.ERROR.general({ data: error.message || error }));
     }
   };
   let qrCodeView = <Text>Qrcode is not available</Text>;

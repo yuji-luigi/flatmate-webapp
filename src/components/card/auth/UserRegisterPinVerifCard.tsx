@@ -31,7 +31,7 @@ export const UserRegisterPinVerifCard = ({ setPinOk }: PinVerifCardProps) => {
     async (value: string) => {
       try {
         const rawRes = await axiosInstance.post<AxiosResDataGeneric<boolean>>(
-          _PATH_API.authTokens.verifyPin({ id: query.id, linkId: query.linkId, entity: 'users' }),
+          _PATH_API.authTokens.verifyPin({ _id: query.id, linkId: query.linkId, entity: 'users' }),
           { pin: value, entity: 'users' }
         );
         //
