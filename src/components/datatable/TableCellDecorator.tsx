@@ -67,6 +67,8 @@ function getCellValue({ rowData, cellConfig }: { rowData: any; cellConfig: FormF
 }
 
 // recursively get the value of the cell indexed by the selectValues array.
+//ignore ts error
+// @ts-ignore
 function getCellValueRecursive({
   value,
   selectValues,
