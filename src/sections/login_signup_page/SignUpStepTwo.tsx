@@ -47,13 +47,13 @@ const SignUpStepTwo = ({ form }: { form: UseFormReturnType<IInitialValues> }) =>
         {...form.getInputProps('purpose')}
       />{' '}
       <>
-        <TextInput
+        {/* <TextInput
           required
           label={ORG_LABEL[purposeValue || 'flatAdmin']}
           name="organization"
           placeholder={ORG_PLACEHOLDER[purposeValue || 'flatAdmin']}
           {...form.getInputProps('organization')}
-        />
+        /> */}
         <TextInput
           required
           label={SPACE_NAME_LABEL[purposeValue || 'flatAdmin']}

@@ -40,7 +40,7 @@ HomePageSlug.getLayout = function getLayout(page: ReactElement) {
 export async function getStaticPaths() {
   // Generate paths for buildings
   const mainSpaces = await axiosInstance.get(
-    `${process.env.NEXT_PUBLIC_API_URL}/spaces/ssg-paths?ssg_secret=${process.env.NEXT_PUBLIC_SSG_SECRET}`
+    `${process.env.NEXT_PUBLIC_API_URL}/space-auth/ssg-paths?ssg_secret=${process.env.NEXT_PUBLIC_SSG_SECRET}`
   );
   const paths = mainSpaces.data.data.map((space: SpaceModel) => ({ params: { slug: space } }));
   return {
@@ -53,7 +53,7 @@ export async function getStaticProps({ params }: { params: { slug: string } }) {
   try {
     const slug = params.slug;
     const res = await axiosInstance.get(
-      `${process.env.NEXT_PUBLIC_API_URL}/spaces/static-props/${slug}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/space-auth/static-props/${slug}`,
       {
         params: { ssg_secret: process.env.NEXT_PUBLIC_SSG_SECRET },
       }
