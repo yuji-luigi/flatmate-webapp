@@ -26,8 +26,7 @@ interface Props {
 
 export default function DashboardHomePage({ space, maintainers, maintenances, threads }: Props) {
   const { setCrudDocument, setCrudDocuments } = useCrudSliceStore();
-  const { currentSpace } = useCookieContext();
-  const router = useRouter();
+
   useEffect(() => {
     setCrudDocument({ entity: 'spaces', document: space });
     setCrudDocuments({ entity: 'maintainers', documents: maintainers });
@@ -49,8 +48,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     const res = await axiosInstance.get(`${process.env.NEXT_PUBLIC_API_URL}/spaces/home`, {
       headers: {
         Authorization: `Bearer ${jwtToken}`,
-        space: context.req.cookies.space || '',
-        organization: context.req.cookies.organization || '',
         // 'Content-Type': 'application/x-www-form-urlencoded',
       },
     });

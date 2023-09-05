@@ -5,10 +5,12 @@ import { useRouter } from 'next/router';
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 import { useCrudSliceStore } from '../redux/features/crud/crudSlice';
 import { sections } from '../data';
+import { CurrentSpace } from '../types/context/auth/useAuth';
+import { CookieContextState } from '../types/context/cookie-context';
 
 export const CookieContext = createContext<CookieContextState>({
   currentSpace: null,
-  setCurrentSpace: (space: string | null) => {},
+  setCurrentSpace: (space: CurrentSpace | null) => {},
   currentOrganization: null,
   setCurrentOrganization: (organization: string | null) => {},
   resetCurrentSpace: () => {},
@@ -57,12 +59,10 @@ const useStore = () => {
 
   return {
     currentSpace,
-    setCurrentSpace: (spaceJWT: string | null) => {
-      const decodedSpace = spaceJWT ? jwtDecode<CurrentSpace>(spaceJWT) : null;
-      setCurrentSpace(decodedSpace);
+    setCurrentSpace: (space: CurrentSpace | null) => {
+      setCurrentSpace(space);
     },
-    resetCurrentSpace: () =>
-      setCurrentSpace({ _id: 'no space', name: '', address: '', organization: '', slug: '' }),
+    resetCurrentSpace: () => setCurrentSpace({ _id: 'no space', name: '', address: '', slug: '' }),
     currentOrganization,
     setCurrentOrganization,
   };

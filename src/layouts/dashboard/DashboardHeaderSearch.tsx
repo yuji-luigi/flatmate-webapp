@@ -6,21 +6,15 @@ import links from '../../../json/navbar/headerLinks.json';
 import useLayoutContext from '../../../hooks/useLayoutContext';
 import { ColorSchemeToggle } from '../../components/color-schemeToggle/ColorSchemeToggle';
 import { LogoBanner } from '../../components/banner/LogoBanner';
-import { Icons } from '../../data/icons';
-import { HeaderCreationModal } from './header-creation-modal/HeaderCreationModal';
 import useAuth from '../../../hooks/useAuth';
-import { PATH_CLIENT } from '../../path/page-paths';
 // import { useCurrentSpaceContext } from '../../context/CurrentSpaceContext';
 import { useCookieContext } from '../../context/CookieContext';
-import { lowerFirst, useMediaQuery } from '@mantine/hooks';
-import axiosInstance from '../../utils/axios-instance';
+import { useMediaQuery } from '@mantine/hooks';
 import { useEffect, useState } from 'react';
-import { PATH_API } from '../../path/api-routes';
-import { convertToSelectItems } from '../../utils/helpers/helper-functions';
-import { getCookies, getCookie } from 'cookies-next';
+
+import { getCookie } from 'cookies-next';
 import { useRouter } from 'next/router';
-import jwtDecode from 'jwt-decode';
-import { kMaxLength } from 'buffer';
+
 import OrganizationSpaceSelect from '../../components/select-custom/OrganizationSpaceSelect';
 import { HeaderCreationModalWrapper } from './header-creation-modal/HeaderCreationModalWrapper';
 
@@ -101,11 +95,9 @@ export function DashboardHeaderSearch() {
   const [organizations, setOrganizations] = useState<SelectItem[] | []>([]);
   const [spaces, setSpaces] = useState<SelectItem[] | []>([]);
   const router = useRouter();
-  const pageEntity = router.query.entity || router.pathname.split('/').pop();
   const { currentSpace, currentOrganization } = useCookieContext();
   const { classes } = useStyles();
   const { isOpen, toggleBarOpen } = useLayoutContext();
-  const { user } = useAuth();
   const isMediaScreen = useMediaQuery('(max-width: 750px)');
 
   const items = links.map((link) => (

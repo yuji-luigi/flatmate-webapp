@@ -77,7 +77,7 @@ const OrganizationSpaceSelect = ({
       return;
     }
     const response = await axiosInstance.get(`${PATH_API.spaceCookie}/${spaceId}`);
-    setCurrentSpace(response.data.data.jwt);
+    setCurrentSpace(response.data.data.space);
   };
 
   const handleGetSpaces = async () => {

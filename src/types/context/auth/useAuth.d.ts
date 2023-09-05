@@ -22,12 +22,27 @@ export interface IUser {
    */
 }
 
+interface CurrentSpace {
+  _id: ObjectId;
+  name: string;
+  address: string;
+  // organization: ObjectId;
+  slug: string;
+}
+
+export type JwtReturnType = LeanUser & {
+  spaceName?: string;
+  spaceId?: ObjectId;
+  organizationId?: ObjectId;
+  spaceAdmins: ObjectId[] | [];
+};
+
 type ActionEnum = 'LOGIN' | 'REGISTER' | 'LOGOUT' | 'INITIALIZE';
 
 export interface JWTContextState {
   isAuthenticated?: boolean | null;
   isInitialized?: boolean | null;
-  user?: UserModel | null;
+  user?: JwtReturnType | null;
   isSuperAdmin?: boolean;
 }
 export interface ReducerStateAction {
