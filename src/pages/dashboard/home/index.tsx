@@ -24,16 +24,21 @@ interface Props {
   threads: ThreadModel[];
 }
 
-export default function DashboardHomePage({ space, maintainers, maintenances, threads }: Props) {
+export default function DashboardHomePage(/* { space, maintainers, maintenances, threads }: Props */) {
   const { setCrudDocument, setCrudDocuments } = useCrudSliceStore();
-
+  const { currentOrganization, currentSpace } = useCookieContext();
   useEffect(() => {
+    handleSectionData();
+  }, [currentOrganization, currentSpace]);
+  const handleSectionData = async () => {
+    const rawRes = await axiosInstance.get(`${process.env.NEXT_PUBLIC_API_URL}/spaces/home`);
+    const { space, maintainers, maintenances, threads } = rawRes.data.data || [];
+
     setCrudDocument({ entity: 'spaces', document: space });
     setCrudDocuments({ entity: 'maintainers', documents: maintainers });
     setCrudDocuments({ entity: 'maintenances', documents: maintenances });
     setCrudDocuments({ entity: 'threads', documents: threads });
-  }, [space?._id]);
-
+  };
   return <SpaceHomeSection /* threads={threads} */ />;
 }
 
@@ -41,34 +46,34 @@ DashboardHomePage.getLayout = function getLayout(page: ReactElement) {
   return <Layout variant="dashboard">{page}</Layout>;
 };
 
-export async function getServerSideProps(context: GetServerSidePropsContext) {
-  try {
-    const jwtToken = context.req.cookies.jwt;
+// export async function getServerSideProps(context: GetServerSidePropsContext) {
+//   try {
+//     const jwtToken = context.req.cookies.jwt;
 
-    const res = await axiosInstance.get(`${process.env.NEXT_PUBLIC_API_URL}/spaces/home`, {
-      headers: {
-        Authorization: `Bearer ${jwtToken}`,
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-      },
-    });
+//     const res = await axiosInstance.get(`${process.env.NEXT_PUBLIC_API_URL}/spaces/home`, {
+//       headers: {
+//         Authorization: `Bearer ${jwtToken}`,
+//         // 'Content-Type': 'application/x-www-form-urlencoded',
+//       },
+//     });
 
-    // const data = (await res.data.data) as Record<string, any>;
+//     // const data = (await res.data.data) as Record<string, any>;
 
-    const { space, maintainers, maintenances, threads } = res.data.data || [];
+//     const { space, maintainers, maintenances, threads } = res.data.data || [];
 
-    return {
-      props: {
-        space,
-        maintainers,
-        maintenances,
-        threads,
-      },
-    };
-  } catch (error: any) {
-    return {
-      redirect: {
-        destination: '/error',
-      },
-    };
-  }
-}
+//     return {
+//       props: {
+//         space,
+//         maintainers,
+//         maintenances,
+//         threads,
+//       },
+//     };
+//   } catch (error: any) {
+//     return {
+//       redirect: {
+//         destination: '/error',
+//       },
+//     };
+//   }
+// }

@@ -2,20 +2,15 @@ import { useRouter } from 'next/router';
 import {
   createStyles,
   Header,
-  HoverCard,
   Group,
   Button,
   UnstyledButton,
   Text,
-  SimpleGrid,
   ThemeIcon,
-  Anchor,
   Divider,
-  Center,
   Box,
   Burger,
   Drawer,
-  Collapse,
   ScrollArea,
   Stack,
 } from '@mantine/core';
@@ -28,17 +23,15 @@ import {
   IconChartPie3,
   IconFingerprint,
   IconCoin,
-  IconChevronDown,
 } from '@tabler/icons-react';
 import Link from 'next/link';
 import { ColorSchemeToggle } from '../../components/color-schemeToggle/ColorSchemeToggle';
-import { useCloseDrawer } from '../../context/DataTableDrawerContext';
-import { sleep } from '../../utils/helpers/helper-functions';
+
 import useAuth from '../../../hooks/useAuth';
 import { PATH_CLIENT } from '../../path/page-paths';
-import { getCookie } from 'cookies-next';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useCookieContext } from '../../context/CookieContext';
+import { EnterButton } from './EnterButton';
 
 const useStyles = createStyles((theme) => ({
   link: {
@@ -135,7 +128,7 @@ const mockdata = [
 
 export function HomepageHeader() {
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false);
-  const { currentSpace } = useCookieContext();
+  const { currentSpace, currentOrganization } = useCookieContext();
   const { user } = useAuth();
   const { classes, theme } = useStyles();
   const { push, pathname } = useRouter();
@@ -144,9 +137,6 @@ export function HomepageHeader() {
     closeDrawer();
   }, [pathname]);
 
-  const hrefEnter = currentSpace
-    ? `${PATH_CLIENT.dashboard}/${currentSpace.slug} `
-    : PATH_CLIENT.chooseRootSpace;
   const links = mockdata.map((item) => (
     <UnstyledButton className={classes.subLink} key={item.title}>
       <Group noWrap align="flex-start">
@@ -170,11 +160,7 @@ export function HomepageHeader() {
       <Button variant="default" component={Link} href={PATH_CLIENT.logout}>
         Logout
       </Button>
-      {currentSpace && (
-        <Button component={Link} href={hrefEnter}>
-          Enter
-        </Button>
-      )}
+      <EnterButton />
     </>
   ) : (
     <>
