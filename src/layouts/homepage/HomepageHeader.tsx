@@ -32,7 +32,8 @@ import { PATH_CLIENT } from '../../path/page-paths';
 import { useEffect } from 'react';
 import { useCookieContext } from '../../context/CookieContext';
 import { EnterButton } from './EnterButton';
-
+import { LoginButton } from './LoginButton';
+import { SignUpButton } from './SignUpButtohsrtjhrn';
 const useStyles = createStyles((theme) => ({
   link: {
     display: 'flex',
@@ -164,12 +165,8 @@ export function HomepageHeader() {
     </>
   ) : (
     <>
-      <Button component={Link} variant="default" href={PATH_CLIENT.login}>
-        Log in
-      </Button>
-      <Button component={Link} href={PATH_CLIENT.signup}>
-        Sign up
-      </Button>
+      <LoginButton />
+      <SignUpButton />
     </>
   );
 

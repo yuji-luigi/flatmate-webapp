@@ -12,23 +12,17 @@ const isChoosePage = (path: string) =>
 
 /**
  *
- * @description login button for logged users. color primary
+ * @description regular login button. color dark
  */
-export const EnterButton = () => {
-  const { currentSpace } = useCookieContext();
-  const { user } = useAuth();
-  const isSA = user?.role === 'super_admin';
+export const LoginButton = () => {
   const { pathname } = useRouter();
-  let hrefEnter = currentSpace
-    ? `${PATH_CLIENT.dashboard}/${currentSpace.slug} `
-    : PATH_CLIENT.chooseRootSpace;
-  hrefEnter = isSA && !currentSpace ? `${PATH_CLIENT.chooseOrganization}` : hrefEnter;
-  if (isChoosePage(pathname)) {
+
+  if (pathname === PATH_CLIENT.login) {
     return null;
   }
   return (
-    <Button component={Link} href={hrefEnter}>
-      Login
+    <Button component={Link} variant="default" href={PATH_CLIENT.login}>
+      Log in
     </Button>
   );
 };
