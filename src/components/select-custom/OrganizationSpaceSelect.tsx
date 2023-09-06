@@ -1,7 +1,7 @@
 import { Select, SelectItem, Sx } from '@mantine/core';
 import React, { useEffect, useState } from 'react';
 import axiosInstance from '../../utils/axios-instance';
-import { PATH_API } from '../../path/api-routes';
+import { PATH_API, _PATH_API } from '../../path/api-routes';
 import { useRouter } from 'next/router';
 import { useCookieContext } from '../../context/CookieContext';
 import { convertToSelectItems } from '../../utils/helpers/helper-functions';
@@ -31,7 +31,6 @@ const OrganizationSpaceSelect = ({
   const [organizations, setOrganizations] = useState<SelectItem[] | []>([]);
   const [spaces, setSpaces] = useState<SelectItem[] | []>([]);
   const router = useRouter();
-  const pageEntity = router.query.entity || router.pathname.split('/').pop();
   const {
     setCurrentOrganization,
     setCurrentSpace,
@@ -42,23 +41,24 @@ const OrganizationSpaceSelect = ({
   const { user } = useAuth();
   const isSuperAdmin = user?.role === 'super_admin';
 
-  const getOrganizations = async () => {
+  const deleteHeaderCookies = async () => {
     await axiosInstance.delete(`${PATH_API.organizationCookie}`);
     await axiosInstance.delete(PATH_API.spaceCookie);
+    setCurrentOrganization('not selected');
     setCurrentSpace(null);
-    const response = await axiosInstance.get(PATH_API.organization);
-    const selectOptions = convertToSelectItems(response.data.data);
-    setOrganizations(selectOptions);
+  };
+
+  const getOrganizations = async () => {
+    try {
+      const response = await axiosInstance.get(_PATH_API.organizations.selections);
+      const selectOptions = convertToSelectItems(response.data.data);
+      setOrganizations(selectOptions);
+    } catch (error) {}
   };
 
   /** get spaces options and reset the cookie of space. show all the info of organization without querying by space. */
   const handleOnSelectOrganization = async (organizationId: string) => {
     try {
-      if (organizationId === '') {
-        await axiosInstance.delete(`${PATH_API.organizationCookie}`);
-        setCurrentOrganization('no organization selected');
-        return;
-      }
       const response = await axiosInstance.get(`${PATH_API.organizationCookie}/${organizationId}`);
       const selectOptions = convertToSelectItems(response.data.data);
       await axiosInstance.delete(`${PATH_API.spaceCookie}`);
@@ -113,6 +113,9 @@ const OrganizationSpaceSelect = ({
           // defaultValue={getCookie('organization')?.toString()}
           data={organizations}
           onChange={(value) => {
+            if (value === null) {
+              return deleteHeaderCookies();
+            }
             handleOnSelectOrganization(value || '');
             if (form) {
               form.setFieldValue('organization', value || '');

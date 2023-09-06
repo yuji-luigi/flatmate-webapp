@@ -53,7 +53,7 @@ const useStore = () => {
   }, [currentSpace?._id]);
 
   useEffect(() => {
-    if (!currentOrganization || !entity) return;
+    if (!currentOrganization || !entity || !sections.includes(entity)) return;
     fetchCrudDocumentsWithPagination({ entity });
   }, [currentOrganization]);
 

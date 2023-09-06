@@ -9,6 +9,8 @@ export type GetPathFunc = (path: string) => string;
  */
 export const ROOT_AUTH = 'auth';
 const getAuthPath: GetPathFunc = (path) => `${ROOT_AUTH}/${path}`;
+export const ROOT_ORGANIZATION_AUTH = 'auth';
+export const ROOT_SPACE_AUTH = 'auth';
 
 type TAuthPath = {
   // [key: string]: string;
@@ -35,10 +37,10 @@ export enum PATH_API {
   importExcel = 'import-excel',
   uploadsMaintenance = 'upload-files/maintenance-file',
   spaces = 'spaces',
-  spaceCookie = 'auth/space-selected',
+  spaceCookie = `${ROOT_SPACE_AUTH}/space-selected`,
   // spaceCookie = 'spaces/cookie',
-  spaceSlug = 'spaces/slug',
-  getSpaceSelections = 'auth/space-selections',
+  spaceSlug = `${ROOT_SPACE_AUTH}/slug`,
+  getSpaceSelections = `${ROOT_SPACE_AUTH}/space-selections`,
   // getSpaceSelections = 'spaces/selections',
   organization = 'organizations',
   maintainers = 'maintainers',
@@ -94,6 +96,9 @@ export const _PATH_API = {
     updateById: (_id: string) => byId(PATH_API.users, _id),
     onBoarding: (_id: string) => `${PATH_API.users}/${_id}/on-boarding`,
     getAuthToken: (_id: string) => `${PATH_API.users}/${_id}/${PATH_API.authTokens}`,
+  },
+  organizations: {
+    selections: `${ROOT_ORGANIZATION_AUTH}/organization-selections`,
   },
 } as const;
 

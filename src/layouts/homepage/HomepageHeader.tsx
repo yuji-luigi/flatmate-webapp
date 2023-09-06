@@ -33,7 +33,8 @@ import { useEffect } from 'react';
 import { useCookieContext } from '../../context/CookieContext';
 import { EnterButton } from './EnterButton';
 import { LoginButton } from './LoginButton';
-import { SignUpButton } from './SignUpButtohsrtjhrn';
+import { SignUpButton } from './SignUpButton';
+
 const useStyles = createStyles((theme) => ({
   link: {
     display: 'flex',
