@@ -48,6 +48,11 @@ const OrganizationSpaceSelect = ({
     setCurrentSpace(null);
   };
 
+  const handleDeleteSpaceCookie = async () => {
+    await axiosInstance.delete(PATH_API.spaceCookie);
+    setCurrentSpace(null);
+  };
+
   const getOrganizations = async () => {
     try {
       const response = await axiosInstance.get(_PATH_API.organizations.selections);
@@ -90,15 +95,10 @@ const OrganizationSpaceSelect = ({
   };
 
   useEffect(() => {
-    const organizationNameCookie = getCookie('organizationName');
-    if (typeof organizationNameCookie === 'string') {
-      setOrganizations([{ label: organizationNameCookie, value: currentOrganization || '' }]);
-    }
-    const spaceNameCookie = getCookie('spaceName');
-    if (typeof spaceNameCookie === 'string') {
-      const spaceId = currentSpace?._id || '';
-      setSpaces([{ label: spaceNameCookie, value: spaceId }]);
-    }
+    getOrganizations();
+    handleGetSpaces();
+    console.log({ currentSpace });
+    console.log({ currentOrganization });
   }, []);
   return (
     <>
@@ -134,6 +134,7 @@ const OrganizationSpaceSelect = ({
         data={spaces}
         value={currentSpace?._id?.toString() || ''}
         onChange={(value) => {
+          if (value === null) return handleDeleteSpaceCookie();
           getSpaceCookieFromApi(value || '');
           if (form) {
             form.setFieldValue('space', value || '');

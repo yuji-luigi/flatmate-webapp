@@ -92,8 +92,8 @@ export type JSONType = typeof links;
 
 export function DashboardHeaderSearch() {
   // const [opened, { toggle }] = useDisclosure(false);
-  const [organizations, setOrganizations] = useState<SelectItem[] | []>([]);
-  const [spaces, setSpaces] = useState<SelectItem[] | []>([]);
+  // const [organizations, setOrganizations] = useState<SelectItem[] | []>([]);
+  // const [spaces, setSpaces] = useState<SelectItem[] | []>([]);
   const router = useRouter();
   const { currentSpace, currentOrganization } = useCookieContext();
   const { classes } = useStyles();
@@ -106,18 +106,18 @@ export function DashboardHeaderSearch() {
     </Link>
   ));
 
-  useEffect(() => {
-    const organizationNameCookie = getCookie('organizationName');
-    if (typeof organizationNameCookie === 'string') {
-      setOrganizations([{ label: organizationNameCookie, value: currentOrganization || '' }]);
-    }
+  // useEffect(() => {
+  //   const organizationNameCookie = getCookie('organizationName');
+  //   if (typeof organizationNameCookie === 'string') {
+  //     setOrganizations([{ label: organizationNameCookie, value: currentOrganization || '' }]);
+  //   }
 
-    const spaceNameCookie = getCookie('spaceName');
-    if (typeof spaceNameCookie === 'string') {
-      const spaceId = currentSpace?._id || '';
-      setSpaces([{ label: spaceNameCookie, value: spaceId }]);
-    }
-  }, []);
+  //   const spaceNameCookie = getCookie('spaceName');
+  //   if (typeof spaceNameCookie === 'string') {
+  //     const spaceId = currentSpace?._id || '';
+  //     setSpaces([{ label: spaceNameCookie, value: spaceId }]);
+  //   }
+  // }, []);
   return (
     <Header fixed height={56} className={classes.header}>
       <div className={classes.inner}>

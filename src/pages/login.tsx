@@ -105,9 +105,6 @@ const LoginPage = ({ user }: { user?: UserModel }) => {
 export default LoginPage;
 
 LoginPage.getLayout = function getLayout(page: ReactElement) {
-  if (page.props.user?.active) {
-    return <Layout variant="dashboard">{page}</Layout>;
-  }
   return <Layout variant="main">{page}</Layout>;
 };
 
@@ -117,20 +114,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     if (!jwtToken) {
       return { props: { user: null } };
     }
-    // used fetch without reason. ok with axios instance too.
-    // const response = await fetch(`${API_BASE_URL}/${PATH_AUTH.me}`, {
-    //   method: 'GET', // *GET, POST, PUT, DELETE, etc.
-    //   mode: 'cors', // no-cors, *cors, same-origin
-    //   cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-    //   credentials: 'same-origin', // include, *same-origin, omit
-    //   headers: {
-    //     Authorization: `Bearer ${jwtToken}`,
-    //     // 'Content-Type': 'application/x-www-form-urlencoded',
-    //   },
-    //   // redirect: 'follow', // manual, *follow, error
-    //   // referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-    //   // body: JSON.stringify(data), // body data type must match "Content-Type" header
-    // });
     const rawRes = await axiosInstance.get(`${API_BASE_URL}/${PATH_AUTH.me}`, {
       headers: {
         Authorization: `Bearer ${jwtToken}`,

@@ -77,7 +77,6 @@ export const UserRegisterCard = ({
       });
       const { data } = rawRes.data;
       await sleep(1000);
-      login(user.email, form.values.password as string);
       push(PATH_AFTER_LOGIN);
     } catch (error: any) {
       showNotification({

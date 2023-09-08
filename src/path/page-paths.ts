@@ -10,7 +10,7 @@ export const AUTH = {
 
 export const FRONTEND_ROOT = process.env.NEXT_PUBLIC_FRONTEND_URL;
 
-export const PATH_AFTER_LOGIN = '/dashboard/posts';
+export const PATH_AFTER_LOGIN = '/dashboard/home';
 
 // export const PATH_ROOT {}
 

@@ -23,18 +23,21 @@ export interface IUser {
 }
 
 interface CurrentSpace {
-  _id: ObjectId;
+  _id: string;
   name: string;
-  address: string;
+  // address: string;
   // organization: ObjectId;
-  slug: string;
+  // slug: string;
 }
 
-export type JwtReturnType = LeanUser & {
-  spaceName?: string;
-  spaceId?: ObjectId;
-  organizationId?: ObjectId;
-  spaceAdmins: ObjectId[] | [];
+export type JwtReturnType = {
+  email: string;
+} & {
+  spaceId?: string;
+  spaceName: string;
+  spaceSlug: string;
+  spaceAddress: string;
+  organizationId?: string;
 };
 
 type ActionEnum = 'LOGIN' | 'REGISTER' | 'LOGOUT' | 'INITIALIZE';
@@ -42,7 +45,7 @@ type ActionEnum = 'LOGIN' | 'REGISTER' | 'LOGOUT' | 'INITIALIZE';
 export interface JWTContextState {
   isAuthenticated?: boolean | null;
   isInitialized?: boolean | null;
-  user?: JwtReturnType | null;
+  user?: UserModel | null;
   isSuperAdmin?: boolean;
 }
 export interface ReducerStateAction {

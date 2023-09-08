@@ -1,11 +1,11 @@
 import { current } from '@reduxjs/toolkit';
-import { getCookie } from 'cookies-next';
+import { CookieValueTypes, getCookie } from 'cookies-next';
 import jwtDecode from 'jwt-decode';
 import { useRouter } from 'next/router';
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 import { useCrudSliceStore } from '../redux/features/crud/crudSlice';
 import { sections } from '../data';
-import { CurrentSpace } from '../types/context/auth/useAuth';
+import { CurrentSpace, JwtReturnType } from '../types/context/auth/useAuth';
 import { CookieContextState } from '../types/context/cookie-context';
 
 export const CookieContext = createContext<CookieContextState>({
@@ -26,7 +26,7 @@ const useStore = () => {
 
   useEffect(() => {
     if (!currentOrganization) {
-      const organizationId = getCookie('organization');
+      const organizationId = getCookie('organizationId');
       if (typeof organizationId === 'boolean' || !organizationId) return;
       setCurrentOrganization(organizationId);
     }
@@ -34,13 +34,10 @@ const useStore = () => {
 
   useEffect(() => {
     if (!currentSpace) {
-      const spaceJWT = getCookie('space');
-      if (typeof spaceJWT === 'boolean') return;
-      try {
-        const decodedSpace = spaceJWT ? jwtDecode<CurrentSpace>(spaceJWT) : null;
-        setCurrentSpace(decodedSpace);
-      } catch (error) {
-        console.error('Error decoding JWT:', error); // Check if there's an error in jwtDecode
+      const spaceName = getCookie('spaceName');
+      const spaceId = getCookie('spaceId');
+      if (isString(spaceId) && isString(spaceName)) {
+        setCurrentSpace({ _id: spaceId, name: spaceName });
       }
     }
   }, []);
@@ -48,7 +45,7 @@ const useStore = () => {
   // this is breaking SRP
   // when header selected space or organization changes then the documents in the current section(entity in url) will be updated
   useEffect(() => {
-    if (!currentSpace?._id || !sections.includes(entity)) return;
+    if (/* !currentSpace?._id ||  */ !sections.includes(entity)) return;
     fetchCrudDocumentsWithPagination({ entity });
   }, [currentSpace?._id]);
 
@@ -62,7 +59,7 @@ const useStore = () => {
     setCurrentSpace: (space: CurrentSpace | null) => {
       setCurrentSpace(space);
     },
-    resetCurrentSpace: () => setCurrentSpace({ _id: 'no space', name: '', address: '', slug: '' }),
+    resetCurrentSpace: () => setCurrentSpace({ _id: 'no space', name: '' }),
     currentOrganization,
     setCurrentOrganization,
   };
@@ -73,3 +70,7 @@ export const CookieContextProvider = ({ children }: { children: ReactNode }) => 
 );
 
 export const useCookieContext = () => useContext(CookieContext);
+
+export function isString(data: CookieValueTypes): data is string {
+  return typeof data === 'string';
+}
