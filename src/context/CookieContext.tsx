@@ -36,8 +36,9 @@ const useStore = () => {
     if (!currentSpace) {
       const spaceName = getCookie('spaceName');
       const spaceId = getCookie('spaceId');
-      if (isString(spaceId) && isString(spaceName)) {
-        setCurrentSpace({ _id: spaceId, name: spaceName });
+      const spaceSlug = getCookie('spaceSlug');
+      if (isString(spaceId) && isString(spaceName) && isString(spaceSlug)) {
+        setCurrentSpace({ _id: spaceId, name: spaceName, slug: spaceSlug });
       }
     }
   }, []);
@@ -59,7 +60,7 @@ const useStore = () => {
     setCurrentSpace: (space: CurrentSpace | null) => {
       setCurrentSpace(space);
     },
-    resetCurrentSpace: () => setCurrentSpace({ _id: 'no space', name: '' }),
+    resetCurrentSpace: () => setCurrentSpace(null),
     currentOrganization,
     setCurrentOrganization,
   };

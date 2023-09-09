@@ -27,7 +27,7 @@ interface CurrentSpace {
   name: string;
   // address: string;
   // organization: ObjectId;
-  // slug: string;
+  slug: string;
 }
 
 export type JwtReturnType = {
