@@ -7,6 +7,7 @@ import { useCrudSliceStore } from '../redux/features/crud/crudSlice';
 import { sections } from '../data';
 import { CurrentSpace, JwtReturnType } from '../types/context/auth/useAuth';
 import { CookieContextState } from '../types/context/cookie-context';
+import { SpaceModel } from '../types/models/space-model';
 
 export const CookieContext = createContext<CookieContextState>({
   currentSpace: null,
@@ -14,6 +15,7 @@ export const CookieContext = createContext<CookieContextState>({
   currentOrganization: null,
   setCurrentOrganization: (organization: string | null) => {},
   resetCurrentSpace: () => {},
+  handleSetCurrentSpace: (space: SpaceModel | null) => {},
 });
 
 const useStore = () => {
@@ -60,7 +62,13 @@ const useStore = () => {
     setCurrentSpace: (space: CurrentSpace | null) => {
       setCurrentSpace(space);
     },
-    resetCurrentSpace: () => setCurrentSpace(null),
+    handleSetCurrentSpace: (space: SpaceModel | null) => {
+      if (!space) return;
+      setCurrentSpace({ _id: space._id, name: space.name, slug: space.slug });
+    },
+    resetCurrentSpace: () => {
+      setCurrentSpace(null);
+    },
     currentOrganization,
     setCurrentOrganization,
   };

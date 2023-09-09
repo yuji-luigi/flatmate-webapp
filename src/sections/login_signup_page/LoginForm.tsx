@@ -9,8 +9,10 @@ import { LoginFormValues } from '../../types/context/auth/formData';
 import { Icons } from '../../data/icons';
 import { useRouter } from 'next/router';
 import { PATH_CLIENT } from '../../path/page-paths';
+import { useCookieContext } from '../../context/CookieContext';
 
 function LoginForm() {
+  const { resetCurrentSpace, setCurrentOrganization } = useCookieContext();
   const { login } = useAuth();
   const router = useRouter();
 
@@ -27,6 +29,8 @@ function LoginForm() {
 
   const handleSubmit = async (values: LoginFormValues) => {
     try {
+      resetCurrentSpace();
+      setCurrentOrganization(null);
       await login(values.email, values.password);
       // router.push(PATH_CLIENT.chooseRootSpace);
       // return null;

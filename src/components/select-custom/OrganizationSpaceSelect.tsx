@@ -10,6 +10,7 @@ import useLayoutContext from '../../../hooks/useLayoutContext';
 import { useMediaQuery } from '@mantine/hooks';
 import { getCookie } from 'cookies-next';
 import { UseFormReturnType } from '@mantine/form';
+import { current } from '@reduxjs/toolkit';
 
 interface OrganizationSpaceSelectProps {
   sx?: Sx;
@@ -29,8 +30,6 @@ const OrganizationSpaceSelect = ({
   // const [opened, { toggle }] = useDisclosure(false);
 
   const [organizations, setOrganizations] = useState<SelectItem[] | []>([]);
-  const [spaces, setSpaces] = useState<SelectItem[] | []>([]);
-  const router = useRouter();
   const {
     setCurrentOrganization,
     setCurrentSpace,
@@ -38,6 +37,10 @@ const OrganizationSpaceSelect = ({
     currentOrganization,
     resetCurrentSpace,
   } = useCookieContext();
+  const [spaces, setSpaces] = useState<SelectItem[] | []>([
+    { value: currentSpace?._id || '', label: currentSpace?.name || '' },
+  ]);
+  const router = useRouter();
   const { user } = useAuth();
   const isSuperAdmin = user?.role === 'super_admin';
 
@@ -94,11 +97,18 @@ const OrganizationSpaceSelect = ({
     } catch (error) {}
   };
 
+  // useEffect(() => {
+  //   if (currentSpace?._id) {
+  //     setSpaces([{ value: currentSpace?._id || '', label: currentSpace?.name || '' }]);
+  //   }
+  //   if (currentOrganization) {
+  //     setCurrentOrganization(currentOrganization);
+  //   }
+  // }, [currentSpace?._id, currentOrganization]);
+
   useEffect(() => {
     getOrganizations();
     handleGetSpaces();
-    console.log({ currentSpace });
-    console.log({ currentOrganization });
   }, []);
   return (
     <>

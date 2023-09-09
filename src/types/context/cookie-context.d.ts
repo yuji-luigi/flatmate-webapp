@@ -8,4 +8,5 @@ interface CookieContextState {
   currentOrganization?: string | null;
   setCurrentOrganization: (organization: string | null) => void;
   resetCurrentSpace: () => void;
+  handleSetCurrentSpace: (space: SpaceModel | null) => void;
 }

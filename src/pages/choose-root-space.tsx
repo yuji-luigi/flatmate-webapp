@@ -13,6 +13,7 @@ import Link from 'next/link';
 import Layout from '../layouts';
 import { UserModel } from '../types/models/user-model';
 import { SpaceModel } from '../types/models/space-model';
+import { useCookieContext } from '../context/CookieContext';
 const useStyles = createStyles((theme) => ({
   pinContainer: {
     // position: 'absolute',
@@ -39,6 +40,7 @@ const ChooseRootSpacePage = () => {
   const { user } = useAuth();
   const { classes, cx, theme } = useStyles();
   const router = useRouter();
+  const { handleSetCurrentSpace } = useCookieContext();
   const title = user?.role === 'super_admin' ? 'Choose organization' : 'Which building to operate?';
   const hrefRoot = CARD_LINK_PATH.rootSpaceSelected;
   const {
@@ -54,7 +56,8 @@ const ChooseRootSpacePage = () => {
   if (!rootSpaces || isLoading) return <p>loading</p>;
 
   const handleSpaceSelected = async (mainSpace: SpaceModel) => {
-    await axiosInstance.get(`${PATH_API.spaceCookie}/${mainSpace._id}`);
+    const rawSpace = await axiosInstance.get(`${PATH_API.spaceCookie}/${mainSpace._id}`);
+    handleSetCurrentSpace(rawSpace.data.data.space);
     // router.push(PATH_CLIENT.root);
     router.push(`${PATH_CLIENT.root}/${mainSpace.slug}`);
   };

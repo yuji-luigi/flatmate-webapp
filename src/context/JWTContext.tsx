@@ -13,6 +13,7 @@ import {
   RegisterData,
 } from '../types/context/auth/useAuth';
 import { isValidToken, setSession } from '../utils/jwt';
+import { useCookieContext } from './CookieContext';
 
 const initialState: JWTContextState = {
   isAuthenticated: false,
@@ -70,7 +71,6 @@ const AuthContext = createContext<AuthContextInterface>({
 
 function AuthProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(reducer, initialState);
-
   useEffect(() => {
     const initialize = async () => {
       try {
@@ -89,19 +89,6 @@ function AuthProvider({ children }: { children: ReactNode }) {
             },
           });
         } else {
-          //NOTE: now always authenticated
-          // dispatch({
-          //   type: 'INITIALIZE',
-          //   payload: {
-          //     isAuthenticated: true,
-          //     user: {
-          //       name: 'always user',
-          //       email: 'email@demo.com',
-          //       password: 'encrypted',
-          //       userSetting: 'string',
-          //     },
-          //   },
-          // });
           dispatch({
             type: 'INITIALIZE',
             payload: {
