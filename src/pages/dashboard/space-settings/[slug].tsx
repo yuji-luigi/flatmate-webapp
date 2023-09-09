@@ -19,6 +19,7 @@ import { SpaceSlugResponse } from '../../../types/api-response/space-response';
 import { SpaceSettingMaintainersSection } from '../../../sections/dashboard_pages/space_setting_section/maintainers_section/SpaceSettingMaintainersSection';
 import { useCookieContext } from '../../../context/CookieContext';
 import { PATH_CLIENT } from '../../../path/page-paths';
+import { useCrudSelectors, useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
 
 // use style from global-useStyles
 const useStyles = dashboardStyle;
@@ -37,33 +38,45 @@ const spaceFetcher = async (args: string) => {
 const SpaceSettingSinglePage = () => {
   const router = useRouter();
   const slug = router.query.slug as string;
-
   const { currentSpace } = useCookieContext();
-
+  const { setCrudDocument, setCrudDocuments } = useCrudSliceStore();
+  const { crudDocument: space } = useCrudSelectors('spaces');
+  const { crudDocuments: maintainers } = useCrudSelectors('maintainers');
   const { classes: classes1 } = useStyles();
   // combine styles
   const { classes: classes2 } = useStyles2();
   // put 2 styles together in one object
   const classes = { ...classes1, ...classes2 };
-  const { data, error, isLoading } = useSWR<SpaceSlugResponse | null, AxiosError>(slug, () =>
-    spaceFetcher(slug)
-  );
+  // const { data, error, isLoading } = useSWR<SpaceSlugResponse | null, AxiosError>(`${slug}}`, () =>
+  //   spaceFetcher(slug)
+  // );
 
   useEffect(() => {
     if (currentSpace && currentSpace.slug) {
       router.push(`${PATH_CLIENT.spaceSettings}/${currentSpace.slug}`);
+      axiosInstance.get(`${PATH_API.spaceSlug}/${currentSpace?.slug}`).then((rawRes) => {
+        const data = rawRes.data.data;
+        setCrudDocument({ entity: 'spaces', document: data.space });
+        setCrudDocuments({ entity: 'maintainers', documents: data.maintainers });
+      });
     }
   }, [currentSpace?.slug]);
 
-  if (!data) return <LoadingScreen />;
-  const { space, maintainers } = data;
+  // useEffect(() => {
+  //   if (data?.space) {
+  //     setCrudDocument({ entity: 'spaces', document: data.space });
+  //   }
+  // }, [data?.space._id]);
+
+  if (!space) return <LoadingScreen />;
+  console.log(space.name);
   const coverData: CoverDataProp = {
     title: space.name,
     subtitle: space.address,
     coverUrl: space.cover?.url,
     avatarUrl: space.avatar?.url,
   };
-
+  // return null;
   return (
     <Grid className={classes.container}>
       {/* <Box className={classes.box}> */}
@@ -72,10 +85,10 @@ const SpaceSettingSinglePage = () => {
         <ProfileCover noAvatar sx={{ height: '100%' }} data={coverData} />
       </Grid.Col>
       <Grid.Col md={12} lg={7}>
-        <SpaceSettingForm data={data} sx={{ width: '100%' }} />
+        <SpaceSettingForm data={space} sx={{ width: '100%' }} />
       </Grid.Col>
       <Grid.Col span={12}>
-        <SpaceSettingMaintainersSection maintainers={data.maintainers} />
+        <SpaceSettingMaintainersSection maintainers={maintainers} />
       </Grid.Col>
     </Grid>
   );

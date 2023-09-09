@@ -27,6 +27,8 @@ import { useModalContext } from '@mantine/core/lib/Modal/Modal.context';
 import { use_ModalContext } from '../../context/modal-context/_ModalContext';
 import { Sections } from '../../types/general/data/sections-type';
 import { FormFieldTypes } from '../../types/general/data/data-table/formField-types';
+import { MAX_FILE_SIZE } from '../../lib/files/file-sizes';
+import { formatSize } from '../../lib/formatters';
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -128,6 +130,11 @@ const ProfileCover = ({
   ) => {
     const file = event.target.files?.[0];
     if (!file || !_entity) return;
+    if (file && file.size > MAX_FILE_SIZE) {
+      window.alert(`File size exceeds the allowed limit of ${formatSize(MAX_FILE_SIZE)}.`);
+      event.target.value = ''; // Reset the input
+      return;
+    }
     const reader = new FileReader();
     reader.onloadend = () => {
       if (field === 'avatar') {

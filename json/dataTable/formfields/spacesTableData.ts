@@ -43,7 +43,7 @@ export const spacesTableData: Array<FormFieldTypes> = [
     badge: true,
     multi: true,
     // selectValues: ['name', 'email'],
-    selectValues: ['name'],
+    selectValues: ['name', 'surname', 'email'],
     grantTo: ['super_admin'],
     required: false,
     priority: 100,

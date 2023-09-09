@@ -39,7 +39,7 @@ export enum PATH_API {
   spaces = 'spaces',
   spaceCookie = `auth/space-selected`,
   // spaceCookie = 'spaces/cookie',
-  spaceSlug = `auth/slug`,
+  spaceSlug = `spaces/slug`,
   getSpaceSelections = `auth/space-selections`,
   // getSpaceSelections = 'spaces/selections',
   organization = 'organizations',
