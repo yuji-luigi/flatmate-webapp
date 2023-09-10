@@ -29,6 +29,7 @@ import { Sections } from '../../types/general/data/sections-type';
 import { FormFieldTypes } from '../../types/general/data/data-table/formField-types';
 import { MAX_FILE_SIZE } from '../../lib/files/file-sizes';
 import { formatSize } from '../../lib/formatters';
+import { useCookieContext } from '../../context/CookieContext';
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -94,9 +95,11 @@ const ProfileCover = ({
   formFields,
   entity,
   noAvatar = false,
+  enableCover = false,
   sx,
 }: {
   data: CoverDataProp;
+  enableCover?: boolean;
   entity?: Sections;
   noAvatar?: boolean;
   formFields?: FormFieldTypes[];
@@ -105,6 +108,8 @@ const ProfileCover = ({
   const { documentId } = useRouter().query;
   const _entity = entity || (getEntityFromUrl() as Sections);
   const { updateCrudDocument } = useCrudSliceStore();
+
+  const { currentSpace } = useCookieContext();
 
   const { classes } = useStyles();
 
@@ -148,7 +153,6 @@ const ProfileCover = ({
 
     try {
       const uploadIdData = await uploadFileAndGetModelId({ [field]: [file] }, _entity);
-
       updateCrudDocument({
         entity: _entity,
         documentId: data._id || (documentId as string),
@@ -160,12 +164,9 @@ const ProfileCover = ({
       setSubmitting(false);
       return;
     }
-    const rawUpload = await axiosInstance.post(PATH_API.uploads, file);
   };
   const handleEditClicked = () => {
-    console.log('edit clicked');
     if (!formFields) return console.log('formFields not defined');
-    console.log(crudDocument);
     openConfirmModal({
       type: 'crud',
       crudDocument: crudDocument,
@@ -199,21 +200,23 @@ const ProfileCover = ({
         })`,
       }}
     >
-      <Box onClick={handleLightBoxClicked} className={classes.lightBox}>
-        {/* <Group position="right">
-          <input
-            id="cover-input"
-            type="file"
-            ref={coverInputRef}
-            accept="image/*"
-            style={{ display: 'none' }}
-            onChange={(e) => handleImageChange(e, 'cover')}
-          />
-          <Button m={8} color="dark" onClick={onChangeCoverClicked}>
-            Change cover
-          </Button>
-        </Group> */}
-      </Box>
+      {enableCover && (
+        <Box onClick={handleLightBoxClicked} className={classes.lightBox}>
+          <Group position="right">
+            <input
+              id="cover-input"
+              type="file"
+              ref={coverInputRef}
+              accept="image/*"
+              style={{ display: 'none' }}
+              onChange={(e) => handleImageChange(e, 'cover')}
+            />
+            <Button m={8} color="dark" onClick={onChangeCoverClicked}>
+              Change cover
+            </Button>
+          </Group>
+        </Box>
+      )}
       <Group style={{ justifyContent: 'space-between', width: '100%' }}>
         <Group>
           {!noAvatar && (

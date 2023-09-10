@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import React, { ReactElement, useEffect } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import Layout from '../../../layouts';
 import { Grid } from '@mantine/core';
 import { dashboardStyle, profilePageStyle } from '../../../styles/global-useStyles';
@@ -11,7 +11,7 @@ import ProfileCover, { CoverDataProp } from '../../../components/profile/Profile
 import { SpaceSettingForm } from '../../../sections/dashboard_pages/space_setting_section/SpaceSettingForm';
 import useSWR from 'swr';
 import axiosInstance, { AxiosResDataGeneric } from '../../../utils/axios-instance';
-import { PATH_API } from '../../../path/api-routes';
+import { PATH_API, _PATH_API } from '../../../path/api-routes';
 import { AxiosError } from 'axios';
 import LoadingScreen from '../../../components/screen/LoadingScreen';
 
@@ -25,16 +25,6 @@ import { useCrudSelectors, useCrudSliceStore } from '../../../redux/features/cru
 const useStyles = dashboardStyle;
 const useStyles2 = profilePageStyle;
 
-const spaceFetcher = async (args: string) => {
-  try {
-    // get single space and also maintainers of the space
-    const rawSpace = await axiosInstance.get(`${PATH_API.spaceSlug}/${args}`);
-    return rawSpace.data.data;
-  } catch (error: any) {
-    console.error(error.message || error);
-  }
-};
-
 const SpaceSettingSinglePage = () => {
   const router = useRouter();
   const slug = router.query.slug as string;
@@ -42,6 +32,7 @@ const SpaceSettingSinglePage = () => {
   const { setCrudDocument, setCrudDocuments } = useCrudSliceStore();
   const { crudDocument: space } = useCrudSelectors('spaces');
   const { crudDocuments: maintainers } = useCrudSelectors('maintainers');
+  const [isSpaceAdmin, setIsSpaceAdmin] = useState(false);
   const { classes: classes1 } = useStyles();
   // combine styles
   const { classes: classes2 } = useStyles2();
@@ -54,8 +45,9 @@ const SpaceSettingSinglePage = () => {
   useEffect(() => {
     if (currentSpace && currentSpace.slug) {
       router.push(`${PATH_CLIENT.spaceSettings}/${currentSpace.slug}`);
-      axiosInstance.get(`${PATH_API.spaceSlug}/${currentSpace?.slug}`).then((rawRes) => {
+      axiosInstance.get(`${_PATH_API.spaces.settings}/${currentSpace?.slug}`).then((rawRes) => {
         const data = rawRes.data.data;
+        setIsSpaceAdmin(data.isSpaceAdmin);
         setCrudDocument({ entity: 'spaces', document: data.space });
         setCrudDocuments({ entity: 'maintainers', documents: data.maintainers });
       });
@@ -82,10 +74,15 @@ const SpaceSettingSinglePage = () => {
       {/* <Box className={classes.box}> */}
       {/* <Box className={classes.cardMain}> */}
       <Grid.Col md={12} lg={5}>
-        <ProfileCover noAvatar sx={{ height: '100%' }} data={coverData} />
+        <ProfileCover
+          noAvatar
+          sx={{ height: '100%' }}
+          data={coverData}
+          enableCover={isSpaceAdmin}
+        />
       </Grid.Col>
       <Grid.Col md={12} lg={7}>
-        <SpaceSettingForm data={space} sx={{ width: '100%' }} />
+        <SpaceSettingForm data={space} isSpaceAdmin={isSpaceAdmin} sx={{ width: '100%' }} />
       </Grid.Col>
       <Grid.Col span={12}>
         <SpaceSettingMaintainersSection maintainers={maintainers} />
@@ -96,6 +93,6 @@ const SpaceSettingSinglePage = () => {
 
 // get layout
 SpaceSettingSinglePage.getLayout = (page: ReactElement) => (
-  <Layout variant="dashboard">{page}</Layout>
+  <Layout variant="dashooard">{page}</Layout>
 );
 export default SpaceSettingSinglePage;

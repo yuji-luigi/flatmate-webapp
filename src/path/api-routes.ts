@@ -39,7 +39,6 @@ export enum PATH_API {
   spaces = 'spaces',
   spaceCookie = `auth/space-selected`,
   // spaceCookie = 'spaces/cookie',
-  spaceSlug = `spaces/slug`,
   getSpaceSelections = `auth/space-selections`,
   // getSpaceSelections = 'spaces/selections',
   organization = 'organizations',
@@ -65,6 +64,11 @@ const getExcelEndpoint = (excelRoute: string, entity: string) => `${excelRoute}/
 // const getQrCodeEndpoint = ({qrCodeRoute, entity}) => `${qrCodeRoute}/${entity}`;
 
 export const _PATH_API = {
+  spaces: {
+    root: PATH_API.spaces,
+    home: `${PATH_API.spaces}/home`,
+    settings: `${PATH_API.spaces}/settings`,
+  },
   linkedChildren: {
     root: PATH_API.linkedChildren,
     get: (entity: string) => all(entity),
@@ -77,6 +81,7 @@ export const _PATH_API = {
     create: () => all(PATH_API.uploads),
     updateById: (_id: string) => byId(PATH_API.uploads, _id),
     getById: (_id: string) => byId(PATH_API.uploads, _id),
+    all: `${PATH_API.uploads}/all`,
   },
   importExcel: {
     root: PATH_API.importExcel,

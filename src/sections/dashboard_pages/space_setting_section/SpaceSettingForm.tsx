@@ -12,37 +12,40 @@ import FormFields from '../../../components/input/FormFields';
 import { useCrudSelectors, useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
 import { SpaceModel } from '../../../types/models/space-model';
 
-const filteredTableData = spacesTableData.filter(
+let filteredTableData = spacesTableData.filter(
   (item) => item.id !== 'organization' && item.id !== 'isTail' && item.id !== 'isMain'
 );
 interface SpaceSettingFormProps {
   paperProp?: PaperProps;
   data?: SpaceModel;
   sx?: Sx;
+  isSpaceAdmin?: boolean;
 }
 const entity = 'spaces';
 export function SpaceSettingForm(props: SpaceSettingFormProps) {
+  const { isSpaceAdmin } = props;
+
   const { crudDocument: space } = useCrudSelectors('spaces');
   const { updateCrudDocument } = useCrudSliceStore();
-  // const [type, toggle] = useToggle(['login', 'register']);
+
   const initialValues = useMemo(() => {
     return getDefaultValues(filteredTableData, space);
   }, [space?._id]);
+
   const form = useForm({
     initialValues,
   }) as UseFormReturnTypeCustom;
 
   const handleSubmit = (data: Record<string, any>) => {
-    console.log(data);
-    // console.log(crudDocument.name);
     if (space) {
       updateCrudDocument({ entity, updateData: data, documentId: space._id });
     }
   };
-  console.log(initialValues.name);
+
   useEffect(() => {
     form.setValues(initialValues);
   }, [initialValues]);
+
   return (
     <Paper radius="lg" p="xl" withBorder {...props}>
       <Text size="lg" weight={500} mb={8}>
@@ -53,13 +56,13 @@ export function SpaceSettingForm(props: SpaceSettingFormProps) {
         <Grid grow>
           <Item>
             {filteredTableData.map((formField) => (
-              <FormFields formField={formField} form={form} />
+              <FormFields disabled={!isSpaceAdmin} formField={formField} form={form} />
             ))}
           </Item>
         </Grid>
 
         <Group position="right" mt="xl">
-          <Button type="submit" radius="xl">
+          <Button type="submit" disabled={!isSpaceAdmin} radius="xl">
             Submit
           </Button>
         </Group>

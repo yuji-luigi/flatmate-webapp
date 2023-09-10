@@ -20,6 +20,8 @@ import { MaintainerModel } from '../../../types/models/maintainer-model';
 import { MaintenanceListCard } from './side-cards/maintenance-card/MaintenancesCard';
 import { SpaceModel } from '../../../types/models/space-model';
 import { spacesTableData } from '../../../../json/dataTable/formfields/spacesTableData';
+import useAuth from '../../../../hooks/useAuth';
+import { useCookieContext } from '../../../context/CookieContext';
 
 // use style from global-useStyles
 const useStyles = dashboardStyle;
@@ -49,7 +51,8 @@ const TabListConfig = [
 const SpaceHomeSection = () => {
   const router = useRouter();
   const { crudDocuments: maintainers } = useCrudSelectors<MaintainerModel>('maintainers');
-
+  const { currentSpace } = useCookieContext();
+  const { user } = useAuth();
   const { classes: classes1 } = useStyles();
   const entity = 'spaces';
   // combine styles
@@ -88,8 +91,10 @@ const SpaceHomeSection = () => {
         <Box className={classes.box}>
           <Box className={classes.cardMain}>
             <ProfileCover
+              noAvatar
+              enableCover={!!(currentSpace && user?.role !== 'user')}
               entity={entity}
-              formFields={spacesTableData}
+              // formFields={spacesTableData}
               data={{
                 title: document.name,
                 _id: document._id,

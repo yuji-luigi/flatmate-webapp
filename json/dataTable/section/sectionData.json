@@ -138,14 +138,14 @@
 				"icon": "Dashboard"
 			},
 			{
-				"entity": "tags",
-				"entitySingle": "tag",
-				"title": "Tags",
+				"entity": "maintainers",
+				"entitySingle": "maintainer",
+				"title": "Maintainers",
 				"subtitle": "subtitle",
-				"navbarTitle": "Tag",
-				"link": "/dashboard/tags",
+				"navbarTitle": "Maintainer",
+				"link": "/dashboard/maintainers",
 				"importButton": "",
-				"createButton": "New Tag",
+				"createButton": "New Maintainer",
 				"icon": "Dashboard"
 			}
 		]
@@ -157,6 +157,17 @@
 			"admin"
 		],
 		"contents": [
+			{
+				"entity": "tags",
+				"entitySingle": "tag",
+				"title": "Tags",
+				"subtitle": "subtitle",
+				"navbarTitle": "Tag",
+				"link": "/dashboard/tags",
+				"importButton": "",
+				"createButton": "New Tag",
+				"icon": "Dashboard"
+			},
 			{
 				"entity": "threads",
 				"entitySingle": "thread",
@@ -188,17 +199,6 @@
 				"link": "/dashboard/users",
 				"importButton": "import Excel",
 				"createButton": "New User",
-				"icon": "Dashboard"
-			},
-			{
-				"entity": "maintainers",
-				"entitySingle": "maintainer",
-				"title": "Maintainers",
-				"subtitle": "subtitle",
-				"navbarTitle": "Maintainer",
-				"link": "/dashboard/maintainers",
-				"importButton": "",
-				"createButton": "New Maintainer",
 				"icon": "Dashboard"
 			}
 		]
