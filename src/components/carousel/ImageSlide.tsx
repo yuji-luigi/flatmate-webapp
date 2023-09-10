@@ -1,7 +1,7 @@
 import { Carousel } from '@mantine/carousel';
 import { Box, ActionIcon, Overlay, Button } from '@mantine/core';
 import React from 'react';
-import { Icons } from '../../data/icons';
+import { Icons } from '../../data/icons/icons';
 import Image from 'next/image';
 import { UploadModel } from '../../types/models/upload-model';
 

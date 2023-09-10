@@ -23,7 +23,7 @@ import { PasswordStrength } from '../../components/input/Password.Strength';
 import { RegisterData } from '../../types/context/auth/useAuth';
 import GuestGuard from '../../guards/GuestGuard';
 import { notifications, showNotification } from '@mantine/notifications';
-import { Icons } from '../../data/icons';
+import { Icons } from '../../data/icons/icons';
 import SignUpStepOne from './SignUpStepOne';
 import { useState } from 'react';
 import SignUpStepTwo from './SignUpStepTwo';

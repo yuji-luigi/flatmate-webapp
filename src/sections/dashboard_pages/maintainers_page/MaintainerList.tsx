@@ -9,7 +9,7 @@ import { useCookieContext } from '../../../context/CookieContext';
 import { current } from '@reduxjs/toolkit';
 import { fetchSpaceSelections } from '../../../pages/choose-root-space';
 import useAuth from '../../../../hooks/useAuth';
-import { Icons } from '../../../data/icons';
+import { Icons } from '../../../data/icons/icons';
 import { QueryFilterToApi } from '../../../components/datatable/filter/QueryFilterToApi';
 import { maintainersTableData } from '../../../../json/dataTable/formfields/maintainersTableData';
 import { QueryFilterWeb } from '../../../components/datatable/filter/QueryFilterWeb';

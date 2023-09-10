@@ -13,7 +13,7 @@ import {
   ActionIcon,
 } from '@mantine/core';
 import React from 'react';
-import { Icons } from '../../../data/icons';
+import { Icons } from '../../../data/icons/icons';
 import AttachmentsRow from '../AttachmentsRow';
 import CarouselBasic from '../../carousel/CarouselBasic';
 import { UserModel } from '../../../types/models/user-model';

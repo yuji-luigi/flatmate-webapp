@@ -15,7 +15,7 @@ import useLayoutContext from '../../../hooks/useLayoutContext';
 import useAuth from '../../../hooks/useAuth';
 import { sectionData } from '../../data';
 
-import { Icons } from '../../data/icons';
+import { Icons } from '../../data/icons/icons';
 import { useMediaQuery } from '@mantine/hooks';
 import { PATH_CLIENT } from '../../path/page-paths';
 import { ColorSchemeToggle } from '../../components/color-schemeToggle/ColorSchemeToggle';

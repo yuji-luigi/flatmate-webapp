@@ -1,6 +1,6 @@
 import { createStyles, Avatar, Text, Group, Card, Stack, Badge, Box } from '@mantine/core';
 import { IconPhoneCall, IconAt } from '@tabler/icons-react';
-import { Icons } from '../../../../data/icons';
+import { Icons } from '../../../../data/icons/icons';
 import { MaintainerCardLeftSection } from './MaintainerCardLeftSection';
 import { MaintainerCardRightSection } from './MaintainerCardRightSection';
 import { MaintainerModel } from '../../../../types/models/maintainer-model';

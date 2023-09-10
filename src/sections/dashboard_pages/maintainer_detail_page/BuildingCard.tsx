@@ -1,7 +1,7 @@
 import React from 'react';
 import CardWithTitle from '../../../components/profile/side/CardWithTitle';
 import TextWithIcon from '../../../components/text/TextWithIcon';
-import { Icons } from '../../../data/icons';
+import { Icons } from '../../../data/icons/icons';
 import { useCrudSelectors } from '../../../redux/features/crud/crudSlice';
 import { Skeleton, Text } from '@mantine/core';
 import { get } from 'http';

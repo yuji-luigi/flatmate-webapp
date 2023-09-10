@@ -12,7 +12,7 @@ import {
 } from '@mantine/core';
 import useAuth from '../../../hooks/useAuth';
 import Link from 'next/link';
-import { Icons } from '../../data/icons';
+import { Icons } from '../../data/icons/icons';
 import { PATH_CLIENT } from '../../path/page-paths';
 
 const useStyles = createStyles((theme /* , _params, getRef */) => {

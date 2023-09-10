@@ -1,7 +1,7 @@
 import { Badge, Box, Group, Stack, Text, createStyles } from '@mantine/core';
 import { IconPhoneCall } from '@tabler/icons-react';
 import React from 'react';
-import { Icons } from '../../../../data/icons';
+import { Icons } from '../../../../data/icons/icons';
 import TextWithIcon from '../../../../components/text/TextWithIcon';
 import { MaintainerModel } from '../../../../types/models/maintainer-model';
 const useStyles = createStyles((theme) => ({

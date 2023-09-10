@@ -2,7 +2,7 @@ import { useDisclosure } from '@mantine/hooks';
 
 import { Menu, Modal, ActionIcon } from '@mantine/core';
 
-import { Icons } from '../../../data/icons';
+import { Icons } from '../../../data/icons/icons';
 import { allSectionArrayWithRoles } from '../../../data';
 
 import { FONT_SIZES } from '../../../lib/enums';

@@ -6,7 +6,7 @@ import { useForm } from '@mantine/form';
 import useAuth from '../../../hooks/useAuth';
 import { LoginFormValues } from '../../types/context/auth/formData';
 
-import { Icons } from '../../data/icons';
+import { Icons } from '../../data/icons/icons';
 import { useRouter } from 'next/router';
 import { PATH_CLIENT } from '../../path/page-paths';
 import { useCookieContext } from '../../context/CookieContext';

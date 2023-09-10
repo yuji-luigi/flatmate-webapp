@@ -1,7 +1,7 @@
 import { Group, ActionIcon, createStyles, Menu } from '@mantine/core';
 import React, { useEffect } from 'react';
 import useAuth from '../../../hooks/useAuth';
-import { Icons } from '../../data/icons';
+import { Icons } from '../../data/icons/icons';
 import { FONT_SIZES } from '../../lib/enums';
 import { IconBookmark, IconDots, IconHeart, IconSettings, IconShare } from '@tabler/icons-react';
 import { useCrudSelectors, useCrudSliceStore } from '../../redux/features/crud/crudSlice';

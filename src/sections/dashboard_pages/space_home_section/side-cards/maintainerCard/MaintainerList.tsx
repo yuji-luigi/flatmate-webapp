@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Icons } from '../../../../../data/icons';
+import { Icons } from '../../../../../data/icons/icons';
 import TextWithIcon from '../../../../../components/text/TextWithIcon';
 import { Stack, Text } from '@mantine/core';
 import { MaintainerModel } from '../../../../../types/models/maintainer-model';

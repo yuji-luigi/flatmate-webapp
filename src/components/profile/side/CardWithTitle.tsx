@@ -1,7 +1,7 @@
 import { Card, Title, Text, createStyles, Box, Sx } from '@mantine/core';
 import { Icon123 } from '@tabler/icons-react';
 import React from 'react';
-import { Icons } from '../../../data/icons';
+import { Icons } from '../../../data/icons/icons';
 import TextWithIcon from '../../text/TextWithIcon';
 
 const useStyles = createStyles((theme) => ({
