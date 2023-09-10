@@ -4,7 +4,7 @@ import { Box, LoadingOverlay, Tabs } from '@mantine/core';
 import { dashboardStyle, profilePageStyle } from '../../../styles/global-useStyles';
 import ProfileSide from '../../../components/profile/side/ProfileSide';
 import CardWithTitle from '../../../components/profile/side/CardWithTitle';
-import { Icons } from '../../../data/icons';
+import { Icons } from '../../../data/icons/icons';
 
 import ProfileCover from '../../../components/profile/ProfileCover';
 import { useMediaQuery } from '@mantine/hooks';

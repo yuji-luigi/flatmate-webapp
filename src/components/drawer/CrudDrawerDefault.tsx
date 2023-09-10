@@ -10,7 +10,7 @@ import {
 import { useRouter } from 'next/router';
 import { FormEvent, useEffect, useState, useMemo } from 'react';
 import allFormFields from '../../../json/dataTable/formfields';
-import { Icons } from '../../data/icons';
+import { Icons } from '../../data/icons/icons';
 import { constructErrorNotificationData } from '../../data/showNofification/notificationObjects';
 // import { useCrudSlice } from '../../../hooks/redux-hooks/useCrudSlice';
 import { capitalize, sleep } from '../../utils/helpers/helper-functions';

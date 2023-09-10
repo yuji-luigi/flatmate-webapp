@@ -17,7 +17,7 @@ import { PaperWithTitle } from '../../../../components/paper/PaperWithTitle';
 import { MaintainerModel } from '../../../../types/models/maintainer-model';
 import { MAINTAINER_TYPES } from '../../../../lib/enums';
 import { NoMaintainerCard } from './NoMaintainerCard';
-import { Icons } from '../../../../data/icons';
+import { Icons } from '../../../../data/icons/icons';
 import Link from 'next/link';
 import { PATH_CLIENT } from '../../../../path/page-paths';
 

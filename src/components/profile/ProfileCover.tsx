@@ -11,7 +11,7 @@ import {
   createStyles,
   Sx,
 } from '@mantine/core';
-import { Icons } from '../../data/icons';
+import { Icons } from '../../data/icons/icons';
 import {
   setSubmitting,
   useCrudSelectors,

@@ -1,7 +1,7 @@
 import { Card, Title, Text, createStyles, Box } from '@mantine/core';
 import { Icon123 } from '@tabler/icons-react';
 import React from 'react';
-import { Icons } from '../../../data/icons';
+import { Icons } from '../../../data/icons/icons';
 import TextWithIcon from '../../text/TextWithIcon';
 
 const useStyles = createStyles((theme) => ({
@@ -33,7 +33,9 @@ const AboutCard = ({ aboutData, title }: Props) => {
     <Card className={classes.card}>
       {title && <Title mb={8}>{title}</Title>}
       <Box className={classes.textsContainer} sx={{}}>
-        {aboutData.company && <TextWithIcon icon={<Icons.buildings />} text={aboutData.company} />}
+        {aboutData.company && (
+          <TextWithIcon icon={<Icons.buildings size={16} />} text={aboutData.company} />
+        )}
         {aboutData.address && <TextWithIcon icon={<Icons.mapPin />} text={aboutData.address} />}
         {aboutData.tel && <TextWithIcon icon={<Icons.phoneCall />} text={aboutData.tel} />}
         {aboutData.email && <TextWithIcon icon={<Icons.mail />} text={aboutData.email} />}

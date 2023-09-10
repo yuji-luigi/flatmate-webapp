@@ -13,7 +13,7 @@ import {
   Tooltip,
   Sx,
 } from '@mantine/core';
-import { Icons } from '../../data/icons';
+import { Icons } from '../../data/icons/icons';
 import { IMAGES_ARRAY, PATH_IMAGE } from '../../lib/image-paths';
 import { getRandomItemFromArray } from '../../utils/mock-data-functions';
 import Link from 'next/link';

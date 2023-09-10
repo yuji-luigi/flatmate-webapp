@@ -1,6 +1,6 @@
 import { Badge, Text, Box, useMantineTheme, Tooltip, Sx } from '@mantine/core';
 import React, { use } from 'react';
-import { Icons } from '../../data/icons';
+import { Icons } from '../../data/icons/icons';
 
 const BadgeWithToolTip = ({
   icon,

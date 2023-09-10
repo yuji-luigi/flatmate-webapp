@@ -19,6 +19,7 @@ interface Props {
   // initialValues: Record<string, any>;
   minRows?: number;
   form: UseFormReturnType<Record<string, unknown>>;
+  disabled?: boolean;
   // submitButton?: ReactNode;
 }
 const FormFields = ({ formField, form, ...others }: Props) => {

@@ -1,4 +1,4 @@
-import { Icons } from '../icons';
+import { Icons } from '../icons/icons';
 type ErrorArgs = {
   data?: any;
   ms?: number;

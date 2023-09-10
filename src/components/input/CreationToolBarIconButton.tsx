@@ -1,7 +1,7 @@
 import { ActionIcon } from '@mantine/core';
 import { UseFormReturnType } from '@mantine/form';
 import React from 'react';
-import { Icons } from '../../data/icons';
+import { Icons } from '../../data/icons/icons';
 import { UseFormReturnTypeCustom } from './input_interfaces/useForm_interface';
 import {
   FormFieldTypes,

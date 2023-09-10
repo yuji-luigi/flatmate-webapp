@@ -2,7 +2,7 @@ import { Carousel } from '@mantine/carousel';
 import { ActionIcon, Box, Button, Group, Overlay } from '@mantine/core';
 import Image from 'next/image';
 import { Fragment, useRef, useState } from 'react';
-import { Icons } from '../../data/icons';
+import { Icons } from '../../data/icons/icons';
 import { PATH_API } from '../../path/api-routes';
 import { useCrudSelectors } from '../../redux/features/crud/crudSlice';
 import axiosInstance from '../../utils/axios-instance';

@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { AspectRatio, Box, Group, Modal, Overlay, Stack, Text } from '@mantine/core';
 import { UseFormReturnType } from '@mantine/form';
 import OverlayCustom from '../OverlayCustom';
-import { Icons } from '../../data/icons';
+import { Icons } from '../../data/icons/icons';
 import { useDisclosure } from '@mantine/hooks';
 import CarouselBasic from '../carousel/CarouselBasic';
 import CrudCarousel from '../carousel/CrudCarousel';

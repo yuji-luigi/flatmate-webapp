@@ -1,6 +1,6 @@
 import { Group, Text } from '@mantine/core';
 import React from 'react';
-import { Icons } from '../../../../../data/icons';
+import { Icons } from '../../../../../data/icons/icons';
 
 export const BooleanCell = ({ cellValue }: { cellValue: string }) => {
   const isTrue = cellValue === 'true';
