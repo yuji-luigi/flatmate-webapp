@@ -12,7 +12,6 @@ const useStyles = createStyles((theme) => ({
     display: 'flex',
     gap: 9,
     flexDirection: 'column',
-    paddingInline: 16,
   },
 }));
 

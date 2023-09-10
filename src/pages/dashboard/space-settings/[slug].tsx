@@ -93,6 +93,6 @@ const SpaceSettingSinglePage = () => {
 
 // get layout
 SpaceSettingSinglePage.getLayout = (page: ReactElement) => (
-  <Layout variant="dashooard">{page}</Layout>
+  <Layout variant="dashboard">{page}</Layout>
 );
 export default SpaceSettingSinglePage;

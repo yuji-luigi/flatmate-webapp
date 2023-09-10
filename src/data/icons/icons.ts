@@ -105,3 +105,7 @@ export const Icons = {
   dots,
   invoice,
 } as const;
+
+export const ICON_SIZES = {
+  textTile: 16,
+};

@@ -117,8 +117,10 @@ const ProfileCover = ({
   const coverInputRef = useRef<HTMLInputElement>(null);
   const { openConfirmModal } = use_ModalContext();
 
-  const [selectedImage, setSelectedImage] = useState<string | undefined>(data.avatarUrl);
-  const [selectedCover, setSelectedCover] = useState<string | undefined>(data.coverUrl);
+  const [selectedImage, setSelectedImage] = useState<string | undefined>(crudDocument.avatar?.url);
+  const [selectedCover, setSelectedCover] = useState<string | undefined>(crudDocument.cover?.url);
+  // const [selectedImage, setSelectedImage] = useState<string | undefined>(data.avatarUrl);
+  // const [selectedCover, setSelectedCover] = useState<string | undefined>(data.coverUrl);
 
   const onChangeCoverClicked = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.stopPropagation();
@@ -155,7 +157,7 @@ const ProfileCover = ({
       const uploadIdData = await uploadFileAndGetModelId({ [field]: [file] }, _entity);
       updateCrudDocument({
         entity: _entity,
-        documentId: data._id || (documentId as string),
+        documentId: crudDocument._id || (documentId as string),
         updateData: { [field]: uploadIdData[field][0] },
       });
     } catch (error) {
@@ -183,9 +185,9 @@ const ProfileCover = ({
     });
   };
   useEffect(() => {
-    setSelectedCover(data.coverUrl);
-    setSelectedImage(data.avatarUrl);
-  }, [data.avatarUrl, data.coverUrl]);
+    setSelectedCover(crudDocument.cover?.url);
+    setSelectedImage(crudDocument.avatar?.url);
+  }, [crudDocument.avatar?.url, crudDocument.cover?.url]);
   return (
     <Card
       shadow="sm"
@@ -196,7 +198,7 @@ const ProfileCover = ({
         // backgroundSize: 'object-fit',
         // backgroundRepeat: 'no-repeat',
         backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${
-          selectedCover || 'https://picsum.photos/410/300'
+          selectedCover || crudDocument.avatar?.url || ''
         })`,
       }}
     >
@@ -227,7 +229,7 @@ const ProfileCover = ({
                   size={100}
                   radius={80}
                   src={selectedImage}
-                  alt={data.title + ' avatar'}
+                  alt={crudDocument.avatar?.title + ' avatar'}
                 />
                 <input
                   id="avatar-input"

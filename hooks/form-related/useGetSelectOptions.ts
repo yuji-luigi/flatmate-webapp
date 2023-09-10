@@ -12,7 +12,6 @@ import { SelectItem } from '@mantine/core';
 // import { useCrudSlice } from '../redux-hooks/useCrudSlice';
 
 export const useGetSelectOptions = (formField: FormFieldTypes): Array<SelectItem | string> | [] => {
-  if (formField.type !== 'select') return [];
   // const options: Array<SelectOption> = [];
   // const [idleDocuments, setIdleDocuments] = useState<SelectOption[]>([]);
   /** fetch with query,  */

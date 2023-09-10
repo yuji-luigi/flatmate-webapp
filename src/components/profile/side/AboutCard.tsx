@@ -1,8 +1,8 @@
-import { Card, Title, Text, createStyles, Box } from '@mantine/core';
-import { Icon123 } from '@tabler/icons-react';
+import { createStyles, Box } from '@mantine/core';
 import React from 'react';
-import { Icons } from '../../../data/icons/icons';
+import { ICON_SIZES, Icons } from '../../../data/icons/icons';
 import TextWithIcon from '../../text/TextWithIcon';
+import CardWithTitle from './CardWithTitle';
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -26,21 +26,25 @@ export interface AboutData {
   email?: string;
   address?: string;
 }
-
+const ICON_SIZE = ICON_SIZES.textTile;
 const AboutCard = ({ aboutData, title }: Props) => {
-  const { classes, cx, theme } = useStyles();
   return (
-    <Card className={classes.card}>
-      {title && <Title mb={8}>{title}</Title>}
-      <Box className={classes.textsContainer} sx={{}}>
+    <>
+      <CardWithTitle>
         {aboutData.company && (
-          <TextWithIcon icon={<Icons.buildings size={16} />} text={aboutData.company} />
+          <TextWithIcon icon={<Icons.buildings size={ICON_SIZE} />} text={aboutData.company} />
         )}
-        {aboutData.address && <TextWithIcon icon={<Icons.mapPin />} text={aboutData.address} />}
-        {aboutData.tel && <TextWithIcon icon={<Icons.phoneCall />} text={aboutData.tel} />}
-        {aboutData.email && <TextWithIcon icon={<Icons.mail />} text={aboutData.email} />}
-      </Box>
-    </Card>
+        {aboutData.address && (
+          <TextWithIcon icon={<Icons.mapPin size={ICON_SIZE} />} text={aboutData.address} />
+        )}
+        {aboutData.tel && (
+          <TextWithIcon icon={<Icons.phoneCall size={ICON_SIZE} />} text={aboutData.tel} />
+        )}
+        {aboutData.email && (
+          <TextWithIcon icon={<Icons.mail size={ICON_SIZE} />} text={aboutData.email} />
+        )}
+      </CardWithTitle>
+    </>
   );
 };
 

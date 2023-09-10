@@ -19,7 +19,9 @@ const fetchMaintainersOfBuilding = async (/* buildingId: string */) => {
     );
     return res.data.data.map((maintainer) => ({
       value: maintainer._id,
-      label: `${maintainer.type.toUpperCase()}: ${maintainer.name} - ${maintainer.email}`,
+      label: `${maintainer.type?.toUpperCase() || 'Job unspecified'}: ${maintainer.name} - ${
+        maintainer.email
+      }`,
     }));
   } catch (error) {
     throw error;
@@ -27,9 +29,10 @@ const fetchMaintainersOfBuilding = async (/* buildingId: string */) => {
 };
 export const MaintainerSelect = ({ formField, form, ...others }: Props) => {
   const { currentSpace } = useCookieContext();
-  const { data, isLoading } = useSWR(['maintainers', currentSpace?._id], () =>
+  const { data, isLoading, error } = useSWR(['maintainers', currentSpace?._id], () =>
     fetchMaintainersOfBuilding()
   );
+  if (error) console.log(error);
   if (isLoading || !data) return <Skeleton height={50} />;
   return (
     <Select
