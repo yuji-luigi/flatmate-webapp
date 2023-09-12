@@ -87,7 +87,6 @@ const SpaceHomeSection = () => {
       <SettingButtonSpaceHome />
       <Tabs
         onTabChange={handleSetTab}
-        placement="right"
         keepMounted={false}
         defaultValue={TabListConfig[0].value}
         sx={{ width: '100%' }}
