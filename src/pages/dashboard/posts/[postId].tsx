@@ -33,6 +33,7 @@ import { useCrudSliceStore, useCrudSelectors } from '../../../redux/features/cru
 import { useRouter } from 'next/router';
 import { threadId } from 'worker_threads';
 import { ThreadModel } from '../../../types/models/thread-model';
+import { ParsedQueryCustom } from '../../../types/nextjs-custom-types/useRouter-types';
 
 const useStyles = createStyles((theme) => ({
   main: {

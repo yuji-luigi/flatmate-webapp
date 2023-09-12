@@ -180,7 +180,8 @@ export async function handleUploadWithoutLogin({
   if (Array.isArray(files)) {
     files.forEach((file, index) => {
       // You can set the key to be the file name or any other custom key
-      formData.append(file.field, file, file.name);
+      formData.append(file.field, file);
+      // formData.append(file.field, file, file.name);
     });
   } else {
     formData.append('0', files, files.name);
@@ -188,6 +189,10 @@ export async function handleUploadWithoutLogin({
     formData.append('organizationName', organizationName);
     formData.append('entity', entity);
   }
+  // formData.append('0', files, files.name);
+  formData.append('mainSpace', mainSpace);
+  formData.append('organizationName', organizationName);
+  formData.append('entity', entity);
   const response = await axiosInstance.post(endpoint, formData, {
     withCredentials: true,
     headers: { 'Content-Type': 'multipart/form-data' },

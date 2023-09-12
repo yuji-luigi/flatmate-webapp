@@ -11,9 +11,13 @@ import {
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
 import { PATH_API } from '../../path/api-routes';
-import axiosInstance from '../../utils/axios-instance';
+import axiosInstance, { AxiosResDataGeneric } from '../../utils/axios-instance';
 import Link from 'next/link';
 import { CheckInterface } from '../../types/models/check-type';
+import { intlDateFormat } from '../../utils/helpers/date-formatters';
+import { ParsedQueryCustom } from '../../types/nextjs-custom-types/useRouter-types';
+import { MaintainerModel } from '../../types/models/maintainer-model';
+import { PreviewHandler } from '../../components/files/preview/PreviewHandler';
 const useStyles = createStyles((theme) => ({
   root: {
     paddingTop: rem(80),
@@ -58,10 +62,13 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-const fileFetcher = async (id?: string) => {
-  if (!id) return null;
+const fileFetcher = async (arrSlug?: string[]) => {
+  if (!arrSlug) return null;
   try {
-    const rawCheck = await axiosInstance.get(`${PATH_API.checks}/${id}`);
+    const path = arrSlug.join('/');
+    const rawCheck = await axiosInstance.get<
+      AxiosResDataGeneric<{ check: CheckInterface; maintenance: MaintainerModel }>
+    >(`${PATH_API.checks}/${path}`);
     return rawCheck.data.data;
   } catch (error: any) {
     throw error.message;
@@ -71,9 +78,9 @@ const fileFetcher = async (id?: string) => {
 export default function UploadSuccessPage() {
   const { classes } = useStyles();
   const { query }: { query: ParsedQueryCustom } = useRouter();
-  const { data, error, isLoading } = useSWR<CheckInterface>(`${query.id}`, () =>
-    fileFetcher(query.id)
-  );
+  const fetchKey = query.arrSlug?.length ? `${query.arrSlug}` : null;
+
+  const { data, error, isLoading } = useSWR(fetchKey, () => fileFetcher(query.arrSlug), {});
   if (error) return <div>{error}</div>;
   console.log(data);
   return (
@@ -90,10 +97,15 @@ export default function UploadSuccessPage() {
               error repellendus quod ratione illum sequi esse tempore impedit ut quae dolorum
               molestias modi eligendi voluptatem consectetur facilis sit.
             </Text>
-            <Group position="center">
-              <Button component={Link} href={data.file.url} size="md">
-                Check uploaded file
-              </Button>
+            <Group position="center" spacing={24}>
+              {data.check.files.map((file) => (
+                // <Link key={file._id} href={file.url}>
+                <PreviewHandler key={file._id} enableLink file={file} />
+                // </Link>
+                // <Button component={Link} href={file.url} target="_blank" size="md">
+                //   {file.originalFileName}-{intlDateFormat(file.createdAt)}
+                // </Button>
+              ))}
             </Group>
           </div>
         </div>

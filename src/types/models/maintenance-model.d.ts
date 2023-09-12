@@ -22,7 +22,7 @@ export interface MaintenanceModel extends MongooseBaseModel {
   createdBy: IUser | string;
   isImportant: boolean;
   owner: IOwner | string;
-  mainSpace: SpaceModel;
+  space: SpaceModel;
   receipts: string | CheckInterface[];
   invoices: string | CheckInterface[];
   /** formatted in some way. from api schema level */

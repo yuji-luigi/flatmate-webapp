@@ -16,6 +16,7 @@ import { useDisclosure } from '@mantine/hooks';
 import { Sections } from '../../types/general/data/sections-type';
 import { FormFieldTypes } from '../../types/general/data/data-table/formField-types';
 import { dashboardStyle } from '../../styles/global-useStyles';
+import { ParsedQueryCustom } from '../../types/nextjs-custom-types/useRouter-types';
 
 export function UsersTable({ overridingEntity = '' }: { overridingEntity?: Sections }) {
   const ROWS_PER_PAGE = 10;

@@ -17,6 +17,7 @@ import useAuth from '../../../hooks/useAuth';
 import Link from 'next/link';
 import { useCookieContext } from '../../context/CookieContext';
 import { SpaceModel } from '../../types/models/space-model';
+import { ParsedQueryCustom } from '../../types/nextjs-custom-types/useRouter-types';
 const useStyles = createStyles((theme) => ({
   pinContainer: {
     display: 'grid',

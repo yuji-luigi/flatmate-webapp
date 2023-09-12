@@ -8,6 +8,7 @@ import { sections } from '../data';
 import { CurrentSpace, JwtReturnType } from '../types/context/auth/useAuth';
 import { CookieContextState } from '../types/context/cookie-context';
 import { SpaceModel } from '../types/models/space-model';
+import { ParsedQueryCustom } from '../types/nextjs-custom-types/useRouter-types';
 
 export const CookieContext = createContext<CookieContextState>({
   currentSpace: null,
@@ -48,7 +49,7 @@ const useStore = () => {
   // this is breaking SRP
   // when header selected space or organization changes then the documents in the current section(entity in url) will be updated
   useEffect(() => {
-    if (/* !currentSpace?._id ||  */ !sections.includes(entity)) return;
+    if (/* !currentSpace?._id ||  */ entity && !sections.includes(entity)) return;
     fetchCrudDocumentsWithPagination({ entity });
   }, [currentSpace?._id]);
 

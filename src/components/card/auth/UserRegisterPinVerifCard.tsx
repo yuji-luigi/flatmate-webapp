@@ -10,6 +10,7 @@ import Image from 'next/image';
 import { showNotification } from '@mantine/notifications';
 import { Icons } from '../../../data/icons/icons';
 import { useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
+import { ParsedQueryCustom } from '../../../types/nextjs-custom-types/useRouter-types';
 
 export interface PinVerifCardProps {
   setPinOk: (bool: boolean) => void;

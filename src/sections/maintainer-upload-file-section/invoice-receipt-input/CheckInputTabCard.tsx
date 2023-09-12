@@ -1,4 +1,4 @@
-import React, { CSSProperties, useState } from 'react';
+import React, { CSSProperties, useEffect, useState } from 'react';
 import { DropzoneMantine } from '../../../components/input/mantine-default/DropzoneMaintine';
 import {
   Box,
@@ -23,6 +23,7 @@ import { PATH_CLIENT } from '../../../path/page-paths';
 import { sleep } from '../../../utils/helpers/helper-functions';
 import { notifications, showNotification } from '@mantine/notifications';
 import { MaintenanceModel } from '../../../types/models/maintenance-model';
+import { RouterWithCustomQuery } from '../../../types/nextjs-custom-types/useRouter-types';
 
 const useStyles = createStyles((theme) => ({
   inputGroup: {
@@ -41,18 +42,22 @@ export const CheckInputTabCard = ({
   checkType: CheckType;
 }) => {
   const { classes } = useStyles();
-  const router = useRouter();
+  const router: RouterWithCustomQuery = useRouter();
+  const { query } = router;
   const [submitting, setSubmitting] = useState<boolean>(false);
   const { crudDocument: maintenance } = useCrudSelectors<MaintenanceModel>('maintenances');
   const form = useForm({
     initialValues: {
-      invoice: new File([], 'invoice'),
+      type: checkType,
+      invoices: new File([], 'invoices'),
+      receipts: new File([], 'receipts'),
     },
   });
   if (!maintenance) {
     router.reload();
     return null;
   }
+
   const handleSubmit = async (e: any) => {
     try {
       e.preventDefault();
@@ -63,24 +68,24 @@ export const CheckInputTabCard = ({
         title: 'Uploading...',
         message: 'Please wait',
       });
-      const fileData = form.values.invoice;
+      const fileData = form.values[checkType];
       if (fileData) {
-        const dataFromServer = await handleUploadWithoutLogin({
+        const uploadIds = await handleUploadWithoutLogin({
           files: fileData,
-          mainSpace: maintenance.mainSpace.name,
+          mainSpace: maintenance.space.name,
           organizationName: maintenance.organization.name,
           entity: 'maintenances',
           endpoint: PATH_API.uploadsMaintenance,
         });
-        const uploadId = dataFromServer[0][0];
+
         const rawCheck = await axiosInstance.post(`${PATH_API.checks}/${checkType}`, {
           maintenance,
-          file: uploadId,
+          files: uploadIds,
         });
         await sleep(600);
         if (rawCheck.data.success) {
           setSubmitting(false);
-          router.push(`${PATH_CLIENT.uploadSuccess}/${rawCheck.data.data._id}`);
+          router.push(`${PATH_CLIENT.uploadSuccess}/${query.linkId}/${rawCheck.data.data._id}`);
         }
       }
     } catch (error: any) {
@@ -93,7 +98,7 @@ export const CheckInputTabCard = ({
 
   const title = checkType === 'invoices' ? 'Upload Invoice' : 'Upload Receipt';
 
-  const subtitle = `${maintenance.mainSpace.name} -${maintenance.title}`;
+  const subtitle = `${maintenance.space.name} -${maintenance.title}`;
 
   return (
     <Tabs defaultValue={checkType}>
@@ -115,8 +120,9 @@ export const CheckInputTabCard = ({
         </Box>
         <form onSubmit={handleSubmit}>
           <Box className={classes.inputGroup}>
-            <DropzoneMantine form={form} />
+            <DropzoneMantine form={form} formField={{ name: checkType, multi: true }} />
           </Box>
+
           <Button fullWidth type="submit" variant="light" color="blue">
             Submit
           </Button>

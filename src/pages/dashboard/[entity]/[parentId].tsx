@@ -14,6 +14,7 @@ import { usePaginationContext } from '../../../context/PaginationContext';
 import { useCookieContext } from '../../../context/CookieContext';
 import { HeaderContainer } from '../../../components/datatable/header/HeaderContainer';
 import { MongooseBaseModel } from '../../../types/models/mongoose-base-model';
+import { ParsedQueryCustom } from '../../../types/nextjs-custom-types/useRouter-types';
 
 const fetcher = (args: string) => axiosInstance.get(args).then((res) => res.data?.data);
 

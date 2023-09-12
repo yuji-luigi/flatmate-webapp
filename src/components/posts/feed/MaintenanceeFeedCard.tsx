@@ -17,7 +17,6 @@ import React from 'react';
 import { Icons } from '../../../data/icons/icons';
 import AttachmentsRow from '../AttachmentsRow';
 import CarouselBasic from '../../carousel/CarouselBasic';
-import { UserModel } from '../../../types/models/user-model';
 import useAuth from '../../../../hooks/useAuth';
 import { intlDateFormat } from '../../../utils/helpers/date-formatters';
 import { IconButton } from 'yet-another-react-lightbox';
@@ -26,6 +25,7 @@ import { PATH_API } from '../../../path/api-routes';
 import axiosInstance from '../../../utils/axios-instance';
 import { notifications } from '@mantine/notifications';
 import { useRouter } from 'next/router';
+
 const useStyles = createStyles((theme) => ({
   feedCard: {
     minHeight: 200,

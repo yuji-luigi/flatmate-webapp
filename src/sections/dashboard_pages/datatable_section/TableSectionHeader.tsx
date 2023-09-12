@@ -1,5 +1,15 @@
 import { useRouter } from 'next/router';
-import { Box, Button, Container, Group, Stack, Sx, createStyles, Text } from '@mantine/core';
+import {
+  Box,
+  Button,
+  Container,
+  Group,
+  Stack,
+  Sx,
+  createStyles,
+  Text,
+  LoadingOverlay,
+} from '@mantine/core';
 import { useEffect } from 'react';
 import { flattenSectionData, sectionData } from '../../../data';
 import { useDrawerContext } from '../../../context/DataTableDrawerContext';
@@ -11,6 +21,7 @@ import axiosInstance from '../../../utils/axios-instance';
 import { Sections } from '../../../types/general/data/sections-type';
 import { dashboardStyle } from '../../../styles/global-useStyles';
 import { CrudTableButtons } from './components/CrudTableButtons';
+import { ParsedQueryCustom } from '../../../types/nextjs-custom-types/useRouter-types';
 
 const useStyles = dashboardStyle;
 function instanceOfParentDataInterface(object: any): object is ParentDataInterface {
@@ -72,6 +83,7 @@ export function TableSectionHeader({
   if (query.parentId && instanceOfParentDataInterface(parentData)) {
     title = parentData.name;
   }
+  if (!entity) return <LoadingOverlay visible />;
   return (
     <>
       <Group className={classes.headerWrapper} sx={sx}>

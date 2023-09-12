@@ -4,36 +4,106 @@ import { Dropzone, DropzoneProps, FileWithPath, IMAGE_MIME_TYPE } from '@mantine
 import { useCallback, useState } from 'react';
 import { PATH_IMAGE } from '../../../lib/image-paths';
 import { UseFormReturnType } from '@mantine/form';
+import { FormFieldInterface } from '../../../types/general/data/data-table/formField-types';
 
-export function DropzoneMantine(props: Partial<DropzoneProps> & { form: UseFormReturnType<any> }) {
+type Props = Partial<DropzoneProps> & {
+  form: UseFormReturnType<any>;
+  formField: Partial<FormFieldInterface>;
+};
+type FileWithPreview = File & { preview: string };
+
+export function DropzoneMantine(props: Props) {
   const theme = useMantineTheme();
-  const [file, setFile] = useState<(File & { preview: string }) | null>(null);
+  const { formField } = props;
+  const [files, setFiles] = useState<FileWithPreview[]>([]);
   const handleDrop = useCallback((acceptedFiles: Array<File>) => {
-    const file = acceptedFiles[0];
-    if (file) {
-      const img = new Image();
-      img.src = URL.createObjectURL(file);
-      // Wait for the image to load
-      img.onload = function () {
-        const newFile = Object.assign(file, {
-          preview: URL.createObjectURL(file),
-          field: file.name,
-        });
-        setFile(newFile);
-        props.form.setFieldValue('invoice', newFile);
-      };
+    if (!formField.name) {
+      throw new Error('formField.name is required');
     }
+    const files = acceptedFiles;
+
+    // Directly check if files type is an image
+    // if (files && files.type.startsWith('image/')) {
+    //   const img = new Image();
+    //   img.src = URL.createObjectURL(files);
+    //   // Wait for the image to load
+    //   img.onload = function () {
+    //     if (!formField.name) {
+    //       throw new Error('formField.name is required');
+    //     }
+    //     const newFile = Object.assign(files, {
+    //       preview: URL.createObjectURL(files),
+    //       field: files.name,
+    //     });
+    //     setFiles(newFile);
+    //     props.form.setFieldValue(formField.name, newFile);
+    //   };
+    // } else {
+    // Handle non-image files (e.g., PDFs)
+    const newFiles = files.map<FileWithPreview>((file) =>
+      Object.assign(file, {
+        preview: '', // No preview for non-image files
+        field: file.name,
+      })
+    );
+    setFiles(newFiles);
+    props.form.setFieldValue(formField.name, newFiles);
+    // }
   }, []);
+  // const [file, setFile] = useState<(File & { preview: string }) | null>(null);
+  // const handleDrop = useCallback((acceptedFiles: Array<File>) => {
+  //   if (!formField.name) {
+  //     throw new Error('formField.name is required');
+  //   }
+  //   const file = acceptedFiles[0];
+
+  //   // Directly check if file type is an image
+  //   if (file && file.type.startsWith('image/')) {
+  //     const img = new Image();
+  //     img.src = URL.createObjectURL(file);
+  //     // Wait for the image to load
+  //     img.onload = function () {
+  //       if (!formField.name) {
+  //         throw new Error('formField.name is required');
+  //       }
+  //       const newFile = Object.assign(file, {
+  //         preview: URL.createObjectURL(file),
+  //         field: file.name,
+  //       });
+  //       setFile(newFile);
+  //       props.form.setFieldValue(formField.name, newFile);
+  //     };
+  //   } else {
+  //     // Handle non-image files (e.g., PDFs)
+  //     const newFile = Object.assign(file, {
+  //       preview: '', // No preview for non-image files
+  //       field: file.name,
+  //     });
+  //     setFile(newFile);
+  //     props.form.setFieldValue(formField.name, newFile);
+  //   }
+  // }, []);
   return (
     <Dropzone
       onDrop={handleDrop}
       onReject={(files) => console.log('rejected files', files)}
       maxSize={3 * 1024 ** 2}
-      accept={IMAGE_MIME_TYPE}
+      // accept={IMAGE_MIME_TYPE}
       {...props}
     >
-      {file ? (
+      {/* {file && file.type.startsWith('image/') ? (
         <MantineImage src={file.preview} />
+      ) : file ? ( */}
+
+      {files.length ? (
+        files.map((file) => (
+          <div>
+            <IconFile size="3.2rem" stroke={1.5} />
+            <Text size="xl" inline>
+              {file.name}
+            </Text>
+          </div>
+        ))
       ) : (
         <Group
           position="center"
