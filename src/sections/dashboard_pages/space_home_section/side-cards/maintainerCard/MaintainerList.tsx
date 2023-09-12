@@ -14,7 +14,6 @@ export const MaintainerList = ({ maintainers }: { maintainers: MaintainerModel[]
   return (
     <Stack spacing={16}>
       {maintainers.map((maintainer) => {
-        console.log(maintainer.type);
         const Icon = Icons[maintainer.type as keyof typeof Icons] || Icons.Carpenter;
         return (
           <Fragment key={maintainer.slug}>

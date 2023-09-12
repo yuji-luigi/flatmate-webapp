@@ -52,6 +52,7 @@ export const dashboardStyle = createStyles((theme, params, variations) => ({
 
 export const profilePageStyle = createStyles((theme) => ({
   container: {
+    // width: '100%',
     paddingBlock: 32,
     marginInline: 16,
   },
@@ -60,7 +61,8 @@ export const profilePageStyle = createStyles((theme) => ({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',
-    gap: 16,
+    // background: 'white',
+    gap: 24,
 
     // Simplify media query writing with theme functions
     [theme.fn.smallerThan('sm')]: {
@@ -73,8 +75,8 @@ export const profilePageStyle = createStyles((theme) => ({
   cardMain: {
     display: 'flex',
     flexDirection: 'column',
-    gap: 16,
-    width: '70%',
+    gap: 36,
+    width: '100%',
     [theme.fn.smallerThan('md')]: {
       width: '60%', // backgroundColor: theme.cdolors.yellow[6],
     },

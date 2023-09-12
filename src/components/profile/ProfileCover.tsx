@@ -33,6 +33,7 @@ import { useCookieContext } from '../../context/CookieContext';
 
 const useStyles = createStyles((theme) => ({
   card: {
+    flex: 3,
     borderRadius: 12,
     position: 'relative',
     width: '100%',

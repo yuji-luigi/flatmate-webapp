@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import React from 'react';
-import { Box, LoadingOverlay, Tabs } from '@mantine/core';
+import { Box, Group, LoadingOverlay, Stack, Tabs } from '@mantine/core';
 import { dashboardStyle, profilePageStyle } from '../../../styles/global-useStyles';
 import ProfileSide from '../../../components/profile/side/ProfileSide';
 import CardWithTitle from '../../../components/profile/side/CardWithTitle';
@@ -62,15 +62,17 @@ const SpaceHomeSection = () => {
   const isMobile = useMediaQuery('(max-width: 800px)');
   const { crudDocument: document } = useCrudSelectors<SpaceModel>(entity);
 
+  const [selectedTab, setSelectedTab] = React.useState(TabListConfig[0].value);
+  const handleSetTab = (selected: string) => setSelectedTab(selected);
   const profileSide = (
     <ProfileSide
       contents={
-        <>
+        <Stack>
           <CardWithTitle titleSx={{ fontSize: 24 }} title="Maintainers">
             <MaintainerList maintainers={maintainers} />
           </CardWithTitle>
           <MaintenanceListCard />
-        </>
+        </Stack>
       }
     />
   );
@@ -79,10 +81,12 @@ const SpaceHomeSection = () => {
     router.push('/404');
     return <LoadingOverlay visible />;
   }
+  const hideSide = selectedTab !== TabListConfig[0].value;
   return (
     <Box className={classes.container}>
       <SettingButtonSpaceHome />
       <Tabs
+        onTabChange={handleSetTab}
         placement="right"
         keepMounted={false}
         defaultValue={TabListConfig[0].value}
@@ -90,24 +94,26 @@ const SpaceHomeSection = () => {
       >
         <Box className={classes.box}>
           <Box className={classes.cardMain}>
-            <ProfileCover
-              noAvatar
-              enableCover={!!(currentSpace && user?.role !== 'user')}
-              entity={entity}
-              // formFields={spacesTableData}
-              data={{
-                title: document.name,
-                _id: document._id,
-                subtitle: document.address,
-                avatarUrl: document.cover?.url,
-                coverUrl: document.cover?.url,
-              }}
-            />
-            {isMobile && profileSide}
+            <Group>
+              <ProfileCover
+                noAvatar
+                enableCover={!!(currentSpace && user?.role !== 'user')}
+                entity={entity}
+                // formFields={spacesTableData}
+                data={{
+                  title: document.name,
+                  _id: document._id,
+                  subtitle: document.address,
+                  avatarUrl: document.cover?.url,
+                  coverUrl: document.cover?.url,
+                }}
+              />
+              {!isMobile && !hideSide && profileSide}
+            </Group>
+            {isMobile && !hideSide && profileSide}
             <TabList list={TabListConfig} />
             <TabPanels list={TabListConfig} />
           </Box>
-          {!isMobile && profileSide}
         </Box>
       </Tabs>
     </Box>

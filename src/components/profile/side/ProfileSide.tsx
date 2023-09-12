@@ -12,6 +12,7 @@ const useStyles = createStyles((theme) => ({
     gap: 16,
     display: 'flex',
     flexDirection: 'column',
+    flex: 1,
     [theme.fn.smallerThan('md')]: {
       width: '100%', // backgroundColor: theme.cdolors.yellow[6],
     },
