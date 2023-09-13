@@ -13,3 +13,8 @@ body {
   /* font-family: 'Lobster', cursive; */
   /* font-family: 'Bangers', cursive; */
 }
+
+a {
+  text-decoration: none;
+  color: inherit;
+}

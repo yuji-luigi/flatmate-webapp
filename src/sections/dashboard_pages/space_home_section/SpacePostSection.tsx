@@ -14,6 +14,7 @@ export const SpacePostSection = () => {
       {crudDocuments.map((thread) => (
         <PostFeedCard
           key={thread._id}
+          _id={thread._id}
           createdBy={thread.user}
           title={thread.title}
           body={thread.description}

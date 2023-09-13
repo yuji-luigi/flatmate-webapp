@@ -149,14 +149,14 @@ const HeaderModalForm = ({ entity }: { entity: 'threads' | 'maintenances' }) => 
           key={formField.id}
         />
       ))}
-      {isSuperAdmin && (
+      {/* {isSuperAdmin && (
         <OrganizationSpaceSelect
           form={form}
           size="md"
           labels={{ organization: 'Organization', space: 'Spaces' }}
-          sx={{ marginBlock: 16 }}
+          sx={{ marginBlock: 16, display }}
         />
-      )}
+      )} */}
       <CreationToolBar
         formFields={sectionFormFields}
         form={form}
