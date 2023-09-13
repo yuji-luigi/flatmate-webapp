@@ -15,15 +15,15 @@ import { UseFormReturnTypeCustom } from '../../../components/input/input_interfa
 import { useForm } from '@mantine/form';
 import { handleUploadWithoutLogin, isCustomFile } from '../../../utils/upload-helper';
 import { useCrudSelectors } from '../../../redux/features/crud/crudSlice';
-import { PATH_API } from '../../../path/api-routes';
+import { PATH_API } from '../../../path/path-api';
 import axiosInstance from '../../../utils/axios-instance';
 import { CheckType } from '../../../types/models/check-type';
 import { useRouter } from 'next/router';
-import { PATH_CLIENT } from '../../../path/page-paths';
+import { PATH_CLIENT } from '../../../path/path-frontend';
 import { sleep } from '../../../utils/helpers/helper-functions';
 import { notifications, showNotification } from '@mantine/notifications';
 import { MaintenanceModel } from '../../../types/models/maintenance-model';
-import { RouterWithCustomQuery } from '../../../types/nextjs-custom-types/useRouter-types';
+import { UseRouterWithCustomQuery } from '../../../types/nextjs-custom-types/useRouter-types';
 
 const useStyles = createStyles((theme) => ({
   inputGroup: {
@@ -42,7 +42,7 @@ export const CheckInputTabCard = ({
   checkType: CheckType;
 }) => {
   const { classes } = useStyles();
-  const router: RouterWithCustomQuery = useRouter();
+  const router: UseRouterWithCustomQuery = useRouter();
   const { query } = router;
   const [submitting, setSubmitting] = useState<boolean>(false);
   const { crudDocument: maintenance } = useCrudSelectors<MaintenanceModel>('maintenances');

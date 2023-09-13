@@ -1,4 +1,4 @@
-import { Box } from '@mantine/core';
+import { Box, Group } from '@mantine/core';
 import React, { ReactElement, useEffect, useState } from 'react';
 import Layout from '../../../../layouts';
 import ProfileCover, { CoverDataProp } from '../../../../components/profile/ProfileCover';
@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 import { getEntityFromUrl } from '../../../../utils/helpers/helper-functions';
 import useSWR from 'swr';
 import axiosInstance from '../../../../utils/axios-instance';
-import { PATH_API } from '../../../../path/api-routes';
+import { PATH_API } from '../../../../path/path-api';
 import AboutCard from '../../../../components/profile/side/AboutCard';
 import { useMediaQuery } from '@mantine/hooks';
 import ProfileSide from '../../../../components/profile/side/ProfileSide';
@@ -104,8 +104,11 @@ const MaintainerDetailsPage = () => {
       <Box className={classes.container}>
         <Box className={classes.box}>
           <Box className={classes.cardMain}>
-            <ProfileCover formFields={maintainersTableData} data={data} />
-            {isMobile && profileSide}
+            <Group>
+              <ProfileCover formFields={maintainersTableData} data={data} />
+              {isMobile && profileSide}
+              {!isMobile && profileSide}
+            </Group>
             <PostFeedCard
               createdAt={new Date()}
               createdBy={{ name: 'No name user' } as UserModel}
@@ -115,7 +118,6 @@ const MaintainerDetailsPage = () => {
               attachments={[]}
             />
           </Box>
-          {!isMobile && profileSide}
         </Box>
       </Box>
     </>

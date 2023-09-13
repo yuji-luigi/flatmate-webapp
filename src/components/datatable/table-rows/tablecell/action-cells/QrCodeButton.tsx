@@ -7,11 +7,11 @@ import {
 } from '../../../../../types/models/auth-token-model';
 import { use_ModalContext } from '../../../../../context/modal-context/_ModalContext';
 import QRCode from 'react-qr-code';
-import { API_BASE_URL, PATH_API } from '../../../../../path/api-routes';
-import { _PATH_API } from '../../../../../path/api-routes';
+import { API_BASE_URL, PATH_API } from '../../../../../path/path-api';
+import { _PATH_API } from '../../../../../path/path-api';
 import { getEntityFromUrl } from '../../../../../utils/helpers/helper-functions';
 import axiosInstance, { AxiosResDataGeneric } from '../../../../../utils/axios-instance';
-import { _PATH_CLIENT } from '../../../../../path/page-paths';
+import { _PATH_FRONTEND } from '../../../../../path/path-frontend';
 import { QrCodeModalContent } from './QrCodeModalContent';
 import { MongooseBaseModel } from '../../../../../types/models/mongoose-base-model';
 const getQrCodeUrl = (authToken: AuthTokenModel) => {

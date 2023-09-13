@@ -2,7 +2,7 @@
 // export const getFormFieldsJson = async (str: string): Promise<Array<any>> =>{
 //   const import(`../../data/datatable/formFields/index${str}`);}
 
-import { PATH_API } from '../../path/api-routes';
+import { PATH_API } from '../../path/path-api';
 import { MixedMediaType, UploadingMediaType } from '../../types/data/media/media-types';
 import { Sections, isSection, sectionsArray } from '../../types/general/data/sections-type';
 import axiosInstance from '../axios-instance';

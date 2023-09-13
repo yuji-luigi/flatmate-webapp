@@ -1,14 +1,14 @@
 import { useRouter } from 'next/router';
 import React from 'react';
 import useSWR from 'swr';
-import { PATH_API } from '../../../path/api-routes';
+import { PATH_API } from '../../../path/path-api';
 import axiosInstance from '../../../utils/axios-instance';
 import { setSession, setSpaceSession } from '../../../utils/jwt';
 import { json } from 'stream/consumers';
 // import { useCurrentSpaceContext } from '../../../context/CurrentSpaceContext';
 import { useCookieContext } from '../../../context/CookieContext';
 import Link from 'next/link';
-import { PATH_CLIENT } from '../../../path/page-paths';
+import { PATH_CLIENT } from '../../../path/path-frontend';
 
 const getSpaceAsCookie = async (crudId: string) => {
   const res = await axiosInstance.get(`${PATH_API.spaceCookie}/${crudId}`, {

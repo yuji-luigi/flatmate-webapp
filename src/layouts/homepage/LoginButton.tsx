@@ -2,7 +2,7 @@ import React from 'react';
 import { useCookieContext } from '../../context/CookieContext';
 import { Button } from '@mantine/core';
 import Link from 'next/link';
-import { PATH_CLIENT } from '../../path/page-paths';
+import { PATH_CLIENT } from '../../path/path-frontend';
 import useAuth from '../../../hooks/useAuth';
 import { NextRequest } from 'next/server';
 import { useRouter } from 'next/router';

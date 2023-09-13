@@ -8,7 +8,7 @@ import { useCrudSelectors, useCrudSliceStore } from '../../redux/features/crud/c
 import { useDrawerContext } from '../../context/DataTableDrawerContext';
 import { useRouter } from 'next/router';
 import { Sections } from '../../types/general/data/sections-type';
-import { PATH_CLIENT } from '../../path/page-paths';
+import { PATH_CLIENT } from '../../path/path-frontend';
 
 const useStyles = createStyles((theme) => ({
   action: {

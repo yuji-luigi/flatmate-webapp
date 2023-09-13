@@ -16,7 +16,7 @@ import { useDrawerContext } from '../../../context/DataTableDrawerContext';
 import { BreadcrumbsCustom } from './BreadcrumbsCustom';
 import useLayoutContext from '../../../../hooks/useLayoutContext';
 import { useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
-import { PATH_API } from '../../../path/api-routes';
+import { PATH_API } from '../../../path/path-api';
 import axiosInstance from '../../../utils/axios-instance';
 import { Sections } from '../../../types/general/data/sections-type';
 import { dashboardStyle } from '../../../styles/global-useStyles';

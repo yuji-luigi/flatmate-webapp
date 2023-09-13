@@ -9,7 +9,7 @@ import {
 } from '@mantine/core';
 import React, { useEffect, useState } from 'react';
 import useSWR from 'swr';
-import { PATH_API } from '../../../path/api-routes';
+import { PATH_API } from '../../../path/path-api';
 import axiosInstance from '../../../utils/axios-instance';
 import { useCookieContext } from '../../../context/CookieContext';
 import LoadingScreen from '../../../components/screen/LoadingScreen';

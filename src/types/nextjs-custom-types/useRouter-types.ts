@@ -13,6 +13,6 @@ export interface ParsedQueryCustom extends ParsedUrlQuery {
   arrSlug?: string[];
 }
 
-export interface RouterWithCustomQuery extends NextRouter {
+export interface UseRouterWithCustomQuery extends NextRouter {
   query: ParsedQueryCustom;
 }

@@ -21,10 +21,13 @@ import useAuth from '../../../../hooks/useAuth';
 import { intlDateFormat } from '../../../utils/helpers/date-formatters';
 import { IconButton } from 'yet-another-react-lightbox';
 import { MaintenanceModel } from '../../../types/models/maintenance-model';
-import { PATH_API } from '../../../path/api-routes';
+import { PATH_API } from '../../../path/path-api';
 import axiosInstance from '../../../utils/axios-instance';
 import { notifications } from '@mantine/notifications';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
+import { _PATH_FRONTEND } from '../../../path/path-frontend';
+import { TEXT_SIZE } from '../../text/text-size';
 
 const useStyles = createStyles((theme) => ({
   feedCard: {
@@ -42,16 +45,8 @@ interface MaintenanceFeedCardProps {
 }
 
 const MaintenanceFeedCard = ({ maintenance, sx = {} }: MaintenanceFeedCardProps) => {
-  const {
-    createdBy,
-    title,
-    description: body,
-    attachments,
-    images,
-    createdAt,
-    receipts,
-    invoices,
-  } = maintenance;
+  const { createdBy, title, description, attachments, images, createdAt, receipts, invoices, _id } =
+    maintenance;
   const { cx, classes, theme } = useStyles();
   const { user } = useAuth();
   const handleOpenCheck = async (checkId: string) => {
@@ -70,18 +65,18 @@ const MaintenanceFeedCard = ({ maintenance, sx = {} }: MaintenanceFeedCardProps)
   const latestInvoice = invoices.at(-1);
   return (
     <Card className={classes.feedCard} sx={sx}>
-      <Group sx={{ height: 80, width: '100%', display: 'flex', justifyContent: 'space-between' }}>
+      <Group sx={{ height: 40, width: '100%', display: 'flex', justifyContent: 'space-between' }}>
         <Group sx={{ height: '100%' }}>
           <Avatar
             src={createdBy?.avatar?.url || 'https://picsum.photos/410/300'}
             radius={90}
-            size={80}
+            size={40}
           />
           <Stack spacing={0} justify="flex-end" style={{ height: '100%', alignItems: 'flex-end' }}>
-            <Text size="lg" weight="bold">
+            <Text size={TEXT_SIZE.cardTile} weight="bold">
               {createdBy?.name}
             </Text>
-            <Text>{intlDateFormat(createdAt)}</Text>
+            <Text size={TEXT_SIZE.cardTile}>{intlDateFormat(createdAt)}</Text>
           </Stack>
         </Group>
         <Stack>
@@ -95,10 +90,12 @@ const MaintenanceFeedCard = ({ maintenance, sx = {} }: MaintenanceFeedCardProps)
           <Group position="right">
             {latestReceipt && (
               <Button
-                onClick={() => {
-                  if (typeof latestReceipt !== 'string') return;
-                  handleOpenCheck(latestReceipt);
-                }}
+                component={Link}
+                href={_PATH_FRONTEND.maintenances.checksPage(_id)}
+                // onClick={() => {
+                //   if (typeof latestReceipt !== 'string') return;
+                //   handleOpenCheck(latestReceipt);
+                // }}
                 leftIcon={<Icons.invoice />}
               >
                 Receipt
@@ -120,8 +117,10 @@ const MaintenanceFeedCard = ({ maintenance, sx = {} }: MaintenanceFeedCardProps)
       </Group>
 
       <Box className={classes.feedContent}>
-        <Title mb={16}>{title}</Title>
-        <Text>{body}</Text>
+        <Title size={TEXT_SIZE.titleCard} mb={16}>
+          {title}
+        </Title>
+        <Text>{description}</Text>
       </Box>
       <CarouselBasic images={images} />
       <Divider mb={16} />

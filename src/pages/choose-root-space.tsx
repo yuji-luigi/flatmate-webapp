@@ -2,9 +2,9 @@ import React, { ReactElement } from 'react';
 import useAuth from '../../hooks/useAuth';
 import { Box, Button, Divider, Group, Stack, Text, createStyles } from '@mantine/core';
 import { CardArticleVerticalTextBottom, CardData } from '../components/card/CardVerticalTextBottom';
-import { CARD_LINK_PATH, PATH_CLIENT } from '../path/page-paths';
+import { CARD_LINK_PATH, PATH_CLIENT } from '../path/path-frontend';
 import axiosInstance from '../utils/axios-instance';
-import { PATH_API } from '../path/api-routes';
+import { PATH_API } from '../path/path-api';
 
 import useSWR from 'swr';
 import { AxiosError } from 'axios';

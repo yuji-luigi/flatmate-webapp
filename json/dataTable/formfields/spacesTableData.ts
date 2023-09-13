@@ -1,4 +1,4 @@
-import { PATH_CLIENT } from '../../../src/path/page-paths';
+import { PATH_CLIENT } from '../../../src/path/path-frontend';
 import { FormFieldTypes } from '../../../src/types/general/data/data-table/formField-types';
 
 export const spacesTableData: Array<FormFieldTypes> = [

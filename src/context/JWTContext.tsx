@@ -1,7 +1,7 @@
 import { createContext, ReactNode, useEffect, useReducer } from 'react';
 import { deleteCookie } from 'cookies-next';
 import axiosInstance from '../utils/axios-instance';
-import { PATH_AUTH } from '../path/api-routes';
+import { PATH_AUTH } from '../path/path-api';
 import {
   JWTContextReducerAction,
   JWTContextState,

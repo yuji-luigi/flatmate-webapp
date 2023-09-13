@@ -20,6 +20,7 @@ import { UserModel } from '../../../types/models/user-model';
 import useAuth from '../../../../hooks/useAuth';
 import { intlDateFormat } from '../../../utils/helpers/date-formatters';
 import { UploadModel } from '../../../types/models/upload-model';
+import { TEXT_SIZE } from '../../text/text-size';
 const useStyles = createStyles((theme) => ({
   feedCard: {
     minHeight: 200,
@@ -55,18 +56,18 @@ const PostFeedCard = ({
 
   return (
     <Card className={classes.feedCard} sx={sx}>
-      <Group sx={{ height: 80, width: '100%', display: 'flex', justifyContent: 'space-between' }}>
+      <Group sx={{ height: 40, width: '100%', display: 'flex', justifyContent: 'space-between' }}>
         <Group sx={{ height: '100%' }}>
           <Avatar
             src={createdBy?.avatar?.url || 'https://picsum.photos/410/300'}
             radius={90}
-            size={80}
+            size={40}
           />
           <Stack spacing={0} justify="flex-end" style={{ height: '100%', alignItems: 'flex-end' }}>
-            <Text size="lg" weight="bold">
+            <Text size={TEXT_SIZE.cardTile} weight="bold">
               {createdBy?.name}
             </Text>
-            <Text>{intlDateFormat(createdAt)}</Text>
+            <Text size={TEXT_SIZE.cardTile}>{intlDateFormat(createdAt)}</Text>
           </Stack>
         </Group>
 
@@ -80,7 +81,9 @@ const PostFeedCard = ({
       </Group>
 
       <Box className={classes.feedContent}>
-        <Title mb={16}>{title}</Title>
+        <Title size={TEXT_SIZE.titleCard} mb={16}>
+          {title}
+        </Title>
         <Text>{body}</Text>
       </Box>
       <CarouselBasic images={images} />

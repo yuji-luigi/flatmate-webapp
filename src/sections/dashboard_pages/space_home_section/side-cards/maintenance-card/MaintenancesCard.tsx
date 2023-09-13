@@ -5,8 +5,11 @@ import Link from 'next/link';
 import maintenances from '../../../../../pages/dashboard/maintenances';
 import { dashboardStyle } from '../../../../../styles/global-useStyles';
 import { useCrudSelectors } from '../../../../../redux/features/crud/crudSlice';
-import { PATH_CLIENT } from '../../../../../path/page-paths';
+import { PATH_CLIENT } from '../../../../../path/path-frontend';
 import { MaintenanceModel } from '../../../../../types/models/maintenance-model';
+import TextWithIcon from '../../../../../components/text/TextWithIcon';
+import { intlDateFormat } from '../../../../../utils/helpers/date-formatters';
+import { TEXT_SIZE } from '../../../../../components/text/text-size';
 
 const LIST_LIMIT = 5;
 
@@ -20,7 +23,7 @@ export const MaintenanceListCard = () => {
 
   const totalMaintenances = showMore ? `5/${count}` : `${count}/${count}`;
   return (
-    <CardWithTitle titleSx={{ fontSize: 24 }} title={`Maintenances ${totalMaintenances}`}>
+    <CardWithTitle title={`Maintenances ${totalMaintenances}`}>
       {_maintenances.map((maintenance) => (
         <Fragment key={maintenance._id}>
           <Link
@@ -29,10 +32,12 @@ export const MaintenanceListCard = () => {
             key={maintenance._id}
           >
             <Stack spacing={0}>
-              <Text fw={800} size="lg">
+              <Text fw={800} size={TEXT_SIZE.cardTile}>
                 {maintenance.title.toUpperCase()}
               </Text>
-              <Text fw="lighter">{maintenance._createdAt}</Text>
+              <Text fw="lighter" size={TEXT_SIZE.cardTile}>
+                {intlDateFormat(maintenance.createdAt)}
+              </Text>
             </Stack>
           </Link>
         </Fragment>

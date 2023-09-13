@@ -13,6 +13,11 @@ import {
   Drawer,
   ScrollArea,
   Stack,
+  Anchor,
+  Center,
+  HoverCard,
+  SimpleGrid,
+  Transition,
 } from '@mantine/core';
 // import { MantineLogo } from '@mantine/ds';
 import { useDisclosure } from '@mantine/hooks';
@@ -23,13 +28,14 @@ import {
   IconChartPie3,
   IconFingerprint,
   IconCoin,
+  IconChevronDown,
 } from '@tabler/icons-react';
 import Link from 'next/link';
 import { ColorSchemeToggle } from '../../components/color-schemeToggle/ColorSchemeToggle';
 
 import useAuth from '../../../hooks/useAuth';
-import { PATH_CLIENT } from '../../path/page-paths';
-import { useEffect } from 'react';
+import { PATH_CLIENT } from '../../path/path-frontend';
+import { useEffect, useState } from 'react';
 import { useCookieContext } from '../../context/CookieContext';
 import { EnterButton } from './EnterButton';
 import { LoginButton } from './LoginButton';
@@ -131,6 +137,7 @@ const mockdata = [
 export function HomepageHeader() {
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false);
   const { currentSpace, currentOrganization } = useCookieContext();
+  const [dropdownOpened, setDropdownOpened] = useState(false);
   const { user } = useAuth();
   const { classes, theme } = useStyles();
   const { push, pathname } = useRouter();
@@ -182,7 +189,18 @@ export function HomepageHeader() {
             <Link href="/" className={classes.link}>
               Home
             </Link>
-            {/* <HoverCard width={600} position="bottom" radius="md" shadow="md" withinPortal>
+            <HoverCard
+              width={600}
+              position="bottom"
+              radius="md"
+              shadow="md"
+              onOpen={() => {
+                console.log('open');
+                setDropdownOpened(true);
+              }}
+              onClose={() => setDropdownOpened(false)}
+              withinPortal
+            >
               <HoverCard.Target>
                 <a href="#" className={classes.link}>
                   <Center inline>
@@ -193,40 +211,50 @@ export function HomepageHeader() {
                   </Center>
                 </a>
               </HoverCard.Target>
+              {/* <Transition
+                mounted={dropdownOpened}
+                transition=""
+                duration={900}
+                timingFunction="ease"
+              >
+                {(styles) => (
+                  <div style={styles}>
+                    <HoverCard.Dropdown sx={{ overflow: 'hidden' }}>
+                      <Group position="apart" px="md">
+                        <Text weight={500}>Features</Text>
+                        <Anchor href="#" size="xs">
+                          View all
+                        </Anchor>
+                      </Group>
 
-              <HoverCard.Dropdown sx={{ overflow: 'hidden' }}>
-                <Group position="apart" px="md">
-                  <Text weight={500}>Features</Text>
-                  <Anchor href="#" size="xs">
-                    View all
-                  </Anchor>
-                </Group>
+                      <Divider
+                        my="sm"
+                        mx="-md"
+                        color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'}
+                      />
 
-                <Divider
-                  my="sm"
-                  mx="-md"
-                  color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'}
-                />
+                      <SimpleGrid cols={2} spacing={0}>
+                        {links}
+                      </SimpleGrid>
 
-                <SimpleGrid cols={2} spacing={0}>
-                  {links}
-                </SimpleGrid>
-
-                <div className={classes.dropdownFooter}>
-                  <Group position="apart">
-                    <div>
-                      <Text weight={500} size="sm">
-                        Get started
-                      </Text>
-                      <Text size="xs" color="dimmed">
-                        Their food sources have decreased, and their numbers
-                      </Text>
-                    </div>
-                    <Button variant="default">Get started</Button>
-                  </Group>
-                </div>
-              </HoverCard.Dropdown>
-            </HoverCard> */}
+                      <div className={classes.dropdownFooter}>
+                        <Group position="apart">
+                          <div>
+                            <Text weight={500} size="sm">
+                              Get started
+                            </Text>
+                            <Text size="xs" color="dimmed">
+                              Their food sources have decreased, and their numbers
+                            </Text>
+                          </div>
+                          <Button variant="default">Get started</Button>
+                        </Group>
+                      </div>
+                    </HoverCard.Dropdown>
+                  </div>
+                )}
+              </Transition> */}
+            </HoverCard>
           </Group>
 
           <Group className={classes.hiddenMobile}>

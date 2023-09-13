@@ -25,6 +25,7 @@ export enum PATH_CLIENT {
   chooseRootSpace = '/choose-root-space',
   chooseOrganization = '/choose-organization',
   rootSpaceSelected = '/dashboard/enter-space',
+  checks = '/dashboard/checks',
   // organizationCookie = '/dashboard/select-organization',
   logout = '/logout',
   login = '/login',
@@ -43,10 +44,14 @@ export enum CARD_LINK_PATH {
   // organizationCookie = PATH_CLIENT.organizationCookie,
 }
 
-export const _PATH_CLIENT = {
+export const _PATH_FRONTEND = {
   authTokens: {
     dashboard: PATH_CLIENT.authTokens,
     qrCode: ({ entity, authToken }: { entity: Sections; authToken: HiddenAuthTokenInterface }) =>
       `${FRONTEND_ROOT}/auth-tokens/${entity}/${authToken.linkId}/${authToken._id}`,
+  },
+  maintenances: {
+    root: PATH_CLIENT.maintenances,
+    checksPage: (maintenanceId: string) => `${PATH_CLIENT.checks}/maintenances/${maintenanceId}`,
   },
 };

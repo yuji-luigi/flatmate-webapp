@@ -68,7 +68,7 @@ const SpaceHomeSection = () => {
     <ProfileSide
       contents={
         <Stack>
-          <CardWithTitle titleSx={{ fontSize: 24 }} title="Maintainers">
+          <CardWithTitle title="Maintainers">
             <MaintainerList maintainers={maintainers} />
           </CardWithTitle>
           <MaintenanceListCard />

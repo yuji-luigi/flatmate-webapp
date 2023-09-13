@@ -1,7 +1,7 @@
 import { Select, SelectItem, Sx } from '@mantine/core';
 import React, { useEffect, useState } from 'react';
 import axiosInstance from '../../utils/axios-instance';
-import { PATH_API, _PATH_API } from '../../path/api-routes';
+import { PATH_API, _PATH_API } from '../../path/path-api';
 import { useRouter } from 'next/router';
 import { useCookieContext } from '../../context/CookieContext';
 import { convertToSelectItems } from '../../utils/helpers/helper-functions';

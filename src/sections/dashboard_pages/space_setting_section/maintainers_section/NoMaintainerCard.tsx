@@ -1,7 +1,7 @@
 import { Avatar, Card, Stack, Text } from '@mantine/core';
 import Link from 'next/link';
 import React from 'react';
-import { PATH_CLIENT } from '../../../../path/page-paths';
+import { PATH_CLIENT } from '../../../../path/path-frontend';
 
 export const NoMaintainerCard = ({ type }: { type: string }) => {
   return (

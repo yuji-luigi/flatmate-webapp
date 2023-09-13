@@ -19,7 +19,7 @@ import {
 } from '../../redux/features/crud/crudSlice';
 import { getEntityFromUrl } from '../../utils/helpers/helper-functions';
 import axiosInstance from '../../utils/axios-instance';
-import { PATH_API } from '../../path/api-routes';
+import { PATH_API } from '../../path/path-api';
 import { extractUploadingMedia, uploadFileAndGetModelId } from '../../utils/upload-helper';
 import { notifications } from '@mantine/notifications';
 import { useRouter } from 'next/router';
@@ -37,6 +37,7 @@ const useStyles = createStyles((theme) => ({
     borderRadius: 12,
     position: 'relative',
     width: '100%',
+    height: '100%',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     minHeight: '200px',

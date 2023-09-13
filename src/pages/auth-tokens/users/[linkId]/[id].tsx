@@ -7,7 +7,7 @@ import classes from '../../FileAuth.module.css';
 import { CheckType } from '../../../../types/models/check-type';
 import useSWR from 'swr';
 import axiosInstance from '../../../../utils/axios-instance';
-import { API_BASE_URL, _PATH_API } from '../../../../path/api-routes';
+import { API_BASE_URL, _PATH_API } from '../../../../path/path-api';
 import { GetServerSidePropsContext } from 'next';
 import { HiddenAuthTokenInterface } from '../../../../types/models/auth-token-model';
 import { UserRegisterCard } from '../../../../sections/auth-tokens-user-register/UserRegisterCard';

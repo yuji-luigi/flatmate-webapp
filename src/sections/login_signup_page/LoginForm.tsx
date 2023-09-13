@@ -8,7 +8,7 @@ import { LoginFormValues } from '../../types/context/auth/formData';
 
 import { Icons } from '../../data/icons/icons';
 import { useRouter } from 'next/router';
-import { PATH_CLIENT } from '../../path/page-paths';
+import { PATH_CLIENT } from '../../path/path-frontend';
 import { useCookieContext } from '../../context/CookieContext';
 
 function LoginForm() {

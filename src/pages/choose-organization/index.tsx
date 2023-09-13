@@ -6,9 +6,9 @@ import {
   CardArticleVerticalTextBottom,
   CardData,
 } from '../../components/card/CardVerticalTextBottom';
-import { CARD_LINK_PATH, PATH_CLIENT } from '../../path/page-paths';
+import { CARD_LINK_PATH, PATH_CLIENT } from '../../path/path-frontend';
 import axiosInstance from '../../utils/axios-instance';
-import { PATH_API } from '../../path/api-routes';
+import { PATH_API } from '../../path/path-api';
 import { CardArticleVerticalTextCenter } from '../../components/card/CardVerticalTextCenter';
 import { useRouter } from 'next/router';
 import Layout from '../../layouts';

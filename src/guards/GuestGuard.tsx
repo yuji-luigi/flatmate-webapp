@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 // hooks
 import useAuth from '../../hooks/useAuth';
 // routes
-import { PATH_CLIENT } from '../path/page-paths';
+import { PATH_CLIENT } from '../path/path-frontend';
 import { useCookieContext } from '../context/CookieContext';
 
 // ----------------------------------------------------------------------

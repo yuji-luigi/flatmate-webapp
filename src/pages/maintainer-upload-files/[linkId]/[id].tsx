@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { PATH_API } from '../../../path/api-routes';
+import { PATH_API } from '../../../path/path-api';
 import { Container, Transition } from '@mantine/core';
 import classes from './FileAuth.module.css';
 

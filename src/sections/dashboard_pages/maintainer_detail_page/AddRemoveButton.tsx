@@ -5,7 +5,7 @@ import { useCookieContext } from '../../../context/CookieContext';
 import { getEntityFromUrl, sleep } from '../../../utils/helpers/helper-functions';
 import { MaintainerModel } from '../../../types/models/maintainer-model';
 import axiosInstance from '../../../utils/axios-instance';
-import { PATH_API } from '../../../path/api-routes';
+import { PATH_API } from '../../../path/path-api';
 import { use_ModalContext } from '../../../context/modal-context/_ModalContext';
 import { notifications } from '@mantine/notifications';
 

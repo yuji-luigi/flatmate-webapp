@@ -4,7 +4,7 @@ import useSWR from 'swr';
 import { CustomFormFieldType } from '../../../types/general/data/data-table/formField-types';
 import { UseFormReturnTypeCustom } from '../input_interfaces/useForm_interface';
 import axiosInstance, { AxiosResDataGeneric } from '../../../utils/axios-instance';
-import { PATH_API } from '../../../path/api-routes';
+import { PATH_API } from '../../../path/path-api';
 import { useCookieContext } from '../../../context/CookieContext';
 import { MaintainerModel } from '../../../types/models/maintainer-model';
 

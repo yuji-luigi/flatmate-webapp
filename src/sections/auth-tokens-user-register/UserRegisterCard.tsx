@@ -18,11 +18,11 @@ import { UseFormReturnTypeCustom } from '../../components/input/input_interfaces
 import allFormFields from '../../../json/dataTable/formfields';
 import { getDefaultValues } from '../../utils/getDefaultValues';
 import axiosInstance from '../../utils/axios-instance';
-import { _PATH_API } from '../../path/api-routes';
+import { _PATH_API } from '../../path/path-api';
 import { showNotification } from '@mantine/notifications';
 import { constructErrorNotificationData } from '../../data/showNofification/notificationObjects';
 import { useRouter } from 'next/router';
-import { PATH_AFTER_LOGIN } from '../../path/page-paths';
+import { PATH_AFTER_LOGIN } from '../../path/path-frontend';
 import { sleep } from '../../utils/helpers/helper-functions';
 import useAuth from '../../../hooks/useAuth';
 

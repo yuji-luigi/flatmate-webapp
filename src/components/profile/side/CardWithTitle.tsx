@@ -3,6 +3,7 @@ import { Icon123 } from '@tabler/icons-react';
 import React from 'react';
 import { Icons } from '../../../data/icons/icons';
 import TextWithIcon from '../../text/TextWithIcon';
+import { TEXT_SIZE } from '../../text/text-size';
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -25,7 +26,7 @@ const CardWithTitle = ({ title, children, titleSx }: Prop) => {
   return (
     <Card className={classes.card}>
       {title && (
-        <Title sx={{ ...titleSx }} mb={8}>
+        <Title sx={{ fontSize: TEXT_SIZE.titleCard, ...titleSx }} mb={8}>
           {title}
         </Title>
       )}

@@ -3,6 +3,7 @@ import { Icon123 } from '@tabler/icons-react';
 import React from 'react';
 import { Icons } from '../../data/icons/icons';
 import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
+import { TEXT_SIZE } from './text-size';
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -33,7 +34,7 @@ const TextWithIcon = ({
     return (
       <Box className={classes.textRows} sx={sx}>
         <Box>{icon}</Box>
-        <Text size={12}>{text}</Text>
+        <Text size={TEXT_SIZE.cardTile}>{text}</Text>
       </Box>
     );
   }

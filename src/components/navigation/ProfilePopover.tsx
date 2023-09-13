@@ -13,7 +13,7 @@ import {
 import useAuth from '../../../hooks/useAuth';
 import Link from 'next/link';
 import { Icons } from '../../data/icons/icons';
-import { PATH_CLIENT } from '../../path/page-paths';
+import { PATH_CLIENT } from '../../path/path-frontend';
 
 const useStyles = createStyles((theme /* , _params, getRef */) => {
   const icon = getStylesRef('icon') as string;

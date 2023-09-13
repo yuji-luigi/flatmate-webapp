@@ -1,7 +1,7 @@
 import { createStyles, Card, Image, Avatar, Text, Group, Box, Stack } from '@mantine/core';
 import Link from 'next/link';
 import { threadId } from 'worker_threads';
-import { CARD_LINK_PATH, PATH_CLIENT } from '../../path/page-paths';
+import { CARD_LINK_PATH, PATH_CLIENT } from '../../path/path-frontend';
 import { useRouter } from 'next/router';
 import { MaintenanceModel } from '../../types/models/maintenance-model';
 import { ThreadModel } from '../../types/models/thread-model';

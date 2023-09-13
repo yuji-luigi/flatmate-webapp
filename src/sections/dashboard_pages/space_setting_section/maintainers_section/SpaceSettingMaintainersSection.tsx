@@ -19,7 +19,7 @@ import { MAINTAINER_TYPES } from '../../../../lib/enums';
 import { NoMaintainerCard } from './NoMaintainerCard';
 import { Icons } from '../../../../data/icons/icons';
 import Link from 'next/link';
-import { PATH_CLIENT } from '../../../../path/page-paths';
+import { PATH_CLIENT } from '../../../../path/path-frontend';
 
 export const SpaceSettingMaintainersSection = ({
   maintainers,

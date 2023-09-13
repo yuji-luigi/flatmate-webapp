@@ -10,7 +10,7 @@ import {
 } from '@mantine/core';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
-import { PATH_API } from '../../path/api-routes';
+import { PATH_API } from '../../path/path-api';
 import axiosInstance, { AxiosResDataGeneric } from '../../utils/axios-instance';
 import Link from 'next/link';
 import { CheckInterface } from '../../types/models/check-type';

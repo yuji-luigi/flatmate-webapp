@@ -13,7 +13,7 @@ export const threadTableData: Array<FormFieldTypes> = [
   {
     id: 'description',
     name: 'description',
-    label: 'Texts',
+    label: 'body',
     placeholder: 'Have you ever seen the cat with 6 colors?...',
     type: 'text-area',
     required: true,

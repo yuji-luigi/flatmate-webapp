@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect } from 'react';
 import axiosInstance, { AxiosResData, AxiosResDataGeneric } from '../../utils/axios-instance';
-import { PATH_API } from '../../path/api-routes';
+import { PATH_API } from '../../path/path-api';
 import { NextRouter, useRouter } from 'next/router';
 import useSWR from 'swr';
 import { AxiosError } from 'axios';
@@ -11,7 +11,7 @@ import {
   CardArticleVerticalTextBottom,
   CardData,
 } from '../../components/card/CardVerticalTextBottom';
-import { PATH_CLIENT } from '../../path/page-paths';
+import { PATH_CLIENT } from '../../path/path-frontend';
 import { Box, Button, Divider, Group, Stack, createStyles, Text } from '@mantine/core';
 import useAuth from '../../../hooks/useAuth';
 import Link from 'next/link';

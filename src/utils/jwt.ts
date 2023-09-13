@@ -1,7 +1,7 @@
 import { setCookie } from 'cookies-next';
 import jwtDecode from 'jwt-decode';
 // routes
-import { PATH_AUTH } from '../path/api-routes';
+import { PATH_AUTH } from '../path/path-api';
 //
 import axiosInstance from './axios-instance';
 

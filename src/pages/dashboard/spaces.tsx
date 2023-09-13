@@ -7,7 +7,7 @@ import Layout from '../../layouts';
 import Page from '../../components/Page';
 import { CrudDrawerDefault } from '../../components/drawer/CrudDrawerDefault';
 import { useCrudSelectors, useCrudSliceStore } from '../../redux/features/crud/crudSlice';
-import { PATH_CLIENT } from '../../path/page-paths';
+import { PATH_CLIENT } from '../../path/path-frontend';
 import { useCookieContext } from '../../context/CookieContext';
 import { HeaderContainer } from '../../components/datatable/header/HeaderContainer';
 

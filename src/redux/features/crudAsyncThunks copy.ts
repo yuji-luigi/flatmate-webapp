@@ -5,7 +5,7 @@
  * */
 
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { PATH_API } from '../../path/api-routes';
+import { PATH_API } from '../../path/path-api';
 import axiosInstance, { AxiosResData, uploadConfig } from '../../utils/axios-instance';
 import { UploadModel } from '../../types/models/upload-model';
 

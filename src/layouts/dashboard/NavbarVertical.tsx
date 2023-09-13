@@ -17,7 +17,7 @@ import { sectionData } from '../../data';
 
 import { Icons } from '../../data/icons/icons';
 import { useMediaQuery } from '@mantine/hooks';
-import { PATH_CLIENT } from '../../path/page-paths';
+import { PATH_CLIENT } from '../../path/path-frontend';
 import { ColorSchemeToggle } from '../../components/color-schemeToggle/ColorSchemeToggle';
 import { MouseEventHandler } from 'react';
 import { ProfilePopover } from '../../components/navigation/ProfilePopover';

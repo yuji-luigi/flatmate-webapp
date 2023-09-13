@@ -11,7 +11,7 @@ import { SpaceModel } from '../../../types/models/space-model';
 import { ThreadModel } from '../../../types/models/thread-model';
 import { useRouter } from 'next/router';
 import { showNotification } from '@mantine/notifications';
-import { _PATH_API } from '../../../path/api-routes';
+import { _PATH_API } from '../../../path/path-api';
 
 interface Props {
   space: SpaceModel;

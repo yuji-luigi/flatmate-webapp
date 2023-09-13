@@ -3,7 +3,7 @@ import React, { useCallback, useState } from 'react';
 import { PATH_IMAGE } from '../../../lib/image-paths';
 import classes from './PinVerifCard.module.css';
 import { useRouter } from 'next/router';
-import { _PATH_API } from '../../../path/api-routes';
+import { _PATH_API } from '../../../path/path-api';
 import axiosInstance, { AxiosResDataGeneric } from '../../../utils/axios-instance';
 import useSWR from 'swr';
 import Image from 'next/image';

@@ -16,7 +16,7 @@ export const BuildingCard = () => {
   const { crudDocument: document } = useCrudSelectors(_entity as Sections);
   if (!document.spaces) return <Skeleton />;
   return (
-    <CardWithTitle titleSx={{ fontSize: 24 }} title="Condominium/Office">
+    <CardWithTitle title="Condominium/Office">
       {document.spaces?.length ? (
         document.spaces?.map((space: SpaceModel) => (
           <TextWithIcon

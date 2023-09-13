@@ -7,7 +7,7 @@ import { useDrawerContext } from '../../../../context/DataTableDrawerContext';
 import { dashboardStyle } from '../../../../styles/global-useStyles';
 import { use_ModalContext } from '../../../../context/modal-context/_ModalContext';
 import axiosInstance from '../../../../utils/axios-instance';
-import { PATH_API } from '../../../../path/api-routes';
+import { PATH_API } from '../../../../path/path-api';
 import { sleep } from '../../../../utils/helpers/helper-functions';
 import { showNotification } from '@mantine/notifications';
 const useStyles = dashboardStyle;

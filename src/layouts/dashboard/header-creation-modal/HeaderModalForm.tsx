@@ -27,7 +27,7 @@ import { hasMedia } from '../../../redux/features/crudAsyncThunks';
 import { uploadFileAndGetModelId, extractUploadingMedia } from '../../../utils/upload-helper';
 import { useDisclosure } from '@mantine/hooks';
 import useAuth from '../../../../hooks/useAuth';
-import { PATH_API } from '../../../path/api-routes';
+import { PATH_API } from '../../../path/path-api';
 import { convertToSelectItems, sleep } from '../../../utils/helpers/helper-functions';
 import OrganizationSpaceSelect from '../../../components/select-custom/OrganizationSpaceSelect';
 import { getCookie } from 'cookies-next';

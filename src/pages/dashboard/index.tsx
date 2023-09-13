@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 // next
 import { useRouter } from 'next/router';
 // config
-import { PATH_AFTER_LOGIN, PATH_CLIENT } from '../../path/page-paths';
+import { PATH_AFTER_LOGIN, PATH_CLIENT } from '../../path/path-frontend';
 import useAuth from '../../../hooks/useAuth';
 import NotFoundImage from '../404';
 // routes

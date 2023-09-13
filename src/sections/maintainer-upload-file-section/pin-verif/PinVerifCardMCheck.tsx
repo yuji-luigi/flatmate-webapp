@@ -3,7 +3,7 @@ import React, { useCallback, useState } from 'react';
 import { PATH_IMAGE } from '../../../lib/image-paths';
 import classes from '../maintainer-upload-file-section.module.css';
 import { useRouter } from 'next/router';
-import { PATH_API } from '../../../path/api-routes';
+import { PATH_API } from '../../../path/path-api';
 import axiosInstance, { AxiosResDataGeneric } from '../../../utils/axios-instance';
 import useSWR from 'swr';
 import Image from 'next/image';
