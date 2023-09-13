@@ -5,6 +5,7 @@ import { CARD_LINK_PATH, PATH_CLIENT } from '../../path/path-frontend';
 import { useRouter } from 'next/router';
 import { MaintenanceModel } from '../../types/models/maintenance-model';
 import { ThreadModel } from '../../types/models/thread-model';
+import { IUser } from '../../types/context/auth/useAuth';
 
 const useStyles = createStyles((theme) => ({
   link: {
@@ -42,10 +43,12 @@ interface CardArticleImageDescFooterVerticalProps {
   title: string;
   date: string;
   hrefRoot: CARD_LINK_PATH;
-  author: {
-    name: string;
-    avatar?: string;
-  };
+  author:
+    | IUser
+    | {
+        name: string;
+        avatar?: string;
+      };
   data: ThreadModel | MaintenanceModel;
 }
 export function CardArticleSmall({

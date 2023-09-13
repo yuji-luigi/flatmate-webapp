@@ -9,6 +9,7 @@ import {
   SelectOption,
 } from '../../src/types/general/data/data-table/formField-types';
 import { SelectItem } from '@mantine/core';
+import { MongooseBaseModel } from '../../src/types/models/mongoose-base-model';
 // import { useCrudSlice } from '../redux-hooks/useCrudSlice';
 
 export const useGetSelectOptions = (formField: FormFieldTypes): Array<SelectItem | string> | [] => {
@@ -30,7 +31,7 @@ export const useGetSelectOptions = (formField: FormFieldTypes): Array<SelectItem
 
   if (formField.type === 'select') {
     /** todo: to include infinite scrolling? */
-    const options = crudDocuments.map((document) => {
+    const options = crudDocuments.map((document: MongooseBaseModel) => {
       const label = createLabelFromArrayStr(formField.selectValues!, document);
       return { value: document._id, label };
     });

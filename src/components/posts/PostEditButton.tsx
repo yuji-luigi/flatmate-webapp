@@ -9,6 +9,9 @@ import { useDrawerContext } from '../../context/DataTableDrawerContext';
 import { useRouter } from 'next/router';
 import { Sections } from '../../types/general/data/sections-type';
 import { PATH_CLIENT } from '../../path/path-frontend';
+import { AllModels } from '../../types/models/allmodels';
+import { ThreadModel } from '../../types/models/thread-model';
+import { MaintenanceModel } from '../../types/models/maintenance-model';
 
 const useStyles = createStyles((theme) => ({
   action: {
@@ -18,7 +21,13 @@ const useStyles = createStyles((theme) => ({
     }),
   },
 }));
-const PostEditButton = ({ data, entity }: { data: AllModels; entity: Sections }) => {
+const PostEditButton = ({
+  data,
+  entity,
+}: {
+  data: ThreadModel | MaintenanceModel;
+  entity: Sections;
+}) => {
   const { user } = useAuth();
 
   const router = useRouter();
@@ -41,7 +50,7 @@ const PostEditButton = ({ data, entity }: { data: AllModels; entity: Sections })
   };
   return (
     <>
-      {(user?._id === data.createdBy._id || user?.role === 'super_admin') && (
+      {(user?._id === data.createdBy._id || data.createdBy?.role === 'super_admin') && (
         <Group position="right" mb={10}>
           <Menu shadow="lg">
             <Menu.Target>

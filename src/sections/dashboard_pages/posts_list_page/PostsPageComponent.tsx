@@ -25,6 +25,7 @@ import { useCrudSelectors } from '../../../redux/features/crud/crudSlice';
 // import { useCurrentSpaceContext } from '../../context/CurrentSpaceContext';
 import { useCookieContext } from '../../../context/CookieContext';
 import { useMediaQuery } from '@mantine/hooks';
+import { ThreadModel } from '../../../types/models/thread-model';
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 interface TypeMock {
@@ -66,7 +67,7 @@ const useStyles = createStyles((theme) => ({
 
 export default function PostListPageComponent() {
   const { classes, cx, theme } = useStyles();
-  const { crudDocuments: threads } = useCrudSelectors('threads');
+  const { crudDocuments: threads } = useCrudSelectors<ThreadModel>('threads');
   const { currentSpace } = useCookieContext();
   const isMobile = useMediaQuery('(max-width: 600px)');
   const contents = (

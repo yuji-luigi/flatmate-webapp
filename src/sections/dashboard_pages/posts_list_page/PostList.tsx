@@ -11,7 +11,7 @@ const PostList = ({ thread }: { thread: ThreadModel }) => {
         <CardArticleSmall
           key={thread.title}
           data={thread}
-          author={thread.user}
+          author={thread.createdBy}
           category={thread.tags?.toString() || 'tech'}
           date={thread.createdAt}
           image={thread.images[0]?.url}

@@ -1,6 +1,7 @@
 import { Sections } from '../types/general/data/sections-type';
 import { API_BASE_URL } from '../path/path-api';
 import axios, { AxiosInstance, AxiosResponse } from 'axios';
+import { AllModels } from '../types/models/allmodels';
 
 // ----------------------------------------------------------------------
 

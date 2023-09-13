@@ -10,6 +10,7 @@ import { usePaginationContext } from '../../../context/PaginationContext';
 import { useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
 import { Sections } from '../../../types/general/data/sections-type';
 import { FormFieldTypes } from '../../../types/general/data/data-table/formField-types';
+import { AllModels } from '../../../types/models/allmodels';
 
 export function TableRow({
   rowData,

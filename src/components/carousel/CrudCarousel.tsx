@@ -34,7 +34,7 @@ function CrudCarousel({
     if (isFile) {
       return;
     }
-    if (window.confirm('Are you sure you want to delete this image?')) {
+    if (window.confirm('Are you sure you want to delete this image?') && crudDocument) {
       const res = await axiosInstance.delete(
         `${PATH_API.uploads}/${entity}/${crudDocument._id}/${formField.name}/${image._id}`
       );

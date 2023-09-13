@@ -25,6 +25,7 @@ import { useRouter } from 'next/router';
 import { PATH_AFTER_LOGIN } from '../../path/path-frontend';
 import { sleep } from '../../utils/helpers/helper-functions';
 import useAuth from '../../../hooks/useAuth';
+import { UserModel } from '../../types/models/user-model';
 
 const useStyles = createStyles((theme) => ({
   formContainer: {
@@ -51,7 +52,7 @@ export const UserRegisterCard = ({
   const { classes } = useStyles();
   const { login } = useAuth();
   const { push } = useRouter();
-  const { crudDocument: user } = useCrudSelectors('users');
+  const { crudDocument: user } = useCrudSelectors<UserModel>('users');
   const formFields = allFormFields.users;
   const initialValues = useMemo(() => getDefaultValues(formFields, user), [user]);
   const form = useForm({
@@ -62,6 +63,13 @@ export const UserRegisterCard = ({
   const onSubmit = async (e: FormEvent) => {
     try {
       e.preventDefault();
+      if (!user) {
+        showNotification({
+          ...constructErrorNotificationData,
+          message: 'Something went wrong, please try again later',
+        });
+        return;
+      }
       if (!form.values.password) {
         showNotification({
           ...constructErrorNotificationData,

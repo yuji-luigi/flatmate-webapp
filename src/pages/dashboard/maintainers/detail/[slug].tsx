@@ -110,6 +110,7 @@ const MaintainerDetailsPage = () => {
               {!isMobile && profileSide}
             </Group>
             <PostFeedCard
+              _id={'d'}
               createdAt={new Date()}
               createdBy={{ name: 'No name user' } as UserModel}
               title="The First Job! maintainers detail page!"

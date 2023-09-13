@@ -5,6 +5,7 @@
 import { PATH_API } from '../../path/path-api';
 import { MixedMediaType, UploadingMediaType } from '../../types/data/media/media-types';
 import { Sections, isSection, sectionsArray } from '../../types/general/data/sections-type';
+import { AllModels } from '../../types/models/allmodels';
 import axiosInstance from '../axios-instance';
 
 type ALotOfNumbers = number;
@@ -16,7 +17,7 @@ export const getRandomNumberOne = (): OnlyNumber => Math.ceil(10 * Math.random()
 
 export const createLabelFromArrayStr = (
   arr: string[],
-  document: AllModels,
+  document: any,
   label: string = ''
 ): string => {
   const clonedArr = [...arr];
@@ -117,10 +118,7 @@ export function _set(
 
 export const capitalize = (str?: string) => (str ? str.charAt(0).toUpperCase() + str.slice(1) : '');
 
-export const convertToSelectItems = (
-  mongooseDocuments: Array<AllModels>,
-  label: string = 'name'
-) => {
+export const convertToSelectItems = (mongooseDocuments: Array<any>, label: string = 'name') => {
   return mongooseDocuments.map((doc) => {
     return {
       value: doc._id,

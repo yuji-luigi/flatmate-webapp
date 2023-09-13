@@ -1,9 +1,10 @@
 import { FormFieldTypes } from '../types/general/data/data-table/formField-types';
+import { AllModels } from '../types/models/allmodels';
 import { _get, _set } from './helpers/helper-functions';
 
 export function getDefaultValues(
   formFields: FormFieldTypes[],
-  crudDocument: AllModels = {},
+  crudDocument: any = {},
   parentId?: string
 ) {
   /** define defauldValueObj by reduce */

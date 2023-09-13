@@ -22,6 +22,7 @@ import CardArticleImageBig from '../../../components/card/CardArticleImageBig';
 import axiosInstance from '../../../utils/axios-instance';
 import MaintenanceList from './MaintenanceList';
 import { useCrudSelectors } from '../../../redux/features/crud/crudSlice';
+import { MaintenanceModel } from '../../../types/models/maintenance-model';
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 interface TypeMock {
@@ -63,7 +64,7 @@ const useStyles = createStyles((theme) => ({
 
 export default function MaintenanceListPageSection() {
   const { classes, cx, theme } = useStyles();
-  const { crudDocuments: maintenances } = useCrudSelectors('maintenances');
+  const { crudDocuments: maintenances } = useCrudSelectors<MaintenanceModel>('maintenances');
   return (
     // <Container mx="auto" py="xl">
     <Box

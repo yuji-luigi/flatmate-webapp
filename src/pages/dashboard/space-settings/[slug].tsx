@@ -20,6 +20,8 @@ import { SpaceSettingMaintainersSection } from '../../../sections/dashboard_page
 import { useCookieContext } from '../../../context/CookieContext';
 import { PATH_CLIENT } from '../../../path/path-frontend';
 import { useCrudSelectors, useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
+import { SpaceModel } from '../../../types/models/space-model';
+import { MaintainerModel } from '../../../types/models/maintainer-model';
 
 // use style from global-useStyles
 const useStyles = dashboardStyle;
@@ -30,8 +32,8 @@ const SpaceSettingSinglePage = () => {
   const slug = router.query.slug as string;
   const { currentSpace } = useCookieContext();
   const { setCrudDocument, setCrudDocuments } = useCrudSliceStore();
-  const { crudDocument: space } = useCrudSelectors('spaces');
-  const { crudDocuments: maintainers } = useCrudSelectors('maintainers');
+  const { crudDocument: space } = useCrudSelectors<SpaceModel>('spaces');
+  const { crudDocuments: maintainers } = useCrudSelectors<MaintainerModel>('maintainers');
   const [isSpaceAdmin, setIsSpaceAdmin] = useState(false);
   const { classes: classes1 } = useStyles();
   // combine styles

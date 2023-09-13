@@ -1,4 +1,9 @@
+import { FundModel } from './fund-model';
 import { MongooseBaseModel } from './mongoose-base-model';
+import { OrganizationModel } from './organization-model';
+import { ThreadModel } from './thread-model';
+import { UploadModel } from './upload-model';
+import { UserModel } from './user-model';
 
 export interface SpaceModel extends MongooseBaseModel {
   name: string;

@@ -12,11 +12,13 @@ import { Text } from '@mantine/core';
 import { Sections } from '../../../types/general/data/sections-type';
 import { IconQrcode } from '@tabler/icons-react';
 import { QrCodeButton } from './tablecell/action-cells/QrCodeButton';
+import { AllModels } from '../../../types/models/allmodels';
+import { MongooseBaseModel } from '../../../types/models/mongoose-base-model';
 export function ActionCells({
   rowData,
   overridingEntity,
 }: {
-  rowData: AllModels;
+  rowData: MongooseBaseModel;
   overridingEntity?: Sections;
 }) {
   const { paginationQuery } = usePaginationContext();

@@ -1,26 +1,5 @@
 import { UserModel } from '../../models/user-model';
-export interface IUser {
-  _id: string;
-  name: string | undefined;
-  surname?: string | undefined;
-  phone?: string | undefined;
-  email: string | undefined;
-  password: string;
-  role: 'admin' | 'user' | 'super_admin';
-  bookmarks: string[] | BookmarkModel[];
-  wallet?: string | WalletModel;
-  buildings: [] | string[] | IBuilding[] | undefined;
-  userSetting: string | UserSettingModel;
-  last_login: Date;
-  rootSpaces: SpaceModel[] | [];
-  // modules?: modules;
-
-  _update?: {
-    password?: Buffer | string;
-  };
-  /*   roles: string[] | any;
-   */
-}
+export type IUser = UserModel;
 
 interface CurrentSpace {
   _id: string;

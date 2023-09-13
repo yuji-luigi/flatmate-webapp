@@ -39,8 +39,8 @@ export const tagTableData: Array<FormFieldTypes> = [
     priority: 2,
   },
   {
-    id: 'owner',
-    name: 'owner',
+    id: 'organization',
+    name: 'organization',
     label: 'created by',
     type: 'select',
     multi: true,

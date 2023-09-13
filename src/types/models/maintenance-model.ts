@@ -1,5 +1,9 @@
+import { IUser } from '../context/auth/useAuth';
 import { CheckInterface } from './check-type';
 import { MongooseBaseModel } from './mongoose-base-model';
+import { OrganizationModel } from './organization-model';
+import { SpaceModel } from './space-model';
+import { UploadModel } from './upload-model';
 
 export interface MaintenanceModel extends MongooseBaseModel {
   title: string;
@@ -19,9 +23,7 @@ export interface MaintenanceModel extends MongooseBaseModel {
     | 'survey'
     | 'question'
     | 'discussion';
-  createdBy: IUser | string;
   isImportant: boolean;
-  owner: IOwner | string;
   space: SpaceModel;
   receipts: string | CheckInterface[];
   invoices: string | CheckInterface[];

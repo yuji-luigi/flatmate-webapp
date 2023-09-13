@@ -15,6 +15,8 @@ import {
 import { flattenSectionData } from '../../../data';
 import { useAppDispatch, useAppSelector } from '../../../../hooks/redux-hooks/useRedux';
 import { Sections } from '../../../types/general/data/sections-type';
+import { AllModels } from '../../../types/models/allmodels';
+import { MongooseBaseModel } from '../../../types/models/mongoose-base-model';
 // import { appDispatch } from '../../store';
 /* eslint-disable no-param-reassign */
 
@@ -358,7 +360,7 @@ const useCrudDocument = <ModelType>(entity?: Sections): ModelType =>
   useAppSelector((state) => state.crud.reduxdb?.[entity || '']?.singleCrudDocument || {});
 
 /** Hook for selector. this time need do pass entity when initialize the hook. */
-export const useCrudSelectors = <ModelType = AllModels>(entity?: Sections) => ({
+export const useCrudSelectors = <ModelType = MongooseBaseModel>(entity?: Sections) => ({
   /** Returns Array of Documents of the entity: whole array of entity */
   crudDocuments: useCrudDocuments<ModelType>(entity) || [],
   /** Returns selected Document of the entity */

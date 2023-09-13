@@ -30,6 +30,8 @@ import { FormFieldTypes } from '../../types/general/data/data-table/formField-ty
 import { MAX_FILE_SIZE } from '../../lib/files/file-sizes';
 import { formatSize } from '../../lib/formatters';
 import { useCookieContext } from '../../context/CookieContext';
+import { SpaceModel } from '../../types/models/space-model';
+import { MaintainerModel } from '../../types/models/maintainer-model';
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -115,12 +117,14 @@ const ProfileCover = ({
 
   const { classes } = useStyles();
 
-  const { selectDocumentById, crudDocument } = useCrudSelectors(_entity);
+  const { selectDocumentById, crudDocument } = useCrudSelectors<SpaceModel | MaintainerModel>(
+    _entity
+  );
   const coverInputRef = useRef<HTMLInputElement>(null);
   const { openConfirmModal } = use_ModalContext();
 
-  const [selectedImage, setSelectedImage] = useState<string | undefined>(crudDocument.avatar?.url);
-  const [selectedCover, setSelectedCover] = useState<string | undefined>(crudDocument.cover?.url);
+  const [selectedImage, setSelectedImage] = useState<string | undefined>(crudDocument?.avatar?.url);
+  const [selectedCover, setSelectedCover] = useState<string | undefined>(crudDocument?.cover?.url);
   // const [selectedImage, setSelectedImage] = useState<string | undefined>(data.avatarUrl);
   // const [selectedCover, setSelectedCover] = useState<string | undefined>(data.coverUrl);
 
@@ -159,7 +163,7 @@ const ProfileCover = ({
       const uploadIdData = await uploadFileAndGetModelId({ [field]: [file] }, _entity);
       updateCrudDocument({
         entity: _entity,
-        documentId: crudDocument._id || (documentId as string),
+        documentId: crudDocument?._id || (documentId as string),
         updateData: { [field]: uploadIdData[field][0] },
       });
     } catch (error) {
@@ -170,6 +174,7 @@ const ProfileCover = ({
     }
   };
   const handleEditClicked = () => {
+    if (!crudDocument) return;
     if (!formFields) return console.log('formFields not defined');
     openConfirmModal({
       type: 'crud',
@@ -187,9 +192,11 @@ const ProfileCover = ({
     });
   };
   useEffect(() => {
-    setSelectedCover(crudDocument.cover?.url);
-    setSelectedImage(crudDocument.avatar?.url);
-  }, [crudDocument.avatar?.url, crudDocument.cover?.url]);
+    if (crudDocument) {
+      setSelectedCover(crudDocument.cover?.url);
+      setSelectedImage(crudDocument.avatar?.url);
+    }
+  }, [crudDocument?.avatar?.url, crudDocument?.cover?.url]);
   return (
     <Card
       shadow="sm"
@@ -200,7 +207,7 @@ const ProfileCover = ({
         // backgroundSize: 'object-fit',
         // backgroundRepeat: 'no-repeat',
         backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${
-          selectedCover || crudDocument.avatar?.url || ''
+          selectedCover || crudDocument?.avatar?.url || ''
         })`,
       }}
     >
@@ -231,7 +238,7 @@ const ProfileCover = ({
                   size={100}
                   radius={80}
                   src={selectedImage}
-                  alt={crudDocument.avatar?.title + ' avatar'}
+                  alt={crudDocument?.avatar?.originalFileName + ' avatar'}
                 />
                 <input
                   id="avatar-input"

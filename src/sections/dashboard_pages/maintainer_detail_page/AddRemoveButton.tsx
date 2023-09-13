@@ -74,10 +74,12 @@ export const AddRemoveButton = ({ onClick }: { onClick: () => void }) => {
   };
 
   if (!document?.spaces) return <Skeleton />;
-
+  const assignedToCurrentSpace = currentSpace?._id
+    ? document.spaces.map((space) => space._id)?.includes(currentSpace?._id)
+    : false;
   return (
     <>
-      {document.spaces.map((space) => space._id)?.includes(currentSpace?._id) ? (
+      {assignedToCurrentSpace ? (
         <Button onClick={handleRemove} variant="outline" color="red">
           Remove Maintainer From Building
         </Button>

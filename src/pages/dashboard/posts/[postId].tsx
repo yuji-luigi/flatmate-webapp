@@ -49,7 +49,7 @@ const PostIdPage = ({ thread }: { thread: ThreadModel }) => {
   const { classes, cx, theme } = useStyles();
   const { query }: { query: ParsedQueryCustom } = useRouter();
   const { selectCrudDocument } = useCrudSliceStore();
-  const { crudDocument: _thread } = useCrudSelectors('threads');
+  const { crudDocument: _thread } = useCrudSelectors<ThreadModel>('threads');
 
   useEffect(() => {
     if (!query.postId) return;

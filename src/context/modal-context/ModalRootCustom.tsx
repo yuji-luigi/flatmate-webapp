@@ -7,6 +7,7 @@ import CustomModal from './CustomModal';
 import { FormFieldTypes } from '../../types/general/data/data-table/formField-types';
 import { showNotification } from '@mantine/notifications';
 import { constructErrorNotificationData } from '../../data/showNofification/notificationObjects';
+import { AllModels } from '../../types/models/allmodels';
 
 export interface _ModalContextStates {
   isOpenModal: boolean;
@@ -41,7 +42,7 @@ interface ConfirmAlertModalParams extends BaseModalParams {
 interface CrudModalParams extends BaseModalParams {
   type: 'crud';
   formFields: FormFieldTypes[];
-  crudDocument?: AllModels;
+  crudDocument: AllModels;
 }
 interface CustomModalParams extends BaseModalParams {
   type: 'custom';

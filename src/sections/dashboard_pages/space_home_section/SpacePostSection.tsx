@@ -15,7 +15,7 @@ export const SpacePostSection = () => {
         <PostFeedCard
           key={thread._id}
           _id={thread._id}
-          createdBy={thread.user}
+          createdBy={thread.createdBy}
           title={thread.title}
           body={thread.description}
           images={thread.images}

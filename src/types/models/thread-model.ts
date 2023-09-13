@@ -1,4 +1,8 @@
+import { IUser } from '../context/auth/useAuth';
 import { MongooseBaseModel } from './mongoose-base-model';
+import { OrganizationModel } from './organization-model';
+import { SpaceModel } from './space-model';
+import { UploadModel } from './upload-model';
 
 export interface ThreadModel extends MongooseBaseModel {
   title: string;
@@ -20,9 +24,9 @@ export interface ThreadModel extends MongooseBaseModel {
     | 'discussion';
   /** root space */
   headSpace?: string | SpaceModel;
-  user: IUser | string;
+  createdBy: IUser;
   isImportant: boolean;
-  owner: IOwner | string;
+  organization: OrganizationModel | string;
   /** formatted in some way. from api schema level */
   _createdAt: string;
 }

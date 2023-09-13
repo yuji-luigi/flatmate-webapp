@@ -3,6 +3,7 @@ import React, { Fragment } from 'react';
 import TableCellController from './table-rows/tablecell/crud-cells/TableCellController';
 import { FormFieldTypes } from '../../types/general/data/data-table/formField-types';
 import BadgeCellDecorator from './table-rows/tablecell/crud-cells/BadgeCellDecorator';
+import { AllModels } from '../../types/models/allmodels';
 
 function isObject(value: any): boolean {
   return value && typeof value === 'object' && !Array.isArray(value) && typeof value !== 'string';
@@ -14,7 +15,7 @@ export function TableCellDecorator({
   rowData,
   cellConfig,
 }: {
-  rowData: UsersTableRow;
+  rowData: AllModels;
   cellConfig: FormFieldTypes;
 }) {
   /** get value of the cell (from object/array/primitive) */

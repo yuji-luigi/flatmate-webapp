@@ -61,7 +61,7 @@ export function CrudDrawerDefault({ overridingEntity = '' }: { overridingEntity?
     createLinkedChildDocumentWithPagination,
   } = useCrudSliceStore();
   const { crudDocument: singleCrudDocument, crudStatus, crudError } = useCrudSelectors(entity);
-
+  const singleCrudId = singleCrudDocument?._id || null;
   /**
    * initialValues
    * defined here
@@ -121,9 +121,8 @@ export function CrudDrawerDefault({ overridingEntity = '' }: { overridingEntity?
         return;
       }
     }
-
     /** Create new Document */
-    if (!singleCrudDocument._id) {
+    if (!singleCrudId) {
       if (parentId) {
         createLinkedChildDocumentWithPagination({
           entity,
@@ -136,11 +135,11 @@ export function CrudDrawerDefault({ overridingEntity = '' }: { overridingEntity?
       }
     }
     /** Modify selected document */
-    if (singleCrudDocument._id) {
+    if (singleCrudId) {
       updateCrudDocument({
         entity,
         updateData: reqBody,
-        documentId: singleCrudDocument._id,
+        documentId: singleCrudId,
         parentId: query.parentId as string,
       });
     }
@@ -197,14 +196,14 @@ export function CrudDrawerDefault({ overridingEntity = '' }: { overridingEntity?
 
   useEffect(() => {
     form.setValues(initialValues);
-  }, [singleCrudDocument._id]);
+  }, [singleCrudId]);
 
   useEffect(() => {
     form.setValues(initialValues);
   }, [drawerIsOpen]);
 
   const entityText = capitalize(sectionJson?.entitySingle);
-  const submitText = singleCrudDocument._id ? `Update ${entityText}!` : `Add ${entityText}!`;
+  const submitText = singleCrudId ? `Update ${entityText}!` : `Add ${entityText}!`;
 
   if (!drawerIsOpen) return null;
   return (
