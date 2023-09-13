@@ -2,6 +2,7 @@ import React, { ReactElement } from 'react';
 import AuthGuard from '../guards/AuthGuard';
 import DashboardLayout from './dashboard/DashboardLayout';
 import { HomepageLayout } from './homepage';
+import { CookieContextProvider } from '../context/CookieContext';
 
 export type LayoutVariants = 'main' | 'logoOnly' | 'dashboard';
 
@@ -26,7 +27,9 @@ const Layout = ({
   }
   return (
     <AuthGuard>
-      <DashboardLayout>{children}</DashboardLayout>
+      <CookieContextProvider>
+        <DashboardLayout>{children}</DashboardLayout>
+      </CookieContextProvider>
     </AuthGuard>
   );
 };

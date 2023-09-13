@@ -64,20 +64,18 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
               withGlobalStyles
               withNormalizeCSS
             >
-              <CookieContextProvider>
-                <DashboardLayoutContextProvider>
-                  <PaginationContextProvider>
-                    <DrawerContextProvider>
-                      <_ModalContextProvider>
-                        <FilterContextProvider>
-                          <Notifications />
-                          {getLayout(<Component {...pageProps} />)}
-                        </FilterContextProvider>
-                      </_ModalContextProvider>
-                    </DrawerContextProvider>
-                  </PaginationContextProvider>
-                </DashboardLayoutContextProvider>
-              </CookieContextProvider>
+              <DashboardLayoutContextProvider>
+                <PaginationContextProvider>
+                  <DrawerContextProvider>
+                    <_ModalContextProvider>
+                      <FilterContextProvider>
+                        <Notifications />
+                        {getLayout(<Component {...pageProps} />)}
+                      </FilterContextProvider>
+                    </_ModalContextProvider>
+                  </DrawerContextProvider>
+                </PaginationContextProvider>
+              </DashboardLayoutContextProvider>
             </MantineProvider>
           </ColorSchemeProvider>
         </ReduxProvider>

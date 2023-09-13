@@ -189,7 +189,7 @@ export function HomepageHeader() {
             <Link href="/" className={classes.link}>
               Home
             </Link>
-            <HoverCard
+            {/* <HoverCard
               width={600}
               position="bottom"
               radius="md"
@@ -211,9 +211,9 @@ export function HomepageHeader() {
                   </Center>
                 </a>
               </HoverCard.Target>
-              {/* <Transition
+              <Transition
                 mounted={dropdownOpened}
-                transition=""
+                transition="pop-top-left"
                 duration={900}
                 timingFunction="ease"
               >
@@ -253,8 +253,8 @@ export function HomepageHeader() {
                     </HoverCard.Dropdown>
                   </div>
                 )}
-              </Transition> */}
-            </HoverCard>
+              </Transition>
+            </HoverCard> */}
           </Group>
 
           <Group className={classes.hiddenMobile}>
