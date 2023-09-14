@@ -22,6 +22,7 @@ type BaseModalParams = {
   title: string;
   centered?: boolean;
   children: React.ReactNode;
+  fullScreen?: boolean;
   onCancel?: () => void;
   onConfirm: (data: any) => void | Promise<void>;
 };
@@ -46,12 +47,14 @@ interface CrudModalParams extends BaseModalParams {
 }
 interface CustomModalParams extends BaseModalParams {
   type: 'custom';
+  withinPortal?: boolean;
 }
 
 export type OpenConfirmModalParams = ConfirmAlertModalParams | CrudModalParams | CustomModalParams;
 
 export type ModalProps = OpenConfirmModalParams & {
   id: string;
+  fullScreen?: boolean;
   labels: {
     confirm?: string;
     cancel?: string;

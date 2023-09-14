@@ -105,3 +105,18 @@ export const profilePageStyle = createStyles((theme) => ({
     paddingInline: 24,
   },
 }));
+
+export const feedStyles = createStyles((theme) => ({
+  feedCard: {
+    minHeight: 200,
+    borderRadius: RADIUS.CARD,
+  },
+  feedContent: {
+    padding: 16,
+    paddingInline: 24,
+  },
+}));
+
+export const RADIUS = {
+  CARD: 12,
+};

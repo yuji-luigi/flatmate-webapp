@@ -6,7 +6,7 @@ import ProfileSide from '../../../components/profile/side/ProfileSide';
 import CardWithTitle from '../../../components/profile/side/CardWithTitle';
 import { Icons } from '../../../data/icons/icons';
 
-import ProfileCover from '../../../components/profile/ProfileCover';
+import ProfileCoverGeneric from '../../../components/profile/ProfileCoverGenericGeneric';
 import { useMediaQuery } from '@mantine/hooks';
 import { useCrudSelectors } from '../../../redux/features/crud/crudSlice';
 
@@ -94,7 +94,7 @@ const SpaceHomeSection = () => {
         <Box className={classes.box}>
           <Box className={classes.cardMain}>
             <Group>
-              <ProfileCover
+              <ProfileCoverGeneric
                 noAvatar
                 enableCover={!!(currentSpace && user?.role !== 'user')}
                 entity={entity}

@@ -1,13 +1,14 @@
 import { useRouter } from 'next/router';
 import { PATH_API } from '../../../../path/path-api';
-import { Container, Transition } from '@mantine/core';
-import classes from '../../FileAuth.module.css';
+import { Container, Title, Transition } from '@mantine/core';
 
-import { useState } from 'react';
+import { ReactElement, useState } from 'react';
 import { PinVerifCardMCheck } from '../../../../sections/maintainer-upload-file-section/pin-verif/PinVerifCardMCheck';
-import { CheckInputTabCard } from '../../../../sections/maintainer-upload-file-section/invoice-receipt-input/CheckInputTabCard';
-import { ChooseTypeCard } from '../../../../sections/maintainer-upload-file-section/ChooseTypeCard';
+import { CheckInputTabCard } from '../../../../sections/maintainer-upload-file-section/verified-m-file/invoice-receipt-input/CheckInputTabCard';
+import { ChooseTypeCard } from '../../../../sections/maintainer-upload-file-section/verified-m-file/ChooseTypeCard';
 import { CheckType } from '../../../../types/models/check-type';
+import { MaintenanceCheckUploadSection } from '../../../../sections/maintainer-upload-file-section/verified-m-file/MainteanceCheckUploadSection';
+import Layout from '../../../../layouts';
 
 const MaintainerUploadFileAuthPage = () => {
   const { query, push } = useRouter();
@@ -16,39 +17,20 @@ const MaintainerUploadFileAuthPage = () => {
   const [submitting, setSubmitting] = useState<boolean>(false);
 
   const pinVerifEndpoint = `${PATH_API.maintenanceFileUpload}/${query.linkId}/${query.id}`;
-
   return (
-    <Container className={classes.container}>
-      {!checkType && (
-        <Transition
-          mounted={pinOk && !checkType}
-          duration={800}
-          transition="slide-up"
-          timingFunction="ease-in-out"
-        >
-          {(styles) => (
-            <div style={styles}>
-              <ChooseTypeCard setCheckType={setCheckType} />
-            </div>
-          )}
-        </Transition>
-      )}
-      <Transition
-        mounted={pinOk && !!checkType}
-        duration={800}
-        transition="slide-up"
-        timingFunction="ease-in-out"
-      >
-        {(styles) => (
-          <div style={styles}>
-            {checkType && <CheckInputTabCard setCheckType={setCheckType} checkType={checkType} />}
-          </div>
-        )}
-      </Transition>
-
+    <>
       {!pinOk && <PinVerifCardMCheck setPinOk={setPinOk} endpoint={pinVerifEndpoint} />}
-    </Container>
+      <MaintenanceCheckUploadSection
+        pinOk={pinOk}
+        checkType={checkType}
+        setCheckType={setCheckType}
+      />
+    </>
   );
+};
+
+MaintainerUploadFileAuthPage.getLayout = function getLayout(page: ReactElement) {
+  return <Layout variant="main">{page}</Layout>;
 };
 
 export default MaintainerUploadFileAuthPage;

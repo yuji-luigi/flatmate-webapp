@@ -8,7 +8,16 @@ const CustomModal = () => {
   if (modals.type !== 'custom') return <>something went wrong</>;
 
   return (
-    <Modal opened={opened} centered={modals.centered} onClose={close} title={modals.title}>
+    <Modal
+      opened={opened}
+      centered={modals.centered}
+      withCloseButton
+      onClose={close}
+      withOverlay
+      withinPortal={false}
+      fullScreen={modals.fullScreen}
+      title={modals.title}
+    >
       {modals.children}
     </Modal>
   );

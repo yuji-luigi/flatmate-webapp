@@ -40,6 +40,7 @@ import { useCookieContext } from '../../context/CookieContext';
 import { EnterButton } from './EnterButton';
 import { LoginButton } from './LoginButton';
 import { SignUpButton } from './SignUpButton';
+import { LogoBanner } from '../../components/banner/LogoBanner';
 
 const useStyles = createStyles((theme) => ({
   link: {
@@ -184,8 +185,8 @@ export function HomepageHeader() {
       <Header fixed height={60} px="md">
         <Group position="apart" sx={{ height: '100%' }}>
           {/* <MantineLogo size={30} /> */}
-
           <Group sx={{ height: '100%' }} spacing={0} className={classes.hiddenMobile}>
+            <LogoBanner transparent />
             <Link href="/" className={classes.link}>
               Home
             </Link>

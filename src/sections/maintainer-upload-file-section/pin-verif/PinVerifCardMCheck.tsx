@@ -1,4 +1,4 @@
-import { Card, LoadingOverlay, Stack, Group, Title, PinInput } from '@mantine/core';
+import { Card, LoadingOverlay, Stack, Group, Title, PinInput, Container } from '@mantine/core';
 import React, { useCallback, useState } from 'react';
 import { PATH_IMAGE } from '../../../lib/image-paths';
 import classes from '../maintainer-upload-file-section.module.css';
@@ -57,25 +57,27 @@ export const PinVerifCardMCheck = ({
     [endpoint]
   );
   return (
-    <Card className={classes.card}>
-      <LoadingOverlay visible={submitting} />
-      <Stack>
-        <Group position="center">
-          <Image src={PATH_IMAGE.unlock} width={120} height={120} alt="unlock image" />
-        </Group>
-        <Stack justify="center" mt={24}>
-          <Title className={classes.heading}>Enter the pin code</Title>
+    <Container className={classes.container}>
+      <Card className={classes.card}>
+        <LoadingOverlay visible={submitting} />
+        <Stack>
           <Group position="center">
-            <PinInput
-              disabled={submitting}
-              size="sm"
-              length={6}
-              type="number"
-              onChange={handleChange}
-            />
+            <Image src={PATH_IMAGE.unlock} width={120} height={120} alt="unlock image" />
           </Group>
+          <Stack justify="center" mt={24}>
+            <Title className={classes.heading}>Enter the pin code</Title>
+            <Group position="center">
+              <PinInput
+                disabled={submitting}
+                size="sm"
+                length={6}
+                type="number"
+                onChange={handleChange}
+              />
+            </Group>
+          </Stack>
         </Stack>
-      </Stack>
-    </Card>
+      </Card>
+    </Container>
   );
 };

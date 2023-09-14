@@ -6,7 +6,9 @@ import { dashboardStyle, profilePageStyle } from '../../../styles/global-useStyl
 
 import { maintainersTableData } from '../../../../json/dataTable/formfields/maintainersTableData';
 
-import ProfileCover, { CoverDataProp } from '../../../components/profile/ProfileCover';
+import ProfileCoverGeneric, {
+  CoverDataProp,
+} from '../../../components/profile/ProfileCoverGenericGeneric';
 
 import { SpaceSettingForm } from '../../../sections/dashboard_pages/space_setting_section/SpaceSettingForm';
 import useSWR from 'swr';
@@ -76,7 +78,7 @@ const SpaceSettingSinglePage = () => {
       {/* <Box className={classes.box}> */}
       {/* <Box className={classes.cardMain}> */}
       <Grid.Col md={12} lg={5}>
-        <ProfileCover
+        <ProfileCoverGeneric
           noAvatar
           sx={{ height: '100%' }}
           data={coverData}

@@ -16,7 +16,7 @@ export interface SpaceModel extends MongooseBaseModel {
   threads?: string[] | ThreadModel[] | undefined;
   fund: string[] | FundModel;
   slug: string;
-  administrator: string | UserModel;
+  admins: string[] | UserModel[];
   // ! todo add virtuals in api
   _createdAt: string;
 }

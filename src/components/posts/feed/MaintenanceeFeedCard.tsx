@@ -28,16 +28,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { _PATH_FRONTEND } from '../../../path/path-frontend';
 import { TEXT_SIZE } from '../../text/text-size';
-
-const useStyles = createStyles((theme) => ({
-  feedCard: {
-    minHeight: 200,
-  },
-  feedContent: {
-    padding: 16,
-    paddingInline: 24,
-  },
-}));
+import { feedStyles } from '../../../styles/global-useStyles';
 
 interface MaintenanceFeedCardProps {
   maintenance: MaintenanceModel;
@@ -47,7 +38,7 @@ interface MaintenanceFeedCardProps {
 const MaintenanceFeedCard = ({ maintenance, sx = {} }: MaintenanceFeedCardProps) => {
   const { createdBy, title, description, attachments, images, createdAt, receipts, invoices, _id } =
     maintenance;
-  const { cx, classes, theme } = useStyles();
+  const { cx, classes, theme } = feedStyles();
   const { user } = useAuth();
   const handleOpenCheck = async (checkId: string) => {
     try {

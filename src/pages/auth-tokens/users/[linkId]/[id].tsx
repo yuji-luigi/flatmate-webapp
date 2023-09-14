@@ -1,7 +1,7 @@
 import { Container, Transition } from '@mantine/core';
 import React, { use, useEffect, useState } from 'react';
-import { ChooseTypeCard } from '../../../../sections/maintainer-upload-file-section/ChooseTypeCard';
-import { CheckInputTabCard } from '../../../../sections/maintainer-upload-file-section/invoice-receipt-input/CheckInputTabCard';
+import { ChooseTypeCard } from '../../../../sections/maintainer-upload-file-section/verified-m-file/ChooseTypeCard';
+import { CheckInputTabCard } from '../../../../sections/maintainer-upload-file-section/verified-m-file/invoice-receipt-input/CheckInputTabCard';
 import { PinVerifCardMCheck } from '../../../../sections/maintainer-upload-file-section/pin-verif/PinVerifCardMCheck';
 import classes from '../../FileAuth.module.css';
 import { CheckType } from '../../../../types/models/check-type';

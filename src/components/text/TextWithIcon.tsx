@@ -4,10 +4,11 @@ import React from 'react';
 import { Icons } from '../../data/icons/icons';
 import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
 import { TEXT_SIZE } from './text-size';
+import { RADIUS } from '../../styles/global-useStyles';
 
 const useStyles = createStyles((theme) => ({
   card: {
-    borderRadius: 12,
+    borderRadius: RADIUS.CARD,
   },
   textRows: {
     display: 'flex',
@@ -30,6 +31,8 @@ const TextWithIcon = ({
   textLg?: boolean;
 }) => {
   const { classes, cx, theme } = useStyles();
+  console.log(text);
+
   if (textSm) {
     return (
       <Box className={classes.textRows} sx={sx}>

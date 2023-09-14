@@ -32,11 +32,12 @@ import { formatSize } from '../../lib/formatters';
 import { useCookieContext } from '../../context/CookieContext';
 import { SpaceModel } from '../../types/models/space-model';
 import { MaintainerModel } from '../../types/models/maintainer-model';
+import { RADIUS } from '../../styles/global-useStyles';
 
 const useStyles = createStyles((theme) => ({
   card: {
     flex: 3,
-    borderRadius: 12,
+    borderRadius: RADIUS.CARD,
     position: 'relative',
     width: '100%',
     height: '100%',
@@ -94,7 +95,7 @@ export interface CoverDataProp {
   backgroundImage?: string;
 }
 
-const ProfileCover = ({
+const ProfileCoverGeneric = ({
   data,
   formFields,
   entity,
@@ -275,4 +276,4 @@ const ProfileCover = ({
   );
 };
 
-export default ProfileCover;
+export default ProfileCoverGeneric;

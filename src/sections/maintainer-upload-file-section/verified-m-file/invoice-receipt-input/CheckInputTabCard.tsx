@@ -1,9 +1,10 @@
 import React, { CSSProperties, useEffect, useState } from 'react';
-import { DropzoneMantine } from '../../../components/input/mantine-default/DropzoneMaintine';
+import { DropzoneMantine } from '../../../../components/input/mantine-default/DropzoneMaintine';
 import {
   Box,
   Button,
   Card,
+  FileInput,
   LoadingOverlay,
   Styles,
   Tabs,
@@ -11,19 +12,21 @@ import {
   Title,
   createStyles,
 } from '@mantine/core';
-import { UseFormReturnTypeCustom } from '../../../components/input/input_interfaces/useForm_interface';
+import { UseFormReturnTypeCustom } from '../../../../components/input/input_interfaces/useForm_interface';
 import { useForm } from '@mantine/form';
-import { handleUploadWithoutLogin, isCustomFile } from '../../../utils/upload-helper';
-import { useCrudSelectors } from '../../../redux/features/crud/crudSlice';
-import { PATH_API } from '../../../path/path-api';
-import axiosInstance from '../../../utils/axios-instance';
-import { CheckType } from '../../../types/models/check-type';
+import { handleUploadWithoutLogin, isCustomFile } from '../../../../utils/upload-helper';
+import { useCrudSelectors } from '../../../../redux/features/crud/crudSlice';
+import { PATH_API } from '../../../../path/path-api';
+import axiosInstance from '../../../../utils/axios-instance';
+import { CheckType } from '../../../../types/models/check-type';
 import { useRouter } from 'next/router';
-import { PATH_CLIENT } from '../../../path/path-frontend';
-import { sleep } from '../../../utils/helpers/helper-functions';
+import { PATH_CLIENT } from '../../../../path/path-frontend';
+import { sleep } from '../../../../utils/helpers/helper-functions';
 import { notifications, showNotification } from '@mantine/notifications';
-import { MaintenanceModel } from '../../../types/models/maintenance-model';
-import { UseRouterWithCustomQuery } from '../../../types/nextjs-custom-types/useRouter-types';
+import { MaintenanceModel } from '../../../../types/models/maintenance-model';
+import { UseRouterWithCustomQuery } from '../../../../types/nextjs-custom-types/useRouter-types';
+import { FileInputMantine } from '../../../../components/input/mantine-default/FileInputMantine';
+import { GRID_HEIGHT_M_FILE } from '../grid-height-m-file';
 
 const useStyles = createStyles((theme) => ({
   inputGroup: {
@@ -36,7 +39,7 @@ const useStyles = createStyles((theme) => ({
 }));
 export const CheckInputTabCard = ({
   setCheckType,
-  checkType,
+  checkType = 'invoices',
 }: {
   setCheckType: (type: CheckType) => void;
   checkType: CheckType;
@@ -101,7 +104,7 @@ export const CheckInputTabCard = ({
   const subtitle = `${maintenance.space.name} -${maintenance.title}`;
 
   return (
-    <Tabs defaultValue={checkType}>
+    <Tabs sx={{ width: '100%' }} defaultValue={checkType}>
       <LoadingOverlay visible={submitting} />
       <Tabs.List>
         <Tabs.Tab onClick={() => setCheckType('invoices')} value="invoices">
@@ -119,9 +122,10 @@ export const CheckInputTabCard = ({
           <Text fw={600}>{subtitle}</Text>
         </Box>
         <form onSubmit={handleSubmit}>
-          <Box className={classes.inputGroup}>
-            <DropzoneMantine form={form} formField={{ name: checkType, multi: true }} />
-          </Box>
+          <FileInputMantine
+            form={form}
+            formField={{ name: checkType, label: 'upload file', multi: true }}
+          />
 
           <Button fullWidth type="submit" variant="light" color="blue">
             Submit

@@ -1,7 +1,9 @@
 import { Box, Group } from '@mantine/core';
 import React, { ReactElement, useEffect, useState } from 'react';
 import Layout from '../../../../layouts';
-import ProfileCover, { CoverDataProp } from '../../../../components/profile/ProfileCover';
+import ProfileCoverGeneric, {
+  CoverDataProp,
+} from '../../../../components/profile/ProfileCoverGenericGeneric';
 import { useCrudSelectors, useCrudSliceStore } from '../../../../redux/features/crud/crudSlice';
 import { useRouter } from 'next/router';
 import { getEntityFromUrl } from '../../../../utils/helpers/helper-functions';
@@ -105,7 +107,7 @@ const MaintainerDetailsPage = () => {
         <Box className={classes.box}>
           <Box className={classes.cardMain}>
             <Group>
-              <ProfileCover formFields={maintainersTableData} data={data} />
+              <ProfileCoverGeneric formFields={maintainersTableData} data={data} />
               {isMobile && profileSide}
               {!isMobile && profileSide}
             </Group>

@@ -4,17 +4,6 @@ import { ICON_SIZES, Icons } from '../../../data/icons/icons';
 import TextWithIcon from '../../text/TextWithIcon';
 import CardWithTitle from './CardWithTitle';
 
-const useStyles = createStyles((theme) => ({
-  card: {
-    borderRadius: 12,
-  },
-  textsContainer: {
-    display: 'flex',
-    gap: 9,
-    flexDirection: 'column',
-  },
-}));
-
 interface Props {
   title?: string;
   aboutData: AboutData;

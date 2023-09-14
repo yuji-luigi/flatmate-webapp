@@ -1,4 +1,4 @@
-import { Group, Text, useMantineTheme, rem, Image as MantineImage } from '@mantine/core';
+import { Group, Text, useMantineTheme, rem, Image as MantineImage, Box, Sx } from '@mantine/core';
 import { IconUpload, IconPhoto, IconX, IconFile } from '@tabler/icons-react';
 import { Dropzone, DropzoneProps, FileWithPath, IMAGE_MIME_TYPE } from '@mantine/dropzone';
 import { useCallback, useState } from 'react';
@@ -9,12 +9,13 @@ import { FormFieldInterface } from '../../../types/general/data/data-table/formF
 type Props = Partial<DropzoneProps> & {
   form: UseFormReturnType<any>;
   formField: Partial<FormFieldInterface>;
+  sx?: Sx;
 };
 type FileWithPreview = File & { preview: string };
 
 export function DropzoneMantine(props: Props) {
   const theme = useMantineTheme();
-  const { formField } = props;
+  const { formField, sx } = props;
   const [files, setFiles] = useState<FileWithPreview[]>([]);
   const handleDrop = useCallback((acceptedFiles: Array<File>) => {
     if (!formField.name) {
@@ -84,60 +85,62 @@ export function DropzoneMantine(props: Props) {
   //   }
   // }, []);
   return (
-    <Dropzone
-      onDrop={handleDrop}
-      onReject={(files) => console.log('rejected files', files)}
-      maxSize={3 * 1024 ** 2}
-      // accept={IMAGE_MIME_TYPE}
-      {...props}
-    >
-      {/* {file && file.type.startsWith('image/') ? (
+    <Box sx={sx}>
+      <Dropzone
+        onDrop={handleDrop}
+        onReject={(files) => console.log('rejected files', files)}
+        maxSize={3 * 1024 ** 2}
+        // accept={IMAGE_MIME_TYPE}
+        {...props}
+      >
+        {/* {file && file.type.startsWith('image/') ? (
         <MantineImage src={file.preview} />
       ) : file ? ( */}
 
-      {files.length ? (
-        files.map((file) => (
-          <div>
-            <IconFile size="3.2rem" stroke={1.5} />
-            <Text size="xl" inline>
-              {file.name}
-            </Text>
-          </div>
-        ))
-      ) : (
-        <Group
-          position="center"
-          spacing="sm"
-          style={{ minHeight: rem(220), pointerEvents: 'none' }}
-        >
-          <Dropzone.Accept>
-            <IconUpload
-              size="3.2rem"
-              stroke={1.5}
-              color={theme.colors[theme.primaryColor][theme.colorScheme === 'dark' ? 4 : 6]}
-            />
-          </Dropzone.Accept>
-          <Dropzone.Reject>
-            <IconX
-              size="3.2rem"
-              stroke={1.5}
-              color={theme.colors.red[theme.colorScheme === 'dark' ? 4 : 6]}
-            />
-          </Dropzone.Reject>
-          <Dropzone.Idle>
-            <IconFile size="3.2rem" stroke={1.5} />
-          </Dropzone.Idle>
+        {files.length ? (
+          files.map((file) => (
+            <div>
+              <IconFile size="3.2rem" stroke={1.5} />
+              <Text size="xl" inline>
+                {file.name}
+              </Text>
+            </div>
+          ))
+        ) : (
+          <Group
+            position="center"
+            spacing="sm"
+            style={{ minHeight: rem(220), pointerEvents: 'none' }}
+          >
+            <Dropzone.Accept>
+              <IconUpload
+                size="3.2rem"
+                stroke={1.5}
+                color={theme.colors[theme.primaryColor][theme.colorScheme === 'dark' ? 4 : 6]}
+              />
+            </Dropzone.Accept>
+            <Dropzone.Reject>
+              <IconX
+                size="3.2rem"
+                stroke={1.5}
+                color={theme.colors.red[theme.colorScheme === 'dark' ? 4 : 6]}
+              />
+            </Dropzone.Reject>
+            <Dropzone.Idle>
+              <IconFile size="3.2rem" stroke={1.5} />
+            </Dropzone.Idle>
 
-          <div>
-            <Text size="xl" inline>
-              Drag file here or click to select file
-            </Text>
-            <Text size="sm" color="dimmed" inline mt={7}>
-              Attach as many files as you like, each file should not exceed 5mb
-            </Text>
-          </div>
-        </Group>
-      )}
-    </Dropzone>
+            <div>
+              <Text size="xl" inline>
+                Drag file here or click to select file
+              </Text>
+              <Text size="sm" color="dimmed" inline mt={7}>
+                Attach as many files as you like, each file should not exceed 5mb
+              </Text>
+            </div>
+          </Group>
+        )}
+      </Dropzone>
+    </Box>
   );
 }

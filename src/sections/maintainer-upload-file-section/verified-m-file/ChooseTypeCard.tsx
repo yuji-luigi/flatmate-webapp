@@ -1,6 +1,6 @@
 import { Card, Title, Box, Button, Text, Group, createStyles } from '@mantine/core';
 import React from 'react';
-import { CheckType } from '../../types/models/check-type';
+import { CheckType } from '../../../types/models/check-type';
 
 const useStyles = createStyles((theme) => ({
   buttonContainer: {
