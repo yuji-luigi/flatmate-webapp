@@ -6,7 +6,7 @@ import ProfileSide from '../../../components/profile/side/ProfileSide';
 import CardWithTitle from '../../../components/profile/side/CardWithTitle';
 import { Icons } from '../../../data/icons/icons';
 
-import ProfileCoverGeneric from '../../../components/profile/ProfileCoverGenericGeneric';
+import ProfileCoverGeneric from '../../../components/profile/ProfileCoverGeneric';
 import { useMediaQuery } from '@mantine/hooks';
 import { useCrudSelectors } from '../../../redux/features/crud/crudSlice';
 

@@ -3,7 +3,7 @@ import React, { ReactElement, useEffect, useState } from 'react';
 import Layout from '../../../../layouts';
 import ProfileCoverGeneric, {
   CoverDataProp,
-} from '../../../../components/profile/ProfileCoverGenericGeneric';
+} from '../../../../components/profile/ProfileCoverGeneric';
 import { useCrudSelectors, useCrudSliceStore } from '../../../../redux/features/crud/crudSlice';
 import { useRouter } from 'next/router';
 import { getEntityFromUrl } from '../../../../utils/helpers/helper-functions';

@@ -5,10 +5,13 @@ import { Grid } from '@mantine/core';
 import { dashboardStyle, profilePageStyle } from '../../../styles/global-useStyles';
 
 import { maintainersTableData } from '../../../../json/dataTable/formfields/maintainersTableData';
-
 import ProfileCoverGeneric, {
   CoverDataProp,
-} from '../../../components/profile/ProfileCoverGenericGeneric';
+} from '../../../components/profile/ProfileCoverGeneric';
+
+// import ProfileCoverGeneric, {
+//   CoverDataProp,
+// } from '../../../components/profile/ProfileCoverGenericGeneric';
 
 import { SpaceSettingForm } from '../../../sections/dashboard_pages/space_setting_section/SpaceSettingForm';
 import useSWR from 'swr';
