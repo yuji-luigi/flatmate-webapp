@@ -1,5 +1,4 @@
 import { SelectItem, SelectProps, TextInputProps, TextareaProps } from '@mantine/core';
-import { PasswordInputProps } from '.';
 
 type BaseFormType = {
   id: string;

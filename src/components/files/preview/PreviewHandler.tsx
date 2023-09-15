@@ -1,7 +1,7 @@
 import React from 'react';
-import { UploadModel } from '../../../types/models/upload-model';
-import { Box, Button, Stack, Text, Tooltip } from '@mantine/core';
+import { Box, Button, Stack, Tooltip } from '@mantine/core';
 import Link from 'next/link';
+import { UploadModel } from '../../../types/models/upload-model';
 import { intlDateFormat } from '../../../utils/helpers/date-formatters';
 
 type Props = {
@@ -28,10 +28,11 @@ export const PreviewHandler = (props: Props) => {
     case 'png':
     case 'gif':
       preview = <img src={file.url} alt={file.originalFileName} width="100" height="100" />;
-
+      break;
     case 'pdf':
       preview = (
         <iframe
+          title="pdf"
           style={{
             maxWidth: '100%',
             maxHeight: '100%',
@@ -40,24 +41,29 @@ export const PreviewHandler = (props: Props) => {
           src={file.url}
           width="100"
           height="100"
-        ></iframe>
+        />
       );
       break;
 
     case 'mp3':
-      preview = <audio controls src={file.url}></audio>;
+      preview = (
+        <audio controls src={file.url}>
+          <track src="" kind="captions" label="english_captions" />
+        </audio>
+      );
       break;
 
     case 'mp4':
       preview = (
         <video controls width="100" height="100">
-          <source src={file.url} type="video/mp4"></source>
+          <source src={file.url} type="video/mp4" />
+          <track src="" kind="captions" label="english_captions" />
         </video>
       );
       break;
 
     default:
-      preview = <>not defined for: "{fileExt}"</>;
+      preview = <>not defined for: &quot;{fileExt}&quot;</>;
   }
   // return preview;
   if (enableLink) {

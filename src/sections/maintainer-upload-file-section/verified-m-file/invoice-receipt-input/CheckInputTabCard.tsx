@@ -1,42 +1,19 @@
-import React, { CSSProperties, useEffect, useState } from 'react';
-import { DropzoneMantine } from '../../../../components/input/mantine-default/DropzoneMaintine';
-import {
-  Box,
-  Button,
-  Card,
-  FileInput,
-  LoadingOverlay,
-  Styles,
-  Tabs,
-  Text,
-  Title,
-  createStyles,
-} from '@mantine/core';
-import { UseFormReturnTypeCustom } from '../../../../components/input/input_interfaces/useForm_interface';
+import React, { useState } from 'react';
+import { Box, Button, Card, LoadingOverlay, Tabs, Text } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import { handleUploadWithoutLogin, isCustomFile } from '../../../../utils/upload-helper';
+import { useRouter } from 'next/router';
+import { notifications } from '@mantine/notifications';
+import { handleUploadWithoutLogin } from '../../../../utils/upload-helper';
 import { useCrudSelectors } from '../../../../redux/features/crud/crudSlice';
 import { PATH_API } from '../../../../path/path-api';
 import axiosInstance from '../../../../utils/axios-instance';
 import { CheckType } from '../../../../types/models/check-type';
-import { useRouter } from 'next/router';
 import { PATH_CLIENT } from '../../../../path/path-frontend';
 import { sleep } from '../../../../utils/helpers/helper-functions';
-import { notifications, showNotification } from '@mantine/notifications';
 import { MaintenanceModel } from '../../../../types/models/maintenance-model';
 import { UseRouterWithCustomQuery } from '../../../../types/nextjs-custom-types/useRouter-types';
-import { FileInputMantine } from '../../../../components/input/mantine-default/FileInputMantine';
-import { GRID_HEIGHT_M_FILE } from '../grid-height-m-file';
+import { FileInputMantine } from '../../../../components/input/crud-inputs/FileInputMantine';
 
-const useStyles = createStyles((theme) => ({
-  inputGroup: {
-    marginBottom: theme.spacing.xl,
-  },
-  label: {
-    fontWeight: 700,
-    marginBlock: theme.spacing.md,
-  },
-}));
 export const CheckInputTabCard = ({
   setCheckType,
   checkType = 'invoices',
@@ -44,7 +21,6 @@ export const CheckInputTabCard = ({
   setCheckType: (type: CheckType) => void;
   checkType: CheckType;
 }) => {
-  const { classes } = useStyles();
   const router: UseRouterWithCustomQuery = useRouter();
   const { query } = router;
   const [submitting, setSubmitting] = useState<boolean>(false);
@@ -124,7 +100,14 @@ export const CheckInputTabCard = ({
         <form onSubmit={handleSubmit}>
           <FileInputMantine
             form={form}
-            formField={{ name: checkType, label: 'upload file', multi: true }}
+            formField={{
+              id: 'checkType',
+              name: checkType,
+              label: 'upload file',
+              type: 'attachment',
+              multi: true,
+              priority: 0,
+            }}
           />
 
           <Button fullWidth type="submit" variant="light" color="blue">
