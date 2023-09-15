@@ -1,0 +1,31 @@
+.container {
+  padding-block: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.heading {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.card {
+  display: flex;
+  align-items: stretch;
+  max-width: 300px;
+  border-radius: 8px;
+  min-height: 400px;
+  padding-block: 32px;
+  padding-inline: 24px;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}

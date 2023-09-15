@@ -17,6 +17,7 @@ import {
   Group,
 } from '@mantine/core';
 import React from 'react';
+import { CloseIcon } from 'yet-another-react-lightbox';
 import { ChooseTypeCard } from './ChooseTypeCard';
 import { CheckType } from '../../../types/models/check-type';
 import { CheckInputTabCard } from './invoice-receipt-input/CheckInputTabCard';
@@ -28,7 +29,6 @@ import { useCrudSelectors } from '../../../redux/features/crud/crudSlice';
 import { MaintenanceModel } from '../../../types/models/maintenance-model';
 import MaintenancePage from '../../../pages/dashboard/maintenances/[documentId]';
 import { use_ModalContext } from '../../../context/modal-context/_ModalContext';
-import { CloseIcon } from 'yet-another-react-lightbox';
 import { CardStyled } from '../../../styles/card/CardStyled';
 import { AdminCard } from './AdminCard';
 import { GRID_HEIGHT_M_FILE } from './grid-height-m-file';

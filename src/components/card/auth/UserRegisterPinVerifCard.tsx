@@ -1,13 +1,12 @@
 import { Card, LoadingOverlay, Stack, Group, Title, PinInput } from '@mantine/core';
 import React, { useCallback, useState } from 'react';
-import { PATH_IMAGE } from '../../../lib/image-paths';
-import classes from './PinVerifCard.module.css';
 import { useRouter } from 'next/router';
-import { _PATH_API } from '../../../path/path-api';
-import axiosInstance, { AxiosResDataGeneric } from '../../../utils/axios-instance';
-import useSWR from 'swr';
 import Image from 'next/image';
 import { showNotification } from '@mantine/notifications';
+import { PATH_IMAGE } from '../../../lib/image-paths';
+import classes from './PinVerifCard.module.css';
+import { _PATH_API } from '../../../path/path-api';
+import axiosInstance, { AxiosResDataGeneric } from '../../../utils/axios-instance';
 import { Icons } from '../../../data/icons/icons';
 import { useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
 import { ParsedQueryCustom } from '../../../types/nextjs-custom-types/useRouter-types';

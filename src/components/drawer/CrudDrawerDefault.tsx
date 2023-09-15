@@ -24,7 +24,7 @@ import { hasMedia } from '../../redux/features/crudAsyncThunks';
 import CreationToolBar from '../input/CreationToolBar';
 import { UseFormReturnTypeCustom } from '../input/input_interfaces/useForm_interface';
 import useAuth from '../../../hooks/useAuth';
-import { sections, flattenSectionData, entities, sectionData } from '../../data';
+import { flattenSectionData } from '../../data';
 
 import { extractUploadingMedia, uploadFileAndGetModelId } from '../../utils/upload-helper';
 import { Sections } from '../../types/general/data/sections-type';
@@ -48,7 +48,6 @@ export function CrudDrawerDefault({ overridingEntity = '' }: { overridingEntity?
   const entity = overridingEntity || (query.entity as Sections);
   const sectionJson = flattenSectionData.find((section) => section.entity === entity);
   const { classes } = useStyles();
-  const { user } = useAuth();
   const parentId = query.parentId as string;
   const paginationQuery = usePaginationQuery();
   const sectionFormFields: FormFieldTypes[] = allFormFields[entity];
@@ -100,7 +99,7 @@ export function CrudDrawerDefault({ overridingEntity = '' }: { overridingEntity?
 
     // const data = media ? extractUploadingMedia(media) : {};
 
-    let reqBody: Record<string, any> = {
+    const reqBody: Record<string, any> = {
       ...form.values,
       // ...data,
 
@@ -111,7 +110,7 @@ export function CrudDrawerDefault({ overridingEntity = '' }: { overridingEntity?
     if (media && hasMedia(media)) {
       try {
         const uploadIdData = await uploadFileAndGetModelId(extractUploadingMedia(media), entity);
-        for (let key in uploadIdData) {
+        for (const key in uploadIdData) {
           reqBody[key] = [...reqBody[key], ...uploadIdData[key]];
         }
       } catch (error) {

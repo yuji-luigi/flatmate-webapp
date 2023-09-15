@@ -17,8 +17,9 @@
     "project": "./tsconfig.json"
   },
   "rules": {
-    "react/react-in-jsx-scope": "off"
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-pascal-case": "off",
+    "no-unused-vars": 0
     // "allowAllCaps": true
-  },
-  "react/jsx-pascal-case": "off"
+  }
 }

@@ -1,17 +1,17 @@
 import { Box, Group } from '@mantine/core';
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, { ReactElement, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import useSWR from 'swr';
+import { useMediaQuery } from '@mantine/hooks';
 import Layout from '../../../../layouts';
 import ProfileCoverGeneric, {
   CoverDataProp,
 } from '../../../../components/profile/ProfileCoverGeneric';
-import { useCrudSelectors, useCrudSliceStore } from '../../../../redux/features/crud/crudSlice';
-import { useRouter } from 'next/router';
+import { useCrudSliceStore } from '../../../../redux/features/crud/crudSlice';
 import { getEntityFromUrl } from '../../../../utils/helpers/helper-functions';
-import useSWR from 'swr';
 import axiosInstance from '../../../../utils/axios-instance';
 import { PATH_API } from '../../../../path/path-api';
 import AboutCard from '../../../../components/profile/side/AboutCard';
-import { useMediaQuery } from '@mantine/hooks';
 import ProfileSide from '../../../../components/profile/side/ProfileSide';
 import { RANDOM_UPLOAD_MODELS } from '../../../../lib/image-paths';
 import PostFeedCard from '../../../../components/posts/feed/PostFeedCard';
@@ -28,13 +28,13 @@ import { AddRemoveButton } from '../../../../sections/dashboard_pages/maintainer
 const useStyles = profilePageStyle;
 
 const getMaintainer = async (slug?: string) => {
-  if (!slug) return;
+  if (!slug) return null;
   const res = await axiosInstance.get(`${PATH_API.maintainersSlug}/${slug}`);
   return res.data.data;
 };
 
 const MaintainerDetailsPage = () => {
-  const { cx, classes, theme } = useStyles();
+  const { classes } = useStyles();
   const router = useRouter();
 
   const { openConfirmModal } = use_ModalContext();
@@ -42,12 +42,12 @@ const MaintainerDetailsPage = () => {
   const _entity = getEntityFromUrl();
   const {
     data: fetchedData,
-    error,
+    // error,
     isLoading,
   } = useSWR(['maintainer', router.query.slug], () => getMaintainer(router.query.slug as string));
 
   const { setCrudDocument } = useCrudSliceStore();
-  const { crudDocument: document } = useCrudSelectors(_entity);
+  // const { crudDocument: document } = useCrudSelectors(_entity);
 
   const isMobile = useMediaQuery('(max-width: 800px)');
 
@@ -83,7 +83,7 @@ const MaintainerDetailsPage = () => {
       title: 'Add Maintainer to Building',
       centered: true,
       children: <AddMaintainerModal />,
-      onConfirm: function (data: any): void {
+      onConfirm(): void {
         throw new Error('Function not implemented.');
       },
     });
@@ -112,7 +112,7 @@ const MaintainerDetailsPage = () => {
               {!isMobile && profileSide}
             </Group>
             <PostFeedCard
-              _id={'d'}
+              _id="d"
               createdAt={new Date()}
               createdBy={{ name: 'No name user' } as UserModel}
               title="The First Job! maintainers detail page!"

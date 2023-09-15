@@ -1,20 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react';
-import classes from './LogosDiffer.module.css';
 import { Box } from '@mantine/core';
 import Image from 'next/image';
+import classes from './LogosDiffer.module.css';
 
 const LogosDiffer = ({ title }: { title: string }) => {
   const containerRef = useRef(null);
-  const containerRef2 = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
 
   const callbackFn = (entries: IntersectionObserverEntry[]) => {
     const [entry] = entries;
-    console.log(entry.isIntersecting);
     setIsVisible(entry.isIntersecting);
-    entries.forEach((entry) => {
-      //
-    });
+    // entries.forEach((entry) => {
+    //   //
+    // });
   };
 
   const options = {
@@ -49,7 +47,7 @@ const LogosDiffer = ({ title }: { title: string }) => {
             className={isVisible ? classes.logo : classes.logoHide}
             height={100}
             width={100}
-            src={'/images/flatmate_circle_logo_yellow.png'}
+            src="/images/flatmate_circle_logo_yellow.png"
             alt="logo"
           />
           <Image
@@ -57,7 +55,7 @@ const LogosDiffer = ({ title }: { title: string }) => {
             className={isVisible ? classes.logo : classes.logoHide}
             height={100}
             width={100}
-            src={'/images/flatmate_circle_logo_yellow.png'}
+            src="/images/flatmate_circle_logo_yellow.png"
             alt="logo"
           />
           <Image
@@ -65,7 +63,7 @@ const LogosDiffer = ({ title }: { title: string }) => {
             className={isVisible ? classes.logo : classes.logoHide}
             height={100}
             width={100}
-            src={'/images/flatmate_circle_logo_yellow.png'}
+            src="/images/flatmate_circle_logo_yellow.png"
             alt="logo"
           />
           <Image
@@ -73,7 +71,7 @@ const LogosDiffer = ({ title }: { title: string }) => {
             className={isVisible ? classes.logo : classes.logoHide}
             height={100}
             width={100}
-            src={'/images/flatmate_circle_logo_yellow.png'}
+            src="/images/flatmate_circle_logo_yellow.png"
             alt="logo"
           />
         </Box>
