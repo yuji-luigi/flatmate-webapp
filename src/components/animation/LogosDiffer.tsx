@@ -3,6 +3,11 @@ import { Box } from '@mantine/core';
 import Image from 'next/image';
 import classes from './LogosDiffer.module.css';
 
+const options = {
+  root: null,
+  rootMargin: '0px',
+  threshold: 0.5,
+};
 const LogosDiffer = ({ title }: { title: string }) => {
   const containerRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -15,18 +20,13 @@ const LogosDiffer = ({ title }: { title: string }) => {
     // });
   };
 
-  const options = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.5,
-  };
-
   useEffect(() => {
+    const currentRef = containerRef.current;
     const observer = new IntersectionObserver(callbackFn, options);
-    if (containerRef.current) observer.observe(containerRef.current);
+    if (currentRef) observer.observe(currentRef);
 
     return () => {
-      if (containerRef.current) observer.unobserve(containerRef.current);
+      if (currentRef) observer.unobserve(currentRef);
     };
   }, [containerRef, options]);
   return (
