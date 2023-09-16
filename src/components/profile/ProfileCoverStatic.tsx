@@ -1,41 +1,9 @@
-import React, { ChangeEvent, MouseEventHandler, useEffect, useRef, useState } from 'react';
-import {
-  Card,
-  Avatar,
-  Text,
-  Paper,
-  Box,
-  Group,
-  ActionIcon,
-  Button,
-  createStyles,
-  Sx,
-} from '@mantine/core';
-import { Icons } from '../../data/icons/icons';
-import {
-  setSubmitting,
-  useCrudSelectors,
-  useCrudSliceStore,
-} from '../../redux/features/crud/crudSlice';
-import { getEntityFromUrl } from '../../utils/helpers/helper-functions';
-import axiosInstance from '../../utils/axios-instance';
-import { PATH_API } from '../../path/path-api';
-import { extractUploadingMedia, uploadFileAndGetModelId } from '../../utils/upload-helper';
-import { notifications } from '@mantine/notifications';
-import { useRouter } from 'next/router';
-import { useModalContext } from '@mantine/core/lib/Modal/Modal.context';
-import { use_ModalContext } from '../../context/modal-context/_ModalContext';
-import { Sections } from '../../types/general/data/sections-type';
-import { FormFieldTypes } from '../../types/general/data/data-table/formField-types';
-import { MAX_FILE_SIZE } from '../../lib/files/file-sizes';
-import { formatSize } from '../../lib/formatters';
-import { useCookieContext } from '../../context/CookieContext';
-import { SpaceModel } from '../../types/models/space-model';
-import { MaintainerModel } from '../../types/models/maintainer-model';
+import React from 'react';
+import { Card, Avatar, Text, Box, Group, createStyles, Sx } from '@mantine/core';
 import { RADIUS } from '../../styles/global-useStyles';
 import { UploadModel } from '../../types/models/upload-model';
 
-const useStyles = createStyles((theme) => ({
+const useStyles = createStyles(() => ({
   card: {
     flex: 3,
     borderRadius: RADIUS.CARD,
@@ -129,7 +97,7 @@ const ProfileCoverStatic = (props: CoverDataProp) => {
                 size={100}
                 radius={80}
                 src={avatar?.url}
-                alt={avatar?.originalFileName + ' avatar'}
+                alt={`${avatar?.originalFileName} avatar`}
               />
             </Box>
           )}

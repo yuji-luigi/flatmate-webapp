@@ -1,16 +1,12 @@
 import { Select, SelectItem, Sx } from '@mantine/core';
 import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import { UseFormReturnType } from '@mantine/form';
 import axiosInstance from '../../utils/axios-instance';
 import { PATH_API, _PATH_API } from '../../path/path-api';
-import { useRouter } from 'next/router';
 import { useCookieContext } from '../../context/CookieContext';
 import { convertToSelectItems } from '../../utils/helpers/helper-functions';
 import useAuth from '../../../hooks/useAuth';
-import useLayoutContext from '../../../hooks/useLayoutContext';
-import { useMediaQuery } from '@mantine/hooks';
-import { getCookie } from 'cookies-next';
-import { UseFormReturnType } from '@mantine/form';
-import { current } from '@reduxjs/toolkit';
 
 interface OrganizationSpaceSelectProps {
   sx?: Sx;
@@ -97,14 +93,11 @@ const OrganizationSpaceSelect = ({
     } catch (error) {}
   };
 
-  // useEffect(() => {
-  //   if (currentSpace?._id) {
-  //     setSpaces([{ value: currentSpace?._id || '', label: currentSpace?.name || '' }]);
-  //   }
-  //   if (currentOrganization) {
-  //     setCurrentOrganization(currentOrganization);
-  //   }
-  // }, [currentSpace?._id, currentOrganization]);
+  useEffect(() => {
+    if (currentSpace?._id) {
+      setSpaces([...spaces, { value: currentSpace?._id || '', label: currentSpace?.name || '' }]);
+    }
+  }, [currentSpace?._id, currentOrganization]);
 
   useEffect(() => {
     getOrganizations();

@@ -1,19 +1,14 @@
-import { createStyles, Header, Group, Burger, Select, SelectItem } from '@mantine/core';
+import { createStyles, Header, Group, Burger } from '@mantine/core';
 // import { useDisclosure } from '@mantine/hooks';
-import { IconSearch } from '@tabler/icons-react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useMediaQuery } from '@mantine/hooks';
 import links from '../../../json/navbar/headerLinks.json';
 import useLayoutContext from '../../../hooks/useLayoutContext';
 import { ColorSchemeToggle } from '../../components/color-schemeToggle/ColorSchemeToggle';
 import { LogoBanner } from '../../components/banner/LogoBanner';
-import useAuth from '../../../hooks/useAuth';
 // import { useCurrentSpaceContext } from '../../context/CurrentSpaceContext';
 import { useCookieContext } from '../../context/CookieContext';
-import { useMediaQuery } from '@mantine/hooks';
-import { useEffect, useState } from 'react';
-
-import { getCookie } from 'cookies-next';
-import { useRouter } from 'next/router';
 
 import OrganizationSpaceSelect from '../../components/select-custom/OrganizationSpaceSelect';
 import { HeaderCreationModalWrapper } from './header-creation-modal/HeaderCreationModalWrapper';
