@@ -1,4 +1,5 @@
 import { SelectItem, SelectProps, TextInputProps, TextareaProps } from '@mantine/core';
+import React from 'react';
 
 type BaseFormType = {
   id: string;
@@ -15,6 +16,7 @@ type BaseFormType = {
   grantTo?: UserRoles[];
   noTable?: boolean;
   badge?: BadgeField;
+  icon?: React.ReactNode;
 };
 
 type BadgeCellConfig = BaseFormType & { badge: BadgeField };

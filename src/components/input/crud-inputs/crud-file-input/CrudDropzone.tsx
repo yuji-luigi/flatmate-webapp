@@ -3,14 +3,14 @@ import { IconUpload, IconX, IconFile } from '@tabler/icons-react';
 import { Dropzone, DropzoneProps } from '@mantine/dropzone';
 import { useCallback, useState } from 'react';
 import { UseFormReturnType } from '@mantine/form';
-import { FormFieldInterface } from '../../../types/general/data/data-table/formField-types';
+import { FormFieldInterface } from '../../../../types/general/data/data-table/formField-types';
+import { FileWithPreview } from '../../../../types/files/file-types';
 
 type Props = Partial<DropzoneProps> & {
   form: UseFormReturnType<any>;
   formField: Partial<FormFieldInterface>;
   sx?: Sx;
 };
-type FileWithPreview = File & { preview: string };
 
 export function DropzoneMantine(props: Props) {
   const theme = useMantineTheme();

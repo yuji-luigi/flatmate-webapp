@@ -1,19 +1,15 @@
+/* eslint-disable no-continue */
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable guard-for-in */
 import { PATH_API } from '../path/path-api';
 import { MixedMediaType, UploadingMediaType } from '../types/data/media/media-types';
+import { FileWithPreview } from '../types/files/file-types';
 import { Sections } from '../types/general/data/sections-type';
 import { UploadModel } from '../types/models/upload-model';
 import axiosInstance, { uploadConfig } from './axios-instance';
 
 interface MediaParam {
   [key: string]: Array<File | UploadModel> | [] | undefined;
-  // [key: string]: UploadModel[] | File[] |[] | undefined;
-  // images: UploadModel[] | File[] | [] | undefined;
-  // attachments: UploadModel[] | File[] | [] | undefined;
-}
-
-interface ResultFields {
-  existing: UploadModel[] | [];
-  uploading: File[] | [];
 }
 
 // type ReturnType = Record<string, ResultFields>;
@@ -170,7 +166,7 @@ export async function handleUploadWithoutLogin({
   entity,
   endpoint,
 }: {
-  files: File;
+  files: FileWithPreview[] | FileWithPreview;
   mainSpace: string;
   organizationName: string;
   entity: Sections;
@@ -178,9 +174,9 @@ export async function handleUploadWithoutLogin({
 }) {
   const formData = new FormData();
   if (Array.isArray(files)) {
-    files.forEach((file, index) => {
+    files.forEach((file) => {
       // You can set the key to be the file name or any other custom key
-      formData.append(file.field, file);
+      formData.append(file.field || '', file);
       // formData.append(file.field, file, file.name);
     });
   } else {

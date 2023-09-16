@@ -1,9 +1,6 @@
-import { ActionIcon, Group, Stack, Text } from '@mantine/core';
-import { Dropzone } from '@mantine/dropzone';
-import { UseFormReturnType } from '@mantine/form';
-import React, { Fragment, ReactNode, useRef } from 'react';
-import Image from 'next/image';
-import { Icons } from '../../data/icons/icons';
+import { Group, Stack } from '@mantine/core';
+import React, { ReactNode } from 'react';
+
 import CreationToolBarIconButton from './CreationToolBarIconButton';
 import PreviewFileZone from './PreviewFileZone';
 import { UseFormReturnTypeCustom } from './input_interfaces/useForm_interface';

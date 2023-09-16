@@ -1,21 +1,25 @@
-import { Box, Sx, FileInput, Group, Tooltip, ActionIcon } from '@mantine/core';
+import { Sx, FileInput, Group, Tooltip, ActionIcon, Stack } from '@mantine/core';
 import { DropzoneProps } from '@mantine/dropzone';
 import { useCallback, useState } from 'react';
 import { UseFormReturnType } from '@mantine/form';
-import { UploadFormFieldType } from '../../../types/general/data/data-table/formField-types';
-import { FileIconHandler } from '../../files/FileIconHandler';
+import { UploadFormFieldType } from '../../../../types/general/data/data-table/formField-types';
+import { FileIconHandler } from '../../../files/FileIconHandler';
+import { Icons } from '../../../../data/icons/icons';
+import { IconValueComponent } from './components/IconValueComponent';
+import { FileWithPreview } from '../../../../types/files/file-types';
 
 type Props = Partial<DropzoneProps> & {
   form: UseFormReturnType<any>;
   formField: UploadFormFieldType;
   sx?: Sx;
+  fileFolder?: string;
 };
-type FileWithPreview = File & { preview: string; field?: string };
 
 export function FileInputMantine(props: Props) {
-  const { formField, sx } = props;
+  const { formField, sx, fileFolder } = props;
   const [files, setFiles] = useState<FileWithPreview[]>([]);
-  const handleDrop = useCallback((acceptedFiles: Array<File> | File) => {
+  const handleFileChosen = useCallback((acceptedFiles: Array<File> | File | null) => {
+    if (!acceptedFiles) return;
     if (!formField.name) {
       throw new Error('formField.name is required');
     }
@@ -25,21 +29,29 @@ export function FileInputMantine(props: Props) {
     const newFiles = _files.map<FileWithPreview>((file) =>
       Object.assign(file, {
         preview: '', // No preview for non-image files
-        field: file.name,
+        field: fileFolder || file.name,
       })
     );
     setFiles(newFiles);
     props.form.setFieldValue(formField.name, newFiles);
     // }
   }, []);
+
   const handleFileClicked = (file: FileWithPreview) => {
-    const newFiles = files.filter((f) => f.preview !== file.preview);
+    const newFiles = files.filter((f) => f.name !== file.name);
     setFiles(newFiles);
     props.form.setFieldValue(formField.name, newFiles);
   };
   return (
-    <Box sx={sx}>
-      <FileInput multiple={formField.multi} onChange={handleDrop} label={formField.label} />
+    <Stack sx={{ position: 'relative', marginBottom: 16, ...sx }}>
+      <FileInput
+        valueComponent={IconValueComponent}
+        multiple={formField.multi}
+        onChange={handleFileChosen}
+        value={files}
+        icon={<Icons.image />}
+        placeholder={formField.label}
+      />
       <Group>
         {!!files.length &&
           files.map((file) => (
@@ -50,6 +62,6 @@ export function FileInputMantine(props: Props) {
             </Tooltip>
           ))}
       </Group>
-    </Box>
+    </Stack>
   );
 }

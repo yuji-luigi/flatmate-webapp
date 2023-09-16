@@ -82,7 +82,7 @@ export const MaintenanceCheckUploadSection = (props: Props) => {
             <Grid align="stretch" gutter="md">
               <Grid.Col style={{ display: 'flex', flexDirection: 'column', gap: 16 }} span={12}>
                 <Grid>
-                  <Grid.Col sm={8} xs={12}>
+                  <Grid.Col sm={6} xs={12}>
                     <CardStyled>
                       <CheckInputTabCard
                         setCheckType={setCheckType}
@@ -90,7 +90,7 @@ export const MaintenanceCheckUploadSection = (props: Props) => {
                       />
                     </CardStyled>
                   </Grid.Col>
-                  <Grid.Col sm={4} xs={12}>
+                  <Grid.Col sm={6} xs={12}>
                     <ProfileCoverStatic
                       {...maintenance.space}
                       description={maintenance.space.address}

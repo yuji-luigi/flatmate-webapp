@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { PATH_IMAGE } from '../../lib/image-paths';
 
 type Props = {
+  style?: React.CSSProperties;
   fileName: string;
   size?: number | 'sm' | 'md' | 'lg';
 };
@@ -24,10 +25,10 @@ const SIZE = {
 };
 
 export const FileIconHandler = (props: Props) => {
-  const { fileName, size } = props;
+  const { fileName, size, style } = props;
   const extension = fileName?.split('.').pop();
   const imagePath = src[extension || ''] || src.doc;
   const _size = typeof size === 'number' ? size : SIZE[size || 'md'];
 
-  return <Image src={imagePath} width={_size} height={_size} alt={fileName} />;
+  return <Image style={style} src={imagePath} width={_size} height={_size} alt={fileName} />;
 };

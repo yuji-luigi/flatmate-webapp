@@ -1,12 +1,8 @@
 import { ActionIcon } from '@mantine/core';
-import { UseFormReturnType } from '@mantine/form';
 import React from 'react';
 import { Icons } from '../../data/icons/icons';
 import { UseFormReturnTypeCustom } from './input_interfaces/useForm_interface';
-import {
-  FormFieldTypes,
-  UploadFormFieldType,
-} from '../../types/general/data/data-table/formField-types';
+import { UploadFormFieldType } from '../../types/general/data/data-table/formField-types';
 
 const CreationToolBarIconButton = ({
   formField,
@@ -40,6 +36,7 @@ const CreationToolBarIconButton = ({
             if (!prevFiles?.length) {
               const filesUrl = [];
               // for of loop
+              // eslint-disable-next-line no-restricted-syntax
               for (const file of event.target.files) {
                 filesUrl.push(URL.createObjectURL(file));
               }
