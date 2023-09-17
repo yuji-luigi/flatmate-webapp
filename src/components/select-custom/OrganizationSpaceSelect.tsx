@@ -2,6 +2,7 @@ import { Select, SelectItem, Sx } from '@mantine/core';
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { UseFormReturnType } from '@mantine/form';
+import { showNotification } from '@mantine/notifications';
 import axiosInstance from '../../utils/axios-instance';
 import { PATH_API, _PATH_API } from '../../path/path-api';
 import { useCookieContext } from '../../context/CookieContext';
@@ -33,6 +34,7 @@ const OrganizationSpaceSelect = ({
     currentOrganization,
     resetCurrentSpace,
   } = useCookieContext();
+
   const [spaces, setSpaces] = useState<SelectItem[] | []>([
     { value: currentSpace?._id || '', label: currentSpace?.name || '' },
   ]);
@@ -57,7 +59,13 @@ const OrganizationSpaceSelect = ({
       const response = await axiosInstance.get(_PATH_API.organizations.selections);
       const selectOptions = convertToSelectItems(response.data.data);
       setOrganizations(selectOptions);
-    } catch (error) {}
+    } catch (error) {
+      showNotification({
+        title: 'Error',
+        message: "Something went wrong while fetching organizations' data",
+        color: 'red',
+      });
+    }
   };
 
   /** get spaces options and reset the cookie of space. show all the info of organization without querying by space. */
