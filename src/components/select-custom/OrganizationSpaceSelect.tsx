@@ -96,7 +96,13 @@ const OrganizationSpaceSelect = ({
       const response = await axiosInstance.get(`${PATH_API.getSpaceSelections}`);
       const selectOptions = convertToSelectItems(response.data.data);
       setSpaces(selectOptions);
-    } catch (error) {}
+    } catch (error) {
+      showNotification({
+        title: 'Error',
+        message: "Something went wrong while fetching spaces' data",
+        color: 'red',
+      });
+    }
   };
 
   useEffect(() => {

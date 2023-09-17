@@ -1,5 +1,5 @@
 import { Card } from '@mantine/core';
-import { ResponsiveLine } from '@nivo/line';
+import { Point, ResponsiveLine } from '@nivo/line';
 
 function StackedAreaChart() {
   const data = [
@@ -32,6 +32,8 @@ function StackedAreaChart() {
       yScale={{ type: 'linear', stacked: true, min: 'auto', max: 'auto' }}
       curve="natural"
       tooltip={({ point }) => {
+        const _data = point.data as typeof point.data & { change: number };
+
         return (
           <div
             style={{
@@ -46,7 +48,7 @@ function StackedAreaChart() {
             <br />
             Value: {point.data.yFormatted}
             <br />
-            Change: {point.data.change}
+            Change: {_data.change}
           </div>
         );
       }}
@@ -108,6 +110,7 @@ function StackedAreaChart() {
         'points',
         'slices',
         'mesh',
+        //@ts-ignore
         CustomLayer,
       ]}
     />
@@ -115,8 +118,15 @@ function StackedAreaChart() {
 }
 
 export default StackedAreaChart;
-
-const CustomLayer = (props) => {
+type CustomLayerProps = {
+  points: PointCustom[];
+  xScale: any;
+  yScale: any;
+};
+type PointCustom = Point & {
+  data: { change: number };
+};
+const CustomLayer = (props: CustomLayerProps) => {
   const { points, xScale, yScale } = props;
   return (
     <>
