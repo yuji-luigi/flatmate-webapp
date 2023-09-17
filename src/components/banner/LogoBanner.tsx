@@ -12,8 +12,8 @@ interface LogoBannerProps {
 }
 
 const LOGO_PATH = {
-  black: '/images/flatmates_logo_banner_copy.jpeg',
-  transparent: '/images/flatmates_logo_banner.png',
+  black: '/images/logos/logo_banner.png',
+  transparent: '/images/logos/logo_banner_transparent.png',
 };
 
 export function LogoBanner({
