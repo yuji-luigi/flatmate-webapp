@@ -84,6 +84,18 @@ export const profilePageStyle = createStyles((theme) => ({
       width: '100%', // backgroundColor: theme.cdolors.yellow[6],
     },
   },
+  coverTop: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 36,
+    width: '100%',
+    [theme.fn.smallerThan('md')]: {
+      width: '60%', // backgroundColor: theme.cdolors.yellow[6],
+    },
+    [theme.fn.smallerThan('sm')]: {
+      width: '100%', // backgroundColor: theme.cdolors.yellow[6],
+    },
+  },
   sideBox: {
     width: '30%',
     gap: 16,

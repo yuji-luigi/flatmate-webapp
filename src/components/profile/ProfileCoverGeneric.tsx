@@ -33,7 +33,7 @@ import { useCookieContext } from '../../context/CookieContext';
 import { SpaceModel } from '../../types/models/space-model';
 import { MaintainerModel } from '../../types/models/maintainer-model';
 import { RADIUS } from '../../styles/global-useStyles';
-import { SettingButtonSpaceHome } from '../../sections/dashboard_pages/space_home_section/SettingButtonSpaceHome';
+import { SettingButtonSpaceHome } from '../../sections/dashboard_pages/space_home_section/components/SettingButtonSpaceHome';
 
 const useStyles = createStyles((theme) => ({
   card: {

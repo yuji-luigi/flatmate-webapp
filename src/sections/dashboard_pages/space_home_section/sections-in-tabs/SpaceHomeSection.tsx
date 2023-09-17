@@ -2,28 +2,29 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import { Box, Group, LoadingOverlay, Stack, Tabs } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
-import { dashboardStyle, profilePageStyle } from '../../../styles/global-useStyles';
-import ProfileSide from '../../../components/profile/side/ProfileSide';
-import CardWithTitle from '../../../components/profile/side/CardWithTitle';
-import { Icons } from '../../../data/icons/icons';
+import { dashboardStyle, profilePageStyle } from '../../../../styles/global-useStyles';
+import ProfileSide from '../../../../components/profile/side/ProfileSide';
+import CardWithTitle from '../../../../components/profile/side/CardWithTitle';
+import { Icons } from '../../../../data/icons/icons';
 
-import ProfileCoverGeneric from '../../../components/profile/ProfileCoverGeneric';
-import { useCrudSelectors } from '../../../redux/features/crud/crudSlice';
+import ProfileCoverGeneric from '../../../../components/profile/ProfileCoverGeneric';
+import { useCrudSelectors } from '../../../../redux/features/crud/crudSlice';
 
 import { SpacePostSection } from './SpacePostSection';
 import { SpaceMaintenanceSection } from './SpaceMaintenanceSection';
-import { TabList } from '../../../components/profile/tab/TabList';
-import { TabPanels } from '../../../components/profile/tab/TabPanels';
-import { MaintainerList } from './side-cards/maintainerCard/MaintainerList';
-import { SettingButtonSpaceHome } from './SettingButtonSpaceHome';
-import { MaintainerModel } from '../../../types/models/maintainer-model';
-import { MaintenanceListCard } from './side-cards/maintenance-card/MaintenancesCard';
-import { SpaceModel } from '../../../types/models/space-model';
-import { spacesTableData } from '../../../../json/dataTable/formfields/spacesTableData';
-import useAuth from '../../../../hooks/useAuth';
-import { useCookieContext } from '../../../context/CookieContext';
-import { ExpandedSection } from '../../../components/grid/ExpandedSection';
-import { NotificationCardTop } from './side-cards/notification-card/NotificationCardTop';
+import { TabList } from '../../../../components/profile/tab/TabList';
+import { TabPanels } from '../../../../components/profile/tab/TabPanels';
+import { MaintainerList } from '../side-cards/maintainerCard/MaintainerList';
+import { SettingButtonSpaceHome } from '../components/SettingButtonSpaceHome';
+import { MaintainerModel } from '../../../../types/models/maintainer-model';
+import { MaintenanceListCard } from '../side-cards/maintenance-card/MaintenancesCard';
+import { SpaceModel } from '../../../../types/models/space-model';
+import { spacesTableData } from '../../../../../json/dataTable/formfields/spacesTableData';
+import useAuth from '../../../../../hooks/useAuth';
+import { useCookieContext } from '../../../../context/CookieContext';
+import { ExpandedSection } from '../../../../components/grid/ExpandedSection';
+import { NotificationCardTop } from '../side-cards/notification-card/NotificationCardTop';
+import DashboardSection from './DashboardSection';
 
 // use style from global-useStyles
 const useStyles = dashboardStyle;
@@ -34,7 +35,7 @@ const TabListConfig = [
     label: 'Dashboard',
     value: 'dashboard',
     icon: <Icons.article size="0.8rem" />,
-    component: SpacePostSection,
+    component: DashboardSection,
   },
   {
     label: 'Posts',
@@ -99,8 +100,8 @@ const SpaceHomeSection = () => {
       >
         <TabList list={TabListConfig} spaceSetting />
         <Box className={classes.box}>
-          <Box className={classes.cardMain}>
-            <Group>
+          <Box className={classes.coverTop}>
+            <Group sx={{ maxHeight: 300, width: '100%' }}>
               <ProfileCoverGeneric
                 noAvatar
                 enableCover={!!(currentSpace && user?.role !== 'user')}
