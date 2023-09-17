@@ -1,4 +1,6 @@
 import { ReactElement, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import { showNotification } from '@mantine/notifications';
 import Layout from '../../../layouts';
 
 import axiosInstance from '../../../utils/axios-instance';
@@ -9,26 +11,19 @@ import { MaintainerModel } from '../../../types/models/maintainer-model';
 import { MaintenanceModel } from '../../../types/models/maintenance-model';
 import { SpaceModel } from '../../../types/models/space-model';
 import { ThreadModel } from '../../../types/models/thread-model';
-import { useRouter } from 'next/router';
-import { showNotification } from '@mantine/notifications';
 import { _PATH_API } from '../../../path/path-api';
 
 interface Props {
-  space: SpaceModel;
-  maintainers: MaintainerModel[];
-  maintenances: MaintenanceModel[];
-  threads: ThreadModel[];
+  // space?: SpaceModel;
+  // maintainers: MaintainerModel[];
+  // maintenances: MaintenanceModel[];
+  // threads: ThreadModel[];
 }
 
-export default function HomePageSlug({ space, maintainers, maintenances, threads }: Props) {
+export default function HomePageSlug() {
   // const {query}: {query: ParsedQueryCustom} = useRouter()
   // const spaceId = query.slug
   const { setCrudDocument, setCrudDocuments } = useCrudSliceStore();
-
-  useEffect(() => {
-    handleFetchHomeData();
-  }, [space?._id]);
-
   const handleFetchHomeData = async () => {
     const homeData = await fetchSpaceData();
     const { space, maintainers, maintenances, threads } = homeData;
@@ -37,6 +32,10 @@ export default function HomePageSlug({ space, maintainers, maintenances, threads
     setCrudDocuments({ entity: 'maintenances', documents: maintenances });
     setCrudDocuments({ entity: 'threads', documents: threads });
   };
+
+  useEffect(() => {
+    handleFetchHomeData();
+  }, []);
 
   const fetchSpaceData = async () => {
     try {
@@ -50,7 +49,6 @@ export default function HomePageSlug({ space, maintainers, maintenances, threads
       });
     }
   };
-
   return <SpaceHomeSection />;
 }
 
