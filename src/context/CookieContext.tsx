@@ -1,22 +1,21 @@
-import { current } from '@reduxjs/toolkit';
-import { CookieValueTypes, getCookie } from 'cookies-next';
-import jwtDecode from 'jwt-decode';
+import { getCookie } from 'cookies-next';
 import { useRouter } from 'next/router';
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 import { useCrudSliceStore } from '../redux/features/crud/crudSlice';
 import { sections } from '../data';
-import { CurrentSpace, JwtReturnType } from '../types/context/auth/useAuth';
+import { CurrentSpace } from '../types/context/auth/useAuth';
 import { CookieContextState } from '../types/context/cookie-context';
 import { SpaceModel } from '../types/models/space-model';
 import { ParsedQueryCustom } from '../types/nextjs-custom-types/useRouter-types';
+import { isString } from '../utils/type-guard/isString';
 
 export const CookieContext = createContext<CookieContextState>({
   currentSpace: null,
-  setCurrentSpace: (space: CurrentSpace | null) => {},
+  setCurrentSpace: () => {},
   currentOrganization: null,
-  setCurrentOrganization: (organization: string | null) => {},
+  setCurrentOrganization: () => {},
   resetCurrentSpace: () => {},
-  handleSetCurrentSpace: (space: SpaceModel | null) => {},
+  handleSetCurrentSpace: () => {},
 });
 
 const useStore = () => {
@@ -80,7 +79,3 @@ export const CookieContextProvider = ({ children }: { children: ReactNode }) => 
 );
 
 export const useCookieContext = () => useContext(CookieContext);
-
-export function isString(data: CookieValueTypes): data is string {
-  return typeof data === 'string';
-}
