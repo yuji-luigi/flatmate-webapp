@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react';
+import { Stack, Text } from '@mantine/core';
+import Link from 'next/link';
 import { Icons } from '../../../../../data/icons/icons';
 import TextWithIcon from '../../../../../components/text/TextWithIcon';
-import { Stack, Text } from '@mantine/core';
 import { MaintainerModel } from '../../../../../types/models/maintainer-model';
-import Link from 'next/link';
 import { PATH_CLIENT } from '../../../../../path/path-frontend';
 import { dashboardStyle } from '../../../../../styles/global-useStyles';
 

@@ -35,9 +35,7 @@ const OrganizationSpaceSelect = ({
     resetCurrentSpace,
   } = useCookieContext();
 
-  const [spaces, setSpaces] = useState<SelectItem[] | []>([
-    { value: currentSpace?._id || '', label: currentSpace?.name || '' },
-  ]);
+  const [spaces, setSpaces] = useState<SelectItem[] | []>([]);
   const router = useRouter();
   const { user } = useAuth();
   const isSuperAdmin = user?.role === 'super_admin';
@@ -94,7 +92,7 @@ const OrganizationSpaceSelect = ({
 
   const handleGetSpaces = async () => {
     try {
-      if (isSuperAdmin) return;
+      // if (isSuperAdmin) return;
       const response = await axiosInstance.get(`${PATH_API.getSpaceSelections}`);
       const selectOptions = convertToSelectItems(response.data.data);
       setSpaces(selectOptions);
@@ -103,7 +101,7 @@ const OrganizationSpaceSelect = ({
 
   useEffect(() => {
     if (currentSpace?._id) {
-      setSpaces([...spaces, { value: currentSpace?._id || '', label: currentSpace?.name || '' }]);
+      !spaces.length && setSpaces([{ value: currentSpace?._id, label: currentSpace?.name }]);
     }
   }, [currentSpace?._id, currentOrganization]);
 

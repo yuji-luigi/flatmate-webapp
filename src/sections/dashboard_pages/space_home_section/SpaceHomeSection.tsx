@@ -1,13 +1,13 @@
 import { useRouter } from 'next/router';
 import React from 'react';
 import { Box, Group, LoadingOverlay, Stack, Tabs } from '@mantine/core';
+import { useMediaQuery } from '@mantine/hooks';
 import { dashboardStyle, profilePageStyle } from '../../../styles/global-useStyles';
 import ProfileSide from '../../../components/profile/side/ProfileSide';
 import CardWithTitle from '../../../components/profile/side/CardWithTitle';
 import { Icons } from '../../../data/icons/icons';
 
 import ProfileCoverGeneric from '../../../components/profile/ProfileCoverGeneric';
-import { useMediaQuery } from '@mantine/hooks';
 import { useCrudSelectors } from '../../../redux/features/crud/crudSlice';
 
 import { SpacePostSection } from './SpacePostSection';
@@ -22,12 +22,20 @@ import { SpaceModel } from '../../../types/models/space-model';
 import { spacesTableData } from '../../../../json/dataTable/formfields/spacesTableData';
 import useAuth from '../../../../hooks/useAuth';
 import { useCookieContext } from '../../../context/CookieContext';
+import { ExpandedSection } from '../../../components/grid/ExpandedSection';
+import { NotificationCardTop } from './side-cards/notification-card/NotificationCardTop';
 
 // use style from global-useStyles
 const useStyles = dashboardStyle;
 const useStyles2 = profilePageStyle;
 
 const TabListConfig = [
+  {
+    label: 'Dashboard',
+    value: 'dashboard',
+    icon: <Icons.article size="0.8rem" />,
+    component: SpacePostSection,
+  },
   {
     label: 'Posts',
     value: 'posts',
@@ -67,12 +75,10 @@ const SpaceHomeSection = () => {
   const profileSide = (
     <ProfileSide
       contents={
-        <Stack>
-          <CardWithTitle title="Maintainers">
-            <MaintainerList maintainers={maintainers} />
-          </CardWithTitle>
+        <ExpandedSection>
+          <NotificationCardTop />
           <MaintenanceListCard />
-        </Stack>
+        </ExpandedSection>
       }
     />
   );
@@ -84,13 +90,14 @@ const SpaceHomeSection = () => {
   const hideSide = selectedTab !== TabListConfig[0].value;
   return (
     <Box className={classes.container}>
-      <SettingButtonSpaceHome />
+      {/* <SettingButtonSpaceHome /> */}
       <Tabs
         onTabChange={handleSetTab}
         keepMounted={false}
         defaultValue={TabListConfig[0].value}
         sx={{ width: '100%' }}
       >
+        <TabList list={TabListConfig} spaceSetting />
         <Box className={classes.box}>
           <Box className={classes.cardMain}>
             <Group>
@@ -110,7 +117,6 @@ const SpaceHomeSection = () => {
               {!isMobile && !hideSide && profileSide}
             </Group>
             {isMobile && !hideSide && profileSide}
-            <TabList list={TabListConfig} />
             <TabPanels list={TabListConfig} />
           </Box>
         </Box>

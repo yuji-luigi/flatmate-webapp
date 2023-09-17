@@ -25,7 +25,11 @@ const useStyles = createStyles((theme) => ({
 const ProfileSide = ({ contents }: Props) => {
   const { cx, classes, theme } = useStyles();
 
-  return <Box className={classes.sideBox}>{contents}</Box>;
+  return (
+    <Box className={classes.sideBox} sx={{ height: '100%' }}>
+      {contents}
+    </Box>
+  );
 };
 
 export default ProfileSide;

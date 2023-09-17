@@ -11,6 +11,9 @@ import {
   createStyles,
   Sx,
 } from '@mantine/core';
+import { notifications } from '@mantine/notifications';
+import { useRouter } from 'next/router';
+import { useModalContext } from '@mantine/core/lib/Modal/Modal.context';
 import { Icons } from '../../data/icons/icons';
 import {
   setSubmitting,
@@ -21,9 +24,6 @@ import { getEntityFromUrl } from '../../utils/helpers/helper-functions';
 import axiosInstance from '../../utils/axios-instance';
 import { PATH_API } from '../../path/path-api';
 import { extractUploadingMedia, uploadFileAndGetModelId } from '../../utils/upload-helper';
-import { notifications } from '@mantine/notifications';
-import { useRouter } from 'next/router';
-import { useModalContext } from '@mantine/core/lib/Modal/Modal.context';
 import { use_ModalContext } from '../../context/modal-context/_ModalContext';
 import { Sections } from '../../types/general/data/sections-type';
 import { FormFieldTypes } from '../../types/general/data/data-table/formField-types';
@@ -33,6 +33,7 @@ import { useCookieContext } from '../../context/CookieContext';
 import { SpaceModel } from '../../types/models/space-model';
 import { MaintainerModel } from '../../types/models/maintainer-model';
 import { RADIUS } from '../../styles/global-useStyles';
+import { SettingButtonSpaceHome } from '../../sections/dashboard_pages/space_home_section/SettingButtonSpaceHome';
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -171,7 +172,6 @@ const ProfileCoverGeneric = ({
       console.log(error);
       notifications.hide('submit');
       setSubmitting(false);
-      return;
     }
   };
   const handleEditClicked = () => {
@@ -179,15 +179,15 @@ const ProfileCoverGeneric = ({
     if (!formFields) return console.log('formFields not defined');
     openConfirmModal({
       type: 'crud',
-      crudDocument: crudDocument,
+      crudDocument,
       formFields,
       title: `Edit ${_entity}`,
       children: undefined,
 
-      onCancel: function (): void {
+      onCancel(): void {
         throw new Error('Function not implemented.');
       },
-      onConfirm: function (data: any): void {
+      onConfirm(data: any): void {
         throw new Error('Function not implemented.');
       },
     });
@@ -239,7 +239,7 @@ const ProfileCoverGeneric = ({
                   size={100}
                   radius={80}
                   src={selectedImage}
-                  alt={crudDocument?.avatar?.originalFileName + ' avatar'}
+                  alt={`${crudDocument?.avatar?.originalFileName} avatar`}
                 />
                 <input
                   id="avatar-input"

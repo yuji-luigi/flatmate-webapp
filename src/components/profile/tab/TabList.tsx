@@ -1,5 +1,6 @@
-import { Tabs } from '@mantine/core';
+import { Box, Group, Tabs } from '@mantine/core';
 import React from 'react';
+import { SettingButtonSpaceHome } from '../../../sections/dashboard_pages/space_home_section/SettingButtonSpaceHome';
 
 interface List {
   icon: React.ReactNode;
@@ -8,14 +9,30 @@ interface List {
   component: () => JSX.Element;
   // component: React.ReactNode;
 }
-export const TabList = ({ list }: { list: List[] }) => {
+export const TabList = ({ list, spaceSetting }: { spaceSetting?: boolean; list: List[] }) => {
   return (
     <Tabs.List position="left">
-      {list.map((item) => (
-        <Tabs.Tab icon={item.icon} value={item.value} key={item.label}>
-          {item.label}
-        </Tabs.Tab>
-      ))}
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          width: '100%',
+        }}
+      >
+        <Group>
+          {list.map((item) => (
+            <Tabs.Tab icon={item.icon} value={item.value} key={item.label}>
+              {item.label}
+            </Tabs.Tab>
+          ))}
+        </Group>
+        {spaceSetting && (
+          // <Box sx={{ justifySelf: 'end', width: '100%' }}>
+          <SettingButtonSpaceHome />
+          // </Box>
+        )}
+      </Box>
     </Tabs.List>
   );
 };

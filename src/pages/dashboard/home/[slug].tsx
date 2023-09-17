@@ -47,6 +47,7 @@ export default function HomePageSlug() {
         message: 'Error fetching space data',
         color: 'red',
       });
+      throw error;
     }
   };
   return <SpaceHomeSection />;
