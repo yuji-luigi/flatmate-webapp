@@ -4,7 +4,7 @@ import fetch from 'node-fetch';
 import { GetServerSidePropsContext } from 'next';
 import { ReactElement, useEffect } from 'react';
 import Layout from '../../layouts';
-import MaintenanceListPageSection from '../../sections/dashboard_pages/maintenance_list_page/MaintenanceListPageSection';
+import MaintenanceListPageSection from '../../sections/@dashboard/maintenance_list_page/MaintenanceListPageSection';
 import axiosInstance from '../../utils/axios-instance';
 import { useCrudSliceStore } from '../../redux/features/crud/crudSlice';
 import { ThreadModel } from '../../types/models/thread-model';

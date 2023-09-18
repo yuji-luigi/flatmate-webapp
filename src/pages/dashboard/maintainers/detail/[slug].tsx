@@ -18,12 +18,12 @@ import PostFeedCard from '../../../../components/posts/feed/PostFeedCard';
 import { lorem100 } from '../../../../_mock/strings';
 import { maintainersTableData } from '../../../../../json/dataTable/formfields/maintainersTableData';
 import { use_ModalContext } from '../../../../context/modal-context/_ModalContext';
-import AddMaintainerModal from '../../../../sections/dashboard_pages/maintenance_detail_page/AddMaintainerModal';
+import AddMaintainerModal from '../../../../sections/@dashboard/maintenance_detail_page/AddMaintainerModal';
 
 import { profilePageStyle } from '../../../../styles/global-useStyles';
 import { UserModel } from '../../../../types/models/user-model';
-import { BuildingCard } from '../../../../sections/dashboard_pages/maintainer_detail_page/BuildingCard';
-import { AddRemoveButton } from '../../../../sections/dashboard_pages/maintainer_detail_page/AddRemoveButton';
+import { BuildingCard } from '../../../../sections/@dashboard/maintainer_detail_page/BuildingCard';
+import { AddRemoveButton } from '../../../../sections/@dashboard/maintainer_detail_page/AddRemoveButton';
 
 const useStyles = profilePageStyle;
 

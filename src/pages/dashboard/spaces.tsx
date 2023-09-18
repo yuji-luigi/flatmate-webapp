@@ -1,8 +1,7 @@
 import { ReactElement, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { TableSectionHeader } from '../../sections/dashboard_pages/datatable_section/TableSectionHeader';
+import { TableSectionHeader } from '../../sections/@dashboard/datatable_section/TableSectionHeader';
 
-import Tables from '../../components/datatable/Tables';
 import Layout from '../../layouts';
 import Page from '../../components/Page';
 import { CrudDrawerDefault } from '../../components/drawer/CrudDrawerDefault';
@@ -10,6 +9,7 @@ import { useCrudSelectors, useCrudSliceStore } from '../../redux/features/crud/c
 import { PATH_CLIENT } from '../../path/path-frontend';
 import { useCookieContext } from '../../context/CookieContext';
 import { HeaderContainer } from '../../components/datatable/header/HeaderContainer';
+import { CrudDataTable } from '../../components/datatable/CrudDataTable';
 
 const HeadSpaceTable = () => {
   const entity = 'spaces';
@@ -30,7 +30,8 @@ const HeadSpaceTable = () => {
       <HeaderContainer>
         <TableSectionHeader overridingEntity="spaces" />
       </HeaderContainer>
-      <Tables overridingEntity="spaces" />
+      {/* <Tables overridingEntity="spaces" /> */}
+      <CrudDataTable overridingEntity="spaces" />
 
       <CrudDrawerDefault overridingEntity="spaces" />
     </Page>

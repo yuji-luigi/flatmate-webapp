@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import Layout from '../../../layouts';
 
-import RootSpaceList from '../../../sections/dashboard_pages/space_setting_section/RootSpaceList';
+import RootSpaceList from '../../../sections/@dashboard/space_setting_section/RootSpaceList';
 import { Container, Title } from '@mantine/core';
 import { dashboardStyle } from '../../../styles/global-useStyles';
 

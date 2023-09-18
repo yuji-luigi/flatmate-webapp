@@ -13,7 +13,7 @@ import ProfileCoverGeneric, {
 //   CoverDataProp,
 // } from '../../../components/profile/ProfileCoverGenericGeneric';
 
-import { SpaceSettingForm } from '../../../sections/dashboard_pages/space_setting_section/SpaceSettingForm';
+import { SpaceSettingForm } from '../../../sections/@dashboard/space_setting_section/SpaceSettingForm';
 import useSWR from 'swr';
 import axiosInstance, { AxiosResDataGeneric } from '../../../utils/axios-instance';
 import { PATH_API, _PATH_API } from '../../../path/path-api';
@@ -21,7 +21,7 @@ import { AxiosError } from 'axios';
 import LoadingScreen from '../../../components/screen/LoadingScreen';
 
 import { SpaceSlugResponse } from '../../../types/api-response/space-response';
-import { SpaceSettingMaintainersSection } from '../../../sections/dashboard_pages/space_setting_section/maintainers_section/SpaceSettingMaintainersSection';
+import { SpaceSettingMaintainersSection } from '../../../sections/@dashboard/space_setting_section/maintainers_section/SpaceSettingMaintainersSection';
 import { useCookieContext } from '../../../context/CookieContext';
 import { PATH_CLIENT } from '../../../path/path-frontend';
 import { useCrudSelectors, useCrudSliceStore } from '../../../redux/features/crud/crudSlice';

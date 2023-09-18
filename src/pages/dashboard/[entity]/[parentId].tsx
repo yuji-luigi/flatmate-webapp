@@ -3,9 +3,9 @@ import useSWR from 'swr';
 import React, { ReactElement, useEffect } from 'react';
 import axiosInstance from '../../../utils/axios-instance';
 
-import { UsersTable } from '../../../components/datatable/UsersTable';
+import { CrudDataTable } from '../../../components/datatable/CrudDataTable';
 import Layout from '../../../layouts';
-import { TableSectionHeader } from '../../../sections/dashboard_pages/datatable_section/TableSectionHeader';
+import { TableSectionHeader } from '../../../sections/@dashboard/datatable_section/TableSectionHeader';
 import Page from '../../../components/Page';
 import useLayoutContext from '../../../../hooks/useLayoutContext';
 import { CrudDrawerDefault } from '../../../components/drawer/CrudDrawerDefault';
@@ -72,7 +72,7 @@ const ChildrenTablePage = () => {
       <HeaderContainer>
         <TableSectionHeader />
       </HeaderContainer>
-      <UsersTable />
+      <CrudDataTable />
       <CrudDrawerDefault />
     </Page>
   );

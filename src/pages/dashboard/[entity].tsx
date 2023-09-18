@@ -1,8 +1,7 @@
 import { ReactElement, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { TableSectionHeader } from '../../sections/dashboard_pages/datatable_section/TableSectionHeader';
+import { TableSectionHeader } from '../../sections/@dashboard/datatable_section/TableSectionHeader';
 
-import Tables from '../../components/datatable/Tables';
 import Layout from '../../layouts';
 import { sections } from '../../data';
 import Page from '../../components/Page';
@@ -11,6 +10,7 @@ import { useCrudSliceStore } from '../../redux/features/crud/crudSlice';
 import { usePaginationContext } from '../../context/PaginationContext';
 import { Sections } from '../../types/general/data/sections-type';
 import { HeaderContainer } from '../../components/datatable/header/HeaderContainer';
+import { CrudDataTable } from '../../components/datatable/CrudDataTable';
 
 const CrudPage = () => {
   const { query, push } = useRouter();
@@ -35,7 +35,7 @@ const CrudPage = () => {
       return;
     }
     /** fetch all the entity if not childrenpage */
-    fetchCrudDocumentsWithPagination({ entity: entity, query: paginationQuery });
+    fetchCrudDocumentsWithPagination({ entity, query: paginationQuery });
   }, [paginationQuery, entity, query.parentId]);
 
   return (
@@ -43,7 +43,8 @@ const CrudPage = () => {
       <HeaderContainer>
         <TableSectionHeader />
       </HeaderContainer>
-      <Tables />
+      {/* <Tables /> */}
+      <CrudDataTable />
       <CrudDrawerDefault />
     </Page>
   );

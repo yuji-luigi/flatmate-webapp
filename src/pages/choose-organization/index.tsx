@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect } from 'react';
 import useAuth from '../../../hooks/useAuth';
 import { Box, Divider, Stack, Text, createStyles } from '@mantine/core';
-import PostList from '../../sections/dashboard_pages/posts_list_page/PostList';
+import PostList from '../../sections/@dashboard/posts_list_page/PostList';
 import {
   CardArticleVerticalTextBottom,
   CardData,

@@ -3,17 +3,17 @@ import { Box, Button, Card, LoadingOverlay, Tabs, Text } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { useRouter } from 'next/router';
 import { notifications, showNotification } from '@mantine/notifications';
-import { handleUploadWithoutLogin } from '../../../../utils/upload-helper';
-import { useCrudSelectors } from '../../../../redux/features/crud/crudSlice';
-import { PATH_API } from '../../../../path/path-api';
-import axiosInstance from '../../../../utils/axios-instance';
-import { CheckType } from '../../../../types/models/check-type';
-import { PATH_CLIENT } from '../../../../path/path-frontend';
-import { sleep } from '../../../../utils/helpers/helper-functions';
-import { MaintenanceModel } from '../../../../types/models/maintenance-model';
-import { UseRouterWithCustomQuery } from '../../../../types/nextjs-custom-types/useRouter-types';
-import { FileInputMantine } from '../../../../components/input/crud-inputs/crud-file-input/FileInputMantine';
-import { FileWithPreview } from '../../../../types/files/file-types';
+import { handleUploadWithoutLogin } from '../../../../../utils/upload-helper';
+import { useCrudSelectors } from '../../../../../redux/features/crud/crudSlice';
+import { PATH_API } from '../../../../../path/path-api';
+import axiosInstance from '../../../../../utils/axios-instance';
+import { CheckType } from '../../../../../types/models/check-type';
+import { PATH_CLIENT } from '../../../../../path/path-frontend';
+import { sleep } from '../../../../../utils/helpers/helper-functions';
+import { MaintenanceModel } from '../../../../../types/models/maintenance-model';
+import { UseRouterWithCustomQuery } from '../../../../../types/nextjs-custom-types/useRouter-types';
+import { FileInputMantine } from '../../../../../components/input/crud-inputs/crud-file-input/FileInputMantine';
+import { FileWithPreview } from '../../../../../types/files/file-types';
 
 type CheckForm = {
   type: CheckType;

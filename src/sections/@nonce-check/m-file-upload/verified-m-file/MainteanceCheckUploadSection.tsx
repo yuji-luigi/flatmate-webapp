@@ -11,15 +11,15 @@ import {
 } from '@mantine/core';
 import React from 'react';
 import { CloseIcon } from 'yet-another-react-lightbox';
-import { CheckType } from '../../../types/models/check-type';
+import { CheckType } from '../../../../types/models/check-type';
 import { CheckInputTabCard } from './invoice-receipt-input/CheckInputTabCard';
-import ProfileCoverStatic from '../../../components/profile/ProfileCoverStatic';
-import { profilePageStyle } from '../../../styles/global-useStyles';
-import PostFeedCard from '../../../components/posts/feed/PostFeedCard';
-import { useCrudSelectors } from '../../../redux/features/crud/crudSlice';
-import { MaintenanceModel } from '../../../types/models/maintenance-model';
-import { use_ModalContext } from '../../../context/modal-context/_ModalContext';
-import { CardStyled } from '../../../styles/card/CardStyled';
+import ProfileCoverStatic from '../../../../components/profile/ProfileCoverStatic';
+import { profilePageStyle } from '../../../../styles/global-useStyles';
+import PostFeedCard from '../../../../components/posts/feed/PostFeedCard';
+import { useCrudSelectors } from '../../../../redux/features/crud/crudSlice';
+import { MaintenanceModel } from '../../../../types/models/maintenance-model';
+import { use_ModalContext } from '../../../../context/modal-context/_ModalContext';
+import { CardStyled } from '../../../../styles/card/CardStyled';
 import { AdminCard } from './AdminCard';
 
 type Props = {

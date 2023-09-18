@@ -1,4 +1,4 @@
-import { Table, ScrollArea, Pagination, Divider, Container, Box } from '@mantine/core';
+import { Table, ScrollArea, Pagination, Divider, Box } from '@mantine/core';
 import { useState, useEffect } from 'react';
 
 import { useRouter } from 'next/router';
@@ -10,24 +10,21 @@ import TableHeader from './table-rows/TableHeader';
 import formFields from '../../../json/dataTable/formfields';
 // import { useCrudSlice } from '../../../hooks/redux-hooks/useCrudSlice';
 import { usePaginationContext } from '../../context/PaginationContext';
-import { useCrudSelectors, useCrudSliceStore } from '../../redux/features/crud/crudSlice';
-import { DataTableModal } from '../modal/data-table-modal/DataTableModal';
-import { useDisclosure } from '@mantine/hooks';
+import { useCrudSelectors } from '../../redux/features/crud/crudSlice';
 import { Sections } from '../../types/general/data/sections-type';
 import { FormFieldTypes } from '../../types/general/data/data-table/formField-types';
 import { dashboardStyle } from '../../styles/global-useStyles';
 import { ParsedQueryCustom } from '../../types/nextjs-custom-types/useRouter-types';
 
-export function UsersTable({ overridingEntity = '' }: { overridingEntity?: Sections }) {
+export function CrudDataTable({ overridingEntity = '' }: { overridingEntity?: Sections }) {
   const ROWS_PER_PAGE = 10;
   // const TOTAL = Math.ceil(users.length / ROWS_PER_PAGE);
   const { classes } = dashboardStyle();
 
   const [page, setPage] = useState(1);
-  const { setPagination, paginationQuery } = usePaginationContext();
+  const { setPagination } = usePaginationContext();
   const { query }: { query: ParsedQueryCustom } = useRouter();
   const entity = overridingEntity || (query.entity as Sections);
-  const { fetchCrudDocumentsWithPagination } = useCrudSliceStore();
   const { crudDocuments, totalDocumentsCount, crudStatus } = useCrudSelectors(entity);
 
   const sectionFormFields = formFields[entity as Sections];

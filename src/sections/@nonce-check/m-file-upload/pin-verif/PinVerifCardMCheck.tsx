@@ -3,13 +3,13 @@ import React, { useCallback, useState } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { showNotification } from '@mantine/notifications';
-import { PATH_IMAGE } from '../../../lib/image-paths';
+import { PATH_IMAGE } from '../../../../lib/image-paths';
 import classes from '../maintainer-upload-file-section.module.css';
-import axiosInstance, { AxiosResDataGeneric } from '../../../utils/axios-instance';
-import { Icons } from '../../../data/icons/icons';
-import { useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
-import { sleep } from '../../../utils/helpers/helper-functions';
-import { MaintenanceModel } from '../../../types/models/maintenance-model';
+import axiosInstance, { AxiosResDataGeneric } from '../../../../utils/axios-instance';
+import { Icons } from '../../../../data/icons/icons';
+import { useCrudSliceStore } from '../../../../redux/features/crud/crudSlice';
+import { sleep } from '../../../../utils/helpers/helper-functions';
+import { MaintenanceModel } from '../../../../types/models/maintenance-model';
 
 /**
  * @description Send pin code after verified get maintenance and set maintenance in redux store

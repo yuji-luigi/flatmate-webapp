@@ -24,9 +24,9 @@ import Layout from '../../../layouts';
 import CarouselBasic from '../../../components/carousel/CarouselBasic';
 import useAuth from '../../../../hooks/useAuth';
 import PostEditButton from '../../../components/posts/PostEditButton';
-import SinglePostArticleArea from '../../../sections/dashboard_pages/maintenance_detail_page/SingleMaintenanceArticleArea';
-import RelatedArticlesArea from '../../../sections/dashboard_pages/maintenance_detail_page/RelatedArticleArea';
-import SingleMaintenanceHeading from '../../../sections/dashboard_pages/maintenance_detail_page/SingleMaintenanceHeading';
+import SinglePostArticleArea from '../../../sections/@dashboard/maintenance_detail_page/SingleMaintenanceArticleArea';
+import RelatedArticlesArea from '../../../sections/@dashboard/maintenance_detail_page/RelatedArticleArea';
+import SingleMaintenanceHeading from '../../../sections/@dashboard/maintenance_detail_page/SingleMaintenanceHeading';
 import { CrudDrawerDefault } from '../../../components/drawer/CrudDrawerDefault';
 import { MaintenanceModel } from '../../../types/models/maintenance-model';
 

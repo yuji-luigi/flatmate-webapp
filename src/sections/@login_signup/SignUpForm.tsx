@@ -1,8 +1,5 @@
 import {
-  TextInput,
-  PasswordInput,
   Checkbox,
-  Anchor,
   Paper,
   Title,
   Text,
@@ -10,28 +7,25 @@ import {
   Group,
   Button,
   createStyles,
-  clsx,
   Flex,
 } from '@mantine/core';
 
 import Link from 'next/link';
 
-import { UseFormReturnType, useForm } from '@mantine/form';
+import { useForm } from '@mantine/form';
+import { notifications, showNotification } from '@mantine/notifications';
+import { useState } from 'react';
+import { useRouter } from 'next/router';
 import useAuth from '../../../hooks/useAuth';
 
-import { PasswordStrength } from '../../components/input/Password.Strength';
 import { RegisterData } from '../../types/context/auth/useAuth';
 import GuestGuard from '../../guards/GuestGuard';
-import { notifications, showNotification } from '@mantine/notifications';
 import { Icons } from '../../data/icons/icons';
 import SignUpStepOne from './SignUpStepOne';
-import { useState } from 'react';
 import SignUpStepTwo from './SignUpStepTwo';
 
 import { IInitialValues, initialValues } from './defaultValues';
 import SignUpConfirm from './SignUpConfirm';
-import SignUpStepThree from './SignUpStepThree';
-import { useRouter } from 'next/router';
 
 const useStyles = createStyles((theme) => ({
   container: {

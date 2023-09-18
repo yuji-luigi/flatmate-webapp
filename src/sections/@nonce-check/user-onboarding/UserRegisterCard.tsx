@@ -10,22 +10,22 @@ import {
   Grid,
 } from '@mantine/core';
 import React, { FormEvent, useMemo } from 'react';
-import { CheckType } from '../../types/models/check-type';
-import { useCrudSelectors } from '../../redux/features/crud/crudSlice';
 import { useForm } from '@mantine/form';
-import FormFields from '../../components/input/FormFields';
-import { UseFormReturnTypeCustom } from '../../components/input/input_interfaces/useForm_interface';
-import allFormFields from '../../../json/dataTable/formfields';
-import { getDefaultValues } from '../../utils/getDefaultValues';
-import axiosInstance from '../../utils/axios-instance';
-import { _PATH_API } from '../../path/path-api';
 import { showNotification } from '@mantine/notifications';
-import { constructErrorNotificationData } from '../../data/showNofification/notificationObjects';
 import { useRouter } from 'next/router';
-import { PATH_AFTER_LOGIN } from '../../path/path-frontend';
-import { sleep } from '../../utils/helpers/helper-functions';
-import useAuth from '../../../hooks/useAuth';
-import { UserModel } from '../../types/models/user-model';
+import { CheckType } from '../../../types/models/check-type';
+import { useCrudSelectors } from '../../../redux/features/crud/crudSlice';
+import FormFields from '../../../components/input/FormFields';
+import { UseFormReturnTypeCustom } from '../../../components/input/input_interfaces/useForm_interface';
+import allFormFields from '../../../../json/dataTable/formfields';
+import { getDefaultValues } from '../../../utils/getDefaultValues';
+import axiosInstance from '../../../utils/axios-instance';
+import { _PATH_API } from '../../../path/path-api';
+import { constructErrorNotificationData } from '../../../data/showNofification/notificationObjects';
+import { PATH_AFTER_LOGIN } from '../../../path/path-frontend';
+import { sleep } from '../../../utils/helpers/helper-functions';
+import useAuth from '../../../../hooks/useAuth';
+import { UserModel } from '../../../types/models/user-model';
 
 const useStyles = createStyles((theme) => ({
   formContainer: {

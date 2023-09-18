@@ -9,7 +9,7 @@ import GuestGuard from '../guards/GuestGuard';
 import Layout from '../layouts';
 import { API_BASE_URL, PATH_AUTH } from '../path/path-api';
 import { AUTH } from '../path/path-frontend';
-import LoginForm from '../sections/login_signup_page/LoginForm';
+import LoginForm from '../sections/@login_signup/LoginForm';
 import DashboardTopPage from './dashboard/statistics';
 import { DeleteAlertModal } from '../components/modal/DeleteAlertModal';
 import { UserModel } from '../types/models/user-model';

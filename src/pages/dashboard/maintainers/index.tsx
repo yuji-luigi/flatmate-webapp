@@ -1,23 +1,17 @@
 import { useRouter } from 'next/router';
 import React, { ReactElement, useEffect } from 'react';
+import { createStyles } from '@mantine/core';
 import Page from '../../../components/Page';
-import Tables from '../../../components/datatable/Tables';
 import { CrudDrawerDefault } from '../../../components/drawer/CrudDrawerDefault';
 import { usePaginationContext } from '../../../context/PaginationContext';
-import { sections } from '../../../data';
 import Layout from '../../../layouts';
 import formFields from '../../../../json/dataTable/formfields';
 import { useCrudSliceStore, useCrudSelectors } from '../../../redux/features/crud/crudSlice';
-import { TableSectionHeader } from '../../../sections/dashboard_pages/datatable_section/TableSectionHeader';
-import { Sections } from '../../../types/general/data/sections-type';
-import { Button, Group, Select, createStyles, Text, Box, Container } from '@mantine/core';
-import Link from 'next/link';
-import { PATH_CLIENT } from '../../../path/path-frontend';
-import MaintainerList from '../../../sections/dashboard_pages/maintainers_page/MaintainerList';
+import { TableSectionHeader } from '../../../sections/@dashboard/datatable_section/TableSectionHeader';
+import MaintainerList from '../../../sections/@dashboard/maintainers_page/MaintainerList';
 import { HeaderContainer } from '../../../components/datatable/header/HeaderContainer';
 import { maintainersTableData } from '../../../../json/dataTable/formfields/maintainersTableData';
 import { QueryFilterWeb } from '../../../components/datatable/filter/QueryFilterWeb';
-import { FormFieldTypes } from '../../../types/general/data/data-table/formField-types';
 
 const useStyles = createStyles((theme) => ({
   secondButton: {
@@ -54,7 +48,7 @@ const MaintainerPage = () => {
       return;
     }
     /** fetch all the entity if not childrenpage */
-    fetchCrudDocumentsWithPagination({ entity: entity, query: paginationQuery });
+    fetchCrudDocumentsWithPagination({ entity, query: paginationQuery });
   }, [paginationQuery, entity, query.parentId]);
 
   return (
