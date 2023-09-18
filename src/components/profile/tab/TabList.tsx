@@ -1,6 +1,6 @@
 import { Box, Group, Tabs } from '@mantine/core';
 import React from 'react';
-import { SettingButtonSpaceHome } from '../../../sections/@dashboard/space_home_section/components/SettingButtonSpaceHome';
+import { SettingButtonSpaceHome } from '../../../sections/@dashboard/dashboard_top/components/SettingButtonSpaceHome';
 
 interface List {
   icon: React.ReactNode;

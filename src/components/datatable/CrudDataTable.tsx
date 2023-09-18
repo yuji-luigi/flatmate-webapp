@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 
 import { TableRow } from './table-rows/TableRow';
 
-import TableHeader from './table-rows/TableHeader';
+import CrudTableHeader from './table-rows/CrudTableHeader';
 // import TableCellController from './table-rows/tablecell/TableCellController';
 import formFields from '../../../json/dataTable/formfields';
 // import { useCrudSlice } from '../../../hooks/redux-hooks/useCrudSlice';
@@ -53,7 +53,7 @@ export function CrudDataTable({ overridingEntity = '' }: { overridingEntity?: Se
           <p>loading</p>
         ) : (
           <Table sx={{ minWidth: 800 }} highlightOnHover>
-            <TableHeader overridingEntity={overridingEntity} />
+            <CrudTableHeader overridingEntity={overridingEntity} />
 
             <tbody>
               {crudDocuments?.map((rowData) => (

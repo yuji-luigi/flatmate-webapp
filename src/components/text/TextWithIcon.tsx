@@ -1,8 +1,8 @@
 import { Card, Title, Text, createStyles, Sx, Box, Group } from '@mantine/core';
 import { Icon123 } from '@tabler/icons-react';
 import React from 'react';
-import { Icons } from '../../data/icons/icons';
 import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
+import { Icons } from '../../data/icons/icons';
 import { TEXT_SIZE } from './text-size';
 import { RADIUS } from '../../styles/global-useStyles';
 
@@ -31,8 +31,6 @@ const TextWithIcon = ({
   textLg?: boolean;
 }) => {
   const { classes, cx, theme } = useStyles();
-  console.log(text);
-
   if (textSm) {
     return (
       <Box className={classes.textRows} sx={sx}>
@@ -44,7 +42,7 @@ const TextWithIcon = ({
   return (
     <Group noWrap spacing={10} mt={3}>
       {icon}
-      <Text fz="sm" tt="uppercase" fw={500} /* c="dimmed" */>
+      <Text fz="sm" tt="uppercase" fw={500}>
         {text}
       </Text>
     </Group>

@@ -21,7 +21,7 @@ export function TableCellDecorator({
   /** get value of the cell (from object/array/primitive) */
   const cellValue = getCellValue({ rowData, cellConfig });
 
-  let tableCell = (
+  const tableCell = (
     <TableCellController cellValue={cellValue} cellConfig={cellConfig} rowData={rowData} />
   );
 
@@ -88,26 +88,29 @@ function getCellValueRecursive({
   }
   // now it is an array of objects
   if (Array.isArray(value)) {
-    return value.map((item) =>
-      getCellValueRecursive({ value: item[selectValues[0]], selectValues: selectValues.slice(1) })
-    );
+    return value.map((item) => {
+      console.log('jjjjjj');
+      console.log(selectValues);
+      return getCellValueRecursive({
+        value: item[selectValues[0]],
+        selectValues: selectValues.slice(1),
+      });
+    });
   }
 
   return null;
 }
 
 function handleObjectType({ value, cellConfig }: { value: any; cellConfig: FormFieldTypes }) {
-  {
-    if (Array.isArray(value)) {
-      if (value.length === 0) {
-        return '';
-      }
-      if (typeof value[0] === 'object') {
-        // do not join if it is an array of objects. return the array. then handle array of objects create correct component/cell
-        return getCellValueRecursive({ value, selectValues: cellConfig.selectValues }).join(',');
-      }
-      return value.map((item) => item.toString());
+  if (Array.isArray(value)) {
+    if (value.length === 0) {
+      return '';
     }
-    return value;
+    if (typeof value[0] === 'object') {
+      // do not join if it is an array of objects. return the array. then handle array of objects create correct component/cell
+      return getCellValueRecursive({ value, selectValues: cellConfig.selectValues }).join(',');
+    }
+    return value.map((item) => item.toString());
   }
+  return value;
 }

@@ -5,7 +5,7 @@ import Layout from '../../../layouts';
 
 import axiosInstance from '../../../utils/axios-instance';
 import { useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
-import SpaceHomeSection from '../../../sections/@dashboard/space_home_section/sections-in-tabs/SpaceHomeSection';
+import SpaceHomeSection from '../../../sections/@dashboard/dashboard_top/sections-in-tabs/SpaceHomeSection';
 
 import { MaintainerModel } from '../../../types/models/maintainer-model';
 import { MaintenanceModel } from '../../../types/models/maintenance-model';

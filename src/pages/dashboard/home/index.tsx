@@ -10,7 +10,7 @@ import { useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
 // import { useCurrentSpaceContext } from '../../../context/CurrentSpaceContext';
 import { useCookieContext } from '../../../context/CookieContext';
 import { getCookie } from 'cookies-next';
-import SpaceHomeSection from '../../../sections/@dashboard/space_home_section/sections-in-tabs/SpaceHomeSection';
+import SpaceHomeSection from '../../../sections/@dashboard/dashboard_top/sections-in-tabs/SpaceHomeSection';
 import { useRouter } from 'next/router';
 import { MaintainerModel } from '../../../types/models/maintainer-model';
 import { MaintenanceModel } from '../../../types/models/maintenance-model';
