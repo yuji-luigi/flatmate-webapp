@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 
 import { useRouter } from 'next/router';
 
-import { TableRow } from './table-rows/TableRow';
+import { CrudTableRow } from './table-rows/CrudTableRow';
 
 import CrudTableHeader from './table-rows/CrudTableHeader';
 // import TableCellController from './table-rows/tablecell/TableCellController';
@@ -57,7 +57,7 @@ export function CrudDataTable({ overridingEntity = '' }: { overridingEntity?: Se
 
             <tbody>
               {crudDocuments?.map((rowData) => (
-                <TableRow
+                <CrudTableRow
                   overridingEntity={overridingEntity}
                   key={rowData._id}
                   sectionFormFields={sectionFormFields}

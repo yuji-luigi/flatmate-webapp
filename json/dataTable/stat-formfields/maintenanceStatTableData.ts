@@ -8,15 +8,42 @@ export const maintenanceStatTableData: Array<FormFieldTypes> = [
     type: 'text',
   },
   {
-    id: 'createdAt',
-    name: 'createdAt',
-    label: 'Created at',
-    type: 'text',
-  },
-  {
     id: 'cost',
     name: 'cost',
     label: 'Cost',
     type: 'text',
   },
+  {
+    id: 'status',
+    name: 'status',
+    label: 'Status',
+    type: 'text',
+  },
+  {
+    id: 'completedAt',
+    name: 'completedAt',
+    label: 'Finished Date',
+    type: 'text',
+  },
+  {
+    id: 'completedBy',
+    name: 'completedBy',
+    label: 'Completed by',
+    type: 'text',
+  },
+  // {
+  //   id: 'createdAt',
+  //   name: 'createdAt',
+  //   label: 'Reported',
+  //   type: 'text',
+  // },
+  // {
+  //   id: '_actions',
+  //   name: '_actions',
+  //   label: 'Actions',
+  //   data: [
+  //     { id: 'edit', name: 'edit' },
+  //     { id: 'delete', name: 'delete' },
+  //   ],
+  // },
 ];

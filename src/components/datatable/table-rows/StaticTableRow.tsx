@@ -10,11 +10,13 @@ import { Sections } from '../../../types/general/data/sections-type';
 import { FormFieldTypes } from '../../../types/general/data/data-table/formField-types';
 import { AllModels } from '../../../types/models/allmodels';
 
-export function TableRow({
+export function StaticTableRow({
   rowData,
   sectionFormFields,
   overridingEntity,
+  actions,
 }: {
+  actions?: any;
   overridingEntity?: Sections;
   rowData: AllModels;
   sectionFormFields: Array<FormFieldTypes>;
@@ -23,17 +25,10 @@ export function TableRow({
   /** use hook router hook */
   const { query } = useRouter();
   /** use hook useCrudSlice */
-  const { selectCrudDocument } = useCrudSliceStore();
 
   /** get runtime value of the entity */
   const entity = overridingEntity || (query.entity as Sections);
 
-  useEffect(
-    () => () => {
-      selectCrudDocument({ entity, document: null });
-    },
-    []
-  );
   return (
     <tr key={rowData._id}>
       {/*
@@ -49,7 +44,7 @@ export function TableRow({
       {/*
           Action cells defined here(modify, delete button)
       */}
-      <ActionCells rowData={rowData} overridingEntity={entity} />
+      {actions && <ActionCells rowData={rowData} overridingEntity={entity} />}
     </tr>
   );
 }
