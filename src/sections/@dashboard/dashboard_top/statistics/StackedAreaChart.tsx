@@ -140,7 +140,7 @@ const CustomLayer = (props: CustomLayerProps) => {
             Total: {point.data.yFormatted}
           </text>
           <text dy="-30" textAnchor="middle" fontSize="12" fill="black">
-            Change: {point.data.change}
+            {point.data.change}
           </text>
         </g>
       ))}

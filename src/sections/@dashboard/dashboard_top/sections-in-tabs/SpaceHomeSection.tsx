@@ -20,7 +20,7 @@ import useAuth from '../../../../../hooks/useAuth';
 import { useCookieContext } from '../../../../context/CookieContext';
 import { ExpandedSection } from '../../../../components/grid/ExpandedSection';
 import { NotificationCardTop } from '../side-cards/notification-card/NotificationCardTop';
-import DashboardSection from './DashboardSection';
+import DashboardSection from './DashboardTopSection';
 
 // use style from global-useStyles
 const useStyles = dashboardStyle;
