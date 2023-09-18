@@ -12,7 +12,7 @@ export function StaticDataTable({ json, data }: { json: any[]; data: any[] }) {
     <Box className={classes.dataTableContainer}>
       <ScrollArea>
         <Table sx={{ minWidth: 800 }} highlightOnHover>
-          <StaticTableHeader actions={} json={json} />
+          <StaticTableHeader json={json} />
 
           <tbody>
             {data?.map((rowData) => (
