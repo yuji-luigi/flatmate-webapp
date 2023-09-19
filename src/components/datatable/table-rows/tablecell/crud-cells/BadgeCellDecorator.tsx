@@ -1,11 +1,6 @@
-import { Badge, Box, useMantineTheme } from '@mantine/core';
-import TableCellController from './TableCellController';
-import {
-  BadgeCellConfig,
-  BaseFormType,
-  FormFieldTypes,
-} from '../../../../../types/general/data/data-table/formField-types';
+import { Badge, useMantineTheme } from '@mantine/core';
 import React from 'react';
+import { BadgeCellConfig } from '../../../../../types/general/data/data-table/formField-types';
 
 const BadgeCellDecorator = ({
   children,
