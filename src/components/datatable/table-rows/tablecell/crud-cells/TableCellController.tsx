@@ -1,13 +1,5 @@
 import React from 'react';
-import { Group, Avatar, Text } from '@mantine/core';
-import { SpecificTableCell } from './SpecificTableCell';
-import { FieldTypes } from '../../../../../../json/dataTable/formfields';
-import {
-  FormFieldInterface,
-  FormFieldTypes,
-  FormTypes,
-} from '../../../../../types/general/data/data-table/formField-types';
-import Link from 'next/link';
+import { FormFieldTypes } from '../../../../../types/general/data/data-table/formField-types';
 import { AvatarCell } from './AvatarCell';
 import { TextCell } from './TextCell';
 import { BooleanCell } from './BooleanCell';
