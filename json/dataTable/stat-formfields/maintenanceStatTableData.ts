@@ -1,3 +1,4 @@
+import { Icons } from '../../../src/data/icons/icons';
 import { FormFieldTypes } from '../../../src/types/general/data/data-table/formField-types';
 
 export const maintenanceStatTableData: Array<FormFieldTypes> = [
@@ -18,6 +19,7 @@ export const maintenanceStatTableData: Array<FormFieldTypes> = [
     name: 'status',
     label: 'Status',
     type: 'text',
+    badge: true,
   },
   {
     id: 'completedAt',

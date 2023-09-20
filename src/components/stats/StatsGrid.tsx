@@ -7,10 +7,8 @@ import {
   IconArrowUpRight,
   IconArrowDownRight,
 } from '@tabler/icons-react';
-
 import statGridData from '../../../json/mock/statsGrid.json';
-
-import data from '../../../json/mock/statsGrid.json';
+import { Icons } from '../../data/icons/icons';
 
 const useStyles = createStyles((theme) => ({
   root: {
@@ -39,19 +37,16 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-const icons = {
-  user: IconUserPlus,
+const _icons = {
+  // user: IconUserPlus,
   discount: IconDiscount2,
-  receipt: IconReceipt2,
+  // receipt: IconReceipt2,
   coin: IconCoin,
+  ...Icons,
 };
-
-// interface StatsGridProps {
-//   data: { title: string; icon: keyof typeof icons; value: string; diff: number }[];
-// }
 interface StatsGridProps {
   title: string;
-  icon: keyof typeof icons;
+  icon: keyof typeof _icons;
   value: string;
   diff: number;
 }
@@ -61,7 +56,7 @@ export function StatsGrid(/* { data }: StatsGridProps */) {
   const { classes } = useStyles();
   const A = statGridData as unknown;
   const stats = (A as Array<StatsGridProps>).map((stat) => {
-    const Icon = icons[stat.icon];
+    const Icon = _icons[stat.icon];
     const DiffIcon = stat.diff > 0 ? IconArrowUpRight : IconArrowDownRight;
 
     return (
@@ -93,16 +88,14 @@ export function StatsGrid(/* { data }: StatsGridProps */) {
     );
   });
   return (
-    <div className={classes.root}>
-      <SimpleGrid
-        cols={4}
-        breakpoints={[
-          { maxWidth: 'md', cols: 2 },
-          { maxWidth: 'xs', cols: 1 },
-        ]}
-      >
-        {stats}
-      </SimpleGrid>
-    </div>
+    <SimpleGrid
+      cols={3}
+      breakpoints={[
+        { maxWidth: 'md', cols: 2 },
+        { maxWidth: 'xs', cols: 1 },
+      ]}
+    >
+      {stats}
+    </SimpleGrid>
   );
 }

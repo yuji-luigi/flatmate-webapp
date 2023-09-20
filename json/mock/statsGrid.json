@@ -1,26 +1,20 @@
 [
-  {
-    "title": "Revenue",
-    "icon": "receipt",
-    "value": "13,456",
-    "diff": 34
-  },
-  {
-    "title": "Profit",
-    "icon": "coin",
-    "value": "4,145",
-    "diff": -13
-  },
-  {
-    "title": "Coupons usage",
-    "icon": "discount",
-    "value": "745",
-    "diff": 18
-  },
-  {
-    "title": "New customers",
-    "icon": "user",
-    "value": "188",
-    "diff": -30
-  }
+	{
+		"title": "Remain Now",
+		"icon": "coin",
+		"value": "€13,456",
+		"diff": 34
+	},
+	{
+		"title": "Spent this month",
+		"icon": "receipt",
+		"value": "€4,145",
+		"diff": -13
+	},
+	{
+		"title": "Manutenzioni",
+		"icon": "maintenance",
+		"value": "€1550",
+		"diff": 10
+	}
 ]
