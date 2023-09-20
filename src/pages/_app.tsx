@@ -6,6 +6,7 @@ import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { ReactElement, ReactNode, useState } from 'react';
 import { Provider as ReduxProvider } from 'react-redux';
+import { appWithTranslation } from 'next-i18next';
 import { DashboardLayoutContextProvider } from '../context/DashboardLayoutContext';
 import { DrawerContextProvider } from '../context/DataTableDrawerContext';
 import { AuthProvider } from '../context/JWTContext';
@@ -25,7 +26,7 @@ export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };
-export default function App(props: AppProps & { colorScheme: ColorScheme }) {
+function App(props: AppProps & { colorScheme: ColorScheme }) {
   const { Component, pageProps }: AppPropsWithLayout = props;
   const [colorScheme, setColorScheme] = useState<ColorScheme>(props.colorScheme);
 
@@ -87,3 +88,4 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
 App.getInitialProps = ({ ctx }: { ctx: GetServerSidePropsContext }) => ({
   colorScheme: getCookie('mantine-color-scheme', ctx) || 'dark',
 });
+export default appWithTranslation(App);

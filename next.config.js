@@ -1,5 +1,6 @@
 const { PHASE_DEVELOPMENT_SERVER, PHASE_PRODUCTION_BUILD } = require('next/constants');
 /** @type {import('next').NextConfig} */
+const { i18n } = require('./next-i18next.config');
 
 const nextConfig = (phase) => {
   const isDev = phase === PHASE_DEVELOPMENT_SERVER;
@@ -27,6 +28,7 @@ const nextConfig = (phase) => {
   };
 
   return {
+    i18n,
     reactStrictMode: true,
     trailingSlash: true,
     swcMinify: false,

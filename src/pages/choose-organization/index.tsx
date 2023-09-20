@@ -59,7 +59,7 @@ const ChooseOrganizationPage = () => {
   }
 
   return (
-    <Stack justify="center" width="100%">
+    <Stack justify="center">
       <Text variant="text" size={36} weight={600} align="center">
         {title}
       </Text>

@@ -4,6 +4,8 @@ import useSWR from 'swr';
 import { AxiosError } from 'axios';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import useAuth from '../../hooks/useAuth';
 import { CardArticleVerticalTextBottom, CardData } from '../components/card/CardVerticalTextBottom';
 import { CARD_LINK_PATH, PATH_CLIENT } from '../path/path-frontend';
@@ -39,10 +41,13 @@ export const fetchSpaceSelections = async (user?: UserModel | null) => {
 
 const ChooseRootSpacePage = () => {
   const { user } = useAuth();
+
+  const { t } = useTranslation('common');
+
   const { classes, cx, theme } = useStyles();
   const router = useRouter();
   const { handleSetCurrentSpace } = useCookieContext();
-  const title = 'Which building to operate?';
+  // const title = t('choose-building-title');
   const hrefRoot = CARD_LINK_PATH.rootSpaceSelected;
   const {
     data: rootSpaces,
@@ -67,7 +72,7 @@ const ChooseRootSpacePage = () => {
     <Stack p={32}>
       <Group position="apart" align="center">
         <Text variant="text" size={36} weight={600} align="center">
-          {title}
+          {t('choose-building-title')}
         </Text>
       </Group>
 
@@ -92,3 +97,11 @@ const ChooseRootSpacePage = () => {
 ChooseRootSpacePage.getLayout = (page: ReactElement) => <Layout variant="main">{page}</Layout>;
 
 export default ChooseRootSpacePage;
+
+export async function getStaticProps({ locale }: { locale: string }) {
+  return {
+    props: {
+      ...(await serverSideTranslations('it', ['common'])),
+    },
+  };
+}
