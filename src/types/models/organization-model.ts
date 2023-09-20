@@ -1,3 +1,4 @@
+import { IUser } from '../context/auth/useAuth';
 import { MongooseBaseModel } from './mongoose-base-model';
 
 export interface OrganizationModel extends MongooseBaseModel {
@@ -8,6 +9,7 @@ export interface OrganizationModel extends MongooseBaseModel {
   homepage: string;
   logoBanner?: string;
   logoSquare?: string;
+  admins: string[] | IUser[];
   /** decides if everyone in the world can see or only under the organization. */
   isPublic: boolean;
 }

@@ -1,6 +1,7 @@
 import React, { ReactElement, useEffect } from 'react';
-import useAuth from '../../../hooks/useAuth';
 import { Box, Divider, Stack, Text, createStyles } from '@mantine/core';
+import { useRouter } from 'next/router';
+import useAuth from '../../../hooks/useAuth';
 import PostList from '../../sections/@dashboard/posts_list_page/PostList';
 import {
   CardArticleVerticalTextBottom,
@@ -10,25 +11,28 @@ import { CARD_LINK_PATH, PATH_CLIENT } from '../../path/path-frontend';
 import axiosInstance from '../../utils/axios-instance';
 import { PATH_API } from '../../path/path-api';
 import { CardArticleVerticalTextCenter } from '../../components/card/CardVerticalTextCenter';
-import { useRouter } from 'next/router';
 import Layout from '../../layouts';
 import { OrganizationModel } from '../../types/models/organization-model';
 import { SpaceModel } from '../../types/models/space-model';
+import { CardArticleSmall } from '../../components/card/CardArticleSmall';
+import { CardForListSmall } from '../../components/card/CardForListSmall';
 
 const useStyles = createStyles((theme) => ({
   pinContainer: {
-    // position: 'absolute',
-    // width: '100%',
-    // left: '50%',
-    // transform: 'translateX(-50%)',
-    display: 'grid',
-    // gridTemplateColumns: 'repeat(auto-fit, minmax(400px, max-content))',
-    gridTemplateColumns: 'repeat(auto-fill, 400px)',
-    // gridAutoColumns: 'repeat(400px, minmax(400px, 1fr))',
-    gridAutoRows: 'minmax(50px, auto)',
+    display: 'flex',
+    flexDirection: 'column',
     justifyContent: 'center',
-    gap: 10,
+    maxWidth: 600,
+    margin: 'auto',
+    gap: 8,
   },
+  // pinContainer: {
+  //   display: 'grid',
+  //   gridTemplateColumns: 'repeat(auto-fill, 400px)',
+  //   gridAutoRows: 'minmax(50px, auto)',
+  //   justifyContent: 'center',
+  //   gap: 10,
+  // },
 }));
 const ChooseOrganizationPage = () => {
   const { user } = useAuth();
@@ -55,7 +59,7 @@ const ChooseOrganizationPage = () => {
   }
 
   return (
-    <Stack>
+    <Stack justify="center" width="100%">
       <Text variant="text" size={36} weight={600} align="center">
         {title}
       </Text>
@@ -66,23 +70,32 @@ const ChooseOrganizationPage = () => {
         py="xl" /* cols={2} breakpoints={[{ maxWidth: 'sm', cols: 1 }]} */
       >
         {user?.role === 'super_admin' && (
-          <CardArticleVerticalTextCenter
-            data={{
-              href: PATH_CLIENT.root,
-              _id: '',
-              name: ' Browse all organizations',
-              address: '',
-              createdAt: '',
-            }}
-          />
+          <CardForListSmall title="All organizations" href={PATH_CLIENT.root} image="" />
+          // <CardArticleVerticalTextCenter
+          //   data={{
+          //     href: PATH_CLIENT.root,
+          //     _id: '',
+          //     name: ' Browse all organizations',
+          //     address: '',
+          //     createdAt: '',
+          //   }}
+          // />
         )}
 
         {organizations.map((organization) => (
-          <CardArticleVerticalTextBottom
+          <CardForListSmall
             key={organization._id}
-            data={organization as CardData}
+            title={`• ${organization.name}`}
+            description={organization.address}
+            // subtitle={organization.admins[0]?.name || ''}
             href={`${hrefRoot}/${organization._id}`}
+            image=""
           />
+          // <CardArticleVerticalTextBottom
+          //   key={organization._id}
+          //   data={organization as CardData}
+          //   href={`${hrefRoot}/${organization._id}`}
+          // />
         ))}
       </Box>
     </Stack>

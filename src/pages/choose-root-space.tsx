@@ -42,7 +42,7 @@ const ChooseRootSpacePage = () => {
   const { classes, cx, theme } = useStyles();
   const router = useRouter();
   const { handleSetCurrentSpace } = useCookieContext();
-  const title = user?.role === 'super_admin' ? 'Choose organization' : 'Which building to operate?';
+  const title = 'Which building to operate?';
   const hrefRoot = CARD_LINK_PATH.rootSpaceSelected;
   const {
     data: rootSpaces,
