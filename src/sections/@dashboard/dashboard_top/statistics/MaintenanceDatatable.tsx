@@ -8,7 +8,7 @@ const mockData = [
   {
     title: 'Guasto porta',
     cost: '300',
-    status: 'completato',
+    status: 'completed',
     completedAt: '2021-09-01',
     completedBy: 'Mario Rossi',
     createdAt: '2021-08-21',
@@ -16,7 +16,8 @@ const mockData = [
   {
     title: 'Electrical Repair',
     cost: '450',
-    status: 'completato',
+    status: 'completed',
+
     completedAt: '2021-09-05',
     completedBy: 'Luca Bianchi',
     createdAt: '2021-08-25',
@@ -24,7 +25,8 @@ const mockData = [
   {
     title: 'Plumbing Issue',
     cost: '200',
-    status: 'completato',
+    status: 'completed',
+
     completedAt: '2021-08-31',
     completedBy: 'Giulia Verdi',
     createdAt: '2021-08-19',
@@ -32,7 +34,8 @@ const mockData = [
   {
     title: 'Roof Maintenance',
     cost: '600',
-    status: 'completato',
+    status: 'completed',
+
     completedAt: '2021-09-03',
     completedBy: 'Alessio Giallo',
     createdAt: '2021-08-17',
@@ -40,7 +43,8 @@ const mockData = [
   {
     title: 'Painting Walls',
     cost: '350',
-    status: 'in corso',
+    status: 'in progress',
+
     completedAt: null,
     completedBy: null,
     createdAt: '2021-08-14',
@@ -48,9 +52,10 @@ const mockData = [
   {
     title: 'HVAC Repair',
     cost: '550',
-    status: 'in corso',
+    status: 'pending',
     completedAt: null,
     completedBy: null,
+
     createdAt: '2021-08-10',
   },
   // {
@@ -126,8 +131,6 @@ const mockData = [
   //   createdAt: '2021-07-15',
   // },
 ];
-
-console.log(mockData);
 
 export const MaintenanceDatatable = () => {
   return (

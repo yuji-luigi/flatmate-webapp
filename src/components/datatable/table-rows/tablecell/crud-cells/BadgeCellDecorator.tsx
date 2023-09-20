@@ -1,25 +1,31 @@
 import { Badge, Group, useMantineTheme } from '@mantine/core';
 import React from 'react';
-import { BadgeCellConfig } from '../../../../../types/general/data/data-table/formField-types';
+import {
+  BadgeCellConfig,
+  StaticOption,
+  StaticSelectFormFieldType,
+} from '../../../../../types/general/data/data-table/formField-types';
 import { Icons } from '../../../../../data/icons/icons';
 
 const BadgeCellDecorator = ({
   children,
   cellConfig,
+  value,
 }: {
   children: React.ReactNode;
   cellConfig: BadgeCellConfig;
+  value: string;
 }) => {
   const theme = useMantineTheme();
+  let { color } = cellConfig.badge;
+  if (cellConfig.type === 'static-select') {
+    color =
+      cellConfig.options?.find((option: StaticSelectFormFieldType) => option.value === value)
+        ?.color || color;
+  }
   return (
-    <Badge
-      color={cellConfig.badge.color}
-      variant={theme.colorScheme === 'dark' ? 'light' : 'outline'}
-    >
-      <Group>
-        {/* <Icons.Carpenter size={16} /> */}
-        {children}{' '}
-      </Group>
+    <Badge color={color} variant={theme.colorScheme === 'dark' ? 'light' : 'outline'}>
+      {children}
     </Badge>
   );
 };

@@ -30,7 +30,7 @@ export function StaticTableRow({
   const entity = overridingEntity || (query.entity as Sections);
 
   return (
-    <tr key={rowData._id}>
+    <tr>
       {/*
           Regular cells defined here
       */}

@@ -27,7 +27,11 @@ export function TableCellDecorator({
   if (cellConfig.noTable) return null;
 
   if (cellConfig.badge) {
-    return <BadgeCellDecorator cellConfig={cellConfig}>{tableCell}</BadgeCellDecorator>;
+    return (
+      <BadgeCellDecorator cellConfig={cellConfig} value={cellValue}>
+        {tableCell}
+      </BadgeCellDecorator>
+    );
   }
 
   return tableCell;

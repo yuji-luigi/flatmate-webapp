@@ -1,6 +1,10 @@
 import { SelectItem, SelectProps, TextInputProps, TextareaProps } from '@mantine/core';
 import React from 'react';
 
+type StaticOption = SelectItem & {
+  icon?: React.ReactNode;
+};
+
 type BaseFormType = {
   id: string;
   name: string;
@@ -19,7 +23,8 @@ type BaseFormType = {
   icon?: React.ReactNode;
 };
 
-type BadgeCellConfig = BaseFormType & { badge: BadgeField };
+type BadgeCellConfig = BaseFormType &
+  FormFieldTypes & { badge: BadgeField; options: StaticOption[] };
 
 export type BadgeField = {
   color: string;
@@ -46,7 +51,7 @@ export type SelectFormType = {
 
 export type StaticSelectFormFieldType = {
   type: 'static-select';
-  options: Array<SelectItem>;
+  options: StaticOption[];
 } & BaseFormType &
   BaseSelectFormType;
 

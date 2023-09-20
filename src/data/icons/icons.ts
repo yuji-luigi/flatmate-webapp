@@ -1,10 +1,4 @@
-import { Icon, IconX } from '@tabler/icons-react';
-/**
- * use the key name same as the slice name
- */
-
 import {
-  default as TablerIcon,
   Icon2fa as Authentication,
   IconBellRinging as Notification,
   IconDashboard as Dashboard,
@@ -54,7 +48,13 @@ import {
   // IconWall as wall,
   IconBolt as electric,
   IconFileInvoice as invoice,
+  IconReload as reload,
+  IconHourglassLow as hourglass,
+  IconProgressCheck as progressCheck,
 } from '@tabler/icons-react';
+/**
+ * use the key name same as the slice name
+ */
 
 export const Icons = {
   authentication: Authentication,
@@ -104,8 +104,10 @@ export const Icons = {
   Electrician: electric,
   dots,
   invoice,
+  reload,
+  hourglass,
+  progressCheck,
 } as const;
-
 export const ICON_SIZES = {
   textTile: 16,
 };

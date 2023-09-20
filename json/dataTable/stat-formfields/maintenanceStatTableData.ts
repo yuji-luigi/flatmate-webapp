@@ -18,7 +18,27 @@ export const maintenanceStatTableData: Array<FormFieldTypes> = [
     id: 'status',
     name: 'status',
     label: 'Status',
-    type: 'text',
+    type: 'static-select',
+    options: [
+      {
+        value: 'pending',
+        label: 'In attesa',
+        icon: Icons.progressCheck,
+        color: 'orange',
+      },
+      {
+        value: 'in progress',
+        label: 'In corso',
+        icon: Icons.maintenance,
+        color: 'blue',
+      },
+      {
+        value: 'completed',
+        label: 'Completato',
+        icon: Icons.check,
+        color: 'green',
+      },
+    ],
     badge: true,
   },
   {

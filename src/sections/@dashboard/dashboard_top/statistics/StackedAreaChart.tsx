@@ -128,6 +128,7 @@ type PointCustom = Point & {
 };
 const CustomLayer = (props: CustomLayerProps) => {
   const { points, xScale, yScale } = props;
+  // return null;
   return (
     <>
       {points.map((point) => (

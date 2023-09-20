@@ -39,6 +39,7 @@ const TableCellController = ({
 
   // default cell is TextCell
   const Cell = cells[type] || TextCell;
+
   return <Cell cellValue={cellValue} cellConfig={cellConfig} rowData={rowData} />;
 };
 export default TableCellController;
