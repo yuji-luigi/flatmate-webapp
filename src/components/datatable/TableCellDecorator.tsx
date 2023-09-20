@@ -20,7 +20,6 @@ export function TableCellDecorator({
 }) {
   /** get value of the cell (from object/array/primitive) */
   const cellValue = getCellValue({ rowData, cellConfig });
-
   const tableCell = (
     <TableCellController cellValue={cellValue} cellConfig={cellConfig} rowData={rowData} />
   );

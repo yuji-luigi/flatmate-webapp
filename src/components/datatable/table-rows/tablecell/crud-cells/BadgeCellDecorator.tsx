@@ -1,6 +1,7 @@
-import { Badge, useMantineTheme } from '@mantine/core';
+import { Badge, Group, useMantineTheme } from '@mantine/core';
 import React from 'react';
 import { BadgeCellConfig } from '../../../../../types/general/data/data-table/formField-types';
+import { Icons } from '../../../../../data/icons/icons';
 
 const BadgeCellDecorator = ({
   children,
@@ -15,7 +16,10 @@ const BadgeCellDecorator = ({
       color={cellConfig.badge.color}
       variant={theme.colorScheme === 'dark' ? 'light' : 'outline'}
     >
-      {children}{' '}
+      <Group>
+        {/* <Icons.Carpenter size={16} /> */}
+        {children}{' '}
+      </Group>
     </Badge>
   );
 };

@@ -1,9 +1,11 @@
 import React, { ReactElement, useEffect } from 'react';
-import axiosInstance, { AxiosResData, AxiosResDataGeneric } from '../../utils/axios-instance';
-import { PATH_API } from '../../path/path-api';
 import { NextRouter, useRouter } from 'next/router';
 import useSWR from 'swr';
 import { AxiosError } from 'axios';
+import { Box, Button, Divider, Group, Stack, createStyles, Text } from '@mantine/core';
+import Link from 'next/link';
+import axiosInstance, { AxiosResData, AxiosResDataGeneric } from '../../utils/axios-instance';
+import { PATH_API } from '../../path/path-api';
 import Layout from '../../layouts';
 
 import { CardArticleVerticalTextCenter } from '../../components/card/CardVerticalTextCenter';
@@ -12,12 +14,11 @@ import {
   CardData,
 } from '../../components/card/CardVerticalTextBottom';
 import { PATH_CLIENT } from '../../path/path-frontend';
-import { Box, Button, Divider, Group, Stack, createStyles, Text } from '@mantine/core';
 import useAuth from '../../../hooks/useAuth';
-import Link from 'next/link';
 import { useCookieContext } from '../../context/CookieContext';
 import { SpaceModel } from '../../types/models/space-model';
 import { ParsedQueryCustom } from '../../types/nextjs-custom-types/useRouter-types';
+
 const useStyles = createStyles((theme) => ({
   pinContainer: {
     display: 'grid',
@@ -85,6 +86,7 @@ const ChooseSpaceInOrganizationPage = () => {
 
         {spaces.map((rootSpace) => (
           <CardArticleVerticalTextBottom
+            key={rootSpace._id}
             data={rootSpace as CardData}
             onClick={() => handleSpaceSelected(rootSpace._id)}
           />

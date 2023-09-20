@@ -1,19 +1,20 @@
 import React, { ReactElement } from 'react';
-import useAuth from '../../hooks/useAuth';
 import { Box, Button, Divider, Group, Stack, Text, createStyles } from '@mantine/core';
+import useSWR from 'swr';
+import { AxiosError } from 'axios';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
+import useAuth from '../../hooks/useAuth';
 import { CardArticleVerticalTextBottom, CardData } from '../components/card/CardVerticalTextBottom';
 import { CARD_LINK_PATH, PATH_CLIENT } from '../path/path-frontend';
 import axiosInstance from '../utils/axios-instance';
 import { PATH_API } from '../path/path-api';
 
-import useSWR from 'swr';
-import { AxiosError } from 'axios';
-import { useRouter } from 'next/router';
-import Link from 'next/link';
 import Layout from '../layouts';
 import { UserModel } from '../types/models/user-model';
 import { SpaceModel } from '../types/models/space-model';
 import { useCookieContext } from '../context/CookieContext';
+
 const useStyles = createStyles((theme) => ({
   pinContainer: {
     // position: 'absolute',
@@ -78,7 +79,7 @@ const ChooseRootSpacePage = () => {
           <CardArticleVerticalTextBottom
             key={rootSpace._id}
             data={rootSpace as CardData}
-            image={rootSpace.cover?.url}
+            // image={rootSpace.cover?.url}
             onClick={() => handleSpaceSelected(rootSpace)}
             // href={`${hrefRoot}/${rootSpace._id}`}
           />
