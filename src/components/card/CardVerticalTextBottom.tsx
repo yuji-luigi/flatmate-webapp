@@ -12,11 +12,12 @@ import {
 } from '@mantine/core';
 import Link from 'next/link';
 import { threadId } from 'worker_threads';
-import { CARD_LINK_PATH, PATH_CLIENT } from '../../path/path-frontend';
 import { useRouter } from 'next/router';
-import { PATH_IMAGE } from '../../lib/image-paths';
 import { notInitialized } from 'react-redux/es/utils/useSyncExternalStore';
+import { CARD_LINK_PATH, PATH_CLIENT } from '../../path/path-frontend';
+import { PATH_IMAGE } from '../../lib/image-paths';
 import { UserModel } from '../../types/models/user-model';
+import { UploadModel } from '../../types/models/upload-model';
 
 const useStyles = createStyles((theme) => ({
   link: {
@@ -86,10 +87,11 @@ export interface CardData {
   address?: string;
   createdAt: string;
   user?: UserModel;
+  cover?: UploadModel;
 }
 
 interface CardArticleImageDescFooterVerticalProps {
-  image?: string;
+  // image?: string;
   // category: string;
   // title: string;
   // date: string;
@@ -101,7 +103,7 @@ interface CardArticleImageDescFooterVerticalProps {
   // data: SpaceModel | OrganizationModel;
 }
 export function CardArticleVerticalTextBottom({
-  image,
+  // image,
   // title,
   data,
   href,
@@ -116,15 +118,13 @@ export function CardArticleVerticalTextBottom({
     <Card withBorder radius="md" p={0} className={classes.card} onClick={onClick} sx={sx}>
       <BackgroundImage
         className={classes.bgImage}
-        src={image || PATH_IMAGE.rootSpaceCard1}
+        src={data.cover?.url || PATH_IMAGE.rootSpaceCard1}
         radius="sm"
       >
         <Box className={classes.bgImageGradient} />
 
         <div className={classes.body}>
-          <Text className={cx(classes.title, classes.appear, classes.text)} /* mt="xs" mb="xs" */>
-            {data.name}
-          </Text>
+          <Text className={cx(classes.title, classes.appear, classes.text)}>{data.name}</Text>
           <Text
             className={cx(classes.appear, classes.text)}
             transform="uppercase"
