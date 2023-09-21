@@ -12,7 +12,8 @@ export const TextCell = ({
   cellValue: string;
   cellConfig: FormFieldTypes;
 }) => {
-  let dilplayValue = (
+  // return cellValue;
+  let displayValue = (
     <Text size="md" weight={500}>
       {cellValue}
     </Text>
@@ -24,13 +25,13 @@ export const TextCell = ({
     const text = cellConfig.options?.find(
       (option: StaticOption) => option.value === cellValue
     )?.label;
-    dilplayValue = (
+    displayValue = (
       <Group>
-        <Icon size={16} />
+        {Icon && <Icon size={16} />}
         {text}
       </Group>
     );
   }
 
-  return dilplayValue;
+  return displayValue;
 };
