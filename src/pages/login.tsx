@@ -119,7 +119,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
         Authorization: `Bearer ${jwtToken}`,
       },
     });
-    const data = rawRes.data;
+    const { data } = rawRes;
     // const data = await response.json();
 
     return {

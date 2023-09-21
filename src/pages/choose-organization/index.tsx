@@ -41,7 +41,8 @@ const ChooseOrganizationPage = () => {
   const router = useRouter();
 
   useEffect(() => {
-    if (user?.role !== 'super_admin') {
+    if (!user) return;
+    if (user.role !== 'super_admin') {
       router.push(PATH_CLIENT.chooseRootSpace);
       return;
     }
