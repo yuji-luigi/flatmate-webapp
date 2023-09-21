@@ -1,20 +1,19 @@
-import { ChangeEvent, createContext, ReactNode, useState } from 'react';
+import { ChangeEvent, createContext, ReactNode, useState, Dispatch, SetStateAction } from 'react';
 import { Sections } from '../types/general/data/sections-type';
 import { FilterContextType } from '../types/context/filter-context.';
-import { Dispatch, SetStateAction } from 'react';
 
 export const FilterContext = createContext<FilterContextType>({
   selectFilters: [],
-  setSelectFilters: (filters: { field: string; value: string }) => void {},
+  setSelectFilters(_filters: { field: string; value: string }): void {},
   // setSelectFilters: function (
   //   filters: { entity: string; value: string | number | boolean | null | undefined }[]
   // ): void {},
   textFilter: '',
-  setTextFilter: function (text: string): void {},
+  setTextFilter(_text: string): void {},
   dateFilters: null,
-  setDateFilters: function (date: Date | null): void {},
+  setDateFilters(_date: Date | null): void {},
   booleanFilters: [],
-  setBooleanFilters: function (filters: { field: string; value: boolean }[]): void {},
+  setBooleanFilters(_filters: { field: string; value: boolean }[]): void {},
   filters: {
     selectFilters: [],
     textFilter: '',
@@ -44,8 +43,8 @@ export const useFilterStore = (): FilterContextType => {
     });
   };
 
-  const handleDateFilters = (newDate: { value: Date; inputName: string }) => {
-    const { value, inputName } = newDate;
+  const handleDateFilters = (_: { value: Date; inputName: string }) => {
+    const { value, inputName } = _;
     setDateFilters((prev) => {
       if (prev instanceof Date) {
         // Your logic to change the date goes here
@@ -84,7 +83,7 @@ export const useFilterStore = (): FilterContextType => {
       });
     }
     // Add new filter
-    setBooleanFilters((prev) => [...prev, data]);
+    return setBooleanFilters((prev) => [...prev, data]);
     // return setPage(0);
   };
   return {

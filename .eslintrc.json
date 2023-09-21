@@ -25,6 +25,16 @@
     "@typescript-eslint/no-use-before-define": [
       "off"
       // { "functions": false, "classes": true, "variables": true, "typedefs": true }
+    ],
+    "max-len": [
+      "warn",
+      {
+        "code": 120,
+        "ignoreComments": true,
+        "ignoreStrings": true,
+        "ignoreTemplateLiterals": true,
+        "ignoreRegExpLiterals": true
+      }
     ]
 
     // "allowAllCaps": true

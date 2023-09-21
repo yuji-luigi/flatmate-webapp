@@ -9,7 +9,7 @@ export function StaticDataTable({ json, data }: { json: any[]; data: any[] }) {
   const { classes } = dashboardStyle();
 
   return (
-    <Box className={classes.dataTableContainer}>
+    <Box>
       <ScrollArea>
         <Table sx={{ minWidth: 800 }} highlightOnHover>
           <StaticTableHeader json={json} />

@@ -51,6 +51,7 @@ import {
   IconReload as reload,
   IconHourglassLow as hourglass,
   IconProgressCheck as progressCheck,
+  IconClockStop as clockStop,
 } from '@tabler/icons-react';
 /**
  * use the key name same as the slice name
@@ -107,6 +108,7 @@ export const Icons = {
   reload,
   hourglass,
   progressCheck,
+  clockStop,
 } as const;
 export const ICON_SIZES = {
   textTile: 16,

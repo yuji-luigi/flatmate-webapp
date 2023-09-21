@@ -23,5 +23,3 @@ export interface MaintainerModel extends MongooseBaseModel {
   createdBy: string | IUser;
   slug: string;
 }
-
-type MaintainerType = keyof typeof MAINTAINER_TYPES;

@@ -1,16 +1,12 @@
 import { ReactElement, useEffect } from 'react';
-import { useRouter } from 'next/router';
 import { showNotification } from '@mantine/notifications';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Layout from '../../../layouts';
 
 import axiosInstance from '../../../utils/axios-instance';
 import { useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
 import SpaceHomeSection from '../../../sections/@dashboard/dashboard_top/sections-in-tabs/SpaceHomeSection';
 
-import { MaintainerModel } from '../../../types/models/maintainer-model';
-import { MaintenanceModel } from '../../../types/models/maintenance-model';
-import { SpaceModel } from '../../../types/models/space-model';
-import { ThreadModel } from '../../../types/models/thread-model';
 import { _PATH_API } from '../../../path/path-api';
 
 interface Props {
@@ -56,6 +52,14 @@ export default function HomePageSlug() {
 HomePageSlug.getLayout = function getLayout(page: ReactElement) {
   return <Layout variant="dashboard">{page}</Layout>;
 };
+
+// export async function getStaticProps({ locale }: { locale: string }) {
+//   return {
+//     props: {
+//       ...(await serverSideTranslations('it', ['common'])),
+//     },
+//   };
+// }
 
 // export async function getStaticPaths() {
 //   // Generate paths for buildings

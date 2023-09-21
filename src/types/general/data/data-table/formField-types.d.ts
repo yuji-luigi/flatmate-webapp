@@ -2,7 +2,7 @@ import { SelectItem, SelectProps, TextInputProps, TextareaProps } from '@mantine
 import React from 'react';
 
 type StaticOption = SelectItem & {
-  icon?: React.ReactNode;
+  icon?: () => JSX.Element;
 };
 
 type BaseFormType = {

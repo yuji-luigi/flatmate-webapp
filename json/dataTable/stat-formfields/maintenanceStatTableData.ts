@@ -23,13 +23,13 @@ export const maintenanceStatTableData: Array<FormFieldTypes> = [
       {
         value: 'pending',
         label: 'In attesa',
-        icon: Icons.progressCheck,
+        icon: Icons.clockStop,
         color: 'orange',
       },
       {
         value: 'in progress',
         label: 'In corso',
-        icon: Icons.maintenance,
+        icon: Icons.progressCheck,
         color: 'blue',
       },
       {
