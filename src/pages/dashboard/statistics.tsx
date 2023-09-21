@@ -9,16 +9,7 @@ import { StatsGridIcons } from '../../components/stats/StatGridsDiffIcons';
 
 import data from '../../../json/mock/statsGrid.json';
 
-const DashboardTopPage /* : NextPageWithLayout<PropWithChildren> */ = () => (
-  <Page title="HOME:">
-    <TableSectionHeader overridingEntity="home" />
-    <ProgressCard />
-    {/* <ProgressCardColored /> */}
-    <StatsGrid />
-    <StatsControls />
-    <StatsGridIcons data={data} />
-  </Page>
-);
+const DashboardTopPage /* : NextPageWithLayout<PropWithChildren> */ = () => <Page title="HOME:" />;
 
 DashboardTopPage.getLayout = function getLayout(page: ReactElement) {
   return <Layout variant="dashboard">{page}</Layout>;
