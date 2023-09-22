@@ -8,7 +8,8 @@ export function getDefaultValues(
   parentId?: string
 ) {
   /** define defauldValueObj by reduce */
-  const defaultValueObj = formFields?.reduce<Record<string, any>>((obj, field) => {
+  const defaultValueObj = formFields?.reduce<Record<string, any>>((_obj, field) => {
+    const obj = structuredClone(_obj);
     /** define path field.name or field.id */
     const path = field.name || field.id;
     /**§
@@ -78,63 +79,11 @@ export function getDefaultValues(
     }
 
     return obj;
-
-    // ! TODO: remove all autopopulate
-    // if (field.type === 'boolean' || field.type === 'checkbox') {
-    //   obj[path] = crudDocument?.[path] || false;
-    //   return obj;
-    // }
-    // if (field.type === 'date') {
-    //   obj[path] = crudDocument?.[path] || new Date(Date.now());
-    //   return obj;
-    // }
-    if (field.type === 'select' && field.multi) {
-      obj[path] = crudDocument?.[path] || [];
-      return obj;
-    }
-
-    if (field.type === 'select') {
-      obj[path] = crudDocument?.[path] || null;
-      return obj;
-    }
-
-    if (field.type === 'number') {
-      obj[path] = crudDocument?.[path] || 0;
-      return obj;
-    }
-    if (field.type === 'attachment' || field.type === 'image') {
-      // set id of the file
-      obj.media = { ...obj.media, [path]: crudDocument[path] };
-      return obj;
-      // set file preview url
-      // obj.media = { [path]: crudDocument[field.preview!] || {} };
-    }
-
-    obj[path] = crudDocument?.[path] || '';
-    return obj;
   }, {});
   return defaultValueObj || {};
 }
 
-type FallBackValues = {
-  [key: string]: any;
-  // text: string;
-  // 'text-area': string;
-  // boolean: boolean;
-  // checkbox: boolean;
-  // select: string | null;
-  // 'static-select': string | null;
-  // number: number;
-  // currency: number;
-  // avatar: string | null;
-  // date: Date;
-  // 'date-range': Date;
-  // attachment: string | null;
-  // image: string | null;
-  // color: string;
-};
-
-const fallbackValues: FallBackValues = {
+const fallbackValues: Record<string, string | number | Date | boolean | null> = {
   text: '',
   'text-area': '',
   boolean: false,
@@ -148,23 +97,5 @@ const fallbackValues: FallBackValues = {
   'date-range': new Date(Date.now()),
   attachment: null,
   image: null,
-
   color: '',
-};
-
-const getFallbackValues = (obj: any, crudDocument: any, path: string) => {
-  return {
-    text: '',
-    'text-area': '',
-    boolean: false,
-    checkbox: false,
-    select: null,
-    'static-select': null,
-    number: 0,
-    currency: 0,
-    avatar: null,
-    date: new Date(Date.now()),
-    'date-range': new Date(Date.now()),
-    color: '',
-  };
 };

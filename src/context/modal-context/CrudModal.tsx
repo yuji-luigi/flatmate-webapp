@@ -1,18 +1,18 @@
 import { useDisclosure, useMediaQuery } from '@mantine/hooks';
 import { Modal, Group, Button, Stack, Box, Sx, useMantineTheme, createStyles } from '@mantine/core';
-import { use_ModalContext } from './_ModalContext';
-import { getDefaultValues } from '../../utils/getDefaultValues';
 import { showNotification, notifications } from '@mantine/notifications';
 import { FormEvent, useMemo, useState } from 'react';
+import { useForm } from '@mantine/form';
+import { useRouter } from 'next/router';
+import { use_ModalContext } from './_ModalContext';
+import { getDefaultValues } from '../../utils/getDefaultValues';
 import { hasMedia } from '../../redux/features/crudAsyncThunks';
 import { uploadFileAndGetModelId, extractUploadingMedia } from '../../utils/upload-helper';
 import CreationToolBar from '../../components/input/CreationToolBar';
 import FormFields from '../../components/input/FormFields';
-import { useForm } from '@mantine/form';
 import { UseFormReturnTypeCustom } from '../../components/input/input_interfaces/useForm_interface';
 import { getEntityFromUrl, sleep } from '../../utils/helpers/helper-functions';
 import { Sections } from '../../types/general/data/sections-type';
-import { useRouter } from 'next/router';
 import { useCrudSliceStore } from '../../redux/features/crud/crudSlice';
 import { UploadModel } from '../../types/models/upload-model';
 
@@ -72,7 +72,7 @@ export function CrudModal() {
 
     // // const data = media ? extractUploadingMedia(media) : {};
 
-    let reqBody: Record<string, any> = {
+    const reqBody: Record<string, any> = {
       ...form.values,
       // ...data,
 
@@ -83,7 +83,7 @@ export function CrudModal() {
     if (media && hasMedia(media)) {
       try {
         const uploadIdData = await uploadFileAndGetModelId(extractUploadingMedia(media), entity);
-        for (let key in uploadIdData) {
+        for (const key in uploadIdData) {
           reqBody[key] = [...reqBody[key], ...uploadIdData[key]];
         }
       } catch (error) {
@@ -144,7 +144,7 @@ export function CrudModal() {
               entity={entity}
               submitButton={
                 <>
-                  <Button fullWidth /* disabled={submitting}  */ type="submit" mt="xl" size="md">
+                  <Button fullWidth type="submit" mt="xl" size="md">
                     Submit{' '}
                   </Button>
                   <Button

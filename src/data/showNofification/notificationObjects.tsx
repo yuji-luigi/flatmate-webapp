@@ -1,4 +1,5 @@
 import { Icons } from '../icons/icons';
+
 type ErrorArgs = {
   data?: any;
   ms?: number;
@@ -29,8 +30,30 @@ export const NOTIFICATIONS = {
       // autoClose: 700,
       loading: true,
     },
+    uploading: {
+      id: 'uploading',
+      title: 'Loading',
+      message: 'Uploading...',
+      color: 'blue',
+      // autoClose: 700,
+      loading: true,
+    },
+    general: {
+      id: 'loading-general',
+      title: 'Loading',
+      message: 'Finishing operation...',
+      color: 'blue',
+      // autoClose: 700,
+      loading: true,
+    },
   },
   SUCCESS: {
+    generic: {
+      title: 'Success',
+      message: 'operation Success',
+      color: 'green',
+      icon: <Icons.check stroke="green" />,
+    },
     email: {
       title: 'Success',
       message: 'Email sent',
@@ -43,7 +66,7 @@ export const NOTIFICATIONS = {
       title: 'Error',
       color: 'red',
       icon: <Icons.alert />,
-      message: data || data?.message || 'connection error',
+      message: data?.message || data || 'connection error',
       autoClose: ms,
     }),
   },

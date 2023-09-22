@@ -1,8 +1,9 @@
 import { SelectItem, SelectProps, TextInputProps, TextareaProps } from '@mantine/core';
+import { TablerIconsProps } from '@tabler/icons-react';
 import React from 'react';
 
 type StaticOption = SelectItem & {
-  icon?: () => JSX.Element;
+  icon?: (props: TablerIconsProps) => JSX.Element;
 };
 
 type BaseFormType = {

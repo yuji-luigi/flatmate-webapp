@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import { createStyles, useMantineTheme } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { DashboardHeaderSearch } from './DashboardHeaderSearch';
-import { NavbarVertical } from './NavbarVertical';
+import { NavbarVertical } from './navbar/NavbarVertical';
 import useLayoutContext from '../../../hooks/useLayoutContext';
 
 const useStyles = createStyles((theme /* _params, getRef */) => ({

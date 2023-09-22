@@ -1,9 +1,8 @@
-import React, { ChangeEvent, MouseEventHandler, useEffect, useRef, useState } from 'react';
+import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
 import {
   Card,
   Avatar,
   Text,
-  Paper,
   Box,
   Group,
   ActionIcon,
@@ -11,19 +10,16 @@ import {
   createStyles,
   Sx,
 } from '@mantine/core';
-import { notifications } from '@mantine/notifications';
+import { hideNotification, showNotification } from '@mantine/notifications';
 import { useRouter } from 'next/router';
-import { useModalContext } from '@mantine/core/lib/Modal/Modal.context';
 import { Icons } from '../../data/icons/icons';
 import {
   setSubmitting,
   useCrudSelectors,
   useCrudSliceStore,
 } from '../../redux/features/crud/crudSlice';
-import { getEntityFromUrl } from '../../utils/helpers/helper-functions';
-import axiosInstance from '../../utils/axios-instance';
-import { PATH_API } from '../../path/path-api';
-import { extractUploadingMedia, uploadFileAndGetModelId } from '../../utils/upload-helper';
+import { getEntityFromUrl, sleep } from '../../utils/helpers/helper-functions';
+import { uploadFileAndGetModelId } from '../../utils/upload-helper';
 import { use_ModalContext } from '../../context/modal-context/_ModalContext';
 import { Sections } from '../../types/general/data/sections-type';
 import { FormFieldTypes } from '../../types/general/data/data-table/formField-types';
@@ -33,7 +29,7 @@ import { useCookieContext } from '../../context/CookieContext';
 import { SpaceModel } from '../../types/models/space-model';
 import { MaintainerModel } from '../../types/models/maintainer-model';
 import { RADIUS } from '../../styles/global-useStyles';
-import { SettingButtonSpaceHome } from '../../sections/@dashboard/dashboard_top/components/SettingButtonSpaceHome';
+import { NOTIFICATIONS } from '../../data/showNofification/notificationObjects';
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -138,6 +134,7 @@ const ProfileCoverGeneric = ({
   const handleLightBoxClicked = () => {
     console.log('lightbox');
   };
+  useCrudSelectors;
 
   const handleImageChange = async (
     event: ChangeEvent<HTMLInputElement>,
@@ -147,9 +144,11 @@ const ProfileCoverGeneric = ({
     if (!file || !_entity) return;
     if (file && file.size > MAX_FILE_SIZE) {
       window.alert(`File size exceeds the allowed limit of ${formatSize(MAX_FILE_SIZE)}.`);
+      // eslint-disable-next-line no-param-reassign
       event.target.value = ''; // Reset the input
       return;
     }
+    showNotification(NOTIFICATIONS.LOADING.uploading);
     const reader = new FileReader();
     reader.onloadend = () => {
       if (field === 'avatar') {
@@ -168,15 +167,20 @@ const ProfileCoverGeneric = ({
         documentId: crudDocument?._id || (documentId as string),
         updateData: { [field]: uploadIdData[field][0] },
       });
+      hideNotification(NOTIFICATIONS.LOADING.uploading.id);
     } catch (error) {
-      console.log(error);
-      notifications.hide('submit');
+      await sleep(700);
+      hideNotification(NOTIFICATIONS.LOADING.uploading.id);
+      showNotification(NOTIFICATIONS.ERROR.general({ data: error }));
       setSubmitting(false);
     }
   };
   const handleEditClicked = () => {
     if (!crudDocument) return;
-    if (!formFields) return console.log('formFields not defined');
+    if (!formFields) {
+      console.log('formFields not defined');
+      return;
+    }
     openConfirmModal({
       type: 'crud',
       crudDocument,
@@ -187,7 +191,7 @@ const ProfileCoverGeneric = ({
       onCancel(): void {
         throw new Error('Function not implemented.');
       },
-      onConfirm(data: any): void {
+      onConfirm(_: any): void {
         throw new Error('Function not implemented.');
       },
     });

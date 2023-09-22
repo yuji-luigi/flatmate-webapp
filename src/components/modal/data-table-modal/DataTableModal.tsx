@@ -1,20 +1,16 @@
-import { useDisclosure } from '@mantine/hooks';
+import { useDisclosure, useMediaQuery } from '@mantine/hooks';
 import { Modal, Group, Button, useMantineTheme } from '@mantine/core';
-import { useMediaQuery } from '@mantine/hooks';
-import { useModalContext } from '@mantine/core/lib/Modal/Modal.context';
 
 export function DataTableModal() {
-  // const { isOpenModal } = useModalContext();
   const theme = useMantineTheme();
 
   const isMobile = useMediaQuery('(max-width: 600px)');
-  console.log(isMobile);
   return (
     <>
       <Modal
         opened={false}
         // opened={isOpenModal}
-        onClose={close}
+        onClose={() => {}}
         title="You are deleting data"
         overlayProps={{
           color: theme.colorScheme === 'dark' ? theme.colors.dark[9] : theme.colors.gray[2],

@@ -9,7 +9,7 @@ import { AllModels } from '../../types/models/allmodels';
 import axiosInstance from '../axios-instance';
 
 type ALotOfNumbers = number;
-export const getRandomNumber = (): ALotOfNumbers => Math.ceil(Math.pow(10, 10) * Math.random());
+export const getRandomNumber = (): ALotOfNumbers => Math.ceil(10 ** 10 * Math.random());
 
 export const getPsuedoID = () => Math.floor(Math.random() * 1e15);
 type OnlyNumber = number;

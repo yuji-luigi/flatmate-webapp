@@ -1,4 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { useEffect } from 'react';
+import { hideNotification, showNotification } from '@mantine/notifications';
 import {
   fetchCrudDocumentsWithPagination,
   addCrudDocumentDataTable,
@@ -17,6 +19,7 @@ import { useAppDispatch, useAppSelector } from '../../../../hooks/redux-hooks/us
 import { Sections } from '../../../types/general/data/sections-type';
 import { AllModels } from '../../../types/models/allmodels';
 import { MongooseBaseModel } from '../../../types/models/mongoose-base-model';
+import { NOTIFICATIONS } from '../../../data/showNofification/notificationObjects';
 // import { appDispatch } from '../../store';
 /* eslint-disable no-param-reassign */
 
@@ -84,6 +87,8 @@ export const crudSlice = createSlice({
     },
     resetStatus: (state) => {
       state.status = 'idle';
+      state.error = null;
+      state.message = null;
     },
     setCrudDocument: (state, action) => {
       const { document, entity } = action.payload;
@@ -91,6 +96,7 @@ export const crudSlice = createSlice({
     },
     setCrudDocuments: (state, action) => {
       const { entity, documents, totalDocuments, isChildrenTree } = action.payload;
+      console.log({ entity });
 
       state.status = 'succeed';
       state.reduxdb[entity].isChildrenTree = isChildrenTree;
@@ -358,27 +364,42 @@ const useIsChildrenTree = (entity?: Sections): boolean =>
 /** Returns selected Document of the entity or if not selected returns null  */
 const useCrudDocument = <ModelType>(entity?: Sections): ModelType =>
   useAppSelector((state) => state.crud.reduxdb?.[entity || '']?.singleCrudDocument || {});
-
 /** Hook for selector. this time need do pass entity when initialize the hook. */
-export const useCrudSelectors = <ModelType = MongooseBaseModel>(entity?: Sections) => ({
-  /** Returns Array of Documents of the entity: whole array of entity */
-  crudDocuments: useCrudDocuments<ModelType>(entity) || [],
-  /** Returns selected Document of the entity */
-  crudDocument: useCrudDocument<ModelType>(entity) || null,
-  /** returns string if error is present. to show flash on the screen */
-  crudError: useCrudError(),
-  /** returns string if api sent message */
-  crudMessage: useCrudMessage(),
-  /** returns status string during api call process */
-  crudStatus: useCrudStatus(),
-  /** if it has a parent returns true. ex- space instances can be either a parent or a child */
-  isChildrenTree: useIsChildrenTree(entity),
-  /** number of total documents in queried array from db. */
-  totalDocumentsCount: useTotalDocumentsCount(entity),
-  submitting: useAppSelector((state) => state.crud.submitting),
-  selectDocumentById: useAppSelector((state) => (documentId: string) => {
-    return state.crud.reduxdb?.[entity || '']?.documentsArray.find((doc) => {
-      return doc._id === documentId;
-    });
-  }),
-});
+export const useCrudSelectors = <ModelType = MongooseBaseModel>(entity?: Sections) => {
+  const { resetCrudStatus } = useCrudSliceStore();
+  const crudError = useCrudError();
+  const submitting = useAppSelector((state) => state.crud.submitting);
+  useEffect(() => {
+    if (crudError) {
+      showNotification(NOTIFICATIONS.ERROR.general({ data: crudError, ms: 5000 }));
+      resetCrudStatus();
+    }
+    // if (submitting) {
+    //   showNotification(NOTIFICATIONS.LOADING.general);
+    //   resetCrudStatus();
+    // }
+  }, [crudError, submitting]);
+
+  return {
+    /** Returns Array of Documents of the entity: whole array of entity */
+    crudDocuments: useCrudDocuments<ModelType>(entity) || [],
+    /** Returns selected Document of the entity */
+    crudDocument: useCrudDocument<ModelType>(entity) || null,
+    /** returns string if error is present. to show flash on the screen */
+    crudError,
+    /** returns string if api sent message */
+    crudMessage: useCrudMessage(),
+    /** returns status string during api call process */
+    crudStatus: useCrudStatus(),
+    /** if it has a parent returns true. ex- space instances can be either a parent or a child */
+    isChildrenTree: useIsChildrenTree(entity),
+    /** number of total documents in queried array from db. */
+    totalDocumentsCount: useTotalDocumentsCount(entity),
+    submitting,
+    selectDocumentById: useAppSelector((state) => (documentId: string) => {
+      return state.crud.reduxdb?.[entity || '']?.documentsArray.find((doc) => {
+        return doc._id === documentId;
+      });
+    }),
+  };
+};

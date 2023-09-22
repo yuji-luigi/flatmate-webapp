@@ -1,12 +1,7 @@
 import { ModalRoot } from '@mantine/core/lib/Modal/ModalRoot/ModalRoot';
 import { createContext, ReactNode, useCallback, useContext, useState } from 'react';
-import {
-  _ModalContextStates,
-  ModalProps,
-  ModalRootCustom,
-  OpenConfirmModalParams,
-} from './ModalRootCustom';
-import { Box } from '@mantine/core';
+import { Box, ModalProps } from '@mantine/core';
+import { OpenConfirmModalParams, ModalRootCustom } from './ModalRootCustom';
 
 const defaultModalValues: ModalProps = {
   title: '',

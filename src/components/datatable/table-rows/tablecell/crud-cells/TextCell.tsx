@@ -3,6 +3,7 @@ import React from 'react';
 import {
   FormFieldTypes,
   StaticOption,
+  StaticSelectFormFieldType,
 } from '../../../../../types/general/data/data-table/formField-types';
 
 export const TextCell = ({
@@ -10,7 +11,7 @@ export const TextCell = ({
   cellConfig,
 }: {
   cellValue: string;
-  cellConfig: FormFieldTypes;
+  cellConfig: StaticSelectFormFieldType;
 }) => {
   // return cellValue;
   let displayValue = (

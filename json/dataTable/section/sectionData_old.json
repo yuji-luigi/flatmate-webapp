@@ -27,8 +27,7 @@
 				"link": "/dashboard/posts",
 				"importButton": "",
 				"createButton": "",
-				"icon": "posts",
-				"hide": true
+				"icon": "posts"
 			},
 			{
 				"entity": "maintenances",
@@ -38,7 +37,6 @@
 				"link": "/dashboard/maintenances",
 				"importButton": "",
 				"createButton": "",
-				"hide": true,
 				"icon": "posts"
 			}
 		]
@@ -50,7 +48,6 @@
 			"admin",
 			"user"
 		],
-		"hide": true,
 		"contents": [
 			{
 				"entity": "statistics",
@@ -61,7 +58,6 @@
 				"link": "/dashboard/statistics",
 				"importButton": "",
 				"createButton": "",
-				"hide": true,
 				"icon": "Statistic"
 			},
 			{
@@ -73,7 +69,6 @@
 				"link": "/dashboard/notifications",
 				"importButton": "",
 				"createButton": "New Notification",
-				"hide": true,
 				"icon": "Notification"
 			},
 			{
@@ -85,7 +80,6 @@
 				"link": "/dashboard/bookmarks",
 				"importButton": "",
 				"createButton": "New Bookmark",
-				"hide": true,
 				"icon": "Dashboard"
 			},
 			{
@@ -119,7 +113,6 @@
 				"link": "/dashboard/fundRules",
 				"importButton": "",
 				"createButton": "New Fund Rule",
-				"hide": true,
 				"icon": "Dashboard"
 			},
 			{
@@ -131,7 +124,6 @@
 				"link": "/dashboard/proposals",
 				"importButton": "",
 				"createButton": "New Proposal",
-				"hide": true,
 				"icon": "Dashboard"
 			},
 			{
@@ -143,7 +135,6 @@
 				"link": "/dashboard/funds",
 				"importButton": "",
 				"createButton": "New Fund",
-				"hide": true,
 				"icon": "Dashboard"
 			},
 			{
@@ -175,7 +166,6 @@
 				"link": "/dashboard/tags",
 				"importButton": "",
 				"createButton": "New Tag",
-				"hide": true,
 				"icon": "Dashboard"
 			},
 			{
@@ -187,7 +177,6 @@
 				"link": "/dashboard/threads",
 				"importButton": "",
 				"createButton": "New Thread",
-				"hide": true,
 				"icon": "Dashboard"
 			},
 			{
@@ -229,7 +218,6 @@
 				"link": "/dashboard/uploads",
 				"importButton": "",
 				"createButton": "New Wallet",
-				"hide": true,
 				"icon": "Dashboard"
 			},
 			{
@@ -241,7 +229,6 @@
 				"link": "/dashboard/wallets",
 				"importButton": "",
 				"createButton": "New Wallet",
-				"hide": true,
 				"icon": "Dashboard"
 			},
 			{
@@ -253,7 +240,6 @@
 				"link": "/dashboard/userSettings",
 				"importButton": "",
 				"createButton": "",
-				"hide": true,
 				"icon": "Dashboard"
 			},
 			{
