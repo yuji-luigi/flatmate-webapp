@@ -16,6 +16,7 @@ import Layout from '../layouts';
 import { UserModel } from '../types/models/user-model';
 import { SpaceModel } from '../types/models/space-model';
 import { useCookieContext } from '../context/CookieContext';
+import { ChooseSpaceSection } from '../sections/@login_signup/choose-space/ChooseSpaceSection';
 
 const useStyles = createStyles((theme) => ({
   pinContainer: {
@@ -68,6 +69,7 @@ const ChooseRootSpacePage = () => {
     router.push(`${PATH_CLIENT.root}/${mainSpace.slug}`);
   };
 
+  return <ChooseSpaceSection spaces={rootSpaces} />;
   return (
     <Stack p={32}>
       <Group position="apart" align="center">

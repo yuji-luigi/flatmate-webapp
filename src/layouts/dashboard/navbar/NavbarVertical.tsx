@@ -44,8 +44,6 @@ export function NavbarVertical() {
   useEffect(() => closeBar(), [query.entity]);
 
   if (!user) return null;
-  console.log(sectionData);
-
   const links = sectionData.map((section, i) => {
     return (
       <Fragment key={section.name}>

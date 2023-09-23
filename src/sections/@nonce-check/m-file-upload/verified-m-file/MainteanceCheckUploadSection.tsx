@@ -18,7 +18,7 @@ import { profilePageStyle } from '../../../../styles/global-useStyles';
 import PostFeedCard from '../../../../components/posts/feed/PostFeedCard';
 import { useCrudSelectors } from '../../../../redux/features/crud/crudSlice';
 import { MaintenanceModel } from '../../../../types/models/maintenance-model';
-import { use_ModalContext } from '../../../../context/modal-context/_ModalContext';
+import { useCustomModalContext } from '../../../../context/modal-context/_ModalContext';
 import { CardStyled } from '../../../../styles/card/CardStyled';
 import { AdminCard } from './AdminCard';
 
@@ -32,7 +32,7 @@ export const MaintenanceCheckUploadSection = (props: Props) => {
   const { pinOk, checkType, setCheckType } = props;
   const theme = useMantineTheme();
   const { classes: classes2 } = profilePageStyle();
-  const { openConfirmModal, closeModal } = use_ModalContext();
+  const { openConfirmModal, closeModal } = useCustomModalContext();
   const { crudDocument: maintenance } = useCrudSelectors<MaintenanceModel>('maintenances');
 
   if (!maintenance) return null;

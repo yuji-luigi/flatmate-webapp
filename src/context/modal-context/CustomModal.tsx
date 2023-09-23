@@ -1,9 +1,9 @@
 import React from 'react';
-import { use_ModalContext } from './_ModalContext';
 import { Box, Button, Modal, Stack } from '@mantine/core';
+import { useCustomModalContext } from './_ModalContext';
 
 const CustomModal = () => {
-  const { modals, isOpenModal: opened, closeModal: close } = use_ModalContext();
+  const { modals, isOpenModal: opened, closeModal: close } = useCustomModalContext();
   if (!opened) return null;
   if (modals.type !== 'custom') return <>something went wrong</>;
 

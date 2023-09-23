@@ -31,11 +31,11 @@ import {
   IconChevronDown,
 } from '@tabler/icons-react';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import { ColorSchemeToggle } from '../../components/color-schemeToggle/ColorSchemeToggle';
 
 import useAuth from '../../../hooks/useAuth';
 import { PATH_CLIENT } from '../../path/path-frontend';
-import { useEffect, useState } from 'react';
 import { useCookieContext } from '../../context/CookieContext';
 import { EnterButton } from './EnterButton';
 import { LoginButton } from './LoginButton';
@@ -94,10 +94,17 @@ const useStyles = createStyles((theme) => ({
       display: 'none',
     },
   },
+  mobileNav: {
+    [theme.fn.smallerThan('sm')]: {
+      justifyContent: 'space-between',
+      width: '100%',
+    },
+  },
 
   hiddenDesktop: {
     [theme.fn.largerThan('sm')]: {
       display: 'none',
+      justifyContent: 'flex-end',
     },
   },
 }));
@@ -258,12 +265,17 @@ export function HomepageHeader() {
             </HoverCard> */}
           </Group>
 
-          <Group className={classes.hiddenMobile}>
-            {logNav}
-            <ColorSchemeToggle variant="outline" />
+          <Group className={classes.mobileNav}>
+            <Burger
+              opened={drawerOpened}
+              onClick={toggleDrawer}
+              className={classes.hiddenDesktop}
+            />
+            <Group>
+              {logNav}
+              <ColorSchemeToggle variant="outline" />
+            </Group>
           </Group>
-
-          <Burger opened={drawerOpened} onClick={toggleDrawer} className={classes.hiddenDesktop} />
         </Group>
       </Header>
 

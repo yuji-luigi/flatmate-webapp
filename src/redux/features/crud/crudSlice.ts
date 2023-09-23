@@ -96,8 +96,6 @@ export const crudSlice = createSlice({
     },
     setCrudDocuments: (state, action) => {
       const { entity, documents, totalDocuments, isChildrenTree } = action.payload;
-      console.log({ entity });
-
       state.status = 'succeed';
       state.reduxdb[entity].isChildrenTree = isChildrenTree;
       state.reduxdb[entity].documentsArray = documents;

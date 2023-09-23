@@ -1,9 +1,13 @@
 import { ModalRoot } from '@mantine/core/lib/Modal/ModalRoot/ModalRoot';
 import { createContext, ReactNode, useCallback, useContext, useState } from 'react';
-import { Box, ModalProps } from '@mantine/core';
-import { OpenConfirmModalParams, ModalRootCustom } from './ModalRootCustom';
+import { Box } from '@mantine/core';
+import {
+  _ModalContextStates,
+  CustomModalProps,
+  OpenConfirmModalParams,
+} from '../../types/modal/modal-context-type';
 
-const defaultModalValues: ModalProps = {
+const defaultModalValues: CustomModalProps = {
   title: '',
   centered: false,
   children: <></>,
@@ -29,7 +33,7 @@ export const _ModalContext = createContext<_ModalContextStates>({
 
 const useStore = () => {
   const [isOpenModal, setIsModalOpen] = useState<boolean>(false);
-  const [modals, setModals] = useState<ModalProps>(defaultModalValues);
+  const [modals, setModals] = useState<CustomModalProps>(defaultModalValues);
 
   // Function to open a confirm modal
   const openConfirmModal = useCallback(
@@ -41,7 +45,7 @@ const useStore = () => {
       // Generate a unique modal ID
       const modalId = Math.random().toString(36).substr(2, 9);
 
-      const newModalValues: ModalProps = {
+      const newModalValues: CustomModalProps = {
         id: modalId,
         centered: true,
         sx: {},
@@ -69,10 +73,7 @@ const useStore = () => {
 };
 
 export const _ModalContextProvider = ({ children }: { children: ReactNode }) => (
-  <_ModalContext.Provider value={useStore()}>
-    {children}
-    <ModalRootCustom />
-  </_ModalContext.Provider>
+  <_ModalContext.Provider value={useStore()}>{children}</_ModalContext.Provider>
 );
 
-export const use_ModalContext = () => useContext(_ModalContext);
+export const useCustomModalContext = () => useContext(_ModalContext);

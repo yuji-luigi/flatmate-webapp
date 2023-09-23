@@ -4,7 +4,7 @@ import { showNotification, notifications } from '@mantine/notifications';
 import { FormEvent, useMemo, useState } from 'react';
 import { useForm } from '@mantine/form';
 import { useRouter } from 'next/router';
-import { use_ModalContext } from './_ModalContext';
+import { useCustomModalContext } from './_ModalContext';
 import { getDefaultValues } from '../../utils/getDefaultValues';
 import { hasMedia } from '../../redux/features/crudAsyncThunks';
 import { uploadFileAndGetModelId, extractUploadingMedia } from '../../utils/upload-helper';
@@ -15,6 +15,11 @@ import { getEntityFromUrl, sleep } from '../../utils/helpers/helper-functions';
 import { Sections } from '../../types/general/data/sections-type';
 import { useCrudSliceStore } from '../../redux/features/crud/crudSlice';
 import { UploadModel } from '../../types/models/upload-model';
+import {
+  BaseModalParams,
+  CrudModalParams,
+  OpenConfirmModalParams,
+} from '../../types/modal/modal-context-type';
 
 const useStyles = createStyles(() => ({
   modal: {
@@ -37,7 +42,11 @@ export function CrudModal() {
   const { query } = useRouter();
 
   const isMobile = useMediaQuery('(max-width: 600px)');
-  const { isOpenModal: opened, closeModal: close, modals } = use_ModalContext();
+  const {
+    isOpenModal: opened,
+    closeModal: close,
+    modals,
+  }: CrudModalParams = useCustomModalContext();
   const { updateCrudDocument } = useCrudSliceStore();
   const [submitting, setSubmitting] = useState(false);
   const handleConfirm = (data: any) => {
@@ -46,7 +55,7 @@ export function CrudModal() {
   };
 
   // type guard
-  if (modals.type !== 'crud') return null;
+  // if (modals.type !== 'crud') return null;
 
   const initialValues = useMemo(
     () => getDefaultValues(modals.formFields, modals.crudDocument),
@@ -83,6 +92,7 @@ export function CrudModal() {
     if (media && hasMedia(media)) {
       try {
         const uploadIdData = await uploadFileAndGetModelId(extractUploadingMedia(media), entity);
+        // eslint-disable-next-line guard-for-in, no-restricted-syntax
         for (const key in uploadIdData) {
           reqBody[key] = [...reqBody[key], ...uploadIdData[key]];
         }
@@ -164,15 +174,4 @@ export function CrudModal() {
       </Modal>
     </>
   );
-}
-function createLinkedChildDocumentWithPagination(arg0: {
-  entity: string;
-  parentId: string;
-  query: any;
-  newDocument: { media?: { [key: string]: File[] | UploadModel[] } | undefined } & Record<
-    string,
-    unknown
-  >;
-}) {
-  throw new Error('Function not implemented.');
 }

@@ -1,22 +1,24 @@
-import { ModalProps, Sx } from '@mantine/core';
-import { OpenConfirmModalParams } from '../../context/modal-context/ModalRootCustom';
+import { Sx } from '@mantine/core';
 import { FormFieldTypes } from '../general/data/data-table/formField-types';
 import { AllModels } from '../models/allmodels';
 
-export interface _ModalContextStates {
+export type _ModalContextStates = {
   isOpenModal: boolean;
   closeModal: () => void;
   openModal: () => void;
-  modals: ModalProps;
+  modals: CustomModalProps;
   toggleOpenModal: (isOpenModal: boolean) => void;
   openConfirmModal: (confirmModalProps: OpenConfirmModalParams) => void;
-}
+} & OpenConfirmModalParams;
 
 export type BaseModalParams = {
   title: string;
   centered?: boolean;
   children: React.ReactNode;
   fullScreen?: boolean;
+  isOpenModal?: boolean;
+  closeModal: () => void;
+  // modals?: CustomModalProps;
   onCancel?: () => void;
   onConfirm: (data: any) => void | Promise<void>;
 };
@@ -38,6 +40,7 @@ export interface CrudModalParams extends BaseModalParams {
   type: 'crud';
   formFields: FormFieldTypes[];
   crudDocument: AllModels;
+  modals: CustomModalProps;
 }
 export interface CustomModalParams extends BaseModalParams {
   type: 'custom';
@@ -46,8 +49,9 @@ export interface CustomModalParams extends BaseModalParams {
 
 export type OpenConfirmModalParams = ConfirmAlertModalParams | CrudModalParams | CustomModalParams;
 
-export type ModalProps = OpenConfirmModalParams & {
+export type CustomModalProps = OpenConfirmModalParams & {
   id: string;
+  type: string;
   fullScreen?: boolean;
   labels: {
     confirm?: string;

@@ -1,13 +1,11 @@
-import { useDisclosure } from '@mantine/hooks';
+import { useDisclosure, useMediaQuery } from '@mantine/hooks';
 import { Modal, Group, Button, useMantineTheme } from '@mantine/core';
-import { useMediaQuery } from '@mantine/hooks';
 
 export function DeleteAlertModal() {
   const [opened, { open, close }] = useDisclosure(false);
   const theme = useMantineTheme();
 
   const isMobile = useMediaQuery('(max-width: 600px)');
-  console.log(isMobile);
   return (
     <>
       <Modal

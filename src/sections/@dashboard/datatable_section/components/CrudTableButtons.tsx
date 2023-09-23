@@ -1,15 +1,16 @@
 import { Button, Group, LoadingOverlay, createStyles } from '@mantine/core';
 import React, { ChangeEvent, useCallback, useRef, useState } from 'react';
+import { showNotification } from '@mantine/notifications';
 import { FlattenSectionData } from '../../../../data';
 import { useCrudSliceStore } from '../../../../redux/features/crud/crudSlice';
 import { Sections } from '../../../../types/general/data/sections-type';
 import { useDrawerContext } from '../../../../context/DataTableDrawerContext';
 import { dashboardStyle } from '../../../../styles/global-useStyles';
-import { use_ModalContext } from '../../../../context/modal-context/_ModalContext';
+import { useCustomModalContext } from '../../../../context/modal-context/_ModalContext';
 import axiosInstance from '../../../../utils/axios-instance';
 import { PATH_API } from '../../../../path/path-api';
 import { sleep } from '../../../../utils/helpers/helper-functions';
-import { showNotification } from '@mantine/notifications';
+
 const useStyles = dashboardStyle;
 const useStyles2 = createStyles({
   displayNone: {
@@ -25,7 +26,7 @@ export const CrudTableButtons = ({
 }) => {
   const { selectCrudDocument, setCrudDocuments } = useCrudSliceStore();
   const { openDrawer } = useDrawerContext();
-  const { openConfirmModal } = use_ModalContext();
+  const { openConfirmModal } = useCustomModalContext();
   const { classes } = useStyles();
   const { classes: classes2 } = useStyles2();
   const fileInput = useRef<HTMLInputElement>(null);

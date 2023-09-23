@@ -9,19 +9,19 @@ import {
 } from '@mantine/core';
 import React, { useEffect, useState } from 'react';
 import useSWR from 'swr';
+import { AxiosError } from 'axios';
+import { useForm } from '@mantine/form';
+import { useRouter } from 'next/router';
+import { hideNotification, notifications } from '@mantine/notifications';
 import { PATH_API } from '../../../path/path-api';
 import axiosInstance from '../../../utils/axios-instance';
 import { useCookieContext } from '../../../context/CookieContext';
 import LoadingScreen from '../../../components/screen/LoadingScreen';
-import { AxiosError } from 'axios';
 import useAuth from '../../../../hooks/useAuth';
-import { useForm } from '@mantine/form';
-import { useRouter } from 'next/router';
 import { useCrudSelectors, useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
 import { getEntityFromUrl, sleep } from '../../../utils/helpers/helper-functions';
 import { Sections } from '../../../types/general/data/sections-type';
-import { use_ModalContext } from '../../../context/modal-context/_ModalContext';
-import { hideNotification, notifications } from '@mantine/notifications';
+import { useCustomModalContext } from '../../../context/modal-context/_ModalContext';
 import { SpaceModel } from '../../../types/models/space-model';
 
 const fetchMainSpaces = async () => {
@@ -35,7 +35,7 @@ const AddMaintainerModal = () => {
 
   const [submitting, setSubmitting] = useState(false);
 
-  const { closeModal } = use_ModalContext();
+  const { closeModal } = useCustomModalContext();
 
   const { user } = useAuth();
   const router = useRouter();

@@ -18,6 +18,8 @@ import useAuth from '../../../hooks/useAuth';
 import { useCookieContext } from '../../context/CookieContext';
 import { SpaceModel } from '../../types/models/space-model';
 import { ParsedQueryCustom } from '../../types/nextjs-custom-types/useRouter-types';
+import { profilePageStyle } from '../../styles/global-useStyles';
+import { ChooseSpaceSection } from '../../sections/@login_signup/choose-space/ChooseSpaceSection';
 
 const useStyles = createStyles((theme) => ({
   pinContainer: {
@@ -30,7 +32,6 @@ const useStyles = createStyles((theme) => ({
 }));
 const fetchSpaces = async (organizationId: string) => {
   if (!organizationId) return null;
-  console.log(organizationId);
   const res = await axiosInstance.get(`${PATH_API.organizationCookie}/${organizationId}`);
   return res.data.data;
 };
@@ -39,6 +40,7 @@ const ChooseSpaceInOrganizationPage = () => {
   const router: NextRouter & { query: ParsedQueryCustom; pathname: string } = useRouter();
   const { user } = useAuth();
   const { classes, cx, theme } = useStyles();
+  const { classes: classes2 } = profilePageStyle();
   const { setCurrentOrganization } = useCookieContext();
 
   useEffect(() => {
@@ -59,41 +61,31 @@ const ChooseSpaceInOrganizationPage = () => {
     router.push(PATH_CLIENT.root);
   };
   if (!spaces) return <p>loading...</p>;
-  return (
-    <Stack>
-      <Group position="apart" align="center" pt={16}>
-        <Text variant="text" size={36} weight={600} align="center">
-          Choose a space
-        </Text>
-      </Group>
-      <Divider />
-
-      <Box
-        className={classes.pinContainer}
-        py="xl" /* cols={2} breakpoints={[{ maxWidth: 'sm', cols: 1 }]} */
-      >
-        {user?.role === 'super_admin' && (
-          <CardArticleVerticalTextCenter
-            data={{
-              href: PATH_CLIENT.chooseOrganization,
-              _id: '',
-              name: 'Back',
-              address: '',
-              createdAt: '',
-            }}
-          />
-        )}
-
-        {spaces.map((rootSpace) => (
-          <CardArticleVerticalTextBottom
-            key={rootSpace._id}
-            data={rootSpace as CardData}
-            onClick={() => handleSpaceSelected(rootSpace._id)}
-          />
-        ))}
-      </Box>
-    </Stack>
-  );
+  return <ChooseSpaceSection spaces={spaces} />;
+  // return (
+  //   <Box className={classes2.container}>
+  //     <Box>
+  //       <Button component={Link} href={PATH_CLIENT.chooseOrganization} variant="outline">
+  //         Back
+  //       </Button>
+  //     </Box>
+  //     <Text variant="text" size={36} weight={600} align="center">
+  //       Choose a space
+  //     </Text>
+  //     <Box
+  //       className={classes.pinContainer}
+  //       py="xl" /* cols={2} breakpoints={[{ maxWidth: 'sm', cols: 1 }]} */
+  //     >
+  //       {spaces.map((rootSpace) => (
+  //         <CardArticleVerticalTextBottom
+  //           key={rootSpace._id}
+  //           data={rootSpace as CardData}
+  //           onClick={() => handleSpaceSelected(rootSpace._id)}
+  //         />
+  //       ))}
+  //     </Box>
+  //   </Box>
+  // );
 };
 
 ChooseSpaceInOrganizationPage.getLayout = (page: ReactElement) => {

@@ -24,14 +24,12 @@ const useStyles = createStyles((theme) => ({
     textDecoration: 'none',
   },
   card: {
-    // backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.white,
     height: 500,
-    // width: 300,
-    // padding: 10,
-    // display: 'flex',
-    // flexDirection: 'column',
-    // gridRowEnd: 'span 1',
     cursor: 'pointer',
+    [theme.fn.smallerThan('sm')]: {
+      height: 300,
+      width: 300,
+    },
     // '&:hover': {
     //   backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[0],
     // },

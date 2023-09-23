@@ -8,11 +8,12 @@ import {
   Box,
   Stack,
   BackgroundImage,
+  Sx,
 } from '@mantine/core';
 import Link from 'next/link';
 import { threadId } from 'worker_threads';
-import { CARD_LINK_PATH, PATH_CLIENT } from '../../path/path-frontend';
 import { useRouter } from 'next/router';
+import { CARD_LINK_PATH, PATH_CLIENT } from '../../path/path-frontend';
 import { PATH_IMAGE } from '../../lib/image-paths';
 import { UserModel } from '../../types/models/user-model';
 
@@ -88,7 +89,7 @@ export interface CardData {
 interface CardArticleImageDescFooterVerticalProps {
   // data: SpaceModel | OrganizationModel;
 }
-export function CardArticleVerticalTextCenter({ data }: { data?: CardData }) {
+export function CardArticleVerticalTextCenter({ data, sx }: { data?: CardData; sx?: Sx }) {
   // const description =
   //   data.description?.length > 50 ? `${data.description.substring(0, 50)}...` : data.description;
   const { classes, cx } = useStyles();
@@ -96,12 +97,12 @@ export function CardArticleVerticalTextCenter({ data }: { data?: CardData }) {
 
   return (
     <Link href={data?.href || ''} className={classes.link}>
-      <Card withBorder radius="md" p={0} className={classes.card}>
-        <BackgroundImage className={classes.bgImage} src={''} radius="sm">
+      <Card withBorder radius="md" p={0} className={classes.card} sx={sx}>
+        <BackgroundImage className={classes.bgImage} src="" radius="sm">
           <Box className={classes.bgImageGradient} />
 
           <div className={classes.body}>
-            <Text className={cx(classes.title, classes.appear)} /* mt="xs" mb="xs" */>
+            <Text className={cx(classes.title, classes.appear)}>
               {data?.name}
               {/* title */}
             </Text>
@@ -117,7 +118,7 @@ export function CardArticleVerticalTextCenter({ data }: { data?: CardData }) {
             <Group noWrap className={classes.appear} spacing="xs">
               {data?.user && (
                 <Group spacing="xs" noWrap>
-                  <Avatar size={20} src={''} />
+                  <Avatar size={20} src="" />
                   <Text size="xs">{/**username */}</Text>
                 </Group>
               )}

@@ -1,13 +1,13 @@
 import { Button, Skeleton } from '@mantine/core';
 import React, { useState } from 'react';
+import { notifications } from '@mantine/notifications';
 import { useCrudSelectors, useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
 import { useCookieContext } from '../../../context/CookieContext';
 import { getEntityFromUrl, sleep } from '../../../utils/helpers/helper-functions';
 import { MaintainerModel } from '../../../types/models/maintainer-model';
 import axiosInstance from '../../../utils/axios-instance';
 import { PATH_API } from '../../../path/path-api';
-import { use_ModalContext } from '../../../context/modal-context/_ModalContext';
-import { notifications } from '@mantine/notifications';
+import { useCustomModalContext } from '../../../context/modal-context/_ModalContext';
 
 export const AddRemoveButton = ({ onClick }: { onClick: () => void }) => {
   const _entity = getEntityFromUrl();
@@ -17,7 +17,7 @@ export const AddRemoveButton = ({ onClick }: { onClick: () => void }) => {
 
   const { crudDocument: document } = useCrudSelectors<MaintainerModel>(_entity);
   const { currentSpace } = useCookieContext();
-  const { openConfirmModal } = use_ModalContext();
+  const { openConfirmModal } = useCustomModalContext();
   const handleRemove = function () {
     openConfirmModal({
       labels: {
@@ -45,10 +45,11 @@ export const AddRemoveButton = ({ onClick }: { onClick: () => void }) => {
       await sleep(1500);
 
       if (!currentSpace?._id) throw new Error('Building not selected: select a building at navbar');
-      if (!document?._id)
+      if (!document?._id) {
         throw new Error(
           'Error: maintainer id is not found. If error persists please contact flatmates support team.'
         );
+      }
       const res = await axiosInstance.delete(
         `${PATH_API.maintainersSpace}?maintainer=${document._id}&space=${currentSpace._id}`
       );

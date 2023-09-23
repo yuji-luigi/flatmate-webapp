@@ -18,6 +18,8 @@ import { CookieContextProvider } from '../context/CookieContext';
 import { FilterContextProvider } from '../context/FilterContext';
 import { _ModalContextProvider } from '../context/modal-context/_ModalContext';
 import '../styles/global.css';
+import { ModalRootCustom } from '../context/modal-context/ModalRootCustom';
+import { CardOverride } from '../overrides/CardOverrides';
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -61,6 +63,9 @@ function App(props: AppProps & { colorScheme: ColorScheme }) {
                 defaultGradient: { deg: 45, from: 'yellow', to: 'gold' }, // primaryColor: 'sw-dark-blue',
                 colorScheme,
                 fontFamily: 'Lato, sans-serif',
+                components: {
+                  Card: CardOverride(colorScheme),
+                },
               }}
               withGlobalStyles
               withNormalizeCSS
@@ -72,6 +77,7 @@ function App(props: AppProps & { colorScheme: ColorScheme }) {
                       <FilterContextProvider>
                         <Notifications />
                         {getLayout(<Component {...pageProps} />)}
+                        <ModalRootCustom />
                       </FilterContextProvider>
                     </_ModalContextProvider>
                   </DrawerContextProvider>

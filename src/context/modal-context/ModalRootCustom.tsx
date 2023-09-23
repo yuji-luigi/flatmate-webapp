@@ -2,16 +2,17 @@ import { useDisclosure, useMediaQuery } from '@mantine/hooks';
 import { Modal, Group, Button, Stack, Box, Sx, LoadingOverlay } from '@mantine/core';
 import { ReactNode, useState } from 'react';
 import { showNotification } from '@mantine/notifications';
-import { use_ModalContext } from './_ModalContext';
+
 import { CrudModal } from './CrudModal';
 import CustomModal from './CustomModal';
 import { FormFieldTypes } from '../../types/general/data/data-table/formField-types';
 import { constructErrorNotificationData } from '../../data/showNofification/notificationObjects';
 import { AllModels } from '../../types/models/allmodels';
+import { useCustomModalContext } from './_ModalContext';
 
 export function ModalRootCustom() {
   const isMobile = useMediaQuery('(max-width: 600px)');
-  const { isOpenModal: opened, closeModal: close, modals } = use_ModalContext();
+  const { isOpenModal: opened, closeModal: close, modals } = useCustomModalContext();
   const isAlert = modals.type === 'alert';
   const [submitting, setSubmitting] = useState(false);
   const handleCancel = () => {

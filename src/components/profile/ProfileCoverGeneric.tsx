@@ -20,7 +20,7 @@ import {
 } from '../../redux/features/crud/crudSlice';
 import { getEntityFromUrl, sleep } from '../../utils/helpers/helper-functions';
 import { uploadFileAndGetModelId } from '../../utils/upload-helper';
-import { use_ModalContext } from '../../context/modal-context/_ModalContext';
+import { useCustomModalContext } from '../../context/modal-context/_ModalContext';
 import { Sections } from '../../types/general/data/sections-type';
 import { FormFieldTypes } from '../../types/general/data/data-table/formField-types';
 import { MAX_FILE_SIZE } from '../../lib/files/file-sizes';
@@ -119,7 +119,7 @@ const ProfileCoverGeneric = ({
     _entity
   );
   const coverInputRef = useRef<HTMLInputElement>(null);
-  const { openConfirmModal } = use_ModalContext();
+  const { openConfirmModal } = useCustomModalContext();
 
   const [selectedImage, setSelectedImage] = useState<string | undefined>(crudDocument?.avatar?.url);
   const [selectedCover, setSelectedCover] = useState<string | undefined>(crudDocument?.cover?.url);

@@ -13,7 +13,7 @@ import {
   constructErrorNotificationData,
 } from '../../../../../data/showNofification/notificationObjects';
 import { QrCodeView } from '../../../../qr-code/QrCodeView';
-import { use_ModalContext } from '../../../../../context/modal-context/_ModalContext';
+import { useCustomModalContext } from '../../../../../context/modal-context/_ModalContext';
 import { getEntityFromUrl, sleep } from '../../../../../utils/helpers/helper-functions';
 
 export const QrCodeModalContent = ({
@@ -23,7 +23,7 @@ export const QrCodeModalContent = ({
   authToken: HiddenAuthTokenInterface;
   rowData: MongooseBaseModel;
 }) => {
-  const { closeModal } = use_ModalContext();
+  const { closeModal } = useCustomModalContext();
   const [isLoading, setIsLoading] = useState(false);
   const _entity = getEntityFromUrl();
   const sendEmailToUser = async () => {

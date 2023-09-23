@@ -21,8 +21,10 @@ const useStyles = createStyles((theme) => ({
     '&:hover': {
       backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[0],
     },
+    [theme.fn.smallerThan('sm')]: {
+      minWidth: 300,
+    },
   },
-
   title: {
     fontWeight: 800,
     fontSize: 20,

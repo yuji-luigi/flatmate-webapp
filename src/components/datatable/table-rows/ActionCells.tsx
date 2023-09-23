@@ -1,5 +1,5 @@
-import { Group, ActionIcon, Stack } from '@mantine/core';
-import { IconPencil, IconTrash } from '@tabler/icons-react';
+import { Group, ActionIcon, Stack, Text } from '@mantine/core';
+import { IconPencil, IconTrash, IconQrcode } from '@tabler/icons-react';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { useDrawerContext } from '../../../context/DataTableDrawerContext';
@@ -7,13 +7,12 @@ import { usePaginationContext } from '../../../context/PaginationContext';
 import { useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
 import { DialogDefault } from '../../modal/Dialog';
 import { DeleteAlertModal } from '../../modal/DeleteAlertModal';
-import { use_ModalContext } from '../../../context/modal-context/_ModalContext';
-import { Text } from '@mantine/core';
+import { useCustomModalContext } from '../../../context/modal-context/_ModalContext';
 import { Sections } from '../../../types/general/data/sections-type';
-import { IconQrcode } from '@tabler/icons-react';
 import { QrCodeButton } from './tablecell/action-cells/QrCodeButton';
 import { AllModels } from '../../../types/models/allmodels';
 import { MongooseBaseModel } from '../../../types/models/mongoose-base-model';
+
 export function ActionCells({
   rowData,
   overridingEntity,
@@ -22,7 +21,7 @@ export function ActionCells({
   overridingEntity?: Sections;
 }) {
   const { paginationQuery } = usePaginationContext();
-  const { openModal, openConfirmModal, closeModal } = use_ModalContext();
+  const { openModal, openConfirmModal, closeModal } = useCustomModalContext();
 
   /** use hook context */
   const { openDrawer } = useDrawerContext();

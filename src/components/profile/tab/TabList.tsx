@@ -1,6 +1,7 @@
 import { Box, Group, Tabs } from '@mantine/core';
 import React from 'react';
 import { SettingButtonSpaceHome } from '../../../sections/@dashboard/dashboard_top/components/SettingButtonSpaceHome';
+import { useCustomMQuery } from '../../../../hooks/useCustomMQuery';
 
 interface List {
   icon: React.ReactNode;
@@ -10,6 +11,7 @@ interface List {
   // component: React.ReactNode;
 }
 export const TabList = ({ list, spaceSetting }: { spaceSetting?: boolean; list: List[] }) => {
+  const { isMobile } = useCustomMQuery();
   return (
     <Tabs.List position="left">
       <Box
@@ -23,7 +25,7 @@ export const TabList = ({ list, spaceSetting }: { spaceSetting?: boolean; list: 
         <Group>
           {list.map((item) => (
             <Tabs.Tab icon={item.icon} value={item.value} key={item.label}>
-              {item.label}
+              {isMobile ? '' : item.label}
             </Tabs.Tab>
           ))}
         </Group>

@@ -17,7 +17,7 @@ import { RANDOM_UPLOAD_MODELS } from '../../../../lib/image-paths';
 import PostFeedCard from '../../../../components/posts/feed/PostFeedCard';
 import { lorem100 } from '../../../../_mock/strings';
 import { maintainersTableData } from '../../../../../json/dataTable/formfields/maintainersTableData';
-import { use_ModalContext } from '../../../../context/modal-context/_ModalContext';
+import { useCustomModalContext } from '../../../../context/modal-context/_ModalContext';
 import AddMaintainerModal from '../../../../sections/@dashboard/maintenance_detail_page/AddMaintainerModal';
 
 import { profilePageStyle } from '../../../../styles/global-useStyles';
@@ -37,7 +37,7 @@ const MaintainerDetailsPage = () => {
   const { classes } = useStyles();
   const router = useRouter();
 
-  const { openConfirmModal } = use_ModalContext();
+  const { openConfirmModal } = useCustomModalContext();
 
   const _entity = getEntityFromUrl();
   const {
