@@ -39,8 +39,9 @@ const useStore = () => {
       const spaceName = getCookie('spaceName');
       const spaceId = getCookie('spaceId');
       const spaceSlug = getCookie('spaceSlug');
+      const spaceImage = getCookie('spaceImage');
       if (isString(spaceId) && isString(spaceName) && isString(spaceSlug)) {
-        setCurrentSpace({ _id: spaceId, name: spaceName, slug: spaceSlug });
+        setCurrentSpace({ _id: spaceId, name: spaceName, slug: spaceSlug, image: spaceImage });
       }
     }
   }, []);

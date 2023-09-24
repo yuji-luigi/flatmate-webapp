@@ -7,6 +7,7 @@ import { eventsStatTableData } from '../../../../../json/dataTable/stat-formfiel
 
 const mockData = [
   {
+    _id: 'Ristrutturazione impianto elettrico',
     title: 'Ristrutturazione impianto elettrico',
     description: 'Ristrutturazione impianto elettrico.....',
     isMaintenance: 'manutenzione',
@@ -15,6 +16,7 @@ const mockData = [
     toDate: '2021-08-21',
   },
   {
+    _id: 'BBQ Party',
     title: 'BBQ Party',
     description: 'Facciamo una bella grigliata tutti insieme...',
     isMaintenance: '',
@@ -23,6 +25,7 @@ const mockData = [
     toDate: '2021-10-01',
   },
   {
+    _id: 'Plumbing Repair',
     title: 'Plumbing Repair',
     description: 'Riparazione impianto idraulico...',
     isMaintenance: 'manutenzione',
@@ -31,6 +34,7 @@ const mockData = [
     toDate: '2021-09-16',
   },
   {
+    _id: 'Community Meeting',
     title: 'Community Meeting',
     description: 'Incontro della comunità...',
     isMaintenance: '',
@@ -39,6 +43,7 @@ const mockData = [
     toDate: '2021-09-10',
   },
   {
+    _id: 'Roof Inspection',
     title: 'Roof Inspection',
     description: 'Ispezione del tetto...',
     isMaintenance: 'manutenzione',
@@ -47,6 +52,7 @@ const mockData = [
     toDate: '2021-09-25',
   },
   {
+    _id: 'Gardening Workshop',
     title: 'Gardening Workshop',
     description: 'Workshop di giardinaggio...',
     isMaintenance: '',
@@ -55,6 +61,7 @@ const mockData = [
     toDate: '2021-10-05',
   },
   // {
+  //_id title: 'Elevator Maintenance',
   //   title: 'Elevator Maintenance',
   //   description: 'Manutenzione dell\'ascensore...',
   //   isMaintenance: 'manutenzione',
@@ -63,6 +70,7 @@ const mockData = [
   //   toDate: '2021-08-10',
   // },
   // {
+  //_id title: 'Community Clean-Up',
   //   title: 'Community Clean-Up',
   //   description: 'Pulizia della comunità...',
   //   isMaintenance: '',
@@ -71,6 +79,7 @@ const mockData = [
   //   toDate: '2021-09-12',
   // },
   // {
+  //_id title: 'Swimming Pool Maintenance',
   //   title: 'Swimming Pool Maintenance',
   //   description: 'Manutenzione della piscina...',
   //   isMaintenance: 'manutenzione',
@@ -79,6 +88,7 @@ const mockData = [
   //   toDate: '2021-08-16',
   // },
   // {
+  //_id title: 'Movie Night',
   //   title: 'Movie Night',
   //   description: 'Serata cinematografica...',
   //   isMaintenance: '',
@@ -87,6 +97,7 @@ const mockData = [
   //   toDate: '2021-10-08',
   // },
   // {
+  //_id title: 'Security System Upgrade',
   //   title: 'Security System Upgrade',
   //   description: 'Aggiornamento del sistema di sicurezza...',
   //   isMaintenance: 'manutenzione',
@@ -95,6 +106,7 @@ const mockData = [
   //   toDate: '2021-08-23',
   // },
   // {
+  //_id title: 'Painting Workshop',
   //   title: 'Painting Workshop',
   //   description: 'Workshop di pittura...',
   //   isMaintenance: '',
@@ -103,6 +115,7 @@ const mockData = [
   //   toDate: '2021-10-12',
   // },
   // {
+  //_id title: 'Heating System Repair',
   //   title: 'Heating System Repair',
   //   description: 'Riparazione del sistema di riscaldamento...',
   //   isMaintenance: 'manutenzione',
@@ -111,6 +124,7 @@ const mockData = [
   //   toDate: '2021-09-21',
   // },
   // {
+  //_id title: 'Fitness Class',
   //   title: 'Fitness Class',
   //   description: 'Classe di fitness...',
   //   isMaintenance: '',
@@ -119,6 +133,7 @@ const mockData = [
   //   toDate: '2021-10-15',
   // },
   // {
+  //_id title: 'Building Inspection',
   //   title: 'Building Inspection',
   //   description: 'Ispezione dell\'edificio...',
   //   isMaintenance: 'manutenzione',

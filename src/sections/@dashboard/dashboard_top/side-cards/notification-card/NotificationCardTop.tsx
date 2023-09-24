@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, memo } from 'react';
 import { Indicator, Stack, Text } from '@mantine/core';
 import Link from 'next/link';
 import { Icons } from '../../../../../data/icons/icons';
@@ -8,7 +8,7 @@ import { PATH_CLIENT } from '../../../../../path/path-frontend';
 import { dashboardStyle } from '../../../../../styles/global-useStyles';
 import CardWithTitle from '../../../../../components/profile/side/CardWithTitle';
 
-export const NotificationCardTop = () => {
+export const NotificationCardTop = memo(() => {
   const { classes: classes1 } = dashboardStyle();
 
   return (
@@ -27,4 +27,4 @@ export const NotificationCardTop = () => {
       </Stack>
     </CardWithTitle>
   );
-};
+});

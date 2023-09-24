@@ -5,6 +5,7 @@ export const sideCardStyles = createStyles((theme) => ({
   card: {
     borderRadius: RADIUS.CARD,
     height: '100%',
+    flex: 1,
   },
   textsContainer: {
     display: 'flex',

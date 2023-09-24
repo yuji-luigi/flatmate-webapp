@@ -1,4 +1,4 @@
-import { Box } from '@mantine/core';
+import { Box, Card } from '@mantine/core';
 // import React, { PureComponent } from 'react';
 // import {
 //   AreaChart,
@@ -16,9 +16,12 @@ import { EventDataTable } from '../statistics/EventDataTable';
 import { StatGridSchema, StatsGrid } from '../../../../components/stats/StatsGrid';
 import statsGridData from '../../../../../json/mock/statsGrid.json';
 
-const StackedAreaChart = dynamic(() => import('../statistics/StackedAreaChart'), {
-  ssr: false, // This will load the component only on the client side.
-});
+const StackedAreaChart = dynamic(
+  () => import('../../../../components/chart/line-area-chart/StackedAreaChart'),
+  {
+    ssr: false, // This will load the component only on the client side.
+  }
+);
 // import { ResponsiveLine } from '@nivo/line';
 // import StackedAreaChart from '../statistics/StacjedAreaChart';
 
@@ -28,9 +31,9 @@ const DashboardSection = () => {
   return (
     <>
       <StatsGrid data={statsGridData as unknown as StatGridSchema[]} />
-      <Box sx={{ height: 400, width: '100%', overflow: 'visible' }}>
+      <Card sx={{ height: 400, width: '100%', overflow: 'visible' }}>
         <StackedAreaChart />
-      </Box>
+      </Card>
       <MaintenanceDatatable />
       <EventDataTable />
     </>

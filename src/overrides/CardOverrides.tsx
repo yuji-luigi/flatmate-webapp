@@ -8,7 +8,7 @@ export const CardOverride = (colorScheme: string) => {
       root: {
         borderRadius: RADIUS.CARD,
         // backgroundColor: bgColor,
-        opacity: 0.85,
+        opacity: 0.8,
       },
     },
   };

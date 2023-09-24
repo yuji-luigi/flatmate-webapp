@@ -1,4 +1,5 @@
 import { UserModel } from '../../models/user-model';
+
 export type IUser = UserModel;
 
 interface CurrentSpace {
@@ -7,6 +8,7 @@ interface CurrentSpace {
   // address: string;
   // organization: ObjectId;
   slug: string;
+  image?: string | null | boolean;
 }
 
 export type JwtReturnType = {
