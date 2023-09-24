@@ -11,8 +11,7 @@ import { useCrudSelectors } from '../../../../redux/features/crud/crudSlice';
 
 import { SpacePostSection } from './SpacePostSection';
 import { SpaceMaintenanceSection } from './SpaceMaintenanceSection';
-import { TabList } from '../../../../components/profile/tab/TabList';
-import { TabPanels } from '../../../../components/profile/tab/TabPanels';
+
 import { MaintainerModel } from '../../../../types/models/maintainer-model';
 import { MaintenanceListCard } from '../side-cards/maintenance-card/MaintenancesCard';
 import { SpaceModel } from '../../../../types/models/space-model';
@@ -23,6 +22,9 @@ import { NotificationCardTop } from '../side-cards/notification-card/Notificatio
 import DashboardSection from './DashboardTopSection';
 import { TAB_LIST_CONFIG } from './tabList';
 import { useTabContext } from '../../../../context/tab-context/TabContextProvider';
+import { useCustomMQuery } from '../../../../../hooks/useCustomMQuery';
+import { TabList } from '../../../../components/tab/TabList';
+import { TabPanels } from '../../../../components/tab/TabPanels';
 
 // use style from global-useStyles
 const useStyles = dashboardStyle;
@@ -63,6 +65,7 @@ const SpaceHomeSection = () => {
   // put 2 styles together in one object
   const classes = { ...classes1, ...classes2 };
   const { crudDocument: document } = useCrudSelectors<SpaceModel>(entity);
+  const { isMobile } = useCustomMQuery();
   const homeSummary = (
     <Grid justify="stretch" mt={16}>
       <Grid.Col md={4} span={12} sx={{ width: '100%', flex: 1 }}>
@@ -88,7 +91,7 @@ const SpaceHomeSection = () => {
         defaultValue={TAB_LIST_CONFIG[0].value}
         sx={{ width: '100%' }}
       > */}
-      {/* <TabList list={TAB_LIST_CONFIG} spaceSetting /> */}
+      {!isMobile && <TabList list={TAB_LIST_CONFIG} spaceSetting />}
       <Box className={classes.box}>
         <Box className={classes.coverTop}>
           {currentTab === TAB_LIST_CONFIG[0].value && homeSummary}

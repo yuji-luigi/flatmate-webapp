@@ -13,7 +13,9 @@ import { useCookieContext } from '../../context/CookieContext';
 import OrganizationSpaceSelect from '../../components/select-custom/OrganizationSpaceSelect';
 import { HeaderCreationModalWrapper } from './header-creation-modal/HeaderCreationModalWrapper';
 import { TAB_LIST_CONFIG } from '../../sections/@dashboard/dashboard_top/sections-in-tabs/tabList';
-import { TabList } from '../../components/profile/tab/TabList';
+import { useCustomMQuery } from '../../../hooks/useCustomMQuery';
+import { TabList } from '../../components/tab/TabList';
+import classesM from './DashboardHeaderSearch.module.css';
 
 const useStyles = createStyles((theme) => ({
   header: {
@@ -27,7 +29,7 @@ const useStyles = createStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-between',
     // justifyContent: 'flex-start',
-    // alignItems: 'center',
+    alignItems: 'center',
   },
 
   burger: {
@@ -96,7 +98,7 @@ export function DashboardHeaderSearch() {
   const { classes } = useStyles();
   const { isOpen, toggleBarOpen } = useLayoutContext();
   const isMediaScreen = useMediaQuery('(max-width: 750px)');
-
+  const { isMobile } = useCustomMQuery();
   const items = links.map((link) => (
     <Link key={link.label} className={classes.link} href={link.link}>
       {link.label}
@@ -118,19 +120,18 @@ export function DashboardHeaderSearch() {
   return (
     <Header fixed height={56} className={classes.header}>
       <div className={classes.inner}>
-        <Group>
-          <Burger className={classes.burger} opened={isOpen} onClick={toggleBarOpen} size="sm" />
-          {/* <LogoBanner link="/" transparent /> */}
+        <Burger className={classes.burger} opened={isOpen} onClick={toggleBarOpen} size="sm" />
+        {!isMobile && (
           <Group ml={5} spacing={5} className={classes.links}>
+            <LogoBanner link="/" transparent />
             {items}
           </Group>
-          <TabList list={TAB_LIST_CONFIG} spaceSetting />
+        )}
+        {isMobile && <TabList list={TAB_LIST_CONFIG} className={classesM.tabList} />}
+        <HeaderCreationModalWrapper />
 
-          <HeaderCreationModalWrapper />
-          {/* <HeaderCreationModal /> */}
-        </Group>
         <Group>
-          {!isMediaScreen && (
+          {!isMobile && (
             <>
               <OrganizationSpaceSelect />
               <ColorSchemeToggle size="lg" />

@@ -1,7 +1,8 @@
 import { Box, Group, Tabs } from '@mantine/core';
 import React from 'react';
-import { SettingButtonSpaceHome } from '../../../sections/@dashboard/dashboard_top/components/SettingButtonSpaceHome';
-import { useCustomMQuery } from '../../../../hooks/useCustomMQuery';
+import { TabsPosition } from '@mantine/core/lib/Tabs/Tabs.types';
+import { useCustomMQuery } from '../../../hooks/useCustomMQuery';
+import { SettingButtonSpaceHome } from '../../sections/@dashboard/dashboard_top/components/SettingButtonSpaceHome';
 
 interface List {
   icon: React.ReactNode;
@@ -10,10 +11,20 @@ interface List {
   component: () => JSX.Element;
   // component: React.ReactNode;
 }
-export const TabList = ({ list, spaceSetting }: { spaceSetting?: boolean; list: List[] }) => {
+export const TabList = ({
+  list,
+  spaceSetting,
+  position = 'left',
+  className,
+}: {
+  spaceSetting?: boolean;
+  list: List[];
+  className?: string;
+  position?: TabsPosition;
+}) => {
   const { isMobile } = useCustomMQuery();
   return (
-    <Tabs.List position="left">
+    <Tabs.List position={position} className={className}>
       <Box
         sx={{
           display: 'flex',
@@ -29,11 +40,7 @@ export const TabList = ({ list, spaceSetting }: { spaceSetting?: boolean; list: 
             </Tabs.Tab>
           ))}
         </Group>
-        {spaceSetting && (
-          // <Box sx={{ justifySelf: 'end', width: '100%' }}>
-          <SettingButtonSpaceHome />
-          // </Box>
-        )}
+        {spaceSetting && <SettingButtonSpaceHome />}
       </Box>
     </Tabs.List>
   );

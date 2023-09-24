@@ -54,7 +54,7 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
 
   return (
     <Tabs
-      classNames={tabClasses}
+      // classNames={tabClasses}
       onTabChange={handleChangeTab}
       keepMounted={false}
       defaultValue={TAB_LIST_CONFIG[0].value}

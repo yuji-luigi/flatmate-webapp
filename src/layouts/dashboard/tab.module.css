@@ -3,7 +3,7 @@
   border: rem(1px) solid light-dark(var(--mantine-color-gray-2), var(--mantine-color-dark-4));
   background-color: light-dark(var(--mantine-color-white), var(--mantine-color-dark-6));
 
-  &:first-of-type {
+  .tab &:first-of-type {
     border-radius: rem(4px) 0 0 rem(4px);
 
     @mixin rtl {
@@ -11,7 +11,7 @@
     }
   }
 
-  &:last-of-type {
+  .tab &:last-of-type {
     border-radius: 0 rem(4px) rem(4px) 0;
 
     @mixin rtl {
@@ -19,7 +19,7 @@
     }
   }
 
-  & + & {
+  .tab & + & {
     border-left-width: 0;
 
     @mixin rtl {
@@ -32,7 +32,7 @@
     background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-5));
   }
 
-  &[data-active] {
+  .tab &[data-active] {
     z-index: 1;
     background-color: var(--mantine-color-blue-filled);
     border-color: var(--mantine-color-blue-filled);
