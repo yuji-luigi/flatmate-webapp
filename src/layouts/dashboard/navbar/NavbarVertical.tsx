@@ -13,6 +13,8 @@ import { ProfilePopover } from '../../../components/navigation/ProfilePopover';
 import { useCookieContext } from '../../../context/CookieContext';
 import { NavbarVerticalItem } from './NavbarVerticalItem';
 import { navbarVerticalStyle } from './navbarStyle';
+import { ColorSchemeToggle } from '../../../components/color-schemeToggle/ColorSchemeToggle';
+import LogoutButton from './LogoutButton';
 
 // type NavbarConfig = { link: string; label: string; icon: TablerIcon };
 // const navBarConfig: NavbarConfig[] = [];
@@ -80,10 +82,7 @@ export function NavbarVertical() {
         {links.map((navbarData) => navbarData)}
 
         <Navbar.Section className={classes.footer}>
-          <Button variant="outline" className={cx(classes.button, classes.link)} onClick={logout}>
-            <Icons.logout className={classes.linkIcon} stroke={1.5} />
-            <span>Logout</span>
-          </Button>
+          <LogoutButton />
           {isMediaScreen && (
             <>
               <Button
@@ -93,7 +92,7 @@ export function NavbarVertical() {
               >
                 Choose {chooseText}
               </Button>
-              {/* <ColorSchemeToggle size="lg" /> */}
+              <ColorSchemeToggle size="lg" />
             </>
           )}
         </Navbar.Section>

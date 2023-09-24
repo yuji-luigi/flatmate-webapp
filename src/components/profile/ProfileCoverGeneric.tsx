@@ -115,9 +115,7 @@ const ProfileCoverGeneric = ({
 
   const { classes } = useStyles();
 
-  const { selectDocumentById, crudDocument } = useCrudSelectors<SpaceModel | MaintainerModel>(
-    _entity
-  );
+  const { crudDocument } = useCrudSelectors<SpaceModel | MaintainerModel>(_entity);
   const coverInputRef = useRef<HTMLInputElement>(null);
   const { openConfirmModal } = useCustomModalContext();
 

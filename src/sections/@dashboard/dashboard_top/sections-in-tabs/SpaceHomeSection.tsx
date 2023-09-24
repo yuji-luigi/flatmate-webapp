@@ -84,7 +84,7 @@ const SpaceHomeSection = () => {
     </Grid>
   );
   if (!document) {
-    router.push('/404');
+    // router.push('/404');
     return <LoadingOverlay visible />;
   }
   return (
