@@ -12,6 +12,8 @@ import { useCookieContext } from '../../context/CookieContext';
 
 import OrganizationSpaceSelect from '../../components/select-custom/OrganizationSpaceSelect';
 import { HeaderCreationModalWrapper } from './header-creation-modal/HeaderCreationModalWrapper';
+import { TAB_LIST_CONFIG } from '../../sections/@dashboard/dashboard_top/sections-in-tabs/tabList';
+import { TabList } from '../../components/profile/tab/TabList';
 
 const useStyles = createStyles((theme) => ({
   header: {
@@ -113,6 +115,31 @@ export function DashboardHeaderSearch() {
   //     setSpaces([{ label: spaceNameCookie, value: spaceId }]);
   //   }
   // }, []);
+  return (
+    <Header fixed height={56} className={classes.header}>
+      <div className={classes.inner}>
+        <Group>
+          <Burger className={classes.burger} opened={isOpen} onClick={toggleBarOpen} size="sm" />
+          {/* <LogoBanner link="/" transparent /> */}
+          <Group ml={5} spacing={5} className={classes.links}>
+            {items}
+          </Group>
+          <TabList list={TAB_LIST_CONFIG} spaceSetting />
+
+          <HeaderCreationModalWrapper />
+          {/* <HeaderCreationModal /> */}
+        </Group>
+        <Group>
+          {!isMediaScreen && (
+            <>
+              <OrganizationSpaceSelect />
+              <ColorSchemeToggle size="lg" />
+            </>
+          )}
+        </Group>
+      </div>
+    </Header>
+  );
   return (
     <Header fixed height={56} className={classes.header}>
       <div className={classes.inner}>

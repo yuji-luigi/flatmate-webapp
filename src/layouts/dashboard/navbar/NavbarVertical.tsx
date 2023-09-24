@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useState } from 'react';
-import { createStyles, getStylesRef, Navbar, ScrollArea, Button } from '@mantine/core';
+import { createStyles, getStylesRef, Navbar, ScrollArea, Button, Stack } from '@mantine/core';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { useMediaQuery } from '@mantine/hooks';
@@ -82,19 +82,21 @@ export function NavbarVertical() {
         {links.map((navbarData) => navbarData)}
 
         <Navbar.Section className={classes.footer}>
-          <LogoutButton />
-          {isMediaScreen && (
-            <>
-              <Button
-                className={cx(classes.button, classes.link)}
-                component={Link}
-                href={chooseHref}
-              >
-                Choose {chooseText}
-              </Button>
-              <ColorSchemeToggle size="lg" />
-            </>
-          )}
+          <Stack>
+            <LogoutButton />
+            {isMediaScreen && (
+              <>
+                <Button
+                  className={cx(classes.button, classes.link)}
+                  component={Link}
+                  href={chooseHref}
+                >
+                  Choose {chooseText}
+                </Button>
+                <ColorSchemeToggle size="lg" sx={{ alignSelf: 'end' }} />
+              </>
+            )}
+          </Stack>
         </Navbar.Section>
       </ScrollArea>
     </Navbar>

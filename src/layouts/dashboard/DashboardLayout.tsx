@@ -1,10 +1,13 @@
 import React, { ReactNode, useEffect, useRef } from 'react';
-import { Box, createStyles, useMantineTheme } from '@mantine/core';
+import { Box, Tabs, createStyles, useMantineTheme } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { DashboardHeaderSearch } from './DashboardHeaderSearch';
 import { NavbarVertical } from './navbar/NavbarVertical';
 import useLayoutContext from '../../../hooks/useLayoutContext';
 import { useCookieContext } from '../../context/CookieContext';
+import { TabContextProvider, useTabContext } from '../../context/tab-context/TabContextProvider';
+import { TAB_LIST_CONFIG } from '../../sections/@dashboard/dashboard_top/sections-in-tabs/tabList';
+import tabClasses from './tab.module.css';
 
 const useStyles = createStyles((theme /* _params, getRef */) => ({
   pageContent: {
@@ -20,6 +23,7 @@ const useStyles = createStyles((theme /* _params, getRef */) => ({
 
 const DashboardLayout = ({ children }: { children: ReactNode }) => {
   const { classes } = useStyles();
+  const { setCurrentTab } = useTabContext();
   const theme = useMantineTheme();
   const { isOpen } = useLayoutContext();
   const matches = useMediaQuery(`(max-width: ${theme.breakpoints.md}px)`);
@@ -29,6 +33,7 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
   const bgColor = theme.colorScheme === 'dark' ? 'rgba(0,0,0,0.85)' : 'rgba(255,255,255,0.85)';
 
   useEffect(() => {
+    setCurrentTab(TAB_LIST_CONFIG[0].value);
     const handleScroll = () => {
       if (containerRef.current) {
         const { scrollY } = window;
@@ -38,16 +43,22 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
         containerRef.current.style.backgroundPosition = `center ${-offset}px`;
       }
     };
-
     window.addEventListener('scroll', handleScroll);
-
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+  const handleChangeTab = (value: string) => {
+    setCurrentTab(value);
+  };
 
   return (
-    <>
+    <Tabs
+      classNames={tabClasses}
+      onTabChange={handleChangeTab}
+      keepMounted={false}
+      defaultValue={TAB_LIST_CONFIG[0].value}
+    >
       <DashboardHeaderSearch />
       <Box
         className={classes.pageContent}
@@ -69,7 +80,7 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
         <NavbarVertical />
         {children}
       </Box>
-    </>
+    </Tabs>
   );
 };
 

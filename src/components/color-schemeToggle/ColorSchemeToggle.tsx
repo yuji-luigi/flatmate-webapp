@@ -31,8 +31,9 @@ export function ColorSchemeToggle(props: Props) {
         variant={props.variant || 'filled'}
         sx={(theme) => ({
           backgroundColor:
-            theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
-          color: theme.colorScheme === 'dark' ? theme.colors.yellow[4] : theme.colors.blue[6],
+            theme.colorScheme === 'light' ? theme.colors.dark[6] : theme.colors.gray[0],
+          color: theme.colors.yellow[4],
+          // color: theme.colorScheme === 'light' ? theme.colors.yellow[4] : theme.colors.blue[6],
           borderColor: theme.colorScheme === 'dark' ? theme.colors.dark[3] : theme.colors.gray[5],
         })}
       >
