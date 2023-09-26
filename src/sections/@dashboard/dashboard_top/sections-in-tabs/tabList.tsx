@@ -1,5 +1,5 @@
 import { Icons } from '../../../../data/icons/icons';
-import DashboardSection from './DashboardTopSection';
+import DashboardSection from './stats-home/DashboardTopSection';
 import { SpaceMaintenanceSection } from './SpaceMaintenanceSection';
 import { SpacePostSection } from './SpacePostSection';
 

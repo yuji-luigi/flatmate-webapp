@@ -1,30 +1,50 @@
-import React, { Fragment, memo } from 'react';
-import { Indicator, Stack, Text } from '@mantine/core';
-import Link from 'next/link';
-import { Icons } from '../../../../../data/icons/icons';
+import React, { memo } from 'react';
+import { Stack } from '@mantine/core';
 import TextWithIcon from '../../../../../components/text/TextWithIcon';
-import { MaintainerModel } from '../../../../../types/models/maintainer-model';
-import { PATH_CLIENT } from '../../../../../path/path-frontend';
 import { dashboardStyle } from '../../../../../styles/global-useStyles';
 import CardWithTitle from '../../../../../components/profile/side/CardWithTitle';
+import { SimpleLinkTile } from '../../../../../components/list/SimpleLinkTile';
 
-export const NotificationCardTop = memo(() => {
-  const { classes: classes1 } = dashboardStyle();
+const data = [
+  {
+    _id: '1',
+    title: 'Notification 1',
+    createdAt: new Date(Date.now() - 1000 * 60 * 60 * 24 * 2),
+  },
+  {
+    _id: '2',
+    title: 'Notification 2',
+    createdAt: new Date(Date.now() - 1000 * 60 * 60 * 24 * 3),
+  },
+  {
+    _id: '3',
+    title: 'Notification 3',
+    createdAt: new Date(Date.now() - 1000 * 60 * 60 * 24 * 4),
+  },
+  {
+    _id: '4',
+    title: 'Notification 4',
+    createdAt: new Date(Date.now() - 1000 * 60 * 60 * 24 * 5),
+  },
+  {
+    _id: '5',
+    title: 'Notification 5',
+    createdAt: new Date(Date.now() - 1000 * 60 * 60 * 24 * 6),
+  },
+];
 
+export const NotificationCardTop = () => {
   return (
     <CardWithTitle indicator="9" title="Notifications">
-      <Stack spacing={16}>
-        <Stack spacing={0}>
-          <TextWithIcon icon={<></>} sx={{ marginBottom: 10 }} text="notification" />
-          <TextWithIcon icon={<></>} sx={{ marginBottom: 10 }} text="notification" />
-          <TextWithIcon icon={<></>} sx={{ marginBottom: 10 }} text="notification" />
-          <TextWithIcon icon={<></>} sx={{ marginBottom: 10 }} text="notification" />
-          <TextWithIcon icon={<></>} sx={{ marginBottom: 10 }} text="notification" />
-          <TextWithIcon icon={<></>} sx={{ marginBottom: 10 }} text="notification" />
-          <TextWithIcon icon={<></>} sx={{ marginBottom: 10 }} text="notification" />
-          <TextWithIcon icon={<></>} sx={{ marginBottom: 10 }} text="notification" />
-        </Stack>
-      </Stack>
+      {data.map((d) => (
+        <SimpleLinkTile
+          _id={d._id}
+          key={d._id}
+          title={d.title}
+          href={`/dashboard/notifications/${d._id}`}
+          createdAt={d.createdAt}
+        />
+      ))}
     </CardWithTitle>
   );
-});
+};

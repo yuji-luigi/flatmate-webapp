@@ -11,7 +11,7 @@ export const TextCell = ({
   cellConfig,
 }: {
   cellValue: string;
-  cellConfig: StaticSelectFormFieldType;
+  cellConfig: FormFieldTypes;
 }) => {
   // return cellValue;
   let displayValue = (

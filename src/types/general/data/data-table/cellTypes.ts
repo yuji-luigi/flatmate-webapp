@@ -19,7 +19,7 @@ type RegularCellFunc = ({
   rowData,
   cellConfig,
 }: {
-  cellConfig: FormFieldInterface;
+  cellConfig: any;
   rowData: any;
   cellValue: string;
 }) => JSX.Element;

@@ -15,11 +15,7 @@ import { getEntityFromUrl, sleep } from '../../utils/helpers/helper-functions';
 import { Sections } from '../../types/general/data/sections-type';
 import { useCrudSliceStore } from '../../redux/features/crud/crudSlice';
 import { UploadModel } from '../../types/models/upload-model';
-import {
-  BaseModalParams,
-  CrudModalParams,
-  OpenConfirmModalParams,
-} from '../../types/modal/modal-context-type';
+import { BaseModalData, CrudModalData, ModalDataTypes } from '../../types/modal/modal-context-type';
 
 const useStyles = createStyles(() => ({
   modal: {
@@ -36,30 +32,27 @@ const useStyles = createStyles(() => ({
   },
 }));
 
-export function CrudModal() {
+type CrudModalProps = {
+  modalData: CrudModalData;
+};
+
+export function CrudModal(props: CrudModalProps) {
+  const { modalData } = props;
   const { classes } = useStyles();
   const entity = getEntityFromUrl() as Sections;
   const { query } = useRouter();
 
   const isMobile = useMediaQuery('(max-width: 600px)');
-  const {
-    isOpenModal: opened,
-    closeModal: close,
-    modals,
-  }: CrudModalParams = useCustomModalContext();
+  const { isOpenModal: opened, closeModal: close } = useCustomModalContext();
   const { updateCrudDocument } = useCrudSliceStore();
   const [submitting, setSubmitting] = useState(false);
-  const handleConfirm = (data: any) => {
-    modals.onConfirm(data);
-    close();
-  };
 
   // type guard
-  // if (modals.type !== 'crud') return null;
+  // if (modalData.type !== 'crud') return null;
 
   const initialValues = useMemo(
-    () => getDefaultValues(modals.formFields, modals.crudDocument),
-    [modals.crudDocument]
+    () => getDefaultValues(modalData.formFields, modalData.crudDocument),
+    [modalData.crudDocument]
   );
   const form = useForm({
     initialValues,
@@ -105,11 +98,11 @@ export function CrudModal() {
     }
 
     /** Modify selected document */
-    if (modals.crudDocument._id) {
+    if (modalData.crudDocument._id) {
       updateCrudDocument({
         entity,
         updateData: reqBody,
-        documentId: modals.crudDocument._id,
+        documentId: modalData.crudDocument._id,
         parentId: query.parentId as string,
       });
     }
@@ -128,50 +121,38 @@ export function CrudModal() {
   };
   if (!opened) return null;
   return (
-    <>
-      <Modal
-        className={classes.modal}
-        opened={opened}
-        centered
-        onClose={close}
-        title={modals.title}
-        size="lg"
-        fullScreen={isMobile}
-      >
-        <Stack className={classes.modalContent}>
-          <form className={classes.form} onSubmit={onSubmit}>
-            {modals.formFields?.map((formField) => (
-              <FormFields
-                // initialValues={initialValues}
-                form={form}
-                formField={formField}
-                key={formField.id}
-              />
-            ))}
-            <CreationToolBar
-              formFields={modals.formFields}
-              form={form}
-              entity={entity}
-              submitButton={
-                <>
-                  <Button fullWidth type="submit" mt="xl" size="md">
-                    Submit{' '}
-                  </Button>
-                  <Button
-                    fullWidth
-                    /* disabled={submitting}  */ mt={0}
-                    color="gray.6"
-                    onClick={close}
-                    size="md"
-                  >
-                    Cancel{' '}
-                  </Button>
-                </>
-              }
-            />
-          </form>
-        </Stack>
-      </Modal>
-    </>
+    <Stack className={classes.modalContent}>
+      <form className={classes.form} onSubmit={onSubmit}>
+        {modalData.formFields?.map((formField) => (
+          <FormFields
+            // initialValues={initialValues}
+            form={form}
+            formField={formField}
+            key={formField.id}
+          />
+        ))}
+        <CreationToolBar
+          formFields={modalData.formFields}
+          form={form}
+          entity={entity}
+          submitButton={
+            <>
+              <Button fullWidth type="submit" mt="xl" size="md">
+                Submit{' '}
+              </Button>
+              <Button
+                fullWidth
+                /* disabled={submitting}  */ mt={0}
+                color="gray.6"
+                onClick={close}
+                size="md"
+              >
+                Cancel{' '}
+              </Button>
+            </>
+          }
+        />
+      </form>
+    </Stack>
   );
 }

@@ -1,26 +1,18 @@
 import React from 'react';
 import { Box, Button, Modal, Stack } from '@mantine/core';
 import { useCustomModalContext } from './_ModalContext';
+import { CustomModalData } from '../../types/modal/modal-context-type';
 
-const CustomModal = () => {
-  const { modals, isOpenModal: opened, closeModal: close } = useCustomModalContext();
+type CustomModalProps = {
+  modalData: CustomModalData;
+};
+
+const CustomModal = (props: CustomModalProps) => {
+  const { modalData } = props;
+  const { isOpenModal: opened, closeModal: close } = useCustomModalContext();
   if (!opened) return null;
-  if (modals.type !== 'custom') return <>something went wrong</>;
 
-  return (
-    <Modal
-      opened={opened}
-      centered={modals.centered}
-      withCloseButton
-      onClose={close}
-      withOverlay
-      withinPortal={false}
-      fullScreen={modals.fullScreen}
-      title={modals.title}
-    >
-      {modals.children}
-    </Modal>
-  );
+  return <>{modalData.children}</>;
 };
 
 export default CustomModal;

@@ -70,30 +70,30 @@ const ChooseRootSpacePage = () => {
   };
 
   return <ChooseSpaceSection spaces={rootSpaces} />;
-  return (
-    <Stack p={32}>
-      <Group position="apart" align="center">
-        <Text variant="text" size={36} weight={600} align="center">
-          {t('choose-building-title')}
-        </Text>
-      </Group>
+  // return (
+  //   <Stack p={32}>
+  //     <Group position="apart" align="center">
+  //       <Text variant="text" size={36} weight={600} align="center">
+  //         {t('choose-building-title')}
+  //       </Text>
+  //     </Group>
 
-      <Box
-        className={classes.pinContainer}
-        py="xl" /* cols={2} breakpoints={[{ maxWidth: 'sm', cols: 1 }]} */
-      >
-        {rootSpaces.map((rootSpace) => (
-          <CardArticleVerticalTextBottom
-            key={rootSpace._id}
-            data={rootSpace as CardData}
-            // image={rootSpace.cover?.url}
-            onClick={() => handleSpaceSelected(rootSpace)}
-            // href={`${hrefRoot}/${rootSpace._id}`}
-          />
-        ))}
-      </Box>
-    </Stack>
-  );
+  //     <Box
+  //       className={classes.pinContainer}
+  //       py="xl" /* cols={2} breakpoints={[{ maxWidth: 'sm', cols: 1 }]} */
+  //     >
+  //       {rootSpaces.map((rootSpace) => (
+  //         <CardArticleVerticalTextBottom
+  //           key={rootSpace._id}
+  //           data={rootSpace as CardData}
+  //           // image={rootSpace.cover?.url}
+  //           onClick={() => handleSpaceSelected(rootSpace)}
+  //           // href={`${hrefRoot}/${rootSpace._id}`}
+  //         />
+  //       ))}
+  //     </Box>
+  //   </Stack>
+  // );
 };
 
 ChooseRootSpacePage.getLayout = (page: ReactElement) => <Layout variant="main">{page}</Layout>;

@@ -1,15 +1,14 @@
 import React, { Fragment } from 'react';
-import CardWithTitle from '../../../../../components/profile/side/CardWithTitle';
-import { Group, Stack, Text } from '@mantine/core';
+import { Stack, Text } from '@mantine/core';
 import Link from 'next/link';
-import maintenances from '../../../../../pages/dashboard/maintenances';
+import CardWithTitle from '../../../../../components/profile/side/CardWithTitle';
 import { dashboardStyle } from '../../../../../styles/global-useStyles';
 import { useCrudSelectors } from '../../../../../redux/features/crud/crudSlice';
 import { PATH_CLIENT } from '../../../../../path/path-frontend';
 import { MaintenanceModel } from '../../../../../types/models/maintenance-model';
-import TextWithIcon from '../../../../../components/text/TextWithIcon';
 import { intlDateFormat } from '../../../../../utils/helpers/date-formatters';
 import { TEXT_SIZE } from '../../../../../components/text/text-size';
+import { SimpleLinkTile } from '../../../../../components/list/SimpleLinkTile';
 
 const LIST_LIMIT = 5;
 
@@ -25,22 +24,12 @@ export const MaintenanceListCard = () => {
   return (
     <CardWithTitle title={`Maintenances ${totalMaintenances}`}>
       {_maintenances.map((maintenance) => (
-        <Fragment key={maintenance._id}>
-          <Link
-            className={classes1.navList}
-            href={`${PATH_CLIENT.maintenances}/${maintenance._id}`}
-            key={maintenance._id}
-          >
-            <Stack spacing={0}>
-              <Text fw={800} size={TEXT_SIZE.cardTile}>
-                {maintenance.title.toUpperCase()}
-              </Text>
-              <Text fw="lighter" size={TEXT_SIZE.cardTile}>
-                {intlDateFormat(maintenance.createdAt)}
-              </Text>
-            </Stack>
-          </Link>
-        </Fragment>
+        <SimpleLinkTile
+          _id={maintenance._id}
+          key={maintenance._id}
+          title={maintenance.title}
+          href={`${PATH_CLIENT.maintenances}/${maintenance._id}`}
+        />
       ))}
       {showMore && (
         <Link className={cx(classes1.navList)} href="/dashboard/maintenances">

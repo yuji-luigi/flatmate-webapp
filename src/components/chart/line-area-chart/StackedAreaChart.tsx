@@ -5,6 +5,8 @@ import { LabelLayerCustom } from './LabelLayerCustom';
 import { LabelLayerCustomMini } from './LabelLayerCustomMini';
 
 function StackedAreaChart() {
+  const { isMobile } = useCustomMQuery();
+  const mx = isMobile ? 30 : 50;
   const data = [
     {
       id: 'A',
@@ -38,7 +40,7 @@ function StackedAreaChart() {
   return (
     <ResponsiveLine
       data={data}
-      margin={{ top: 70, right: 50, bottom: 50, left: 50 }}
+      margin={{ top: 70, right: mx, bottom: 50, left: mx }}
       xScale={{ type: 'point' }}
       yScale={{ type: 'linear', min: 0, max: 'auto' }}
       curve="monotoneX"
@@ -48,7 +50,6 @@ function StackedAreaChart() {
         return (
           <div
             style={{
-              padding: '6px 12px',
               backgroundColor: '#fff',
               boxShadow: '0 3px 6px rgba(0, 0, 0, 0.1)',
             }}

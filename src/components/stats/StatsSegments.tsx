@@ -30,7 +30,7 @@ const useStyles = createStyles((theme) => ({
 }));
 
 interface StatsSegmentsProps {
-  total: string;
+  total: string | number;
   diff: number;
   data: {
     label: string;
@@ -52,11 +52,11 @@ export function StatsSegments({ total, diff, data }: StatsSegmentsProps) {
   const descriptions = data.map((stat) => (
     <Box key={stat.label} sx={{ borderBottomColor: stat.color }} className={classes.stat}>
       <Text transform="uppercase" size="xs" color="dimmed" weight={700}>
-        {stat.label}
+        {stat.label}label
       </Text>
 
       <Group position="apart" align="flex-end" spacing={0}>
-        <Text weight={700}>{stat.count}</Text>
+        <Text weight={700}>{stat.count}100</Text>
         <Text color={stat.color} weight={700} size="sm" className={classes.statCount}>
           {stat.part}%
         </Text>

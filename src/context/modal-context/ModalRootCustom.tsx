@@ -9,57 +9,35 @@ import { FormFieldTypes } from '../../types/general/data/data-table/formField-ty
 import { constructErrorNotificationData } from '../../data/showNofification/notificationObjects';
 import { AllModels } from '../../types/models/allmodels';
 import { useCustomModalContext } from './_ModalContext';
+import { RegularModal } from './RegularModal';
 
 export function ModalRootCustom() {
-  const isMobile = useMediaQuery('(max-width: 600px)');
-  const { isOpenModal: opened, closeModal: close, modals } = useCustomModalContext();
-  const isAlert = modals.type === 'alert';
-  const [submitting, setSubmitting] = useState(false);
-  const handleCancel = () => {
-    modals.onCancel?.();
-    close();
-  };
-  const handleConfirm = async (data: any) => {
-    try {
-      setSubmitting(true);
-
-      await modals.onConfirm(data);
-      close();
-    } catch (error: any) {
-      showNotification(constructErrorNotificationData(error.message || error));
-    } finally {
-      setSubmitting(false);
-    }
-  };
-
+  const { isOpenModal: opened, closeModal: close, modalData } = useCustomModalContext();
   if (!opened) return null;
 
-  if (modals.type === 'custom') {
-    return <CustomModal />;
+  let modalContent;
+
+  switch (modalData.type) {
+    case 'custom':
+      modalContent = <CustomModal modalData={modalData} />;
+      break;
+    case 'crud':
+      modalContent = <CrudModal modalData={modalData} />;
+      break;
+    default:
+      modalContent = <RegularModal modalData={modalData} />;
   }
-  if (modals.type === 'crud') {
-    return <CrudModal />;
-  }
+  const withinPortal = modalData.withinPortal !== false;
+
   return (
-    <Modal opened={opened} centered={modals.centered} onClose={close} title={modals.title}>
-      {modals.children}
-      <Stack>
-        <Box
-          display="flex"
-          sx={{ flexDirection: isMobile ? 'column' : 'row', gap: 8, justifyContent: 'end' }}
-        >
-          <Button variant="outline" sx={modals.sx.cancel} onClick={handleCancel}>
-            {modals.labels.cancel || 'Cancel'}
-          </Button>
-          <Button
-            sx={{ ...modals.sx.confirm, backgroundColor: isAlert ? 'red' : '' }}
-            onClick={handleConfirm}
-          >
-            {modals.labels.confirm || 'Confirm'}
-          </Button>
-        </Box>
-      </Stack>
-      {submitting && <LoadingOverlay visible />}
+    <Modal
+      opened={opened}
+      withinPortal={withinPortal}
+      centered={modalData.centered}
+      onClose={close}
+      title={modalData.title}
+    >
+      {modalContent}
     </Modal>
   );
 }

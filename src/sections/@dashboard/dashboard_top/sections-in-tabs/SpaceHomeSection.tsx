@@ -19,7 +19,7 @@ import useAuth from '../../../../../hooks/useAuth';
 import { useCookieContext } from '../../../../context/CookieContext';
 import { ExpandedSection } from '../../../../components/grid/ExpandedSection';
 import { NotificationCardTop } from '../side-cards/notification-card/NotificationCardTop';
-import DashboardSection from './DashboardTopSection';
+import DashboardSection from './stats-home/DashboardTopSection';
 import { TAB_LIST_CONFIG } from './tabList';
 import { useTabContext } from '../../../../context/tab-context/TabContextProvider';
 import { useCustomMQuery } from '../../../../../hooks/useCustomMQuery';
@@ -66,39 +66,31 @@ const SpaceHomeSection = () => {
   const classes = { ...classes1, ...classes2 };
   const { crudDocument: document } = useCrudSelectors<SpaceModel>(entity);
   const { isMobile } = useCustomMQuery();
-  const homeSummary = (
-    <Grid justify="stretch" mt={16}>
-      <Grid.Col md={4} span={12} sx={{ width: '100%', flex: 1 }}>
-        <NotificationCardTop />
-      </Grid.Col>
-      <Grid.Col md={4} span={12} sx={{ width: '100%', flex: 1 }}>
-        <MaintenanceListCard />
-      </Grid.Col>
-      <Grid.Col md={4} span={12} sx={{ width: '100%', flex: 1 }}>
-        <MaintenanceListCard />
-      </Grid.Col>
-    </Grid>
-  );
+  // const homeSummary = (
+  //   <Grid justify="stretch" mt={16}>
+  //     <Grid.Col md={4} span={12} sx={{ width: '100%', flex: 1 }}>
+  //       <NotificationCardTop />
+  //     </Grid.Col>
+  //     <Grid.Col md={4} span={12} sx={{ width: '100%', flex: 1 }}>
+  //       <MaintenanceListCard />
+  //     </Grid.Col>
+  //     <Grid.Col md={4} span={12} sx={{ width: '100%', flex: 1 }}>
+  //       <MaintenanceListCard />
+  //     </Grid.Col>
+  //   </Grid>
+  // );
   if (!document) {
     // router.push('/404');
     return <LoadingOverlay visible />;
   }
   return (
     <Box className={classes.container}>
-      {/* <Tabs
-        onTabChange={handleSetTab}
-        keepMounted={false}
-        defaultValue={TAB_LIST_CONFIG[0].value}
-        sx={{ width: '100%' }}
-      > */}
-      {!isMobile && <TabList list={TAB_LIST_CONFIG} spaceSetting />}
       <Box className={classes.box}>
         <Box className={classes.coverTop}>
-          {currentTab === TAB_LIST_CONFIG[0].value && homeSummary}
+          {/* {currentTab === TAB_LIST_CONFIG[0].value && homeSummary} */}
           <TabPanels list={TAB_LIST_CONFIG} />
         </Box>
       </Box>
-      {/* </Tabs> */}
     </Box>
   );
 };

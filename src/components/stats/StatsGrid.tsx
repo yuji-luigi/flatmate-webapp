@@ -1,5 +1,11 @@
 import { createStyles, Group, Paper, SimpleGrid, Text } from '@mantine/core';
-import { IconDiscount2, IconCoin, IconArrowUpRight, IconArrowDownRight } from '@tabler/icons-react';
+import {
+  IconDiscount2,
+  IconCoin,
+  IconArrowUpRight,
+  IconArrowDownRight,
+  TablerIconsProps,
+} from '@tabler/icons-react';
 import { useTranslation } from 'next-i18next';
 import { Icons } from '../../data/icons/icons';
 
@@ -43,7 +49,7 @@ type IconIndex = keyof typeof _icons;
 export type StatGridSchema = {
   title: string;
   value: number;
-  icon?: IconIndex | (() => JSX.Element);
+  icon?: IconIndex | ((props?: TablerIconsProps) => JSX.Element);
   diff?: number;
   unit?: string;
 };

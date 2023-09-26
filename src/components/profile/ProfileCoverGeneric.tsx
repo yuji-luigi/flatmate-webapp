@@ -184,14 +184,6 @@ const ProfileCoverGeneric = ({
       crudDocument,
       formFields,
       title: `Edit ${_entity}`,
-      children: undefined,
-
-      onCancel(): void {
-        throw new Error('Function not implemented.');
-      },
-      onConfirm(_: any): void {
-        throw new Error('Function not implemented.');
-      },
     });
   };
   useEffect(() => {
