@@ -1,12 +1,15 @@
+import { CookieValueTypes } from 'cookies-next';
 import { UserModel } from '../../models/user-model';
+
 export type IUser = UserModel;
 
 interface CurrentSpace {
   _id: string;
   name: string;
-  // address: string;
+  address?: CookieValueTypes;
   // organization: ObjectId;
   slug: string;
+  image: CookieValueTypes;
 }
 
 export type JwtReturnType = {

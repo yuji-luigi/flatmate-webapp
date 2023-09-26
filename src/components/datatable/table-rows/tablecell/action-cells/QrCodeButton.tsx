@@ -34,7 +34,7 @@ export const QrCodeButton = ({ rowData }: { rowData: MongooseBaseModel }) => {
       title: 'QR Code',
       type: 'custom',
       children: <QrCodeModalContent authToken={payload} rowData={rowData} />,
-      onConfirm: () => {},
+      // onConfirm: () => {},
     });
   };
   if (!showQrCode()) {

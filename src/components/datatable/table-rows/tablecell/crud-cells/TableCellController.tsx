@@ -1,5 +1,8 @@
 import React from 'react';
-import { FormFieldTypes } from '../../../../../types/general/data/data-table/formField-types';
+import {
+  FormFieldInterface,
+  FormFieldTypes,
+} from '../../../../../types/general/data/data-table/formField-types';
 import { AvatarCell } from './AvatarCell';
 import { TextCell } from './TextCell';
 import { BooleanCell } from './BooleanCell';

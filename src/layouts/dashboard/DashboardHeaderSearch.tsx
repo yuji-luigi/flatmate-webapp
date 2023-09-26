@@ -1,4 +1,4 @@
-import { createStyles, Header, Group, Burger } from '@mantine/core';
+import { createStyles, Header, Group, Burger, Box } from '@mantine/core';
 // import { useDisclosure } from '@mantine/hooks';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -12,6 +12,10 @@ import { useCookieContext } from '../../context/CookieContext';
 
 import OrganizationSpaceSelect from '../../components/select-custom/OrganizationSpaceSelect';
 import { HeaderCreationModalWrapper } from './header-creation-modal/HeaderCreationModalWrapper';
+import { TAB_LIST_CONFIG } from '../../sections/@dashboard/dashboard_top/sections-in-tabs/tabList';
+import { useCustomMQuery } from '../../../hooks/useCustomMQuery';
+import { TabList } from '../../components/tab/TabList';
+import classesM from './DashboardHeaderSearch.module.css';
 
 const useStyles = createStyles((theme) => ({
   header: {
@@ -24,12 +28,14 @@ const useStyles = createStyles((theme) => ({
     height: 56,
     display: 'flex',
     justifyContent: 'space-between',
+    zIndex: 50,
     // justifyContent: 'flex-start',
-    // alignItems: 'center',
+    alignItems: 'center',
   },
 
   burger: {
     display: 'none',
+    zIndex: 100,
     [theme.fn.smallerThan('md')]: {
       display: 'block',
     },
@@ -94,12 +100,7 @@ export function DashboardHeaderSearch() {
   const { classes } = useStyles();
   const { isOpen, toggleBarOpen } = useLayoutContext();
   const isMediaScreen = useMediaQuery('(max-width: 750px)');
-
-  const items = links.map((link) => (
-    <Link key={link.label} className={classes.link} href={link.link}>
-      {link.label}
-    </Link>
-  ));
+  const { isMobile } = useCustomMQuery();
 
   // useEffect(() => {
   //   const organizationNameCookie = getCookie('organizationName');
@@ -116,17 +117,19 @@ export function DashboardHeaderSearch() {
   return (
     <Header fixed height={56} className={classes.header}>
       <div className={classes.inner}>
-        <Group>
-          <Burger className={classes.burger} opened={isOpen} onClick={toggleBarOpen} size="sm" />
-          <LogoBanner link="/" transparent />
+        <Burger className={classes.burger} opened={isOpen} onClick={toggleBarOpen} size="sm" />
+        {!isMobile && (
           <Group ml={5} spacing={5} className={classes.links}>
-            {items}
+            <LogoBanner link="/" transparent />
           </Group>
-          <HeaderCreationModalWrapper />
-          {/* <HeaderCreationModal /> */}
-        </Group>
+        )}
+        <Box className={classesM.center}>
+          <TabList list={TAB_LIST_CONFIG} className={classesM.tabList} />
+        </Box>
         <Group>
-          {!isMediaScreen && (
+          <HeaderCreationModalWrapper />
+
+          {!isMobile && (
             <>
               <OrganizationSpaceSelect />
               <ColorSchemeToggle size="lg" />
@@ -136,4 +139,27 @@ export function DashboardHeaderSearch() {
       </div>
     </Header>
   );
+  // return (
+  //   <Header fixed height={56} className={classes.header}>
+  //     <div className={classes.inner}>
+  //       <Group>
+  //         <Burger className={classes.burger} opened={isOpen} onClick={toggleBarOpen} size="sm" />
+  //         <LogoBanner link="/" transparent />
+  //         <Group ml={5} spacing={5} className={classes.links}>
+  //           {items}
+  //         </Group>
+  //         <HeaderCreationModalWrapper />
+  //         {/* <HeaderCreationModal /> */}
+  //       </Group>
+  //       <Group>
+  //         {!isMediaScreen && (
+  //           <>
+  //             <OrganizationSpaceSelect />
+  //             <ColorSchemeToggle size="lg" />
+  //           </>
+  //         )}
+  //       </Group>
+  //     </div>
+  //   </Header>
+  // );
 }

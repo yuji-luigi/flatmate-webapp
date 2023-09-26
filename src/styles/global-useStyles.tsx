@@ -55,6 +55,9 @@ export const profilePageStyle = createStyles((theme) => ({
     // width: '100%',
     paddingBlock: 32,
     marginInline: 16,
+    [theme.fn.smallerThan('sm')]: {
+      marginInline: 0,
+    },
   },
   box: {
     width: '100%',
@@ -124,8 +127,8 @@ export const feedStyles = createStyles((theme) => ({
     borderRadius: RADIUS.CARD,
   },
   feedContent: {
-    padding: 16,
-    paddingInline: 24,
+    // padding: 16,
+    // paddingInline: 24,
   },
 }));
 

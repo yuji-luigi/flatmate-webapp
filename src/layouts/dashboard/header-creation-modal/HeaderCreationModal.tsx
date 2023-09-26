@@ -1,28 +1,29 @@
 import { useDisclosure } from '@mantine/hooks';
 
-import { Menu, Modal, ActionIcon } from '@mantine/core';
+import { Menu, Modal, ActionIcon, Tooltip } from '@mantine/core';
 
+import { useState } from 'react';
+import { notifications } from '@mantine/notifications';
 import { Icons } from '../../../data/icons/icons';
 import { allSectionArrayWithRoles } from '../../../data';
 
 import { FONT_SIZES } from '../../../lib/enums';
 import ModalContent from './ModalContent';
-import { useState } from 'react';
 import { useCrudSelectors, useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
-import { notifications } from '@mantine/notifications';
 import { SectionDataJsonWithRoles } from '../../../types/general/data/data-table/sectionsJson-type';
 import { useSimpleDisclosureCtx } from '../../../../hooks/useSimpleDisclosureCtx';
+import { ModalType } from '../../../types/modal/modal-context-type';
 
 export function HeaderCreationModal() {
   // const [opened, { open, close }] = useDisclosure(false);
   const { close, open, opened } = useSimpleDisclosureCtx();
-  const [modalType, setModalType] = useState<ModalType | null>(null);
+  const [modalType, setModalType] = useState<'threads' | 'maintenances' | null>(null);
   const [section, setSection] = useState<SectionDataJsonWithRoles | null>(null);
 
   const { setSubmitting } = useCrudSliceStore();
   const { submitting } = useCrudSelectors();
-  const handleOpenModal = (type: ModalType) => {
-    setSection(allSectionArrayWithRoles.find((section) => section.entity === type) || null);
+  const handleOpenModal = (type: 'threads' | 'maintenances') => {
+    setSection(allSectionArrayWithRoles.find((_section) => _section.entity === type) || null);
     setModalType(type);
     open();
   };
@@ -42,7 +43,7 @@ export function HeaderCreationModal() {
     <>
       <Menu shadow="lg">
         <Menu.Target>
-          <ActionIcon>
+          <ActionIcon variant="outline" size={20}>
             <Icons.plus />
           </ActionIcon>
         </Menu.Target>

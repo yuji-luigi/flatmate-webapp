@@ -5,10 +5,12 @@ export const sideCardStyles = createStyles((theme) => ({
   card: {
     borderRadius: RADIUS.CARD,
     height: '100%',
+    flex: 1,
+    overflow: 'visible',
   },
   textsContainer: {
     display: 'flex',
-    gap: 9,
+    // gap: 9,
     flexDirection: 'column',
   },
 }));

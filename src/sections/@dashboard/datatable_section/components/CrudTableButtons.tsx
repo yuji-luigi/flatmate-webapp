@@ -59,7 +59,7 @@ export const CrudTableButtons = ({
         cancel: 'Cancel',
       },
       title: `Import excel file: ${file?.name}`,
-      async onConfirm(data) {
+      async onConfirm() {
         await confirmEvent(file);
         // const formData = new FormData();
         // formData.append('file', file);

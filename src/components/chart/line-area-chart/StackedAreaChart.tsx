@@ -1,17 +1,30 @@
 import { Card } from '@mantine/core';
 import { Point, ResponsiveLine } from '@nivo/line';
+import { useCustomMQuery } from '../../../../hooks/useCustomMQuery';
+import { LabelLayerCustom } from './LabelLayerCustom';
+import { LabelLayerCustomMini } from './LabelLayerCustomMini';
 
 function StackedAreaChart() {
+  const { isMobile } = useCustomMQuery();
+  const mx = isMobile ? 30 : 50;
   const data = [
     {
       id: 'A',
+      // data: [
+      //   { x: 1, y: 300000, change: 0 },
+      //   { x: 2, y: 300000 - 500, change: -500 },
+      //   { x: 3, y: 300000 - 500, change: 0 },
+      //   { x: 4, y: 300000 - 1000, change: -500 },
+      //   { x: 5, y: 300000 + 500, change: 1500 },
+      //   { x: 6, y: 300000 + 250, change: -250 },
+      // ],
       data: [
-        { x: 'Feb 2', y: 300000, change: 0 },
-        { x: 'Feb 15', y: 300000 - 500, change: -500 },
-        { x: 'Feb 23', y: 300000 - 500, change: 0 },
-        { x: 'Feb 28', y: 300000 - 1000, change: -500 },
-        { x: 'Mar 5', y: 300000 + 500, change: 1500 },
-        { x: 'Mar 18', y: 300000 + 250, change: -250 },
+        { x: 'Feb 2', y: 900, change: 0 },
+        { x: 'Feb 15', y: 500, change: 500 },
+        { x: 'Feb 23', y: 500, change: 0 },
+        { x: 'Feb 28', y: 1000, change: -500 },
+        { x: 'Mar 5', y: 500, change: 1500 },
+        { x: 'Mar 18', y: 250, change: -250 },
       ],
     },
     // {
@@ -27,17 +40,16 @@ function StackedAreaChart() {
   return (
     <ResponsiveLine
       data={data}
-      margin={{ top: 70, right: 50, bottom: 50, left: 50 }}
+      margin={{ top: 70, right: mx, bottom: 50, left: mx }}
       xScale={{ type: 'point' }}
-      yScale={{ type: 'linear', stacked: true, min: 'auto', max: 'auto' }}
-      curve="natural"
+      yScale={{ type: 'linear', min: 0, max: 'auto' }}
+      curve="monotoneX"
       tooltip={({ point }) => {
         const _data = point.data as typeof point.data & { change: number };
 
         return (
           <div
             style={{
-              padding: '6px 12px',
               backgroundColor: '#fff',
               boxShadow: '0 3px 6px rgba(0, 0, 0, 0.1)',
             }}
@@ -52,29 +64,9 @@ function StackedAreaChart() {
           </div>
         );
       }}
-      // axisTop={null}
-      // axisRight={null}
-      // axisBottom={{
-      //   orient: 'bottom',
-      //   tickSize: 5,
-      //   tickPadding: 5,
-      //   tickRotation: 0,
-      //   legend: 'Month',
-      //   legendOffset: 36,
-      //   legendPosition: 'middle',
-      // }}
-      // axisLeft={{
-      //   orient: 'left',
-      //   tickSize: 5,
-      //   tickPadding: 5,
-      //   tickRotation: 0,
-      //   legend: 'Value',
-      //   legendOffset: -40,
-      //   legendPosition: 'middle',
-      // }}
       colors={{ scheme: 'nivo' }}
       enableArea
-      areaBaselineValue="auto"
+      areaBaselineValue={0}
       areaOpacity={0.6}
       enableGridX={false}
       enableGridY={false}
@@ -128,22 +120,13 @@ type PointCustom = Point & {
 };
 const CustomLayer = (props: CustomLayerProps) => {
   const { points, xScale, yScale } = props;
-  // return null;
+  const { isMobile } = useCustomMQuery();
+  const LabelComponent = isMobile ? LabelLayerCustomMini : LabelLayerCustom;
+
   return (
     <>
       {points.map((point) => (
-        <g key={point.id} transform={`translate(${point.x}, ${point.y})`}>
-          <rect x="-50" y="-45" width="100" height="40" fill="white" opacity="0.7" />
-          {/* <text dy="-15" textAnchor="middle" fontSize="12" fill="black">
-            {point.data.xFormatted}
-          </text> */}
-          <text dy="-15" textAnchor="middle" fontSize="12" fill="black">
-            Total: {point.data.yFormatted}
-          </text>
-          <text dy="-30" textAnchor="middle" fontSize="12" fill="black">
-            {point.data.change}
-          </text>
-        </g>
+        <LabelComponent key={point.id} point={point} />
       ))}
     </>
   );

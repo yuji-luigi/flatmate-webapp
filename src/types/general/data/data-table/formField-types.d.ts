@@ -3,7 +3,7 @@ import { TablerIconsProps } from '@tabler/icons-react';
 import React from 'react';
 
 type StaticOption = SelectItem & {
-  icon?: (props: TablerIconsProps) => JSX.Element;
+  icon?: (props?: TablerIconsProps) => JSX.Element;
 };
 
 type BaseFormType = {

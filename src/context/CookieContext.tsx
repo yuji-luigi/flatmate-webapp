@@ -37,10 +37,18 @@ const useStore = () => {
   useEffect(() => {
     if (!currentSpace) {
       const spaceName = getCookie('spaceName');
+      const spaceAddress = getCookie('spaceAddress');
       const spaceId = getCookie('spaceId');
       const spaceSlug = getCookie('spaceSlug');
+      const spaceImage = getCookie('spaceImage');
       if (isString(spaceId) && isString(spaceName) && isString(spaceSlug)) {
-        setCurrentSpace({ _id: spaceId, name: spaceName, slug: spaceSlug });
+        setCurrentSpace({
+          _id: spaceId,
+          name: spaceName,
+          slug: spaceSlug,
+          image: spaceImage,
+          address: spaceAddress,
+        });
       }
     }
   }, []);
@@ -64,7 +72,13 @@ const useStore = () => {
     },
     handleSetCurrentSpace: (space: SpaceModel | null) => {
       if (!space) return;
-      setCurrentSpace({ _id: space._id, name: space.name, slug: space.slug });
+      setCurrentSpace({
+        _id: space._id,
+        name: space.name,
+        slug: space.slug,
+        address: space.address,
+        image: space.cover?.url,
+      });
     },
     resetCurrentSpace: () => {
       setCurrentSpace(null);

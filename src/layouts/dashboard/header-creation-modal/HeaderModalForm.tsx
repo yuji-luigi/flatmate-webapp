@@ -1,38 +1,22 @@
 /* eslint-disable react/jsx-pascal-case */
-import {
-  Button,
-  Container,
-  createStyles,
-  Drawer,
-  LoadingOverlay,
-  Select,
-  SelectItem,
-  Text,
-} from '@mantine/core';
+import { Button, createStyles, LoadingOverlay, Text } from '@mantine/core';
 
+import { FormEvent, useMemo, useEffect } from 'react';
+import { useForm } from '@mantine/form';
+import { notifications } from '@mantine/notifications';
 import FormFields from '../../../components/input/FormFields';
 import formFields from '../../../../json/dataTable/formfields';
-import { useState, FormEvent, useMemo, useEffect } from 'react';
 import { useCrudSelectors, useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
-import { Form, useForm } from '@mantine/form';
-import { FormCustom } from '../../../context/FormContextProvider';
 import { getDefaultValues } from '../../../utils/getDefaultValues';
-import { notifications } from '@mantine/notifications';
-import axiosInstance from '../../../utils/axios-instance';
 import CreationToolBar from '../../../components/input/CreationToolBar';
-import { UPLOAD_FOLDERS } from '../../../lib/enums';
 import { UseFormReturnTypeCustom } from '../../../components/input/input_interfaces/useForm_interface';
-import { useRouter } from 'next/router';
 import { hasMedia } from '../../../redux/features/crudAsyncThunks';
 import { uploadFileAndGetModelId, extractUploadingMedia } from '../../../utils/upload-helper';
-import { useDisclosure } from '@mantine/hooks';
 import useAuth from '../../../../hooks/useAuth';
-import { PATH_API } from '../../../path/path-api';
-import { convertToSelectItems, sleep } from '../../../utils/helpers/helper-functions';
-import OrganizationSpaceSelect from '../../../components/select-custom/OrganizationSpaceSelect';
-import { getCookie } from 'cookies-next';
+import { sleep } from '../../../utils/helpers/helper-functions';
 import { FormFieldTypes } from '../../../types/general/data/data-table/formField-types';
 import { useSimpleDisclosureContext } from '../../../context/SimpleDisclosureContext';
+
 const config = {
   headers: {
     'Content-Type': 'multipart/form-data',
@@ -80,7 +64,7 @@ const HeaderModalForm = ({ entity }: { entity: 'threads' | 'maintenances' }) => 
     // force to wait for 1.5 seconds to show the loading notification
     await sleep(1500);
 
-    let reqBody: Record<string, any> = {
+    const reqBody: Record<string, any> = {
       ...form.values,
       media: undefined,
     };
@@ -90,7 +74,8 @@ const HeaderModalForm = ({ entity }: { entity: 'threads' | 'maintenances' }) => 
     if (media && hasMedia(media)) {
       try {
         const uploadIdData = await uploadFileAndGetModelId(extractUploadingMedia(media), 'threads');
-        for (let key in uploadIdData) {
+        // eslint-disable-next-line no-restricted-syntax, guard-for-in
+        for (const key in uploadIdData) {
           if (!reqBody[key]) reqBody[key] = [];
           reqBody[key] = [...reqBody[key], ...uploadIdData[key]];
         }

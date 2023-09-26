@@ -41,7 +41,6 @@ export const MaintenanceCheckUploadSection = (props: Props) => {
       type: 'custom',
       fullScreen: true,
       centered: true,
-      onConfirm: () => console.log('confirm'),
       title: 'Maintenance',
       withinPortal: true,
       children: (

@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useState } from 'react';
-import { createStyles, getStylesRef, Navbar, ScrollArea, Button } from '@mantine/core';
+import { createStyles, getStylesRef, Navbar, ScrollArea, Button, Stack } from '@mantine/core';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { useMediaQuery } from '@mantine/hooks';
@@ -13,6 +13,8 @@ import { ProfilePopover } from '../../../components/navigation/ProfilePopover';
 import { useCookieContext } from '../../../context/CookieContext';
 import { NavbarVerticalItem } from './NavbarVerticalItem';
 import { navbarVerticalStyle } from './navbarStyle';
+import { ColorSchemeToggle } from '../../../components/color-schemeToggle/ColorSchemeToggle';
+import LogoutButton from './LogoutButton';
 
 // type NavbarConfig = { link: string; label: string; icon: TablerIcon };
 // const navBarConfig: NavbarConfig[] = [];
@@ -80,22 +82,21 @@ export function NavbarVertical() {
         {links.map((navbarData) => navbarData)}
 
         <Navbar.Section className={classes.footer}>
-          <Button variant="outline" className={cx(classes.button, classes.link)} onClick={logout}>
-            <Icons.logout className={classes.linkIcon} stroke={1.5} />
-            <span>Logout</span>
-          </Button>
-          {isMediaScreen && (
-            <>
-              <Button
-                className={cx(classes.button, classes.link)}
-                component={Link}
-                href={chooseHref}
-              >
-                Choose {chooseText}
-              </Button>
-              {/* <ColorSchemeToggle size="lg" /> */}
-            </>
-          )}
+          <Stack>
+            <LogoutButton />
+            {isMediaScreen && (
+              <>
+                <Button
+                  className={cx(classes.button, classes.link)}
+                  component={Link}
+                  href={chooseHref}
+                >
+                  Choose {chooseText}
+                </Button>
+                <ColorSchemeToggle size="lg" sx={{ alignSelf: 'end' }} />
+              </>
+            )}
+          </Stack>
         </Navbar.Section>
       </ScrollArea>
     </Navbar>

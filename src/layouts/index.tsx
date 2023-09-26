@@ -3,6 +3,7 @@ import AuthGuard from '../guards/AuthGuard';
 import DashboardLayout from './dashboard/DashboardLayout';
 import { HomepageLayout } from './homepage';
 import { CookieContextProvider } from '../context/CookieContext';
+import { TabContextProvider } from '../context/tab-context/TabContextProvider';
 
 export type LayoutVariants = 'main' | 'logoOnly' | 'dashboard';
 
@@ -28,7 +29,9 @@ const Layout = ({
   return (
     <AuthGuard>
       <CookieContextProvider>
-        <DashboardLayout>{children}</DashboardLayout>
+        <TabContextProvider>
+          <DashboardLayout>{children}</DashboardLayout>
+        </TabContextProvider>
       </CookieContextProvider>
     </AuthGuard>
   );

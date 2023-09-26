@@ -3,13 +3,13 @@ import { createContext, ReactNode, useCallback, useContext, useState } from 'rea
 import { Box } from '@mantine/core';
 import {
   _ModalContextStates,
-  CustomModalProps,
-  OpenConfirmModalParams,
+  BaseModalData,
+  ModalDataTypes,
 } from '../../types/modal/modal-context-type';
 
-const defaultModalValues: CustomModalProps = {
+const defaultModalValues: ModalDataTypes = {
   title: '',
-  centered: false,
+  centered: true,
   children: <></>,
   sx: {
     confirm: {},
@@ -19,7 +19,6 @@ const defaultModalValues: CustomModalProps = {
   onConfirm() {},
   labels: { confirm: '', cancel: '' },
   type: 'confirm',
-  id: '',
 };
 
 export const _ModalContext = createContext<_ModalContextStates>({
@@ -28,32 +27,32 @@ export const _ModalContext = createContext<_ModalContextStates>({
   closeModal() {},
   openModal() {},
   openConfirmModal() {},
-  modals: defaultModalValues,
+  modalData: defaultModalValues,
 });
 
 const useStore = () => {
   const [isOpenModal, setIsModalOpen] = useState<boolean>(false);
-  const [modals, setModals] = useState<CustomModalProps>(defaultModalValues);
+  const [modalData, setModals] = useState<ModalDataTypes>(defaultModalValues);
 
   // Function to open a confirm modal
   const openConfirmModal = useCallback(
     (
       params: // ...otherProps
-      OpenConfirmModalParams
+      ModalDataTypes
     ) => {
       setIsModalOpen(true);
       // Generate a unique modal ID
       const modalId = Math.random().toString(36).substr(2, 9);
 
-      const newModalValues: CustomModalProps = {
-        id: modalId,
+      const newModalValues: ModalDataTypes = {
+        // id: modalId,
         centered: true,
-        sx: {},
-        labels: {},
+        // sx: {},
+        // labels: {},
         ...params,
       };
 
-      // Add the modal to the modals array
+      // Add the modal to the modalData array
       setModals(newModalValues);
       // setModals(modal);
 
@@ -63,7 +62,7 @@ const useStore = () => {
     []
   );
   return {
-    modals,
+    modalData,
     openConfirmModal,
     isOpenModal,
     toggleOpenModal: () => setIsModalOpen(!isOpenModal),

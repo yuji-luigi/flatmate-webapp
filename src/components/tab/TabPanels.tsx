@@ -13,7 +13,6 @@ export const TabPanels = ({ list }: { list: List[] }) => {
       {list.map((item) => (
         <Tabs.Panel key={item.label} value={item.value}>
           <item.component />
-          {/* {item.value === activeTab && <item.component />} */}
         </Tabs.Panel>
       ))}
     </>

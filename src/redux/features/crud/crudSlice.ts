@@ -341,6 +341,8 @@ export const useCrudSliceStore = () => {
 /** Returns Array of Documents of the entity: whole array of entity */
 const useCrudDocuments = <ModelType>(entity?: Sections): ModelType[] =>
   useAppSelector((state) => state.crud.reduxdb?.[entity || '']?.documentsArray);
+// const useCrudDocuments = <ModelType>(entity?: Sections): ModelType[] =>
+//   useAppSelector((state) => state.crud.reduxdb?.[entity || '']?.documentsArray);
 
 /** returns string if api sent message */
 const useCrudMessage = () => useAppSelector((state) => state.crud.message);
@@ -361,12 +363,19 @@ const useIsChildrenTree = (entity?: Sections): boolean =>
 
 /** Returns selected Document of the entity or if not selected returns null  */
 const useCrudDocument = <ModelType>(entity?: Sections): ModelType =>
-  useAppSelector((state) => state.crud.reduxdb?.[entity || '']?.singleCrudDocument || {});
+  useAppSelector((state) => state.crud.reduxdb?.[entity || '']?.singleCrudDocument);
 /** Hook for selector. this time need do pass entity when initialize the hook. */
 export const useCrudSelectors = <ModelType = MongooseBaseModel>(entity?: Sections) => {
-  const { resetCrudStatus } = useCrudSliceStore();
+  const crudDocuments = useCrudDocuments<ModelType>(entity);
+  const crudMessage = useCrudMessage();
+  const crudStatus = useCrudStatus();
   const crudError = useCrudError();
+  const totalDocumentsCount = useTotalDocumentsCount(entity);
+  const isChildrenTree = useIsChildrenTree(entity);
+  const crudDocument = useCrudDocument<ModelType>(entity);
   const submitting = useAppSelector((state) => state.crud.submitting);
+  const { resetCrudStatus } = useCrudSliceStore();
+
   useEffect(() => {
     if (crudError) {
       showNotification(NOTIFICATIONS.ERROR.general({ data: crudError, ms: 5000 }));
@@ -380,24 +389,19 @@ export const useCrudSelectors = <ModelType = MongooseBaseModel>(entity?: Section
 
   return {
     /** Returns Array of Documents of the entity: whole array of entity */
-    crudDocuments: useCrudDocuments<ModelType>(entity) || [],
+    crudDocuments,
     /** Returns selected Document of the entity */
-    crudDocument: useCrudDocument<ModelType>(entity) || null,
+    crudDocument,
     /** returns string if error is present. to show flash on the screen */
     crudError,
     /** returns string if api sent message */
-    crudMessage: useCrudMessage(),
+    crudMessage,
     /** returns status string during api call process */
-    crudStatus: useCrudStatus(),
+    crudStatus,
     /** if it has a parent returns true. ex- space instances can be either a parent or a child */
-    isChildrenTree: useIsChildrenTree(entity),
+    isChildrenTree,
     /** number of total documents in queried array from db. */
-    totalDocumentsCount: useTotalDocumentsCount(entity),
+    totalDocumentsCount,
     submitting,
-    selectDocumentById: useAppSelector((state) => (documentId: string) => {
-      return state.crud.reduxdb?.[entity || '']?.documentsArray.find((doc) => {
-        return doc._id === documentId;
-      });
-    }),
   };
 };

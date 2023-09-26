@@ -129,7 +129,8 @@ const OrganizationSpaceSelect = ({
           data={organizations}
           onChange={(value) => {
             if (value === null) {
-              return deleteHeaderCookies();
+              deleteHeaderCookies();
+              return;
             }
             handleOnSelectOrganization(value || '');
             if (form) {
@@ -149,7 +150,10 @@ const OrganizationSpaceSelect = ({
         data={spaces}
         value={currentSpace?._id?.toString() || ''}
         onChange={(value) => {
-          if (value === null) return handleDeleteSpaceCookie();
+          if (value === null) {
+            handleDeleteSpaceCookie();
+            return;
+          }
           getSpaceCookieFromApi(value || '');
           if (form) {
             form.setFieldValue('space', value || '');

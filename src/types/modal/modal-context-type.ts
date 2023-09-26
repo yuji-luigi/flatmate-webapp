@@ -6,59 +6,47 @@ export type _ModalContextStates = {
   isOpenModal: boolean;
   closeModal: () => void;
   openModal: () => void;
-  modals: CustomModalProps;
+  modalData: ModalDataTypes;
   toggleOpenModal: (isOpenModal: boolean) => void;
-  openConfirmModal: (confirmModalProps: OpenConfirmModalParams) => void;
-} & OpenConfirmModalParams;
-
-export type BaseModalParams = {
+  openConfirmModal: (confirmModalProps: ModalDataTypes) => void;
+};
+export type ModalType = 'confirm' | 'alert' | 'crud' | 'custom';
+export type BaseModalData = {
+  // id?: string;
   title: string;
+  type: ModalType;
   centered?: boolean;
-  children: React.ReactNode;
   fullScreen?: boolean;
-  isOpenModal?: boolean;
-  closeModal: () => void;
-  // modals?: CustomModalProps;
-  onCancel?: () => void;
-  onConfirm: (data: any) => void | Promise<void>;
+  withinPortal?: boolean;
 };
 
-export interface ConfirmAlertModalParams extends BaseModalParams {
+export interface RegularModalParams extends BaseModalData {
   type: 'confirm' | 'alert';
-  formFields?: FormFieldTypes[];
-  sx?: {
-    confirm?: Sx;
-    cancel?: Sx;
-  };
-  labels: {
+  // formFields?: FormFieldTypes[];
+  children?: React.ReactNode;
+  labels?: {
     confirm?: string;
     cancel?: string;
   };
+  sx?: {
+    confirm: Sx;
+    cancel: Sx;
+  };
+  onCancel?: () => void;
+  onConfirm: (data: any) => void | Promise<void>;
 }
 
-export interface CrudModalParams extends BaseModalParams {
+export interface CrudModalData extends BaseModalData {
   type: 'crud';
   formFields: FormFieldTypes[];
   crudDocument: AllModels;
-  modals: CustomModalProps;
+  // onCancel: () => void;
+  // onConfirm: (data: any) => void | Promise<void>;
 }
-export interface CustomModalParams extends BaseModalParams {
+export interface CustomModalData extends BaseModalData {
   type: 'custom';
-  withinPortal?: boolean;
+  // withinPortal?: boolean;
+  children: React.ReactNode;
 }
 
-export type OpenConfirmModalParams = ConfirmAlertModalParams | CrudModalParams | CustomModalParams;
-
-export type CustomModalProps = OpenConfirmModalParams & {
-  id: string;
-  type: string;
-  fullScreen?: boolean;
-  labels: {
-    confirm?: string;
-    cancel?: string;
-  };
-  sx: {
-    confirm?: Sx;
-    cancel?: Sx;
-  };
-};
+export type ModalDataTypes = RegularModalParams | CrudModalData | CustomModalData;

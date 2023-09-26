@@ -115,9 +115,7 @@ const ProfileCoverGeneric = ({
 
   const { classes } = useStyles();
 
-  const { selectDocumentById, crudDocument } = useCrudSelectors<SpaceModel | MaintainerModel>(
-    _entity
-  );
+  const { crudDocument } = useCrudSelectors<SpaceModel | MaintainerModel>(_entity);
   const coverInputRef = useRef<HTMLInputElement>(null);
   const { openConfirmModal } = useCustomModalContext();
 
@@ -186,14 +184,6 @@ const ProfileCoverGeneric = ({
       crudDocument,
       formFields,
       title: `Edit ${_entity}`,
-      children: undefined,
-
-      onCancel(): void {
-        throw new Error('Function not implemented.');
-      },
-      onConfirm(_: any): void {
-        throw new Error('Function not implemented.');
-      },
     });
   };
   useEffect(() => {
