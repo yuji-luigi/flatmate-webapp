@@ -5,6 +5,7 @@ import {
   StaticOption,
   StaticSelectFormFieldType,
 } from '../../../../../types/general/data/data-table/formField-types';
+import classes from './Cell.module.css';
 
 export const TextCell = ({
   cellValue,
@@ -15,7 +16,7 @@ export const TextCell = ({
 }) => {
   // return cellValue;
   let displayValue = (
-    <Text size="md" weight={500}>
+    <Text className={classes.text} weight={500}>
       {cellValue}
     </Text>
   );
@@ -29,7 +30,7 @@ export const TextCell = ({
     displayValue = (
       <Group>
         {Icon && <Icon size={16} />}
-        {text}
+        <Text className={classes.text}>{text}</Text>
       </Group>
     );
   }

@@ -1,0 +1,12 @@
+.box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: center; */
+  /* width: 100%; */
+  /* gap: var(--flex-gap); */
+}
+
+.w100 {
+  width: 100%;
+}

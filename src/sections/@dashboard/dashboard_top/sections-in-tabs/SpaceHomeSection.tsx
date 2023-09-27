@@ -1,29 +1,13 @@
-import { useRouter } from 'next/router';
-import React, { memo, useEffect, useRef } from 'react';
-import { Box, Card, Grid, Group, LoadingOverlay, Tabs, useMantineTheme } from '@mantine/core';
-import { useMediaQuery } from '@mantine/hooks';
+import React, { memo } from 'react';
+import { Box, LoadingOverlay } from '@mantine/core';
 import { dashboardStyle, profilePageStyle } from '../../../../styles/global-useStyles';
-import ProfileSide from '../../../../components/profile/side/ProfileSide';
-import { Icons } from '../../../../data/icons/icons';
 
-import ProfileCoverGeneric from '../../../../components/profile/ProfileCoverGeneric';
 import { useCrudSelectors } from '../../../../redux/features/crud/crudSlice';
 
-import { SpacePostSection } from './SpacePostSection';
-import { SpaceMaintenanceSection } from './SpaceMaintenanceSection';
-
-import { MaintainerModel } from '../../../../types/models/maintainer-model';
-import { MaintenanceListCard } from '../side-cards/maintenance-card/MaintenancesCard';
 import { SpaceModel } from '../../../../types/models/space-model';
-import useAuth from '../../../../../hooks/useAuth';
-import { useCookieContext } from '../../../../context/CookieContext';
-import { ExpandedSection } from '../../../../components/grid/ExpandedSection';
-import { NotificationCardTop } from '../side-cards/notification-card/NotificationCardTop';
-import DashboardSection from './stats-home/DashboardTopSection';
 import { TAB_LIST_CONFIG } from './tabList';
 import { useTabContext } from '../../../../context/tab-context/TabContextProvider';
 import { useCustomMQuery } from '../../../../../hooks/useCustomMQuery';
-import { TabList } from '../../../../components/tab/TabList';
 import { TabPanels } from '../../../../components/tab/TabPanels';
 
 // use style from global-useStyles
@@ -85,12 +69,12 @@ const SpaceHomeSection = () => {
   }
   return (
     <Box className={classes.container}>
-      <Box className={classes.box}>
-        <Box className={classes.coverTop}>
-          {/* {currentTab === TAB_LIST_CONFIG[0].value && homeSummary} */}
-          <TabPanels list={TAB_LIST_CONFIG} />
-        </Box>
-      </Box>
+      {/* <Box className={classes.box}> */}
+      {/* <Box className={classes.coverTop}> */}
+      {/* {currentTab === TAB_LIST_CONFIG[0].value && homeSummary} */}
+      <TabPanels list={TAB_LIST_CONFIG} />
+      {/* </Box> */}
+      {/* </Box> */}
     </Box>
   );
 };

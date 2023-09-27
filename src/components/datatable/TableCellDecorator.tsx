@@ -92,8 +92,6 @@ function getCellValueRecursive({
   // now it is an array of objects
   if (Array.isArray(value)) {
     return value.map((item) => {
-      console.log('jjjjjj');
-      console.log(selectValues);
       return getCellValueRecursive({
         value: item[selectValues[0]],
         selectValues: selectValues.slice(1),

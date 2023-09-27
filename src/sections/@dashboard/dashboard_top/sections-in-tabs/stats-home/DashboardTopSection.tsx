@@ -15,7 +15,7 @@ import { MaintenanceDatatable } from '../../statistics/MaintenanceDatatable';
 import { EventDataTable } from '../../statistics/EventDataTable';
 import { StatGridSchema, StatsGrid } from '../../../../../components/stats/StatsGrid';
 import statsGridData from '../../../../../../json/mock/statsGrid.json';
-
+import classes from './DashboardTopSection.module.css';
 import { StatsSummary } from './StatsSummary';
 import { StatsSegments } from '../../../../../components/stats/StatsSegments';
 
@@ -28,15 +28,15 @@ const StackedAreaChart = dynamic(
 
 const DashboardSection = () => {
   return (
-    <>
-      <StatsSummary />
+    <Box className={classes.box}>
+      <StatsSummary className={classes.w100} />
       <StatsGrid data={statsGridData as unknown as StatGridSchema[]} />
       <Card sx={{ height: 400, width: '100%', overflow: 'visible' }}>
         <StackedAreaChart />
       </Card>
       <MaintenanceDatatable />
       <EventDataTable />
-    </>
+    </Box>
   );
 };
 

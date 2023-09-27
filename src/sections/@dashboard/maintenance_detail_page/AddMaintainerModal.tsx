@@ -48,7 +48,11 @@ const AddMaintainerModal = () => {
       spaces: [currentSpace?._id],
     },
   });
-  const { data, error, isLoading } = useSWR<SpaceModel[] | null, AxiosError>(
+  const {
+    data,
+    error: errorSwr,
+    isLoading,
+  } = useSWR<SpaceModel[] | null, AxiosError>(
     currentOrganization || user?.organization,
     fetchMainSpaces
   );

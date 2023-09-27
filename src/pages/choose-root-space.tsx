@@ -8,7 +8,7 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import useAuth from '../../hooks/useAuth';
 import { CARD_LINK_PATH, PATH_CLIENT } from '../path/path-frontend';
-import axiosInstance from '../utils/axios-instance';
+import axiosInstance, { AxiosResDataGeneric } from '../utils/axios-instance';
 import { PATH_API } from '../path/path-api';
 
 import Layout from '../layouts';
@@ -35,7 +35,9 @@ const useStyles = createStyles((theme) => ({
 
 export const fetchSpaceSelections = async (userId?: string | null) => {
   if (!userId) return null;
-  const res = await axiosInstance.get(PATH_API.getSpaceSelections);
+  const res = await axiosInstance.get<AxiosResDataGeneric<SpaceModel[]>>(
+    PATH_API.getSpaceSelections
+  );
   return res.data?.data;
 };
 

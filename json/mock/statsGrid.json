@@ -10,11 +10,5 @@
 		"icon": "receipt",
 		"value": 4.145,
 		"diff": -13
-	},
-	{
-		"title": "Manutenzioni",
-		"icon": "maintenance",
-		"value": 1500,
-		"diff": 10
 	}
 ]

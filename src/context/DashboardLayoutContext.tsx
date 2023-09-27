@@ -22,7 +22,7 @@ const useStore = () => {
   const [parentData, setParentData] = useState<ParentDataInterface | {}>({});
   const setChildrenBreadcrumbs = (breadcrumb: BreadcrumbInterface) => {
     setBreadcrumbs((prev) => {
-      const baseUrl = prev[1].href;
+      const baseUrl = prev[1]?.href;
       const allButLast = prev.slice(0, -1);
       const idArray = prev.map((p) => p.href.split('/').pop());
       const currentid = breadcrumb.href.split('/').pop();

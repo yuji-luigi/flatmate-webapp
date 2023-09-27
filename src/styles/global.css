@@ -14,6 +14,16 @@ body {
   /* font-family: 'Bangers', cursive; */
 }
 
+:root {
+  --break-point-xs: 576px;
+  --break-point-sm: 768px;
+  --break-point-md: 992px;
+  --break-point-lg: 1200px;
+  --break-point-xl: 1408px;
+  --flex-gap: 16px;
+  --text-table-mobile: 12px;
+}
+
 a {
   text-decoration: none;
   color: inherit;
