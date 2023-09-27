@@ -1,4 +1,4 @@
-import { createStyles, Group, Paper, SimpleGrid, Text } from '@mantine/core';
+import { createStyles, Group, Paper, SimpleGrid, Text, Box } from '@mantine/core';
 import {
   IconDiscount2,
   IconCoin,
@@ -63,7 +63,8 @@ export function StatsGrid({ data }: { data: StatGridSchema[] }) {
     const DiffIcon = stat.diff && stat.diff > 0 ? IconArrowUpRight : IconArrowDownRight;
 
     return (
-      <Paper withBorder p="md" radius="md" key={stat.title}>
+      <Box key={stat.title}>
+        {/* // <Paper withBorder p="md" radius="md" key={stat.title}> */}
         <Group position="apart">
           <Text size="xs" color="dimmed" className={classes.title}>
             {t(stat.title)}
@@ -92,7 +93,8 @@ export function StatsGrid({ data }: { data: StatGridSchema[] }) {
         <Text size="xs" color="dimmed" mt={7}>
           Compared to previous month
         </Text>
-      </Paper>
+        {/* // </Paper> */}
+      </Box>
     );
   });
   return (

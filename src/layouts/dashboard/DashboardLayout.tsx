@@ -37,9 +37,8 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
     const handleScroll = () => {
       if (containerRef.current) {
         const { scrollY } = window;
-        const speed = 0.7; // Adjust this value to change the speed. Values between 0.1 to 1 work best.
+        const speed = 0.3; // Adjust this value to change the speed. Values between 0.1 to 1 work best.
         const offset = scrollY * speed;
-
         containerRef.current.style.backgroundPosition = `center ${-offset}px`;
       }
     };
