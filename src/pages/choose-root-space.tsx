@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { Box, Button, Divider, Group, Stack, Text, createStyles } from '@mantine/core';
+import { Box, createStyles } from '@mantine/core';
 import useSWR from 'swr';
 import { AxiosError } from 'axios';
 import { useRouter } from 'next/router';
@@ -7,7 +7,6 @@ import Link from 'next/link';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import useAuth from '../../hooks/useAuth';
-import { CardArticleVerticalTextBottom, CardData } from '../components/card/CardVerticalTextBottom';
 import { CARD_LINK_PATH, PATH_CLIENT } from '../path/path-frontend';
 import axiosInstance from '../utils/axios-instance';
 import { PATH_API } from '../path/path-api';
@@ -34,8 +33,8 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export const fetchSpaceSelections = async (user?: UserModel | null) => {
-  if (!user) return null;
+export const fetchSpaceSelections = async (userId?: string | null) => {
+  if (!userId) return null;
   const res = await axiosInstance.get(PATH_API.getSpaceSelections);
   return res.data?.data;
 };
@@ -54,7 +53,7 @@ const ChooseRootSpacePage = () => {
     data: rootSpaces,
     error,
     isLoading,
-  } = useSWR<SpaceModel[] | null, AxiosError>(user, fetchSpaceSelections);
+  } = useSWR<SpaceModel[] | null, AxiosError>(user?._id, fetchSpaceSelections);
 
   if (user?.role === 'super_admin') {
     router.push(PATH_CLIENT.chooseOrganization);
