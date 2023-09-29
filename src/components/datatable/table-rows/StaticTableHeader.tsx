@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import formFields from '../../../../json/dataTable/formfields';
 import { Sections } from '../../../types/general/data/sections-type';
 import { FormFieldTypes } from '../../../types/general/data/data-table/formField-types';
+import classes from './StaticTableHeader.module.css';
 
 const StaticTableHeader = ({ json, actions }: { json: any[]; actions?: any }) => {
   const { query } = useRouter();
@@ -12,7 +13,9 @@ const StaticTableHeader = ({ json, actions }: { json: any[]; actions?: any }) =>
     <thead>
       <tr>
         {json?.map((cellData: FormFieldTypes) => (
-          <Fragment key={cellData.id}>{!cellData.noTable && <th>{cellData.label}</th>}</Fragment>
+          <Fragment key={cellData.id}>
+            {!cellData.noTable && <th className={classes.tableCellContent}>{cellData.label}</th>}
+          </Fragment>
         ))}
         {actions && <th>actions</th>}
       </tr>

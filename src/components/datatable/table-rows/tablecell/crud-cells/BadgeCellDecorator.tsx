@@ -7,6 +7,8 @@ import {
 } from '../../../../../types/general/data/data-table/formField-types';
 import { Icons } from '../../../../../data/icons/icons';
 
+import classes from './Cell.module.css';
+
 const BadgeCellDecorator = ({
   children,
   cellConfig,
@@ -24,7 +26,11 @@ const BadgeCellDecorator = ({
         ?.color || color;
   }
   return (
-    <Badge color={color} variant={theme.colorScheme === 'dark' ? 'light' : 'outline'}>
+    <Badge
+      className={classes.text}
+      color={color}
+      variant={theme.colorScheme === 'dark' ? 'light' : 'outline'}
+    >
       {children}
     </Badge>
   );

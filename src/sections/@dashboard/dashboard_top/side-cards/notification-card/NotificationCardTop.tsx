@@ -4,6 +4,8 @@ import TextWithIcon from '../../../../../components/text/TextWithIcon';
 import { dashboardStyle } from '../../../../../styles/global-useStyles';
 import CardWithTitle from '../../../../../components/profile/side/CardWithTitle';
 import { SimpleLinkTile } from '../../../../../components/list/SimpleLinkTile';
+import { useCustomMQuery } from '../../../../../../hooks/useCustomMQuery';
+import { Icons } from '../../../../../data/icons/icons';
 
 const data = [
   {
@@ -34,8 +36,10 @@ const data = [
 ];
 
 export const NotificationCardTop = () => {
+  const { isMobile } = useCustomMQuery();
+  const title = !isMobile ? 'Notifications' : <Icons.alert />;
   return (
-    <CardWithTitle indicator="9" title="Notifications">
+    <CardWithTitle indicator="9" title={title}>
       {data.map((d) => (
         <SimpleLinkTile
           _id={d._id}

@@ -3,15 +3,16 @@ import { Table, ScrollArea, Divider, Box } from '@mantine/core';
 import { dashboardStyle } from '../../styles/global-useStyles';
 import StaticTableHeader from './table-rows/StaticTableHeader';
 import { StaticTableRow } from './table-rows/StaticTableRow';
+import classes from './StaticDataTable.module.css';
 
 export function StaticDataTable({ json, data }: { json: any[]; data: any[] }) {
   // const TOTAL = Math.ceil(users.length / ROWS_PER_PAGE);
-  const { classes } = dashboardStyle();
+  // const { classes } = dashboardStyle();
 
   return (
     <Box>
       <ScrollArea>
-        <Table sx={{ minWidth: 800 }} highlightOnHover>
+        <Table className={classes.table} highlightOnHover>
           <StaticTableHeader json={json} />
 
           <tbody>

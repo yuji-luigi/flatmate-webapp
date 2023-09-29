@@ -4,6 +4,7 @@ import TableCellController from './table-rows/tablecell/crud-cells/TableCellCont
 import { FormFieldTypes } from '../../types/general/data/data-table/formField-types';
 import BadgeCellDecorator from './table-rows/tablecell/crud-cells/BadgeCellDecorator';
 import { AllModels } from '../../types/models/allmodels';
+import classes from './TableCellDecorator.module.css';
 
 function isObject(value: any): boolean {
   return value && typeof value === 'object' && !Array.isArray(value) && typeof value !== 'string';
@@ -20,11 +21,17 @@ export function TableCellDecorator({
 }) {
   /** get value of the cell (from object/array/primitive) */
   const cellValue = getCellValue({ rowData, cellConfig });
+
+  // if (cellConfig.badge) {
+  //   return (
+  //     <BadgeCellDecorator cellConfig={cellConfig} value={cellValue}>
+  //       {cellValue}
+  //     </BadgeCellDecorator>
+  //   );
+  // }
   const tableCell = (
     <TableCellController cellValue={cellValue} cellConfig={cellConfig} rowData={rowData} />
   );
-
-  if (cellConfig.noTable) return null;
 
   if (cellConfig.badge) {
     return (
@@ -34,7 +41,10 @@ export function TableCellDecorator({
     );
   }
 
-  return tableCell;
+  if (cellConfig.noTable) return null;
+
+  // inside of the cell
+  return <div className={classes.cellContent}>{tableCell}</div>;
 }
 
 type ValueFunction = () => string;

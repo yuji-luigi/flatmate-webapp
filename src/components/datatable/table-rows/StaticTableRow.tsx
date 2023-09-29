@@ -9,6 +9,7 @@ import { useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
 import { Sections } from '../../../types/general/data/sections-type';
 import { FormFieldTypes } from '../../../types/general/data/data-table/formField-types';
 import { AllModels } from '../../../types/models/allmodels';
+import classes from './StaticTableHeader.module.css';
 
 export function StaticTableRow({
   rowData,
@@ -36,7 +37,7 @@ export function StaticTableRow({
       */}
       {sectionFormFields.map((cellConfig) =>
         cellConfig.noTable ? null : (
-          <td key={cellConfig.id}>
+          <td key={cellConfig.id} className={classes.tableCellContent}>
             <TableCellDecorator cellConfig={cellConfig} rowData={rowData} />
           </td>
         )

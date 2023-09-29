@@ -22,6 +22,9 @@ body {
   --break-point-xl: 1408px;
   --flex-gap: 16px;
   --text-table-mobile: 12px;
+  --table-cell-width-sm: 60px;
+  --table-min-width: 800px;
+  --table-min-width-sm: 300px;
 }
 
 a {

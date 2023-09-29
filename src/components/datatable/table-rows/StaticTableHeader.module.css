@@ -1,0 +1,7 @@
+@media (max-width: 768px) {
+  .tableCellContent {
+    width: var(--table-cell-width-sm);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+}
