@@ -176,7 +176,7 @@ const calculatedStatsGridData = mockData.reduce<StatGridSchema[]>((acc, stat) =>
 
 export const MaintenanceDatatable = () => {
   return (
-    <Card mt={36}>
+    <Card>
       <DataTableDateSwitch />
       <DividerStyled label="Maintenance" />
       <StaticDataTable json={maintenanceStatTableData} data={mockData} />

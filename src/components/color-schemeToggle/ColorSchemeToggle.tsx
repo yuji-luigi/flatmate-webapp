@@ -19,12 +19,13 @@ type Props = {
   mt?: SystemProp<SpacingValue>;
   size?: MantineNumberSize;
   sx?: Sx;
+  className?: string;
 };
 export function ColorSchemeToggle(props: Props) {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
-  const { sx } = props;
+  const { sx, className } = props;
   return (
-    <Group position="center" sx={sx} mt={props.mt}>
+    <Group className={className} position="center" sx={sx} mt={props.mt}>
       <ActionIcon
         onClick={() => toggleColorScheme(colorScheme === 'light' ? 'dark' : 'light')}
         size={props.size || 'xl'}

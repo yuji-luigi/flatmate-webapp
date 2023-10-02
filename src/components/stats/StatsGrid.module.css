@@ -1,0 +1,30 @@
+.card {
+}
+
+.container {
+}
+
+.root {
+  padding: calc(var(--spacing-xl) * 1.5);
+}
+
+.value {
+  font-size: 24;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.diff {
+  line-height: 1;
+  display: 'flex';
+  align-items: 'center';
+}
+
+/* .icon {
+  color: theme.colorScheme === 'dark' ? theme.colors.dark[3] : theme.colors.gray[4];
+} */
+
+.title {
+  font-weight: 700;
+  text-transform: 'uppercase';
+}

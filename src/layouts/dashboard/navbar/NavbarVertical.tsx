@@ -1,5 +1,13 @@
 import { Fragment, useEffect, useState } from 'react';
-import { createStyles, getStylesRef, Navbar, ScrollArea, Button, Stack } from '@mantine/core';
+import {
+  createStyles,
+  getStylesRef,
+  Navbar,
+  ScrollArea,
+  Button,
+  Stack,
+  Drawer,
+} from '@mantine/core';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { useMediaQuery } from '@mantine/hooks';
@@ -15,6 +23,9 @@ import { NavbarVerticalItem } from './NavbarVerticalItem';
 import { navbarVerticalStyle } from './navbarStyle';
 import { ColorSchemeToggle } from '../../../components/color-schemeToggle/ColorSchemeToggle';
 import LogoutButton from './LogoutButton';
+import OrganizationSpaceSelect from '../../../components/select-custom/OrganizationSpaceSelect';
+import classesM from './NavbarVertical.module.css';
+import { useCustomMQuery } from '../../../../hooks/useCustomMQuery';
 
 // type NavbarConfig = { link: string; label: string; icon: TablerIcon };
 // const navBarConfig: NavbarConfig[] = [];

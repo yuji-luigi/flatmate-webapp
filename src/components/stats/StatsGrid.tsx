@@ -8,6 +8,7 @@ import {
 } from '@tabler/icons-react';
 import { useTranslation } from 'next-i18next';
 import { Icons } from '../../data/icons/icons';
+import classesM from './StatsGrid.module.css';
 
 const useStyles = createStyles((theme) => ({
   root: {
@@ -63,7 +64,7 @@ export function StatsGrid({ data }: { data: StatGridSchema[] }) {
     const DiffIcon = stat.diff && stat.diff > 0 ? IconArrowUpRight : IconArrowDownRight;
 
     return (
-      <Box key={stat.title}>
+      <Box key={stat.title} className={classesM.card}>
         <Paper withBorder p="md" radius="md" key={stat.title}>
           <Group position="apart">
             <Text size="xs" color="dimmed" className={classes.title}>
@@ -99,8 +100,9 @@ export function StatsGrid({ data }: { data: StatGridSchema[] }) {
   });
   return (
     <SimpleGrid
-      cols={3}
+      cols={2}
       sx={{ width: '100%' }}
+      className={classesM.container}
       breakpoints={[
         { maxWidth: 'md', cols: 2 },
         { maxWidth: 'sm', cols: 1 },
@@ -109,4 +111,5 @@ export function StatsGrid({ data }: { data: StatGridSchema[] }) {
       {stats}
     </SimpleGrid>
   );
+  // return <Group className={classesM.container}>{stats}</Group>;
 }

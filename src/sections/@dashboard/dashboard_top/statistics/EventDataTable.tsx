@@ -145,7 +145,7 @@ const mockData = [
 
 export const EventDataTable = () => {
   return (
-    <Card mt={36}>
+    <Card>
       <DividerStyled label="Lavori/Eventi" />
       <StaticDataTable json={eventsStatTableData} data={mockData} />
     </Card>

@@ -1,11 +1,23 @@
-.center {
+/* .center {
   position: absolute;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+} */
+.center {
+  grid-column: 2; /* Place in the middle column */
+  display: flex;
+  justify-content: center;
 }
+
 .tabList {
   display: flex;
   align-items: center;
+}
+
+.mobileNavContainer {
+  display: flex;
+  flex-direction: column;
+  /* margin-bottom: 56px; */
 }

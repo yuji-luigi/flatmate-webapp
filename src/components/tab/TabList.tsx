@@ -3,6 +3,7 @@ import React from 'react';
 import { TabsPosition } from '@mantine/core/lib/Tabs/Tabs.types';
 import { useCustomMQuery } from '../../../hooks/useCustomMQuery';
 import { SettingButtonSpaceHome } from '../../sections/@dashboard/dashboard_top/components/SettingButtonSpaceHome';
+import classes from './TabList.module.css';
 
 interface List {
   icon: React.ReactNode;
@@ -33,7 +34,7 @@ export const TabList = ({
           width: '100%',
         }}
       >
-        <Group>
+        <Group className={classes.tabList}>
           {list.map((item) => (
             <Tabs.Tab icon={item.icon} value={item.value} key={item.label}>
               {isMobile ? '' : item.label}

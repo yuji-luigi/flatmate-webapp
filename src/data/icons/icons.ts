@@ -53,6 +53,7 @@ import {
   IconProgressCheck as progressCheck,
   IconClockStop as clockStop,
   IconReportAnalytics as reportAnalytics,
+  IconBell as bell,
 } from '@tabler/icons-react';
 /**
  * use the key name same as the slice name
@@ -111,6 +112,7 @@ export const Icons = {
   progressCheck,
   clockStop,
   reportAnalytics,
+  bell,
 } as const;
 export const ICON_SIZES = {
   textTile: 16,

@@ -1,4 +1,4 @@
-import { createStyles, Header, Group, Burger, Box } from '@mantine/core';
+import { createStyles, Header, Group, Burger, Box, ActionIcon } from '@mantine/core';
 // import { useDisclosure } from '@mantine/hooks';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -16,12 +16,27 @@ import { TAB_LIST_CONFIG } from '../../sections/@dashboard/dashboard_top/section
 import { useCustomMQuery } from '../../../hooks/useCustomMQuery';
 import { TabList } from '../../components/tab/TabList';
 import classesM from './DashboardHeaderSearch.module.css';
+import { Icons } from '../../data/icons/icons';
 
 const useStyles = createStyles((theme) => ({
+  // header: {
+  //   position: 'fixed',
+  //   paddingLeft: theme.spacing.md,
+  //   paddingRight: theme.spacing.md,
+  // },
   header: {
     position: 'fixed',
     paddingLeft: theme.spacing.md,
     paddingRight: theme.spacing.md,
+    height: 56,
+    display: 'flex',
+    justifyContent: 'space-between',
+    zIndex: 50,
+    // justifyContent: 'flex-start',
+    alignItems: 'center',
+    // [theme.fn.smallerThan('md')]: {
+    //   height: 120,
+    // },
   },
 
   inner: {
@@ -40,16 +55,60 @@ const useStyles = createStyles((theme) => ({
       display: 'block',
     },
   },
+  links: {
+    [theme.fn.smallerThan('md')]: {
+      display: 'none',
+    },
+  },
+
+  // header: {
+  //   position: 'fixed',
+  //   paddingLeft: theme.spacing.md,
+  //   paddingRight: theme.spacing.md,
+  // },
+
+  // inner: {
+  //   height: 56,
+  //   display: 'grid',
+  //   gridTemplateColumns: '1fr 1fr 1fr', // Three equal columns
+  //   alignItems: 'center',
+  //   zIndex: 50,
+  // },
+
+  // burger: {
+  //   display: 'none',
+  //   zIndex: 100,
+  //   gridColumn: 1, // Place on the first column
+  //   [theme.fn.smallerThan('md')]: {
+  //     display: 'block',
+  //   },
+  // },
+
+  // links: {
+  //   gridColumn: 1, // Place on the first column
+  //   [theme.fn.smallerThan('md')]: {
+  //     display: 'none',
+  //   },
+  // },
+
+  center: {
+    gridColumn: 2, // Place in the middle column
+    display: 'flex',
+    justifyContent: 'center',
+  },
+
+  OrganizationSpaceSelect: {
+    gridColumn: 3, // Place on the last column
+  },
+
+  ColorSchemeToggle: {
+    gridColumn: 3, // Place on the last column
+  },
+
   logo: {
     display: 'none',
     [theme.fn.largerThan('md')]: {
       display: 'block',
-    },
-  },
-
-  links: {
-    [theme.fn.smallerThan('md')]: {
-      display: 'none',
     },
   },
 
@@ -114,29 +173,50 @@ export function DashboardHeaderSearch() {
   //     setSpaces([{ label: spaceNameCookie, value: spaceId }]);
   //   }
   // }, []);
+  // const menuContent = isMobile ? (
+  //   <Box className={classesM.mobileNavContainer}>
+  //     <Group>
+  //       <Burger className={classes.burger} opened={isOpen} onClick={toggleBarOpen} size="sm" />
+  //       <TabList list={TAB_LIST_CONFIG} className={classesM.tabList} />
+  //     </Group>
+  //     <TabList list={TAB_LIST_CONFIG} className={classesM.tabList} />
+  //   </Box>
+  // ) : (
+  //   <Box className={classesM.center}>
+  //     <TabList list={TAB_LIST_CONFIG} className={classesM.tabList} />
+  //   </Box>
+  // );
+  const menuHeight = /*  isMobile ? 120 : */ 56;
   return (
-    <Header fixed height={56} className={classes.header}>
-      <div className={classes.inner}>
-        <Burger className={classes.burger} opened={isOpen} onClick={toggleBarOpen} size="sm" />
-        {!isMobile && (
+    <Header fixed className={classes.header} height={menuHeight}>
+      {/* <div className={classes.inner}> */}
+      <Burger className={classes.burger} opened={isOpen} onClick={toggleBarOpen} size="sm" />
+      {!isMobile && (
+        <>
           <Group ml={5} spacing={5} className={classes.links}>
             <LogoBanner link="/" transparent />
           </Group>
-        )}
-        <Box className={classesM.center}>
-          <TabList list={TAB_LIST_CONFIG} className={classesM.tabList} />
-        </Box>
-        <Group>
-          <HeaderCreationModalWrapper />
+        </>
+      )}
+      <Box className={classesM.center}>
+        <TabList list={TAB_LIST_CONFIG} className={classesM.tabList} />
+      </Box>
+      {isMobile && (
+        <ActionIcon>
+          <Icons.bell />
+        </ActionIcon>
+      )}
+      <Group>
+        <HeaderCreationModalWrapper />
 
-          {!isMobile && (
-            <>
-              <OrganizationSpaceSelect />
-              <ColorSchemeToggle size="lg" />
-            </>
-          )}
-        </Group>
-      </div>
+        {!isMobile && (
+          <>
+            <OrganizationSpaceSelect /* className={classes.OrganizationSpaceSelect} */ />
+            <ColorSchemeToggle size="lg" />
+          </>
+        )}
+      </Group>
+      {/* </div> */}
     </Header>
   );
   // return (

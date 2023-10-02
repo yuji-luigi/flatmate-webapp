@@ -1,4 +1,4 @@
-import { Select, SelectItem, Sx } from '@mantine/core';
+import { Box, Select, SelectItem, Sx } from '@mantine/core';
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { UseFormReturnType } from '@mantine/form';
@@ -14,6 +14,7 @@ interface OrganizationSpaceSelectProps {
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
   labels?: { organization: string; space: string };
   form?: UseFormReturnType<Record<string, unknown>> | null;
+  className?: string;
   // organizationsLabel?: string;
   // spacesLabel?: string;
 }
@@ -23,6 +24,7 @@ const OrganizationSpaceSelect = ({
   size = 'xs',
   labels,
   form = null,
+  className,
 }: OrganizationSpaceSelectProps) => {
   // const [opened, { toggle }] = useDisclosure(false);
 
@@ -116,7 +118,7 @@ const OrganizationSpaceSelect = ({
     handleGetSpaces();
   }, []);
   return (
-    <>
+    <Box className={className}>
       {isSuperAdmin && (
         <Select
           name="organization"
@@ -161,7 +163,7 @@ const OrganizationSpaceSelect = ({
         }}
         sx={sx}
       />
-    </>
+    </Box>
   );
 };
 
