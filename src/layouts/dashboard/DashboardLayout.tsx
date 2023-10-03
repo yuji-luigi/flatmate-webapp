@@ -2,7 +2,7 @@ import React, { ReactNode, useEffect, useRef } from 'react';
 import { Box, Tabs, createStyles, useMantineTheme } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { useRouter } from 'next/router';
-import { DashboardHeaderSearch } from './DashboardHeaderSearch';
+import { DashboardHeaderSearch } from './header/DashboardHeaderSearch';
 import { NavbarVertical } from './navbar/NavbarVertical';
 import useLayoutContext from '../../../hooks/useLayoutContext';
 import { useCookieContext } from '../../context/CookieContext';

@@ -3,20 +3,21 @@ import { createStyles, Header, Group, Burger, Box, ActionIcon } from '@mantine/c
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useMediaQuery } from '@mantine/hooks';
-import links from '../../../json/navbar/headerLinks.json';
-import useLayoutContext from '../../../hooks/useLayoutContext';
-import { ColorSchemeToggle } from '../../components/color-schemeToggle/ColorSchemeToggle';
-import { LogoBanner } from '../../components/banner/LogoBanner';
+import links from '../../../../json/navbar/headerLinks.json';
+import useLayoutContext from '../../../../hooks/useLayoutContext';
+import { ColorSchemeToggle } from '../../../components/color-schemeToggle/ColorSchemeToggle';
+import { LogoBanner } from '../../../components/banner/LogoBanner';
 // import { useCurrentSpaceContext } from '../../context/CurrentSpaceContext';
-import { useCookieContext } from '../../context/CookieContext';
+import { useCookieContext } from '../../../context/CookieContext';
 
-import OrganizationSpaceSelect from '../../components/select-custom/OrganizationSpaceSelect';
-import { HeaderCreationModalWrapper } from './header-creation-modal/HeaderCreationModalWrapper';
-import { TAB_LIST_CONFIG } from '../../sections/@dashboard/dashboard_top/sections-in-tabs/tabList';
-import { useCustomMQuery } from '../../../hooks/useCustomMQuery';
-import { TabList } from '../../components/tab/TabList';
+import OrganizationSpaceSelect from '../../../components/select-custom/OrganizationSpaceSelect';
+import { HeaderCreationModalWrapper } from '../header-creation-modal/HeaderCreationModalWrapper';
+import { TAB_LIST_CONFIG } from '../../../sections/@dashboard/dashboard_top/sections-in-tabs/tabList';
+import { useCustomMQuery } from '../../../../hooks/useCustomMQuery';
+import { TabList } from '../../../components/tab/TabList';
 import classesM from './DashboardHeaderSearch.module.css';
-import { Icons } from '../../data/icons/icons';
+import { Icons } from '../../../data/icons/icons';
+import { HeaderNotificationButton } from './HeaderNotificationButton';
 
 const useStyles = createStyles((theme) => ({
   // header: {
@@ -161,31 +162,6 @@ export function DashboardHeaderSearch() {
   const isMediaScreen = useMediaQuery('(max-width: 750px)');
   const { isMobile } = useCustomMQuery();
 
-  // useEffect(() => {
-  //   const organizationNameCookie = getCookie('organizationName');
-  //   if (typeof organizationNameCookie === 'string') {
-  //     setOrganizations([{ label: organizationNameCookie, value: currentOrganization || '' }]);
-  //   }
-
-  //   const spaceNameCookie = getCookie('spaceName');
-  //   if (typeof spaceNameCookie === 'string') {
-  //     const spaceId = currentSpace?._id || '';
-  //     setSpaces([{ label: spaceNameCookie, value: spaceId }]);
-  //   }
-  // }, []);
-  // const menuContent = isMobile ? (
-  //   <Box className={classesM.mobileNavContainer}>
-  //     <Group>
-  //       <Burger className={classes.burger} opened={isOpen} onClick={toggleBarOpen} size="sm" />
-  //       <TabList list={TAB_LIST_CONFIG} className={classesM.tabList} />
-  //     </Group>
-  //     <TabList list={TAB_LIST_CONFIG} className={classesM.tabList} />
-  //   </Box>
-  // ) : (
-  //   <Box className={classesM.center}>
-  //     <TabList list={TAB_LIST_CONFIG} className={classesM.tabList} />
-  //   </Box>
-  // );
   const menuHeight = /*  isMobile ? 120 : */ 56;
   return (
     <Header fixed className={classes.header} height={menuHeight}>
@@ -206,11 +182,7 @@ export function DashboardHeaderSearch() {
       <Box className={classesM.center}>
         <TabList list={TAB_LIST_CONFIG} className={classesM.tabList} />
       </Box>
-      {isMobile && (
-        <ActionIcon>
-          <Icons.bell />
-        </ActionIcon>
-      )}
+      {isMobile && <HeaderNotificationButton />}
       {!isMobile && (
         <Group>
           <>
