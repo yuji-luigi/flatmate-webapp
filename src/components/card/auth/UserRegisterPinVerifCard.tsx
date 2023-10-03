@@ -43,7 +43,7 @@ export const UserRegisterPinVerifCard = ({ setPinOk }: PinVerifCardProps) => {
         setCrudDocument({ entity: 'users', document: rawRes.data.data });
       } catch (error: any) {
         showNotification({
-          // icon: <Icons.alert />,
+          icon: <Icons.alert />,
           title: 'Error',
           message: error.message || error,
           color: 'red',

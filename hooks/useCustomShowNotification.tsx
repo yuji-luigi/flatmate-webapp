@@ -21,7 +21,7 @@ const useCustomShowNotification = ({
     return showNotification({
       title: 'Error',
       color: 'red',
-      icon: <Icons.alert />,
+      // icon: <Icons.alert />,
       message: /*  data.message || */ message || 'connection error',
       autoClose: 2000,
     });
