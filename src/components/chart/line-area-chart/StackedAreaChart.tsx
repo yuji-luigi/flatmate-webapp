@@ -119,7 +119,7 @@ type CustomLayerProps = {
   yScale: any;
 };
 type PointCustom = Point & {
-  data: { change: number };
+  data: { change: number; y: number; x: any };
 };
 const CustomLayer = (props: CustomLayerProps) => {
   const { points, xScale, yScale } = props;
