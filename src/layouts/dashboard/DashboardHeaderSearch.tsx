@@ -190,7 +190,12 @@ export function DashboardHeaderSearch() {
   return (
     <Header fixed className={classes.header} height={menuHeight}>
       {/* <div className={classes.inner}> */}
-      <Burger className={classes.burger} opened={isOpen} onClick={toggleBarOpen} size="sm" />
+      {isMobile && (
+        <Group>
+          <Burger className={classes.burger} opened={isOpen} onClick={toggleBarOpen} size="sm" />
+          <HeaderCreationModalWrapper />
+        </Group>
+      )}
       {!isMobile && (
         <>
           <Group ml={5} spacing={5} className={classes.links}>
@@ -206,16 +211,14 @@ export function DashboardHeaderSearch() {
           <Icons.bell />
         </ActionIcon>
       )}
-      <Group>
-        <HeaderCreationModalWrapper />
-
-        {!isMobile && (
+      {!isMobile && (
+        <Group>
           <>
             <OrganizationSpaceSelect /* className={classes.OrganizationSpaceSelect} */ />
             <ColorSchemeToggle size="lg" />
           </>
-        )}
-      </Group>
+        </Group>
+      )}
       {/* </div> */}
     </Header>
   );

@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, useEffect, useRef, useState } from 'react';
 import {
   createStyles,
   getStylesRef,
@@ -7,6 +7,7 @@ import {
   Button,
   Stack,
   Drawer,
+  Box,
 } from '@mantine/core';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
@@ -48,13 +49,11 @@ export function NavbarVertical() {
   const { asPath, query } = useRouter();
   const isMediaScreen = useMediaQuery('(max-width: 750px)');
   const isSuperAdmin = user?.role === 'super_admin';
-
+  const { isMobile } = useCustomMQuery();
   const chooseText = isSuperAdmin ? 'Organization' : 'Space';
   // const isMobile = useMediaQuery('(max-width: 600px)');
 
   const chooseHref = isSuperAdmin ? PATH_CLIENT.chooseOrganization : PATH_CLIENT.chooseRootSpace;
-  useEffect(() => setActive(asPath), [asPath]);
-  useEffect(() => closeBar(), [query.entity]);
 
   if (!user) return null;
   const links = sectionData.map((section, i) => {
@@ -78,38 +77,42 @@ export function NavbarVertical() {
   });
 
   return (
-    <Navbar
-      className={classes.navbar}
-      fixed
-      hidden={!isOpen}
-      hiddenBreakpoint="md"
-      width={{ base: 200, sm: 300 }}
-      p="md"
-    >
-      <ScrollArea>
-        <Navbar.Section grow>
-          <ProfilePopover />
-        </Navbar.Section>
-        {links.map((navbarData) => navbarData)}
+    <>
+      <Navbar
+        className={classes.navbar}
+        fixed
+        hidden={!isOpen}
+        hiddenBreakpoint="md"
+        width={{ base: 200, sm: 300 }}
+        p="md"
+      >
+        <ScrollArea>
+          <Navbar.Section grow>
+            <ProfilePopover />
+          </Navbar.Section>
+          {links.map((navbarData) => navbarData)}
 
-        <Navbar.Section className={classes.footer}>
-          <Stack>
-            <LogoutButton />
-            {isMediaScreen && (
-              <>
-                <Button
-                  className={cx(classes.button, classes.link)}
-                  component={Link}
-                  href={chooseHref}
-                >
-                  Choose {chooseText}
-                </Button>
-                <ColorSchemeToggle size="lg" sx={{ alignSelf: 'end' }} />
-              </>
-            )}
-          </Stack>
-        </Navbar.Section>
-      </ScrollArea>
-    </Navbar>
+          <Navbar.Section className={classes.footer}>
+            <Stack>
+              <LogoutButton />
+              {isMediaScreen && (
+                <>
+                  <Button
+                    className={cx(classes.button, classes.link)}
+                    component={Link}
+                    href={chooseHref}
+                  >
+                    Choose {chooseText}
+                  </Button>
+                  <ColorSchemeToggle size="lg" sx={{ alignSelf: 'end' }} />
+                </>
+              )}
+            </Stack>
+          </Navbar.Section>
+        </ScrollArea>
+      </Navbar>
+
+      <Box className={`${classesM.invBox} ${isOpen ? classesM.fadeIn : ''}`} onClick={closeBar} />
+    </>
   );
 }

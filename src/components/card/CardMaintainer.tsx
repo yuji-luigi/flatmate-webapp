@@ -13,10 +13,10 @@ import {
   Tooltip,
   Sx,
 } from '@mantine/core';
+import Link from 'next/link';
 import { Icons } from '../../data/icons/icons';
 import { IMAGES_ARRAY, PATH_IMAGE } from '../../lib/image-paths';
 import { getRandomItemFromArray } from '../../utils/mock-data-functions';
-import Link from 'next/link';
 import { Sections } from '../../types/general/data/sections-type';
 import TextWithIcon from '../text/TextWithIcon';
 import BadgeWithToolTip from '../text/BadgeWithToolTip';
@@ -76,7 +76,6 @@ export function CardMaintainer({ data, entity }: { data: UserCardData; entity: S
       }}
     >
       <Card.Section
-        component="a"
         sx={{
           backgroundImage: `url(${data.cover?.url || PATH_IMAGE.flatmateLogo1})`,
           height: 140,
@@ -84,8 +83,7 @@ export function CardMaintainer({ data, entity }: { data: UserCardData; entity: S
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat',
         }}
-        // href="https://mantine.dev/"
-      ></Card.Section>
+      />
       {/* <Image src={data.avatar.url} height={160} alt="Norway" /> */}
       {/* </Card.Section> */}
       <Avatar
@@ -135,6 +133,7 @@ export function CardMaintainer({ data, entity }: { data: UserCardData; entity: S
         <Group>
           {data.badges?.map((badge) => (
             <BadgeWithToolTip
+              key={badge}
               icon={data.badgeIcon}
               text={badge || 'add address'}
               disabled={!badge}

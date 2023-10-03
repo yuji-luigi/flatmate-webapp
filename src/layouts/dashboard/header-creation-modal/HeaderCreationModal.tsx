@@ -43,7 +43,7 @@ export function HeaderCreationModal() {
     <>
       <Menu shadow="lg">
         <Menu.Target>
-          <ActionIcon variant="outline" size={20}>
+          <ActionIcon variant="outline" size={18}>
             <Icons.plus />
           </ActionIcon>
         </Menu.Target>

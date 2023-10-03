@@ -25,6 +25,8 @@ body {
   --table-cell-width-sm: 60px;
   --table-min-width: 800px;
   --table-min-width-sm: 300px;
+  --bg-color-dark: rgba(0, 0, 0, 0.85);
+  --bg-color-light: rgba(255, 255, 255, 0.85);
 }
 
 a {

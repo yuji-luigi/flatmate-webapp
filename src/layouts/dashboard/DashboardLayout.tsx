@@ -1,6 +1,7 @@
 import React, { ReactNode, useEffect, useRef } from 'react';
 import { Box, Tabs, createStyles, useMantineTheme } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
+import { useRouter } from 'next/router';
 import { DashboardHeaderSearch } from './DashboardHeaderSearch';
 import { NavbarVertical } from './navbar/NavbarVertical';
 import useLayoutContext from '../../../hooks/useLayoutContext';
@@ -23,7 +24,7 @@ const useStyles = createStyles((theme /* _params, getRef */) => ({
 
 const DashboardLayout = ({ children }: { children: ReactNode }) => {
   const { classes } = useStyles();
-  const { setCurrentTab } = useTabContext();
+  const { setCurrentTab, currentTab } = useTabContext();
   const theme = useMantineTheme();
   const { isOpen } = useLayoutContext();
   const matches = useMediaQuery(`(max-width: ${theme.breakpoints.md}px)`);
@@ -31,7 +32,8 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
   const { currentSpace } = useCookieContext();
   const containerRef = useRef<HTMLDivElement>(null);
   const bgColor = theme.colorScheme === 'dark' ? 'rgba(0,0,0,0.85)' : 'rgba(255,255,255,0.85)';
-
+  const router = useRouter();
+  const section = router.pathname.split('/').pop();
   useEffect(() => {
     setCurrentTab(TAB_LIST_CONFIG[0].value);
     const handleScroll = () => {
@@ -47,16 +49,26 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  useEffect(() => {
+    if (section !== 'home') {
+      setCurrentTab(null);
+    }
+  }, [section]);
+
   const handleChangeTab = (value: string) => {
     setCurrentTab(value);
+    if (section !== 'home') {
+      router.push('/dashboard/home');
+    }
   };
 
   return (
     <Tabs
-      // classNames={tabClasses}
       onTabChange={handleChangeTab}
       keepMounted={false}
       defaultValue={TAB_LIST_CONFIG[0].value}
+      value={currentTab}
     >
       <DashboardHeaderSearch />
       <Box

@@ -1,12 +1,12 @@
 import React from 'react';
-import { CardMaintainer, UserCardData } from '../../../components/card/CardMaintainer';
 import { Box, createStyles } from '@mantine/core';
+import useSWR from 'swr';
+import { current } from '@reduxjs/toolkit';
+import { CardMaintainer, UserCardData } from '../../../components/card/CardMaintainer';
 import { PATH_IMAGE } from '../../../lib/image-paths';
 import { Sections } from '../../../types/general/data/sections-type';
 import { useCrudSelectors } from '../../../redux/features/crud/crudSlice';
-import useSWR from 'swr';
 import { useCookieContext } from '../../../context/CookieContext';
-import { current } from '@reduxjs/toolkit';
 import { fetchSpaceSelections } from '../../../pages/choose-root-space';
 import useAuth from '../../../../hooks/useAuth';
 import { Icons } from '../../../data/icons/icons';

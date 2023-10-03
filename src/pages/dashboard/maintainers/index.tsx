@@ -28,7 +28,6 @@ const useStyles = createStyles((theme) => ({
 
 const MaintainerPage = () => {
   const { query, push } = useRouter();
-  console.log('query', query);
   const { classes } = useStyles();
 
   const entity = 'maintainers';

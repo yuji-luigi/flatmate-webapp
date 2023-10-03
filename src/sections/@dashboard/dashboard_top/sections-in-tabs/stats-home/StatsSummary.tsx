@@ -10,15 +10,10 @@ import { IconButton } from '../../../../../components/button/IconButton';
 
 export const StatsSummary = ({ className }: { className: string }) => {
   const { isMobile } = useCustomMQuery();
-  // if (isMobile) {
-  //   return (
-  //     <Group>
-  //       <IconButton icon={<Icons.alert />} />
-  //       <IconButton icon={<Icons.maintenance />} />
-  //       <IconButton icon={<Icons.check />} />
-  //     </Group>
-  //   );
-  // }
+  if (isMobile) {
+    return null;
+  }
+
   return (
     <Box className={className}>
       <Grid>

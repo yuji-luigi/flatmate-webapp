@@ -9,7 +9,7 @@ import { isString } from '../../utils/type-guard/isString';
 
 interface TabContextState {
   currentTab: null | string;
-  setCurrentTab: (tab: string) => void;
+  setCurrentTab: (tab: string | null) => void;
 }
 
 export const TabContext = createContext<TabContextState>({

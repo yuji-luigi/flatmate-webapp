@@ -1,5 +1,6 @@
 import { Select, SelectItem } from '@mantine/core';
 import React, { ChangeEvent, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import { useFilter } from '../../../../hooks/useFilter';
 import {
   FormFieldTypes,
@@ -7,7 +8,6 @@ import {
   SelectOption,
   StaticSelectFormFieldType,
 } from '../../../types/general/data/data-table/formField-types';
-import { useRouter } from 'next/router';
 
 export const SelectFilterInput = ({ formField }: { formField: StaticSelectFormFieldType }) => {
   const { query } = useRouter();
@@ -18,9 +18,7 @@ export const SelectFilterInput = ({ formField }: { formField: StaticSelectFormFi
   };
 
   useEffect(() => {
-    console.log('query', query);
     Object.keys(query).forEach((key) => {
-      console.log(key);
       if (key === formField.name) {
         setSelectFilters({ field: formField.name, value: query[key] as string });
       }
