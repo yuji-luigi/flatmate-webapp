@@ -20,10 +20,10 @@ function StackedAreaChart() {
       // ],
       data: [
         { x: 'Feb 2', y: 900, change: 0 },
-        { x: 'Feb 15', y: 500, change: 500 },
+        { x: 'Feb 15', y: 500, change: -400 },
         { x: 'Feb 23', y: 500, change: 0 },
-        { x: 'Feb 28', y: 1000, change: -500 },
-        { x: 'Mar 5', y: 500, change: 1500 },
+        { x: 'Feb 28', y: 1000, change: 500 },
+        { x: 'Mar 5', y: 500, change: -500 },
         { x: 'Mar 18', y: 250, change: -250 },
       ],
     },

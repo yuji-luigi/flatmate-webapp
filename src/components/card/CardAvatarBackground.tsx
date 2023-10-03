@@ -12,10 +12,10 @@ import {
   rem,
   Tooltip,
 } from '@mantine/core';
+import Link from 'next/link';
 import { Icons } from '../../data/icons/icons';
 import { IMAGES_ARRAY, PATH_IMAGE } from '../../lib/image-paths';
 import { getRandomItemFromArray } from '../../utils/mock-data-functions';
-import Link from 'next/link';
 import { Sections } from '../../types/general/data/sections-type';
 import TextWithIcon from '../text/TextWithIcon';
 import BadgeWithToolTip from '../text/BadgeWithToolTip';
@@ -73,8 +73,7 @@ export function CardMaintainer({
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat',
         }}
-        // href="https://mantine.dev/"
-      ></Card.Section>
+      />
       {/* <Image src={maintainer.avatar.url} height={160} alt="Norway" /> */}
       {/* </Card.Section> */}
       <Avatar
