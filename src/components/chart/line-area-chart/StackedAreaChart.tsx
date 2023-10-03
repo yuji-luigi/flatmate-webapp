@@ -105,7 +105,9 @@ function StackedAreaChart() {
         //@ts-ignore
         CustomLayer,
       ]}
-    />
+    >
+      {null}
+    </ResponsiveLine>
   );
 }
 
