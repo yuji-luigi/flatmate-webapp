@@ -38,6 +38,7 @@ function StackedAreaChart() {
   ];
 
   return (
+    //@ts-ignore
     <ResponsiveLine
       data={data}
       margin={{ top: 70, right: mx, bottom: 50, left: mx }}
