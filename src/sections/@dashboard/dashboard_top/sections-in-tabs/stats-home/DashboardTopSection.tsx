@@ -29,7 +29,7 @@ const StackedAreaChart = dynamic(
 const DashboardSection = () => {
   return (
     <Box className={classes.box}>
-      <StatsSummary className={classes.w100} />
+      <StatsSummary className={classes.summary} />
       <StatsGrid data={statsGridData as unknown as StatGridSchema[]} />
       <Card sx={{ height: 400, width: '100%', overflow: 'visible' }}>
         <StackedAreaChart />

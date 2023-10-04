@@ -83,6 +83,7 @@ export function NavbarVertical() {
         fixed
         hidden={!isOpen}
         hiddenBreakpoint="md"
+        sx={{ zIndex: 100 }}
         width={{ base: 200, sm: 300 }}
         p="md"
       >
