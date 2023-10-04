@@ -16,7 +16,14 @@
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: start;
+  justify-content: flex-start;
   flex-direction: row;
   gap: var(--flex-gap);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  padding-block: var(--padding-y-list);
+  padding-inline: var(--padding-x-list);
+}
+.cardContent:hover {
+  background-color: rgba(0, 0, 0, 0.5);
 }

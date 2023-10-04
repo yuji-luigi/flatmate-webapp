@@ -7,15 +7,18 @@ import { intlDateFormat } from '../../../utils/helpers/date-formatters';
 
 export const MaintenanceNotificationList = (props: any) => {
   const { data } = props;
-  const { title, description, createdBy, createdAt } = data;
-  console.log(data);
+  const { title, description, createdBy, createdAt, category } = data;
   return (
     <Box className={classes.cardContent}>
-      <Image src={PATH_IMAGE.flatmateLogo1} height={60} width={60} alt="avatar" />
       <div className={classes.body}>
-        <Text tt="uppercase" c="dimmed" fw={700} size="xs">
-          {title}
+        <Text size="xs" c="dimmed">
+          {category}
         </Text>
+        <Group>
+          <Text tt="uppercase" c="dimmed" fw={700} size="xs">
+            {title}
+          </Text>
+        </Group>
         <Text className={classes.title} mt="xs" mb="md">
           {description?.substring(0, 55)}
         </Text>

@@ -27,6 +27,16 @@ body {
   --table-min-width-sm: 300px;
   --bg-color-dark: rgba(0, 0, 0, 0.85);
   --bg-color-light: rgba(255, 255, 255, 0.85);
+  --padding-x-list: 16px;
+  --padding-y-list: 24px;
+  :root.light {
+    --bg-color: rgba(255, 255, 255, 0.85);
+    --text-color: #123;
+  }
+  :root.dark {
+    --bg-color: rgba(0, 0, 0, 0.85);
+    --text-color: #45adfe;
+  }
 }
 
 a {

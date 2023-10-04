@@ -1,5 +1,5 @@
-import { ActionIcon, Drawer, Indicator, Stack } from '@mantine/core';
-import React, { useMemo } from 'react';
+import { ActionIcon, Divider, Drawer, Indicator, Stack } from '@mantine/core';
+import React, { Fragment, useMemo } from 'react';
 import { useDisclosure } from '@mantine/hooks';
 import { Icons } from '../../../data/icons/icons';
 import { useCrudSelectors } from '../../../redux/features/crud/crudSlice';
@@ -31,12 +31,22 @@ export const HeaderNotificationButton = () => {
           <Icons.bell />
         </Indicator>
       </ActionIcon>
-      <Drawer position="right" size="xs" opened={opened} onClose={close} title="Notifications">
-        <Stack className={classes.listContainer}>
-          {notifications.map((data) => (
-            <NotificationListRoot key={data._id} data={data} />
-          ))}
-        </Stack>
+      <Drawer
+        position="right"
+        size="xs"
+        opened={opened}
+        onClose={close}
+        title="Notifications"
+        classNames={{
+          body: classes.drawerBody,
+        }}
+      >
+        {notifications.map((data) => (
+          <Fragment key={data._id}>
+            <NotificationListRoot data={data} />
+            <Divider variant="dotted" />
+          </Fragment>
+        ))}
       </Drawer>
     </>
   );
