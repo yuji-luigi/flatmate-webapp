@@ -32,6 +32,9 @@ import { MaintenanceModel } from '../../../types/models/maintenance-model';
 const useStyles = createStyles((theme) => ({
   main: {
     minHeight: 'calc(100vh - 64px)',
+    [theme.fn.smallerThan('sm')]: {
+      paddingInline: 0,
+    },
   },
 
   articleMenuDivider: {
