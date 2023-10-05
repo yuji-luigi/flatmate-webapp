@@ -113,7 +113,9 @@ export function NavbarVertical() {
         </ScrollArea>
       </Navbar>
 
-      <Box className={`${classesM.invBox} ${isOpen ? classesM.fadeIn : ''}`} onClick={closeBar} />
+      {isMobile && (
+        <Box className={`${classesM.invBox} ${isOpen ? classesM.fadeIn : ''}`} onClick={closeBar} />
+      )}
     </>
   );
 }
