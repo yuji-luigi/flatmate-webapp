@@ -6,6 +6,7 @@
 			"user",
 			"super_admin"
 		],
+		"hide": true,
 		"contents": [
 			{
 				"entity": "home",
@@ -16,7 +17,8 @@
 				"link": "/dashboard/home",
 				"importButton": "",
 				"createButton": "",
-				"icon": "Dashboard"
+				"icon": "Dashboard",
+				"hide": true
 			},
 			{
 				"entity": "posts",
