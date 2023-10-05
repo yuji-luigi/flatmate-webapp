@@ -1,6 +1,7 @@
 import { Stack, Group, Text, Avatar, createStyles, rem } from '@mantine/core';
 import React from 'react';
 import { MaintenanceModel } from '../../../types/models/maintenance-model';
+import { intlDateFormat } from '../../../utils/helpers/date-formatters';
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -10,6 +11,7 @@ const useStyles = createStyles((theme) => ({
   },
   header: {
     marginBottom: 50,
+    gap: 0,
   },
   rating: {
     position: 'absolute',
@@ -21,7 +23,7 @@ const useStyles = createStyles((theme) => ({
   title: {
     display: 'block',
     fontSize: 50,
-    marginTop: theme.spacing.md,
+    // marginTop: theme.spacing.md,
     marginBottom: rem(5),
   },
   articleArea: {
@@ -52,18 +54,18 @@ const SingleMaintenanceHeading = ({ maintenance }: { maintenance: MaintenanceMod
 
   return (
     <Stack className={classes.header}>
-      <Text className={classes.title} fw={800} component="a">
-        {maintenance.title}
-      </Text>
       <Group align="center">
         <Avatar src={maintenance.createdBy.avatar?.url} size={50} radius="xl" mr={0} />
         <Text fz="sm" inline>
           {maintenance.createdBy.name}
         </Text>
         <Text fz="sm" inline>
-          {maintenance._createdAt}
+          {intlDateFormat(maintenance.createdAt)}
         </Text>
       </Group>
+      <Text className={classes.title} fw={800} component="a">
+        {maintenance.title}
+      </Text>
     </Stack>
   );
 };

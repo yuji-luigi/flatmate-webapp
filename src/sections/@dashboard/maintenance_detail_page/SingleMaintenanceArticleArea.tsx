@@ -51,13 +51,12 @@ const useStyles = createStyles((theme) => ({
 
 const SingleMaintenanceArticleArea = ({ maintenance }: { maintenance: MaintenanceModel }) => {
   const { classes, cx, theme } = useStyles();
-
   return (
     <Card className={classes.articleArea}>
-      <Text fz="md" fw={500} color="dimmed" lineClamp={4}>
+      <Text fz="md" fw={500} color="dimmed">
         {maintenance.description}
       </Text>
-      <CarouselBasic images={maintenance.images} />
+      {maintenance.images.length && <CarouselBasic images={maintenance.images} />}
       <Group position="right" spacing={8} mt={10}>
         <ActionIcon className={classes.action}>
           <IconHeart size="1rem" color={theme.colors.red[6]} />

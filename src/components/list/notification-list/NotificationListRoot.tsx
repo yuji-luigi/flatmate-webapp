@@ -3,20 +3,16 @@ import React, { ReactNode } from 'react';
 import Image from 'next/image';
 import classes from './NotificationList.module.css';
 import { IMAGES_ARRAY, PATH_IMAGE } from '../../../lib/image-paths';
-import { MaintenanceNotificationList } from './MaintenanceNotificationList';
-
-export const CATEGORIES = {
-  maintenances: 'Maintenance',
-  threads: 'Post',
-  other: 'Other',
-} as const;
-
-type Category = (typeof CATEGORIES)[keyof typeof CATEGORIES];
+import {
+  MaintenanceNotification,
+  MaintenanceNotificationList,
+} from './MaintenanceNotificationList';
+import { MaintenanceModel } from '../../../types/models/maintenance-model';
+import { Category } from './categories';
 
 type NotificationListProps = {
-  data: {
-    category: Category;
-  };
+  data: MaintenanceNotification;
+  closeDrawer: () => void;
 };
 
 export const NotificationListRoot = (props: NotificationListProps) => {

@@ -1,6 +1,5 @@
 import { Table, ScrollArea, Divider, Box } from '@mantine/core';
 
-import { dashboardStyle } from '../../styles/global-useStyles';
 import StaticTableHeader from './table-rows/StaticTableHeader';
 import { StaticTableRow } from './table-rows/StaticTableRow';
 import classes from './StaticDataTable.module.css';

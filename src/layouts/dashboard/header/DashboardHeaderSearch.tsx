@@ -17,7 +17,7 @@ import { useCustomMQuery } from '../../../../hooks/useCustomMQuery';
 import { TabList } from '../../../components/tab/TabList';
 import classesM from './DashboardHeaderSearch.module.css';
 import { Icons } from '../../../data/icons/icons';
-import { HeaderNotificationButton } from './HeaderNotificationButton';
+import { HeaderNotificationButton } from './notifications/HeaderNotificationButton';
 
 const useStyles = createStyles((theme) => ({
   // header: {

@@ -1,15 +1,35 @@
 import { Box, Group, Avatar, Text } from '@mantine/core';
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { PATH_IMAGE } from '../../../lib/image-paths';
 import classes from './NotificationList.module.css';
 import { intlDateFormat } from '../../../utils/helpers/date-formatters';
+import { _PATH_FRONTEND } from '../../../path/path-frontend';
+import { MaintenanceModel } from '../../../types/models/maintenance-model';
+import { CATEGORIES } from './categories';
 
-export const MaintenanceNotificationList = (props: any) => {
-  const { data } = props;
-  const { title, description, createdBy, createdAt, category } = data;
+export type MaintenanceNotification = MaintenanceModel & {
+  category: typeof CATEGORIES.maintenances;
+  entity: 'maintenances';
+};
+type MaintenanceNorificationListProps = {
+  data: MaintenanceNotification;
+  closeDrawer: () => void;
+};
+
+export const MaintenanceNotificationList = (props: MaintenanceNorificationListProps) => {
+  const { data, closeDrawer } = props;
+  const { title, description, createdBy, createdAt, category, entity, _id } = data;
+  const _description =
+    description.length > 55 ? `${description?.substring(0, 55)}...` : description;
   return (
-    <Box className={classes.cardContent}>
+    <Box
+      component={Link}
+      href={_PATH_FRONTEND[entity].byId(_id)}
+      onClick={closeDrawer}
+      className={classes.cardContent}
+    >
       <div className={classes.body}>
         <Text size="xs" c="dimmed">
           {category}
@@ -20,7 +40,7 @@ export const MaintenanceNotificationList = (props: any) => {
           </Text>
         </Group>
         <Text className={classes.title} mt="xs" mb="md">
-          {description?.substring(0, 55)}
+          {_description}
         </Text>
         <Group spacing={1}>
           <Group spacing={2}>

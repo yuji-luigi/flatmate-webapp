@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { IconBookmark, IconHeart, IconSettings, IconShare } from '@tabler/icons-react';
 import {
   Card,
@@ -19,7 +19,6 @@ import {
 } from '@mantine/core';
 import { GetServerSidePropsContext } from 'next';
 import axiosInstance from '../../../utils/axios-instance';
-import { ReactElement } from 'react';
 import Layout from '../../../layouts';
 import CarouselBasic from '../../../components/carousel/CarouselBasic';
 import useAuth from '../../../../hooks/useAuth';
@@ -42,14 +41,14 @@ const useStyles = createStyles((theme) => ({
 
 const MaintenancePage = ({ maintenance }: { maintenance: MaintenanceModel }) => {
   const { classes, cx, theme } = useStyles();
+  // return 'rendered';
   return (
-    <Container py="lg" className={classes.main}>
+    <Container py="xl" className={classes.main}>
       <SingleMaintenanceHeading maintenance={maintenance} />
-      <PostEditButton data={maintenance} entity="maintenances" />
+      {/* <PostEditButton data={maintenance} entity="maintenances" /> */}
       <SinglePostArticleArea maintenance={maintenance} />
       <Divider className={classes.articleMenuDivider} />
       <RelatedArticlesArea />
-      <CrudDrawerDefault overridingEntity="maintenances" />
     </Container>
   );
 };

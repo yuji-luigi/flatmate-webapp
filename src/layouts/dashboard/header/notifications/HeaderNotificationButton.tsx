@@ -1,14 +1,12 @@
 import { ActionIcon, Divider, Drawer, Indicator, Stack } from '@mantine/core';
 import React, { Fragment, useMemo } from 'react';
 import { useDisclosure } from '@mantine/hooks';
-import { Icons } from '../../../data/icons/icons';
-import { useCrudSelectors } from '../../../redux/features/crud/crudSlice';
-import {
-  CATEGORIES,
-  NotificationListRoot,
-} from '../../../components/list/notification-list/NotificationListRoot';
-import { MaintenanceModel } from '../../../types/models/maintenance-model';
-import classes from './HeaderNotificationButton.module.css';
+import { Icons } from '../../../../data/icons/icons';
+import { useCrudSelectors } from '../../../../redux/features/crud/crudSlice';
+
+import { MaintenanceModel } from '../../../../types/models/maintenance-model';
+import { NotificationDrawer } from './NotificationDrawer';
+import { CATEGORIES } from '../../../../components/list/notification-list/categories';
 
 export const HeaderNotificationButton = () => {
   // todo: add Notification route in Api to get formatted data. (threads, maintenances, etc. in formatted way as notifications)
@@ -17,6 +15,7 @@ export const HeaderNotificationButton = () => {
   const memoedMaintenances = useMemo(() => {
     return maintenances.map((maintenance) => ({
       ...maintenance,
+      entity: 'maintenances',
       category: CATEGORIES.maintenances,
     }));
   }, [maintenances]);
@@ -31,23 +30,7 @@ export const HeaderNotificationButton = () => {
           <Icons.bell />
         </Indicator>
       </ActionIcon>
-      <Drawer
-        position="right"
-        size="xs"
-        opened={opened}
-        onClose={close}
-        title="Notifications"
-        classNames={{
-          body: classes.drawerBody,
-        }}
-      >
-        {notifications.map((data) => (
-          <Fragment key={data._id}>
-            <NotificationListRoot data={data} />
-            <Divider variant="dotted" />
-          </Fragment>
-        ))}
-      </Drawer>
+      <NotificationDrawer notifications={notifications} opened={opened} close={close} />
     </>
   );
 };
