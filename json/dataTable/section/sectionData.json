@@ -111,6 +111,7 @@
 			"admin",
 			"user"
 		],
+		"hide": false,
 		"contents": [
 			{
 				"entity": "fundRules",
@@ -157,7 +158,8 @@
 				"link": "/dashboard/maintainers",
 				"importButton": "",
 				"createButton": "New Maintainer",
-				"icon": "Dashboard"
+				"icon": "Dashboard",
+				"hide": false
 			}
 		]
 	},
@@ -167,6 +169,7 @@
 			"super_admin",
 			"admin"
 		],
+		"hide": false,
 		"contents": [
 			{
 				"entity": "tags",
@@ -201,7 +204,8 @@
 				"link": "/dashboard/spaces",
 				"importButton": "",
 				"createButton": "New Space",
-				"icon": "Dashboard"
+				"icon": "Dashboard",
+				"hide": false
 			},
 			{
 				"entity": "users",
@@ -212,7 +216,8 @@
 				"link": "/dashboard/users",
 				"importButton": "import Excel",
 				"createButton": "New User",
-				"icon": "Dashboard"
+				"icon": "Dashboard",
+				"hide": false
 			}
 		]
 	},
@@ -221,6 +226,7 @@
 		"roles": [
 			"super_admin"
 		],
+		"hide": false,
 		"contents": [
 			{
 				"entity": "uploads",
@@ -267,7 +273,8 @@
 				"link": "/dashboard/organizations",
 				"importButton": "",
 				"createButton": "New Owner",
-				"icon": "Dashboard"
+				"icon": "Dashboard",
+				"hide": false
 			}
 		]
 	}
