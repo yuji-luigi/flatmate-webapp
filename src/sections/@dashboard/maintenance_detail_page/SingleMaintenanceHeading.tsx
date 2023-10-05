@@ -12,6 +12,9 @@ const useStyles = createStyles((theme) => ({
   header: {
     marginBottom: 50,
     gap: 0,
+    [theme.fn.smallerThan('sm')]: {
+      paddingInline: 16,
+    },
   },
   rating: {
     position: 'absolute',
@@ -22,7 +25,8 @@ const useStyles = createStyles((theme) => ({
 
   title: {
     display: 'block',
-    fontSize: 50,
+    fontSize: 'var(--heading-font-size)',
+    // fontSize: 50,
     // marginTop: theme.spacing.md,
     marginBottom: rem(5),
   },

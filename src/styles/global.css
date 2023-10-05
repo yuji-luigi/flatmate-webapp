@@ -29,6 +29,7 @@ body {
   --bg-color-light: rgba(255, 255, 255, 0.85);
   --padding-x-list: 16px;
   --padding-y-list: 24px;
+  --heading-font-size: 40px;
   :root.light {
     --bg-color: rgba(255, 255, 255, 0.85);
     --text-color: #123;
@@ -36,6 +37,21 @@ body {
   :root.dark {
     --bg-color: rgba(0, 0, 0, 0.85);
     --text-color: #45adfe;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --heading-font-size: 24px;
+
+    /* --flex-gap: 8px;
+    --text-table-mobile: 10px;
+    --table-cell-width-sm: 40px;
+    --table-min-width: 300px;
+    --table-min-width-sm: 200px;
+    --padding-x-list: 8px;
+    --padding-y-list: 16px;
+    --heading-font-size: 20px; */
   }
 }
 
