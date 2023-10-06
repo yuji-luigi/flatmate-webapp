@@ -16,6 +16,12 @@
     "incremental": true,
     "downlevelIteration": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/redux/rootReducer."],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/redux/rootReducer.",
+    "src/theme/cssVariableResolver.js"
+  ],
   "exclude": ["node_modules", "quokka-test"]
 }

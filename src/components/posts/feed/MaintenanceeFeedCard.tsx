@@ -14,18 +14,18 @@ import {
   Button,
 } from '@mantine/core';
 import React from 'react';
-import { Icons } from '../../../data/icons/icons';
-import AttachmentsRow from '../AttachmentsRow';
-import CarouselBasic from '../../carousel/CarouselBasic';
-import useAuth from '../../../../hooks/useAuth';
-import { intlDateFormat } from '../../../utils/helpers/date-formatters';
 import { IconButton } from 'yet-another-react-lightbox';
-import { MaintenanceModel } from '../../../types/models/maintenance-model';
-import { PATH_API } from '../../../path/path-api';
-import axiosInstance from '../../../utils/axios-instance';
 import { notifications } from '@mantine/notifications';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import { Icons } from '../../../data/icons/icons';
+import AttachmentsRow from '../AttachmentsRow';
+import ImagesInArticle from '../../carousel/ImagesInArticle';
+import useAuth from '../../../../hooks/useAuth';
+import { intlDateFormat } from '../../../utils/helpers/date-formatters';
+import { MaintenanceModel } from '../../../types/models/maintenance-model';
+import { PATH_API } from '../../../path/path-api';
+import axiosInstance from '../../../utils/axios-instance';
 import { _PATH_FRONTEND } from '../../../path/path-frontend';
 import { TEXT_SIZE } from '../../text/text-size';
 import { feedStyles } from '../../../styles/global-useStyles';
@@ -113,7 +113,7 @@ const MaintenanceFeedCard = ({ maintenance, sx = {} }: MaintenanceFeedCardProps)
         </Title>
         <Text>{description}</Text>
       </Box>
-      <CarouselBasic images={images} />
+      <ImagesInArticle images={images} />
       <Divider mb={16} />
 
       {!!attachments?.length && (

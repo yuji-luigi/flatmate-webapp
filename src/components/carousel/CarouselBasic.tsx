@@ -5,7 +5,7 @@ import { useMediaQuery } from '@mantine/hooks';
 import Image from 'next/image';
 import { UploadModel } from '../../types/models/upload-model';
 
-function CarouselBasic({ images }: { images: File[] | UploadModel[] }) {
+function ImagesInArticle({ images }: { images: File[] | UploadModel[] }) {
   const myRef = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState(0);
 
@@ -72,4 +72,4 @@ function CarouselBasic({ images }: { images: File[] | UploadModel[] }) {
   );
 }
 
-export default CarouselBasic;
+export default ImagesInArticle;

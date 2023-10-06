@@ -14,15 +14,15 @@ import {
   Button,
 } from '@mantine/core';
 import React from 'react';
+import Link from 'next/link';
 import { Icons } from '../../../data/icons/icons';
 import AttachmentsRow from '../AttachmentsRow';
-import CarouselBasic from '../../carousel/CarouselBasic';
+import ImagesInArticle from '../../carousel/ImagesInArticle';
 import { UserModel } from '../../../types/models/user-model';
 import useAuth from '../../../../hooks/useAuth';
 import { intlDateFormat } from '../../../utils/helpers/date-formatters';
 import { UploadModel } from '../../../types/models/upload-model';
 import { TEXT_SIZE } from '../../text/text-size';
-import Link from 'next/link';
 import { PATH_CLIENT, _PATH_FRONTEND } from '../../../path/path-frontend';
 import { RADIUS, feedStyles } from '../../../styles/global-useStyles';
 
@@ -100,7 +100,7 @@ const PostFeedCard = (props: PostFeedCardProps) => {
           {description} {!showFullText && link}
         </Text>
       </Box>
-      {images && <CarouselBasic images={images} />}
+      {images && <ImagesInArticle images={images} />}
       {!!attachments?.length && (
         <>
           <Divider mb={16} />

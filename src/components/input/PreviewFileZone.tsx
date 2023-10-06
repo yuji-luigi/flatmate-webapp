@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { AspectRatio, Box, Group, Modal, Overlay, Stack, Text } from '@mantine/core';
 import { UseFormReturnType } from '@mantine/form';
+import { useDisclosure } from '@mantine/hooks';
 import OverlayCustom from '../OverlayCustom';
 import { Icons } from '../../data/icons/icons';
-import { useDisclosure } from '@mantine/hooks';
-import CarouselBasic from '../carousel/CarouselBasic';
+import ImagesInArticle from '../carousel/ImagesInArticle';
 import CrudCarousel from '../carousel/CrudCarousel';
 import { Sections } from '../../types/general/data/sections-type';
 import { FormFieldTypes } from '../../types/general/data/data-table/formField-types';
-// import CarouselBasic from '../carousel/CarouselBasic';
+// import ImagesInArticle from '../carousel/ImagesInArticle';
 
 interface Prop {
   form: UseFormReturnTypeWithMedia;

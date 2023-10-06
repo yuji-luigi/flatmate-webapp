@@ -1,33 +1,12 @@
 import React, { ReactElement } from 'react';
-import { IconBookmark, IconHeart, IconSettings, IconShare } from '@tabler/icons-react';
-import {
-  Card,
-  Image,
-  Text,
-  ActionIcon,
-  Badge,
-  Group,
-  Center,
-  Avatar,
-  createStyles,
-  rem,
-  Container,
-  Stack,
-  Box,
-  Divider,
-  Button,
-} from '@mantine/core';
+import { createStyles, Container, Divider } from '@mantine/core';
 import { GetServerSidePropsContext } from 'next';
 import axiosInstance from '../../../utils/axios-instance';
 import Layout from '../../../layouts';
-import CarouselBasic from '../../../components/carousel/CarouselBasic';
-import useAuth from '../../../../hooks/useAuth';
-import PostEditButton from '../../../components/posts/PostEditButton';
-import SinglePostArticleArea from '../../../sections/@dashboard/maintenance_detail_page/SingleMaintenanceArticleArea';
 import RelatedArticlesArea from '../../../sections/@dashboard/maintenance_detail_page/RelatedArticleArea';
-import SingleMaintenanceHeading from '../../../sections/@dashboard/maintenance_detail_page/SingleMaintenanceHeading';
-import { CrudDrawerDefault } from '../../../components/drawer/CrudDrawerDefault';
 import { MaintenanceModel } from '../../../types/models/maintenance-model';
+import { SingleArticleCard } from '../../../components/posts/SingleArticleCard';
+import { SingleArticleHeading } from '../../../components/posts/SingleArticleHeading';
 
 const useStyles = createStyles((theme) => ({
   main: {
@@ -47,9 +26,9 @@ const MaintenancePage = ({ maintenance }: { maintenance: MaintenanceModel }) => 
   // return 'rendered';
   return (
     <Container py="xl" className={classes.main}>
-      <SingleMaintenanceHeading maintenance={maintenance} />
+      <SingleArticleHeading data={maintenance} />
       {/* <PostEditButton data={maintenance} entity="maintenances" /> */}
-      <SinglePostArticleArea maintenance={maintenance} />
+      <SingleArticleCard data={maintenance} />
       <Divider className={classes.articleMenuDivider} />
       <RelatedArticlesArea />
     </Container>

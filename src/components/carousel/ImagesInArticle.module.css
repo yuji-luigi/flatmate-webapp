@@ -1,0 +1,22 @@
+.gridWrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  /* background-color: red; */
+}
+.imagesGrid {
+  /* height: 347px; */
+  width: 347px;
+  margin-top: 0px;
+}
+.column {
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}

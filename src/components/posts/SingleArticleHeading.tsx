@@ -1,7 +1,8 @@
 import { Stack, Group, Text, Avatar, createStyles, rem } from '@mantine/core';
 import React from 'react';
-import { MaintenanceModel } from '../../../types/models/maintenance-model';
-import { intlDateFormat } from '../../../utils/helpers/date-formatters';
+import { MaintenanceModel } from '../../types/models/maintenance-model';
+import { intlDateFormat } from '../../utils/helpers/date-formatters';
+import { ThreadModel } from '../../types/models/thread-model';
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -10,7 +11,7 @@ const useStyles = createStyles((theme) => ({
     minHeight: '100vh',
   },
   header: {
-    marginBottom: 50,
+    // marginBottom: 50,
     gap: 0,
     [theme.fn.smallerThan('sm')]: {
       paddingInline: 16,
@@ -53,25 +54,23 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-const SingleMaintenanceHeading = ({ maintenance }: { maintenance: MaintenanceModel }) => {
+export const SingleArticleHeading = ({ data }: { data: MaintenanceModel | ThreadModel }) => {
   const { classes, cx, theme } = useStyles();
 
   return (
     <Stack className={classes.header}>
       <Group align="center">
-        <Avatar src={maintenance.createdBy.avatar?.url} size={50} radius="xl" mr={0} />
+        <Avatar src={data.createdBy.avatar?.url} size={50} radius="xl" mr={0} />
         <Text fz="sm" inline>
-          {maintenance.createdBy.name}
+          {data.createdBy.name}
         </Text>
         <Text fz="sm" inline>
-          {intlDateFormat(maintenance.createdAt)}
+          {intlDateFormat(data.createdAt)}
         </Text>
       </Group>
       <Text className={classes.title} fw={800} component="a">
-        {maintenance.title}
+        {data.title}
       </Text>
     </Stack>
   );
 };
-
-export default SingleMaintenanceHeading;

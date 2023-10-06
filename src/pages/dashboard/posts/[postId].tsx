@@ -1,43 +1,26 @@
-import React, { useEffect } from 'react';
-import { IconBookmark, IconHeart, IconSettings, IconShare } from '@tabler/icons-react';
-import {
-  Card,
-  Image,
-  Text,
-  ActionIcon,
-  Badge,
-  Group,
-  Center,
-  Avatar,
-  createStyles,
-  rem,
-  Container,
-  Stack,
-  Box,
-  Divider,
-  Button,
-} from '@mantine/core';
+import React, { useEffect, ReactElement } from 'react';
+import { createStyles, Container, Divider } from '@mantine/core';
 import { GetServerSidePropsContext } from 'next';
+import { useRouter } from 'next/router';
 import axiosInstance from '../../../utils/axios-instance';
-import { ReactElement } from 'react';
 import Layout from '../../../layouts';
-import CarouselBasic from '../../../components/carousel/CarouselBasic';
-import useAuth from '../../../../hooks/useAuth';
 import PostEditButton from '../../../components/posts/PostEditButton';
-import SinglePostArticleArea from '../../../sections/@dashboard/single_post_page/SinglePostArticleArea';
+
 import RelatedArticlesArea from '../../../sections/@dashboard/single_post_page/RelatedArticleArea';
 import SinglePostHeading from '../../../sections/@dashboard/single_post_page/SinglePostHeading';
 import { CrudDrawerDefault } from '../../../components/drawer/CrudDrawerDefault';
-import { selectCrudDocument } from '../../../redux/features/crud/crudSlice';
 import { useCrudSliceStore, useCrudSelectors } from '../../../redux/features/crud/crudSlice';
-import { useRouter } from 'next/router';
-import { threadId } from 'worker_threads';
 import { ThreadModel } from '../../../types/models/thread-model';
 import { ParsedQueryCustom } from '../../../types/nextjs-custom-types/useRouter-types';
+import { SingleArticleCard } from '../../../components/posts/SingleArticleCard';
+import { SingleArticleHeading } from '../../../components/posts/SingleArticleHeading';
 
 const useStyles = createStyles((theme) => ({
   main: {
     minHeight: 'calc(100vh - 64px)',
+    [theme.fn.smallerThan('sm')]: {
+      paddingInline: 0,
+    },
   },
 
   articleMenuDivider: {
@@ -54,6 +37,7 @@ const PostIdPage = ({ thread }: { thread: ThreadModel }) => {
   useEffect(() => {
     if (!query.postId) return;
     selectCrudDocument({ entity: 'threads', document: thread });
+    // eslint-disable-next-line consistent-return
     return () => {
       selectCrudDocument({ entity: 'threads', documentId: null });
     };
@@ -63,9 +47,9 @@ const PostIdPage = ({ thread }: { thread: ThreadModel }) => {
 
   return (
     <Container py="lg" className={classes.main}>
-      <SinglePostHeading thread={_thread} />
+      <SingleArticleHeading data={_thread} />
       <PostEditButton data={_thread} entity="threads" />
-      <SinglePostArticleArea thread={_thread} />
+      <SingleArticleCard data={_thread} />
       <Divider className={classes.articleMenuDivider} />
       <RelatedArticlesArea />
       <CrudDrawerDefault overridingEntity="threads" />

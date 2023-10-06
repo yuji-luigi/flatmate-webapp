@@ -25,6 +25,7 @@ export const maintenancesTableData: Array<FormFieldTypes> = [
     name: 'images',
     label: 'Tipo',
     type: 'image',
+    multi: true,
     required: false,
     priority: 0,
   },
