@@ -25,6 +25,7 @@ import { UploadModel } from '../../../types/models/upload-model';
 import { TEXT_SIZE } from '../../text/text-size';
 import { PATH_CLIENT, _PATH_FRONTEND } from '../../../path/path-frontend';
 import { RADIUS, feedStyles } from '../../../styles/global-useStyles';
+import { FeedDescription } from './FeedDesctription';
 
 interface PostFeedCardProps {
   _id: string;
@@ -96,9 +97,16 @@ const PostFeedCard = (props: PostFeedCardProps) => {
         <Title size={TEXT_SIZE.titleCard} mb={16}>
           {title}
         </Title>
-        <Text>
+        <FeedDescription
+          data={{
+            ...props,
+            description: props.body,
+            entity: 'posts',
+          }}
+        />
+        {/* <Text>
           {description} {!showFullText && link}
-        </Text>
+        </Text> */}
       </Box>
       {images && <ImagesInArticle images={images} />}
       {!!attachments?.length && (

@@ -6,8 +6,6 @@ import { useCrudSelectors } from '../../../../redux/features/crud/crudSlice';
 
 import { SpaceModel } from '../../../../types/models/space-model';
 import { TAB_LIST_CONFIG } from './tabList';
-import { useTabContext } from '../../../../context/tab-context/TabContextProvider';
-import { useCustomMQuery } from '../../../../../hooks/useCustomMQuery';
 import { TabPanels } from '../../../../components/tab/TabPanels';
 
 // use style from global-useStyles
@@ -17,7 +15,6 @@ const useStyles2 = profilePageStyle;
 const SpaceHomeSection = () => {
   const { classes: classes1 } = useStyles();
   const entity = 'spaces';
-  const { currentTab } = useTabContext();
   // combine styles
   const { classes: classes2 } = useStyles2();
   // put 2 styles together in one object

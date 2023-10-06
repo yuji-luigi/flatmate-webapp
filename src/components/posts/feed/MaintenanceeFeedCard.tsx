@@ -29,6 +29,7 @@ import axiosInstance from '../../../utils/axios-instance';
 import { _PATH_FRONTEND } from '../../../path/path-frontend';
 import { TEXT_SIZE } from '../../text/text-size';
 import { feedStyles } from '../../../styles/global-useStyles';
+import { FeedDescription } from './FeedDesctription';
 
 interface MaintenanceFeedCardProps {
   maintenance: MaintenanceModel;
@@ -83,16 +84,12 @@ const MaintenanceFeedCard = ({ maintenance, sx = {} }: MaintenanceFeedCardProps)
               <Button
                 component={Link}
                 href={_PATH_FRONTEND.maintenances.checksPage(_id)}
-                // onClick={() => {
-                //   if (typeof latestReceipt !== 'string') return;
-                //   handleOpenCheck(latestReceipt);
-                // }}
                 leftIcon={<Icons.invoice />}
               >
                 Receipt
               </Button>
             )}
-            {latestInvoice && (
+            {/* {latestInvoice && (
               <Button
                 onClick={() => {
                   if (typeof latestInvoice !== 'string') return;
@@ -102,7 +99,7 @@ const MaintenanceFeedCard = ({ maintenance, sx = {} }: MaintenanceFeedCardProps)
               >
                 Invoice
               </Button>
-            )}
+            )} */}
           </Group>
         </Stack>
       </Group>
@@ -111,7 +108,14 @@ const MaintenanceFeedCard = ({ maintenance, sx = {} }: MaintenanceFeedCardProps)
         <Title size={TEXT_SIZE.titleCard} mb={16}>
           {title}
         </Title>
-        <Text>{description}</Text>
+        {/* <Text>{description}</Text> */}
+        <FeedDescription
+          data={{
+            ...maintenance,
+            body: description,
+            entity: 'maintenances',
+          }}
+        />
       </Box>
       <ImagesInArticle images={images} />
       <Divider mb={16} />
