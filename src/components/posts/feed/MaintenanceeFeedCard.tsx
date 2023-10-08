@@ -80,7 +80,10 @@ const MaintenanceFeedCard = ({ maintenance, sx = {} }: MaintenanceFeedCardProps)
             </Box>
           )}
           <Group position="right">
-            {latestReceipt && (
+            <ActionIcon>
+              <Icons.receipt />
+            </ActionIcon>
+            {/* {latestReceipt && (
               <Button
                 component={Link}
                 href={_PATH_FRONTEND.maintenances.checksPage(_id)}
@@ -88,7 +91,7 @@ const MaintenanceFeedCard = ({ maintenance, sx = {} }: MaintenanceFeedCardProps)
               >
                 Receipt
               </Button>
-            )}
+            )} */}
             {/* {latestInvoice && (
               <Button
                 onClick={() => {

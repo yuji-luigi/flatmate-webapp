@@ -55,4 +55,8 @@ export const _PATH_FRONTEND = {
     checksPage: (maintenanceId: string) => `${PATH_CLIENT.checks}/maintenances/${maintenanceId}`,
     byId: (maintenanceId: string) => `${PATH_CLIENT.maintenances}/${maintenanceId}`,
   },
+  threads: {
+    root: PATH_CLIENT.posts,
+    byId: (threadId: string) => `${PATH_CLIENT.posts}/${threadId}`,
+  },
 };

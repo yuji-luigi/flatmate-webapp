@@ -8,7 +8,7 @@ import { UploadModel } from './upload-model';
 export interface MaintenanceModel extends MongooseBaseModel {
   title: string;
   images: UploadModel[] | [];
-  description: string;
+  description?: string;
   attachments?: UploadModel[] | [];
   tags?: string[];
   rating?: number;

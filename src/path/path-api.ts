@@ -105,6 +105,9 @@ export const _PATH_API = {
   organizations: {
     selections: `${ROOT_ORGANIZATION_AUTH}/organization-selections`,
   },
+  notifications: {
+    root: 'notifications',
+  },
 } as const;
 
 export const PATH_API_DATA_TABLE_ROOT = 'with-pagination';

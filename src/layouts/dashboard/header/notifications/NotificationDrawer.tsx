@@ -22,12 +22,14 @@ export const NotificationDrawer = (props: NotificationDrawerProps) => {
         body: classes.drawerBody,
       }}
     >
-      {notifications.map((data) => (
-        <Fragment key={data._id}>
-          <NotificationListRoot data={data} closeDrawer={close} />
-          <Divider variant="dotted" size={2} />
-        </Fragment>
-      ))}
+      {notifications?.map((data) => {
+        return (
+          <Fragment key={data._id}>
+            <NotificationListRoot data={data} closeDrawer={close} />
+            <Divider variant="dotted" size={2} />
+          </Fragment>
+        );
+      })}
     </Drawer>
   );
 };

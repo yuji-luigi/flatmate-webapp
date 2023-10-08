@@ -17,10 +17,9 @@ type NotificationListProps = {
 
 export const NotificationListRoot = (props: NotificationListProps) => {
   const { category } = props.data;
-
   const lists: Record<Category, ((props: NotificationListProps) => JSX.Element) | null> = {
     Maintenance: MaintenanceNotificationList,
-    Post: null,
+    Post: MaintenanceNotificationList,
     Other: null,
   };
   const List = lists[category] || '';

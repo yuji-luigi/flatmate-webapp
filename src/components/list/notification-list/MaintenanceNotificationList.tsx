@@ -20,7 +20,8 @@ type MaintenanceNorificationListProps = {
 
 export const MaintenanceNotificationList = (props: MaintenanceNorificationListProps) => {
   const { data, closeDrawer } = props;
-  const { title, description, createdBy, createdAt, category, entity, _id } = data;
+  const { title, description = '', createdBy, createdAt, category, entity, _id } = data;
+
   const _description =
     description.length > 55 ? `${description?.substring(0, 55)}...` : description;
   return (
