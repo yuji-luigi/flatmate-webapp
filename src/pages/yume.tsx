@@ -13,8 +13,8 @@ const nextColors: Record<string, string> = {
   gray: 'yellow',
 };
 
-const yume = () => {
-  const [color, setColor] = useState('yellow');
+const Yume = () => {
+  const [color, setColor] = useState<string>('yellow');
 
   const handleClick = () => {
     // alert('夢ボタンが押されました');
@@ -45,4 +45,4 @@ const yume = () => {
   );
 };
 
-export default yume;
+export default Yume;

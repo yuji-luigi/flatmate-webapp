@@ -89,7 +89,7 @@ export const _PATH_API = {
   },
   authTokens: {
     root: PATH_API.authTokens,
-    sendEmail: ({}) => all(PATH_API.authTokens),
+    sendEmail: () => all(PATH_API.authTokens),
     verifyPin: ({ linkId, _id, entity }: { linkId?: string; _id?: string; entity: string }) =>
       `${PATH_API.authTokens}/verify-pin/${linkId}/${_id}/${entity}`,
     getById: (_id: string) => byId(PATH_API.authTokens, _id),

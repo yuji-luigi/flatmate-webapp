@@ -31,7 +31,7 @@ interface PostFeedCardProps {
   _id: string;
   createdBy?: UserModel;
   title: string;
-  body: string;
+  body?: string;
   attachments?: UploadModel[];
   images?: UploadModel[];
   /** convert to date in the component */
@@ -47,7 +47,7 @@ const PostFeedCard = (props: PostFeedCardProps) => {
     _id,
     createdBy,
     title,
-    body,
+    body = '',
     attachments,
     images,
     textLength = 500,
@@ -100,7 +100,7 @@ const PostFeedCard = (props: PostFeedCardProps) => {
         <FeedDescription
           data={{
             ...props,
-            description: props.body,
+            body: props.body,
             entity: 'posts',
           }}
         />

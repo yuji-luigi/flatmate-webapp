@@ -4,7 +4,7 @@ import { PATH_CLIENT } from '../../../path/path-frontend';
 
 type FeedDescriptionProps = {
   data: {
-    body: string;
+    body?: string;
     showFullText?: boolean;
     popupFn?: () => void;
     entity: 'maintenances' | 'posts';
@@ -13,7 +13,7 @@ type FeedDescriptionProps = {
   };
 };
 export const FeedDescription = (props: FeedDescriptionProps) => {
-  const { body, showFullText, popupFn, entity, _id, textLength = 500 } = props.data;
+  const { body = '', showFullText, popupFn, entity, _id, textLength = 500 } = props.data;
   const fullText = body;
 
   let description = body?.length > textLength ? body.substring(0, textLength - 3) : body;
