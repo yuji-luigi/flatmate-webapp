@@ -8,8 +8,9 @@ import { intlDateFormat } from '../../../utils/helpers/date-formatters';
 import { _PATH_FRONTEND } from '../../../path/path-frontend';
 import { MaintenanceModel } from '../../../types/models/maintenance-model';
 import { CATEGORIES } from './categories';
+import { ThreadModel } from '../../../types/models/thread-model';
 
-export type MaintenanceNotification = MaintenanceModel & {
+export type MaintenanceNotification = (MaintenanceModel | ThreadModel) & {
   category: typeof CATEGORIES.maintenances;
   entity: 'maintenances';
 };
