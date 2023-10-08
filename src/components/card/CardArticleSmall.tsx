@@ -1,8 +1,8 @@
 import { createStyles, Card, Image, Avatar, Text, Group, Box, Stack } from '@mantine/core';
 import Link from 'next/link';
 import { threadId } from 'worker_threads';
-import { CARD_LINK_PATH, PATH_CLIENT } from '../../path/path-frontend';
 import { useRouter } from 'next/router';
+import { CARD_LINK_PATH, PATH_CLIENT } from '../../path/path-frontend';
 import { MaintenanceModel } from '../../types/models/maintenance-model';
 import { ThreadModel } from '../../types/models/thread-model';
 import { IUser } from '../../types/context/auth/useAuth';
@@ -60,8 +60,9 @@ export function CardArticleSmall({
   hrefRoot,
   author = { name: 'not registered user', avatar: '' },
 }: CardArticleImageDescFooterVerticalProps) {
+  const _description = data.description || '';
   const description =
-    data.description.length > 50 ? `${data.description.substring(0, 50)}...` : data.description;
+    _description.length > 50 ? `${_description?.substring(0, 50)}...` : _description;
   const { classes } = useStyles();
   const router = useRouter();
   return (
@@ -80,7 +81,7 @@ export function CardArticleSmall({
             </Box>
             <Group noWrap spacing="xs">
               <Group spacing="xs" noWrap>
-                <Avatar size={20} src={''} />
+                <Avatar size={20} src="" />
                 <Text size="xs">{author?.name || 'hh'}</Text>
               </Group>
               <Text size="xs" color="dimmed">
