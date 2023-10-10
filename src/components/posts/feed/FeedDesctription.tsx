@@ -11,8 +11,10 @@ type FeedDescriptionProps = {
     _id: string;
     textLength?: number;
   };
+  className?: string;
 };
 export const FeedDescription = (props: FeedDescriptionProps) => {
+  const { className } = props;
   const { body = '', showFullText, popupFn, entity, _id, textLength = 500 } = props.data;
   const fullText = body;
 
@@ -28,7 +30,7 @@ export const FeedDescription = (props: FeedDescriptionProps) => {
     </Link>
   );
   return (
-    <Text>
+    <Text className={className}>
       {description} {!showFullText && link}
     </Text>
   );

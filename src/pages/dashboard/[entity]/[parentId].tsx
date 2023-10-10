@@ -19,6 +19,7 @@ import { ParsedQueryCustom } from '../../../types/nextjs-custom-types/useRouter-
 const fetcher = (args: string) => axiosInstance.get(args).then((res) => res.data?.data);
 
 const ChildrenTablePage = () => {
+  return null;
   const { query }: { query: ParsedQueryCustom } = useRouter();
   // get currentSpace from context
   const { currentSpace } = useCookieContext();

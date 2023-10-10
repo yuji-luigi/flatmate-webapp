@@ -6,7 +6,7 @@ import classes from './HeaderNotificationButton.module.css';
 type NotificationDrawerProps = {
   opened: boolean;
   close: () => void;
-  notifications: any[];
+  notifications?: any[];
 };
 
 export const NotificationDrawer = (props: NotificationDrawerProps) => {

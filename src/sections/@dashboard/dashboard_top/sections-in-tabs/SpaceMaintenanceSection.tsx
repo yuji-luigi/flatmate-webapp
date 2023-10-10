@@ -1,7 +1,7 @@
 import React from 'react';
 import { useCrudSelectors } from '../../../../redux/features/crud/crudSlice';
 
-import MaintenanceFeedCard from '../../../../components/posts/feed/MaintenanceeFeedCard';
+import MaintenanceFeedCard from '../../../../components/posts/feed/MaintenanceFeedCard';
 import { MaintenanceModel } from '../../../../types/models/maintenance-model';
 
 export const SpaceMaintenanceSection = () => {

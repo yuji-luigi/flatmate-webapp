@@ -18,7 +18,7 @@ const CardWithTitle = ({ title, children, titleSx, sx, indicator }: Prop) => {
   const { classes, cx, theme } = sideCardStyles();
 
   const indicatorTitle = indicator ? (
-    <Indicator offset={-10} position="middle-end" size={16} color="red" label={indicator}>
+    <Indicator offset={-16} position="middle-end" size={16} color="red" label={indicator}>
       {title}
     </Indicator>
   ) : (

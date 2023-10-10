@@ -50,7 +50,6 @@ export enum PATH_API {
   organizationAll = 'organizations/all',
   organizationCookie = 'organizations/cookie',
   checks = 'checks',
-  checksShowFile = 'checks/show-file',
   getOrganizationsAndSpaces = 'organizations/spaces',
   getOrganizationsForAdmin = 'organizations/selections/super-admin',
   authTokens = 'auth-tokens',
@@ -64,6 +63,10 @@ const getExcelEndpoint = (excelRoute: string, entity: string) => `${excelRoute}/
 // const getQrCodeEndpoint = ({qrCodeRoute, entity}) => `${qrCodeRoute}/${entity}`;
 
 export const _PATH_API = {
+  checks: {
+    root: PATH_API.checks,
+    withNonce: (checkId: string) => `${PATH_API.checks}/${checkId}/with-nonce`,
+  },
   spaces: {
     root: PATH_API.spaces,
     home: `${PATH_API.spaces}/home`,

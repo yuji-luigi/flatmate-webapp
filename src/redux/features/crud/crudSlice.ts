@@ -116,6 +116,8 @@ export const crudSlice = createSlice({
       .addCase(fetchCrudDocumentsWithPagination.fulfilled, (state, action) => {
         const { entity, documents, totalDocuments, isChildrenTree } = action.payload;
         state.status = 'succeed';
+        console.log(entity);
+
         state.reduxdb[entity].isChildrenTree = isChildrenTree;
         state.reduxdb[entity].documentsArray = documents;
         state.reduxdb[entity].totalDocuments = totalDocuments;

@@ -8,11 +8,14 @@ import { useCrudSelectors } from '../../../../redux/features/crud/crudSlice';
 import { MaintenanceModel } from '../../../../types/models/maintenance-model';
 import { NotificationDrawer } from './NotificationDrawer';
 import { CATEGORIES } from '../../../../components/list/notification-list/categories';
-import axiosInstance from '../../../../utils/axios-instance';
+import axiosInstance, { AxiosResDataGeneric } from '../../../../utils/axios-instance';
 import { _PATH_API } from '../../../../path/path-api';
+import { NotificationModel } from '../../../../types/models/notification-model';
 
 const fetchNotifications = async () => {
-  const res = await axiosInstance.get(_PATH_API.notifications.root);
+  const res = await axiosInstance.get<AxiosResDataGeneric<NotificationModel[]>>(
+    _PATH_API.notifications.root
+  );
   return res.data.data;
 };
 export const HeaderNotificationButton = () => {

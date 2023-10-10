@@ -10,14 +10,15 @@ import {
 } from '@mantine/core';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
+import Link from 'next/link';
 import { PATH_API } from '../../path/path-api';
 import axiosInstance, { AxiosResDataGeneric } from '../../utils/axios-instance';
-import Link from 'next/link';
 import { CheckInterface } from '../../types/models/check-type';
 import { intlDateFormat } from '../../utils/helpers/date-formatters';
 import { ParsedQueryCustom } from '../../types/nextjs-custom-types/useRouter-types';
 import { MaintainerModel } from '../../types/models/maintainer-model';
 import { PreviewHandler } from '../../components/files/preview/PreviewHandler';
+
 const useStyles = createStyles((theme) => ({
   root: {
     paddingTop: rem(80),
@@ -65,6 +66,7 @@ const useStyles = createStyles((theme) => ({
 const fileFetcher = async (arrSlug?: string[]) => {
   if (!arrSlug) return null;
   try {
+    console.log(arrSlug);
     const path = arrSlug.join('/');
     const rawCheck = await axiosInstance.get<
       AxiosResDataGeneric<{ check: CheckInterface; maintenance: MaintainerModel }>

@@ -10,16 +10,16 @@ import { ListText } from './ListText';
 
 interface SimpleLinkTileProps {
   _id: string;
-  title: string;
+  title?: string;
   createdAt?: Date | string;
   href: string;
 }
-
+const TEXT_LENGTH = 20;
 export const SimpleLinkTile = (props: SimpleLinkTileProps) => {
-  const { title, href, createdAt, _id } = props;
+  const { title = '', href, createdAt, _id } = props;
   const { classes: classes1 } = dashboardStyle();
-  let _title = title.substring(0, 30);
-  _title = title.length > 30 ? `${_title}...` : _title;
+  let _title = title.substring(0, TEXT_LENGTH);
+  _title = title.length > TEXT_LENGTH ? `${_title}...` : _title;
   return (
     <Tooltip label={title}>
       <Link className={classes1.navList} href={href || '/#'} key={_id} style={{ padding: 0 }}>

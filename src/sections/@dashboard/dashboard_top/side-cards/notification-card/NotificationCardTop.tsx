@@ -1,54 +1,57 @@
 import React, { memo } from 'react';
-import { Stack } from '@mantine/core';
+import { Button, Skeleton, Stack } from '@mantine/core';
+import useSWR from 'swr';
+import { useTranslation } from 'react-i18next';
+import { useDisclosure } from '@mantine/hooks';
 import TextWithIcon from '../../../../../components/text/TextWithIcon';
 import { dashboardStyle } from '../../../../../styles/global-useStyles';
 import CardWithTitle from '../../../../../components/profile/side/CardWithTitle';
 import { SimpleLinkTile } from '../../../../../components/list/SimpleLinkTile';
 import { useCustomMQuery } from '../../../../../../hooks/useCustomMQuery';
 import { Icons } from '../../../../../data/icons/icons';
+import { _PATH_API } from '../../../../../path/path-api';
+import axiosInstance, { AxiosResDataGeneric } from '../../../../../utils/axios-instance';
+import { MaintenanceModel } from '../../../../../types/models/maintenance-model';
+import { ThreadModel } from '../../../../../types/models/thread-model';
+import { NotificationModel } from '../../../../../types/models/notification-model';
+import { NotificationDrawer } from '../../../../../layouts/dashboard/header/notifications/NotificationDrawer';
 
-const data = [
-  {
-    _id: '1',
-    title: 'Notification 1',
-    createdAt: new Date(Date.now() - 1000 * 60 * 60 * 24 * 2),
-  },
-  {
-    _id: '2',
-    title: 'Notification 2',
-    createdAt: new Date(Date.now() - 1000 * 60 * 60 * 24 * 3),
-  },
-  {
-    _id: '3',
-    title: 'Notification 3',
-    createdAt: new Date(Date.now() - 1000 * 60 * 60 * 24 * 4),
-  },
-  {
-    _id: '4',
-    title: 'Notification 4',
-    createdAt: new Date(Date.now() - 1000 * 60 * 60 * 24 * 5),
-  },
-  {
-    _id: '5',
-    title: 'Notification 5',
-    createdAt: new Date(Date.now() - 1000 * 60 * 60 * 24 * 6),
-  },
-];
-
+const fetchNotifications = async () => {
+  const res = await axiosInstance.get<AxiosResDataGeneric<NotificationModel[]>>(
+    _PATH_API.notifications.root
+  );
+  return res.data.data;
+};
+const MAX_NOTIFICATIONS = 6;
 export const NotificationCardTop = () => {
+  const [opened, { open, close }] = useDisclosure(false);
+
   const { isMobile } = useCustomMQuery();
   const title = !isMobile ? 'Notifications' : <Icons.alert />;
+  const { data } = useSWR(() => _PATH_API.notifications.root, fetchNotifications, {});
+  const { t } = useTranslation('common');
+
   return (
-    <CardWithTitle indicator="9" title={title}>
-      {data.map((d) => (
-        <SimpleLinkTile
-          _id={d._id}
-          key={d._id}
-          title={d.title}
-          href={`/dashboard/notifications/${d._id}`}
-          createdAt={d.createdAt}
-        />
-      ))}
-    </CardWithTitle>
+    <>
+      <CardWithTitle indicator={data?.length} title={title}>
+        {data
+          ?.slice(0, MAX_NOTIFICATIONS)
+          .map((d) => (
+            <SimpleLinkTile
+              _id={d._id}
+              key={d._id}
+              title={d.title}
+              href={`/dashboard/notifications/${d._id}`}
+              createdAt={d.createdAt}
+            />
+          )) || <Skeleton height={100} />}
+        {data?.length && data.length > MAX_NOTIFICATIONS && (
+          <Button onClick={open} mt={16} variant="outline" color="orange">
+            {t('Show All')}
+          </Button>
+        )}
+      </CardWithTitle>
+      <NotificationDrawer notifications={data} opened={opened} close={close} />
+    </>
   );
 };
