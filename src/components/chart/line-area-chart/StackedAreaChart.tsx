@@ -20,7 +20,6 @@ function StackedAreaChart() {
 
   const formatedMData = 0;
 
-  console.log(mData);
   const mx = isMobile ? 30 : 50;
   const data = [
     // {

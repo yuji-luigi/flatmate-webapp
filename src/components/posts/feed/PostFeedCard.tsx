@@ -1,6 +1,6 @@
 import { Card, Box, Title, Divider } from '@mantine/core';
 import React from 'react';
-import AttachmentsRow from '../AttachmentsRow';
+import AttachmentsRow from '../../files/AttachmentsRow';
 import ImagesInArticle from '../../carousel/ImagesInArticle';
 import useAuth from '../../../../hooks/useAuth';
 import { _PATH_FRONTEND } from '../../../path/path-frontend';
@@ -32,7 +32,7 @@ const PostFeedCard = ({ data, sx = {} }: FeedCardProps) => {
       {attachments?.length && (
         <>
           <Divider mb={16} />
-          <AttachmentsRow attachments={attachments} />
+          <AttachmentsRow attachments={attachments} withToolTip />
         </>
       )}
     </Card>

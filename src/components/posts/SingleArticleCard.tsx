@@ -5,9 +5,13 @@ import ImagesInArticle from '../carousel/ImagesInArticle';
 import { MaintenanceModel } from '../../types/models/maintenance-model';
 import { ArticleActionsGroup } from '../icons/icon-buttons/ArticleActionsGroup';
 import { ThreadModel } from '../../types/models/thread-model';
+import AttachmentsRow from '../files/AttachmentsRow';
 
 const useStyles = createStyles((theme) => ({
   articleArea: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: theme.spacing.md,
     backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[0],
     boxShadow: theme.shadows.xl,
   },
@@ -34,10 +38,9 @@ export const SingleArticleCard = ({ data }: { data: MaintenanceModel | ThreadMod
   const { classes, cx, theme } = useStyles();
   return (
     <Card className={classes.articleArea}>
-      <div>
-        <Text fw={500}>{data.description}</Text>
-      </div>
+      <Text fw={500}>{data.description}</Text>
       {!!data.images.length && <ImagesInArticle images={data.images} />}
+      <AttachmentsRow attachments={data.attachments} />
       <ArticleActionsGroup />
     </Card>
   );
