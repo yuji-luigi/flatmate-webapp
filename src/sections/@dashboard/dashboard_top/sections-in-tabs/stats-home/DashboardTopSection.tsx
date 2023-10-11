@@ -1,4 +1,4 @@
-import { Box, Card, Grid } from '@mantine/core';
+import { Box, Card, Grid, Text } from '@mantine/core';
 
 import dynamic from 'next/dynamic';
 import { MaintenanceDatatable } from '../../statistics/MaintenanceDatatable';
@@ -18,6 +18,9 @@ const StackedAreaChart = dynamic(
 const DashboardSection = () => {
   return (
     <Box className={classes.box}>
+      <Text component="h1" size="lg">
+        Dashboard
+      </Text>
       <StatsSummary className={classes.summary} />
       <StatsGrid data={statsGridData as unknown as StatGridSchema[]} />
       <Card sx={{ height: 400, width: '100%', overflow: 'visible' }}>

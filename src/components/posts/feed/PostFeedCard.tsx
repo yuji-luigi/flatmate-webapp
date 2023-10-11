@@ -29,7 +29,7 @@ const PostFeedCard = ({ data, sx = {} }: FeedCardProps) => {
       </Box>
       <ImagesInArticle images={images} />
 
-      {attachments?.length && (
+      {!!attachments?.length && (
         <>
           <Divider mb={16} />
           <AttachmentsRow attachments={attachments} withToolTip />

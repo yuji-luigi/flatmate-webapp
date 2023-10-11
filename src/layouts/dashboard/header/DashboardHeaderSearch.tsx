@@ -186,6 +186,7 @@ export function DashboardHeaderSearch() {
       {!isMobile && (
         <Group>
           <>
+            <HeaderNotificationButton />
             <OrganizationSpaceSelect /* className={classes.OrganizationSpaceSelect} */ />
             <ColorSchemeToggle size="lg" />
           </>

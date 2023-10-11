@@ -13,7 +13,7 @@ export const StatsSummary = ({ className }: { className: string }) => {
   if (isMobile) {
     return null;
   }
-
+  return null;
   return (
     <Box className={className}>
       <Grid>
