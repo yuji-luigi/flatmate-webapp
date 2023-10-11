@@ -1,0 +1,12 @@
+.feedCard {
+  min-height: 200;
+  border-radius: var(--radius-card);
+}
+.description {
+  margin-bottom: var(--feed-card-spacing);
+}
+
+.feedContent {
+  /* padding: 16; */
+  /* padding-inline: 24; */
+}

@@ -15,6 +15,7 @@ import {
 } from '@mantine/core';
 //Write a fetcher function to wrap the native fetch function and return the result of a call to url in json format
 // import { UserCard } from '../../../components/card/UserCard';
+import { useMediaQuery } from '@mantine/hooks';
 import { UserCard } from '../../../components/card/UserCard';
 import { CardArticleSmall } from '../../../components/card/CardArticleSmall';
 import { CardArticleImageDescFooter } from '../../../components/card/CardArticleImageDescFooter';
@@ -24,8 +25,8 @@ import PostList from './PostList';
 import { useCrudSelectors } from '../../../redux/features/crud/crudSlice';
 // import { useCurrentSpaceContext } from '../../context/CurrentSpaceContext';
 import { useCookieContext } from '../../../context/CookieContext';
-import { useMediaQuery } from '@mantine/hooks';
 import { ThreadModel } from '../../../types/models/thread-model';
+
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 interface TypeMock {

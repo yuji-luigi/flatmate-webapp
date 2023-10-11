@@ -49,10 +49,7 @@ export const MaintenanceCheckUploadSection = (props: Props) => {
             <CloseIcon />
           </ActionIcon>
           <PostFeedCard
-            {...maintenance}
-            _id={maintenance._id}
-            body={maintenance.description}
-            showFullText
+            data={maintenance}
             // popupFn={handleOpenModal}
           />
         </Box>
@@ -89,12 +86,7 @@ export const MaintenanceCheckUploadSection = (props: Props) => {
                         labelPosition="center"
                         mb={theme.spacing.md}
                       />
-                      <PostFeedCard
-                        {...maintenance}
-                        body={maintenance.description}
-                        createdAt={maintenance.createdAt}
-                        popupFn={handleOpenModal}
-                      />
+                      <PostFeedCard data={maintenance} popupFn={handleOpenModal} />
                     </CardStyled>
                   </Grid.Col>
                   <Grid.Col span={12}>

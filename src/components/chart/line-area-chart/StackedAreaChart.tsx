@@ -3,13 +3,47 @@ import { Point, ResponsiveLine } from '@nivo/line';
 import { useCustomMQuery } from '../../../../hooks/useCustomMQuery';
 import { LabelLayerCustom } from './LabelLayerCustom';
 import { LabelLayerCustomMini } from './LabelLayerCustomMini';
+import { useCrudSelectors } from '../../../redux/features/crud/crudSlice';
+import { MaintenanceModel } from '../../../types/models/maintenance-model';
+import { intlCurrencyFormat, intlDateFormat } from '../../../utils/helpers/date-formatters';
 
 function StackedAreaChart() {
   const { isMobile } = useCustomMQuery();
+  const { crudDocuments: maintenances } = useCrudSelectors<MaintenanceModel>('maintenances');
+  const mData = maintenances.map((m) => {
+    return {
+      x: intlDateFormat(m.createdAt),
+      y: m.cost,
+      change: m.cost,
+    };
+  });
+
+  const formatedMData = 0;
+
+  console.log(mData);
   const mx = isMobile ? 30 : 50;
   const data = [
+    // {
+    //   id: 'A',
+    //   // data: [
+    //   //   { x: 1, y: 300000, change: 0 },
+    //   //   { x: 2, y: 300000 - 500, change: -500 },
+    //   //   { x: 3, y: 300000 - 500, change: 0 },
+    //   //   { x: 4, y: 300000 - 1000, change: -500 },
+    //   //   { x: 5, y: 300000 + 500, change: 1500 },
+    //   //   { x: 6, y: 300000 + 250, change: -250 },
+    //   // ],
+    //   data: [
+    //     { x: 'Feb 2', y: 900, change: 0 },
+    //     { x: 'Feb 15', y: 500, change: -400 },
+    //     { x: 'Feb 23', y: 500, change: 0 },
+    //     { x: 'Feb 28', y: 1000, change: 500 },
+    //     { x: 'Mar 5', y: 500, change: -500 },
+    //     { x: 'Mar 18', y: 250, change: -250 },
+    //   ],
+    // },
     {
-      id: 'A',
+      id: 'B',
       // data: [
       //   { x: 1, y: 300000, change: 0 },
       //   { x: 2, y: 300000 - 500, change: -500 },
@@ -18,14 +52,7 @@ function StackedAreaChart() {
       //   { x: 5, y: 300000 + 500, change: 1500 },
       //   { x: 6, y: 300000 + 250, change: -250 },
       // ],
-      data: [
-        { x: 'Feb 2', y: 900, change: 0 },
-        { x: 'Feb 15', y: 500, change: -400 },
-        { x: 'Feb 23', y: 500, change: 0 },
-        { x: 'Feb 28', y: 1000, change: 500 },
-        { x: 'Mar 5', y: 500, change: -500 },
-        { x: 'Mar 18', y: 250, change: -250 },
-      ],
+      data: mData,
     },
     // {
     //   id: 'B',

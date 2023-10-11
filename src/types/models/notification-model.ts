@@ -20,5 +20,5 @@ export interface NotificationModel extends MongooseBaseModel {
   /** formatted in some way. from api schema level */
   _createdAt: string;
   category?: string;
-  entity: string;
+  entity: 'threads' | 'maintenances';
 }

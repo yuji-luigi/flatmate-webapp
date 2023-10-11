@@ -31,6 +31,7 @@ body {
   --padding-y-list: 24px;
   --heading-font-size: 40px;
   --feed-card-spacing: 16px;
+  --radius-card: 12px;
   /* --font-size-article: 24px; */
   :root.light {
     --bg-color: rgba(255, 255, 255, 0.85);

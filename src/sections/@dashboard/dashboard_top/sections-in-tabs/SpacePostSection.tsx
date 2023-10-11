@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Container, createStyles } from '@mantine/core';
+import { Box, Container, Stack, createStyles } from '@mantine/core';
 import { useCrudSelectors } from '../../../../redux/features/crud/crudSlice';
 import PostFeedCard from '../../../../components/posts/feed/PostFeedCard';
 import { UserModel } from '../../../../types/models/user-model';
@@ -10,20 +10,10 @@ const useStyle = createStyles((theme) => ({}));
 export const SpacePostSection = () => {
   const { crudDocuments } = useCrudSelectors('threads') as { crudDocuments: ThreadModel[] };
   return (
-    <>
+    <Stack spacing={16}>
       {crudDocuments.map((thread) => (
-        <PostFeedCard
-          key={thread._id}
-          _id={thread._id}
-          createdBy={thread.createdBy}
-          title={thread.title}
-          body={thread.description}
-          images={thread.images}
-          attachments={thread.attachments || []}
-          createdAt={thread.createdAt}
-          sx={{ marginBottom: 24 }}
-        />
+        <PostFeedCard key={thread._id} data={thread} />
       ))}
-    </>
+    </Stack>
   );
 };

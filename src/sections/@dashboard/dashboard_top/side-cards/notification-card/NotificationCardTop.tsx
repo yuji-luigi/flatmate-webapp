@@ -15,6 +15,7 @@ import { MaintenanceModel } from '../../../../../types/models/maintenance-model'
 import { ThreadModel } from '../../../../../types/models/thread-model';
 import { NotificationModel } from '../../../../../types/models/notification-model';
 import { NotificationDrawer } from '../../../../../layouts/dashboard/header/notifications/NotificationDrawer';
+import { _PATH_FRONTEND } from '../../../../../path/path-frontend';
 
 const fetchNotifications = async () => {
   const res = await axiosInstance.get<AxiosResDataGeneric<NotificationModel[]>>(
@@ -41,7 +42,7 @@ export const NotificationCardTop = () => {
               _id={d._id}
               key={d._id}
               title={d.title}
-              href={`/dashboard/notifications/${d._id}`}
+              href={_PATH_FRONTEND[d.entity].byId(d._id)}
               createdAt={d.createdAt}
             />
           )) || <Skeleton height={100} />}

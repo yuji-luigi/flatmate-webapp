@@ -1,0 +1,9 @@
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--feed-card);
+  @media (min-width: 768px) {
+    justify-content: start;
+  }
+}

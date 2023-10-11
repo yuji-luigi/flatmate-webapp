@@ -23,6 +23,7 @@ export interface ThreadModel extends MongooseBaseModel {
     | 'question'
     | 'discussion';
   /** root space */
+  entity: 'threads';
   headSpace?: string | SpaceModel;
   createdBy: IUser;
   isImportant: boolean;

@@ -1,20 +1,17 @@
 import React from 'react';
+import { Stack } from '@mantine/core';
 import { useCrudSelectors } from '../../../../redux/features/crud/crudSlice';
 
-import MaintenanceFeedCard from '../../../../components/posts/feed/MaintenanceFeedCard';
 import { MaintenanceModel } from '../../../../types/models/maintenance-model';
+import PostFeedCard from '../../../../components/posts/feed/PostFeedCard';
 
 export const SpaceMaintenanceSection = () => {
   const { crudDocuments } = useCrudSelectors<MaintenanceModel>('maintenances');
   return (
-    <>
+    <Stack spacing={16}>
       {crudDocuments.map((maintenance) => (
-        <MaintenanceFeedCard
-          key={maintenance._id}
-          maintenance={maintenance}
-          sx={{ marginBottom: 24 }}
-        />
+        <PostFeedCard key={maintenance._id} data={maintenance} />
       ))}
-    </>
+    </Stack>
   );
 };

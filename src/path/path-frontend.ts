@@ -19,6 +19,7 @@ export enum PATH_CLIENT {
   /** the initial page after login is root */
   root = '/dashboard/home',
   posts = '/dashboard/posts',
+  threads = '/dashboard/posts',
   authTokens = '/dashboard/auth-tokens',
   maintenances = '/dashboard/maintenances',
   dashboard = '/dashboard/home',

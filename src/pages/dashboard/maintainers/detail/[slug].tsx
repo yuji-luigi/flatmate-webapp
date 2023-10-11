@@ -24,6 +24,7 @@ import { profilePageStyle } from '../../../../styles/global-useStyles';
 import { UserModel } from '../../../../types/models/user-model';
 import { BuildingCard } from '../../../../sections/@dashboard/maintainer_detail_page/BuildingCard';
 import { AddRemoveButton } from '../../../../sections/@dashboard/maintainer_detail_page/AddRemoveButton';
+import { ThreadModel } from '../../../../types/models/thread-model';
 
 const useStyles = profilePageStyle;
 
@@ -112,13 +113,17 @@ const MaintainerDetailsPage = () => {
               {!isMobile && profileSide}
             </Group>
             <PostFeedCard
-              _id="d"
-              createdAt={new Date()}
-              createdBy={{ name: 'No name user' } as UserModel}
-              title="The First Job! maintainers detail page!"
-              body={lorem100}
-              images={RANDOM_UPLOAD_MODELS}
-              attachments={[]}
+              data={
+                {
+                  _id: 'd',
+                  createdAt: new Date(),
+                  createdBy: { name: 'No name user' } as UserModel,
+                  title: 'The First Job! maintainers detail page!',
+                  description: lorem100,
+                  images: RANDOM_UPLOAD_MODELS,
+                  attachments: [],
+                } as ThreadModel
+              }
             />
           </Box>
         </Box>

@@ -1,115 +1,35 @@
-import {
-  Card,
-  Group,
-  Avatar,
-  Stack,
-  Box,
-  Title,
-  Divider,
-  Text,
-  createStyles,
-  em,
-  Sx,
-  ActionIcon,
-  Button,
-} from '@mantine/core';
+import { Card, Box, Title, Divider } from '@mantine/core';
 import React from 'react';
-import Link from 'next/link';
-import { Icons } from '../../../data/icons/icons';
 import AttachmentsRow from '../AttachmentsRow';
 import ImagesInArticle from '../../carousel/ImagesInArticle';
-import { UserModel } from '../../../types/models/user-model';
 import useAuth from '../../../../hooks/useAuth';
-import { intlDateFormat } from '../../../utils/helpers/date-formatters';
-import { UploadModel } from '../../../types/models/upload-model';
+import { _PATH_FRONTEND } from '../../../path/path-frontend';
 import { TEXT_SIZE } from '../../text/text-size';
-import { PATH_CLIENT, _PATH_FRONTEND } from '../../../path/path-frontend';
-import { RADIUS, feedStyles } from '../../../styles/global-useStyles';
-import { FeedDescription } from './FeedDesctription';
+import { feedStyles } from '../../../styles/global-useStyles';
+import { FeedDescription } from './FeedDescription';
+import classesM from './PostFeedCard.module.css';
+import { FeedHeading } from './feed-heading/FeedHeading';
+import { FeedCardProps } from '../../../types/components-types/feed/post-feed-card-type';
 
-interface PostFeedCardProps {
-  _id: string;
-  createdBy?: UserModel;
-  title: string;
-  body?: string;
-  attachments?: UploadModel[];
-  images?: UploadModel[];
-  /** convert to date in the component */
-  createdAt: string | Date;
-  sx?: Sx;
-  textLength?: number;
-  popupFn?: () => void;
-  showFullText?: boolean;
-}
-
-const PostFeedCard = (props: PostFeedCardProps) => {
-  const {
-    _id,
-    createdBy,
-    title,
-    body = '',
-    attachments,
-    images,
-    textLength = 500,
-    createdAt,
-    popupFn = false,
-    sx = {},
-    showFullText = false,
-  } = props;
-
+const PostFeedCard = ({ data, sx = {} }: FeedCardProps) => {
+  const { createdBy, title, description, attachments, images, createdAt, receipts, invoices, _id } =
+    data;
   const { cx, classes, theme } = feedStyles();
   const { user } = useAuth();
-  const fullText = body;
-  let description = body?.length > textLength ? body.substring(0, textLength - 3) : body;
-  description = showFullText ? fullText : description;
-  const link = popupFn ? (
-    <Button variant="light" onClick={popupFn}>
-      ...Read more
-    </Button>
-  ) : (
-    <Link href={`${PATH_CLIENT.posts}/[id]`} as={`${PATH_CLIENT.posts}/${_id}`}>
-      ...Read more
-    </Link>
-  );
+
   return (
-    <Card className={classes.feedCard} sx={sx}>
-      <Group sx={{ height: 40, width: '100%', display: 'flex', justifyContent: 'space-between' }}>
-        <Group sx={{ height: '100%' }}>
-          <Avatar src={createdBy?.avatar?.url} radius={90} size={40} />
-          <Stack spacing={0} justify="flex-end" style={{ height: '100%', alignItems: 'flex-end' }}>
-            <Text size={TEXT_SIZE.cardTile} weight="bold">
-              {createdBy?.name}
-            </Text>
-            <Text size={TEXT_SIZE.cardTile}>{intlDateFormat(createdAt)}</Text>
-          </Stack>
-        </Group>
-
-        {user?._id === createdBy?._id && (
-          <Box sx={{ alignSelf: 'start' }}>
-            <ActionIcon onClick={() => window.alert('edit fired: PostFeedCard.tsx')}>
-              <Icons.dots />
-            </ActionIcon>
-          </Box>
-        )}
-      </Group>
-
-      <Box className={classes.feedContent}>
+    <Card className={classesM.feedCard} sx={sx}>
+      <FeedHeading {...data} />
+      <Box>
         <Title size={TEXT_SIZE.titleCard} mb={16}>
           {title}
         </Title>
-        <FeedDescription
-          data={{
-            ...props,
-            body: props.body,
-            entity: 'posts',
-          }}
-        />
-        {/* <Text>
-          {description} {!showFullText && link}
-        </Text> */}
+        {/* <Text>{description}</Text> */}
+        <FeedDescription className={classesM.description} data={data} />
       </Box>
-      {images && <ImagesInArticle images={images} />}
-      {!!attachments?.length && (
+      <ImagesInArticle images={images} />
+
+      {attachments?.length && (
         <>
           <Divider mb={16} />
           <AttachmentsRow attachments={attachments} />

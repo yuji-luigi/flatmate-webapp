@@ -24,11 +24,13 @@ export interface MaintenanceModel extends MongooseBaseModel {
     | 'question'
     | 'discussion';
   isImportant: boolean;
+  entity: 'maintenances';
   space: SpaceModel;
-  receipts: string | CheckInterface[];
-  invoices: string | CheckInterface[];
+  receipts: CheckInterface[];
+  invoices: CheckInterface[];
   /** formatted in some way. from api schema level */
   _createdAt: string;
   createdBy: IUser;
   organization: OrganizationModel;
+  cost: number;
 }

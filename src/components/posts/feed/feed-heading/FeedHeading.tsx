@@ -7,20 +7,15 @@ import { intlDateFormat } from '../../../../utils/helpers/date-formatters';
 import { TEXT_SIZE } from '../../../text/text-size';
 import { UserModel } from '../../../../types/models/user-model';
 import useAuth from '../../../../../hooks/useAuth';
+import { FeedCardData } from '../../../../types/components-types/feed/post-feed-card-type';
+import classes from './FeedHeading.module.css';
 
-type FeedHeadingProps = {
-  createdBy: UserModel;
-  createdAt: string;
-  _id: string;
-  receipts?: any;
-};
-
-export const FeedHeading = (props: FeedHeadingProps) => {
+export const FeedHeading = (props: FeedCardData) => {
   const { createdBy, createdAt, _id, receipts } = props;
   const { user } = useAuth();
 
   return (
-    <Group sx={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}>
+    <Group className={classes.container}>
       <Group sx={{ height: '100%' }}>
         <Avatar
           src={createdBy?.avatar?.url || 'https://picsum.photos/410/300'}
@@ -35,13 +30,13 @@ export const FeedHeading = (props: FeedHeadingProps) => {
         </Stack>
       </Group>
       <Stack>
-        <Group position="right">
+        <Group>
           {user?._id === createdBy?._id && (
             <ActionIcon onClick={() => window.alert('edit fired: PostFeedCard.tsx')}>
               <Icons.dots />
             </ActionIcon>
           )}
-          {receipts.length && (
+          {receipts?.length && (
             <ActionIcon
               color="primary"
               component={Link}
