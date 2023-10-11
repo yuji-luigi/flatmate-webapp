@@ -37,7 +37,7 @@ export const SingleArticleCard = ({ data }: { data: MaintenanceModel | ThreadMod
       <div>
         <Text fw={500}>{data.description}</Text>
       </div>
-      {data.images.length && <ImagesInArticle images={data.images} />}
+      {!!data.images.length && <ImagesInArticle images={data.images} />}
       <ArticleActionsGroup />
     </Card>
   );

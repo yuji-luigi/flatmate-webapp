@@ -1,9 +1,7 @@
 import { IUser } from '../context/auth/useAuth';
-import { MaintenanceModel } from './maintenance-model';
 import { MongooseBaseModel } from './mongoose-base-model';
 import { OrganizationModel } from './organization-model';
 import { SpaceModel } from './space-model';
-import { ThreadModel } from './thread-model';
 import { UploadModel } from './upload-model';
 
 export interface NotificationModel extends MongooseBaseModel {

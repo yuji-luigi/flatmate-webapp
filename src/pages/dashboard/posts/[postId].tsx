@@ -7,7 +7,6 @@ import Layout from '../../../layouts';
 import PostEditButton from '../../../components/posts/PostEditButton';
 
 import RelatedArticlesArea from '../../../sections/@dashboard/single_post_page/RelatedArticleArea';
-import SinglePostHeading from '../../../sections/@dashboard/single_post_page/SinglePostHeading';
 import { CrudDrawerDefault } from '../../../components/drawer/CrudDrawerDefault';
 import { useCrudSliceStore, useCrudSelectors } from '../../../redux/features/crud/crudSlice';
 import { ThreadModel } from '../../../types/models/thread-model';
