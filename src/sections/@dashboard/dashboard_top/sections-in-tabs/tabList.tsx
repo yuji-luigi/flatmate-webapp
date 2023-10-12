@@ -18,13 +18,13 @@ export const TAB_LIST_CONFIG = [
   },
   {
     label: 'Maintenance',
-    value: 'maintenance',
+    value: 'maintenances',
     icon: <Icons.maintenance size="1.5rem" />,
     component: SpaceMaintenanceSection,
   },
   {
     label: 'Invoice',
-    value: 'invoice',
+    value: 'invoices',
     icon: <Icons.invoice size="1.5rem" />,
     component: SpaceMaintenanceSection,
   },

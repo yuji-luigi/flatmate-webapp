@@ -51,16 +51,15 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
   }, []);
 
   useEffect(() => {
-    if (section !== 'home') {
-      setCurrentTab(null);
-    }
+    setCurrentTab(section || '');
   }, [section]);
 
   const handleChangeTab = (value: string) => {
     setCurrentTab(value);
-    if (section !== 'home') {
-      router.push('/dashboard/home');
-    }
+    router.push(`/dashboard/top/${value}`);
+    // if (section !== 'home') {
+    //   router.push('/dashboard/home');
+    // }
   };
 
   return (

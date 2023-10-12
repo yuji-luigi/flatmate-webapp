@@ -15,6 +15,7 @@ interface MediaField {
 }
 
 export function hasMedia(mediaField: MediaField) {
+  // eslint-disable-next-line no-restricted-syntax
   for (const key in mediaField) {
     if (mediaField[key]?.length > 0) return true;
   }
@@ -30,9 +31,16 @@ export const HTTP_MULTIPART_CONFIG = {
 
 export const fetchCrudDocuments = createAsyncThunk(
   'cruds/dataTable/fetchCrudDocuments',
-  async ({ entity, query, isChildrenTree = false, queryObject = {} }: FetchCrudPayload) => {
+  async ({
+    entity,
+    query,
+    isChildrenTree = false,
+    queryObject = {},
+    owEndpoint,
+  }: FetchCrudPayload) => {
     const _entity = entity === 'posts' ? 'threads' : entity;
-    const res = await axiosInstance.get<AxiosResData>(`${_entity}${query || ''}`, {
+    const endpoint = owEndpoint || _entity;
+    const res = await axiosInstance.get<AxiosResData>(`${endpoint}${query || ''}`, {
       params: queryObject,
     });
     return {

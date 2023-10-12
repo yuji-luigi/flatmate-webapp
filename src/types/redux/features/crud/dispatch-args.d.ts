@@ -4,6 +4,8 @@ interface UpdateCrudDocumentInStorePayload {
 }
 interface FetchCrudPayload {
   entity: Sections;
+  /** @description overwrite endpoint */
+  owEndpoint?: string;
   query?: string;
   queryObject?: Record<string, string | number | boolean>;
   isChildrenTree?: boolean;

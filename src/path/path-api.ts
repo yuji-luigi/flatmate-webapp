@@ -55,6 +55,8 @@ export enum PATH_API {
   authTokens = 'auth-tokens',
   users = 'users',
   onBoarding = 'on-boarding',
+  threads = 'threads',
+  maintenances = 'maintenances',
 }
 
 const all = (entity: string) => `${entity}`;
@@ -65,7 +67,19 @@ const getExcelEndpoint = (excelRoute: string, entity: string) => `${excelRoute}/
 export const _PATH_API = {
   checks: {
     root: PATH_API.checks,
+    home: `${PATH_API.checks}/home`,
+    byId: (threadId: string) => `${PATH_API.checks}/${threadId}`,
     withNonce: (checkId: string) => `${PATH_API.checks}/${checkId}/with-nonce`,
+  },
+  threads: {
+    root: PATH_API.threads,
+    home: `${PATH_API.threads}/home`,
+    byId: (threadId: string) => `${PATH_API.threads}/${threadId}`,
+  },
+  maintenances: {
+    root: PATH_API.maintenances,
+    home: `${PATH_API.maintenances}/home`,
+    byId: (threadId: string) => `${PATH_API.maintenances}/${threadId}`,
   },
   spaces: {
     root: PATH_API.spaces,

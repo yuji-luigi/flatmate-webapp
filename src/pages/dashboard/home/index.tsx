@@ -1,4 +1,5 @@
 import { ReactElement, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import Layout from '../../../layouts';
 import axiosInstance from '../../../utils/axios-instance';
 import { useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
@@ -19,6 +20,7 @@ interface Props {
 
 export default function DashboardHomePage(/* { space, maintainers, maintenances, threads }: Props */) {
   const { setCrudDocument, setCrudDocuments } = useCrudSliceStore();
+  const router = useRouter();
   const { currentOrganization, currentSpace } = useCookieContext();
   useEffect(() => {
     handleSectionData();
@@ -31,6 +33,7 @@ export default function DashboardHomePage(/* { space, maintainers, maintenances,
     setCrudDocuments({ entity: 'maintainers', documents: maintainers });
     setCrudDocuments({ entity: 'maintenances', documents: maintenances });
     setCrudDocuments({ entity: 'threads', documents: threads });
+    router.replace('/dashboard/top/dashboard');
   };
   return <SpaceHomeSection /* threads={threads} */ />;
 }
