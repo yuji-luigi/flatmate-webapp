@@ -41,7 +41,7 @@ interface CardArticleImageDescFooterVerticalProps {
   image?: string;
   category: string;
   title: string;
-  date: string;
+  date: string | Date;
   hrefRoot: CARD_LINK_PATH;
   author:
     | IUser

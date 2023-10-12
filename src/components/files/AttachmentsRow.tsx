@@ -7,24 +7,33 @@ import { LinkedImage } from '../image/LinkedImage';
 import { UploadModel } from '../../types/models/upload-model';
 
 const ICON_INDEXES = {
+  // Image extensions
+  png: 'image',
+  jpg: 'image',
+  jpeg: 'image',
+  gif: 'image',
+  bmp: 'image',
+  webp: 'image',
+  // Document extensions
   pdf: 'pdf',
   doc: 'doc',
-  image: 'image',
-  jpg: 'image',
-  png: 'image',
-  txt: 'txt',
-  gif: 'image',
-  xls: 'xls',
-  webp: 'image',
-  bmp: 'image',
   docx: 'doc',
-  jpeg: 'image',
+  xls: 'xls',
   xlsx: 'xls',
   ppt: 'doc',
   pptx: 'doc',
+  // Video extensions
+  mp4: 'doc',
+  mov: 'doc',
+  avi: 'doc',
+  // Audio extensions
+  mp3: 'doc',
+  wav: 'doc',
 } as const;
+
 function getFileIcon(uploadModel: UploadModel) {
   const INDEX = ICON_INDEXES[uploadModel.extension];
+
   return PATH_IMAGE.FILES[INDEX];
 }
 

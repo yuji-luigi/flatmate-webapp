@@ -10,5 +10,11 @@
 		"icon": "receipt",
 		"value": 4.145,
 		"diff": -13
+	},
+	{
+		"title": "Maintenance to be done",
+		"icon": "receipt",
+		"value": 4.145,
+		"diff": -13
 	}
 ]

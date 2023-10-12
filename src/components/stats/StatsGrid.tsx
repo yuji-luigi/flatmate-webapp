@@ -100,7 +100,7 @@ export function StatsGrid({ data }: { data: StatGridSchema[] }) {
   });
   return (
     <SimpleGrid
-      cols={2}
+      cols={3}
       sx={{ width: '100%' }}
       className={classesM.container}
       breakpoints={[

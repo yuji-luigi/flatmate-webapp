@@ -24,8 +24,8 @@ export default function DashboardHomePage(/* { space, maintainers, maintenances,
     handleSectionData();
   }, [currentOrganization, currentSpace]);
   const handleSectionData = async () => {
-    const rawRes = await axiosInstance.get(`${process.env.NEXT_PUBLIC_API_URL}/spaces/home`);
-    const { space, maintainers, maintenances, threads } = rawRes.data.data || [];
+    const rawRes = await axiosInstance.get(`${process.env.NEXT_PUBLIC_API_URL}/home`);
+    const { space, maintainers, maintenances, threads, homeStatics } = rawRes.data.data || [];
 
     setCrudDocument({ entity: 'spaces', document: space });
     setCrudDocuments({ entity: 'maintainers', documents: maintainers });
@@ -43,7 +43,7 @@ DashboardHomePage.getLayout = function getLayout(page: ReactElement) {
 //   try {
 //     const jwtToken = context.req.cookies.jwt;
 
-//     const res = await axiosInstance.get(`${process.env.NEXT_PUBLIC_API_URL}/spaces/home`, {
+//     const res = await axiosInstance.get(`${process.env.NEXT_PUBLIC_API_URL}/home`, {
 //       headers: {
 //         Authorization: `Bearer ${jwtToken}`,
 //         // 'Content-Type': 'application/x-www-form-urlencoded',
