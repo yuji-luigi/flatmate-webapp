@@ -9,15 +9,15 @@ import { useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
 const DashboardTopMaintenances = () => {
   const { fetchCrudDocuments, setCrudDocuments } = useCrudSliceStore();
   useEffect(() => {
-    fetchCrudDocuments({ entity: 'maintenances', owEndpoint: _PATH_API.maintenances.home });
+    fetchCrudDocuments({ entity: 'maintenances' });
   }, []);
-  return <SpaceMaintenanceSection />;
+  return (
+    <Box className={classes.container}>
+      <SpaceMaintenanceSection />
+    </Box>
+  );
 };
 DashboardTopMaintenances.getLayout = function getLayout(page: ReactElement) {
-  return (
-    <Layout variant="dashboard">
-      <Box className={classes.container}>{page}</Box>
-    </Layout>
-  );
+  return <Layout variant="dashboard">{page}</Layout>;
 };
 export default DashboardTopMaintenances;

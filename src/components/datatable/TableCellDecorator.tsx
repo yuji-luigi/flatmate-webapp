@@ -21,7 +21,6 @@ export function TableCellDecorator({
 }) {
   /** get value of the cell (from object/array/primitive) */
   const cellValue = getCellValue({ rowData, cellConfig });
-
   // if (cellConfig.badge) {
   //   return (
   //     <BadgeCellDecorator cellConfig={cellConfig} value={cellValue}>
@@ -52,8 +51,6 @@ type ValueOrFunction = string | ValueFunction;
 const isFunction = (value: ValueOrFunction): value is ValueFunction => typeof value === 'function';
 
 function getCellValue({ rowData, cellConfig }: { rowData: any; cellConfig: FormFieldTypes }) {
-  // console.log(rowData[cellConfig.name]);
-
   // LIST OUT CASES.
   // 1. VALUE IS OBJECT AND NOT ARRAY
   // 2. VALUE IS ARRAY OF OBJECTS
@@ -72,11 +69,7 @@ function getCellValue({ rowData, cellConfig }: { rowData: any; cellConfig: FormF
     boolean: () => value.toString(),
     object: () => handleObjectType({ value, cellConfig }),
   };
-
   const returnValue = valueObject[valueType];
-  // console.log(returnValue);
-  // console.log(cellConfig.name);
-  // console.log('\n');
   return isFunction(returnValue) ? returnValue() : returnValue;
 }
 
@@ -123,5 +116,9 @@ function handleObjectType({ value, cellConfig }: { value: any; cellConfig: FormF
     }
     return value.map((item) => item.toString());
   }
+  if (!cellConfig.selectValues?.length) {
+    return value.name || 'set the selectValues array';
+  }
+  return getCellValueRecursive({ value, selectValues: cellConfig.selectValues });
   return value;
 }

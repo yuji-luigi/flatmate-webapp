@@ -11,6 +11,8 @@ import {
   CellTypes,
   PartialCellTypes,
 } from '../../../../../types/general/data/data-table/cellTypes';
+import { TextOnHoverCell } from './TextOnHoverCell';
+import { TextOnDialogCell } from './TextOnDialogCell';
 // import { IconPencil, IconTrash } from '@tabler/icons-react';
 // import { UsersTableRow } from '../../../../types/general/data/datatable/objects';
 export const jobColors: Record<string, string> = {
@@ -38,6 +40,8 @@ const TableCellController = ({
     avatar: AvatarCell,
     boolean: BooleanCell,
     'link-children': LinkChildrenCell,
+    'text-on-hover': TextOnHoverCell,
+    'text-on-dialog': TextOnDialogCell,
   };
 
   // default cell is TextCell

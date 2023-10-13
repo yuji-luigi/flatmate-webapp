@@ -7,9 +7,8 @@ import classes from './StaticDataTable.module.css';
 export function StaticDataTable({ json, data }: { json: any[]; data: any[] }) {
   // const TOTAL = Math.ceil(users.length / ROWS_PER_PAGE);
   // const { classes } = dashboardStyle();
-
   return (
-    <Box sx={{ zIndex: 1 }}>
+    <Box>
       <ScrollArea>
         <Table className={classes.table} highlightOnHover>
           <StaticTableHeader json={json} />

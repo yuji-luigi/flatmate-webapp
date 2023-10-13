@@ -1,5 +1,4 @@
 .container {
-  width: 100%;
   padding-block: 32px;
   margin-inline: 16px;
   @media (max-width: 768px) {

@@ -8,10 +8,13 @@ interface List {
   component: () => JSX.Element;
 }
 export const TabPanels = ({ list }: { list: List[] }) => {
+  const Com = list[0].component;
+  return <Com />;
   return (
     <>
       {list.map((item) => (
         <Tabs.Panel key={item.label} value={item.value}>
+          {/* <Tabs.Panel key={item.label} value={item.value}> */}
           <item.component />
         </Tabs.Panel>
       ))}

@@ -31,7 +31,11 @@ export type BadgeField = {
   color: string;
 };
 
-export type TextFormType = { type: 'text' | 'number'; password?: boolean } & BaseFormType &
+export type TextFormType = (
+  | { type: 'text' | 'number'; password?: boolean }
+  | { cellType: 'text-on-hover' | 'text-on-dialog' }
+) &
+  BaseFormType &
   TextInputProps;
 
 export type PasswordFormType = { type: 'password' } & BaseFormType & PasswordInputProps;
@@ -196,6 +200,8 @@ type Col = {
 type FormTypes =
   | 'text'
   | 'text-area'
+  | 'text-on-hover'
+  | 'text-on-dialog'
   | 'password'
   | 'checkbox-group'
   | 'radio-group'

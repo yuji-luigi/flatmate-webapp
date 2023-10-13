@@ -17,7 +17,7 @@ export const PATH_AFTER_LOGIN = '/dashboard/home';
 export enum PATH_CLIENT {
   // root = '/dashboard',
   /** the initial page after login is root */
-  root = '/dashboard/home',
+  root = '/dashboard/top/dashboard',
   posts = '/dashboard/posts',
   threads = '/dashboard/posts',
   authTokens = '/dashboard/auth-tokens',

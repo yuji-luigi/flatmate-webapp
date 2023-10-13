@@ -43,14 +43,8 @@ export const fetchSpaceSelections = async (userId?: string | null) => {
 
 const ChooseRootSpacePage = () => {
   const { user } = useAuth();
-
-  const { t } = useTranslation('common');
-
-  const { classes, cx, theme } = useStyles();
   const router = useRouter();
-  const { handleSetCurrentSpace } = useCookieContext();
   // const title = t('choose-building-title');
-  const hrefRoot = CARD_LINK_PATH.rootSpaceSelected;
   const {
     data: rootSpaces,
     error,
@@ -63,38 +57,7 @@ const ChooseRootSpacePage = () => {
   }
   if (!rootSpaces || isLoading) return <p>loading</p>;
 
-  const handleSpaceSelected = async (mainSpace: SpaceModel) => {
-    const rawSpace = await axiosInstance.get(`${PATH_API.spaceCookie}/${mainSpace._id}`);
-    handleSetCurrentSpace(rawSpace.data.data.space);
-    // router.push(PATH_CLIENT.root);
-    router.push(`${PATH_CLIENT.root}/${mainSpace.slug}`);
-  };
-
   return <ChooseSpaceSection spaces={rootSpaces} />;
-  // return (
-  //   <Stack p={32}>
-  //     <Group position="apart" align="center">
-  //       <Text variant="text" size={36} weight={600} align="center">
-  //         {t('choose-building-title')}
-  //       </Text>
-  //     </Group>
-
-  //     <Box
-  //       className={classes.pinContainer}
-  //       py="xl" /* cols={2} breakpoints={[{ maxWidth: 'sm', cols: 1 }]} */
-  //     >
-  //       {rootSpaces.map((rootSpace) => (
-  //         <CardArticleVerticalTextBottom
-  //           key={rootSpace._id}
-  //           data={rootSpace as CardData}
-  //           // image={rootSpace.cover?.url}
-  //           onClick={() => handleSpaceSelected(rootSpace)}
-  //           // href={`${hrefRoot}/${rootSpace._id}`}
-  //         />
-  //       ))}
-  //     </Box>
-  //   </Stack>
-  // );
 };
 
 ChooseRootSpacePage.getLayout = (page: ReactElement) => <Layout variant="main">{page}</Layout>;

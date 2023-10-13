@@ -28,12 +28,10 @@ export default function DashboardHomePage(/* { space, maintainers, maintenances,
   const handleSectionData = async () => {
     const rawRes = await axiosInstance.get(`${process.env.NEXT_PUBLIC_API_URL}/home`);
     const { space, maintainers, maintenances, threads, homeStatics } = rawRes.data.data || [];
-
     setCrudDocument({ entity: 'spaces', document: space });
     setCrudDocuments({ entity: 'maintainers', documents: maintainers });
     setCrudDocuments({ entity: 'maintenances', documents: maintenances });
     setCrudDocuments({ entity: 'threads', documents: threads });
-    router.replace('/dashboard/top/dashboard');
   };
   return <SpaceHomeSection /* threads={threads} */ />;
 }
