@@ -6,7 +6,8 @@ import { useGetCSSVariableValues } from '../src/styles/getCSSVariableValues';
 export const useCustomMQuery = () => {
   // const theme = useMantineTheme();
   const BREAKPOINTS = useGetCSSVariableValues();
-  const isMobile = useMediaQuery(`(max-width: ${BREAKPOINTS.sm})`);
+  const isMobile = useMediaQuery(`(max-width: ${BREAKPOINTS.md})`);
+  const isLargeScreen = useMediaQuery(`(min-width: ${BREAKPOINTS.lg})`);
 
-  return { isMobile };
+  return { isMobile, isLargeScreen };
 };

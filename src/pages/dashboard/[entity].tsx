@@ -40,9 +40,7 @@ const CrudPage = () => {
 
   return (
     <Page title={`Flatmates | ${entity}`}>
-      <HeaderContainer>
-        <TableSectionHeader />
-      </HeaderContainer>
+      <TableSectionHeader />
       {/* <Tables /> */}
       <CrudDataTable />
       <CrudDrawerDefault />

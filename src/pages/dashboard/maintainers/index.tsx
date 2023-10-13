@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import React, { ReactElement, useEffect } from 'react';
-import { createStyles } from '@mantine/core';
+import { Stack, createStyles } from '@mantine/core';
 import Page from '../../../components/Page';
 import { CrudDrawerDefault } from '../../../components/drawer/CrudDrawerDefault';
 import { usePaginationContext } from '../../../context/PaginationContext';
@@ -16,6 +16,7 @@ import { QueryFilterWeb } from '../../../components/datatable/filter/QueryFilter
 const useStyles = createStyles((theme) => ({
   secondButton: {
     marginBlock: 32,
+
     alignSelf: 'end',
     backgroundColor: theme.colors.blue[7],
     color: theme.colors.blue[0],
@@ -52,12 +53,12 @@ const MaintainerPage = () => {
 
   return (
     <Page title="Maintainers">
-      <HeaderContainer>
+      <Stack>
         <TableSectionHeader overridingEntity="maintainers" />
         <QueryFilterWeb entity={entity} formFields={maintainersTableData} />
-      </HeaderContainer>
-      <MaintainerList entity={entity} />
-      <CrudDrawerDefault overridingEntity="maintainers" />
+        <MaintainerList entity={entity} />
+        <CrudDrawerDefault overridingEntity="maintainers" />
+      </Stack>
     </Page>
   );
 };

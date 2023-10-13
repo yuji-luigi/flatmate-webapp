@@ -23,7 +23,7 @@ export const TabList = ({
   className?: string;
   position?: TabsPosition;
 }) => {
-  const { isMobile } = useCustomMQuery();
+  const { isLargeScreen } = useCustomMQuery();
   return (
     <Tabs.List position={position} className={className}>
       <Box
@@ -37,7 +37,7 @@ export const TabList = ({
         <Group className={classes.tabList}>
           {list.map((item) => (
             <Tabs.Tab icon={item.icon} value={item.value} key={item.label}>
-              {isMobile ? '' : item.label}
+              {isLargeScreen && item.label}
             </Tabs.Tab>
           ))}
         </Group>

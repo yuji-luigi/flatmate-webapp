@@ -41,7 +41,7 @@ const useStyles = createStyles((theme) => ({
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fill, 300px)',
     gridAutoRows: 'minmax(50px, auto)',
-    justifyContent: 'center',
+    justifyContent: 'start',
     gap: 24,
   },
   QueryFilterToApi: {

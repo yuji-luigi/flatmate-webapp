@@ -8,10 +8,6 @@ const invoices = () => {
   return <SpaceMaintenanceSection />;
 };
 invoices.getLayout = function getLayout(page: ReactElement) {
-  return (
-    <Layout variant="dashboard">
-      <Box className={classes.container}>{page}</Box>
-    </Layout>
-  );
+  return <Layout variant="dashboard">{page}</Layout>;
 };
 export default invoices;

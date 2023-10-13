@@ -1,0 +1,5 @@
+.header {
+  @media (max-width: 768px) {
+    padding-inline: var(--padding-x);
+  }
+}
