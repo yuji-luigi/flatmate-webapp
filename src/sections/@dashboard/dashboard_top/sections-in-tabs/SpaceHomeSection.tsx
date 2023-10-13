@@ -25,6 +25,7 @@ const SpaceHomeSection = () => {
     // router.push('/404');
     return <LoadingOverlay visible />;
   }
+  return null;
   <Box className={classes.container}>
     <TabPanels list={TAB_LIST_CONFIG} />
   </Box>;
