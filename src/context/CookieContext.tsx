@@ -57,13 +57,11 @@ const useStore = () => {
   // when header selected space or organization changes then the documents in the current section(entity in url) will be updated
   useEffect(() => {
     if (/* !currentSpace?._id ||  */ entity && !sections.includes(entity)) return;
-    console.log('fetching crud documents with pagination');
     fetchCrudDocumentsWithPagination({ entity });
   }, [currentSpace?._id]);
 
   useEffect(() => {
     if (!currentOrganization || !entity || !sections.includes(entity)) return;
-    console.log('fetching crud documents with pagination');
     fetchCrudDocumentsWithPagination({ entity });
   }, [currentOrganization]);
 

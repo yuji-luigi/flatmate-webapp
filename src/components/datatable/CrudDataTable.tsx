@@ -32,6 +32,7 @@ export function CrudDataTable({ overridingEntity = '' }: { overridingEntity?: Se
     setPage(1);
     setPagination(1);
   }, [entity]);
+  console.log('return');
 
   if (!sectionFormFields) {
     return <h1>Please provide the formField.json file to display the table</h1>;
@@ -45,7 +46,6 @@ export function CrudDataTable({ overridingEntity = '' }: { overridingEntity?: Se
     setPage(pageNumber);
     setPagination(pageNumber); //! after setting the pagination. useEffect will be called to fetch the documents
   }
-
   return (
     <Box className={classes.dataTableContainer}>
       <ScrollArea>

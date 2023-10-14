@@ -88,7 +88,7 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
         }}
       >
         <NavbarVertical />
-        {children}
+        <Box>{children}</Box>
       </Box>
     </Tabs>
   );

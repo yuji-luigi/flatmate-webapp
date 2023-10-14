@@ -27,9 +27,7 @@ const HeadSpaceTable = () => {
 
   return (
     <Page title="Flatmates | Spaces(building)">
-      <HeaderContainer>
-        <TableSectionHeader overridingEntity="spaces" />
-      </HeaderContainer>
+      <TableSectionHeader overridingEntity="spaces" />
       {/* <Tables overridingEntity="spaces" /> */}
       <CrudDataTable overridingEntity="spaces" />
 
