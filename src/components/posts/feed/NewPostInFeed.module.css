@@ -37,3 +37,20 @@
 .name {
   font-family: Greycliff CF, var(--mantine-font-family);
 }
+.list {
+}
+.list > li {
+  /* ...theme.fn.focusStyles(), */
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  /* color: theme.colorScheme === dark ? theme.colors.dark[1] : theme.colors.gray[7]; */
+  padding: var(--padding-xs) var(--padding-sm);
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+}
+.list > li:hover {
+  background-color: red;
+  /* background-color: theme.colorScheme === dark ? theme.colors.dark[6] : theme.colors.gray[0]; */
+  /* color: theme.colorScheme === dark ? theme.white : theme.black; */
+}

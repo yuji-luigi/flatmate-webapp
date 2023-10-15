@@ -14,7 +14,7 @@ export type _ModalContextStates = {
 export type ModalType = 'confirm' | 'alert' | 'crud' | 'custom';
 export type BaseModalData = {
   // id?: string;
-  title: string | React.ReactNode;
+  title?: string | React.ReactNode;
   type: ModalType;
   centered?: boolean;
   fullScreen?: boolean;

@@ -1,4 +1,4 @@
-import { Avatar, Text, Group, Card, Box, Stack } from '@mantine/core';
+import { Avatar, Text, Group, Card, Box, Stack, List } from '@mantine/core';
 import { IconPhoneCall, IconAt } from '@tabler/icons-react';
 import { useTranslation } from 'react-i18next';
 import classes from './NewPostInFeed.module.css';
@@ -9,16 +9,23 @@ export function NewPostInFeed() {
   const { openModal, openConfirmModal } = useCustomModalContext();
   const handleOpenModal = () => {
     openConfirmModal({
-      title: (
-        <Text component="h4" fz="lg" my={0}>
-          New Post/Maintenance
-        </Text>
-      ),
       type: 'custom',
       children: (
-        <Stack>
-          <Text>Post</Text>
-          <Text>Maintenance</Text>
+        <Stack p={16}>
+          <List className={classes.list}>
+            <List.Item>
+              <Text>Maintenance</Text>
+            </List.Item>
+            <List.Item>
+              <Text>Maintenance</Text>
+            </List.Item>
+            <List.Item>
+              <Text>Maintenance</Text>
+            </List.Item>
+            <List.Item>
+              <Text>Maintenance</Text>
+            </List.Item>
+          </List>
         </Stack>
       ),
     });

@@ -1,11 +1,11 @@
 import React from 'react';
-import { HeaderCreationModal } from './HeaderCreationModal';
 import { SimpleDisclosureContextProvider } from '../../../context/SimpleDisclosureContext';
+import { HeaderCreationButton } from './HeaderCreationButton';
 
 export const HeaderCreationModalWrapper = () => {
   return (
     <SimpleDisclosureContextProvider>
-      <HeaderCreationModal />
+      <HeaderCreationButton />
     </SimpleDisclosureContextProvider>
   );
 };
