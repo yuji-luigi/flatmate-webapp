@@ -1,0 +1,39 @@
+.card {
+  padding-inline: var(--padding-x);
+}
+/* .parentGroup {
+  flex-wrap: nowrap;
+  align-items: stretch;
+} */
+
+.parentGroup {
+  display: flex;
+  align-items: stretch;
+}
+.childrenGroup {
+  flex-wrap: nowrap;
+  gap: 10px;
+}
+/* .inputBox {
+  display: flex;
+  border-radius: 9000px;
+  background-color: white;
+  height: 100%;
+  min-height: 100%;
+} */
+.inputBox {
+  /* flex-grow: 1; */
+  border-radius: 9000px;
+  display: flex;
+  background-color: white;
+  align-items: center; /* if you want the text to be vertically centered */
+  padding-inline: var(--padding-x);
+  /* your other CSS rules */
+}
+.icon {
+  color: light-dark(var(--mantine-color-gray-5), var(--mantine-color-dark-3));
+}
+
+.name {
+  font-family: Greycliff CF, var(--mantine-font-family);
+}

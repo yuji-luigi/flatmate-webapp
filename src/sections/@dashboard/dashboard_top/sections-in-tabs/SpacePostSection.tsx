@@ -4,6 +4,8 @@ import { useCrudSelectors } from '../../../../redux/features/crud/crudSlice';
 import PostFeedCard from '../../../../components/posts/feed/PostFeedCard';
 import { UserModel } from '../../../../types/models/user-model';
 import { ThreadModel } from '../../../../types/models/thread-model';
+import { DashboardTopHeader } from '../components/DashboardTopHeader';
+import { NewPostInFeed } from '../../../../components/posts/feed/NewPostInFeed';
 
 const useStyle = createStyles((theme) => ({}));
 
@@ -12,9 +14,8 @@ export const SpacePostSection = () => {
   return (
     <>
       <Stack spacing={16}>
-        <Text component="h1" size="lg">
-          Posts
-        </Text>
+        <NewPostInFeed />
+        {/* <DashboardTopHeader header="Posts" /> */}
         {crudDocuments.map((thread) => (
           <PostFeedCard key={thread._id} data={thread} />
         ))}

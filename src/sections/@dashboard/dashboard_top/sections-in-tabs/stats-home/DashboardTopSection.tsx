@@ -7,6 +7,8 @@ import { StatGridSchema, StatsGrid } from '../../../../../components/stats/Stats
 import statsGridData from '../../../../../../json/mock/statsGrid.json';
 import classes from './DashboardTopSection.module.css';
 import { StatsSummary } from './StatsSummary';
+import { DashboardTopHeader } from '../../components/DashboardTopHeader';
+import { useCookieContext } from '../../../../../context/CookieContext';
 
 const StackedAreaChart = dynamic(
   () => import('../../../../../components/chart/line-area-chart/StackedAreaChart'),
@@ -16,11 +18,11 @@ const StackedAreaChart = dynamic(
 );
 
 const DashboardSection = () => {
+  const { currentSpace } = useCookieContext();
+
   return (
     <Box className={classes.box}>
-      <Text component="h1" size="lg">
-        Dashboard
-      </Text>
+      <DashboardTopHeader header={currentSpace?.name} subHeader={currentSpace?.address} />
       <StatsSummary className={classes.summary} />
       <StatsGrid data={statsGridData as unknown as StatGridSchema[]} />
       <Card sx={{ height: 400, width: '100%', overflow: 'visible' }}>
