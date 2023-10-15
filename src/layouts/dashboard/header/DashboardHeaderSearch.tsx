@@ -11,7 +11,7 @@ import { LogoBanner } from '../../../components/banner/LogoBanner';
 import { useCookieContext } from '../../../context/CookieContext';
 
 import OrganizationSpaceSelect from '../../../components/select-custom/OrganizationSpaceSelect';
-import { HeaderCreationModalWrapper } from '../header-creation-modal/HeaderCreationModalWrapper';
+import { HeaderCreationModalWrapper } from '../../../components/modal/header-creation-modal/HeaderCreationModalWrapper';
 import { TAB_LIST_CONFIG } from '../../../sections/@dashboard/dashboard_top/sections-in-tabs/tabList';
 import { useCustomMQuery } from '../../../../hooks/useCustomMQuery';
 import { TabList } from '../../../components/tab/TabList';

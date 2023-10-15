@@ -1,4 +1,5 @@
 import { Sx } from '@mantine/core';
+import React from 'react';
 import { FormFieldTypes } from '../general/data/data-table/formField-types';
 import { AllModels } from '../models/allmodels';
 
@@ -13,7 +14,7 @@ export type _ModalContextStates = {
 export type ModalType = 'confirm' | 'alert' | 'crud' | 'custom';
 export type BaseModalData = {
   // id?: string;
-  title: string;
+  title: string | React.ReactNode;
   type: ModalType;
   centered?: boolean;
   fullScreen?: boolean;

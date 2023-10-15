@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-pascal-case */
 import { Button, Container, createStyles, Drawer, LoadingOverlay, Text } from '@mantine/core';
 
-import FormFields from '../../../components/input/FormFields';
+import FormFields from '../../input/FormFields';
 import allFormFields from '../../../../json/dataTable/formfields';
 import { useState, FormEvent, useMemo, useEffect } from 'react';
 import { useCrudSelectors, useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
@@ -10,9 +10,9 @@ import { FormCustom } from '../../../context/FormContextProvider';
 import { getDefaultValues } from '../../../utils/getDefaultValues';
 import { notifications } from '@mantine/notifications';
 import axiosInstance from '../../../utils/axios-instance';
-import CreationToolBar from '../../../components/input/CreationToolBar';
+import CreationToolBar from '../../input/CreationToolBar';
 import { UPLOAD_FOLDERS } from '../../../lib/enums';
-import { UseFormReturnTypeCustom } from '../../../components/input/input_interfaces/useForm_interface';
+import { UseFormReturnTypeCustom } from '../../input/input_interfaces/useForm_interface';
 import { useRouter } from 'next/router';
 import { hasMedia } from '../../../redux/features/crudAsyncThunks';
 import { uploadFileAndGetModelId, extractUploadingMedia } from '../../../utils/upload-helper';
