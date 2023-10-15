@@ -21,7 +21,7 @@ const useStyles = createStyles((theme) => ({
   diff: {
     fontFamily: `Greycliff CF, ${theme.fontFamily}`,
     display: 'flex',
-    alignItems: 'center',
+    align-items: 'center',
   },
 
   icon: {
@@ -89,7 +89,7 @@ export function StatsSegments({ total, diff, data }: StatsSegmentsProps) {
         classNames={{ label: classes.progressLabel }}
         mt={40}
       />
-      <SimpleGrid cols={3} breakpoints={[{ maxWidth: 'xs', cols: 1 }]} mt="xl">
+      <SimpleGrid cols={3} breakpoints={[{ max-width: 'xs', cols: 1 }]} mt="xl">
         {descriptions}
       </SimpleGrid>
     </Paper>

@@ -72,7 +72,7 @@ const MaintainerList = ({ entity }: { entity: Sections }) => {
     <>
       <Box
         className={classes.pinContainer}
-        /* cols={2} breakpoints={[{ maxWidth: 'sm', cols: 1 }]} */
+        /* cols={2} breakpoints={[{ max-width: 'sm', cols: 1 }]} */
       >
         {/* <QueryFilterWeb
           entity={entity}
@@ -96,7 +96,7 @@ const MaintainerList = ({ entity }: { entity: Sections }) => {
                 slug: maintainer.slug,
                 // badgeIcon: <Icons.check />,
                 badges: badge,
-                badgeSx: { paddingBlock: 8, maxWidth: 100 },
+                badgeSx: { paddingBlock: 8, max-width: 100 },
                 avatar: maintainer.avatar,
                 cover: maintainer.cover,
                 type: maintainer.type,

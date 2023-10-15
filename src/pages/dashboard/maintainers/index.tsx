@@ -18,10 +18,10 @@ const useStyles = createStyles((theme) => ({
     marginBlock: 32,
 
     alignSelf: 'end',
-    backgroundColor: theme.colors.blue[7],
+    background-color: theme.colors.blue[7],
     color: theme.colors.blue[0],
     '&:hover': {
-      backgroundColor: theme.colors.blue[8],
+      background-color: theme.colors.blue[8],
       color: theme.colors.blue[0],
     },
   },

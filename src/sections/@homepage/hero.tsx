@@ -13,22 +13,22 @@ const useStyles = createStyles((theme) => ({
 
   container: {
     height: 700,
-    maxWidth: 700,
+    max-width: 700,
     display: 'flex',
     position: 'relative',
-    flexDirection: 'column',
+    flex-direction: 'column',
     justifyContent: 'flex-end',
-    alignItems: 'flex-start',
-    paddingBottom: `calc(${theme.spacing.xl}) * 6`,
+    align-items: 'flex-start',
+    paddingBottom: `calc(${var(--mantine-spacing-xl}) * 6`,
     zIndex: 1,
 
-    [theme.fn.smallerThan('sm')]: {
+    @media (max-width: 768px): {
       position: 'relative',
       height: 700,
-      paddingBottom: `calc(${theme.spacing.xl}) * 3`,
+      paddingBottom: `calc(${var(--mantine-spacing-xl}) * 3`,
       display: 'flex',
       justifyContent: 'center',
-      alignItems: 'flex-start',
+      align-items: 'flex-start',
     },
   },
 
@@ -43,7 +43,7 @@ const useStyles = createStyles((theme) => ({
     fontWeight: 900,
     lineHeight: 1.1,
 
-    [theme.fn.smallerThan('sm')]: {
+    @media (max-width: 768px): {
       fontSize: 40,
       lineHeight: 1.2,
     },
@@ -56,18 +56,18 @@ const useStyles = createStyles((theme) => ({
 
   description: {
     color: theme.white,
-    maxWidth: 600,
+    max-width: 600,
 
-    [theme.fn.smallerThan('sm')]: {
-      maxWidth: '100%',
+    @media (max-width: 768px): {
+      max-width: '100%',
       fontSize: theme.fontSizes.sm,
     },
   },
 
   control: {
-    marginTop: `calc(${theme.spacing.xl} * 1.5)`,
+    margin-top: `calc(${var(--mantine-spacing-xl} * 1.5)`,
 
-    [theme.fn.smallerThan('sm')]: {
+    @media (max-width: 768px): {
       // width: '100%',
     },
   },

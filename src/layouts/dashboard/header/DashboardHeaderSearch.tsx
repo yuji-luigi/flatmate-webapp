@@ -22,19 +22,19 @@ import { HeaderNotificationButton } from './notifications/HeaderNotificationButt
 const useStyles = createStyles((theme) => ({
   // header: {
   //   position: 'fixed',
-  //   paddingLeft: theme.spacing.md,
-  //   paddingRight: theme.spacing.md,
+  //   paddingLeft: var(--mantine-spacing-md,
+  //   padding-right: var(--mantine-spacing-md,
   // },
   header: {
     position: 'fixed',
-    paddingLeft: theme.spacing.md,
-    paddingRight: theme.spacing.md,
+    paddingLeft: var(--mantine-spacing-md,
+    padding-right: var(--mantine-spacing-md,
     height: 56,
     display: 'flex',
     justifyContent: 'space-between',
     zIndex: 50,
     // justifyContent: 'flex-start',
-    alignItems: 'center',
+    align-items: 'center',
     // [theme.fn.smallerThan('md')]: {
     //   height: 120,
     // },
@@ -46,7 +46,7 @@ const useStyles = createStyles((theme) => ({
     justifyContent: 'space-between',
     zIndex: 50,
     // justifyContent: 'flex-start',
-    alignItems: 'center',
+    align-items: 'center',
   },
 
   burger: {
@@ -64,15 +64,15 @@ const useStyles = createStyles((theme) => ({
 
   // header: {
   //   position: 'fixed',
-  //   paddingLeft: theme.spacing.md,
-  //   paddingRight: theme.spacing.md,
+  //   paddingLeft: var(--mantine-spacing-md,
+  //   padding-right: var(--mantine-spacing-md,
   // },
 
   // inner: {
   //   height: 56,
   //   display: 'grid',
   //   gridTemplateColumns: '1fr 1fr 1fr', // Three equal columns
-  //   alignItems: 'center',
+  //   align-items: 'center',
   //   zIndex: 50,
   // },
 
@@ -119,7 +119,7 @@ const useStyles = createStyles((theme) => ({
     },
   },
   spaceName: {
-    maxWidth: 200,
+    max-width: 200,
     maxHeight: 56,
     overflow: 'hidden',
     textOverflow: 'ellipsis',
@@ -134,14 +134,14 @@ const useStyles = createStyles((theme) => ({
     display: 'block',
     lineHeight: 1,
     padding: '8px 12px',
-    borderRadius: theme.radius.sm,
+    border-radius: --mantine-radius-sm,
     color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.colors.gray[7],
     fontSize: theme.fontSizes.sm,
     fontWeight: 500,
     fontStyle: 'normal',
 
     '&:hover': {
-      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+      background-color: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
     },
   },
 }));

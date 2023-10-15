@@ -36,7 +36,7 @@ const useStyles = createStyles(() => ({
     padding: 20,
   },
   form: {
-    marginTop: 50,
+    margin-top: 50,
     height: '100vh',
   },
 }));

@@ -2,7 +2,7 @@ import { createStyles, Card, Avatar, Text, Group, Button, rem } from '@mantine/c
 
 const useStyles = createStyles((theme) => ({
   card: {
-    backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
+    background-color: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
   },
 
   avatar: {

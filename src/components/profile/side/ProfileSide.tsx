@@ -11,14 +11,14 @@ const useStyles = createStyles((theme) => ({
     width: '30%',
     gap: 16,
     display: 'flex',
-    flexDirection: 'column',
+    flex-direction: 'column',
     flex: 1,
     [theme.fn.smallerThan('md')]: {
-      width: '100%', // backgroundColor: theme.cdolors.yellow[6],
+      width: '100%', // background-color: theme.cdolors.yellow[6],
     },
-    [theme.fn.smallerThan('sm')]: {
-      width: '100%', // backgroundColor: theme.cdolors.yellow[6],
-      // flexDirection: 'row',
+    @media (max-width: 768px): {
+      width: '100%', // background-color: theme.cdolors.yellow[6],
+      // flex-direction: 'row',
     },
   },
 }));

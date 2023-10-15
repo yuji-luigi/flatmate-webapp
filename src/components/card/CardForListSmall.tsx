@@ -12,16 +12,16 @@ const useStyles = createStyles((theme) => ({
     textDecoration: 'none',
   },
   card: {
-    backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.white,
+    background-color: theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.white,
     // height: 100,
     padding: 10,
     minWidth: 600,
     gridRowEnd: 'span 1',
     cursor: 'pointer',
     '&:hover': {
-      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[0],
+      background-color: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[0],
     },
-    [theme.fn.smallerThan('sm')]: {
+    @media (max-width: 768px): {
       minWidth: 300,
     },
   },
@@ -33,9 +33,9 @@ const useStyles = createStyles((theme) => ({
   },
 
   body: {
-    padding: theme.spacing.md,
+    padding: var(--mantine-spacing-md,
     display: 'flex',
-    flexDirection: 'column',
+    flex-direction: 'column',
     justifyContent: 'space-between',
     height: '100%',
   },

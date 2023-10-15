@@ -74,7 +74,7 @@ const ChooseSpaceInOrganizationPage = () => {
   //     </Text>
   //     <Box
   //       className={classes.pinContainer}
-  //       py="xl" /* cols={2} breakpoints={[{ maxWidth: 'sm', cols: 1 }]} */
+  //       py="xl" /* cols={2} breakpoints={[{ max-width: 'sm', cols: 1 }]} */
   //     >
   //       {spaces.map((rootSpace) => (
   //         <CardArticleVerticalTextBottom

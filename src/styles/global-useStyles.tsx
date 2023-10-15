@@ -10,8 +10,8 @@ export const dashboardStyle = createStyles((theme, params, variations) => ({
   headerWrapper: {
     display: 'flex',
     width: '100%',
-    flexDirection: 'row',
-    alignItems: 'end',
+    flex-direction: 'row',
+    align-items: 'end',
     justifyContent: 'space-between',
   },
   title: {
@@ -33,15 +33,15 @@ export const dashboardStyle = createStyles((theme, params, variations) => ({
     // textDecoration: 'none',
     ...theme.fn.focusStyles(),
     display: 'flex',
-    alignItems: 'center',
+    align-items: 'center',
     textDecoration: 'none',
     fontSize: theme.fontSizes.sm,
     color: theme.colorScheme === 'dark' ? theme.colors.dark[1] : theme.colors.gray[7],
-    padding: `${theme.spacing.xs} ${theme.spacing.sm}`,
-    borderRadius: theme.radius.sm,
+    padding: `${var(--mantine-spacing-xs} ${var(--mantine-spacing-sm}`,
+    border-radius: --mantine-radius-sm,
     fontWeight: 500,
     '&:hover': {
-      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[0],
+      background-color: theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[0],
       color: theme.colorScheme === 'dark' ? theme.white : theme.black,
     },
   },
@@ -55,21 +55,21 @@ export const profilePageStyle = createStyles((theme) => ({
     // width: '100%',
     paddingBlock: 32,
     marginInline: 16,
-    [theme.fn.smallerThan('sm')]: {
+    @media (max-width: 768px): {
       marginInline: 0,
     },
   },
   box: {
     width: '100%',
     display: 'flex',
-    flexDirection: 'row',
+    flex-direction: 'row',
     justifyContent: 'center',
     // background: 'white',
     gap: 24,
 
     // Simplify media query writing with theme functions
-    [theme.fn.smallerThan('sm')]: {
-      flexDirection: 'column',
+    @media (max-width: 768px): {
+      flex-direction: 'column',
     },
 
     // Static media query
@@ -77,39 +77,39 @@ export const profilePageStyle = createStyles((theme) => ({
   },
   cardMain: {
     display: 'flex',
-    flexDirection: 'column',
+    flex-direction: 'column',
     gap: 36,
     width: '100%',
     [theme.fn.smallerThan('md')]: {
-      width: '60%', // backgroundColor: theme.cdolors.yellow[6],
+      width: '60%', // background-color: theme.cdolors.yellow[6],
     },
-    [theme.fn.smallerThan('sm')]: {
-      width: '100%', // backgroundColor: theme.cdolors.yellow[6],
+    @media (max-width: 768px): {
+      width: '100%', // background-color: theme.cdolors.yellow[6],
     },
   },
   coverTop: {
     display: 'flex',
-    flexDirection: 'column',
+    flex-direction: 'column',
     gap: 36,
     width: '100%',
     [theme.fn.smallerThan('md')]: {
-      width: '60%', // backgroundColor: theme.cdolors.yellow[6],
+      width: '60%', // background-color: theme.cdolors.yellow[6],
     },
-    [theme.fn.smallerThan('sm')]: {
-      width: '100%', // backgroundColor: theme.cdolors.yellow[6],
+    @media (max-width: 768px): {
+      width: '100%', // background-color: theme.cdolors.yellow[6],
     },
   },
   sideBox: {
     width: '30%',
     gap: 16,
     display: 'flex',
-    flexDirection: 'column',
+    flex-direction: 'column',
     [theme.fn.smallerThan('md')]: {
-      width: '100%', // backgroundColor: theme.cdolors.yellow[6],
+      width: '100%', // background-color: theme.cdolors.yellow[6],
     },
-    [theme.fn.smallerThan('sm')]: {
-      width: '100%', // backgroundColor: theme.cdolors.yellow[6],
-      // flexDirection: 'row',
+    @media (max-width: 768px): {
+      width: '100%', // background-color: theme.cdolors.yellow[6],
+      // flex-direction: 'row',
     },
   },
   feedCard: {
@@ -124,7 +124,7 @@ export const profilePageStyle = createStyles((theme) => ({
 export const feedStyles = createStyles((theme) => ({
   // feedCard: {
   //   minHeight: 200,
-  //   borderRadius: RADIUS.CARD,
+  //   border-radius: RADIUS.CARD,
   // },
   // feedContent: {
   //   // padding: 16,

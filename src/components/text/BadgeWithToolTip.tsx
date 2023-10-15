@@ -25,7 +25,7 @@ const BadgeWithToolTip = ({
     >
       <Badge sx={{ cursor: 'pointer', paddingBlock: 16, ...sx }}>
         <Text color={dark ? '' : 'black'} truncate weight={300}>
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <Box sx={{ display: 'flex', align-items: 'center' }}>
             {icon && <Box mr={4}>{icon}</Box>}
             {text}
           </Box>

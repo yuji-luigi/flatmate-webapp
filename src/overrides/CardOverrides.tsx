@@ -6,8 +6,8 @@ export const CardOverride = (colorScheme: string) => {
   return {
     styles: {
       root: {
-        borderRadius: RADIUS.CARD,
-        // backgroundColor: bgColor,
+        border-radius: RADIUS.CARD,
+        // background-color: bgColor,
         opacity: 0.8,
       },
     },

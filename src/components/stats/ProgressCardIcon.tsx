@@ -7,8 +7,8 @@ const useStyles = createStyles((theme) => ({
   card: {
     position: 'relative',
     overflow: 'visible',
-    padding: theme.spacing.xl,
-    paddingTop: `calc(${theme.spacing.xl}) * 1.5 + ${ICON_SIZE} / 3`,
+    padding: --mantine - spacing - xl,
+    paddingTop: `calc(${--mantine - spacing - xl}) * 1.5 + ${ICON_SIZE} / 3`,
   },
 
   icon: {

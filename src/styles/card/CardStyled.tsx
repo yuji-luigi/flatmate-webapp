@@ -9,7 +9,7 @@ export const CardStyled = (props: Props) => {
   return (
     <Card
       sx={{
-        borderRadius: RADIUS.CARD,
+        border-radius: RADIUS.CARD,
       }}
     >
       {props.children}

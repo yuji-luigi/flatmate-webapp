@@ -38,13 +38,13 @@ export const RegularModal = (props: RegularModalProps) => {
       <Stack>
         <Box
           display="flex"
-          sx={{ flexDirection: isMobile ? 'column' : 'row', gap: 8, justifyContent: 'end' }}
+          sx={{ flex-direction: isMobile ? 'column' : 'row', gap: 8, justifyContent: 'end' }}
         >
           <Button variant="outline" sx={modalData.sx?.cancel} onClick={handleCancel}>
             {modalData.labels?.cancel || 'Cancel'}
           </Button>
           <Button
-            sx={{ backgroundColor: isAlert ? 'red' : '', ...confirmStyle }}
+            sx={{ background-color: isAlert ? 'red' : '', ...confirmStyle }}
             onClick={handleConfirm}
           >
             {modalData.labels?.confirm || 'Confirm'}

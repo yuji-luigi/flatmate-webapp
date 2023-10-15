@@ -14,7 +14,7 @@ const useStyles = createStyles((theme /* _params, getRef */) => ({
   pageContent: {
     zIndex: 10,
     // display: 'flex',
-    // alignItems: 'center',
+    // align-items: 'center',
     paddingTop: 50,
     [theme.fn.largerThan('md')]: {
       paddingLeft: 300,
@@ -78,7 +78,7 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
           minHeight: '100vh',
           backgroundImage: `url(${currentSpace?.image})`,
           backgroundBlendMode: 'overlay',
-          backgroundColor: bgColor,
+          background-color: bgColor,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           // backgroundRepeat: 'no-repeat',

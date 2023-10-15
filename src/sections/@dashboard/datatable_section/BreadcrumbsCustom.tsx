@@ -8,14 +8,14 @@ const useStyles = createStyles((theme) => ({
     display: 'block',
     lineHeight: 1,
     padding: '8px 12px',
-    borderRadius: theme.radius.sm,
+    border-radius: --mantine-radius-sm,
     color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.colors.gray[7],
     fontSize: theme.fontSizes.sm,
     fontWeight: 500,
     fontStyle: 'normal',
 
     '&:hover': {
-      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+      background-color: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
     },
   },
 }));

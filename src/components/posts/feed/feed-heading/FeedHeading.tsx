@@ -22,7 +22,7 @@ export const FeedHeading = (props: FeedCardData) => {
           radius={90}
           size={40}
         />
-        <Stack spacing={0} justify="flex-end" style={{ height: '100%', alignItems: 'flex-end' }}>
+        <Stack spacing={0} justify="flex-end" style={{ height: '100%', align-items: 'flex-end' }}>
           <Text size={TEXT_SIZE.cardTile} weight="bold">
             {createdBy?.name}
           </Text>

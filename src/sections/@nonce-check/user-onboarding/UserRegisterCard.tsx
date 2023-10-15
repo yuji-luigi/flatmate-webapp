@@ -30,7 +30,7 @@ import { UserModel } from '../../../types/models/user-model';
 const useStyles = createStyles((theme) => ({
   formContainer: {
     justifyContent: 'start',
-    marginBlock: theme.spacing.md,
+    marginBlock: var(--mantine-spacing-md,
   },
   buttonContainer: {
     // display: 'flex',
@@ -38,7 +38,7 @@ const useStyles = createStyles((theme) => ({
   },
   button: {
     flex: 1,
-    [theme.fn.smallerThan('sm')]: {
+    @media (max-width: 768px): {
       width: '100%',
       flex: 'unset',
     },

@@ -45,57 +45,57 @@ import { LogoBanner } from '../../components/banner/LogoBanner';
 const useStyles = createStyles((theme) => ({
   link: {
     display: 'flex',
-    alignItems: 'center',
+    align-items: 'center',
     height: '100%',
-    paddingLeft: theme.spacing.md,
-    paddingRight: theme.spacing.md,
+    paddingLeft: var(--mantine-spacing-md,
+    padding-right: var(--mantine-spacing-md,
     textDecoration: 'none',
     color: theme.colorScheme === 'dark' ? theme.white : theme.black,
     fontWeight: 500,
     fontSize: theme.fontSizes.sm,
 
-    [theme.fn.smallerThan('sm')]: {
+    @media (max-width: 768px): {
       height: 42,
       display: 'flex',
-      alignItems: 'center',
+      align-items: 'center',
       width: '100%',
     },
 
     ...theme.fn.hover({
-      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+      background-color: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
     }),
   },
 
   subLink: {
     width: '100%',
-    padding: `${theme.spacing.xs}px ${theme.spacing.md}px`,
-    borderRadius: theme.radius.md,
+    padding: `${var(--mantine-spacing-xs}px ${var(--mantine-spacing-md}px`,
+    border-radius: --mantine-radius-md,
 
     ...theme.fn.hover({
-      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[0],
+      background-color: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[0],
     }),
 
     '&:active': theme.activeStyles,
   },
 
   dropdownFooter: {
-    backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[0],
-    margin: -theme.spacing.md,
-    marginTop: theme.spacing.sm,
-    padding: `${theme.spacing.md}px calc(${theme.spacing.md} * 2px)`,
-    paddingBottom: theme.spacing.xl,
+    background-color: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[0],
+    margin: -var(--mantine-spacing-md,
+    margin-top: var(--mantine-spacing-sm,
+    padding: `${var(--mantine-spacing-md}px calc(${var(--mantine-spacing-md} * 2px)`,
+    paddingBottom: var(--mantine-spacing-xl,
     borderTop: `1px solid ${
       theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[1]
     }`,
   },
 
   hiddenMobile: {
-    [theme.fn.smallerThan('sm')]: {
+    @media (max-width: 768px): {
       display: 'none',
     },
   },
   mobileNav: {
-    [theme.fn.smallerThan('sm')]: {
+    @media (max-width: 768px): {
       justifyContent: 'space-between',
       width: '100%',
     },

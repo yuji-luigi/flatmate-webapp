@@ -11,13 +11,13 @@ import { SingleArticleHeading } from '../../../components/posts/SingleArticleHea
 const useStyles = createStyles((theme) => ({
   main: {
     minHeight: 'calc(100vh - 64px)',
-    [theme.fn.smallerThan('sm')]: {
+    @media (max-width: 768px): {
       paddingInline: 0,
     },
   },
 
   articleMenuDivider: {
-    marginBlock: theme.spacing.xl,
+    marginBlock: var(--mantine-spacing-xl,
   },
 }));
 

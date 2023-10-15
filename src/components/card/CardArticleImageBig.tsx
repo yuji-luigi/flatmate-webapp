@@ -4,7 +4,7 @@ import React from 'react';
 const useStyles = createStyles((theme) => ({
   card: {
     transition: 'transform 150ms ease, box-shadow 150ms ease',
-    maxWidth: 400,
+    max-width: 400,
     // width: 300,
     // height: 300,
     // flex: '1 auto',

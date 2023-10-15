@@ -2,7 +2,7 @@ import { Text, Progress, Card, createStyles } from '@mantine/core';
 
 const useStyles = createStyles((theme) => ({
   card: {
-    backgroundColor: theme.primaryColor,
+    background-color: theme.primaryColor,
   },
 
   title: {
@@ -14,11 +14,11 @@ const useStyles = createStyles((theme) => ({
   },
 
   progressBar: {
-    backgroundColor: theme.white,
+    background-color: theme.white,
   },
 
   progressTrack: {
-    backgroundColor: theme.fn.rgba(theme.white, 0.4),
+    background-color: theme.fn.rgba(theme.white, 0.4),
   },
 }));
 

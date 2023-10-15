@@ -62,7 +62,7 @@ export const MaintenanceCheckUploadSection = (props: Props) => {
         {(styles) => (
           <div style={styles}>
             <Grid align="stretch" gutter="md">
-              <Grid.Col style={{ display: 'flex', flexDirection: 'column', gap: 16 }} span={12}>
+              <Grid.Col style={{ display: 'flex', flex-direction: 'column', gap: 16 }} span={12}>
                 <Grid>
                   <Grid.Col sm={6} xs={12}>
                     <Stack sx={{ height: '100%' }}>
@@ -84,7 +84,7 @@ export const MaintenanceCheckUploadSection = (props: Props) => {
                       <Divider
                         label={<Title align="center">Maintenance</Title>}
                         labelPosition="center"
-                        mb={theme.spacing.md}
+                        mb={var(--mantine-spacing-md}
                       />
                       <PostFeedCard data={maintenance} popupFn={handleOpenModal} />
                     </CardStyled>

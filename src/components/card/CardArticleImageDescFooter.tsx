@@ -18,9 +18,9 @@ import { CSSProperties } from 'react';
 const useStyles = createStyles((theme) => ({
   card: {
     position: 'relative',
-    backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
-    // maxWidth: 350,
-    // maxWidth: '100%',
+    background-color: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
+    // max-width: 350,
+    // max-width: '100%',
     // maxHeight: 450,
     // width: 400,
     height: 300,
@@ -32,30 +32,30 @@ const useStyles = createStyles((theme) => ({
 
   rating: {
     position: 'absolute',
-    top: theme.spacing.xs,
+    top: var(--mantine-spacing-xs,
     right: rem(12),
     pointerEvents: 'none',
   },
 
   title: {
     display: 'block',
-    marginTop: theme.spacing.md,
+    margin-top: var(--mantine-spacing-md,
     marginBottom: rem(5),
   },
 
   buttons: {
     height: '100%',
-    alignItems: 'flex-end',
+    align-items: 'flex-end',
   },
   action: {
-    backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+    background-color: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
     ...theme.fn.hover({
-      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[1],
+      background-color: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[1],
     }),
   },
 
   footer: {
-    marginTop: theme.spacing.md,
+    margin-top: var(--mantine-spacing-md,
   },
 }));
 

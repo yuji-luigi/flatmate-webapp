@@ -12,8 +12,8 @@ export function ComponentPreview({ children, canvas, withSpacing = false }: Comp
   return (
     <Box
       sx={{
-        paddingTop: canvas?.maxWidth && withSpacing ? rem(40) : 0,
-        maxWidth: canvas?.maxWidth ? rem(canvas.maxWidth) : '100%',
+        paddingTop: canvas?.max-width && withSpacing ? rem(40) : 0,
+        max-width: canvas?.max-width ? rem(canvas.max-width) : '100%',
         marginLeft: canvas?.center ? 'auto' : 'unset',
         marginRight: canvas?.center ? 'auto' : 'unset',
       }}

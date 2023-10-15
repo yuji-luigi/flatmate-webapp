@@ -27,7 +27,7 @@ const ImageSlide = ({
             top: 10,
             background: 'white',
             opacity: 0.8,
-            borderRadius: 999,
+            border-radius: 999,
             zIndex: 2,
           }}
         >
@@ -37,7 +37,7 @@ const ImageSlide = ({
           sx={{
             display: 'flex',
             justifyContent: 'center',
-            alignItems: 'center',
+            align-items: 'center',
             zIndex: 1,
             cursor: 'pointer',
             transition: 'opacity 0.3s ease-in-out',

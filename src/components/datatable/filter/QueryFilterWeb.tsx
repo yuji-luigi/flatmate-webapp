@@ -34,7 +34,7 @@ export const QueryFilterWeb = ({
   );
 
   return (
-    <Group className={className} sx={{ marginTop: 32 }}>
+    <Group className={className} sx={{ margin-top: 32 }}>
       <TextFilterInput />
       {selectFilter.map((field) => (
         <SelectFilterInput key={field.id} formField={field as StaticSelectFormFieldType} />

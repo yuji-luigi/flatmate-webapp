@@ -10,27 +10,27 @@ import AttachmentsRow from '../files/AttachmentsRow';
 const useStyles = createStyles((theme) => ({
   articleArea: {
     display: 'flex',
-    flexDirection: 'column',
-    gap: theme.spacing.md,
-    backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[0],
+    flex-direction: 'column',
+    gap: var(--mantine-spacing-md,
+    background-color: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[0],
     boxShadow: theme.shadows.xl,
   },
 
   action: {
-    backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+    background-color: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
     ...theme.fn.hover({
-      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[1],
+      background-color: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[1],
     }),
   },
 
   articleMenuDivider: {
-    marginBlock: theme.spacing.xl,
+    marginBlock: var(--mantine-spacing-xl,
   },
   relatedArticlesSection: {
-    maxWidth: 300,
+    max-width: 300,
   },
   footer: {
-    // paddingTop: theme.spacing.xl,
+    // paddingTop: var(--mantine-spacing-xl,
   },
 }));
 

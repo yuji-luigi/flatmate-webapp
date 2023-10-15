@@ -35,23 +35,23 @@ const useStyles = createStyles((theme) => ({
   title: {
     fontSize: 34,
     fontWeight: 900,
-    [theme.fn.smallerThan('sm')]: {
+    @media (max-width: 768px): {
       fontSize: 24,
     },
   },
 
   description: {
-    maxWidth: 600,
+    max-width: 600,
     margin: 'auto',
 
     '&::after': {
       content: '""',
       display: 'block',
-      // backgroundColor: theme.fn.primaryColor(),
-      backgroundColor: theme.primaryColor,
+      // background-color: theme.fn.primaryColor(),
+      background-color: theme.primaryColor,
       width: 45,
       height: 2,
-      marginTop: theme.spacing.sm,
+      margin-top: var(--mantine-spacing-sm,
       marginLeft: 'auto',
       marginRight: 'auto',
     },
@@ -67,11 +67,11 @@ const useStyles = createStyles((theme) => ({
     '&::after': {
       content: '""',
       display: 'block',
-      backgroundColor: theme.primaryColor,
-      // backgroundColor: theme.fn.primaryColor(),
+      background-color: theme.primaryColor,
+      // background-color: theme.fn.primaryColor(),
       width: 45,
       height: 2,
-      marginTop: theme.spacing.sm,
+      margin-top: var(--mantine-spacing-sm,
     },
   },
 }));
@@ -106,7 +106,7 @@ export function AboutSection() {
         hunger drives it to try biting a Steel-type Pokémon.
       </Text>
 
-      <SimpleGrid cols={3} spacing="xl" mt={50} breakpoints={[{ maxWidth: 'md', cols: 1 }]}>
+      <SimpleGrid cols={3} spacing="xl" mt={50} breakpoints={[{ max-width: 'md', cols: 1 }]}>
         {features}
       </SimpleGrid>
     </Container>

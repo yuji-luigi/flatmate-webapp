@@ -40,7 +40,7 @@ const useStyles = createStyles((theme) => ({
     fontWeight: 800,
     lineHeight: 1.1,
 
-    [theme.fn.smallerThan('sm')]: {
+    @media (max-width: 768px): {
       fontSize: 40,
       lineHeight: 1.2,
     },
@@ -51,9 +51,9 @@ const useStyles = createStyles((theme) => ({
     },
   },
   control: {
-    marginTop: `calc(${theme.spacing.xl} * 1.5)`,
+    margin-top: `calc(${var(--mantine-spacing-xl} * 1.5)`,
 
-    [theme.fn.smallerThan('sm')]: {
+    @media (max-width: 768px): {
       width: '100%',
     },
   },

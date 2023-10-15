@@ -44,9 +44,9 @@ function ImagesInArticle({ images }: { images: File[] | UploadModel[] }) {
         align="center"
         initialSlide={gt2 ? 1 : 0}
         breakpoints={[
-          { maxWidth: 'md', slideSize: '50%' },
-          { maxWidth: 'sm', slideSize: '100%', slideGap: 0 },
-          { maxWidth: 'sm', slideSize: '100%', slideGap: 0 },
+          { max-width: 'md', slideSize: '50%' },
+          { max-width: 'sm', slideSize: '100%', slideGap: 0 },
+          { max-width: 'sm', slideSize: '100%', slideGap: 0 },
         ]}
       >
         {images.map((image) => {

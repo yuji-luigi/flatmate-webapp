@@ -1,0 +1,12 @@
+.modal {
+  overflow: 'scroll';
+  z-index: 1000;
+}
+.modalContent {
+  z-index: 10;
+  padding-inline: 48;
+}
+.form {
+  margin-top: 50;
+  height: '100vh';
+}

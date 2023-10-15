@@ -8,11 +8,11 @@ import { RADIUS } from '../../styles/global-useStyles';
 
 const useStyles = createStyles((theme) => ({
   card: {
-    borderRadius: RADIUS.CARD,
+    border-radius: RADIUS.CARD,
   },
   textRows: {
     display: 'flex',
-    alignItems: 'center',
+    align-items: 'center',
     gap: 8,
   },
 }));

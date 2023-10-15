@@ -13,16 +13,16 @@ const useStyles = createStyles((theme) => ({
   title: {
     fontWeight: 900,
     fontSize: 34,
-    marginBottom: theme.spacing.md,
+    marginBottom: var(--mantine-spacing-md,
     fontFamily: `Greycliff CF, ${theme.fontFamily}`,
 
-    [theme.fn.smallerThan('sm')]: {
+    @media (max-width: 768px): {
       fontSize: 32,
     },
   },
 
   control: {
-    [theme.fn.smallerThan('sm')]: {
+    @media (max-width: 768px): {
       width: '100%',
     },
   },
@@ -34,7 +34,7 @@ const useStyles = createStyles((theme) => ({
   },
 
   desktopImage: {
-    [theme.fn.smallerThan('sm')]: {
+    @media (max-width: 768px): {
       display: 'none',
     },
   },
@@ -49,7 +49,7 @@ export default function NotFoundImage() {
         <title>Page not found</title>
       </Head>
       <Container className={classes.root}>
-        <SimpleGrid spacing={80} cols={2} breakpoints={[{ maxWidth: 'sm', cols: 1, spacing: 40 }]}>
+        <SimpleGrid spacing={80} cols={2} breakpoints={[{ max-width: 'sm', cols: 1, spacing: 40 }]}>
           <Image src="/images/404-mantine.svg" className={classes.mobileImage} />
           <div>
             <Title className={classes.title}>Something is not right...</Title>

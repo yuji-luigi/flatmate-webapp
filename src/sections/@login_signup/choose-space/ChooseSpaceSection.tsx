@@ -21,11 +21,11 @@ const useStyles = createStyles((theme) => ({
     gridAutoRows: 'minmax(50px, auto)',
     justifyContent: 'center',
     gap: 10,
-    [theme.fn.smallerThan('sm')]: {
+    @media (max-width: 768px): {
       display: 'flex',
-      flexDirection: 'column',
+      flex-direction: 'column',
       justifyContent: 'center',
-      alignItems: 'center',
+      align-items: 'center',
       width: '100%',
     },
   },
@@ -57,7 +57,7 @@ export const ChooseSpaceSection = ({ spaces }: { spaces: SpaceModel[] }) => {
       </Text>
       <Box
         className={classes.pinContainer}
-        py="xl" /* cols={2} breakpoints={[{ maxWidth: 'sm', cols: 1 }]} */
+        py="xl" /* cols={2} breakpoints={[{ max-width: 'sm', cols: 1 }]} */
       >
         {spaces.map((rootSpace) => (
           <CardArticleVerticalTextBottom

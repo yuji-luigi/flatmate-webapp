@@ -12,8 +12,8 @@ const useStyles = createStyles((theme) => ({
     fontFamily: `Greycliff CF, ${theme.fontFamily}`,
     fontSize: 24,
     fontWeight: 600,
-    marginBottom: theme.spacing.xl,
-    paddingInline: theme.spacing.xl,
+    marginBottom: --mantine - spacing - xl,
+    paddingInline: --mantine - spacing - xl,
   },
 }));
 

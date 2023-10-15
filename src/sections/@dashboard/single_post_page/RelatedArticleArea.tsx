@@ -4,7 +4,7 @@ import React from 'react';
 const useStyles = createStyles((theme) => ({
   // card: {
   //   position: 'relative',
-  //   backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
+  //   background-color: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
   //   minHeight: '100vh',
   // },
   // header: {
@@ -12,7 +12,7 @@ const useStyles = createStyles((theme) => ({
   // },
   // rating: {
   //   position: 'absolute',
-  //   top: theme.spacing.xs,
+  //   top: var(--mantine-spacing-xs,
   //   right: rem(12),
   //   pointerEvents: 'none',
   // },
@@ -20,29 +20,29 @@ const useStyles = createStyles((theme) => ({
   // title: {
   //   display: 'block',
   //   fontSize: 50,
-  //   marginTop: theme.spacing.md,
+  //   margin-top: var(--mantine-spacing-md,
   //   marginBottom: rem(5),
   // },
   articleArea: {
-    backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[0],
+    background-color: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[0],
     boxShadow: theme.shadows.xl,
   },
 
   action: {
-    backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+    background-color: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
     ...theme.fn.hover({
-      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[1],
+      background-color: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[1],
     }),
   },
 
   articleMenuDivider: {
-    marginBlock: theme.spacing.xl,
+    marginBlock: var(--mantine-spacing-xl,
   },
   relatedArticlesSection: {
-    maxWidth: 300,
+    max-width: 300,
   },
   footer: {
-    // paddingTop: theme.spacing.xl,
+    // paddingTop: var(--mantine-spacing-xl,
   },
 }));
 

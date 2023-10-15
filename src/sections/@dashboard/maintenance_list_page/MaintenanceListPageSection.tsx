@@ -69,7 +69,7 @@ export default function MaintenanceListPageSection() {
     // <Container mx="auto" py="xl">
     <Box
       className={classes.pinContainer}
-      py="xl" /* cols={2} breakpoints={[{ maxWidth: 'sm', cols: 1 }]} */
+      py="xl" /* cols={2} breakpoints={[{ max-width: 'sm', cols: 1 }]} */
     >
       {/* todo create Cards component where differentiate card by thread.type */}
       {maintenances.map((maintenance) => (

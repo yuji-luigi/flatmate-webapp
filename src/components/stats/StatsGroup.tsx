@@ -6,11 +6,11 @@ const useStyles = createStyles((theme) => ({
     backgroundImage: `linear-gradient(-60deg, ${theme.colors[theme.primaryColor][4]} 0%, ${
       theme.colors[theme.primaryColor][7]
     } 100%)`,
-    padding: `calc(${theme.spacing.xl} * 1.5)`,
-    borderRadius: theme.radius.md,
+    padding: `calc(${var(--mantine-spacing-xl} * 1.5)`,
+    border-radius: --mantine-radius-md,
 
-    [theme.fn.smallerThan('sm')]: {
-      flexDirection: 'column',
+    @media (max-width: 768px): {
+      flex-direction: 'column',
     },
   },
 
@@ -26,30 +26,30 @@ const useStyles = createStyles((theme) => ({
     fontSize: 32,
     lineHeight: 1,
     fontWeight: 700,
-    marginBottom: theme.spacing.md,
+    marginBottom: var(--mantine-spacing-md,
     fontFamily: `Greycliff CF, ${theme.fontFamily}`,
   },
 
   description: {
     color: theme.colors[theme.primaryColor][0],
     fontSize: theme.fontSizes.sm,
-    marginTop: 5,
+    margin-top: 5,
   },
 
   stat: {
     flex: 1,
 
     '& + &': {
-      paddingLeft: theme.spacing.xl,
-      marginLeft: theme.spacing.xl,
+      paddingLeft: var(--mantine-spacing-xl,
+      marginLeft: var(--mantine-spacing-xl,
       borderLeft: `1px solid ${theme.colors[theme.primaryColor][3]}`,
 
-      [theme.fn.smallerThan('sm')]: {
+      @media (max-width: 768px): {
         paddingLeft: 0,
         marginLeft: 0,
         borderLeft: 0,
-        paddingTop: theme.spacing.xl,
-        marginTop: theme.spacing.xl,
+        paddingTop: var(--mantine-spacing-xl,
+        margin-top: var(--mantine-spacing-xl,
         borderTop: `1px solid ${theme.colors[theme.primaryColor][3]}`,
       },
     },

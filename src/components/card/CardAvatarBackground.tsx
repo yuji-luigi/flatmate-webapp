@@ -23,7 +23,7 @@ import { MaintainerModel } from '../../types/models/maintainer-model';
 
 const useStyles = createStyles((theme) => ({
   card: {
-    backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
+    background-color: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
   },
   address: {
     cursor: 'pointer',
@@ -59,7 +59,7 @@ export function CardMaintainer({
         cursor: 'pointer',
         // onhover shadow
         '&:hover': {
-          backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.white,
+          background-color: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.white,
           boxShadow: '0 0 0 1px rgba(0, 0, 0, 0.1), 0 4px 12px rgba(0, 0, 0, 0.1)',
         },
       }}

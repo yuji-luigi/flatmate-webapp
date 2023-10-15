@@ -7,7 +7,7 @@ export function ProgressCard() {
       radius="md"
       p="xl"
       sx={(theme) => ({
-        backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
+        background-color: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
       })}
     >
       <Text size="xs" transform="uppercase" weight={700} color="dimmed">

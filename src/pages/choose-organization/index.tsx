@@ -21,9 +21,9 @@ import { profilePageStyle } from '../../styles/global-useStyles';
 const useStyles = createStyles((theme) => ({
   pinContainer: {
     display: 'flex',
-    flexDirection: 'column',
+    flex-direction: 'column',
     justifyContent: 'center',
-    maxWidth: 600,
+    max-width: 600,
     margin: 'auto',
     gap: 8,
   },
@@ -71,7 +71,7 @@ const ChooseOrganizationPage = () => {
 
         <Box
           className={classes.pinContainer}
-          py="xl" /* cols={2} breakpoints={[{ maxWidth: 'sm', cols: 1 }]} */
+          py="xl" /* cols={2} breakpoints={[{ max-width: 'sm', cols: 1 }]} */
         >
           {user?.role === 'super_admin' && (
             <CardForListSmall title="All organizations" href={PATH_CLIENT.root} image="" />

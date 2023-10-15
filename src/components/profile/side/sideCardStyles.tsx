@@ -3,7 +3,7 @@ import { RADIUS } from '../../../styles/global-useStyles';
 
 export const sideCardStyles = createStyles((theme) => ({
   card: {
-    borderRadius: RADIUS.CARD,
+    border-radius: RADIUS.CARD,
     height: '100%',
     flex: 1,
     overflow: 'visible',
@@ -11,6 +11,6 @@ export const sideCardStyles = createStyles((theme) => ({
   textsContainer: {
     display: 'flex',
     // gap: 9,
-    flexDirection: 'column',
+    flex-direction: 'column',
   },
 }));

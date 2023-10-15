@@ -31,7 +31,7 @@ export function ColorSchemeToggle(props: Props) {
         size={props.size || 'xl'}
         variant={props.variant || 'filled'}
         sx={(theme) => ({
-          backgroundColor:
+          background-color:
             theme.colorScheme === 'light' ? theme.colors.dark[6] : theme.colors.gray[0],
           color: theme.colors.yellow[4],
           // color: theme.colorScheme === 'light' ? theme.colors.yellow[4] : theme.colors.blue[6],

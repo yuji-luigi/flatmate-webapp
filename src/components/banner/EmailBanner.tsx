@@ -1,36 +1,37 @@
-import { createStyles, Text, Title, TextInput, Button, Image, rem } from '@mantine/core';
+import { 
+   Text, Title, TextInput, Button, Image, rem } from '@mantine/core';
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
     display: 'flex',
-    alignItems: 'center',
-    padding: `calc(${theme.spacing.xl} * 2)`,
-    borderRadius: theme.radius.md,
-    backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.white,
+    align-items: 'center',
+    padding: `calc(${var(--mantine-spacing-xl} * 2)`,
+    border-radius: --mantine-radius-md,
+    background-color: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.white,
     border: `${rem(1)} solid ${
       theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[3]
     }`,
 
-    [theme.fn.smallerThan('sm')]: {
-      flexDirection: 'column-reverse',
-      padding: theme.spacing.xl,
+    @media (max-width: 768px): {
+      flex-direction: 'column-reverse',
+      padding: var(--mantine-spacing-xl,
     },
   },
 
   image: {
-    maxWidth: '40%',
+    max-width: '40%',
 
-    [theme.fn.smallerThan('sm')]: {
-      maxWidth: '100%',
+    @media (max-width: 768px): {
+      max-width: '100%',
     },
   },
 
   body: {
-    paddingRight: `calc(${theme.spacing.xl} * 4)`,
+    padding-right: `calc(${var(--mantine-spacing-xl} * 4)`,
 
-    [theme.fn.smallerThan('sm')]: {
-      paddingRight: 0,
-      marginTop: theme.spacing.xl,
+    @media (max-width: 768px): {
+      padding-right: 0,
+      margin-top: var(--mantine-spacing-xl,
     },
   },
 
@@ -38,12 +39,12 @@ const useStyles = createStyles((theme) => ({
     color: theme.colorScheme === 'dark' ? theme.white : theme.black,
     fontFamily: `Greycliff CF, ${theme.fontFamily}`,
     lineHeight: 1,
-    marginBottom: theme.spacing.md,
+    marginBottom: var(--mantine-spacing-md,
   },
 
   controls: {
     display: 'flex',
-    marginTop: theme.spacing.xl,
+    margin-top: var(--mantine-spacing-xl,
   },
 
   inputWrapper: {

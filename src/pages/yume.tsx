@@ -28,10 +28,10 @@ const Yume = () => {
           width: '100%',
           height: '100vh',
           display: 'flex',
-          backgroundColor: color,
+          background-color: color,
           transition: 'background-color 0.5s',
           justifyContent: 'center',
-          alignItems: 'center',
+          align-items: 'center',
         }}
       >
         <Stack>

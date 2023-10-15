@@ -12,7 +12,7 @@ import classesM from './StatsGrid.module.css';
 
 const useStyles = createStyles((theme) => ({
   root: {
-    padding: `calc(${theme.spacing.xl} * 1.5)`,
+    padding: `calc(${var(--mantine-spacing-xl} * 1.5)`,
   },
 
   value: {
@@ -24,7 +24,7 @@ const useStyles = createStyles((theme) => ({
   diff: {
     lineHeight: 1,
     display: 'flex',
-    alignItems: 'center',
+    align-items: 'center',
   },
 
   icon: {
@@ -104,8 +104,8 @@ export function StatsGrid({ data }: { data: StatGridSchema[] }) {
       sx={{ width: '100%' }}
       className={classesM.container}
       breakpoints={[
-        { maxWidth: 'md', cols: 2 },
-        { maxWidth: 'sm', cols: 1 },
+        { max-width: 'md', cols: 2 },
+        { max-width: 'sm', cols: 1 },
       ]}
     >
       {stats}

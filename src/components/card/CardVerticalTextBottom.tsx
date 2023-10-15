@@ -26,12 +26,12 @@ const useStyles = createStyles((theme) => ({
   card: {
     height: 500,
     cursor: 'pointer',
-    [theme.fn.smallerThan('sm')]: {
+    @media (max-width: 768px): {
       height: 300,
       width: 300,
     },
     // '&:hover': {
-    //   backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[0],
+    //   background-color: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[0],
     // },
     zIndex: 40,
   },
@@ -48,7 +48,7 @@ const useStyles = createStyles((theme) => ({
     background: 'linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%)',
     zIndex: 10,
     '&:hover': {
-      backgroundColor:
+      background-color:
         theme.colorScheme === 'dark' ? 'rgba(255,255,255,0.5)' : 'rgba(255,255,255,0.5)',
     },
   },
@@ -66,9 +66,9 @@ const useStyles = createStyles((theme) => ({
   },
 
   body: {
-    padding: theme.spacing.md,
+    padding: var(--mantine-spacing-md,
     display: 'flex',
-    flexDirection: 'column',
+    flex-direction: 'column',
     justifyContent: 'end',
     height: '100%',
     // zIndex: 55,

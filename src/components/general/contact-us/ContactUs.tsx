@@ -20,11 +20,11 @@ const useStyles = createStyles((theme) => ({
     backgroundImage: `linear-gradient(-60deg, ${theme.colors[theme.primaryColor][4]} 0%, ${
       theme.colors[theme.primaryColor][7]
     } 100%)`,
-    borderRadius: theme.radius.md,
-    padding: `calc(${theme.spacing.xl} * 2.5)`,
+    border-radius: --mantine-radius-md,
+    padding: `calc(${var(--mantine-spacing-xl} * 2.5)`,
 
-    [theme.fn.smallerThan('sm')]: {
-      padding: `calc(${theme.spacing.xl} * 1.5)`,
+    @media (max-width: 768px): {
+      padding: `calc(${var(--mantine-spacing-xl} * 1.5)`,
     },
   },
 
@@ -36,17 +36,17 @@ const useStyles = createStyles((theme) => ({
 
   description: {
     color: theme.colors[theme.primaryColor][0],
-    maxWidth: rem(300),
+    max-width: rem(300),
 
-    [theme.fn.smallerThan('sm')]: {
-      maxWidth: '100%',
+    @media (max-width: 768px): {
+      max-width: '100%',
     },
   },
 
   form: {
-    backgroundColor: theme.white,
-    padding: theme.spacing.xl,
-    borderRadius: theme.radius.md,
+    background-color: theme.white,
+    padding: var(--mantine-spacing-xl,
+    border-radius: --mantine-radius-md,
     boxShadow: theme.shadows.lg,
   },
 
@@ -59,7 +59,7 @@ const useStyles = createStyles((theme) => ({
   },
 
   input: {
-    backgroundColor: theme.white,
+    background-color: theme.white,
     borderColor: theme.colors.gray[4],
     color: theme.black,
 
@@ -73,7 +73,7 @@ const useStyles = createStyles((theme) => ({
   },
 
   control: {
-    backgroundColor: theme.colors[theme.primaryColor][6],
+    background-color: theme.colors[theme.primaryColor][6],
   },
 }));
 
@@ -90,7 +90,7 @@ export function ContactUs() {
 
   return (
     <div className={classes.wrapper}>
-      <SimpleGrid cols={2} spacing={50} breakpoints={[{ maxWidth: 'sm', cols: 1 }]}>
+      <SimpleGrid cols={2} spacing={50} breakpoints={[{ max-width: 'sm', cols: 1 }]}>
         <div>
           <Title className={classes.title}>Contact us</Title>
           <Text className={classes.description} mt="sm" mb={30}>

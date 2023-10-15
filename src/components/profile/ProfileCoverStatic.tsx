@@ -6,7 +6,7 @@ import { UploadModel } from '../../types/models/upload-model';
 const useStyles = createStyles(() => ({
   card: {
     flex: 3,
-    borderRadius: RADIUS.CARD,
+    border-radius: RADIUS.CARD,
     position: 'relative',
     width: '100%',
     height: '100%',
@@ -14,7 +14,7 @@ const useStyles = createStyles(() => ({
     backgroundPosition: 'center',
     minHeight: '200px',
     display: 'flex',
-    alignItems: 'flex-end',
+    align-items: 'flex-end',
   },
   lightBox: {
     transition: 'opacity 200ms ease-in-out',
@@ -40,14 +40,14 @@ const useStyles = createStyles(() => ({
   avatarEditBox: {
     position: 'absolute',
     top: 0,
-    borderRadius: 100,
+    border-radius: 100,
     background: 'black',
     height: 100,
     width: 100,
     opacity: 0,
     cursor: 'pointer',
     display: 'flex',
-    alignItems: 'end',
+    align-items: 'end',
     justifyContent: 'center',
     transition: 'all 200ms ease-in-out',
     '&:hover': {

@@ -9,13 +9,13 @@ const useStyles = createStyles((theme) => ({
     textDecoration: 'none',
   },
   card: {
-    backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.white,
+    background-color: theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.white,
     height: 150,
     padding: 10,
     gridRowEnd: 'span 1',
     cursor: 'pointer',
     '&:hover': {
-      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[0],
+      background-color: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[0],
     },
   },
 
@@ -26,9 +26,9 @@ const useStyles = createStyles((theme) => ({
   },
 
   body: {
-    padding: theme.spacing.md,
+    padding: var(--mantine-spacing-md,
     display: 'flex',
-    flexDirection: 'column',
+    flex-direction: 'column',
     justifyContent: 'space-between',
     height: '100%',
   },

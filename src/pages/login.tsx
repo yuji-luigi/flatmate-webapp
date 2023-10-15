@@ -28,11 +28,11 @@ const useStyles = createStyles((theme) => ({
       theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[3]
     }`,
     minHeight: 900,
-    maxWidth: 450,
+    max-width: 450,
     paddingTop: 80,
 
     [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
-      maxWidth: '100%',
+      max-width: '100%',
     },
   },
 
@@ -58,7 +58,7 @@ const useStyles = createStyles((theme) => ({
     padding: 10,
     border: 'solid black 1px',
     borderColor: theme.colorScheme === 'dark' ? theme.white : theme.black,
-    borderRadius: 10,
+    border-radius: 10,
     background: theme.colorScheme === 'dark' ? theme.colors.gray : '',
     color: theme.colorScheme === 'dark' ? theme.white : theme.black,
   },

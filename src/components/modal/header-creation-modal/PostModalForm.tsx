@@ -30,9 +30,9 @@ const useStyles = createStyles(() => ({
     overflow: 'scroll',
   },
   form: {
-    marginTop: 5,
+    margin-top: 5,
     paddingInline: 15,
-    maxWidth: 900,
+    max-width: 900,
   },
 }));
 const PostModalForm = () => {

@@ -9,7 +9,7 @@ export function UserInfoAction({ user }: { user?: UserModel }) {
       withBorder
       p="lg"
       sx={(theme) => ({
-        backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.white,
+        background-color: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.white,
       })}
     >
       <Avatar src={user?.avatar?.url || ''} size={120} radius={120} mx="auto" />

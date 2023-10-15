@@ -14,31 +14,31 @@ const useStyles = createStyles((theme) => ({
     backgroundImage: `linear-gradient(-60deg, ${theme.colors[theme.primaryColor][4]} 0%, ${
       theme.colors[theme.primaryColor][7]
     } 100%)`,
-    padding: theme.spacing.xl,
-    borderRadius: theme.radius.md,
+    padding: var(--mantine-spacing-xl,
+    border-radius: --mantine-radius-md,
     display: 'flex',
 
     [theme.fn.smallerThan('xs')]: {
-      flexDirection: 'column',
+      flex-direction: 'column',
     },
   },
 
   icon: {
     marginLeft: 'auto',
     marginRight: 'auto',
-    marginTop: theme.spacing.lg,
+    margin-top: var(--mantine-spacing-lg,
     color: theme.colors[theme.primaryColor][6],
   },
 
   stat: {
     minWidth: 98,
-    paddingTop: theme.spacing.xl,
+    paddingTop: var(--mantine-spacing-xl,
     minHeight: 140,
     display: 'flex',
     flex: 1,
-    flexDirection: 'column',
+    flex-direction: 'column',
     justifyContent: 'space-between',
-    backgroundColor: theme.white,
+    background-color: theme.white,
   },
 
   label: {
@@ -79,21 +79,21 @@ const useStyles = createStyles((theme) => ({
 
   controls: {
     display: 'flex',
-    flexDirection: 'column',
-    marginRight: `calc(${theme.spacing.xl} * 2)`,
+    flex-direction: 'column',
+    marginRight: `calc(${var(--mantine-spacing-xl} * 2)`,
 
     [theme.fn.smallerThan('xs')]: {
-      flexDirection: 'row',
-      alignItems: 'center',
+      flex-direction: 'row',
+      align-items: 'center',
       marginRight: 0,
-      marginBottom: theme.spacing.xl,
+      marginBottom: var(--mantine-spacing-xl,
     },
   },
 
   date: {
     flex: 1,
     display: 'flex',
-    flexDirection: 'column',
+    flex-direction: 'column',
     justifyContent: 'center',
   },
 
@@ -103,8 +103,8 @@ const useStyles = createStyles((theme) => ({
     color: theme.colors[theme.primaryColor][2],
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: theme.radius.md,
+    align-items: 'center',
+    border-radius: --mantine-radius-md,
     transition: 'background-color 50ms ease',
 
     [theme.fn.smallerThan('xs')]: {
@@ -113,7 +113,7 @@ const useStyles = createStyles((theme) => ({
     },
 
     '&:hover': {
-      backgroundColor: theme.colors[theme.primaryColor][5],
+      background-color: theme.colors[theme.primaryColor][5],
       color: theme.white,
     },
   },

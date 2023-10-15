@@ -39,7 +39,7 @@ const useStyles = createStyles((theme) => ({
     position: 'relative',
     zIndex: 1,
 
-    [theme.fn.smallerThan('sm')]: {
+    @media (max-width: 768px): {
       paddingTop: rem(120),
     },
   },
@@ -50,16 +50,16 @@ const useStyles = createStyles((theme) => ({
     fontWeight: 900,
     fontSize: rem(38),
 
-    [theme.fn.smallerThan('sm')]: {
+    @media (max-width: 768px): {
       fontSize: rem(32),
     },
   },
 
   description: {
-    maxWidth: rem(540),
+    max-width: rem(540),
     margin: 'auto',
-    marginTop: theme.spacing.xl,
-    marginBottom: `calc(${theme.spacing.xl} * 1.5)`,
+    margin-top: var(--mantine-spacing-xl,
+    marginBottom: `calc(${var(--mantine-spacing-xl} * 1.5)`,
   },
 }));
 

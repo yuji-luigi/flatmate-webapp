@@ -15,7 +15,7 @@ const OverlayCustom = ({ children, icon, sx, sxOverlay, onClick }: OverlayProps)
       sx={{
         position: 'relative',
         transition: '0.3s',
-        flexDirection: 'row',
+        flex-direction: 'row',
       }}
     >
       <Box
@@ -23,7 +23,7 @@ const OverlayCustom = ({ children, icon, sx, sxOverlay, onClick }: OverlayProps)
           display: 'flex',
           opacity: 0,
           justifyContent: 'center',
-          alignItems: 'center',
+          align-items: 'center',
           position: 'absolute',
           width: '100%',
           height: '100%',
@@ -33,8 +33,8 @@ const OverlayCustom = ({ children, icon, sx, sxOverlay, onClick }: OverlayProps)
           '&:hover': {
             display: 'flex',
             justifyContent: 'center',
-            alignItems: 'center',
-            borderRadius: 4,
+            align-items: 'center',
+            border-radius: 4,
             background: 'black',
             opacity: 0.5,
             transition: '0.3s',

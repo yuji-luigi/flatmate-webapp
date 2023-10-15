@@ -8,7 +8,7 @@ export const NoMaintainerCard = ({ type }: { type: string }) => {
     <Card
       component={Link}
       href={`${PATH_CLIENT.maintainers}?type=${type}`}
-      sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}
+      sx={{ display: 'flex', flex-direction: 'row', align-items: 'center' }}
     >
       {' '}
       <Avatar size={160} radius="md" />

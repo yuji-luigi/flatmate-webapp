@@ -34,7 +34,7 @@ export const PreviewHandler = (props: Props) => {
         <iframe
           title="pdf"
           style={{
-            maxWidth: '100%',
+            max-width: '100%',
             maxHeight: '100%',
             overflow: 'hidden',
           }}

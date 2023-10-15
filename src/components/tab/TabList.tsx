@@ -30,7 +30,7 @@ export const TabList = ({
         sx={{
           display: 'flex',
           justifyContent: 'space-between',
-          alignItems: 'center',
+          align-items: 'center',
           width: '100%',
         }}
       >

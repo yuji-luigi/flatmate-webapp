@@ -23,18 +23,18 @@ const useStyles = createStyles((theme) => ({
   },
   card: {
     '&:hover': {
-      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.colors.gray[0],
+      background-color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.colors.gray[0],
     },
-    // backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.white,
+    // background-color: theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.white,
     height: 500,
     // width: 300,
     // padding: 10,
     // display: 'flex',
-    // flexDirection: 'column',
+    // flex-direction: 'column',
     // gridRowEnd: 'span 1',
     // cursor: 'pointer',
     // '&:hover': {
-    //   backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[0],
+    //   background-color: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[0],
     // },
     zIndex: 50,
   },
@@ -67,9 +67,9 @@ const useStyles = createStyles((theme) => ({
   },
 
   body: {
-    padding: theme.spacing.md,
+    padding: var(--mantine-spacing-md,
     display: 'flex',
-    flexDirection: 'column',
+    flex-direction: 'column',
     justifyContent: 'center',
     height: '100%',
     // zIndex: 55,
