@@ -51,7 +51,7 @@ const useStyles = createStyles((theme) => ({
     },
   },
   control: {
-    margin-top: `calc(${var(--mantine-spacing-xl} * 1.5)`,
+    margin-top: `calc(var(--mantine-spacing-xl) * 1.5)`,
 
     @media (max-width: 768px): {
       width: '100%',
@@ -113,7 +113,7 @@ export function SignUpForm() {
         <Title
           className={classes.title}
           align="center"
-          sx={(theme) => ({ fontFamily: `Greycliff CF, ${theme.fontFamily}`, fontWeight: 900 })}
+          style={(theme) => ({ font-family: Greycliff CF, var(--mantine-font-family), fontWeight: 900 })}
         >
           Register
         </Title>

@@ -2,12 +2,12 @@ import { createStyles, rem } from '@mantine/core';
 
 export const containerInputStyles = createStyles((theme) => ({
   root: {
-    position: 'relative',
+    position: relative,
   },
 
   input: {
     height: rem(54),
-    paddingTop: rem(18),
+    padding-top: rem(18),
   },
 
   label: {
@@ -15,7 +15,7 @@ export const containerInputStyles = createStyles((theme) => ({
     pointerEvents: 'none',
     fontSize: theme.fontSizes.xs,
     paddingLeft: --mantine - spacing - sm,
-    paddingTop: `calc(${--mantine - spacing - sm} / 2)`,
+    padding-top: `calc(${--mantine - spacing - sm} / 2)`,
     zIndex: 1,
   },
 }));

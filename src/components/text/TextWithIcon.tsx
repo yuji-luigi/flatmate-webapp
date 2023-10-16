@@ -33,7 +33,7 @@ const TextWithIcon = ({
   const { classes, cx, theme } = useStyles();
   if (textSm) {
     return (
-      <Box className={classes.textRows} sx={sx}>
+      <Box className={classes.textRows} style={sx}>
         <Box>{icon}</Box>
         <Text size={TEXT_SIZE.cardTile}>{text}</Text>
       </Box>

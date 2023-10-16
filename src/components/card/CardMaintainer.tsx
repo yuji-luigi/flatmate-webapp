@@ -24,13 +24,13 @@ import { UploadModel } from '../../types/models/upload-model';
 
 const useStyles = createStyles((theme) => ({
   card: {
-    background-color: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
+    background-color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-white)),
   },
   address: {
     cursor: 'pointer',
   },
   avatar: {
-    border: `${rem(4)} solid ${theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white}`,
+    border: `${rem(4)} solid ${light-dark(var(--mantine-color-gray-7), var(--mantine-color-white))}`,
   },
   pinIcon: {
     marginRight: -4,
@@ -66,7 +66,7 @@ export function CardMaintainer({ data, entity }: { data: UserCardData; entity: S
       padding="lg"
       radius="md"
       withBorder
-      sx={{
+      style={{
         cursor: 'pointer',
         // onhover shadow
         '&:hover': {
@@ -76,7 +76,7 @@ export function CardMaintainer({ data, entity }: { data: UserCardData; entity: S
       }}
     >
       <Card.Section
-        sx={{
+        style={{
           backgroundImage: `url(${data.cover?.url || PATH_IMAGE.flatmateLogo1})`,
           height: 140,
           backgroundPosition: 'center',
@@ -98,7 +98,7 @@ export function CardMaintainer({ data, entity }: { data: UserCardData; entity: S
         <Badge
           color="pink"
           variant="light"
-          sx={{ position: 'absolute', transform: 'translate(0, -24px)' }}
+          style={{ position: 'absolute', transform: 'translate(0, -24px)' }}
         >
           {data.type}
         </Badge>
@@ -117,14 +117,14 @@ export function CardMaintainer({ data, entity }: { data: UserCardData; entity: S
 
         {data.email && (
           <TextWithIcon
-            sx={{ marginBottom: 4 }}
+            style={{ marginBottom: 4 }}
             icon={<Icons.mail size={ICON_SIZE} />}
             text={data.email}
           />
         )}
         {data.address && (
           <TextWithIcon
-            sx={{ marginBottom: 4 }}
+            style={{ marginBottom: 4 }}
             icon={<Icons.mapPin size={ICON_SIZE} />}
             text={data.address}
           />
@@ -137,7 +137,7 @@ export function CardMaintainer({ data, entity }: { data: UserCardData; entity: S
               icon={data.badgeIcon}
               text={badge || 'add address'}
               disabled={!badge}
-              sx={{ ...data.badgeSx }}
+              style={{ ...data.badgeSx }}
             />
           ))}
         </Group>

@@ -19,7 +19,7 @@ export const PreviewHandler = (props: Props) => {
   const tooltip = (
     <>
       <Box>{file.originalFileName}</Box>
-      <Box sx={{ textAlign: 'right' }}>{intlDateFormat(file.createdAt)}</Box>
+      <Box style={{ textAlign: 'right' }}>{intlDateFormat(file.createdAt)}</Box>
     </>
   );
   switch (fileExt) {

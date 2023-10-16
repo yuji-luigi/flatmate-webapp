@@ -32,7 +32,7 @@ const useStyles = createStyles((theme) => ({
 
   stat: {
     minWidth: 98,
-    paddingTop: var(--mantine-spacing-xl,
+    padding-top: var(--mantine-spacing-xl,
     minHeight: 140,
     display: 'flex',
     flex: 1,
@@ -45,7 +45,7 @@ const useStyles = createStyles((theme) => ({
     textTransform: 'uppercase',
     fontWeight: 700,
     fontSize: theme.fontSizes.xs,
-    fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+    font-family: Greycliff CF, var(--mantine-font-family),
     color: theme.colors.gray[6],
     lineHeight: 1.2,
   },
@@ -66,8 +66,8 @@ const useStyles = createStyles((theme) => ({
     color: theme.white,
     lineHeight: 1,
     textAlign: 'center',
-    marginBottom: 5,
-    fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+    margin-bottom: 5,
+    font-family: Greycliff CF, var(--mantine-font-family),
   },
 
   month: {
@@ -80,13 +80,13 @@ const useStyles = createStyles((theme) => ({
   controls: {
     display: 'flex',
     flex-direction: 'column',
-    marginRight: `calc(${var(--mantine-spacing-xl} * 2)`,
+    marginRight: `calc(var(--mantine-spacing-xl) * 2)`,
 
     [theme.fn.smallerThan('xs')]: {
       flex-direction: 'row',
       align-items: 'center',
       marginRight: 0,
-      marginBottom: var(--mantine-spacing-xl,
+      margin-bottom: var(--mantine-spacing-xl,
     },
   },
 
@@ -169,7 +169,7 @@ export function StatsControls() {
           <IconChevronDown className={classes.controlIcon} stroke={1.5} />
         </UnstyledButton>
       </div>
-      <Group sx={{ flex: 1 }}>{stats}</Group>
+      <Group style={{ flex: 1 }}>{stats}</Group>
     </div>
   );
 }

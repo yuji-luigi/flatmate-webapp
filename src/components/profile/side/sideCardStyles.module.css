@@ -1,0 +1,10 @@
+.card {
+  borderradius: var(--radius-card);
+  height: 100%;
+  flex: 1;
+  overflow: visible;
+}
+.textscontainer {
+  display: flex;
+  flex-direction: column;
+}

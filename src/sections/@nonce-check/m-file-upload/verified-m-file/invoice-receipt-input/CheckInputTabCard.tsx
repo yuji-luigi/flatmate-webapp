@@ -90,7 +90,7 @@ export const CheckInputTabCard = ({
   const title = checkType === 'invoices' ? 'Upload Invoice' : 'Upload Receipt';
 
   return (
-    <Tabs sx={{ width: '100%' }} defaultValue={checkType}>
+    <Tabs style={{ width: '100%' }} defaultValue={checkType}>
       <LoadingOverlay visible={submitting} />
       <Tabs.List>
         <Tabs.Tab onClick={() => setCheckType('invoices')} value="invoices">

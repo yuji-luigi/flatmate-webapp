@@ -35,7 +35,7 @@ const useStyles = createStyles((theme) => ({
   card: {
     flex: 3,
     border-radius: RADIUS.CARD,
-    position: 'relative',
+    position: relative,
     width: '100%',
     height: '100%',
     backgroundSize: 'cover',
@@ -61,7 +61,7 @@ const useStyles = createStyles((theme) => ({
     },
   },
   avatarWrapper: {
-    position: 'relative',
+    position: relative,
     display: 'inline-block',
     zIndex: 20,
   },
@@ -196,7 +196,7 @@ const ProfileCoverGeneric = ({
     <Card
       shadow="sm"
       padding="lg"
-      sx={sx}
+      style={sx}
       className={classes.card}
       style={{
         // backgroundSize: 'object-fit',

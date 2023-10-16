@@ -57,7 +57,7 @@ export const MaintenanceCheckUploadSection = (props: Props) => {
     });
   };
   return (
-    <Container className={classes2.container} sx={{ marginInline: 'auto' }}>
+    <Container className={classes2.container} style={{ marginInline: 'auto' }}>
       <Transition mounted={pinOk} duration={500} transition="slide-up" timingFunction="ease-in-out">
         {(styles) => (
           <div style={styles}>
@@ -65,7 +65,7 @@ export const MaintenanceCheckUploadSection = (props: Props) => {
               <Grid.Col style={{ display: 'flex', flex-direction: 'column', gap: 16 }} span={12}>
                 <Grid>
                   <Grid.Col sm={6} xs={12}>
-                    <Stack sx={{ height: '100%' }}>
+                    <Stack style={{ height: '100%' }}>
                       <CardStyled>
                         <CheckInputTabCard
                           setCheckType={setCheckType}
@@ -84,7 +84,7 @@ export const MaintenanceCheckUploadSection = (props: Props) => {
                       <Divider
                         label={<Title align="center">Maintenance</Title>}
                         labelPosition="center"
-                        mb={var(--mantine-spacing-md}
+                        mb={var(--mantine-spacing-md)}
                       />
                       <PostFeedCard data={maintenance} popupFn={handleOpenModal} />
                     </CardStyled>

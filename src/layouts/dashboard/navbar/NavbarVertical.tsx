@@ -1,14 +1,5 @@
 import { Fragment, useEffect, useRef, useState } from 'react';
-import {
-  createStyles,
-  getStylesRef,
-  Navbar,
-  ScrollArea,
-  Button,
-  Stack,
-  Drawer,
-  Box,
-} from '@mantine/core';
+import { ScrollArea, Button, Stack, Drawer, Box } from '@mantine/core';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { useMediaQuery } from '@mantine/hooks';
@@ -21,7 +12,7 @@ import { PATH_CLIENT } from '../../../path/path-frontend';
 import { ProfilePopover } from '../../../components/navigation/ProfilePopover';
 import { useCookieContext } from '../../../context/CookieContext';
 import { NavbarVerticalItem } from './NavbarVerticalItem';
-import { navbarVerticalStyle } from './navbarStyle';
+// import classesM from './navbarStyle.module.css';
 import { ColorSchemeToggle } from '../../../components/color-schemeToggle/ColorSchemeToggle';
 import LogoutButton from './LogoutButton';
 import OrganizationSpaceSelect from '../../../components/select-custom/OrganizationSpaceSelect';
@@ -42,7 +33,7 @@ import { useCustomMQuery } from '../../../../hooks/useCustomMQuery';
 // });
 
 export function NavbarVertical() {
-  const { classes, cx } = navbarVerticalStyle();
+  // const { classesM, cx } = navbarVerticalStyle();
   const { user, logout } = useAuth();
   const [active, setActive] = useState('');
   const { isOpen, closeBar } = useLayoutContext();
@@ -78,40 +69,32 @@ export function NavbarVertical() {
 
   return (
     <>
-      <Navbar
-        className={classes.navbar}
-        fixed
-        hidden={!isOpen}
-        hiddenBreakpoint="md"
-        sx={{ zIndex: 100 }}
-        width={{ base: 200, sm: 300 }}
-        p="md"
-      >
+      <nav className={classesM.navbar}>
         <ScrollArea>
-          <Navbar.Section grow>
+          <div className={classesM.navbarMain}>
             <ProfilePopover />
-          </Navbar.Section>
+          </div>
           {links.map((navbarData) => navbarData)}
 
-          <Navbar.Section className={classes.footer}>
+          <div className={classesM.footer}>
             <Stack>
               <LogoutButton />
               {isMediaScreen && (
                 <>
                   <Button
-                    className={cx(classes.button, classes.link)}
+                    className={`${classesM.button} ${classesM.link}`}
                     component={Link}
                     href={chooseHref}
                   >
                     Choose {chooseText}
                   </Button>
-                  <ColorSchemeToggle size="lg" sx={{ alignSelf: 'end' }} />
+                  <ColorSchemeToggle /* size="lg" */ /*  style={{ alignSelf: 'end' }} */ />
                 </>
               )}
             </Stack>
-          </Navbar.Section>
+          </div>
         </ScrollArea>
-      </Navbar>
+      </nav>
 
       {isMobile && (
         <Box className={`${classesM.invBox} ${isOpen ? classesM.fadeIn : ''}`} onClick={closeBar} />

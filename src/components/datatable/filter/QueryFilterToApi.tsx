@@ -43,7 +43,7 @@ export const QueryFilterToApi = ({
   ) as StaticSelectFormFieldType[];
 
   return (
-    <Group className={className} sx={{ margin-top: 32 }}>
+    <Group className={className} style={{ margin-top: 32 }}>
       <TextInput onChange={(event) => initQuery(event.target.value)} placeholder="Search" />
       {selectFilter.map((field) => (
         <Select

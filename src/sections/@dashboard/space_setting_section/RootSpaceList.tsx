@@ -45,7 +45,7 @@ const RootSpaceList = () => {
             createdAt: '',
           }}
           href={`${PATH_CLIENT.spaceSettings}/${space._id}`}
-          sx={{ height: 200, width: 400 }}
+          style={{ height: 200, width: 400 }}
           // onClick={() => handleSpaceSelected(rootSpace._id)}
           // // href={`${hrefRoot}/${rootSpace._id}`}
         />

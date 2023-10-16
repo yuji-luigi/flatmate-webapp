@@ -51,7 +51,7 @@ const useStyles = createStyles((theme) => ({
       background-color: theme.primaryColor,
       width: 45,
       height: 2,
-      margin-top: var(--mantine-spacing-sm,
+      margin-top: var(--mantine-spacing-sm),
       marginLeft: 'auto',
       marginRight: 'auto',
     },
@@ -59,7 +59,7 @@ const useStyles = createStyles((theme) => ({
 
   card: {
     border: `1px solid ${
-      theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[1]
+      light-dark(var(--mantine-color-gray-5), var(--mantine-color-dark-1))
     }`,
   },
 
@@ -71,7 +71,7 @@ const useStyles = createStyles((theme) => ({
       // background-color: theme.fn.primaryColor(),
       width: 45,
       height: 2,
-      margin-top: var(--mantine-spacing-sm,
+      margin-top: var(--mantine-spacing-sm),
     },
   },
 }));

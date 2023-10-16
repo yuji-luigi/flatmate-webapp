@@ -1,11 +1,16 @@
 import { createStyles, em } from '@mantine/core';
 
+
+export const RADIUS = {
+  CARD: 12,
+};
+
 //Todo: document where to use this
 // dataTableContainer class is used in dashboard datatables
 export const dashboardStyle = createStyles((theme, params, variations) => ({
   mainContainer: {
     paddingInline: 40,
-    paddingTop: 30,
+    padding-top: 30,
   },
   headerWrapper: {
     display: 'flex',
@@ -22,10 +27,10 @@ export const dashboardStyle = createStyles((theme, params, variations) => ({
     // marginLeft: 40,
   },
   dataTableContainer: {
-    [theme.fn.largerThan('md')]: {
+    @media (min-width: $mantine-breakpoint-md) {
       paddingInline: 40,
     },
-    [theme.fn.smallerThan('md')]: {
+     @media (max-width: $mantine-breakpoint-md): {
       paddingInline: 20,
     },
   },
@@ -36,13 +41,13 @@ export const dashboardStyle = createStyles((theme, params, variations) => ({
     align-items: 'center',
     textDecoration: 'none',
     fontSize: theme.fontSizes.sm,
-    color: theme.colorScheme === 'dark' ? theme.colors.dark[1] : theme.colors.gray[7],
-    padding: `${var(--mantine-spacing-xs} ${var(--mantine-spacing-sm}`,
-    border-radius: --mantine-radius-sm,
+    color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-dark-1)),
+    padding: `var(--mantine-spacing-xs) var(--mantine-spacing-sm),
+    border-radius: var(--mantine-radius-sm),
     fontWeight: 500,
     '&:hover': {
       background-color: theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[0],
-      color: theme.colorScheme === 'dark' ? theme.white : theme.black,
+      color: light-dark(var(--mantine-color-black), var(--mantine-color-white)),
     },
   },
   justifyEnd: {
@@ -80,7 +85,7 @@ export const profilePageStyle = createStyles((theme) => ({
     flex-direction: 'column',
     gap: 36,
     width: '100%',
-    [theme.fn.smallerThan('md')]: {
+     @media (max-width: $mantine-breakpoint-md): {
       width: '60%', // background-color: theme.cdolors.yellow[6],
     },
     @media (max-width: 768px): {
@@ -92,7 +97,7 @@ export const profilePageStyle = createStyles((theme) => ({
     flex-direction: 'column',
     gap: 36,
     width: '100%',
-    [theme.fn.smallerThan('md')]: {
+     @media (max-width: $mantine-breakpoint-md): {
       width: '60%', // background-color: theme.cdolors.yellow[6],
     },
     @media (max-width: 768px): {
@@ -104,7 +109,7 @@ export const profilePageStyle = createStyles((theme) => ({
     gap: 16,
     display: 'flex',
     flex-direction: 'column',
-    [theme.fn.smallerThan('md')]: {
+     @media (max-width: $mantine-breakpoint-md): {
       width: '100%', // background-color: theme.cdolors.yellow[6],
     },
     @media (max-width: 768px): {
@@ -132,6 +137,3 @@ export const feedStyles = createStyles((theme) => ({
   // },
 }));
 
-export const RADIUS = {
-  CARD: 12,
-};

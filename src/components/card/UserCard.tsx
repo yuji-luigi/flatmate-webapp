@@ -2,11 +2,11 @@ import { createStyles, Card, Avatar, Text, Group, Button, rem } from '@mantine/c
 
 const useStyles = createStyles((theme) => ({
   card: {
-    background-color: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
+    background-color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-white)),
   },
 
   avatar: {
-    border: `${rem(2)} solid ${theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white}`,
+    border: `${rem(2)} solid ${light-dark(var(--mantine-color-gray-7), var(--mantine-color-white))}`,
   },
 }));
 
@@ -35,7 +35,7 @@ export function UserCard({ data }: { data: UserCardProps }) {
 
   return (
     <Card withBorder padding="xl" radius="md" className={classes.card}>
-      <Card.Section sx={{ backgroundImage: `url(${image})`, height: 140 }} />
+      <Card.Section style={{ backgroundImage: `url(${image})`, height: 140 }} />
       <Avatar src={avatar} size={80} radius={80} mx="auto" mt={-30} className={classes.avatar} />
       <Text ta="center" fz="lg" fw={500} mt="sm">
         {name}

@@ -1,11 +1,12 @@
 import { Button } from '@mantine/core';
 import React from 'react';
 import { Icons } from '../../../data/icons/icons';
-import { navbarVerticalStyle } from './navbarStyle';
+import classes from './NavbarVertical.module.css';
+// import classes from './navbarStyle.module.css';
 import useAuth from '../../../../hooks/useAuth';
 
 const LogoutButton = () => {
-  const { classes, cx } = navbarVerticalStyle();
+  // const { classes, cx } = navbarVerticalStyle();
   const { logout } = useAuth();
 
   return (

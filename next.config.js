@@ -26,6 +26,24 @@ const nextConfig = (phase) => {
     })(),
     NEXT_PUBLIC_SSG_SECRET: 'secretforssgishereman%^()_',
   };
+  const css = {
+    loaderOptions: {
+      postcss: {
+        plugins: [
+          require('postcss-preset-mantine')(),
+          require('postcss-simple-vars')({
+            variables: {
+              'mantine-breakpoint-xs': '36em',
+              'mantine-breakpoint-sm': '48em',
+              'mantine-breakpoint-md': '62em',
+              'mantine-breakpoint-lg': '75em',
+              'mantine-breakpoint-xl': '88em',
+            },
+          }),
+        ],
+      },
+    },
+  };
 
   return {
     i18n,
@@ -33,6 +51,7 @@ const nextConfig = (phase) => {
     trailingSlash: true,
     swcMinify: false,
     env,
+    css,
     images: {
       domains: [
         'flatmates-api.yuji-luigi.com',

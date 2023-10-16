@@ -5,10 +5,10 @@ const ICON_SIZE = 60;
 
 const useStyles = createStyles((theme) => ({
   card: {
-    position: 'relative',
+    position: relative,
     overflow: 'visible',
     padding: --mantine - spacing - xl,
-    paddingTop: `calc(${--mantine - spacing - xl}) * 1.5 + ${ICON_SIZE} / 3`,
+    padding-top: `calc(${--mantine - spacing - xl}) * 1.5 + ${ICON_SIZE} / 3`,
   },
 
   icon: {
@@ -18,7 +18,7 @@ const useStyles = createStyles((theme) => ({
   },
 
   title: {
-    fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+    font-family: Greycliff CF, var(--mantine-font-family),
     lineHeight: 1,
   },
 }));

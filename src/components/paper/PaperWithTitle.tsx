@@ -9,10 +9,10 @@ type PaperWithTitleProps = {
 
 const useStyles = createStyles((theme) => ({
   title: {
-    fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+    font-family: Greycliff CF, var(--mantine-font-family),
     fontSize: 24,
     fontWeight: 600,
-    marginBottom: --mantine - spacing - xl,
+    margin-bottom: --mantine - spacing - xl,
     paddingInline: --mantine - spacing - xl,
   },
 }));

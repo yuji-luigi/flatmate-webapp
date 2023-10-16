@@ -56,7 +56,7 @@ const useStyles = createStyles((theme) => ({
     fontWeight: 700,
     fontSize: 32,
     textAlign: 'center',
-    fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+    font-family: Greycliff CF, var(--mantine-font-family),
     wordBreak: 'break-word',
     lineHeight: 1.2,
     zIndex: 55,
@@ -67,7 +67,7 @@ const useStyles = createStyles((theme) => ({
   },
 
   body: {
-    padding: var(--mantine-spacing-md,
+    padding: var(--mantine-spacing-md),
     display: 'flex',
     flex-direction: 'column',
     justifyContent: 'center',
@@ -97,7 +97,7 @@ export function CardArticleVerticalTextCenter({ data, sx }: { data?: CardData; s
 
   return (
     <Link href={data?.href || ''} className={classes.link}>
-      <Card withBorder radius="md" p={0} className={classes.card} sx={sx}>
+      <Card withBorder radius="md" p={0} className={classes.card} style={sx}>
         <BackgroundImage className={classes.bgImage} src="" radius="sm">
           <Box className={classes.bgImageGradient} />
 

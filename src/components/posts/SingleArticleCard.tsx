@@ -11,15 +11,15 @@ const useStyles = createStyles((theme) => ({
   articleArea: {
     display: 'flex',
     flex-direction: 'column',
-    gap: var(--mantine-spacing-md,
+    gap: var(--mantine-spacing-md),
     background-color: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[0],
     boxShadow: theme.shadows.xl,
   },
 
   action: {
-    background-color: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+    background-color: light-dark(var(--mantine-color-gray-6), var(--mantine-color-dark-0)),
     ...theme.fn.hover({
-      background-color: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[1],
+      background-color: light-dark(var(--mantine-color-gray-5), var(--mantine-color-dark-1)),
     }),
   },
 
@@ -30,7 +30,7 @@ const useStyles = createStyles((theme) => ({
     max-width: 300,
   },
   footer: {
-    // paddingTop: var(--mantine-spacing-xl,
+    // padding-top: var(--mantine-spacing-xl,
   },
 }));
 

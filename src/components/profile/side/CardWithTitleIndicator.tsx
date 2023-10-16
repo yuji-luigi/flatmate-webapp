@@ -16,13 +16,13 @@ interface Prop {
 const CardWithTitle = ({ title, children, titleSx, sx }: Prop) => {
   const { classes, cx, theme } = sideCardStyles();
   return (
-    <Card className={classes.card} sx={sx}>
+    <Card className={classes.card} style={sx}>
       {title && (
-        <Title sx={{ fontSize: TEXT_SIZE.titleCard, ...titleSx }} mb={8}>
+        <Title style={{ fontSize: TEXT_SIZE.titleCard, ...titleSx }} mb={8}>
           {title}
         </Title>
       )}
-      <Box className={classes.textsContainer} sx={{}}>
+      <Box className={classes.textsContainer} style={{}}>
         {children}
       </Box>
     </Card>

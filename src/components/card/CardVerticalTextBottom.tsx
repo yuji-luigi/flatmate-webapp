@@ -55,7 +55,7 @@ const useStyles = createStyles((theme) => ({
 
   title: {
     fontWeight: 700,
-    fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+    font-family: Greycliff CF, var(--mantine-font-family),
     wordBreak: 'break-word',
     lineHeight: 1.2,
     zIndex: 60,
@@ -66,7 +66,7 @@ const useStyles = createStyles((theme) => ({
   },
 
   body: {
-    padding: var(--mantine-spacing-md,
+    padding: var(--mantine-spacing-md),
     display: 'flex',
     flex-direction: 'column',
     justifyContent: 'end',
@@ -113,7 +113,7 @@ export function CardArticleVerticalTextBottom({
   const { classes, cx } = useStyles();
   const router = useRouter();
   const content = (
-    <Card withBorder radius="md" p={0} className={classes.card} onClick={onClick} sx={sx}>
+    <Card withBorder radius="md" p={0} className={classes.card} onClick={onClick} style={sx}>
       <BackgroundImage
         className={classes.bgImage}
         src={data.cover?.url || PATH_IMAGE.rootSpaceCard1}

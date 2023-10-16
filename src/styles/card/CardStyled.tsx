@@ -8,7 +8,7 @@ type Props = {
 export const CardStyled = (props: Props) => {
   return (
     <Card
-      sx={{
+      style={{
         border-radius: RADIUS.CARD,
       }}
     >

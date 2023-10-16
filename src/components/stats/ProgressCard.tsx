@@ -6,8 +6,8 @@ export function ProgressCard() {
       withBorder
       radius="md"
       p="xl"
-      sx={(theme) => ({
-        background-color: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
+      style={(theme) => ({
+        background-color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-white)),
       })}
     >
       <Text size="xs" transform="uppercase" weight={700} color="dimmed">

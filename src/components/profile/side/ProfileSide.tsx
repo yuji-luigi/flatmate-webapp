@@ -13,7 +13,7 @@ const useStyles = createStyles((theme) => ({
     display: 'flex',
     flex-direction: 'column',
     flex: 1,
-    [theme.fn.smallerThan('md')]: {
+     @media (max-width: $mantine-breakpoint-md): {
       width: '100%', // background-color: theme.cdolors.yellow[6],
     },
     @media (max-width: 768px): {
@@ -26,7 +26,7 @@ const ProfileSide = ({ contents }: Props) => {
   const { cx, classes, theme } = useStyles();
 
   return (
-    <Box className={classes.sideBox} sx={{ height: '100%' }}>
+    <Box className={classes.sideBox} style={{ height: '100%' }}>
       {contents}
     </Box>
   );

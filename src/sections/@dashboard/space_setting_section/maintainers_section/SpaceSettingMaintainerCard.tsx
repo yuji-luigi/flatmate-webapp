@@ -6,11 +6,11 @@ import { MaintainerCardRightSection } from './MaintainerCardRightSection';
 import { MaintainerModel } from '../../../../types/models/maintainer-model';
 const useStyles = createStyles((theme) => ({
   icon: {
-    color: theme.colorScheme === 'dark' ? theme.colors.dark[3] : theme.colors.gray[5],
+    color: light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-5)),
   },
 
   name: {
-    fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+    font-family: Greycliff CF, var(--mantine-font-family),
   },
 }));
 
@@ -26,7 +26,7 @@ export function SpaceSettingMaintainerCard({ maintainer }: SpaceSettingMaintaine
     <Card>
       <Group align="start" noWrap>
         <Avatar src={maintainer.avatar?.url || ''} size={160} radius="md" />
-        <Group grow align="start" sx={{ width: '100%' }}>
+        <Group grow align="start" style={{ width: '100%' }}>
           <MaintainerCardLeftSection maintainer={maintainer} />
           <MaintainerCardRightSection maintainer={maintainer} />
         </Group>

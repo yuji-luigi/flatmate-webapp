@@ -16,23 +16,23 @@ export const FeedHeading = (props: FeedCardData) => {
 
   return (
     <Group className={classes.container}>
-      <Group sx={{ height: '100%' }}>
+      <Group style={{ height: '100%' }}>
         <Avatar
           src={createdBy?.avatar?.url || 'https://picsum.photos/410/300'}
           radius={90}
           size={40}
         />
-        <Stack spacing={0} justify="flex-end" style={{ height: '100%', align-items: 'flex-end' }}>
-          <Text size={TEXT_SIZE.cardTile} weight="bold">
+        <Stack justify="flex-end" style={{ height: '100%', alignItems: 'flex-end' }}>
+          <Text fz={TEXT_SIZE.cardTile} fw="bold">
             {createdBy?.name}
           </Text>
-          <Text size={TEXT_SIZE.cardTile}>{intlDateFormat(createdAt)}</Text>
+          <Text fz={TEXT_SIZE.cardTile}>{intlDateFormat(createdAt)}</Text>
         </Stack>
       </Group>
       <Stack>
         <Group>
           {user?._id === createdBy?._id && (
-            <ActionIcon onClick={() => window.alert('edit fired: PostFeedCard.tsx')}>
+            <ActionIcon onClick={() => window.alert('edit fired: PostFeedCard.tstyle')}>
               <Icons.dots />
             </ActionIcon>
           )}

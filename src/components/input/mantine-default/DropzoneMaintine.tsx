@@ -52,7 +52,7 @@ export function DropzoneMantine(props: Props) {
   }, []);
 
   return (
-    // <Box sx={sx}>
+    // <Box style={sx}>
     <Dropzone
       // style={{
       //   display: 'flex',

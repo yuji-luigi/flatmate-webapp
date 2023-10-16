@@ -6,7 +6,7 @@ const useStyles = createStyles((theme) => ({
     backgroundImage: `linear-gradient(-60deg, ${theme.colors[theme.primaryColor][4]} 0%, ${
       theme.colors[theme.primaryColor][7]
     } 100%)`,
-    padding: `calc(${var(--mantine-spacing-xl} * 1.5)`,
+    padding: `calc(var(--mantine-spacing-xl) * 1.5)`,
     border-radius: --mantine-radius-md,
 
     @media (max-width: 768px): {
@@ -26,8 +26,8 @@ const useStyles = createStyles((theme) => ({
     fontSize: 32,
     lineHeight: 1,
     fontWeight: 700,
-    marginBottom: var(--mantine-spacing-md,
-    fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+    margin-bottom: var(--mantine-spacing-md),
+    font-family: Greycliff CF, var(--mantine-font-family),
   },
 
   description: {
@@ -48,7 +48,7 @@ const useStyles = createStyles((theme) => ({
         paddingLeft: 0,
         marginLeft: 0,
         borderLeft: 0,
-        paddingTop: var(--mantine-spacing-xl,
+        padding-top: var(--mantine-spacing-xl,
         margin-top: var(--mantine-spacing-xl,
         borderTop: `1px solid ${theme.colors[theme.primaryColor][3]}`,
       },

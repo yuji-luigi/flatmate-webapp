@@ -30,7 +30,7 @@ import { UserModel } from '../../../types/models/user-model';
 const useStyles = createStyles((theme) => ({
   formContainer: {
     justifyContent: 'start',
-    marginBlock: var(--mantine-spacing-md,
+    marginBlock: var(--mantine-spacing-md),
   },
   buttonContainer: {
     // display: 'flex',

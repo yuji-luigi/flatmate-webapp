@@ -51,7 +51,7 @@ export const SpaceSettingMaintainersSection = ({
             <Icons.plus />
           </ActionIcon>
         </Group>
-        <Stack sx={{ gap: 12 }}>
+        <Stack style={{ gap: 12 }}>
           {maintainersByType[type]?.map((maintainer) => (
             <SpaceSettingMaintainerCard maintainer={maintainer} />
           )) || <NoMaintainerCard type={type} />}
@@ -60,8 +60,8 @@ export const SpaceSettingMaintainersSection = ({
     );
   });
   return (
-    <PaperWithTitle title="Maintainers of the building/space" sx={{ marginBottom: 20 }}>
-      <Stack sx={{ gap: 32 }}>{list}</Stack>
+    <PaperWithTitle title="Maintainers of the building/space" style={{ marginBottom: 20 }}>
+      <Stack style={{ gap: 32 }}>{list}</Stack>
     </PaperWithTitle>
   );
 };

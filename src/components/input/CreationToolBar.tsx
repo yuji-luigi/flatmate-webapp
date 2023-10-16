@@ -33,8 +33,8 @@ function CreationToolBar({ form, formFields, submitButton, entity }: Props) {
       <Group
         mt={10}
         position="right"
-        // sx={(theme) => ({
-        //   background-color: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+        // style={(theme) => ({
+        //   background-color: light-dark(var(--mantine-color-gray-6), var(--mantine-color-dark-0)),
         // })}
       >
         {uploadFormFields?.map((uploadField) => (

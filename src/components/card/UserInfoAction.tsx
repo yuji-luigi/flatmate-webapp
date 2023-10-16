@@ -8,7 +8,7 @@ export function UserInfoAction({ user }: { user?: UserModel }) {
       radius="md"
       withBorder
       p="lg"
-      sx={(theme) => ({
+      style={(theme) => ({
         background-color: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.white,
       })}
     >

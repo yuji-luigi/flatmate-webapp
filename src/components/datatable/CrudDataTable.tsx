@@ -52,7 +52,7 @@ export function CrudDataTable({ overridingEntity = '' }: { overridingEntity?: Se
         {!crudDocuments.length && crudStatus === 'loading' ? (
           <p>loading</p>
         ) : (
-          <Table sx={{ minWidth: 800 }} highlightOnHover>
+          <Table style={{ minWidth: 800 }} highlightOnHover>
             <CrudTableHeader overridingEntity={overridingEntity} />
 
             <tbody>
@@ -67,7 +67,7 @@ export function CrudDataTable({ overridingEntity = '' }: { overridingEntity?: Se
             </tbody>
           </Table>
         )}
-        <Divider sx={{ marginBottom: 20 }} />
+        <Divider style={{ marginBottom: 20 }} />
       </ScrollArea>
       <Pagination value={page} onChange={(pageNumber) => onPageChange(pageNumber)} total={TOTAL} />
     </Box>

@@ -12,7 +12,7 @@ const ErrorMessage = (props: TextProps & { children?: string }) => {
       style={{ wordBreak: 'break-word', display: 'block', position: 'relative' }}
       {...rest}
     >
-      <Group spacing={5} sx={{ position: 'absolute' }}>
+      <Group spacing={5} style={{ position: 'absolute' }}>
         <IconAlertCircle width={theme.fontSizes.lg} />
         {children}
       </Group>

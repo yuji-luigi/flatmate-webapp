@@ -6,15 +6,15 @@ import Head from 'next/head';
 
 const useStyles = createStyles((theme) => ({
   root: {
-    paddingTop: 80,
-    paddingBottom: 80,
+    padding-top: 80,
+    padding-bottom: 80,
   },
 
   title: {
     fontWeight: 900,
     fontSize: 34,
-    marginBottom: var(--mantine-spacing-md,
-    fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+    margin-bottom: var(--mantine-spacing-md),
+    font-family: Greycliff CF, var(--mantine-font-family),
 
     @media (max-width: 768px): {
       fontSize: 32,

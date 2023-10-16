@@ -19,7 +19,7 @@ const CrudPasswordInput = ({ formField, form, ...others }: Prop) => {
       label={formField.label}
       placeholder={formField.placeholder}
       size="md"
-      // sx={{ width: '100%' }}
+      // style={{ width: '100%' }}
       mt={10}
       // {...others}
       {...form.getInputProps(formField.name || formField.id)}

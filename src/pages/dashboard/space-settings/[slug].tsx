@@ -83,13 +83,13 @@ const SpaceSettingSinglePage = () => {
       <Grid.Col md={12} lg={5}>
         <ProfileCoverGeneric
           noAvatar
-          sx={{ height: '100%' }}
+          style={{ height: '100%' }}
           data={coverData}
           enableCover={isSpaceAdmin}
         />
       </Grid.Col>
       <Grid.Col md={12} lg={7}>
-        <SpaceSettingForm data={space} isSpaceAdmin={isSpaceAdmin} sx={{ width: '100%' }} />
+        <SpaceSettingForm data={space} isSpaceAdmin={isSpaceAdmin} style={{ width: '100%' }} />
       </Grid.Col>
       <Grid.Col span={12}>
         <SpaceSettingMaintainersSection maintainers={maintainers} />

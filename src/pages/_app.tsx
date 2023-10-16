@@ -1,4 +1,4 @@
-import { ColorScheme, ColorSchemeProvider, MantineProvider } from '@mantine/core';
+import {  MantineProvider } from '@mantine/core';
 import { Notifications } from '@mantine/notifications';
 import { getCookie, setCookie } from 'cookies-next';
 import { GetServerSidePropsContext, NextPage } from 'next';
@@ -28,15 +28,10 @@ export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };
-function App(props: AppProps & { colorScheme: ColorScheme }) {
+function App(props: AppProps ) {
   const { Component, pageProps }: AppPropsWithLayout = props;
-  const [colorScheme, setColorScheme] = useState<ColorScheme>(props.colorScheme);
 
-  const toggleColorScheme = (value?: ColorScheme) => {
-    const nextColorScheme = value || (colorScheme === 'dark' ? 'dark' : 'light');
-    setColorScheme(nextColorScheme);
-    setCookie('mantine-color-scheme', nextColorScheme, { maxAge: 60 * 60 * 24 * 30 });
-  };
+
   const getLayout = Component.getLayout ?? ((page) => page);
 
   return (
@@ -54,21 +49,21 @@ function App(props: AppProps & { colorScheme: ColorScheme }) {
 
       <AuthProvider>
         <ReduxProvider store={reduxStore}>
-          <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
             <MantineProvider
               theme={{
                 // colors: myColors,
                 primaryColor: 'yellow',
                 // Default gradient used in components that support `variant="gradient"` (Button, ThemeIcon, etc.)
                 defaultGradient: { deg: 45, from: 'yellow', to: 'gold' }, // primaryColor: 'sw-dark-blue',
-                colorScheme,
                 fontFamily: 'Lato, sans-serif',
                 components: {
-                  Card: CardOverride(colorScheme),
+                  Card: CardOverride(),
                 },
               }}
-              withGlobalStyles
-              withNormalizeCSS
+              // withGlobalStyles
+              // cssVariablesResolver
+              withCssVariables
+              // withNormalizeCSS
             >
               <DashboardLayoutContextProvider>
                 <PaginationContextProvider>

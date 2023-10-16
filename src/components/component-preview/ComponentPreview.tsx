@@ -11,7 +11,7 @@ interface ComponentPreviewProps {
 export function ComponentPreview({ children, canvas, withSpacing = false }: ComponentPreviewProps) {
   return (
     <Box
-      sx={{
+      style={{
         paddingTop: canvas?.max-width && withSpacing ? rem(40) : 0,
         max-width: canvas?.max-width ? rem(canvas.max-width) : '100%',
         marginLeft: canvas?.center ? 'auto' : 'unset',

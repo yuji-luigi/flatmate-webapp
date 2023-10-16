@@ -139,7 +139,7 @@ const OrganizationSpaceSelect = ({
               form.setFieldValue('organization', value || '');
             }
           }}
-          sx={sx}
+          style={sx}
         />
       )}
       <Select
@@ -161,7 +161,7 @@ const OrganizationSpaceSelect = ({
             form.setFieldValue('space', value || '');
           }
         }}
-        sx={sx}
+        style={sx}
       />
     </Box>
   );

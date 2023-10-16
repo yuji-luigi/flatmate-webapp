@@ -48,23 +48,23 @@ export function HeaderCreationButton() {
           </ActionIcon>
         </Menu.Target>
         <Menu.Dropdown>
-          <Menu.Label sx={{ textAlign: 'center' }}>Create something</Menu.Label>
+          <Menu.Label style={{ textAlign: 'center' }}>Create something</Menu.Label>
           <Menu.Item
             onClick={() => handleOpenModal('threads')}
-            sx={{ fontSize: FONT_SIZES.menuItems }}
+            style={{ fontSize: FONT_SIZES.menuItems }}
             icon={<Icons.article size={FONT_SIZES.menuItems} />}
           >
             New post
           </Menu.Item>
           <Menu.Item
-            sx={{ fontSize: FONT_SIZES.menuItems }}
+            style={{ fontSize: FONT_SIZES.menuItems }}
             onClick={() => handleOpenModal('maintenances')}
             icon={<Icons.maintenance size={FONT_SIZES.menuItems} />}
           >
             Add maintenance
           </Menu.Item>
           <Menu.Item
-            sx={{ fontSize: FONT_SIZES.menuItems }}
+            style={{ fontSize: FONT_SIZES.menuItems }}
             icon={<Icons.messageDots size={FONT_SIZES.menuItems} />}
           >
             Send message

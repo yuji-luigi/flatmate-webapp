@@ -4,7 +4,7 @@ import React from 'react';
 const LoadingScreen = () => {
   return (
     <Box
-      sx={{
+      style={{
         width: '100%',
         height: '100%',
       }}

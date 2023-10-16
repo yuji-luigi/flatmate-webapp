@@ -26,7 +26,7 @@ export const MaintainerList = ({ maintainers }: { maintainers: MaintainerModel[]
                 <TextWithIcon
                   key={maintainer._id}
                   icon={<Icon />}
-                  sx={{ marginBottom: 10 }}
+                  style={{ marginBottom: 10 }}
                   text={maintainer.name}
                 />
               </Stack>

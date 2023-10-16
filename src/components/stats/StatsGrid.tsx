@@ -1,4 +1,4 @@
-import { createStyles, Group, Paper, SimpleGrid, Text, Box } from '@mantine/core';
+import { Group, Paper, SimpleGrid, Text, Box } from '@mantine/core';
 import {
   IconDiscount2,
   IconCoin,
@@ -10,32 +10,32 @@ import { useTranslation } from 'next-i18next';
 import { Icons } from '../../data/icons/icons';
 import classesM from './StatsGrid.module.css';
 
-const useStyles = createStyles((theme) => ({
-  root: {
-    padding: `calc(${var(--mantine-spacing-xl} * 1.5)`,
-  },
+// const useStyles = createStyles((theme) => ({
+//   root: {
+//     padding: `calc(var(--mantine-spacing-xl) * 1.5)`,
+//   },
 
-  value: {
-    fontSize: 24,
-    fontWeight: 700,
-    lineHeight: 1,
-  },
+//   value: {
+//     fontSize: 24,
+//     fontWeight: 700,
+//     lineHeight: 1,
+//   },
 
-  diff: {
-    lineHeight: 1,
-    display: 'flex',
-    align-items: 'center',
-  },
+//   diff: {
+//     lineHeight: 1,
+//     display: 'flex',
+//     align-items: 'center',
+//   },
 
-  icon: {
-    color: theme.colorScheme === 'dark' ? theme.colors.dark[3] : theme.colors.gray[4],
-  },
+//   icon: {
+//     color: light-dark(var(--mantine-color-gray-4), var(--mantine-color-dark-3)),
+//   },
 
-  title: {
-    fontWeight: 700,
-    textTransform: 'uppercase',
-  },
-}));
+//   title: {
+//     fontWeight: 700,
+//     textTransform: 'uppercase',
+//   },
+// }));
 
 const _icons = {
   // user: IconUserPlus,
@@ -56,7 +56,6 @@ export type StatGridSchema = {
 };
 
 export function StatsGrid({ data }: { data: StatGridSchema[] }) {
-  const { classes } = useStyles();
   const { t } = useTranslation('common');
   const A = data as unknown;
   const stats = (A as Array<StatGridSchema>).map((stat) => {
@@ -66,15 +65,15 @@ export function StatsGrid({ data }: { data: StatGridSchema[] }) {
     return (
       <Box key={stat.title} className={classesM.card}>
         <Paper withBorder p="md" radius="md" key={stat.title}>
-          <Group position="apart">
-            <Text size="xs" color="dimmed" className={classes.title}>
+          <Group justify="apart">
+            <Text size="xs" color="dimmed" className={classesM.title}>
               {t(stat.title)}
             </Text>
-            {Icon && <Icon className={classes.icon} size={22} stroke={1.5} />}
+            {Icon && <Icon className={classesM.icon} size={22} stroke={1.5} />}
           </Group>
 
-          <Group align="flex-end" spacing="xs" mt={25}>
-            <Text className={classes.value}>
+          <Group align="flex-end" gap="xs" mt={25}>
+            <Text className={classesM.value}>
               {stat.unit}
               {stat.value}
             </Text>
@@ -82,8 +81,8 @@ export function StatsGrid({ data }: { data: StatGridSchema[] }) {
               <Text
                 color={stat.diff > 0 ? 'teal' : 'red'}
                 size="sm"
-                weight={500}
-                className={classes.diff}
+                fw={500}
+                className={classesM.diff}
               >
                 <span>{stat.diff}%</span>
                 <DiffIcon size={16} stroke={1.5} />
@@ -100,13 +99,16 @@ export function StatsGrid({ data }: { data: StatGridSchema[] }) {
   });
   return (
     <SimpleGrid
-      cols={3}
-      sx={{ width: '100%' }}
+      cols={{
+        sm: 1,
+        md: 2,
+      }}
+      style={{ width: '100%' }}
       className={classesM.container}
-      breakpoints={[
-        { max-width: 'md', cols: 2 },
-        { max-width: 'sm', cols: 1 },
-      ]}
+      //   breakpoints={[
+      //     { maxWidth: 'md', cols: 2 },
+      //     { maxWidth: 'sm', cols: 1 },
+      //   ]}
     >
       {stats}
     </SimpleGrid>

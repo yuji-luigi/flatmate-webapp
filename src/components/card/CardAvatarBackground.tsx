@@ -23,13 +23,13 @@ import { MaintainerModel } from '../../types/models/maintainer-model';
 
 const useStyles = createStyles((theme) => ({
   card: {
-    background-color: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
+    background-color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-white)),
   },
   address: {
     cursor: 'pointer',
   },
   avatar: {
-    border: `${rem(4)} solid ${theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white}`,
+    border: `${rem(4)} solid ${light-dark(var(--mantine-color-gray-7), var(--mantine-color-white))}`,
   },
   pinIcon: {
     marginRight: -4,
@@ -55,7 +55,7 @@ export function CardMaintainer({
       padding="lg"
       radius="md"
       withBorder
-      sx={{
+      style={{
         cursor: 'pointer',
         // onhover shadow
         '&:hover': {
@@ -66,7 +66,7 @@ export function CardMaintainer({
     >
       <Card.Section
         component="a"
-        sx={{
+        style={{
           backgroundImage: `url(${maintainer.cover?.url || PATH_IMAGE.flatmateLogo1})`,
           height: 140,
           backgroundPosition: 'center',
@@ -88,7 +88,7 @@ export function CardMaintainer({
         <Badge
           color="pink"
           variant="light"
-          sx={{ position: 'absolute', transform: 'translate(0, -24px)' }}
+          style={{ position: 'absolute', transform: 'translate(0, -24px)' }}
         >
           {maintainer.type}
         </Badge>
@@ -100,7 +100,7 @@ export function CardMaintainer({
         </Text>
         <TextWithIcon icon={<Icons.buildings size={ICON_SIZE} />} text={maintainer.company} />
         <TextWithIcon
-          sx={{ marginBottom: 4 }}
+          style={{ marginBottom: 4 }}
           icon={<Icons.mail size={ICON_SIZE} />}
           text={maintainer.email}
         />

@@ -15,9 +15,9 @@ import { MaintenanceModel } from '../../types/models/maintenance-model';
 
 const useStyles = createStyles((theme) => ({
   action: {
-    background-color: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+    background-color: light-dark(var(--mantine-color-gray-6), var(--mantine-color-dark-0)),
     ...theme.fn.hover({
-      background-color: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[1],
+      background-color: light-dark(var(--mantine-color-gray-5), var(--mantine-color-dark-1)),
     }),
   },
 }));
@@ -61,25 +61,25 @@ const PostEditButton = ({
             <Menu.Dropdown>
               <Menu.Item
                 onClick={handleEditClicked}
-                sx={{ fontSize: FONT_SIZES.menuItemsS }}
+                style={{ fontSize: FONT_SIZES.menuItemsS }}
                 icon={<Icons.article size={FONT_SIZES.menuItemsS} />}
               >
                 Edit
               </Menu.Item>
               <Menu.Item
-                sx={{ fontSize: FONT_SIZES.menuItemsS }}
+                style={{ fontSize: FONT_SIZES.menuItemsS }}
                 icon={<Icons.archive size={FONT_SIZES.menuItemsS} />}
               >
                 Mark as draft
               </Menu.Item>
               <Menu.Item
                 onClick={handleDeleteClicked}
-                sx={{
+                style={{
                   fontSize: FONT_SIZES.menuItemsS,
                   color: 'red',
                   // '&:hover': {
                   //   background:
-                  //     theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[1],
+                  //     light-dark(var(--mantine-color-gray-5), var(--mantine-color-dark-1)),
                   // },
                 }}
                 icon={<Icons.trash color="red" size={FONT_SIZES.menuItemsS} />}

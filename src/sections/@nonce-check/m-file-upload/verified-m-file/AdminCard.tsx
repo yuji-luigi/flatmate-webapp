@@ -14,7 +14,7 @@ export const AdminCard = (props: Props) => {
   const { admins, sx } = props;
   console.log('admins', admins);
   return (
-    <CardWithTitle title="Contacts" sx={{ background: 'transparent' }}>
+    <CardWithTitle title="Contacts" style={{ background: 'transparent' }}>
       {admins.map((admin, index) => {
         if (typeof admin === 'string') {
           throw new Error('not populated');

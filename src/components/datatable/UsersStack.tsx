@@ -72,7 +72,7 @@ export function UsersStack({ data }: UsersStackProps) {
 
   return (
     <ScrollArea>
-      <Table sx={{ minWidth: 800 }} verticalSpacing="md">
+      <Table style={{ minWidth: 800 }} verticalSpacing="md">
         <tbody>{rows}</tbody>
       </Table>
     </ScrollArea>

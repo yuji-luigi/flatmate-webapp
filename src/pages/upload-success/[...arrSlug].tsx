@@ -21,12 +21,12 @@ import { PreviewHandler } from '../../components/files/preview/PreviewHandler';
 
 const useStyles = createStyles((theme) => ({
   root: {
-    paddingTop: rem(80),
-    paddingBottom: rem(80),
+    padding-top: rem(80),
+    padding-bottom: rem(80),
   },
 
   inner: {
-    position: 'relative',
+    position: relative,
   },
 
   image: {
@@ -35,17 +35,17 @@ const useStyles = createStyles((theme) => ({
   },
 
   content: {
-    paddingTop: rem(220),
-    position: 'relative',
+    padding-top: rem(220),
+    position: relative,
     zIndex: 1,
 
     @media (max-width: 768px): {
-      paddingTop: rem(120),
+      padding-top: rem(120),
     },
   },
 
   title: {
-    fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+    font-family: Greycliff CF, var(--mantine-font-family),
     textAlign: 'center',
     fontWeight: 900,
     fontSize: rem(38),
@@ -59,7 +59,7 @@ const useStyles = createStyles((theme) => ({
     max-width: rem(540),
     margin: 'auto',
     margin-top: var(--mantine-spacing-xl,
-    marginBottom: `calc(${var(--mantine-spacing-xl} * 1.5)`,
+    margin-bottom: `calc(var(--mantine-spacing-xl) * 1.5)`,
   },
 }));
 

@@ -28,7 +28,7 @@ export const DataTableDateSwitch = () => {
     },
   ];
   return (
-    <Box sx={{ textAlign: 'right' }}>
+    <Box style={{ textAlign: 'right' }}>
       <GradientSegmentedControl data={_data} />
     </Box>
   );

@@ -6,12 +6,12 @@ import { ThreadModel } from '../../types/models/thread-model';
 
 const useStyles = createStyles((theme) => ({
   card: {
-    position: 'relative',
-    background-color: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
+    position: relative,
+    background-color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-white)),
     minHeight: '100vh',
   },
   header: {
-    // marginBottom: 50,
+    // margin-bottom: 50,
     gap: 0,
     @media (max-width: 768px): {
       paddingInline: 16,
@@ -19,7 +19,7 @@ const useStyles = createStyles((theme) => ({
   },
   rating: {
     position: 'absolute',
-    top: var(--mantine-spacing-xs,
+    top: var(--mantine-spacing-xs),
     right: rem(12),
     pointerEvents: 'none',
   },
@@ -28,8 +28,8 @@ const useStyles = createStyles((theme) => ({
     display: 'block',
     fontSize: 'var(--heading-font-size)',
     // fontSize: 50,
-    // margin-top: var(--mantine-spacing-md,
-    marginBottom: rem(5),
+    // margin-top: var(--mantine-spacing-md),
+    margin-bottom: rem(5),
   },
   articleArea: {
     background-color: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[0],
@@ -37,9 +37,9 @@ const useStyles = createStyles((theme) => ({
   },
 
   action: {
-    background-color: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+    background-color: light-dark(var(--mantine-color-gray-6), var(--mantine-color-dark-0)),
     ...theme.fn.hover({
-      background-color: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[1],
+      background-color: light-dark(var(--mantine-color-gray-5), var(--mantine-color-dark-1)),
     }),
   },
 
@@ -50,7 +50,7 @@ const useStyles = createStyles((theme) => ({
     max-width: 300,
   },
   footer: {
-    // paddingTop: var(--mantine-spacing-xl,
+    // padding-top: var(--mantine-spacing-xl,
   },
 }));
 

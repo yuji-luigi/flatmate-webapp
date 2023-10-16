@@ -7,7 +7,7 @@ const useStyles = createStyles(() => ({
   card: {
     flex: 3,
     border-radius: RADIUS.CARD,
-    position: 'relative',
+    position: relative,
     width: '100%',
     height: '100%',
     backgroundSize: 'cover',
@@ -33,7 +33,7 @@ const useStyles = createStyles(() => ({
     },
   },
   avatarWrapper: {
-    position: 'relative',
+    position: relative,
     display: 'inline-block',
     zIndex: 20,
   },
@@ -80,7 +80,7 @@ const ProfileCoverStatic = (props: CoverDataProp) => {
     <Card
       shadow="sm"
       padding="lg"
-      sx={sx}
+      style={sx}
       className={classes.card}
       style={{
         backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${

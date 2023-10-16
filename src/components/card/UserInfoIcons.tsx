@@ -4,11 +4,11 @@ import { Icons } from '../../data/icons/icons';
 
 const useStyles = createStyles((theme) => ({
   icon: {
-    color: theme.colorScheme === 'dark' ? theme.colors.dark[3] : theme.colors.gray[5],
+    color: light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-5)),
   },
 
   name: {
-    fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+    font-family: Greycliff CF, var(--mantine-font-family),
   },
 }));
 

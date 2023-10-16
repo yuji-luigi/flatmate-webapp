@@ -1,0 +1,8 @@
+.drawer {
+  overflow: scroll;
+}
+.form {
+  margin-top: 5px;
+  paddinginline: 15px;
+  max-width: 900px;
+}

@@ -19,7 +19,7 @@ export function StaticDataTable({ json, data }: { json: any[]; data: any[] }) {
             ))}
           </tbody>
         </Table>
-        <Divider sx={{ marginBottom: 20 }} />
+        <Divider style={{ marginBottom: 20 }} />
       </ScrollArea>
     </Box>
   );

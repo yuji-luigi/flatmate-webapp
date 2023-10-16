@@ -28,12 +28,12 @@ const useStyles = createStyles((theme) => ({
   title: {
     fontWeight: 800,
     fontSize: 20,
-    fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+    font-family: Greycliff CF, var(--mantine-font-family),
     lineHeight: 1.2,
   },
 
   body: {
-    padding: var(--mantine-spacing-md,
+    padding: var(--mantine-spacing-md),
     display: 'flex',
     flex-direction: 'column',
     justifyContent: 'space-between',
@@ -61,7 +61,7 @@ export function CardForListSmall(props: CardArticleImageDescFooterVerticalProps)
         <Group noWrap spacing={0}>
           {image && <Image src={image} height={150} width={140} />}
           <div className={classes.body}>
-            <Box sx={{ overflow: 'hidden' }}>
+            <Box style={{ overflow: 'hidden' }}>
               <Text className={classes.title} mt="xs" mb="xs">
                 {title}
               </Text>

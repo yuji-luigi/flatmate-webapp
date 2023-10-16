@@ -33,7 +33,7 @@ export const MaintenanceListCard = () => {
       ))}
       {showMore && (
         <Link className={cx(classes1.navList)} href="/dashboard/maintenances">
-          <Text sx={{ width: '100%', textAlign: 'right' }} size="lg">
+          <Text style={{ width: '100%', textAlign: 'right' }} size="lg">
             ...See more
           </Text>
         </Link>

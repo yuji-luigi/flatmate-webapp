@@ -3,29 +3,29 @@ import { IconArrowUpRight, IconDeviceAnalytics } from '@tabler/icons-react';
 
 const useStyles = createStyles((theme) => ({
   progressLabel: {
-    fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+    font-family: Greycliff CF, var(--mantine-font-family),
     lineHeight: 1,
     fontSize: theme.fontSizes.sm,
   },
 
   stat: {
     borderBottom: '3px solid',
-    paddingBottom: 5,
+    padding-bottom: 5,
   },
 
   statCount: {
-    fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+    font-family: Greycliff CF, var(--mantine-font-family),
     lineHeight: 1.3,
   },
 
   diff: {
-    fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+    font-family: Greycliff CF, var(--mantine-font-family),
     display: 'flex',
     align-items: 'center',
   },
 
   icon: {
-    color: theme.colorScheme === 'dark' ? theme.colors.dark[3] : theme.colors.gray[4],
+    color: light-dark(var(--mantine-color-gray-4), var(--mantine-color-dark-3)),
   },
 }));
 
@@ -50,7 +50,7 @@ export function StatsSegments({ total, diff, data }: StatsSegmentsProps) {
   }));
 
   const descriptions = data.map((stat) => (
-    <Box key={stat.label} sx={{ borderBottomColor: stat.color }} className={classes.stat}>
+    <Box key={stat.label} style={{ borderBottomColor: stat.color }} className={classes.stat}>
       <Text transform="uppercase" size="xs" color="dimmed" weight={700}>
         {stat.label}label
       </Text>

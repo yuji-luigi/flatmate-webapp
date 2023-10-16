@@ -1,0 +1,21 @@
+  .card: {
+    transition: transform 150ms ease box-shadow 150ms ease;
+    max-width: 400px;
+     width: 300px;
+     height: 300px;
+     flex: 1 auto;
+    padding: 10px;
+     border: 1px solid red;
+    grid-row-end: span 2;
+    &:hover: {
+      transform: scale(1.01);
+      boxShadow:  var(--mantine-shadow-md);
+    }
+  }
+
+  .title: {
+    font-family: Greycliff CF, var(--mantine-font-family);
+    font-weight: 600;
+  },
+  .description: { font-family: Greycliff CF, var(--mantine-font-family);
+     font-weight: 600 },

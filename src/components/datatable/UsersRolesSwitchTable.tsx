@@ -41,7 +41,7 @@ export function UsersRolesTable({ data }: UsersTableProps) {
 
   return (
     <ScrollArea>
-      <Table sx={{ minWidth: 800 }} verticalSpacing="sm">
+      <Table style={{ minWidth: 800 }} verticalSpacing="sm">
         <thead>
           <tr>
             <th>Employee</th>

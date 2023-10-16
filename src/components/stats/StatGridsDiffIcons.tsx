@@ -7,7 +7,7 @@ const useStyles = createStyles((theme) => ({
   },
 
   label: {
-    fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+    font-family: Greycliff CF, var(--mantine-font-family),
   },
 }));
 
@@ -40,7 +40,7 @@ export function StatsGridIcons({ data }: StatsGridIconsProps) {
           <ThemeIcon
             color="gray"
             variant="light"
-            sx={(theme) => ({ color: stat.diff > 0 ? theme.colors.teal[6] : theme.colors.red[6] })}
+            style={(theme) => ({ color: stat.diff > 0 ? theme.colors.teal[6] : theme.colors.red[6] })}
             size={38}
             radius="md"
           >

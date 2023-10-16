@@ -55,7 +55,7 @@ function ImagesInArticle({ images }: { images: File[] | UploadModel[] }) {
           return (
             <Carousel.Slide
               key={isFile ? image.name : image._id}
-              sx={{ display: 'flex', justifyContent: 'center' }}
+              style={{ display: 'flex', justifyContent: 'center' }}
             >
               <Image
                 src={isFile ? URL.createObjectURL(image) : image.url}

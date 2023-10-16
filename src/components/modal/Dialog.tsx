@@ -16,7 +16,7 @@ export function DialogDefault() {
         </Text>
 
         <Group align="flex-end">
-          <TextInput placeholder="hello@gluesticker.com" sx={{ flex: 1 }} />
+          <TextInput placeholder="hello@gluesticker.com" style={{ flex: 1 }} />
           <Button onClick={close}>Subscribe</Button>
         </Group>
       </Dialog>

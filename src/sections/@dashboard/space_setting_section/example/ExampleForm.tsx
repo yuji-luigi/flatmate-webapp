@@ -18,8 +18,8 @@ const ExampleForm = () => {
   console.log(JSON.stringify(spacesTableData));
   return (
     <form>
-      <Paper radius="md" sx={{ padding: 24 }} withBorder>
-        <Grid justify="center" grow gutter="xl" sx={{ columnGap: 8, margin: 0 }}>
+      <Paper radius="md" style={{ padding: 24 }} withBorder>
+        <Grid justify="center" grow gutter="xl" style={{ columnGap: 8, margin: 0 }}>
           {spacesTableData.map((field, index) => {
             const { col }: { col?: ColProps } = field;
             return (
@@ -30,7 +30,7 @@ const ExampleForm = () => {
                 md={5}
                 lg={5}
                 key={`${field.name}-${index}`}
-                sx={{ padding: 0, width: '100%' }}
+                style={{ padding: 0, width: '100%' }}
                 {...col}
               >
                 <FormFields formField={field as unknown as FormFieldTypes} form={form} />

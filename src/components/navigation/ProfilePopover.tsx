@@ -1,77 +1,66 @@
-import {
-  Popover,
-  Text,
-  Button,
-  Group,
-  Avatar,
-  createStyles,
-  getStylesRef,
-  Box,
-  Divider,
-  Menu,
-} from '@mantine/core';
-import useAuth from '../../../hooks/useAuth';
+import { Popover, Text, Button, Group, Avatar, Box, Divider, Menu } from '@mantine/core';
 import Link from 'next/link';
+import useAuth from '../../../hooks/useAuth';
 import { Icons } from '../../data/icons/icons';
 import { PATH_CLIENT } from '../../path/path-frontend';
 
-const useStyles = createStyles((theme /* , _params, getRef */) => {
-  const icon = getStylesRef('icon') as string;
+// const useStyles = createStyles((theme /* , _params, getRef */) => {
+//   const icon = getStylesRef('icon') as string;
 
-  return {
-    header: {
-      paddingBottom: var(--mantine-spacing-md,
-      marginBottom: `calc(${var(--mantine-spacing-md} * 1.5)`,
-      borderBottom: `1px solid ${
-        theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[2]
-      }`,
-    },
-    flexVertical: {
-      display: 'flex',
-      flex-direction: 'column',
-    },
-    avatar: {
-      cursor: 'pointer',
-    },
-    link: {
-      // textDecoration: 'none',
-      ...theme.fn.focusStyles(),
-      display: 'flex',
-      align-items: 'center',
-      textDecoration: 'none',
-      fontSize: theme.fontSizes.sm,
-      color: theme.colorScheme === 'dark' ? theme.colors.dark[1] : theme.colors.gray[7],
-      padding: `${var(--mantine-spacing-xs} ${var(--mantine-spacing-sm}`,
-      border-radius: --mantine-radius-sm,
-      fontWeight: 500,
-      '&:hover': {
-        background-color: theme.colorScheme === 'dark' ? theme.colors.dark[3] : theme.colors.gray[0],
-        color: theme.colorScheme === 'dark' ? theme.white : theme.black,
-      },
-    },
-    linkIcon: {
-      ref: icon,
-      color: theme.colorScheme === 'dark' ? theme.colors.dark[2] : theme.colors.gray[6],
-      marginRight: var(--mantine-spacing-sm,
-    },
+//   return {
+//     header: {
+//       padding-bottom: var(--mantine-spacing-md),
+//       margin-bottom: `calc(var(--mantine-spacing-md) * 1.5)`,
+//       borderBottom: `1px solid ${
+//         light-dark(var(--mantine-color-gray-2), var(--mantine-color-dark-4))
+//       }`,
+//     },
+//     flexVertical: {
+//       display: 'flex',
+//       flex-direction: 'column',
+//     },
+//     avatar: {
+//       cursor: 'pointer',
+//     },
+//     link: {
+//       // textDecoration: 'none',
+//       ...theme.fn.focusStyles(),
+//       display: 'flex',
+//       align-items: 'center',
+//       textDecoration: 'none',
+//       fontSize: theme.fontSizes.sm,
+//       color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-dark-1)),
+//       padding: `var(--mantine-spacing-xs) var(--mantine-spacing-sm)`,
+//       border-radius: var(--mantine-radius-sm),
+//       fontWeight: 500,
+//       '&:hover': {
+//         background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-3)),
+//         color: light-dark(var(--mantine-color-black), var(--mantine-color-white)),
+//       },
+//     },
+//     linkIcon: {
+//       ref: icon,
+//       color: light-dark(var(--mantine-color-gray-6), var(--mantine-color-dark-2)),
+//       marginRight: var(--mantine-spacing-sm),
+//     },
 
-    linkActive: {
-      '&, &:hover': {
-        background-color: theme.fn.variant({
-          variant: 'light',
-          color: theme.primaryColor,
-        }).background,
-        color: theme.fn.variant({ variant: 'light', color: theme.primaryColor }).color,
-        [`& .${icon}`]: {
-          color: theme.fn.variant({
-            variant: 'light',
-            color: theme.primaryColor,
-          }).color,
-        },
-      },
-    },
-  };
-});
+//     linkActive: {
+//       '&, &:hover': {
+//         background-color: theme.fn.variant({
+//           variant: 'light',
+//           color: theme.primaryColor,
+//         }).background,
+//         color: theme.fn.variant({ variant: 'light', color: theme.primaryColor }).color,
+//         [`& .${icon}`]: {
+//           color: theme.fn.variant({
+//             variant: 'light',
+//             color: theme.primaryColor,
+//           }).color,
+//         },
+//       },
+//     },
+//   };
+// });
 
 const popoverList = [
   {
@@ -101,7 +90,7 @@ export function ProfilePopover() {
         </div>
       </Group>
       <Menu.Dropdown>
-        <Menu.Label sx={{ textAlign: 'center' }}>Settings</Menu.Label>
+        <Menu.Label style={{ textAlign: 'center' }}>Settings</Menu.Label>
         <Box px={8} py={16}>
           {/* // todo: onhover change color */}
           {popoverList.map((list) => (

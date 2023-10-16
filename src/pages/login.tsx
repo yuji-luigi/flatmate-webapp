@@ -29,7 +29,7 @@ const useStyles = createStyles((theme) => ({
     }`,
     minHeight: 900,
     max-width: 450,
-    paddingTop: 80,
+    padding-top: 80,
 
     [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
       max-width: '100%',
@@ -37,8 +37,8 @@ const useStyles = createStyles((theme) => ({
   },
 
   title: {
-    color: theme.colorScheme === 'dark' ? theme.white : theme.black,
-    fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+    color: light-dark(var(--mantine-color-black), var(--mantine-color-white)),
+    font-family: Greycliff CF, var(--mantine-font-family),
   },
   link: {
     // color: 'black',
@@ -48,7 +48,7 @@ const useStyles = createStyles((theme) => ({
     color: theme.colors.green[5],
   },
   logo: {
-    color: theme.colorScheme === 'dark' ? theme.white : theme.black,
+    color: light-dark(var(--mantine-color-black), var(--mantine-color-white)),
     width: 120,
     display: 'block',
     marginLeft: 'auto',
@@ -57,10 +57,10 @@ const useStyles = createStyles((theme) => ({
   demoAccountBox: {
     padding: 10,
     border: 'solid black 1px',
-    borderColor: theme.colorScheme === 'dark' ? theme.white : theme.black,
+    borderColor: light-dark(var(--mantine-color-black), var(--mantine-color-white)),
     border-radius: 10,
     background: theme.colorScheme === 'dark' ? theme.colors.gray : '',
-    color: theme.colorScheme === 'dark' ? theme.white : theme.black,
+    color: light-dark(var(--mantine-color-black), var(--mantine-color-white)),
   },
 }));
 

@@ -21,12 +21,12 @@ const useStyles = createStyles((theme) => ({
 
   title: {
     fontWeight: 700,
-    fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+    font-family: Greycliff CF, var(--mantine-font-family),
     lineHeight: 1.2,
   },
 
   body: {
-    padding: var(--mantine-spacing-md,
+    padding: var(--mantine-spacing-md),
     display: 'flex',
     flex-direction: 'column',
     justifyContent: 'space-between',
@@ -59,10 +59,10 @@ export function CardSmallImageLeft({
   return (
     <Link href={`/${data._id}`} className={classes.link}>
       <Card withBorder radius="md" p={0} className={classes.card}>
-        <Group noWrap sx={{ height: 150 }} spacing={0}>
+        <Group noWrap style={{ height: 150 }} spacing={0}>
           {image && <Image src={image} height={150} width={140} />}
           <div className={classes.body}>
-            <Box sx={{ height: 100, overflow: 'hidden' }}>
+            <Box style={{ height: 100, overflow: 'hidden' }}>
               <Text className={classes.title} mt="xs" mb="xs">
                 {title}
               </Text>

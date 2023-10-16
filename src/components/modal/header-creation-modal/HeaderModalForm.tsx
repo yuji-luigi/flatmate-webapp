@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-pascal-case */
-import { Button, createStyles, LoadingOverlay, Text } from '@mantine/core';
+import { Button, LoadingOverlay, Text } from '@mantine/core';
 
 import { FormEvent, useMemo, useEffect } from 'react';
 import { useForm } from '@mantine/form';
@@ -16,6 +16,7 @@ import useAuth from '../../../../hooks/useAuth';
 import { sleep } from '../../../utils/helpers/helper-functions';
 import { FormFieldTypes } from '../../../types/general/data/data-table/formField-types';
 import { useSimpleDisclosureContext } from '../../../context/SimpleDisclosureContext';
+import classes from './HeaderModalForm.module.css';
 
 const config = {
   headers: {
@@ -24,18 +25,7 @@ const config = {
   // withCredentials: true,
 };
 
-const useStyles = createStyles(() => ({
-  drawer: {
-    overflow: 'scroll',
-  },
-  form: {
-    margin-top: 5,
-    paddingInline: 15,
-    max-width: 900,
-  },
-}));
 const HeaderModalForm = ({ entity }: { entity: 'threads' | 'maintenances' }) => {
-  const { classes } = useStyles();
   const { isSuperAdmin } = useAuth();
   const { close } = useSimpleDisclosureContext();
   // const [submitting, setSubmitting] = useState(false);
@@ -139,7 +129,7 @@ const HeaderModalForm = ({ entity }: { entity: 'threads' | 'maintenances' }) => 
           form={form}
           size="md"
           labels={{ organization: 'Organization', space: 'Spaces' }}
-          sx={{ marginBlock: 16, display }}
+          style={{ marginBlock: 16, display }}
         />
       )} */}
       <CreationToolBar

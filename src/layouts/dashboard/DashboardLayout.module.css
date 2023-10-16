@@ -1,0 +1,18 @@
+.pagecontent {
+  z-index: 10px;
+
+  padding-top: 50px;
+  @media (min-width: $mantine-breakpoint-md) {
+    paddingleft: 300px;
+  }
+}
+.bg {
+  minheight: 100vh;
+  /* backgroundImage: url(${currentSpace?.image}); */
+  backgroundblendmode: overlay;
+  background-color: bgColor;
+  backgroundsize: cover;
+  backgroundposition: center;
+
+  backgroundattachment: fixed;
+}

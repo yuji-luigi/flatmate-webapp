@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router';
 import {
-  createStyles,
   Header,
   Group,
   Button,
@@ -13,11 +12,6 @@ import {
   Drawer,
   ScrollArea,
   Stack,
-  Anchor,
-  Center,
-  HoverCard,
-  SimpleGrid,
-  Transition,
 } from '@mantine/core';
 // import { MantineLogo } from '@mantine/ds';
 import { useDisclosure } from '@mantine/hooks';
@@ -28,7 +22,6 @@ import {
   IconChartPie3,
   IconFingerprint,
   IconCoin,
-  IconChevronDown,
 } from '@tabler/icons-react';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
@@ -42,72 +35,72 @@ import { LoginButton } from './LoginButton';
 import { SignUpButton } from './SignUpButton';
 import { LogoBanner } from '../../components/banner/LogoBanner';
 
-const useStyles = createStyles((theme) => ({
-  link: {
-    display: 'flex',
-    align-items: 'center',
-    height: '100%',
-    paddingLeft: var(--mantine-spacing-md,
-    padding-right: var(--mantine-spacing-md,
-    textDecoration: 'none',
-    color: theme.colorScheme === 'dark' ? theme.white : theme.black,
-    fontWeight: 500,
-    fontSize: theme.fontSizes.sm,
+// const useStyles = createStyles((theme) => ({
+//   link: {
+//     display: 'flex',
+//     align-items: 'center',
+//     height: '100%',
+//     paddingLeft: var(--mantine-spacing-md),
+//     padding-right: var(--mantine-spacing-md),
+//     textDecoration: 'none',
+//     color: light-dark(var(--mantine-color-black), var(--mantine-color-white)),
+//     fontWeight: 500,
+//     fontSize: theme.fontSizes.sm,
 
-    @media (max-width: 768px): {
-      height: 42,
-      display: 'flex',
-      align-items: 'center',
-      width: '100%',
-    },
+//     @media (max-width: 768px): {
+//       height: 42,
+//       display: 'flex',
+//       align-items: 'center',
+//       width: '100%',
+//     },
 
-    ...theme.fn.hover({
-      background-color: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
-    }),
-  },
+//     ...theme.fn.hover({
+//       background-color: light-dark(var(--mantine-color-gray-6), var(--mantine-color-dark-0)),
+//     }),
+//   },
 
-  subLink: {
-    width: '100%',
-    padding: `${var(--mantine-spacing-xs}px ${var(--mantine-spacing-md}px`,
-    border-radius: --mantine-radius-md,
+//   subLink: {
+//     width: '100%',
+//     padding: `var(--mantine-spacing-xs)px var(--mantine-spacing-md)px`,
+//     border-radius: --mantine-radius-md,
 
-    ...theme.fn.hover({
-      background-color: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[0],
-    }),
+//     ...theme.fn.hover({
+//       background-color: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[0],
+//     }),
 
-    '&:active': theme.activeStyles,
-  },
+//     '&:active': theme.activeStyles,
+//   },
 
-  dropdownFooter: {
-    background-color: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[0],
-    margin: -var(--mantine-spacing-md,
-    margin-top: var(--mantine-spacing-sm,
-    padding: `${var(--mantine-spacing-md}px calc(${var(--mantine-spacing-md} * 2px)`,
-    paddingBottom: var(--mantine-spacing-xl,
-    borderTop: `1px solid ${
-      theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[1]
-    }`,
-  },
+//   dropdownFooter: {
+//     background-color: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[0],
+//     margin: -var(--mantine-spacing-md),
+//     margin-top: var(--mantine-spacing-sm),
+//     padding: `var(--mantine-spacing-md)px calc(var(--mantine-spacing-md) * 2px)`,
+//     padding-bottom: var(--mantine-spacing-xl,
+//     borderTop: `1px solid ${
+//       light-dark(var(--mantine-color-gray-5), var(--mantine-color-dark-1))
+//     }`,
+//   },
 
-  hiddenMobile: {
-    @media (max-width: 768px): {
-      display: 'none',
-    },
-  },
-  mobileNav: {
-    @media (max-width: 768px): {
-      justifyContent: 'space-between',
-      width: '100%',
-    },
-  },
+//   hiddenMobile: {
+//     @media (max-width: 768px): {
+//       display: 'none',
+//     },
+//   },
+//   mobileNav: {
+//     @media (max-width: 768px): {
+//       justifyContent: 'space-between',
+//       width: '100%',
+//     },
+//   },
 
-  hiddenDesktop: {
-    [theme.fn.largerThan('sm')]: {
-      display: 'none',
-      justifyContent: 'flex-end',
-    },
-  },
-}));
+//   hiddenDesktop: {
+//     [theme.fn.largerThan('sm')]: {
+//       display: 'none',
+//       justifyContent: 'flex-end',
+//     },
+//   },
+// }));
 
 const mockdata = [
   {
@@ -188,11 +181,11 @@ export function HomepageHeader() {
 
   // return null;
   return (
-    <Box sx={{ marginBottom: 59 }}>
+    <Box style={{ marginBottom: 59 }}>
       <Header fixed height={60} px="md">
-        <Group position="apart" sx={{ height: '100%' }}>
+        <Group position="apart" style={{ height: '100%' }}>
           {/* <MantineLogo size={30} /> */}
-          <Group sx={{ height: '100%' }} spacing={0} className={classes.hiddenMobile}>
+          <Group style={{ height: '100%' }} spacing={0} className={classes.hiddenMobile}>
             <LogoBanner transparent />
             <Link href="/" className={classes.link}>
               Home
@@ -227,7 +220,7 @@ export function HomepageHeader() {
               >
                 {(styles) => (
                   <div style={styles}>
-                    <HoverCard.Dropdown sx={{ overflow: 'hidden' }}>
+                    <HoverCard.Dropdown style={{ overflow: 'hidden' }}>
                       <Group position="apart" px="md">
                         <Text weight={500}>Features</Text>
                         <Anchor href="#" size="xs">
@@ -288,7 +281,7 @@ export function HomepageHeader() {
         className={classes.hiddenDesktop}
         zIndex={1000000}
       >
-        <ScrollArea sx={{ height: 'calc(100vh - 60px)' }} mx="-md">
+        <ScrollArea style={{ height: 'calc(100vh - 60px)' }} mx="-md">
           <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} />
 
           <a href="/" className={classes.link}>

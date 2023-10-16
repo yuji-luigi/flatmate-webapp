@@ -86,7 +86,7 @@ export function TableSectionHeader({
   if (!entity) return <LoadingOverlay visible />;
   return (
     <>
-      <Group className={classes.headerWrapper} sx={sx}>
+      <Group className={classes.headerWrapper} style={sx}>
         <Stack align="start" justify="flex-start">
           <Text size={32} fw={700}>
             {title}

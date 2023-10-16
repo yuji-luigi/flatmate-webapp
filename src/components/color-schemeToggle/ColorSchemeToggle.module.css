@@ -1,0 +1,6 @@
+.icon {
+  backgroundcolor: light-dark(var(--mantine-color-gray-6), var(--mantine-color-dark-0));
+  color: var(--mantine-color-yellow-4);
+  /* // color: theme.colorScheme === 'light' ? var(--mantine-color-yellow-4) : theme.colors.blue[6], */
+  border-color: light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-5));
+}
