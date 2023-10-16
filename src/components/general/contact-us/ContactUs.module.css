@@ -8,10 +8,10 @@
       theme.colors[theme.primaryColor][7]
      100%) */
   border-radius: var(--mantine-radius-md);
-  padding: calc(var(--mantine-spacing-xl) * 2.5);
+  padding: calc(var(--mantine-spacing-xl)) * 2.5);
 
-  @media (max-width: 768px) {
-    padding: calc(var(--mantine-spacing-xl) * 1.5);
+  @media (max-width: $mantine-breakpoint-sm) {
+    padding: calc(var(--mantine-spacing-xl)) * 1.5);
   }
 }
 
@@ -25,14 +25,14 @@ description {
   color: var(--mantine-color-primary-color);
   max-width: 300px;
 
-  @media (max-width: 768px) {
+  @media (max-width: $mantine-breakpoint-sm) {
     max-width: 100%;
   }
 }
 
 .form {
   background-color: var(--mantine-color-white);
-  padding: var(--mantine-spacing-xl);
+  padding: var(--mantine-spacing-xl));
   border-radius: var(--mantine-radius-md);
   box-shadow: var(--mantine-shadow-lg);
 }

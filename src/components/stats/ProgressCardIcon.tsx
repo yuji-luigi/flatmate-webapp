@@ -19,7 +19,7 @@ const useStyles = createStyles((theme) => ({
 
   title: {
     font-family: Greycliff CF, var(--mantine-font-family),
-    lineHeight: 1,
+    line-height: 1,
   },
 }));
 

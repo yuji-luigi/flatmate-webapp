@@ -39,17 +39,17 @@ const useStyles = createStyles((theme) => ({
     padding-right: var(--mantine-spacing-md),
     textDecoration: 'none',
     color: light-dark(var(--mantine-color-black), var(--mantine-color-white)),
-    fontWeight: 500,
-    fontSize: theme.fontSizes.sm,
+    font-weight: 500,
+    font-size: theme.fontSizes.sm,
 
-    @media (max-width: 768px): {
+    @media (max-width: $mantine-breakpoint-sm): {
       height: rem(42),
       display: 'flex',
       align-items: 'center',
       width: '100%',
     },
 
-    ...theme.fn.hover({
+    &:hover{
       background-color: light-dark(var(--mantine-color-gray-6), var(--mantine-color-dark-0)),
     }),
   },
@@ -57,9 +57,9 @@ const useStyles = createStyles((theme) => ({
   subLink: {
     width: '100%',
     padding: `var(--mantine-spacing-xs) var(--mantine-spacing-md)`,
-    border-radius: --mantine-radius-md,
+    border-radius:var( --mantine-radius-md),
 
-    ...theme.fn.hover({
+    &:hover{
       background-color: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[0],
     }),
 
@@ -71,20 +71,20 @@ const useStyles = createStyles((theme) => ({
     margin: `calc(var(--mantine-spacing-md) * -1)`,
     margin-top: var(--mantine-spacing-sm),
     padding: `var(--mantine-spacing-md) calc(var(--mantine-spacing-md) * 2)`,
-    padding-bottom: var(--mantine-spacing-xl,
+    padding-bottom: var(--mantine-spacing-xl),
     borderTop: `${rem(1)} solid ${
       light-dark(var(--mantine-color-gray-5), var(--mantine-color-dark-1))
     }`,
   },
 
   hiddenMobile: {
-    @media (max-width: 768px): {
+    @media (max-width: $mantine-breakpoint-sm): {
       display: 'none',
     },
   },
 
   hiddenDesktop: {
-    [theme.fn.largerThan('sm')]: {
+    @media (min-width: $mantine-breakpoint-sm): {
       display: 'none',
     },
   },

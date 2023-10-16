@@ -26,7 +26,7 @@
 }
 
 .root {
-  padding: calc(var(--mantine-spacing-xl) * 1.5);
+  padding: calc(var(--mantine-spacing-xl)) * 1.5);
 }
 
 .value {

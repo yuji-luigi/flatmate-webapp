@@ -1,0 +1,66 @@
+.link {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  paddingleft: var(--mantine-spacing-md);
+  padding-right: var(--mantine-spacing-md);
+  textdecoration: none;
+  color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
+  font-weight: 500;
+  font-size: theme.fontSizes.sm;
+
+  @media (max-width: $mantine-breakpoint-sm) {
+    height: 42px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+
+  &:hover {
+    background-color: light-dark(var(--mantine-color-gray-6), var(--mantine-color-dark-0));
+  }
+}
+
+.subLink {
+  width: 100%;
+  padding: var(--mantine-spacing-xs) px var(--mantine-spacing-md) px;
+  border-radius: var(--mantine-radius-md);
+
+  &:hover {
+    background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-7));
+  }
+  &:active {
+    background-color: var(--mantine-color-gray-6);
+  }
+}
+.dropdownFooter {
+  background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-7));
+  margin: -var(--mantine-spacing-md);
+  margin-top: var(--mantine-spacing-sm);
+  padding: var(--mantine-spacing-md) px calc(var(--mantine-spacing-md) * 2px);
+  padding-bottom: var(--mantine-spacing-xl);
+  border-top: 1px solid light-dark(var(--mantine-color-gray-5), var(--mantine-color-dark-1));
+}
+
+.hiddenMobile {
+  @media (max-width: $mantine-breakpoint-sm) {
+    display: none;
+  }
+}
+.mobileNav {
+  @media (max-width: $mantine-breakpoint-sm) {
+    justify-content: space-between;
+    width: 100%;
+  }
+}
+
+.hiddenDesktop {
+  @media (min-width: $mantine-breakpoint-sm) {
+    display: none;
+    justify-content: flex-end;
+  }
+}
+.header {
+  display: fixed;
+  height: 60px;
+}

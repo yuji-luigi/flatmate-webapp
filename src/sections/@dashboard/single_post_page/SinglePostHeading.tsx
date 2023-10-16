@@ -6,7 +6,7 @@ const useStyles = createStyles((theme) => ({
   card: {
     position: relative,
     background-color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-white)),
-    minHeight: '100vh',
+    min-height: '100vh',
   },
   header: {
     margin-bottom: 50,
@@ -20,7 +20,7 @@ const useStyles = createStyles((theme) => ({
 
   title: {
     display: 'block',
-    fontSize: 50,
+    font-size: 50,
     margin-top: var(--mantine-spacing-md),
     margin-bottom: rem(5),
   },
@@ -31,19 +31,19 @@ const useStyles = createStyles((theme) => ({
 
   action: {
     background-color: light-dark(var(--mantine-color-gray-6), var(--mantine-color-dark-0)),
-    ...theme.fn.hover({
+    &:hover{
       background-color: light-dark(var(--mantine-color-gray-5), var(--mantine-color-dark-1)),
     }),
   },
 
   articleMenuDivider: {
-    marginBlock: var(--mantine-spacing-xl,
+    marginBlock: var(--mantine-spacing-xl),
   },
   relatedArticlesSection: {
     max-width: 300,
   },
   footer: {
-    // padding-top: var(--mantine-spacing-xl,
+    // padding-top: var(--mantine-spacing-xl),
   },
 }));
 

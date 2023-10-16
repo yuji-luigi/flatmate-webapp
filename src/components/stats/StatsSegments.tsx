@@ -4,8 +4,8 @@ import { IconArrowUpRight, IconDeviceAnalytics } from '@tabler/icons-react';
 const useStyles = createStyles((theme) => ({
   progressLabel: {
     font-family: Greycliff CF, var(--mantine-font-family),
-    lineHeight: 1,
-    fontSize: theme.fontSizes.sm,
+    line-height: 1,
+    font-size: theme.fontSizes.sm,
   },
 
   stat: {
@@ -15,7 +15,7 @@ const useStyles = createStyles((theme) => ({
 
   statCount: {
     font-family: Greycliff CF, var(--mantine-font-family),
-    lineHeight: 1.3,
+    line-height: 1.3,
   },
 
   diff: {

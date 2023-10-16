@@ -21,22 +21,22 @@ const useStyles = createStyles((theme) => ({
     '&:hover': {
       background-color: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[0],
     },
-    @media (max-width: 768px): {
+    @media (max-width: $mantine-breakpoint-sm): {
       minWidth: 300,
     },
   },
   title: {
-    fontWeight: 800,
-    fontSize: 20,
+    font-weight: 800,
+    font-size: 20,
     font-family: Greycliff CF, var(--mantine-font-family),
-    lineHeight: 1.2,
+    line-height: 1.2,
   },
 
   body: {
     padding: var(--mantine-spacing-md),
     display: 'flex',
     flex-direction: 'column',
-    justifyContent: 'space-between',
+    justify-content: 'space-between',
     height: '100%',
   },
 }));

@@ -13,13 +13,13 @@ import { usePaginationContext } from '../../context/PaginationContext';
 import { useCrudSelectors } from '../../redux/features/crud/crudSlice';
 import { Sections } from '../../types/general/data/sections-type';
 import { FormFieldTypes } from '../../types/general/data/data-table/formField-types';
-import { dashboardStyle } from '../../styles/global-useStyles';
+import classes from '../../styles/dashboardStyle.module.css';
 import { ParsedQueryCustom } from '../../types/nextjs-custom-types/useRouter-types';
 
 export function CrudDataTable({ overridingEntity = '' }: { overridingEntity?: Sections }) {
   const ROWS_PER_PAGE = 10;
   // const TOTAL = Math.ceil(users.length / ROWS_PER_PAGE);
-  const { classes } = dashboardStyle();
+  // const { classes } = dashboardStyle();
 
   const [page, setPage] = useState(1);
   const { setPagination } = usePaginationContext();

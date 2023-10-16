@@ -1,4 +1,4 @@
-@media (max-width: 768px) {
+@media (max-width: $mantine-breakpoint-sm) {
   .tableCellContent {
     width: var(--table-cell-width-sm);
     word-wrap: break-word;

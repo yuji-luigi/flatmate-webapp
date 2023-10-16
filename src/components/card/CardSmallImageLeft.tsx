@@ -20,16 +20,16 @@ const useStyles = createStyles((theme) => ({
   },
 
   title: {
-    fontWeight: 700,
+    font-weight: 700,
     font-family: Greycliff CF, var(--mantine-font-family),
-    lineHeight: 1.2,
+    line-height: 1.2,
   },
 
   body: {
     padding: var(--mantine-spacing-md),
     display: 'flex',
     flex-direction: 'column',
-    justifyContent: 'space-between',
+    justify-content: 'space-between',
     height: '100%',
   },
 }));

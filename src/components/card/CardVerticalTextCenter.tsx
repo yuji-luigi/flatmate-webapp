@@ -53,12 +53,12 @@ const useStyles = createStyles((theme) => ({
   },
 
   title: {
-    fontWeight: 700,
-    fontSize: 32,
+    font-weight: 700,
+    font-size: 32,
     textAlign: 'center',
     font-family: Greycliff CF, var(--mantine-font-family),
     wordBreak: 'break-word',
-    lineHeight: 1.2,
+    line-height: 1.2,
     zIndex: 55,
   },
 
@@ -70,7 +70,7 @@ const useStyles = createStyles((theme) => ({
     padding: var(--mantine-spacing-md),
     display: 'flex',
     flex-direction: 'column',
-    justifyContent: 'center',
+    justify-content: 'center',
     height: '100%',
     // zIndex: 55,
   },

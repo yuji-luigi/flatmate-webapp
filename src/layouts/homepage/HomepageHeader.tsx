@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router';
 import {
-  Header,
   Group,
   Button,
   UnstyledButton,
@@ -25,6 +24,7 @@ import {
 } from '@tabler/icons-react';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import classes from './HomepageHeader.module.css';
 import { ColorSchemeToggle } from '../../components/color-schemeToggle/ColorSchemeToggle';
 
 import useAuth from '../../../hooks/useAuth';
@@ -44,17 +44,17 @@ import { LogoBanner } from '../../components/banner/LogoBanner';
 //     padding-right: var(--mantine-spacing-md),
 //     textDecoration: 'none',
 //     color: light-dark(var(--mantine-color-black), var(--mantine-color-white)),
-//     fontWeight: 500,
-//     fontSize: theme.fontSizes.sm,
+//     font-weight: 500,
+//     font-size: theme.fontSizes.sm,
 
-//     @media (max-width: 768px): {
+//     @media (max-width: $mantine-breakpoint-sm): {
 //       height: 42,
 //       display: 'flex',
 //       align-items: 'center',
 //       width: '100%',
 //     },
 
-//     ...theme.fn.hover({
+//     &:hover{
 //       background-color: light-dark(var(--mantine-color-gray-6), var(--mantine-color-dark-0)),
 //     }),
 //   },
@@ -62,9 +62,9 @@ import { LogoBanner } from '../../components/banner/LogoBanner';
 //   subLink: {
 //     width: '100%',
 //     padding: `var(--mantine-spacing-xs)px var(--mantine-spacing-md)px`,
-//     border-radius: --mantine-radius-md,
+//     border-radius:var( --mantine-radius-md),
 
-//     ...theme.fn.hover({
+//     &:hover{
 //       background-color: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[0],
 //     }),
 
@@ -76,28 +76,28 @@ import { LogoBanner } from '../../components/banner/LogoBanner';
 //     margin: -var(--mantine-spacing-md),
 //     margin-top: var(--mantine-spacing-sm),
 //     padding: `var(--mantine-spacing-md)px calc(var(--mantine-spacing-md) * 2px)`,
-//     padding-bottom: var(--mantine-spacing-xl,
+//     padding-bottom: var(--mantine-spacing-xl),
 //     borderTop: `1px solid ${
 //       light-dark(var(--mantine-color-gray-5), var(--mantine-color-dark-1))
 //     }`,
 //   },
 
 //   hiddenMobile: {
-//     @media (max-width: 768px): {
+//     @media (max-width: $mantine-breakpoint-sm): {
 //       display: 'none',
 //     },
 //   },
 //   mobileNav: {
-//     @media (max-width: 768px): {
-//       justifyContent: 'space-between',
+//     @media (max-width: $mantine-breakpoint-sm): {
+//       justify-content: 'space-between',
 //       width: '100%',
 //     },
 //   },
 
 //   hiddenDesktop: {
-//     [theme.fn.largerThan('sm')]: {
+//     @media (min-width: $mantine-breakpoint-sm): {
 //       display: 'none',
-//       justifyContent: 'flex-end',
+//       justify-content: 'flex-end',
 //     },
 //   },
 // }));
@@ -140,8 +140,7 @@ export function HomepageHeader() {
   const { currentSpace, currentOrganization } = useCookieContext();
   const [dropdownOpened, setDropdownOpened] = useState(false);
   const { user } = useAuth();
-  const { classes, theme } = useStyles();
-  const { push, pathname } = useRouter();
+  const { push, pathname, replace } = useRouter();
 
   useEffect(() => {
     closeDrawer();
@@ -149,12 +148,12 @@ export function HomepageHeader() {
 
   const links = mockdata.map((item) => (
     <UnstyledButton className={classes.subLink} key={item.title}>
-      <Group noWrap align="flex-start">
+      <Group wrap="nowrap" align="flex-start">
         <ThemeIcon size={34} variant="filled" radius="md">
-          <item.icon size={22} color={theme.primaryColor} />
+          <item.icon size={22} />
         </ThemeIcon>
         <div>
-          <Text size="sm" weight={500}>
+          <Text size="sm" fw={500}>
             {item.title}
           </Text>
           <Text size="xs" color="dimmed">
@@ -179,83 +178,16 @@ export function HomepageHeader() {
     </>
   );
 
-  // return null;
   return (
     <Box style={{ marginBottom: 59 }}>
-      <Header fixed height={60} px="md">
-        <Group position="apart" style={{ height: '100%' }}>
+      <header className={classes.header}>
+        <Group justify="apart" style={{ height: '100%' }}>
           {/* <MantineLogo size={30} /> */}
-          <Group style={{ height: '100%' }} spacing={0} className={classes.hiddenMobile}>
+          <Group style={{ height: '100%' }} gap={0} className={classes.hiddenMobile}>
             <LogoBanner transparent />
             <Link href="/" className={classes.link}>
               Home
             </Link>
-            {/* <HoverCard
-              width={600}
-              position="bottom"
-              radius="md"
-              shadow="md"
-              onOpen={() => {
-                console.log('open');
-                setDropdownOpened(true);
-              }}
-              onClose={() => setDropdownOpened(false)}
-              withinPortal
-            >
-              <HoverCard.Target>
-                <a href="#" className={classes.link}>
-                  <Center inline>
-                    <Box component="span" mr={5}>
-                      Features
-                    </Box>
-                    <IconChevronDown color={theme.primaryColor} />
-                  </Center>
-                </a>
-              </HoverCard.Target>
-              <Transition
-                mounted={dropdownOpened}
-                transition="pop-top-left"
-                duration={900}
-                timingFunction="ease"
-              >
-                {(styles) => (
-                  <div style={styles}>
-                    <HoverCard.Dropdown style={{ overflow: 'hidden' }}>
-                      <Group position="apart" px="md">
-                        <Text weight={500}>Features</Text>
-                        <Anchor href="#" size="xs">
-                          View all
-                        </Anchor>
-                      </Group>
-
-                      <Divider
-                        my="sm"
-                        mx="-md"
-                        color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'}
-                      />
-
-                      <SimpleGrid cols={2} spacing={0}>
-                        {links}
-                      </SimpleGrid>
-
-                      <div className={classes.dropdownFooter}>
-                        <Group position="apart">
-                          <div>
-                            <Text weight={500} size="sm">
-                              Get started
-                            </Text>
-                            <Text size="xs" color="dimmed">
-                              Their food sources have decreased, and their numbers
-                            </Text>
-                          </div>
-                          <Button variant="default">Get started</Button>
-                        </Group>
-                      </div>
-                    </HoverCard.Dropdown>
-                  </div>
-                )}
-              </Transition>
-            </HoverCard> */}
           </Group>
 
           <Group className={classes.mobileNav}>
@@ -270,7 +202,7 @@ export function HomepageHeader() {
             </Group>
           </Group>
         </Group>
-      </Header>
+      </header>
 
       <Drawer
         opened={drawerOpened}
@@ -282,13 +214,13 @@ export function HomepageHeader() {
         zIndex={1000000}
       >
         <ScrollArea style={{ height: 'calc(100vh - 60px)' }} mx="-md">
-          <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} />
+          <Divider my="sm" /* color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} */ />
 
           <a href="/" className={classes.link}>
             Home
           </a>
 
-          <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} />
+          <Divider my="sm" /* color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} */ />
 
           <Stack pb="xl" px="md">
             {logNav}

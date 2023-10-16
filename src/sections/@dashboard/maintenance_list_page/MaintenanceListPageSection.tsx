@@ -1,28 +1,13 @@
 //useSWR allows the use of SWR inside function components
-import useSWR from 'swr';
 
-import {
-  createStyles,
-  SimpleGrid,
-  Card,
-  Image,
-  Text,
-  Container,
-  AspectRatio,
-  Group,
-  Box,
-  Grid,
-} from '@mantine/core';
+import { Box } from '@mantine/core';
 //Write a fetcher function to wrap the native fetch function and return the result of a call to url in json format
 // import { UserCard } from '../../../components/card/UserCard';
-import { UserCard } from '../../../components/card/UserCard';
-import { CardArticleSmall } from '../../../components/card/CardArticleSmall';
-import { CardArticleImageDescFooter } from '../../../components/card/CardArticleImageDescFooter';
-import CardArticleImageBig from '../../../components/card/CardArticleImageBig';
-import axiosInstance from '../../../utils/axios-instance';
 import MaintenanceList from './MaintenanceList';
 import { useCrudSelectors } from '../../../redux/features/crud/crudSlice';
 import { MaintenanceModel } from '../../../types/models/maintenance-model';
+import classes from '.';
+
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 interface TypeMock {
@@ -57,7 +42,7 @@ const useStyles = createStyles((theme) => ({
     gridTemplateColumns: 'repeat(auto-fill, 400px)',
     // gridAutoColumns: 'repeat(400px, minmax(400px, 1fr))',
     gridAutoRows: 'minmax(50px, auto)',
-    justifyContent: 'center',
+    justify-content: 'center',
     gap: 10,
   },
 }));

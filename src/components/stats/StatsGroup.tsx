@@ -6,10 +6,10 @@ const useStyles = createStyles((theme) => ({
     backgroundImage: `linear-gradient(-60deg, ${theme.colors[theme.primaryColor][4]} 0%, ${
       theme.colors[theme.primaryColor][7]
     } 100%)`,
-    padding: `calc(var(--mantine-spacing-xl) * 1.5)`,
-    border-radius: --mantine-radius-md,
+    padding: `calc(var(--mantine-spacing-xl)) * 1.5)`,
+    border-radius:var( --mantine-radius-md),
 
-    @media (max-width: 768px): {
+    @media (max-width: $mantine-breakpoint-sm): {
       flex-direction: 'column',
     },
   },
@@ -17,22 +17,22 @@ const useStyles = createStyles((theme) => ({
   title: {
     color: theme.white,
     textTransform: 'uppercase',
-    fontWeight: 700,
-    fontSize: theme.fontSizes.sm,
+    font-weight: 700,
+    font-size: theme.fontSizes.sm,
   },
 
   count: {
     color: theme.white,
-    fontSize: 32,
-    lineHeight: 1,
-    fontWeight: 700,
+    font-size: 32,
+    line-height: 1,
+    font-weight: 700,
     margin-bottom: var(--mantine-spacing-md),
     font-family: Greycliff CF, var(--mantine-font-family),
   },
 
   description: {
     color: theme.colors[theme.primaryColor][0],
-    fontSize: theme.fontSizes.sm,
+    font-size: theme.fontSizes.sm,
     margin-top: 5,
   },
 
@@ -40,16 +40,16 @@ const useStyles = createStyles((theme) => ({
     flex: 1,
 
     '& + &': {
-      paddingLeft: var(--mantine-spacing-xl,
-      marginLeft: var(--mantine-spacing-xl,
+      paddingLeft: var(--mantine-spacing-xl),
+      margin-left: var(--mantine-spacing-xl),
       borderLeft: `1px solid ${theme.colors[theme.primaryColor][3]}`,
 
-      @media (max-width: 768px): {
+      @media (max-width: $mantine-breakpoint-sm): {
         paddingLeft: 0,
-        marginLeft: 0,
+        margin-left: 0,
         borderLeft: 0,
-        padding-top: var(--mantine-spacing-xl,
-        margin-top: var(--mantine-spacing-xl,
+        padding-top: var(--mantine-spacing-xl),
+        margin-top: var(--mantine-spacing-xl),
         borderTop: `1px solid ${theme.colors[theme.primaryColor][3]}`,
       },
     },

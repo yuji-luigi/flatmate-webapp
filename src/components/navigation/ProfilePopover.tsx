@@ -28,11 +28,11 @@ import { PATH_CLIENT } from '../../path/path-frontend';
 //       display: 'flex',
 //       align-items: 'center',
 //       textDecoration: 'none',
-//       fontSize: theme.fontSizes.sm,
+//       font-size: theme.fontSizes.sm,
 //       color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-dark-1)),
 //       padding: `var(--mantine-spacing-xs) var(--mantine-spacing-sm)`,
 //       border-radius: var(--mantine-radius-sm),
-//       fontWeight: 500,
+//       font-weight: 500,
 //       '&:hover': {
 //         background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-3)),
 //         color: light-dark(var(--mantine-color-black), var(--mantine-color-white)),

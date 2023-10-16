@@ -16,7 +16,7 @@ import { MaintenanceModel } from '../../types/models/maintenance-model';
 const useStyles = createStyles((theme) => ({
   action: {
     background-color: light-dark(var(--mantine-color-gray-6), var(--mantine-color-dark-0)),
-    ...theme.fn.hover({
+    &:hover{
       background-color: light-dark(var(--mantine-color-gray-5), var(--mantine-color-dark-1)),
     }),
   },

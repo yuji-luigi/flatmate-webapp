@@ -1,4 +1,4 @@
-import { Box, Button, Text, createStyles } from '@mantine/core';
+import { Box, Button, Text } from '@mantine/core';
 import Link from 'next/link';
 import React from 'react';
 import { NextRouter, useRouter } from 'next/router';
@@ -7,33 +7,15 @@ import {
   CardData,
 } from '../../../components/card/CardVerticalTextBottom';
 import { PATH_CLIENT } from '../../../path/path-frontend';
-import { profilePageStyle } from '../../../styles/global-useStyles';
+import classes2 from '../../../styles/global-useStyles.module.css';
 import { SpaceModel } from '../../../types/models/space-model';
 import axiosInstance from '../../../utils/axios-instance';
 import { PATH_API } from '../../../path/path-api';
 import { ParsedQueryCustom } from '../../../types/nextjs-custom-types/useRouter-types';
 import useAuth from '../../../../hooks/useAuth';
+import classes from './ChooseSpaceSection.module.css';
 
-const useStyles = createStyles((theme) => ({
-  pinContainer: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fill, 400px)',
-    gridAutoRows: 'minmax(50px, auto)',
-    justifyContent: 'center',
-    gap: 10,
-    @media (max-width: 768px): {
-      display: 'flex',
-      flex-direction: 'column',
-      justifyContent: 'center',
-      align-items: 'center',
-      width: '100%',
-    },
-  },
-}));
 export const ChooseSpaceSection = ({ spaces }: { spaces: SpaceModel[] }) => {
-  const { classes, cx, theme } = useStyles();
-  const { classes: classes2 } = profilePageStyle();
-
   const { user } = useAuth();
 
   const router: NextRouter & { query: ParsedQueryCustom; pathname: string } = useRouter();
@@ -52,7 +34,7 @@ export const ChooseSpaceSection = ({ spaces }: { spaces: SpaceModel[] }) => {
           </Button>
         </Box>
       )}
-      <Text variant="text" size={36} weight={600} align="center">
+      <Text variant="text" fz={36} fw={600} ta="center">
         Choose a space
       </Text>
       <Box

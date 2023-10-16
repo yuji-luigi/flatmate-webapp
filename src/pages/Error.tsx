@@ -11,30 +11,30 @@ const useStyles = createStyles((theme) => ({
   },
 
   title: {
-    fontWeight: 900,
-    fontSize: 34,
+    font-weight: 900,
+    font-size: 34,
     margin-bottom: var(--mantine-spacing-md),
     font-family: Greycliff CF, var(--mantine-font-family),
 
-    @media (max-width: 768px): {
-      fontSize: 32,
+    @media (max-width: $mantine-breakpoint-sm): {
+      font-size: 32,
     },
   },
 
   control: {
-    @media (max-width: 768px): {
+    @media (max-width: $mantine-breakpoint-sm): {
       width: '100%',
     },
   },
 
   mobileImage: {
-    [theme.fn.largerThan('sm')]: {
+    @media (min-width: $mantine-breakpoint-sm): {
       display: 'none',
     },
   },
 
   desktopImage: {
-    @media (max-width: 768px): {
+    @media (max-width: $mantine-breakpoint-sm): {
       display: 'none',
     },
   },

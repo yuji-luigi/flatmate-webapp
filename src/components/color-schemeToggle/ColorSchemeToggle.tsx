@@ -9,6 +9,7 @@ type Props = {
   sx?: MantineStyleProp;
   className?: string;
 };
+
 export function ColorSchemeToggle(props: Props) {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
   const { sx, className } = props;

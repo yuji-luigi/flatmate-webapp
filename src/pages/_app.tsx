@@ -1,4 +1,6 @@
-import {  MantineProvider } from '@mantine/core';
+import '@mantine/core/styles.css';
+
+import { MantineProvider } from '@mantine/core';
 import { Notifications } from '@mantine/notifications';
 import { getCookie, setCookie } from 'cookies-next';
 import { GetServerSidePropsContext, NextPage } from 'next';
@@ -28,9 +30,8 @@ export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };
-function App(props: AppProps ) {
+function App(props: AppProps) {
   const { Component, pageProps }: AppPropsWithLayout = props;
-
 
   const getLayout = Component.getLayout ?? ((page) => page);
 
@@ -49,37 +50,36 @@ function App(props: AppProps ) {
 
       <AuthProvider>
         <ReduxProvider store={reduxStore}>
-            <MantineProvider
-              theme={{
-                // colors: myColors,
-                primaryColor: 'yellow',
-                // Default gradient used in components that support `variant="gradient"` (Button, ThemeIcon, etc.)
-                defaultGradient: { deg: 45, from: 'yellow', to: 'gold' }, // primaryColor: 'sw-dark-blue',
-                fontFamily: 'Lato, sans-serif',
-                components: {
-                  Card: CardOverride(),
-                },
-              }}
-              // withGlobalStyles
-              // cssVariablesResolver
-              withCssVariables
-              // withNormalizeCSS
-            >
-              <DashboardLayoutContextProvider>
-                <PaginationContextProvider>
-                  <DrawerContextProvider>
-                    <_ModalContextProvider>
-                      <FilterContextProvider>
-                        <Notifications />
-                        {getLayout(<Component {...pageProps} />)}
-                        <ModalRootCustom />
-                      </FilterContextProvider>
-                    </_ModalContextProvider>
-                  </DrawerContextProvider>
-                </PaginationContextProvider>
-              </DashboardLayoutContextProvider>
-            </MantineProvider>
-          </ColorSchemeProvider>
+          <MantineProvider
+            theme={{
+              // colors: myColors,
+              primaryColor: 'yellow',
+              // Default gradient used in components that support `variant="gradient"` (Button, ThemeIcon, etc.)
+              defaultGradient: { deg: 45, from: 'yellow', to: 'gold' }, // primaryColor: 'sw-dark-blue',
+              fontFamily: 'Lato, sans-serif',
+              components: {
+                Card: CardOverride(),
+              },
+            }}
+            // withGlobalStyles
+            // cssVariablesResolver
+            withCssVariables
+            // withNormalizeCSS
+          >
+            <DashboardLayoutContextProvider>
+              <PaginationContextProvider>
+                <DrawerContextProvider>
+                  <_ModalContextProvider>
+                    <FilterContextProvider>
+                      <Notifications />
+                      {getLayout(<Component {...pageProps} />)}
+                      <ModalRootCustom />
+                    </FilterContextProvider>
+                  </_ModalContextProvider>
+                </DrawerContextProvider>
+              </PaginationContextProvider>
+            </DashboardLayoutContextProvider>
+          </MantineProvider>
         </ReduxProvider>
       </AuthProvider>
     </>

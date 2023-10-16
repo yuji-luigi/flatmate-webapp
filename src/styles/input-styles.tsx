@@ -13,7 +13,7 @@ export const containerInputStyles = createStyles((theme) => ({
   label: {
     position: 'absolute',
     pointerEvents: 'none',
-    fontSize: theme.fontSizes.xs,
+    font-size: theme.fontSizes.xs,
     paddingLeft: --mantine - spacing - sm,
     padding-top: `calc(${--mantine - spacing - sm} / 2)`,
     zIndex: 1,

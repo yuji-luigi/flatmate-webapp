@@ -44,7 +44,7 @@ const useStyles = createStyles((theme) => ({
     gridTemplateColumns: 'repeat(auto-fill, 400px)',
     // gridAutoColumns: 'repeat(400px, minmax(400px, 1fr))',
     gridAutoRows: 'minmax(50px, auto)',
-    justifyContent: 'center',
+    justify-content: 'center',
     gap: 10,
   },
 }));

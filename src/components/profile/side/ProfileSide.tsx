@@ -16,7 +16,7 @@ const useStyles = createStyles((theme) => ({
      @media (max-width: $mantine-breakpoint-md): {
       width: '100%', // background-color: theme.cdolors.yellow[6],
     },
-    @media (max-width: 768px): {
+    @media (max-width: $mantine-breakpoint-sm): {
       width: '100%', // background-color: theme.cdolors.yellow[6],
       // flex-direction: 'row',
     },

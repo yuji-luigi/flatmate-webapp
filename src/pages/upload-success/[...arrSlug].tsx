@@ -39,7 +39,7 @@ const useStyles = createStyles((theme) => ({
     position: relative,
     zIndex: 1,
 
-    @media (max-width: 768px): {
+    @media (max-width: $mantine-breakpoint-sm): {
       padding-top: rem(120),
     },
   },
@@ -47,19 +47,19 @@ const useStyles = createStyles((theme) => ({
   title: {
     font-family: Greycliff CF, var(--mantine-font-family),
     textAlign: 'center',
-    fontWeight: 900,
-    fontSize: rem(38),
+    font-weight: 900,
+    font-size: rem(38),
 
-    @media (max-width: 768px): {
-      fontSize: rem(32),
+    @media (max-width: $mantine-breakpoint-sm): {
+      font-size: rem(32),
     },
   },
 
   description: {
     max-width: rem(540),
     margin: 'auto',
-    margin-top: var(--mantine-spacing-xl,
-    margin-bottom: `calc(var(--mantine-spacing-xl) * 1.5)`,
+    margin-top: var(--mantine-spacing-xl),
+    margin-bottom: `calc(var(--mantine-spacing-xl)) * 1.5)`,
   },
 }));
 

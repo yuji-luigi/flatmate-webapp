@@ -1,5 +1,4 @@
 import {
-  createStyles,
   Card,
   Image,
   Avatar,
@@ -8,7 +7,7 @@ import {
   Box,
   Stack,
   BackgroundImage,
-  Sx,
+  MantineStyleProp,
 } from '@mantine/core';
 import Link from 'next/link';
 import { threadId } from 'worker_threads';
@@ -18,66 +17,7 @@ import { CARD_LINK_PATH, PATH_CLIENT } from '../../path/path-frontend';
 import { PATH_IMAGE } from '../../lib/image-paths';
 import { UserModel } from '../../types/models/user-model';
 import { UploadModel } from '../../types/models/upload-model';
-
-const useStyles = createStyles((theme) => ({
-  link: {
-    textDecoration: 'none',
-  },
-  card: {
-    height: 500,
-    cursor: 'pointer',
-    @media (max-width: 768px): {
-      height: 300,
-      width: 300,
-    },
-    // '&:hover': {
-    //   background-color: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[0],
-    // },
-    zIndex: 40,
-  },
-
-  bgImage: {
-    background: 'linearGradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%)',
-    height: '100%',
-    zIndex: 40,
-  },
-  bgImageGradient: {
-    width: '100%',
-    height: '100%',
-    position: 'absolute',
-    background: 'linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%)',
-    zIndex: 10,
-    '&:hover': {
-      background-color:
-        theme.colorScheme === 'dark' ? 'rgba(255,255,255,0.5)' : 'rgba(255,255,255,0.5)',
-    },
-  },
-
-  title: {
-    fontWeight: 700,
-    font-family: Greycliff CF, var(--mantine-font-family),
-    wordBreak: 'break-word',
-    lineHeight: 1.2,
-    zIndex: 60,
-  },
-
-  appear: {
-    zIndex: 65,
-  },
-
-  body: {
-    padding: var(--mantine-spacing-md),
-    display: 'flex',
-    flex-direction: 'column',
-    justifyContent: 'end',
-    height: '100%',
-    // zIndex: 55,
-  },
-  text: {
-    color: 'black',
-    // color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.black,
-  },
-}));
+import classes from './CardVerticalTextBottom.module.css';
 
 export interface CardData {
   _id: string;
@@ -95,7 +35,7 @@ interface CardArticleImageDescFooterVerticalProps {
   // date: string;
   href?: string;
   onClick?: () => void;
-  sx?: Sx;
+  style?: MantineStyleProp;
 
   data: CardData;
   // data: SpaceModel | OrganizationModel;
@@ -105,15 +45,13 @@ export function CardArticleVerticalTextBottom({
   // title,
   data,
   href,
-  sx,
+  style,
   onClick,
 }: CardArticleImageDescFooterVerticalProps) {
   // const description =
   //   data.description?.length > 50 ? `${data.description.substring(0, 50)}...` : data.description;
-  const { classes, cx } = useStyles();
-  const router = useRouter();
   const content = (
-    <Card withBorder radius="md" p={0} className={classes.card} onClick={onClick} style={sx}>
+    <Card withBorder radius="md" p={0} className={classes.card} onClick={onClick} style={style}>
       <BackgroundImage
         className={classes.bgImage}
         src={data.cover?.url || PATH_IMAGE.rootSpaceCard1}
@@ -122,18 +60,18 @@ export function CardArticleVerticalTextBottom({
         <Box className={classes.bgImageGradient} />
 
         <div className={classes.body}>
-          <Text className={cx(classes.title, classes.appear, classes.text)}>{data.name}</Text>
+          <Text className={`${classes.title} ${classes.appear} ${classes.text}`}>{data.name}</Text>
           <Text
-            className={cx(classes.appear, classes.text)}
-            transform="uppercase"
-            color="dimmed"
-            weight={700}
+            className={`${classes.appear} ${classes.text}`}
+            tt="uppercase"
+            c="dimmed"
+            fw={700}
             size="xs"
           >
             {data.address}
           </Text>
-          <Group noWrap className={cx(classes.appear)} spacing="xs">
-            <Group spacing="xs" noWrap>
+          <Group wrap="nowrap" className={classes.appear} gap="xs">
+            <Group gap="xs" wrap="nowrap">
               {/* <Avatar size={20} src={''} /> */}
               <Text className={classes.text} size="xs">
                 {data.user?.name}

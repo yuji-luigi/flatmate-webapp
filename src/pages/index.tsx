@@ -2,9 +2,9 @@ import { ReactElement } from 'react';
 import Head from 'next/head';
 import Layout from '../layouts';
 import { HeroSection } from '../sections/@homepage/hero';
-import { AboutSection } from '../sections/@homepage/AboutSection';
+// import { AboutSection } from '../sections/@homepage/AboutSection';
 import BannerSection from '../sections/@homepage/BannerSection';
-import ContactUsSection from '../sections/@homepage/ContactUsSection';
+// import ContactUsSection from '../sections/@homepage/ContactUsSection';
 
 export default function HomePage() {
   return (
@@ -17,9 +17,9 @@ export default function HomePage() {
         />
       </Head>
       <HeroSection />
-      <AboutSection />
+      {/* <AboutSection /> */}
       <BannerSection />
-      <ContactUsSection />
+      {/* <ContactUsSection /> */}
     </>
   );
 }

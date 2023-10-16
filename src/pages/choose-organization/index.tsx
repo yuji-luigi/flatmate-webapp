@@ -1,5 +1,5 @@
 import React, { ReactElement, useEffect } from 'react';
-import { Box, Divider, Stack, Text, createStyles } from '@mantine/core';
+import { Box, Divider, Stack, Text } from '@mantine/core';
 import { useRouter } from 'next/router';
 import useAuth from '../../../hooks/useAuth';
 import PostList from '../../sections/@dashboard/posts_list_page/PostList';
@@ -16,31 +16,12 @@ import { OrganizationModel } from '../../types/models/organization-model';
 import { SpaceModel } from '../../types/models/space-model';
 import { CardArticleSmall } from '../../components/card/CardArticleSmall';
 import { CardForListSmall } from '../../components/card/CardForListSmall';
-import { profilePageStyle } from '../../styles/global-useStyles';
+import classes from '../../styles/profilePageStyles.module.css';
 
-const useStyles = createStyles((theme) => ({
-  pinContainer: {
-    display: 'flex',
-    flex-direction: 'column',
-    justifyContent: 'center',
-    max-width: 600,
-    margin: 'auto',
-    gap: 8,
-  },
-  // pinContainer: {
-  //   display: 'grid',
-  //   gridTemplateColumns: 'repeat(auto-fill, 400px)',
-  //   gridAutoRows: 'minmax(50px, auto)',
-  //   justifyContent: 'center',
-  //   gap: 10,
-  // },
-}));
 const ChooseOrganizationPage = () => {
   const { user } = useAuth();
   const [organizations, setOrganizations] = React.useState<OrganizationModel[] | SpaceModel[]>([]);
-  const { classes, cx, theme } = useStyles();
   const router = useRouter();
-  const { classes: classes2 } = profilePageStyle();
 
   useEffect(() => {
     if (!user) return;
@@ -62,9 +43,9 @@ const ChooseOrganizationPage = () => {
   }
 
   return (
-    <Box className={classes2.container}>
+    <Box className={classes.container}>
       <Stack justify="center">
-        <Text variant="text" size={36} weight={600} align="center">
+        <Text variant="text" fz={36} fw={600} ta="center">
           {title}
         </Text>
         <Divider />

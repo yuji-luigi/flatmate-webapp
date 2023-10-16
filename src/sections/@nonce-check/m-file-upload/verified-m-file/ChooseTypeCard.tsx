@@ -4,7 +4,7 @@ import { CheckType } from '../../../../types/models/check-type';
 
 const useStyles = createStyles(() => ({
   buttonContainer: {
-    justifyContent: 'center',
+    justify-content: 'center',
   },
   button: {
     width: '45%',

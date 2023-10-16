@@ -16,14 +16,14 @@ import { SingleArticleHeading } from '../../../components/posts/SingleArticleHea
 
 const useStyles = createStyles((theme) => ({
   main: {
-    minHeight: 'calc(100vh - 64px)',
-    @media (max-width: 768px): {
-      paddingInline: 0,
+    min-height: 'calc(100vh - 64px)',
+    @media (max-width: $mantine-breakpoint-sm): {
+      padding-inline: 0,
     },
   },
 
   articleMenuDivider: {
-    marginBlock: var(--mantine-spacing-xl,
+    marginBlock: var(--mantine-spacing-xl),
   },
 }));
 

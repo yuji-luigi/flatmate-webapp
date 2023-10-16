@@ -31,7 +31,7 @@ const useStyles = createStyles(() => ({
   },
   form: {
     margin-top: 5,
-    paddingInline: 15,
+    padding-inline: 15,
     max-width: 900,
   },
 }));

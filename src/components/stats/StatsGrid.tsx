@@ -12,17 +12,17 @@ import classesM from './StatsGrid.module.css';
 
 // const useStyles = createStyles((theme) => ({
 //   root: {
-//     padding: `calc(var(--mantine-spacing-xl) * 1.5)`,
+//     padding: `calc(var(--mantine-spacing-xl)) * 1.5)`,
 //   },
 
 //   value: {
-//     fontSize: 24,
-//     fontWeight: 700,
-//     lineHeight: 1,
+//     font-size: 24,
+//     font-weight: 700,
+//     line-height: 1,
 //   },
 
 //   diff: {
-//     lineHeight: 1,
+//     line-height: 1,
 //     display: 'flex',
 //     align-items: 'center',
 //   },
@@ -32,7 +32,7 @@ import classesM from './StatsGrid.module.css';
 //   },
 
 //   title: {
-//     fontWeight: 700,
+//     font-weight: 700,
 //     textTransform: 'uppercase',
 //   },
 // }));

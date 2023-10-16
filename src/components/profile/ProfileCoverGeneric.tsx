@@ -40,7 +40,7 @@ const useStyles = createStyles((theme) => ({
     height: '100%',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-    minHeight: '200px',
+    min-height: '200px',
     display: 'flex',
     align-items: 'flex-end',
   },
@@ -53,8 +53,8 @@ const useStyles = createStyles((theme) => ({
     height: '100%',
     background: 'rgba(0, 0, 0, 0.7)',
     color: '#fff',
-    fontSize: '14px',
-    fontWeight: 500,
+    font-size: '14px',
+    font-weight: 500,
     opacity: 0,
     '&:hover': {
       opacity: 0.7,
@@ -76,7 +76,7 @@ const useStyles = createStyles((theme) => ({
     cursor: 'pointer',
     display: 'flex',
     align-items: 'end',
-    justifyContent: 'center',
+    justify-content: 'center',
     transition: 'all 200ms ease-in-out',
     '&:hover': {
       opacity: 0.7,
@@ -223,7 +223,7 @@ const ProfileCoverGeneric = ({
           </Group>
         </Box>
       )}
-      <Group style={{ justifyContent: 'space-between', width: '100%' }}>
+      <Group style={{ justify-content: 'space-between', width: '100%' }}>
         <Group>
           {!noAvatar && (
             <Box className={classes.avatarWrapper}>

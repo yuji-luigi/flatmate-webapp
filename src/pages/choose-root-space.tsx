@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { Box, createStyles } from '@mantine/core';
+import { Box } from '@mantine/core';
 import useSWR from 'swr';
 import { AxiosError } from 'axios';
 import { useRouter } from 'next/router';
@@ -16,22 +16,22 @@ import { UserModel } from '../types/models/user-model';
 import { SpaceModel } from '../types/models/space-model';
 import { useCookieContext } from '../context/CookieContext';
 import { ChooseSpaceSection } from '../sections/@login_signup/choose-space/ChooseSpaceSection';
-
-const useStyles = createStyles((theme) => ({
-  pinContainer: {
-    // position: 'absolute',
-    // width: '100%',
-    // left: '50%',
-    // transform: 'translateX(-50%)',
-    display: 'grid',
-    // gridTemplateColumns: 'repeat(auto-fit, minmax(400px, max-content))',
-    gridTemplateColumns: 'repeat(auto-fill, 400px)',
-    // gridAutoColumns: 'repeat(400px, minmax(400px, 1fr))',
-    gridAutoRows: 'minmax(50px, auto)',
-    justifyContent: 'center',
-    gap: 10,
-  },
-}));
+import classes from './choose-root-space.module.css';
+// const useStyles = createStyles((theme) => ({
+//   pinContainer: {
+//     // position: 'absolute',
+//     // width: '100%',
+//     // left: '50%',
+//     // transform: 'translateX(-50%)',
+//     display: 'grid',
+//     // gridTemplateColumns: 'repeat(auto-fit, minmax(400px, max-content))',
+//     gridTemplateColumns: 'repeat(auto-fill, 400px)',
+//     // gridAutoColumns: 'repeat(400px, minmax(400px, 1fr))',
+//     gridAutoRows: 'minmax(50px, auto)',
+//     justify-content: 'center',
+//     gap: 10,
+//   },
+// }));
 
 export const fetchSpaceSelections = async (userId?: string | null) => {
   if (!userId) return null;

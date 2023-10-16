@@ -31,9 +31,9 @@ import { HeaderNotificationButton } from './notifications/HeaderNotificationButt
 //     padding-right: var(--mantine-spacing-md),
 //     height: 56,
 //     display: 'flex',
-//     justifyContent: 'space-between',
+//     justify-content: 'space-between',
 //     zIndex: 50,
-//     // justifyContent: 'flex-start',
+//     // justify-content: 'flex-start',
 //     align-items: 'center',
 //     //  @media (max-width: $mantine-breakpoint-md): {
 //     //   height: 120,
@@ -43,9 +43,9 @@ import { HeaderNotificationButton } from './notifications/HeaderNotificationButt
 //   inner: {
 //     height: 56,
 //     display: 'flex',
-//     justifyContent: 'space-between',
+//     justify-content: 'space-between',
 //     zIndex: 50,
-//     // justifyContent: 'flex-start',
+//     // justify-content: 'flex-start',
 //     align-items: 'center',
 //   },
 
@@ -95,7 +95,7 @@ import { HeaderNotificationButton } from './notifications/HeaderNotificationButt
 //   center: {
 //     gridColumn: 2, // Place in the middle column
 //     display: 'flex',
-//     justifyContent: 'center',
+//     justify-content: 'center',
 //   },
 
 //   OrganizationSpaceSelect: {
@@ -132,12 +132,12 @@ import { HeaderNotificationButton } from './notifications/HeaderNotificationButt
 //     textDecoration: 'none',
 
 //     display: 'block',
-//     lineHeight: 1,
+//     line-height: 1,
 //     padding: '8px 12px',
 //     border-radius: var(--mantine-radius-sm),
 //     color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.colors.gray[7],
-//     fontSize: theme.fontSizes.sm,
-//     fontWeight: 500,
+//     font-size: theme.fontSizes.sm,
+//     font-weight: 500,
 //     fontStyle: 'normal',
 
 //     '&:hover': {

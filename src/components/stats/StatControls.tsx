@@ -14,8 +14,8 @@ const useStyles = createStyles((theme) => ({
     backgroundImage: `linear-gradient(-60deg, ${theme.colors[theme.primaryColor][4]} 0%, ${
       theme.colors[theme.primaryColor][7]
     } 100%)`,
-    padding: var(--mantine-spacing-xl,
-    border-radius: --mantine-radius-md,
+    padding: var(--mantine-spacing-xl),
+    border-radius:var( --mantine-radius-md),
     display: 'flex',
 
     [theme.fn.smallerThan('xs')]: {
@@ -24,7 +24,7 @@ const useStyles = createStyles((theme) => ({
   },
 
   icon: {
-    marginLeft: 'auto',
+    margin-left: 'auto',
     marginRight: 'auto',
     margin-top: var(--mantine-spacing-lg,
     color: theme.colors[theme.primaryColor][6],
@@ -32,27 +32,27 @@ const useStyles = createStyles((theme) => ({
 
   stat: {
     minWidth: 98,
-    padding-top: var(--mantine-spacing-xl,
-    minHeight: 140,
+    padding-top: var(--mantine-spacing-xl),
+    min-height: 140,
     display: 'flex',
     flex: 1,
     flex-direction: 'column',
-    justifyContent: 'space-between',
+    justify-content: 'space-between',
     background-color: theme.white,
   },
 
   label: {
     textTransform: 'uppercase',
-    fontWeight: 700,
-    fontSize: theme.fontSizes.xs,
+    font-weight: 700,
+    font-size: theme.fontSizes.xs,
     font-family: Greycliff CF, var(--mantine-font-family),
     color: theme.colors.gray[6],
-    lineHeight: 1.2,
+    line-height: 1.2,
   },
 
   value: {
-    fontSize: theme.fontSizes.sm,
-    fontWeight: 700,
+    font-size: theme.fontSizes.sm,
+    font-weight: 700,
     color: theme.black,
   },
 
@@ -61,32 +61,32 @@ const useStyles = createStyles((theme) => ({
   },
 
   day: {
-    fontSize: 44,
-    fontWeight: 700,
+    font-size: 44,
+    font-weight: 700,
     color: theme.white,
-    lineHeight: 1,
+    line-height: 1,
     textAlign: 'center',
     margin-bottom: 5,
     font-family: Greycliff CF, var(--mantine-font-family),
   },
 
   month: {
-    fontSize: theme.fontSizes.sm,
+    font-size: theme.fontSizes.sm,
     color: theme.white,
-    lineHeight: 1,
+    line-height: 1,
     textAlign: 'center',
   },
 
   controls: {
     display: 'flex',
     flex-direction: 'column',
-    marginRight: `calc(var(--mantine-spacing-xl) * 2)`,
+    marginRight: `calc(var(--mantine-spacing-xl)) * 2)`,
 
     [theme.fn.smallerThan('xs')]: {
       flex-direction: 'row',
       align-items: 'center',
       marginRight: 0,
-      margin-bottom: var(--mantine-spacing-xl,
+      margin-bottom: var(--mantine-spacing-xl),
     },
   },
 
@@ -94,7 +94,7 @@ const useStyles = createStyles((theme) => ({
     flex: 1,
     display: 'flex',
     flex-direction: 'column',
-    justifyContent: 'center',
+    justify-content: 'center',
   },
 
   control: {
@@ -102,9 +102,9 @@ const useStyles = createStyles((theme) => ({
     width: '100%',
     color: theme.colors[theme.primaryColor][2],
     display: 'flex',
-    justifyContent: 'center',
+    justify-content: 'center',
     align-items: 'center',
-    border-radius: --mantine-radius-md,
+    border-radius:var( --mantine-radius-md),
     transition: 'background-color 50ms ease',
 
     [theme.fn.smallerThan('xs')]: {

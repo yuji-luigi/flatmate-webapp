@@ -29,7 +29,7 @@ import { UserModel } from '../../../types/models/user-model';
 
 const useStyles = createStyles((theme) => ({
   formContainer: {
-    justifyContent: 'start',
+    justify-content: 'start',
     marginBlock: var(--mantine-spacing-md),
   },
   buttonContainer: {
@@ -38,7 +38,7 @@ const useStyles = createStyles((theme) => ({
   },
   button: {
     flex: 1,
-    @media (max-width: 768px): {
+    @media (max-width: $mantine-breakpoint-sm): {
       width: '100%',
       flex: 'unset',
     },

@@ -6,12 +6,12 @@ const useStyles = createStyles((theme) => ({
   link: {
     textDecoration: 'none',
     display: 'block',
-    lineHeight: 1,
+    line-height: 1,
     padding: '8px 12px',
     border-radius: var(--mantine-radius-sm),
     color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.colors.gray[7],
-    fontSize: theme.fontSizes.sm,
-    fontWeight: 500,
+    font-size: theme.fontSizes.sm,
+    font-weight: 500,
     fontStyle: 'normal',
 
     '&:hover': {

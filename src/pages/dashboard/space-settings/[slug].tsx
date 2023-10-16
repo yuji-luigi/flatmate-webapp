@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import React, { ReactElement, useEffect, useState } from 'react';
 import Layout from '../../../layouts';
 import { Grid } from '@mantine/core';
+import classesP from '../../../styles/profilePageStyles.module.css';
 import { dashboardStyle, profilePageStyle } from '../../../styles/global-useStyles';
 
 import { maintainersTableData } from '../../../../json/dataTable/formfields/maintainersTableData';

@@ -8,18 +8,18 @@ export const useActionIconStyles = createStyles((theme) => ({
 
   action: {
     background-color: light-dark(var(--mantine-color-gray-6), var(--mantine-color-dark-0)),
-    ...theme.fn.hover({
+    &:hover{
       background-color: light-dark(var(--mantine-color-gray-5), var(--mantine-color-dark-1)),
     }),
   },
 
   articleMenuDivider: {
-    marginBlock: var(--mantine-spacing-xl,
+    marginBlock: var(--mantine-spacing-xl),
   },
   relatedArticlesSection: {
     max-width: 300,
   },
   footer: {
-    // padding-top: var(--mantine-spacing-xl,
+    // padding-top: var(--mantine-spacing-xl),
   },
 }));
