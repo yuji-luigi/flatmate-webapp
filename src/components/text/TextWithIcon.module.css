@@ -1,0 +1,8 @@
+.card {
+  border-radius: 12px;
+}
+.textrows {
+  display: flex;
+  align-items: center;
+  gap: 8;
+}

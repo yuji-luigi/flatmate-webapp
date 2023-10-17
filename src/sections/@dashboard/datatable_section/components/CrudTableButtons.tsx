@@ -1,22 +1,16 @@
-import { Button, Group, LoadingOverlay, createStyles } from '@mantine/core';
+import { Button, Group, LoadingOverlay } from '@mantine/core';
 import React, { ChangeEvent, useCallback, useRef, useState } from 'react';
 import { showNotification } from '@mantine/notifications';
 import { FlattenSectionData } from '../../../../data';
 import { useCrudSliceStore } from '../../../../redux/features/crud/crudSlice';
 import { Sections } from '../../../../types/general/data/sections-type';
 import { useDrawerContext } from '../../../../context/DataTableDrawerContext';
-import { dashboardStyle } from '../../../../styles/global-useStyles';
+import classes from '../../../../styles/global-useStyles.module.css';
 import { useCustomModalContext } from '../../../../context/modal-context/_ModalContext';
 import axiosInstance from '../../../../utils/axios-instance';
 import { PATH_API } from '../../../../path/path-api';
 import { sleep } from '../../../../utils/helpers/helper-functions';
 
-const useStyles = dashboardStyle;
-const useStyles2 = createStyles({
-  displayNone: {
-    display: 'none',
-  },
-});
 export const CrudTableButtons = ({
   section,
   entity,
@@ -27,8 +21,6 @@ export const CrudTableButtons = ({
   const { selectCrudDocument, setCrudDocuments } = useCrudSliceStore();
   const { openDrawer } = useDrawerContext();
   const { openConfirmModal } = useCustomModalContext();
-  const { classes } = useStyles();
-  const { classes: classes2 } = useStyles2();
   const fileInput = useRef<HTMLInputElement>(null);
 
   const handleImportClicked = useCallback(() => {
@@ -122,7 +114,7 @@ export const CrudTableButtons = ({
             type="file"
             accept=".xlsx"
             ref={fileInput}
-            className={classes2.displayNone}
+            className={classes.displayNone}
             onChange={handleFileChange}
           />
         </>

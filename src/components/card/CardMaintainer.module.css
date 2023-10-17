@@ -1,0 +1,17 @@
+.card {
+  background-color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-white));
+  cursor: pointer;
+  &:hover {
+    backgroundcolor: light-dark(var(--mantine-color-white), var(--mantine-color-black));
+    boxshadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+}
+.address {
+  cursor: pointer;
+}
+.avatar {
+  border: rem(4) solid light-dark(var(--mantine-color-gray-7), var(--mantine-color-white));
+}
+.pinIcon {
+  marginright: -4;
+}

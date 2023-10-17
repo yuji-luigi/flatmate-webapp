@@ -13,7 +13,7 @@ import { usePaginationContext } from '../../context/PaginationContext';
 import { useCrudSelectors } from '../../redux/features/crud/crudSlice';
 import { Sections } from '../../types/general/data/sections-type';
 import { FormFieldTypes } from '../../types/general/data/data-table/formField-types';
-import classes from '../../styles/dashboardStyle.module.css';
+import classes from '../../styles/global-useStyles.module.css';
 import { ParsedQueryCustom } from '../../types/nextjs-custom-types/useRouter-types';
 
 export function CrudDataTable({ overridingEntity = '' }: { overridingEntity?: Sections }) {

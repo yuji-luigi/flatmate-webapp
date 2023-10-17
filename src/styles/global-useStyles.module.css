@@ -12,6 +12,9 @@
 .title {
   margin-block: 5;
 }
+.displaynone {
+  display: none;
+}
 .button {
   min-width: 150;
   /* // margin-left: 40; */

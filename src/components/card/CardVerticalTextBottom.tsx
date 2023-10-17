@@ -1,19 +1,5 @@
-import {
-  Card,
-  Image,
-  Avatar,
-  Text,
-  Group,
-  Box,
-  Stack,
-  BackgroundImage,
-  MantineStyleProp,
-} from '@mantine/core';
+import { Card, Text, Group, Box, BackgroundImage, MantineStyleProp } from '@mantine/core';
 import Link from 'next/link';
-import { threadId } from 'worker_threads';
-import { useRouter } from 'next/router';
-import { notInitialized } from 'react-redux/es/utils/useSyncExternalStore';
-import { CARD_LINK_PATH, PATH_CLIENT } from '../../path/path-frontend';
 import { PATH_IMAGE } from '../../lib/image-paths';
 import { UserModel } from '../../types/models/user-model';
 import { UploadModel } from '../../types/models/upload-model';

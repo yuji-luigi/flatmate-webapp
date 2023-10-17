@@ -29,6 +29,8 @@
 .link {
   display: flex;
   align-items: center;
+  justify-content: flex-start;
+  width: 100%;
   text-decoration: none;
   font-size: var(--mantine-font-size-sm);
   color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-dark-1));

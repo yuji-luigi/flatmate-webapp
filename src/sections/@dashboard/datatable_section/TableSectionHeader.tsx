@@ -1,38 +1,23 @@
 import { useRouter } from 'next/router';
-import {
-  Box,
-  Button,
-  Container,
-  Group,
-  Stack,
-  Sx,
-  createStyles,
-  Text,
-  LoadingOverlay,
-} from '@mantine/core';
+import { Group, Stack, Text, LoadingOverlay, MantineStyleProp } from '@mantine/core';
 import { useEffect } from 'react';
-import { flattenSectionData, sectionData } from '../../../data';
-import { useDrawerContext } from '../../../context/DataTableDrawerContext';
+import { flattenSectionData } from '../../../data';
 import { BreadcrumbsCustom } from './BreadcrumbsCustom';
 import useLayoutContext from '../../../../hooks/useLayoutContext';
-import { useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
-import { PATH_API } from '../../../path/path-api';
-import axiosInstance from '../../../utils/axios-instance';
 import { Sections } from '../../../types/general/data/sections-type';
-import { dashboardStyle } from '../../../styles/global-useStyles';
+import classes from '../../../styles/global-useStyles.module.css';
 import { CrudTableButtons } from './components/CrudTableButtons';
 import { ParsedQueryCustom } from '../../../types/nextjs-custom-types/useRouter-types';
 
-const useStyles = dashboardStyle;
 function instanceOfParentDataInterface(object: any): object is ParentDataInterface {
   return 'name' in object;
 }
 export function TableSectionHeader({
   overridingEntity = '',
-  sx = {},
+  style = {},
   children,
 }: {
-  sx?: Sx;
+  style?: MantineStyleProp;
   overridingEntity?: Sections | '';
   children?: React.ReactNode;
 }) {
@@ -41,7 +26,6 @@ export function TableSectionHeader({
   const { setBreadcrumbs, breadcrumbs, setPrevBreadcrumbs, parentData } = useLayoutContext();
 
   /** use style defined above */
-  const { classes } = useStyles();
   /** get url string by useRouter */
   const { query }: { query: ParsedQueryCustom } = useRouter();
 
@@ -86,9 +70,9 @@ export function TableSectionHeader({
   if (!entity) return <LoadingOverlay visible />;
   return (
     <>
-      <Group className={classes.headerWrapper} style={sx}>
+      <Group className={classes.headerWrapper} style={style}>
         <Stack align="start" justify="flex-start">
-          <Text size={32} fw={700}>
+          <Text fz={32} fw={700}>
             {title}
           </Text>
           <BreadcrumbsCustom />

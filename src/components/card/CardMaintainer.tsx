@@ -21,21 +21,7 @@ import { Sections } from '../../types/general/data/sections-type';
 import TextWithIcon from '../text/TextWithIcon';
 import BadgeWithToolTip from '../text/BadgeWithToolTip';
 import { UploadModel } from '../../types/models/upload-model';
-
-const useStyles = createStyles((theme) => ({
-  card: {
-    background-color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-white)),
-  },
-  address: {
-    cursor: 'pointer',
-  },
-  avatar: {
-    border: `${rem(4)} solid ${light-dark(var(--mantine-color-gray-7), var(--mantine-color-white))}`,
-  },
-  pinIcon: {
-    marginRight: -4,
-  },
-}));
+import classes from './CardMaintainer.module.css';
 
 const ICON_SIZE = 16;
 
@@ -56,24 +42,15 @@ export interface UserCardData {
 }
 
 export function CardMaintainer({ data, entity }: { data: UserCardData; entity: Sections }) {
-  const { classes, theme } = useStyles();
-  const dark = theme.colorScheme === 'dark';
   return (
     <Card
+      className={classes.card}
       component={Link}
       href={`${entity}/detail/${data.slug}`}
       shadow="sm"
       padding="lg"
       radius="md"
       withBorder
-      style={{
-        cursor: 'pointer',
-        // onhover shadow
-        '&:hover': {
-          background-color: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.white,
-          boxShadow: '0 0 0 1px rgba(0, 0, 0, 0.1), 0 4px 12px rgba(0, 0, 0, 0.1)',
-        },
-      }}
     >
       <Card.Section
         style={{
@@ -94,7 +71,7 @@ export function CardMaintainer({ data, entity }: { data: UserCardData; entity: S
         mt={-40}
         className={classes.avatar}
       />
-      <Group position="right" align="center">
+      <Group justify="right" align="center">
         <Badge
           color="pink"
           variant="light"
@@ -104,9 +81,9 @@ export function CardMaintainer({ data, entity }: { data: UserCardData; entity: S
         </Badge>
       </Group>
 
-      <Stack spacing={4}>
+      <Stack gap={4}>
         {data.name && (
-          <Text size="lg" weight={800}>
+          <Text size="lg" fw={800}>
             {data.name}
           </Text>
         )}

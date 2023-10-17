@@ -30,19 +30,20 @@ import LogoutButton from './LogoutButton';
 import OrganizationSpaceSelect from '../../../components/select-custom/OrganizationSpaceSelect';
 import classes from './NavbarVertical.module.css';
 import { useCustomMQuery } from '../../../../hooks/useCustomMQuery';
+import { getEntityOrUndefinedFromUrl } from '../../../utils/helpers/helper-functions';
 
-// // type NavbarConfig = { link: string; label: string; icon: TablerIcon };
-// // const navBarConfig: NavbarConfig[] = [];
+// type NavbarConfig = { link: string; label: string; icon: TablerIcon };
+// const navBarConfig: NavbarConfig[] = [];
 
-// // Object.keys(sectionData).forEach((key: string): void => {
-// //   const typedKey = key as Sections;
-// //   const config: NavbarConfig = {
-// //     link: sectionData[typedKey].link,
-// //     label: sectionData[typedKey].navbarTitle,
-// //     icon: /*  Icons[sectionData[typedKey].slice as IconsType] || Icons, */ Icons.home,
-// //   };
-// //   navBarConfig.push(config);
-// // });
+// Object.keys(sectionData).forEach((key: string): void => {
+//   const typedKey = key as Sections;
+//   const config: NavbarConfig = {
+//     link: sectionData[typedKey].link,
+//     label: sectionData[typedKey].navbarTitle,
+//     icon: /*  Icons[sectionData[typedKey].slice as IconsType] || Icons, */ Icons.home,
+//   };
+//   navBarConfig.push(config);
+// });
 
 // export function NavbarVertical() {
 //   const { user, logout } = useAuth();
@@ -136,8 +137,33 @@ export function NavbarVertical() {
   // const isMobile = useMediaQuery('(max-width: 600px)');
 
   const chooseHref = isSuperAdmin ? PATH_CLIENT.chooseOrganization : PATH_CLIENT.chooseRootSpace;
-
+  const pageEntity = getEntityOrUndefinedFromUrl();
+  useEffect(() => {
+    if (!pageEntity) {
+      setActive('');
+    }
+  }, [pageEntity]);
   if (!user) return null;
+  const _links = sectionData.map((section, i) => {
+    return (
+      <Fragment key={section.name}>
+        {section.roles?.includes(user.role) && !section.hide && (
+          <Stack align="start">
+            <p>{section.name}</p>
+            {/* contents are sections: Top, posts,,, */}
+            {section.contents.map((navbarContent) => (
+              <NavbarVerticalItem
+                key={navbarContent.navbarTitle}
+                navbarContent={navbarContent}
+                active={active}
+                setActive={setActive}
+              />
+            ))}
+          </Stack>
+        )}
+      </Fragment>
+    );
+  });
   const links = data.map((item) => (
     <a
       className={classes.link}
@@ -159,7 +185,8 @@ export function NavbarVertical() {
       <ScrollArea>
         <div className={classes.navbarMain}>
           <ProfilePopover />
-          {links.map((navbarData) => navbarData)}
+          {/* {links.map((navbarData) => navbarData)} */}
+          {_links}
         </div>
 
         <div className={classes.footer}>

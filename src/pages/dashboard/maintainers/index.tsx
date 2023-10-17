@@ -12,24 +12,10 @@ import MaintainerList from '../../../sections/@dashboard/maintainers_page/Mainta
 import { HeaderContainer } from '../../../components/datatable/header/HeaderContainer';
 import { maintainersTableData } from '../../../../json/dataTable/formfields/maintainersTableData';
 import { QueryFilterWeb } from '../../../components/datatable/filter/QueryFilterWeb';
-
-const useStyles = createStyles((theme) => ({
-  secondButton: {
-    marginBlock: 32,
-
-    alignSelf: 'end',
-    background-color: theme.colors.blue[7],
-    color: theme.colors.blue[0],
-    '&:hover': {
-      background-color: theme.colors.blue[8],
-      color: theme.colors.blue[0],
-    },
-  },
-}));
+import classes from './MaintainerPage.module.css';
 
 const MaintainerPage = () => {
   const { query, push } = useRouter();
-  const { classes } = useStyles();
 
   const entity = 'maintainers';
   const { setPagination, paginationQuery } = usePaginationContext();
