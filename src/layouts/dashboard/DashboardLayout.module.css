@@ -8,11 +8,10 @@
 }
 .bg {
   minheight: 100vh;
-  /* backgroundImage: url(${currentSpace?.image}); */
-  backgroundblendmode: overlay;
-  background-color: bgColor;
-  backgroundsize: cover;
-  backgroundposition: center;
+  background-color: light-dark(rgba(255, 255, 255, 0.85), rgba(0, 0, 0, 0.85));
+  background-blend-mode: overlay;
+  background-size: cover;
+  background-position: center;
 
-  backgroundattachment: fixed;
+  background-attachment: fixed;
 }

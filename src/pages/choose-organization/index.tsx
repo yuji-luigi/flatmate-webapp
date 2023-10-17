@@ -16,7 +16,7 @@ import { OrganizationModel } from '../../types/models/organization-model';
 import { SpaceModel } from '../../types/models/space-model';
 import { CardArticleSmall } from '../../components/card/CardArticleSmall';
 import { CardForListSmall } from '../../components/card/CardForListSmall';
-import classes from '../../styles/profilePageStyles.module.css';
+import classes from '../../styles/global-useStyles.module.css';
 
 const ChooseOrganizationPage = () => {
   const { user } = useAuth();
@@ -56,15 +56,6 @@ const ChooseOrganizationPage = () => {
         >
           {user?.role === 'super_admin' && (
             <CardForListSmall title="All organizations" href={PATH_CLIENT.root} image="" />
-            // <CardArticleVerticalTextCenter
-            //   data={{
-            //     href: PATH_CLIENT.root,
-            //     _id: '',
-            //     name: ' Browse all organizations',
-            //     address: '',
-            //     createdAt: '',
-            //   }}
-            // />
           )}
 
           {organizations.map((organization) => (
@@ -76,11 +67,6 @@ const ChooseOrganizationPage = () => {
               href={`${hrefRoot}/${organization._id}`}
               image=""
             />
-            // <CardArticleVerticalTextBottom
-            //   key={organization._id}
-            //   data={organization as CardData}
-            //   href={`${hrefRoot}/${organization._id}`}
-            // />
           ))}
         </Box>
       </Stack>

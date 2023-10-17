@@ -1,12 +1,11 @@
 .pinContainer {
   display: grid;
-
   /* grid-template-columns: 400px repeat(auto-fill, 100px) 300px; */
   grid-template-columns: repeat(auto-fill, 400px);
   grid-auto-rows: minmax(50px, auto);
   justify-content: center;
   gap: 10px;
-  @media (min-width: $mantine-breakpoint-sm) : {
+  @media (max-width: $mantine-breakpoint-sm) {
     display: flex;
     flex-direction: column;
     justify-content: center;

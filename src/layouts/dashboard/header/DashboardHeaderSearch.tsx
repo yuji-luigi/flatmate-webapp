@@ -183,12 +183,10 @@ export function DashboardHeaderSearch() {
       </Box>
       {isMobile && <HeaderNotificationButton />}
       {!isMobile && (
-        <Group>
-          <>
-            <HeaderNotificationButton />
-            <OrganizationSpaceSelect /* className={classesM.OrganizationSpaceSelect} */ />
-            <ColorSchemeToggle /* size="lg" */ />
-          </>
+        <Group className={classesM.deskTopExNav}>
+          <HeaderNotificationButton />
+          <OrganizationSpaceSelect /* className={classesM.OrganizationSpaceSelect} */ />
+          <ColorSchemeToggle /* size="lg" */ />
         </Group>
       )}
       {/* </div> */}

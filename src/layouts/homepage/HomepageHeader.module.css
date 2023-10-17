@@ -1,3 +1,9 @@
+.header {
+  padding-inline: var(--mantine-spacing-lg);
+  display: fixed;
+  height: 60px;
+}
+
 .link {
   display: flex;
   align-items: center;
@@ -59,8 +65,4 @@
     display: none;
     justify-content: flex-end;
   }
-}
-.header {
-  display: fixed;
-  height: 60px;
 }

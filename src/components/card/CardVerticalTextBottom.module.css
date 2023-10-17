@@ -5,8 +5,8 @@
   height: 500px;
   cursor: pointer;
   @media (max-width: $mantine-breakpoint-sm) {
-    height: 300;
-    width: 300;
+    height: 300px;
+    width: 300px;
   }
 
   z-index: 40;

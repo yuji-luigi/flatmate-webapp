@@ -16,7 +16,8 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
   const theme = useMantineTheme();
   const { isOpen } = useLayoutContext();
   const matches = useMediaQuery(`(max-width: ${theme.breakpoints.md}px)`);
-  const paddingSmOpen = isOpen && matches ? { paddingLeft: 300 } : {};
+  const paddingSmOpen = { paddingLeft: 300 };
+  // const paddingSmOpen = isOpen && matches ? { paddingLeft: 300 } : {};
   const { currentSpace } = useCookieContext();
   const containerRef = useRef<HTMLDivElement>(null);
   // const bgColor = theme.colorScheme === 'dark' ? 'rgba(0,0,0,0.85)' : 'rgba(255,255,255,0.85)';
@@ -62,12 +63,12 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
         ref={containerRef}
         className={`${classes.pageContent} ${classes.bg}`}
         style={{
-          ...paddingSmOpen,
+          paddingTop: 55,
           backgroundImage: `url(${currentSpace?.image})`,
         }}
       >
         <NavbarVertical />
-        <Box>{children}</Box>
+        <Box style={{ ...paddingSmOpen }}>{children}</Box>
       </Box>
     </Tabs>
   );

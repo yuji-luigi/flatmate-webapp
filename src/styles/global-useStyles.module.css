@@ -45,13 +45,27 @@
 }
 
 .container {
-  /* // width: 100%; */
   paddingblock: 32;
   margininline: 16;
   @media (max-width: $mantine-breakpoint-sm) {
     margininline: 0;
   }
 }
+.pinContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 400px);
+  grid-auto-rows: minmax(50px, auto);
+  justify-content: center;
+  gap: 10px;
+  @media (min-width: $mantine-breakpoint-sm) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+}
+
 .box {
   width: 100%;
   display: flex;
