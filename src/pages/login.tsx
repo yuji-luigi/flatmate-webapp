@@ -16,24 +16,27 @@ import { API_BASE_URL, PATH_AUTH } from '../path/path-api';
 import axiosInstance from '../utils/axios-instance';
 import LoginForm from '../sections/@login_signup/LoginForm';
 import { AUTH, PATH_CLIENT } from '../path/path-frontend';
+import GuestGuard from '../guards/GuestGuard';
 
 export default function LoginPage() {
   return (
-    <div className={classes.wrapper}>
-      <Paper className={classes.form} radius={0} p={30}>
-        <Title order={2} className={classes.title} ta="center" mt="md" mb={50}>
-          Welcome back to Mantine!
-        </Title>
-        <LoginForm />
+    <GuestGuard>
+      <div className={classes.wrapper}>
+        <Paper className={classes.form} radius={0} p={30}>
+          <Title order={2} className={classes.title} ta="center" mt="md" mb={50}>
+            Welcome back to Mantine!
+          </Title>
+          <LoginForm />
 
-        <Text ta="center" mt="md">
-          Don&apos;t have an account?{' '}
-          <Anchor<'a'> href={AUTH.SIGNUP} fw={700}>
-            Register
-          </Anchor>
-        </Text>
-      </Paper>
-    </div>
+          <Text ta="center" mt="md">
+            Don&apos;t have an account?{' '}
+            <Anchor<'a'> href={AUTH.SIGNUP} fw={700}>
+              Register
+            </Anchor>
+          </Text>
+        </Paper>
+      </div>
+    </GuestGuard>
   );
 }
 LoginPage.getLayout = function getLayout(page: ReactElement) {

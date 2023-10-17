@@ -179,9 +179,9 @@ export function HomepageHeader() {
   );
 
   return (
-    <Box style={{ marginBottom: 59 }}>
+    <Box>
       <header className={classes.header}>
-        <Group justify="apart" style={{ height: '100%' }}>
+        <Group justify="space-between" style={{ height: '100%' }}>
           {/* <MantineLogo size={30} /> */}
           <Group style={{ height: '100%' }} gap={0} className={classes.hiddenMobile}>
             <LogoBanner transparent />

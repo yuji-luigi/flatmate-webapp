@@ -3,6 +3,7 @@ import Link from 'next/link';
 import useAuth from '../../../hooks/useAuth';
 import { Icons } from '../../data/icons/icons';
 import { PATH_CLIENT } from '../../path/path-frontend';
+import classes from './ProfilePopover.module.css';
 
 // const useStyles = createStyles((theme /* , _params, getRef */) => {
 //   const icon = getStylesRef('icon') as string;
@@ -76,7 +77,6 @@ const popoverList = [
 ];
 export function ProfilePopover() {
   const { user, logout } = useAuth();
-  const { classes, cx } = useStyles();
 
   return (
     <Menu position="bottom" withArrow shadow="md">
@@ -94,16 +94,10 @@ export function ProfilePopover() {
         <Box px={8} py={16}>
           {/* // todo: onhover change color */}
           {popoverList.map((list) => (
-            <Link
-              key={list.title}
-              className={cx(classes.link, {
-                [classes.linkActive]: false,
-              })}
-              href={list.link}
-            >
+            <Menu.Item component={Link} key={list.title} className={classes.link} href={list.link}>
               {list.icon}
               {list.title}
-            </Link>
+            </Menu.Item>
           ))}
         </Box>
       </Menu.Dropdown>

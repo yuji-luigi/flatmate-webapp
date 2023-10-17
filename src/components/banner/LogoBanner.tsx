@@ -26,6 +26,7 @@ export function LogoBanner({
 }: LogoBannerProps) {
   const image = (
     <Image
+      // src={LOGO_PATH.black}
       src={src || transparent ? LOGO_PATH.transparent : LOGO_PATH.black}
       alt={alt || 'flate mates logo'}
       width={width || 200}

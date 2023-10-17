@@ -12,11 +12,11 @@ import { PATH_CLIENT } from '../../../path/path-frontend';
 import { ProfilePopover } from '../../../components/navigation/ProfilePopover';
 import { useCookieContext } from '../../../context/CookieContext';
 import { NavbarVerticalItem } from './NavbarVerticalItem';
-// import classesM from './navbarStyle.module.css';
+// import classes from './navbarStyle.module.css';
 import { ColorSchemeToggle } from '../../../components/color-schemeToggle/ColorSchemeToggle';
 import LogoutButton from './LogoutButton';
 import OrganizationSpaceSelect from '../../../components/select-custom/OrganizationSpaceSelect';
-import classesM from './NavbarVertical.module.css';
+import classes from './NavbarVertical.module.css';
 import { useCustomMQuery } from '../../../../hooks/useCustomMQuery';
 
 // type NavbarConfig = { link: string; label: string; icon: TablerIcon };
@@ -33,7 +33,7 @@ import { useCustomMQuery } from '../../../../hooks/useCustomMQuery';
 // });
 
 export function NavbarVertical() {
-  // const { classesM, cx } = navbarVerticalStyle();
+  // const { classes, cx } = navbarVerticalStyle();
   const { user, logout } = useAuth();
   const [active, setActive] = useState('');
   const { isOpen, closeBar } = useLayoutContext();
@@ -69,20 +69,20 @@ export function NavbarVertical() {
 
   return (
     <>
-      <nav className={classesM.navbar}>
+      <nav className={classes.navbar}>
         <ScrollArea>
-          <div className={classesM.navbarMain}>
+          <div className={classes.navbarMain}>
             <ProfilePopover />
+            {links.map((navbarData) => navbarData)}
           </div>
-          {links.map((navbarData) => navbarData)}
 
-          <div className={classesM.footer}>
+          <div className={classes.footer}>
             <Stack>
               <LogoutButton />
               {isMediaScreen && (
                 <>
                   <Button
-                    className={`${classesM.button} ${classesM.link}`}
+                    className={`${classes.button} ${classes.link}`}
                     component={Link}
                     href={chooseHref}
                   >
@@ -97,7 +97,7 @@ export function NavbarVertical() {
       </nav>
 
       {isMobile && (
-        <Box className={`${classesM.invBox} ${isOpen ? classesM.fadeIn : ''}`} onClick={closeBar} />
+        <Box className={`${classes.invBox} ${isOpen ? classes.fadeIn : ''}`} onClick={closeBar} />
       )}
     </>
   );

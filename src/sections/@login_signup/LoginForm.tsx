@@ -38,7 +38,6 @@ function LoginForm() {
       notifications.show({
         title: 'Error',
         color: 'red',
-        // eslint-disable-next-line react/jsx-pascal-case
         icon: <Icons.alert />,
         message: error.message || error || 'connection error',
         autoClose: 2000,

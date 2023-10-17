@@ -51,7 +51,7 @@ const nextConfig = (phase) => {
     trailingSlash: true,
     swcMinify: false,
     env,
-    css,
+    // css,
     images: {
       domains: [
         'flatmates-api.yuji-luigi.com',

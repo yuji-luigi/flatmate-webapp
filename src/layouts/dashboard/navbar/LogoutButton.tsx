@@ -10,7 +10,7 @@ const LogoutButton = () => {
   const { logout } = useAuth();
 
   return (
-    <Button variant="outline" className={cx(classes.button, classes.link)} onClick={logout}>
+    <Button variant="outline" className={`${classes.button} ${classes.link}`} onClick={logout}>
       <Icons.logout className={classes.linkIcon} stroke={1.5} />
       <span>Logout</span>
     </Button>

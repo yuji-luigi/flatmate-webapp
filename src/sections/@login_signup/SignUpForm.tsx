@@ -77,7 +77,7 @@ export function SignUpForm() {
           Already have an account ? <Link href="/login">Login</Link>
         </Text>
         <Paper withBorder shadow="md" p={24} mt={10} radius="md">
-          {/* <form onSubmit={form.onSubmit((values) => onSubmit(values))}>
+          <form onSubmit={form.onSubmit((values) => onSubmit(values))}>
             {steps === 0 && <SignUpStepOne form={form} />}
             {steps === 1 && <SignUpStepTwo form={form} />}
             {steps === MAX_STEP && <SignUpConfirm form={form} />}
@@ -105,7 +105,7 @@ export function SignUpForm() {
                 </Button>
               </>
             )}
-          </form> */}
+          </form>
         </Paper>
       </Container>
     </GuestGuard>
