@@ -14,11 +14,17 @@ export const TextCell = ({
   cellConfig: FormFieldTypes;
 }) => {
   // return cellValue;
-  let displayValue = <Text weight={500}>{cellValue}</Text>;
+  let displayValue = (
+    <Text className={classes.text} size="sm">
+      {cellValue}
+    </Text>
+  );
+
   if (cellConfig.type === 'static-select') {
     const Icon = cellConfig.options?.find(
       (option: StaticOption) => option.value === cellValue
     )?.icon;
+    const dataHidden = !!(cellConfig.type === 'static-select' && Icon);
 
     const text = cellConfig.options?.find(
       (option: StaticOption) => option.value === cellValue
@@ -26,8 +32,10 @@ export const TextCell = ({
 
     displayValue = (
       <Group>
-        {Icon && <Icon size={16} />}
-        <Text className={Icon && classes.textHidden}>{text}</Text>
+        {Icon && <Icon className={classes.icon} />}
+        <Text className={classes.text} data-hidden={dataHidden}>
+          {text}
+        </Text>
       </Group>
     );
   }

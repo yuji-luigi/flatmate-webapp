@@ -1,5 +1,6 @@
-import { Badge, Group, useMantineTheme } from '@mantine/core';
+import { Badge, Group, useMantineColorScheme, useMantineTheme } from '@mantine/core';
 import React from 'react';
+import { useColorScheme } from '@mantine/hooks';
 import {
   BadgeCellConfig,
   StaticOption,
@@ -18,7 +19,8 @@ const BadgeCellDecorator = ({
   cellConfig: BadgeCellConfig;
   value: string;
 }) => {
-  const theme = useMantineTheme();
+  const { colorScheme } = useMantineColorScheme();
+  console.log(colorScheme);
   let { color } = cellConfig.badge;
   if (cellConfig.type === 'static-select') {
     color =
@@ -27,9 +29,9 @@ const BadgeCellDecorator = ({
   }
   return (
     <Badge
-      className={classes.text}
+      className={classes.badge}
       color={color}
-      variant={theme.colorScheme === 'dark' ? 'light' : 'outline'}
+      variant={colorScheme === 'dark' ? 'light' : 'filled'}
     >
       {children}
     </Badge>
