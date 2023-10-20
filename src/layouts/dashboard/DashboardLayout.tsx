@@ -67,7 +67,7 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
         }}
       >
         <NavbarVertical />
-        <Box data-isOpen={isOpen} className={classes.contentWrapper}>
+        <Box data-is-pen={isOpen} className={classes.contentWrapper}>
           {children}
         </Box>
       </Box>

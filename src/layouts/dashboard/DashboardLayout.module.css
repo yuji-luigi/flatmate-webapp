@@ -19,7 +19,7 @@
   padding-left: 300px;
   @media (max-width: $mantine-breakpoint-md) {
     padding-left: 0;
-    &[data-isOpen='true'] {
+    &[data-is-pen='true'] {
       /* padding-left: 300px; */
     }
   }

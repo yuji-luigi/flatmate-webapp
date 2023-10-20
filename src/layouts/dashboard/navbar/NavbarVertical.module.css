@@ -75,3 +75,21 @@
   width: rem(25px);
   height: rem(25px);
 }
+.invBox {
+  visibility: hidden;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  z-index: 30;
+  background-color: var(--bg-color-dark);
+  opacity: 0;
+  /* Add transition */
+  transition: opacity 0.3s ease-in-out;
+  &[data-fadein='true'] {
+    visibility: visible;
+    display: flex;
+    position: fixed;
+    opacity: 0.7;
+  }
+}

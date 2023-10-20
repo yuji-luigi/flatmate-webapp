@@ -142,6 +142,7 @@ export function NavbarVertical() {
     if (!pageEntity) {
       setActive('');
     }
+    // closeBar();
   }, [pageEntity]);
   if (!user) return null;
   const _links = sectionData.map((section, i) => {
@@ -181,32 +182,35 @@ export function NavbarVertical() {
   ));
 
   return (
-    <nav className={classes.navbar} data-show={isOpen} data-hidden={!isOpen}>
-      <ScrollArea>
-        <div className={classes.navbarMain}>
-          <ProfilePopover />
-          {/* {links.map((navbarData) => navbarData)} */}
-          {_links}
-        </div>
+    <>
+      <nav className={classes.navbar} data-show={isOpen} data-hidden={!isOpen}>
+        <ScrollArea>
+          <div className={classes.navbarMain}>
+            <ProfilePopover />
+            {/* {links.map((navbarData) => navbarData)} */}
+            {_links}
+          </div>
 
-        <div className={classes.footer}>
-          <Stack>
-            <LogoutButton />
-            {isMediaScreen && (
-              <>
-                <Button
-                  className={`${classes.button} ${classes.link}`}
-                  component={Link}
-                  href={chooseHref}
-                >
-                  Choose {chooseText}
-                </Button>
-                <ColorSchemeToggle />
-              </>
-            )}
-          </Stack>
-        </div>
-      </ScrollArea>
-    </nav>
+          <div className={classes.footer}>
+            <Stack>
+              <LogoutButton />
+              {isMediaScreen && (
+                <>
+                  <Button
+                    className={`${classes.button} ${classes.link}`}
+                    component={Link}
+                    href={chooseHref}
+                  >
+                    Choose {chooseText}
+                  </Button>
+                  <ColorSchemeToggle />
+                </>
+              )}
+            </Stack>
+          </div>
+        </ScrollArea>
+      </nav>
+      <Box className={`${classes.invBox} `} data-fadein={isOpen} onClick={closeBar} />
+    </>
   );
 }
