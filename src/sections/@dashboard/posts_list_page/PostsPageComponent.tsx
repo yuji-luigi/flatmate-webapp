@@ -1,6 +1,6 @@
 //useSWR allows the use of SWR inside function components
 
-import { createStyles, Container, Box } from '@mantine/core';
+import { Container, Box } from '@mantine/core';
 //Write a fetcher function to wrap the native fetch function and return the result of a call to url in json format
 // import { UserCard } from '../../../components/card/UserCard';
 import { useMediaQuery } from '@mantine/hooks';
@@ -9,6 +9,7 @@ import { useCrudSelectors } from '../../../redux/features/crud/crudSlice';
 // import { useCurrentSpaceContext } from '../../context/CurrentSpaceContext';
 import { useCookieContext } from '../../../context/CookieContext';
 import { ThreadModel } from '../../../types/models/thread-model';
+import classes from './PostsPageComponent.module.css';
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
@@ -33,24 +34,7 @@ interface mock2 {
   user: string;
 }
 
-const useStyles = createStyles((theme) => ({
-  pinContainer: {
-    // position: 'absolute',
-    // width: '100%',
-    // left: '50%',
-    // transform: 'translateX(-50%)',
-    display: 'grid',
-    // gridTemplateColumns: 'repeat(auto-fit, minmax(400px, max-content))',
-    gridTemplateColumns: 'repeat(auto-fill, 400px)',
-    // gridAutoColumns: 'repeat(400px, minmax(400px, 1fr))',
-    gridAutoRows: 'minmax(50px, auto)',
-    justify-content: 'center',
-    gap: 10,
-  },
-}));
-
 export default function PostListPageComponent() {
-  const { classes, cx, theme } = useStyles();
   const { crudDocuments: threads } = useCrudSelectors<ThreadModel>('threads');
   const { currentSpace } = useCookieContext();
   const isMobile = useMediaQuery('(max-width: 600px)');

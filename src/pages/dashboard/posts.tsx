@@ -1,9 +1,5 @@
-import { createStyles, SimpleGrid, Card, Image, Text, Container, AspectRatio } from '@mantine/core';
-import fetch from 'node-fetch';
-
 import { GetServerSidePropsContext } from 'next';
 import { ReactElement, useEffect } from 'react';
-import { getCookie } from 'cookies-next';
 import Layout from '../../layouts';
 import PostsPageSection from '../../sections/@dashboard/posts_list_page/PostsPageComponent';
 import axiosInstance from '../../utils/axios-instance';

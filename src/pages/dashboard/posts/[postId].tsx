@@ -1,5 +1,5 @@
 import React, { useEffect, ReactElement } from 'react';
-import { createStyles, Container, Divider } from '@mantine/core';
+import { Container, Divider } from '@mantine/core';
 import { GetServerSidePropsContext } from 'next';
 import { useRouter } from 'next/router';
 import axiosInstance from '../../../utils/axios-instance';
@@ -13,22 +13,9 @@ import { ThreadModel } from '../../../types/models/thread-model';
 import { ParsedQueryCustom } from '../../../types/nextjs-custom-types/useRouter-types';
 import { SingleArticleCard } from '../../../components/posts/SingleArticleCard';
 import { SingleArticleHeading } from '../../../components/posts/SingleArticleHeading';
-
-const useStyles = createStyles((theme) => ({
-  main: {
-    min-height: 'calc(100vh - 64px)',
-    @media (max-width: $mantine-breakpoint-sm): {
-      padding-inline: 0,
-    },
-  },
-
-  articleMenuDivider: {
-    marginBlock: var(--mantine-spacing-xl),
-  },
-}));
+import classes from './PostIdPage.module.css';
 
 const PostIdPage = ({ thread }: { thread: ThreadModel }) => {
-  const { classes, cx, theme } = useStyles();
   const { query }: { query: ParsedQueryCustom } = useRouter();
   const { selectCrudDocument } = useCrudSliceStore();
   const { crudDocument: _thread } = useCrudSelectors<ThreadModel>('threads');

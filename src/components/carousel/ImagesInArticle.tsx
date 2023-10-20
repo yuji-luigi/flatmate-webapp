@@ -18,12 +18,13 @@ function ImagesInArticle({ images }: { images: File[] | UploadModel[] }) {
     <Box className={classes.gridWrapper}>
       <Grid className={classes.imagesGrid}>
         {images.map((image, i) => {
+          console.log(image);
           const isFile = image instanceof File;
           size = i > 2 ? 169 : size;
           return (
             <Grid.Col span="auto" key={isFile ? image.name : image._id} className={classes.column}>
               <Image
-                src={isFile ? URL.createObjectURL(image) : image.url}
+                src={isFile ? URL.createObjectURL(image) : image.url || ''}
                 width={size}
                 height={size}
                 alt={isFile ? image.name : image.originalFileName}
