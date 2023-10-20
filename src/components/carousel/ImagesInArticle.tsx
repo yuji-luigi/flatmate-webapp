@@ -24,7 +24,7 @@ function ImagesInArticle({ images }: { images: File[] | UploadModel[] }) {
           return (
             <Grid.Col span="auto" key={isFile ? image.name : image._id} className={classes.column}>
               <Image
-                src={isFile ? URL.createObjectURL(image) : image.url || ''}
+                src={isFile ? URL.createObjectURL(image) : image.url}
                 width={size}
                 height={size}
                 alt={isFile ? image.name : image.originalFileName}
