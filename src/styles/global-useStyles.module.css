@@ -48,8 +48,8 @@
 }
 
 .container {
-  paddingblock: 32;
-  margininline: 16;
+  paddingblock: 32px;
+  margininline: 16px;
   @media (max-width: $mantine-breakpoint-sm) {
     margininline: 0;
   }
@@ -85,7 +85,7 @@
 .cardMain {
   display: flex;
   flex-direction: column;
-  gap: 36;
+  gap: var(--flex-gap);
   width: 100%;
   @media (max-width: $mantine-breakpoint-md) {
     width: 60%;

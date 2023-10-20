@@ -25,7 +25,7 @@ const DashboardSection = () => {
       <DashboardTopHeader header={currentSpace?.name} subHeader={currentSpace?.address} />
       <StatsSummary className={classes.summary} />
       <StatsGrid data={statsGridData as unknown as StatGridSchema[]} />
-      <Card style={{ height: 400, width: '100%', overflow: 'visible' }}>
+      <Card>
         <StackedAreaChart />
       </Card>
       <MaintenanceDatatable />

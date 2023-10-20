@@ -20,14 +20,12 @@ import { maintainersTableData } from '../../../../../json/dataTable/formfields/m
 import { useCustomModalContext } from '../../../../context/modal-context/_ModalContext';
 import AddMaintainerModal from '../../../../sections/@dashboard/maintenance_detail_page/AddMaintainerModal';
 
-import classes from '../../../../styles/profilePageStyles.module.css';
+import classes from '../../../../styles/global-useStyles.module.css';
 // import { profilePageStyle } from '../../../../styles/global-useStyles';
 import { UserModel } from '../../../../types/models/user-model';
 import { BuildingCard } from '../../../../sections/@dashboard/maintainer_detail_page/BuildingCard';
 import { AddRemoveButton } from '../../../../sections/@dashboard/maintainer_detail_page/AddRemoveButton';
 import { ThreadModel } from '../../../../types/models/thread-model';
-
-const useStyles = profilePageStyle;
 
 const getMaintainer = async (slug?: string) => {
   if (!slug) return null;
@@ -36,7 +34,6 @@ const getMaintainer = async (slug?: string) => {
 };
 
 const MaintainerDetailsPage = () => {
-  const { classes } = useStyles();
   const router = useRouter();
 
   const { openConfirmModal } = useCustomModalContext();

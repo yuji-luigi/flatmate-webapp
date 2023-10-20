@@ -1,8 +1,5 @@
 import { Filters } from '../../../../types/context/filter-context.';
-import {
-  FormFieldInterface,
-  FormFieldTypes,
-} from '../../../../types/general/data/data-table/formField-types';
+import { FormFieldTypes } from '../../../../types/general/data/data-table/formField-types';
 
 type FilterListArgs = {
   list: any[];

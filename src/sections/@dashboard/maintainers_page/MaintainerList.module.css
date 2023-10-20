@@ -1,9 +1,9 @@
 .pinContainer {
   display: grid;
-  gridtemplatecolumns: repeat(auto-fill, 300px);
-  gridautorows: minmax(50px, auto);
+  grid-template-columns: repeat(auto-fill, 300px);
+  grid-auto-rows: minmax(50px, auto);
   justify-content: start;
-  gap: 24;
+  gap: var(--flex-gap);
 }
 .QueryFilterToApi {
   gridcolumn: 1 / -1;

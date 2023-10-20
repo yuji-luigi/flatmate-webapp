@@ -3,7 +3,7 @@ import React from 'react';
 
 export const AvatarCell = ({ cellValue }: { cellValue: string }) => {
   return (
-    <Group spacing="xs">
+    <Group gap="xs">
       <Avatar size={40} src={cellValue} radius={30} />
     </Group>
   );

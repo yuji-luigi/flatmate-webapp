@@ -1,13 +1,10 @@
-import { ActionIcon, Divider, Drawer, Indicator, Stack } from '@mantine/core';
-import React, { Fragment, useMemo } from 'react';
+import { ActionIcon, Indicator } from '@mantine/core';
+import React from 'react';
 import { useDisclosure } from '@mantine/hooks';
 import useSWR from 'swr';
 import { Icons } from '../../../../data/icons/icons';
-import { useCrudSelectors } from '../../../../redux/features/crud/crudSlice';
 
-import { MaintenanceModel } from '../../../../types/models/maintenance-model';
 import { NotificationDrawer } from './NotificationDrawer';
-import { CATEGORIES } from '../../../../components/list/notification-list/categories';
 import axiosInstance, { AxiosResDataGeneric } from '../../../../utils/axios-instance';
 import { _PATH_API } from '../../../../path/path-api';
 import { NotificationModel } from '../../../../types/models/notification-model';
@@ -34,7 +31,7 @@ export const HeaderNotificationButton = () => {
 
   return (
     <>
-      <ActionIcon onClick={open}>
+      <ActionIcon variant="subtle" onClick={open}>
         <Indicator color="red" size={16} label={data?.length}>
           <Icons.bell />
         </Indicator>

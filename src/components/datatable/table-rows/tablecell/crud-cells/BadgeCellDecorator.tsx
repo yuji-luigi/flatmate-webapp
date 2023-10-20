@@ -20,7 +20,6 @@ const BadgeCellDecorator = ({
   value: string;
 }) => {
   const { colorScheme } = useMantineColorScheme();
-  console.log(colorScheme);
   let { color } = cellConfig.badge;
   if (cellConfig.type === 'static-select') {
     color =

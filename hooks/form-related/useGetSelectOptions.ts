@@ -1,14 +1,9 @@
 import { useEffect } from 'react';
+import { SelectItem } from '@mantine/core';
 import { useCrudSelectors, useCrudSliceStore } from '../../src/redux/features/crud/crudSlice';
 import { createLabelFromArrayStr } from '../../src/utils/helpers/helper-functions';
 import { Sections } from '../../src/types/general/data/sections-type';
-import {
-  FormFieldInterface,
-  FormFieldTypes,
-  SelectFormType,
-  SelectOption,
-} from '../../src/types/general/data/data-table/formField-types';
-import { SelectItem } from '@mantine/core';
+import { FormFieldTypes } from '../../src/types/general/data/data-table/formField-types';
 import { MongooseBaseModel } from '../../src/types/models/mongoose-base-model';
 // import { useCrudSlice } from '../redux-hooks/useCrudSlice';
 

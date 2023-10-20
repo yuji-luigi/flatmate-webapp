@@ -181,7 +181,7 @@ export function NavbarVertical() {
   ));
 
   return (
-    <nav className={classes.navbar}>
+    <nav className={classes.navbar} data-show={isOpen} data-hidden={!isOpen}>
       <ScrollArea>
         <div className={classes.navbarMain}>
           <ProfilePopover />
@@ -201,33 +201,12 @@ export function NavbarVertical() {
                 >
                   Choose {chooseText}
                 </Button>
-                <ColorSchemeToggle /* size="lg" */ /*  style={{ alignSelf: 'end' }} */ />
+                <ColorSchemeToggle />
               </>
             )}
           </Stack>
         </div>
       </ScrollArea>
     </nav>
-    // <nav className={classes.navbar}>
-    //   <div className={classes.navbarMain}>
-    //     <Group className={classes.header} justify="space-between">
-    //       <MantineLogo size={28} />
-    //       <Code fw={700}>v3.1.2</Code>
-    //     </Group>
-    //     {links}
-    //   </div>
-
-    //   <div className={classes.footer}>
-    //     <a href="#" className={classes.link} onClick={(event) => event.preventDefault()}>
-    //       <IconSwitchHorizontal className={classes.linkIcon} stroke={1.5} />
-    //       <span>Change account</span>
-    //     </a>
-
-    //     <a href="#" className={classes.link} onClick={(event) => event.preventDefault()}>
-    //       <IconLogout className={classes.linkIcon} stroke={1.5} />
-    //       <span>Logout</span>
-    //     </a>
-    //   </div>
-    // </nav>
   );
 }

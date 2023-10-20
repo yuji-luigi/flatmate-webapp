@@ -16,7 +16,6 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
   const theme = useMantineTheme();
   const { isOpen } = useLayoutContext();
   const matches = useMediaQuery(`(max-width: ${theme.breakpoints.md}px)`);
-  const paddingSmOpen = { paddingLeft: 300 };
   // const paddingSmOpen = isOpen && matches ? { paddingLeft: 300 } : {};
   const { currentSpace } = useCookieContext();
   const containerRef = useRef<HTMLDivElement>(null);
@@ -68,7 +67,9 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
         }}
       >
         <NavbarVertical />
-        <Box style={{ ...paddingSmOpen }}>{children}</Box>
+        <Box data-isOpen={isOpen} className={classes.contentWrapper}>
+          {children}
+        </Box>
       </Box>
     </Tabs>
   );

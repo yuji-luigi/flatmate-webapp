@@ -1,4 +1,4 @@
-import { Group, Avatar, Tooltip, Box, Chip, Badge } from '@mantine/core';
+import { Group, Avatar, Tooltip, Box, Chip, Badge, useMantineColorScheme } from '@mantine/core';
 import React from 'react';
 import { useCustomModalContext } from '../../../../../context/modal-context/_ModalContext';
 import classes from './TextOnDialogCell.module.css';
@@ -14,6 +14,8 @@ export const TextOnDialogCell = ({
   cellConfig: TextFormType;
 }) => {
   const text = cellValue.length > 9 ? `${cellValue.slice(0, 10)}...` : cellValue;
+  const { colorScheme } = useMantineColorScheme();
+
   const { openConfirmModal } = useCustomModalContext();
   const handleOpenModal = () => {
     openConfirmModal({
@@ -23,7 +25,11 @@ export const TextOnDialogCell = ({
     });
   };
   return (
-    <Badge className={classes.badge} onClick={handleOpenModal}>
+    <Badge
+      className={classes.badge}
+      // variant={colorScheme === 'dark' ? 'light' : 'filled'}
+      onClick={handleOpenModal}
+    >
       <Box>{text}</Box>
     </Badge>
   );

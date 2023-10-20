@@ -1,18 +1,4 @@
-import {
-  Card,
-  Image,
-  Text,
-  Badge,
-  Button,
-  Group,
-  Stack,
-  Avatar,
-  Box,
-  createStyles,
-  rem,
-  Tooltip,
-  Sx,
-} from '@mantine/core';
+import { Card, Text, Badge, Group, Stack, Avatar, MantineStyleProp } from '@mantine/core';
 import Link from 'next/link';
 import { Icons } from '../../data/icons/icons';
 import { IMAGES_ARRAY, PATH_IMAGE } from '../../lib/image-paths';
@@ -38,7 +24,7 @@ export interface UserCardData {
   active?: boolean;
   badges?: string[];
   badgeIcon?: JSX.Element;
-  badgeSx?: Sx;
+  badgeSx?: MantineStyleProp;
 }
 
 export function CardMaintainer({ data, entity }: { data: UserCardData; entity: Sections }) {
@@ -47,9 +33,9 @@ export function CardMaintainer({ data, entity }: { data: UserCardData; entity: S
       className={classes.card}
       component={Link}
       href={`${entity}/detail/${data.slug}`}
-      shadow="sm"
-      padding="lg"
-      radius="md"
+      // shadow="sm"
+      // padding="lg"
+      // radius="md"
       withBorder
     >
       <Card.Section

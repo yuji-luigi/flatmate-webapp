@@ -8,6 +8,15 @@
   flex-direction: column;
   border-right: rem(1px) solid light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
   min-height: 100vh;
+  z-index: 100;
+  @media (max-width: $mantine-breakpoint-md) {
+    &[data-hidden='true'] {
+      display: none;
+    }
+    &[data-show='true'] {
+      display: flex;
+    }
+  }
 }
 
 .navbarMain {

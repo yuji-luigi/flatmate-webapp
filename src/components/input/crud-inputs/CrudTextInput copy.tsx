@@ -2,7 +2,6 @@ import { PasswordInput, TextInput } from '@mantine/core';
 import React from 'react';
 import { UseFormReturnTypeCustom } from '../input_interfaces/useForm_interface';
 import {
-  FormFieldInterface,
   PasswordFormType,
   TextFormType,
 } from '../../../types/general/data/data-table/formField-types';

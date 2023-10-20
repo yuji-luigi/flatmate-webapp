@@ -7,8 +7,7 @@ import {
   Group,
   ActionIcon,
   Button,
-  createStyles,
-  Sx,
+  MantineStyleProp,
 } from '@mantine/core';
 import { hideNotification, showNotification } from '@mantine/notifications';
 import { useRouter } from 'next/router';
@@ -28,61 +27,9 @@ import { formatSize } from '../../lib/formatters';
 import { useCookieContext } from '../../context/CookieContext';
 import { SpaceModel } from '../../types/models/space-model';
 import { MaintainerModel } from '../../types/models/maintainer-model';
-import { RADIUS } from '../../styles/global-useStyles';
+import classes from './ProfileCoverGeneric.module.css';
 import { NOTIFICATIONS } from '../../data/showNofification/notificationObjects';
 
-const useStyles = createStyles((theme) => ({
-  card: {
-    flex: 3,
-    border-radius: RADIUS.CARD,
-    position: relative,
-    width: '100%',
-    height: '100%',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    min-height: '200px',
-    display: 'flex',
-    align-items: 'flex-end',
-  },
-  lightBox: {
-    transition: 'opacity 200ms ease-in-out',
-    top: 0,
-    left: 0,
-    position: 'absolute',
-    width: '100%',
-    height: '100%',
-    background: 'rgba(0, 0, 0, 0.7)',
-    color: '#fff',
-    font-size: '14px',
-    font-weight: 500,
-    opacity: 0,
-    '&:hover': {
-      opacity: 0.7,
-    },
-  },
-  avatarWrapper: {
-    position: relative,
-    display: 'inline-block',
-    zIndex: 20,
-  },
-  avatarEditBox: {
-    position: 'absolute',
-    top: 0,
-    border-radius: 100,
-    background: 'black',
-    height: 100,
-    width: 100,
-    opacity: 0,
-    cursor: 'pointer',
-    display: 'flex',
-    align-items: 'end',
-    justify-content: 'center',
-    transition: 'all 200ms ease-in-out',
-    '&:hover': {
-      opacity: 0.7,
-    },
-  },
-}));
 export interface CoverDataProp {
   _id?: string;
   title: string;
@@ -105,15 +52,11 @@ const ProfileCoverGeneric = ({
   entity?: Sections;
   noAvatar?: boolean;
   formFields?: FormFieldTypes[];
-  sx?: Sx;
+  sx?: MantineStyleProp;
 }) => {
   const { documentId } = useRouter().query;
   const _entity = entity || (getEntityFromUrl() as Sections);
   const { updateCrudDocument } = useCrudSliceStore();
-
-  const { currentSpace } = useCookieContext();
-
-  const { classes } = useStyles();
 
   const { crudDocument } = useCrudSelectors<SpaceModel | MaintainerModel>(_entity);
   const coverInputRef = useRef<HTMLInputElement>(null);
@@ -196,11 +139,11 @@ const ProfileCoverGeneric = ({
     <Card
       shadow="sm"
       padding="lg"
-      style={sx}
+      // style={sx}
       className={classes.card}
       style={{
-        // backgroundSize: 'object-fit',
-        // backgroundRepeat: 'no-repeat',
+        backgroundSize: 'object-fit',
+        backgroundRepeat: 'no-repeat',
         backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${
           selectedCover || crudDocument?.avatar?.url || ''
         })`,
@@ -208,7 +151,7 @@ const ProfileCoverGeneric = ({
     >
       {enableCover && (
         <Box onClick={handleLightBoxClicked} className={classes.lightBox}>
-          <Group position="right">
+          <Group justify="right">
             <input
               id="cover-input"
               type="file"
@@ -223,7 +166,7 @@ const ProfileCoverGeneric = ({
           </Group>
         </Box>
       )}
-      <Group style={{ justify-content: 'space-between', width: '100%' }}>
+      <Group style={{ justifyContent: 'space-between', width: '100%' }}>
         <Group>
           {!noAvatar && (
             <Box className={classes.avatarWrapper}>
@@ -253,7 +196,7 @@ const ProfileCoverGeneric = ({
             </Box>
           )}
           <Box style={{ alignSelf: 'center' }}>
-            <Text weight={700} size="xl">
+            <Text fw={700} size="xl">
               {data.title}
             </Text>
             <Text size="md">{data.subtitle}</Text>

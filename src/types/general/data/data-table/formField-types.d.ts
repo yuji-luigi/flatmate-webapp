@@ -1,4 +1,10 @@
-import { SelectItem, SelectProps, TextInputProps, TextareaProps } from '@mantine/core';
+import {
+  PasswordInputProps,
+  SelectItem,
+  SelectProps,
+  TextInputProps,
+  TextareaProps,
+} from '@mantine/core';
 import { TablerIconsProps } from '@tabler/icons-react';
 import React from 'react';
 
@@ -17,25 +23,29 @@ type BaseFormType = {
   multi?: boolean;
   col?: Col;
   textSearch?: boolean;
-  priority: number;
+  priority?: number;
   grantTo?: UserRoles[];
   noTable?: boolean;
-  badge?: BadgeField;
+  // badge?: BadgeField;
+  align?: 'left' | 'center' | 'right';
+  badge?: boolean;
   icon?: React.ReactNode;
 };
+type CellTypes = 'text-on-hover' | 'text-on-dialog' | 'link-children';
 
 type BadgeCellConfig = BaseFormType &
   FormFieldTypes & { badge: BadgeField; options: StaticOption[] };
 
-export type BadgeField = {
-  color: string;
-};
+// export type BadgeField = {
+//   color: string;
+// };
 
-export type TextFormType = (
-  | { type: 'text' | 'number'; password?: boolean }
-  | { cellType: 'text-on-hover' | 'text-on-dialog' }
-) &
-  BaseFormType &
+export type TextFormType = {
+  type: 'text' | 'number';
+  cellType?: 'text-on-hover' | 'text-on-dialog';
+  // { type: 'text' | 'number' }
+  // | { cellType?: 'text-on-hover' | 'text-on-dialog' }
+} & BaseFormType &
   TextInputProps;
 
 export type PasswordFormType = { type: 'password' } & BaseFormType & PasswordInputProps;
@@ -67,7 +77,7 @@ export type CheckBoxFormFieldType = {
 } & BaseFormType;
 
 export type LinkChildrenFormFieldType = {
-  type: 'text';
+  type: 'link-children';
   cellType: 'link-children';
   linkRoot: string;
   linkKey: string;
@@ -201,6 +211,7 @@ type FormTypes =
   | 'text'
   | 'text-area'
   | 'text-on-hover'
+  | 'link-children'
   | 'text-on-dialog'
   | 'password'
   | 'checkbox-group'

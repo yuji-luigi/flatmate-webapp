@@ -38,7 +38,7 @@ export const FeedHeading = (props: FeedCardData) => {
           )}
           {receipts?.length && (
             <ActionIcon
-              color="primary"
+              // color="primary"
               component={Link}
               href={_PATH_FRONTEND.maintenances.checksPage(_id)}
             >

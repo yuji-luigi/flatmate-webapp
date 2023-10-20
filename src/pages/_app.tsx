@@ -1,7 +1,7 @@
 import '@mantine/notifications/styles.css';
 import '@mantine/core/styles.css';
 
-import { MantineProvider } from '@mantine/core';
+import { ActionIcon, MantineProvider } from '@mantine/core';
 import { Notifications } from '@mantine/notifications';
 import { getCookie, setCookie } from 'cookies-next';
 import { GetServerSidePropsContext, NextPage } from 'next';
@@ -23,6 +23,7 @@ import { _ModalContextProvider } from '../context/modal-context/_ModalContext';
 import '../styles/global.css';
 import { ModalRootCustom } from '../context/modal-context/ModalRootCustom';
 import { CardOverride } from '../overrides/CardOverrides';
+import { components } from '../overrides';
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -33,7 +34,6 @@ type AppPropsWithLayout = AppProps & {
 };
 function App(props: AppProps) {
   const { Component, pageProps }: AppPropsWithLayout = props;
-
   const getLayout = Component.getLayout ?? ((page) => page);
 
   return (
@@ -58,9 +58,7 @@ function App(props: AppProps) {
               // Default gradient used in components that support `variant="gradient"` (Button, ThemeIcon, etc.)
               defaultGradient: { deg: 45, from: 'yellow', to: 'gold' }, // primaryColor: 'sw-dark-blue',
               fontFamily: 'Lato, sans-serif',
-              components: {
-                Card: CardOverride(),
-              },
+              components,
             }}
             // withGlobalStyles
             // cssVariablesResolver

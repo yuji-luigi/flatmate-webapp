@@ -1,17 +1,26 @@
 .pagecontent {
   z-index: 10px;
-
   padding-top: 50px;
   @media (min-width: $mantine-breakpoint-md) {
     paddingleft: 300px;
   }
 }
 .bg {
-  minheight: 100vh;
+  min-height: 100vh;
   background-color: light-dark(rgba(255, 255, 255, 0.85), rgba(0, 0, 0, 0.85));
   background-blend-mode: overlay;
   background-size: cover;
   background-position: center;
 
   background-attachment: fixed;
+}
+
+.contentWrapper {
+  padding-left: 300px;
+  @media (max-width: $mantine-breakpoint-md) {
+    padding-left: 0;
+    &[data-isOpen='true'] {
+      /* padding-left: 300px; */
+    }
+  }
 }

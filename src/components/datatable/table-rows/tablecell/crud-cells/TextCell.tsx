@@ -3,15 +3,19 @@ import React from 'react';
 import {
   FormFieldTypes,
   StaticOption,
+  StaticSelectFormFieldType,
+  TextFormType,
 } from '../../../../../types/general/data/data-table/formField-types';
 import classes from './Cell.module.css';
 
 export const TextCell = ({
   cellValue,
   cellConfig,
+  rowData,
 }: {
+  rowData: any;
   cellValue: string;
-  cellConfig: FormFieldTypes;
+  cellConfig: TextFormType | StaticSelectFormFieldType;
 }) => {
   // return cellValue;
   let displayValue = (

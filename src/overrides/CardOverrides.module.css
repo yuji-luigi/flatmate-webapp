@@ -1,0 +1,5 @@
+.cardOverride {
+  background-color: light-dark var(--mantine-white), (var(--mantine-color-scheme-dark));
+  border-radius: var(--radius-card);
+  opacity: var(--opacity-card);
+}

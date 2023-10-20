@@ -1,5 +1,15 @@
-@media (max-width: $mantine-breakpoint-sm) {
-  .tableCellContent {
+.tableCellContent {
+  text-align: left;
+  &[data-align-center] {
+    text-align: center;
+  }
+  &[data-align-right] {
+    text-align: right;
+  }
+  &[data-align-left] {
+    text-align: left;
+  }
+  @media (max-width: $mantine-breakpoint-sm) {
     width: var(--table-cell-width-sm);
     word-wrap: break-word;
     overflow-wrap: break-word;

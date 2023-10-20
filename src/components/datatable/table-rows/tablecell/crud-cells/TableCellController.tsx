@@ -1,15 +1,14 @@
 import React from 'react';
-import {
-  FormFieldInterface,
-  FormFieldTypes,
-} from '../../../../../types/general/data/data-table/formField-types';
+import { FormFieldTypes } from '../../../../../types/general/data/data-table/formField-types';
 import { AvatarCell } from './AvatarCell';
 import { TextCell } from './TextCell';
 import { BooleanCell } from './BooleanCell';
 import LinkChildrenCell from './LinkChildrenCell';
 import {
   CellTypes,
+  LinkChildrenCellFunc,
   PartialCellTypes,
+  RegularCellFunc,
 } from '../../../../../types/general/data/data-table/cellTypes';
 import { TextOnHoverCell } from './TextOnHoverCell';
 import { TextOnDialogCell } from './TextOnDialogCell';
@@ -36,7 +35,9 @@ const TableCellController = ({
 
   const type: CellTypes = cellConfig.cellType || cellConfig.type;
 
-  const cells: PartialCellTypes = {
+  // !todo: figure out how to correctly type formFieldTypes
+  // const cells: PartialCellTypes = {
+  const cells: any = {
     avatar: AvatarCell,
     boolean: BooleanCell,
     'link-children': LinkChildrenCell,

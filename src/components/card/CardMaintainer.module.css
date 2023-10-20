@@ -1,8 +1,9 @@
 .card {
-  background-color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-white));
+  background-color: light-dark(var(--mantine-color-white), var(--mantine-color-gray-7));
   cursor: pointer;
+  radius: var(--radius-card);
   &:hover {
-    backgroundcolor: light-dark(var(--mantine-color-white), var(--mantine-color-black));
+    background-color: light-dark(var(--mantine-color-white), var(--mantine-color-black));
     boxshadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 4px 12px rgba(0, 0, 0, 0.1);
   }
 }
@@ -10,7 +11,7 @@
   cursor: pointer;
 }
 .avatar {
-  border: rem(4) solid light-dark(var(--mantine-color-gray-7), var(--mantine-color-white));
+  border: rem(4) solid light-dark(var(--mantine-color-white), var(--mantine-color-gray-7));
 }
 .pinIcon {
   marginright: -4;
