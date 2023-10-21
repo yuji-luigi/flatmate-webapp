@@ -1,5 +1,6 @@
 .card {
   padding-inline: var(--padding-x);
+  border-radius: var(--radius-card);
 }
 /* .parentGroup {
   flex-wrap: nowrap;

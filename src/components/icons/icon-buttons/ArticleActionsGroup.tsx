@@ -6,7 +6,7 @@ import { ShareIconButton } from './ShareIconButton';
 
 export const ArticleActionsGroup = () => {
   return (
-    <Group position="right" spacing={8}>
+    <Group justify="right" gap={8}>
       <HeartIconButton />
       <BookmarkIconButton />
       <ShareIconButton />

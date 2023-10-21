@@ -18,7 +18,6 @@ function ImagesInArticle({ images }: { images: File[] | UploadModel[] }) {
     <Box className={classes.gridWrapper}>
       <Grid className={classes.imagesGrid}>
         {images.map((image, i) => {
-          console.log(image);
           const isFile = image instanceof File;
           size = i > 2 ? 169 : size;
           return (

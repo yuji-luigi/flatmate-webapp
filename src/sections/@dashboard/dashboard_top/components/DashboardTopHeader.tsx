@@ -1,24 +1,23 @@
 import { Box, Group, Text } from '@mantine/core';
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { CookieValueTypes } from 'cookies-next';
 import { Icons } from '../../../../data/icons/icons';
 import classes from './DashboardTopHeader.module.css';
 
 type DashboardTopHeaderProps = {
   header?: string;
-  subHeader?: CookieValueTypes;
-  viewControl?: boolean;
+  rightSection?: ReactNode;
 };
 export const DashboardTopHeader = (props: DashboardTopHeaderProps) => {
-  const { header, viewControl, subHeader } = props;
+  const { header, rightSection } = props;
   return (
-    <Group className={classes.header} position="apart">
-      <Group position="left">
+    <Group className={classes.header} justify="space-between">
+      <Group justify="left">
         <Text component="h2" size="lg">
           {header}
         </Text>
       </Group>
-      {viewControl && <Icons.Carpenter />}
+      {rightSection}
     </Group>
   );
 };

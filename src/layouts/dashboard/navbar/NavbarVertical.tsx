@@ -199,6 +199,7 @@ export function NavbarVertical() {
                   <Button
                     className={`${classes.button} ${classes.link}`}
                     component={Link}
+                    variant="outline"
                     href={chooseHref}
                   >
                     Choose {chooseText}

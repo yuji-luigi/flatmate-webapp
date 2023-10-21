@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-pascal-case */
-import { Button, LoadingOverlay, Text } from '@mantine/core';
+import { Box, Button, LoadingOverlay, Text } from '@mantine/core';
 
 import { FormEvent, useMemo, useEffect } from 'react';
 import { useForm } from '@mantine/form';
@@ -52,7 +52,7 @@ const HeaderModalForm = ({ entity }: { entity: 'threads' | 'maintenances' }) => 
       loading: true,
     });
     // force to wait for 1.5 seconds to show the loading notification
-    await sleep(1500);
+    await sleep(1000);
 
     const reqBody: Record<string, any> = {
       ...form.values,
@@ -116,22 +116,24 @@ const HeaderModalForm = ({ entity }: { entity: 'threads' | 'maintenances' }) => 
           <LoadingOverlay visible />
         </>
       )}
-      {sectionFormFields?.map((formField) => (
-        <FormFields
-          // initialValues={initialValues}
-          form={form}
-          formField={formField}
-          key={formField.id}
-        />
-      ))}
-      {/* {isSuperAdmin && (
+      <Box className={classes.inputsWrapper}>
+        {sectionFormFields?.map((formField) => (
+          <FormFields
+            // initialValues={initialValues}
+            form={form}
+            formField={formField}
+            key={formField.id}
+          />
+        ))}
+        {/* {isSuperAdmin && (
         <OrganizationSpaceSelect
-          form={form}
-          size="md"
-          labels={{ organization: 'Organization', space: 'Spaces' }}
-          style={{ marginBlock: 16, display }}
+        form={form}
+        size="md"
+        labels={{ organization: 'Organization', space: 'Spaces' }}
+        style={{ marginBlock: 16, display }}
         />
       )} */}
+      </Box>
       <CreationToolBar
         formFields={sectionFormFields}
         form={form}

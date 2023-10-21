@@ -1,5 +1,16 @@
+.tabListWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  @media (max-width: $mantine-breakpoint-sm) {
+    /* width: 100%;
+    flex: 1; */
+  }
+}
 @media (max-width: $mantine-breakpoint-sm) {
-  .tabList {
-    gap: 0px;
+  .tab {
+    padding: 0;
   }
 }

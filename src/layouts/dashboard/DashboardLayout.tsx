@@ -52,6 +52,7 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
 
   return (
     <Tabs
+      // variant="pills"
       onChange={handleChangeTab}
       keepMounted={false}
       defaultValue={TAB_LIST_CONFIG[0].value}

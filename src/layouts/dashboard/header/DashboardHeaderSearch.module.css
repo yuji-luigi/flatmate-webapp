@@ -9,6 +9,7 @@
 
 .header {
   height: rem(56px);
+  width: 100%;
   margin-bottom: rem(120px);
   background-color: var(--mantine-color-body);
   border-bottom: rem(1px) solid light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
@@ -26,8 +27,10 @@
 .center {
   /* grid-column: 2;  */
   display: flex;
+  flex-direction: row;
   flex: 1;
-  justify-content: center;
+  width: 100%;
+  justify-content: space-between;
 }
 
 .tabList {
@@ -41,6 +44,11 @@
 }
 .deskTopExNav {
   justify-content: flex-end;
+  display: flex;
+  align-items: center;
+  gap: var(--flex-gap);
+  width:100%;
+  flex: 1;
 }
 .inner {
   height: 56px;
@@ -59,9 +67,9 @@
   }
 }
 .links {
-  @media (max-width: $mantine-breakpoint-md) {
-    display: none;
-  }
+  width: 100%;
+  flex: 1;
+
 }
 
 .header {

@@ -32,7 +32,7 @@ function CreationToolBar({ form, formFields, submitButton, entity }: Props) {
       ))}
       <Group
         mt={10}
-        position="right"
+        justify="right"
         // style={(theme) => ({
         //   background-color: light-dark(var(--mantine-color-gray-6), var(--mantine-color-dark-0)),
         // })}

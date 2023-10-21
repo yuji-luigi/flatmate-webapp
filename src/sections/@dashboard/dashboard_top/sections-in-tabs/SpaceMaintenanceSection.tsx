@@ -8,23 +8,23 @@ import { StaticDataTable } from '../../../../components/datatable/StaticDataTabl
 import { maintenancesTableData } from '../../../../../json/dataTable/formfields/maintenancesTableData';
 import { Icons } from '../../../../data/icons/icons';
 import { DashboardTopHeader } from '../components/DashboardTopHeader';
+import { FeedTableSwitch } from './compontents/FeedTableSwitch';
+import { useSegmentedControl } from '../../../../components/tab/useSegmentedControl';
 
 export const SpaceMaintenanceSection = () => {
   const { crudDocuments } = useCrudSelectors<MaintenanceModel>('maintenances');
+  const { currentValue } = useSegmentedControl();
   return (
     <>
-      <Stack spacing={16}>
-        <DashboardTopHeader header="Maintenances" />
-        {/* <Group position="apart">
-          <Text component="h1" size="lg">
-            Maintenances
-          </Text>
-          <Icons.Carpenter />
-        </Group> */}
-        <StaticDataTable json={maintenancesTableData} data={crudDocuments} />
-        {crudDocuments.map((maintenance) => (
-          <PostFeedCard key={maintenance._id} data={maintenance} />
-        ))}
+      <Stack gap={16}>
+        <DashboardTopHeader header="Maintenances" rightSection={<FeedTableSwitch />} />
+        {currentValue === 'table' && (
+          <StaticDataTable json={maintenancesTableData} data={crudDocuments} />
+        )}
+        {currentValue === 'posts' &&
+          crudDocuments.map((maintenance) => (
+            <PostFeedCard key={maintenance._id} data={maintenance} />
+          ))}
       </Stack>
     </>
   );

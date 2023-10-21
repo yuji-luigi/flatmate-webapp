@@ -10,8 +10,6 @@ interface Prop {
 const CrudTextArea = ({ formField, form, ...others }: Prop) => {
   return (
     <Textarea
-      // name={formField.name}
-      // label={formField.label}
       placeholder={formField.placeholder}
       size="md"
       mt={10}

@@ -19,136 +19,6 @@ import classesM from './DashboardHeaderSearch.module.css';
 import { Icons } from '../../../data/icons/icons';
 import { HeaderNotificationButton } from './notifications/HeaderNotificationButton';
 
-// const useStyles = createStyles((theme) => ({
-//   // header: {
-//   //   position: fixed,
-//   //   paddingLeft: var(--mantine-spacing-md),
-//   //   padding-right: var(--mantine-spacing-md),
-//   // },
-//   header: {
-//     position: fixed,
-//     paddingLeft: var(--mantine-spacing-md),
-//     padding-right: var(--mantine-spacing-md),
-//     height: 56,
-//     display: 'flex',
-//     justify-content: 'space-between',
-//     zIndex: 50,
-//     // justify-content: 'flex-start',
-//     align-items: 'center',
-//     //  @media (max-width: $mantine-breakpoint-md): {
-//     //   height: 120,
-//     // },
-//   },
-
-//   inner: {
-//     height: 56,
-//     display: 'flex',
-//     justify-content: 'space-between',
-//     zIndex: 50,
-//     // justify-content: 'flex-start',
-//     align-items: 'center',
-//   },
-
-//   burger: {
-//     display: 'none',
-//     zIndex: 100,
-//      @media (max-width: $mantine-breakpoint-md): {
-//       display: 'block',
-//     },
-//   },
-//   links: {
-//      @media (max-width: $mantine-breakpoint-md): {
-//       display: 'none',
-//     },
-//   },
-
-// header: {
-//   position: fixed,
-//   paddingLeft: var(--mantine-spacing-md),
-//   padding-right: var(--mantine-spacing-md),
-// },
-
-// inner: {
-//   height: 56,
-//   display: 'grid',
-//   gridTemplateColumns: '1fr 1fr 1fr', // Three equal columns
-//   align-items: 'center',
-//   zIndex: 50,
-// },
-
-// burger: {
-//   display: 'none',
-//   zIndex: 100,
-//   gridColumn: 1, // Place on the first column
-//    @media (max-width: $mantine-breakpoint-md): {
-//     display: 'block',
-//   },
-// },
-
-// links: {
-//   gridColumn: 1, // Place on the first column
-//    @media (max-width: $mantine-breakpoint-md): {
-//     display: 'none',
-//   },
-// },
-
-//   center: {
-//     gridColumn: 2, // Place in the middle column
-//     display: 'flex',
-//     justify-content: 'center',
-//   },
-
-//   OrganizationSpaceSelect: {
-//     gridColumn: 3, // Place on the last column
-//   },
-
-//   ColorSchemeToggle: {
-//     gridColumn: 3, // Place on the last column
-//   },
-
-//   logo: {
-//     display: 'none',
-//     @media (min-width: $mantine-breakpoint-md) {
-//       display: 'block',
-//     },
-//   },
-
-//   search: {
-//     [theme.fn.smallerThan('xs')]: {
-//       display: 'none',
-//     },
-//   },
-//   spaceName: {
-//     max-width: 200,
-//     maxHeight: 56,
-//     overflow: 'hidden',
-//     textOverflow: 'ellipsis',
-//     cursor: 'pointer',
-//     // display: 'inline-block',
-//     // whiteSpace: 'nowrap',
-//   },
-
-//   link: {
-//     textDecoration: 'none',
-
-//     display: 'block',
-//     line-height: 1,
-//     padding: '8px 12px',
-//     border-radius: var(--mantine-radius-sm),
-//     color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.colors.gray[7],
-//     font-size: theme.fontSizes.sm,
-//     font-weight: 500,
-//     fontStyle: 'normal',
-
-//     '&:hover': {
-//       background-color: light-dark(var(--mantine-color-gray-6), var(--mantine-color-dark-0)),
-//     },
-//   },
-// }));
-
-// interface DashboardHeaderSearchProps {
-//     links: { link: string; label: string }[];
-// }
 export type JSONType = typeof links;
 
 export function DashboardHeaderSearch() {
@@ -156,17 +26,13 @@ export function DashboardHeaderSearch() {
   // const [organizations, setOrganizations] = useState<SelectItem[] | []>([]);
   // const [spaces, setSpaces] = useState<SelectItem[] | []>([]);
   const router = useRouter();
-  const { currentSpace, currentOrganization } = useCookieContext();
   const { isOpen, toggleBarOpen } = useLayoutContext();
-  const isMediaScreen = useMediaQuery('(max-width: 750px)');
   const { isMobile } = useCustomMQuery();
 
-  const menuHeight = /*  isMobile ? 120 : */ 56;
   return (
     <header className={classesM.header}>
-      {/* <div className={classesM.inner}> */}
       {isMobile && (
-        <Group>
+        <Group className={classesM.links}>
           <Burger className={classesM.burger} opened={isOpen} onClick={toggleBarOpen} size="sm" />
           <HeaderCreationModalWrapper />
         </Group>
@@ -175,44 +41,23 @@ export function DashboardHeaderSearch() {
         <>
           <Group ml={5} gap={5} className={classesM.links}>
             <LogoBanner link="/" transparent />
+            <HeaderCreationModalWrapper />
           </Group>
         </>
       )}
-      <Box className={classesM.center}>
-        <TabList list={TAB_LIST_CONFIG} className={classesM.tabList} />
-      </Box>
-      {isMobile && <HeaderNotificationButton />}
-      {!isMobile && (
-        <Group className={classesM.deskTopExNav}>
+      <TabList list={TAB_LIST_CONFIG} />
+      {isMobile && (
+        <Box className={classesM.deskTopExNav}>
           <HeaderNotificationButton />
-          <OrganizationSpaceSelect /* className={classesM.OrganizationSpaceSelect} */ />
-          <ColorSchemeToggle /* size="lg" */ />
-        </Group>
+        </Box>
       )}
-      {/* </div> */}
+      {!isMobile && (
+        <Box className={classesM.deskTopExNav}>
+          <HeaderNotificationButton />
+          <OrganizationSpaceSelect />
+          <ColorSchemeToggle />
+        </Box>
+      )}
     </header>
   );
-  // return (
-  //   <Header fixed height={56} className={classesM.header}>
-  //     <div className={classesM.inner}>
-  //       <Group>
-  //         <Burger className={classesM.burger} opened={isOpen} onClick={toggleBarOpen} size="sm" />
-  //         <LogoBanner link="/" transparent />
-  //         <Group ml={5} spacing={5} className={classesM.links}>
-  //           {items}
-  //         </Group>
-  //         <HeaderCreationModalWrapper />
-  //         {/* <HeaderCreationModal /> */}
-  //       </Group>
-  //       <Group>
-  //         {!isMediaScreen && (
-  //           <>
-  //             <OrganizationSpaceSelect />
-  //             <ColorSchemeToggle size="lg" />
-  //           </>
-  //         )}
-  //       </Group>
-  //     </div>
-  //   </Header>
-  // );
 }

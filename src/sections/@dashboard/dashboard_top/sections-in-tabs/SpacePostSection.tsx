@@ -6,13 +6,16 @@ import { UserModel } from '../../../../types/models/user-model';
 import { ThreadModel } from '../../../../types/models/thread-model';
 import { DashboardTopHeader } from '../components/DashboardTopHeader';
 import { NewPostInFeed } from '../../../../components/posts/feed/NewPostInFeed';
+import { SimpleDisclosureContextProvider } from '../../../../context/SimpleDisclosureContext';
 
 export const SpacePostSection = () => {
   const { crudDocuments } = useCrudSelectors('threads') as { crudDocuments: ThreadModel[] };
   return (
     <>
       <Stack gap={16}>
-        <NewPostInFeed />
+        <SimpleDisclosureContextProvider>
+          <NewPostInFeed />
+        </SimpleDisclosureContextProvider>
         {/* <DashboardTopHeader header="Posts" /> */}
         {crudDocuments.map((thread) => (
           <PostFeedCard key={thread._id} data={thread} />
