@@ -45,8 +45,8 @@ const AttachmentsRow = ({
   withToolTip?: boolean;
 }) => {
   return (
-    <Group position="right">
-      <Group position="right">
+    <Group justify="right">
+      <Group justify="right">
         {attachments?.map((attachment) => (
           <Tooltip key={attachment._id} label={attachment.originalFileName}>
             <Box>

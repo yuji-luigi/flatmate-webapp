@@ -23,7 +23,7 @@ export function DeleteAlertModal() {
         Are you sure you want to delete this?
       </Modal>
 
-      <Group position="center">
+      <Group justify="center">
         <Button onClick={open}>Open centered Modal</Button>
       </Group>
     </>

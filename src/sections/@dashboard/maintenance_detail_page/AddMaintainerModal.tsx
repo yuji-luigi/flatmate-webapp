@@ -104,7 +104,7 @@ const AddMaintainerModal = () => {
           withinPortal
           {...form.getInputProps('spaces')}
         />
-        <Group position="right">
+        <Group justify="right">
           <Button variant="outline">Cancel</Button>
           <Button type="submit">Add</Button>
         </Group>

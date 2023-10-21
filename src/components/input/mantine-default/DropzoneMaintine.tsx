@@ -78,11 +78,7 @@ export function DropzoneMantine(props: Props) {
           </div>
         ))
       ) : (
-        <Group
-          position="center"
-          spacing="sm"
-          style={{ minHeight: rem(220), pointerEvents: 'none' }}
-        >
+        <Group justify="center" gap="sm" style={{ minHeight: rem(220), pointerEvents: 'none' }}>
           <Dropzone.Accept>
             <IconUpload
               size="3.2rem"

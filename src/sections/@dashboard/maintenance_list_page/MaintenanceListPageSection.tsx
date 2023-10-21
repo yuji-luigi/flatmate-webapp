@@ -2,11 +2,10 @@
 
 import { Box } from '@mantine/core';
 //Write a fetcher function to wrap the native fetch function and return the result of a call to url in json format
-// import { UserCard } from '../../../components/card/UserCard';
 import MaintenanceList from './MaintenanceList';
 import { useCrudSelectors } from '../../../redux/features/crud/crudSlice';
 import { MaintenanceModel } from '../../../types/models/maintenance-model';
-import classes from '.';
+import classes from './MaintenanceListPageSection.module.css';
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
@@ -31,24 +30,7 @@ interface mock2 {
   user: string;
 }
 
-const useStyles = createStyles((theme) => ({
-  pinContainer: {
-    // position: 'absolute',
-    // width: '100%',
-    // left: '50%',
-    // transform: 'translateX(-50%)',
-    display: 'grid',
-    // gridTemplateColumns: 'repeat(auto-fit, minmax(400px, max-content))',
-    gridTemplateColumns: 'repeat(auto-fill, 400px)',
-    // gridAutoColumns: 'repeat(400px, minmax(400px, 1fr))',
-    gridAutoRows: 'minmax(50px, auto)',
-    justify-content: 'center',
-    gap: 10,
-  },
-}));
-
 export default function MaintenanceListPageSection() {
-  const { classes, cx, theme } = useStyles();
   const { crudDocuments: maintenances } = useCrudSelectors<MaintenanceModel>('maintenances');
   return (
     // <Container mx="auto" py="xl">

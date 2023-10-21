@@ -40,7 +40,7 @@ export function DropzoneCustomButton({ form, formField }: Props) {
               height="150"
             />
           ))}
-        <Group position="right" my={8}>
+        <Group justify="right" my={8}>
           <Button onClick={() => openRef.current?.()}>Select files</Button>
         </Group>
       </Dropzone>

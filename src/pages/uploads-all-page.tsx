@@ -14,7 +14,7 @@ const AllUploadPage = () => {
         const res = await axiosInstance.get<AxiosResDataGeneric<UploadModel[]>>(
           _PATH_API.uploads.all
         );
-        const data = res.data.data;
+        const { data } = res.data;
 
         setSrc(data.map((item) => item.url));
       };
@@ -26,6 +26,7 @@ const AllUploadPage = () => {
     <>
       {src.map((img) => (
         <Image
+          key={img}
           src={img}
           style={{
             objectFit: 'cover',

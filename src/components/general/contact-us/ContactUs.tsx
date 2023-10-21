@@ -24,7 +24,7 @@ export function ContactUs() {
 
   return (
     <div className={classes.wrapper}>
-      <SimpleGrid cols={{ sm: 1, base: 2 }} spacing={50}>
+      <SimpleGrid cols={{ sm: 1, base: 2 }} gap={50}>
         <div>
           <Title className={classes.title}>Contact us</Title>
           <Text className={classes.description} mt="sm" mb={30}>

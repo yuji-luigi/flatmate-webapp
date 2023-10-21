@@ -76,7 +76,7 @@ export function ActionCells({
 
   return (
     <td>
-      <Group spacing={0} align="center">
+      <Group gap={0} align="center">
         <ActionIcon onClick={onModify}>
           <IconPencil size={16} stroke={1.5} />
         </ActionIcon>

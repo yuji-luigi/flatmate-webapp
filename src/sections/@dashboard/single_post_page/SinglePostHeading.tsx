@@ -1,55 +1,9 @@
-import { Stack, Group, Text, Avatar, createStyles, rem } from '@mantine/core';
+import { Stack, Group, Text, Avatar } from '@mantine/core';
 import React from 'react';
 import { ThreadModel } from '../../../types/models/thread-model';
-
-const useStyles = createStyles((theme) => ({
-  card: {
-    position: relative,
-    background-color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-white)),
-    min-height: '100vh',
-  },
-  header: {
-    margin-bottom: 50,
-  },
-  rating: {
-    position: 'absolute',
-    top: var(--mantine-spacing-xs,
-    right: rem(12),
-    pointerEvents: 'none',
-  },
-
-  title: {
-    display: 'block',
-    font-size: 50,
-    margin-top: var(--mantine-spacing-md),
-    margin-bottom: rem(5),
-  },
-  articleArea: {
-    background-color: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[0],
-    boxShadow: theme.shadows.xl,
-  },
-
-  action: {
-    background-color: light-dark(var(--mantine-color-gray-6), var(--mantine-color-dark-0)),
-    &:hover{
-      background-color: light-dark(var(--mantine-color-gray-5), var(--mantine-color-dark-1)),
-    }),
-  },
-
-  articleMenuDivider: {
-    marginBlock: var(--mantine-spacing-xl),
-  },
-  relatedArticlesSection: {
-    max-width: 300,
-  },
-  footer: {
-    // padding-top: var(--mantine-spacing-xl),
-  },
-}));
+import classes from './SingleMaintenanceHeading.module.css';
 
 const SingleMaintenanceHeading = ({ thread }: { thread: ThreadModel }) => {
-  const { classes, cx, theme } = useStyles();
-
   return (
     <Stack className={classes.header}>
       <Text className={classes.title} fw={800} component="a">

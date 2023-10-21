@@ -91,7 +91,7 @@
 //   ));
 //   return (
 //     <Container size="lg" py="xl">
-//       <Group position="center">
+//       <Group justify="center">
 //         <Badge variant="filled" size="lg">
 //           Best company ever
 //         </Badge>
@@ -106,7 +106,7 @@
 //         hunger drives it to try biting a Steel-type Pokémon.
 //       </Text>
 
-//       <SimpleGrid cols={3} spacing="xl" mt={50} breakpoints={[{ max-width: 'md', cols: 1 }]}>
+//       <SimpleGrid cols={3} gap="xl" mt={50} breakpoints={[{ max-width: 'md', cols: 1 }]}>
 //         {features}
 //       </SimpleGrid>
 //     </Container>

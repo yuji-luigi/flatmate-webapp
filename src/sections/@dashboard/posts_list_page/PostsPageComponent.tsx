@@ -2,7 +2,6 @@
 
 import { Container, Box } from '@mantine/core';
 //Write a fetcher function to wrap the native fetch function and return the result of a call to url in json format
-// import { UserCard } from '../../../components/card/UserCard';
 import { useMediaQuery } from '@mantine/hooks';
 import PostList from './PostList';
 import { useCrudSelectors } from '../../../redux/features/crud/crudSlice';

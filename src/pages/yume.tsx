@@ -28,14 +28,14 @@ const Yume = () => {
           width: '100%',
           height: '100vh',
           display: 'flex',
-          background-color: color,
+          backgroundColor: color,
           transition: 'background-color 0.5s',
           justifyContent: 'center',
-          align-items: 'center',
+          alignItems: 'center',
         }}
       >
         <Stack>
-          <Text color="blue" weight={900} size={60}>
+          <Text color="blue" fw={900} fz={60}>
             yume
           </Text>
           <Button onClick={handleClick}>夢ボタン</Button>

@@ -34,7 +34,7 @@ export const PreviewHandler = (props: Props) => {
         <iframe
           title="pdf"
           style={{
-            max-width: '100%',
+            maxWidth: '100%',
             maxHeight: '100%',
             overflow: 'hidden',
           }}
@@ -68,7 +68,7 @@ export const PreviewHandler = (props: Props) => {
   // return preview;
   if (enableLink) {
     preview = (
-      <Stack spacing={0}>
+      <Stack gap={0}>
         {preview}
         <Link target="_blank" href={file.url}>
           download

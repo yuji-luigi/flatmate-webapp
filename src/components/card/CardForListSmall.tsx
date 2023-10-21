@@ -6,40 +6,7 @@ import { CARD_LINK_PATH, PATH_CLIENT } from '../../path/path-frontend';
 import { MaintenanceModel } from '../../types/models/maintenance-model';
 import { ThreadModel } from '../../types/models/thread-model';
 import { IUser } from '../../types/context/auth/useAuth';
-
-const useStyles = createStyles((theme) => ({
-  link: {
-    textDecoration: 'none',
-  },
-  card: {
-    background-color: theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.white,
-    // height: 100,
-    padding: 10,
-    minWidth: 600,
-    gridRowEnd: 'span 1',
-    cursor: 'pointer',
-    '&:hover': {
-      background-color: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[0],
-    },
-    @media (max-width: $mantine-breakpoint-sm): {
-      minWidth: 300,
-    },
-  },
-  title: {
-    font-weight: 800,
-    font-size: 20,
-    font-family: Greycliff CF, var(--mantine-font-family),
-    line-height: 1.2,
-  },
-
-  body: {
-    padding: var(--mantine-spacing-md),
-    display: 'flex',
-    flex-direction: 'column',
-    justify-content: 'space-between',
-    height: '100%',
-  },
-}));
+import classes from './CardArticleSmall.module.css';
 
 interface CardArticleImageDescFooterVerticalProps {
   title: string;
@@ -53,28 +20,27 @@ interface CardArticleImageDescFooterVerticalProps {
 export function CardForListSmall(props: CardArticleImageDescFooterVerticalProps) {
   const { image, title, subtitle, description, href, createdBy, createdAt } = props;
 
-  const { classes } = useStyles();
   const router = useRouter();
   return (
     <Link href={href} className={classes.link}>
       <Card withBorder radius="md" p={0} className={classes.card}>
-        <Group noWrap spacing={0}>
+        <Group wrap="nowrap" gap={0}>
           {image && <Image src={image} height={150} width={140} />}
           <div className={classes.body}>
             <Box style={{ overflow: 'hidden' }}>
               <Text className={classes.title} mt="xs" mb="xs">
                 {title}
               </Text>
-              <Text transform="uppercase" color="dimmed" weight={700} size="xs">
+              <Text tt="uppercase" color="dimmed" fw={700} size="xs">
                 {subtitle}
               </Text>
-              <Text transform="uppercase" color="dimmed" weight={700} size="xs">
+              <Text tt="uppercase" color="dimmed" fw={700} size="xs">
                 {description}
               </Text>
             </Box>
-            <Group noWrap spacing="xs">
+            <Group wrap="nowrap" gap="xs">
               {createdBy && (
-                <Group spacing="xs" noWrap>
+                <Group gap="xs" wrap="nowrap">
                   <Avatar size={20} src={createdBy.avatar?.url} />
                   <Text size="xs">{createdBy.name}</Text>
                 </Group>

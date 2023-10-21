@@ -80,7 +80,7 @@ export function ProfilePopover() {
 
   return (
     <Menu position="bottom" withArrow shadow="md">
-      <Group className={classes.header} position="left">
+      <Group className={classes.header} justify="left">
         <Menu.Target>
           <Avatar className={classes.avatar} size={50} />
         </Menu.Target>

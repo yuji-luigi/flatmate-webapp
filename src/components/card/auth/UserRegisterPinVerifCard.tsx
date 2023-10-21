@@ -58,12 +58,12 @@ export const UserRegisterPinVerifCard = ({ setPinOk }: PinVerifCardProps) => {
     <Card className={classes.card}>
       <LoadingOverlay visible={submitting} />
       <Stack>
-        <Group position="center">
+        <Group justify="center">
           <Image src={PATH_IMAGE.unlock} width={120} height={120} alt="unlock image" />
         </Group>
         <Stack justify="center" mt={24}>
           <Title className={classes.heading}>Enter the pin code</Title>
-          <Group position="center">
+          <Group justify="center">
             <PinInput
               disabled={submitting}
               size="sm"

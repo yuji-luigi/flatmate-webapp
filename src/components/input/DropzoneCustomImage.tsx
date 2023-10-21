@@ -49,11 +49,7 @@ export function DropzoneCustomImage(props: Props) {
               height="150"
             />
           ))}
-        <Group
-          position="center"
-          spacing="xl"
-          style={{ maxHeight: rem(220), pointerEvents: 'none' }}
-        >
+        <Group justify="center" gap="xl" style={{ maxHeight: rem(220), pointerEvents: 'none' }}>
           <Dropzone.Accept>
             <IconUpload
               size="3.2rem"
@@ -86,7 +82,7 @@ export function DropzoneCustomImage(props: Props) {
           </div>
         </Group>
       </Dropzone>
-      <Group position="right" mt={5}>
+      <Group justify="right" mt={5}>
         <Button onClick={() => openRef.current?.()}>Select files</Button>
       </Group>
     </>

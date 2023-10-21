@@ -22,7 +22,7 @@
 //     marginBlock: 5,
 //   },
 //   button: {
-//     minWidth: 150,
+//     min-width: 150,
 //     // margin-left: 40,
 //   },
 //   dataTableContainer: {

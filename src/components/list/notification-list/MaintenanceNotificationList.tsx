@@ -44,8 +44,8 @@ export const MaintenanceNotificationList = (props: MaintenanceNorificationListPr
         <Text className={classes.title} mt="xs" mb="md">
           {_description}
         </Text>
-        <Group spacing={1}>
-          <Group spacing={2}>
+        <Group gap={1}>
+          <Group gap={2}>
             <Avatar size={20} src={createdBy.avatar?.url} />
             <Text size="xs">
               {createdBy.name} {createdBy.surname}

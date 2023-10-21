@@ -1,0 +1,42 @@
+
+  .root {
+    padding-top: rem(80);
+    padding-bottom: rem(80);
+  };
+
+  .inner {
+    position: relative;
+  };
+
+  .image {
+    /* ...theme.fn.cover(), */
+    opacity: 0.75;
+  };
+
+  .content {
+    padding-top: rem(220);
+    position: relative;
+    zIndex: 1;
+
+    @media (max-width: $mantine-breakpoint-sm) {
+      padding-top: rem(120);
+    };
+  };
+
+  .title {
+    font-family: Greycliff CF, var(--mantine-font-family);
+    textAlign: center;
+    font-weight: 900;
+    font-size: rem(38);
+
+    @media (max-width: $mantine-breakpoint-sm) {
+      font-size: rem(32);
+    };
+  };
+
+  .description {
+    max-width: rem(540);
+    margin: auto;
+    margin-top: var(--mantine-spacing-xl);
+    margin-bottom: calc(var(--mantine-spacing-xl)) * 1.5);
+  };

@@ -17,7 +17,7 @@ export const SpaceInfoCard = () => {
   return (
     <CardWithTitle
       title={
-        <Group style={{ width: '100%' }} position="apart">
+        <Group style={{ width: '100%' }} justify="apart">
           <Text>Info</Text>
           <SettingButtonSpaceHome />
         </Group>

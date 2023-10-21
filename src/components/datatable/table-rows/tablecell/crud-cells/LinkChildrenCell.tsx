@@ -14,7 +14,7 @@ const LinkChildrenCell = ({
 }) => {
   const href = `${cellConfig.linkRoot || ''}/${rowData[cellConfig.linkKey] || ''}`;
   return (
-    <Group spacing="sm">
+    <Group gap="sm">
       <Link href={href}>
         <Text size="sm" weight={500}>
           {cellValue}

@@ -14,7 +14,7 @@ import { CloseIcon } from 'yet-another-react-lightbox';
 import { CheckType } from '../../../../types/models/check-type';
 import { CheckInputTabCard } from './invoice-receipt-input/CheckInputTabCard';
 import ProfileCoverStatic from '../../../../components/profile/ProfileCoverStatic';
-import { profilePageStyle } from '../../../../styles/global-useStyles';
+import classes from '../../../../styles/global-useStyles.module.css';
 import PostFeedCard from '../../../../components/posts/feed/PostFeedCard';
 import { useCrudSelectors } from '../../../../redux/features/crud/crudSlice';
 import { MaintenanceModel } from '../../../../types/models/maintenance-model';
@@ -31,7 +31,6 @@ type Props = {
 export const MaintenanceCheckUploadSection = (props: Props) => {
   const { pinOk, checkType, setCheckType } = props;
   const theme = useMantineTheme();
-  const { classes: classes2 } = profilePageStyle();
   const { openConfirmModal, closeModal } = useCustomModalContext();
   const { crudDocument: maintenance } = useCrudSelectors<MaintenanceModel>('maintenances');
 
@@ -57,14 +56,14 @@ export const MaintenanceCheckUploadSection = (props: Props) => {
     });
   };
   return (
-    <Container className={classes2.container} style={{ marginInline: 'auto' }}>
+    <Container className={classes.container} style={{ marginInline: 'auto' }}>
       <Transition mounted={pinOk} duration={500} transition="slide-up" timingFunction="ease-in-out">
         {(styles) => (
           <div style={styles}>
             <Grid align="stretch" gutter="md">
-              <Grid.Col style={{ display: 'flex', flex-direction: 'column', gap: 16 }} span={12}>
+              <Grid.Col style={{ display: 'flex', flexDirection: 'column', gap: 16 }} span={12}>
                 <Grid>
-                  <Grid.Col sm={6} xs={12}>
+                  <Grid.Col span={{ sm: 6, xs: 12 }}>
                     <Stack style={{ height: '100%' }}>
                       <CardStyled>
                         <CheckInputTabCard
@@ -79,12 +78,12 @@ export const MaintenanceCheckUploadSection = (props: Props) => {
                       />
                     </Stack>
                   </Grid.Col>
-                  <Grid.Col sm={6} xs={12}>
+                  <Grid.Col span={{ sm: 6, xs: 12 }}>
                     <CardStyled>
                       <Divider
-                        label={<Title align="center">Maintenance</Title>}
+                        label={<Title ta="center">Maintenance</Title>}
                         labelPosition="center"
-                        mb={var(--mantine-spacing-md)}
+                        mb={12} // --mantine-spacing-md
                       />
                       <PostFeedCard data={maintenance} popupFn={handleOpenModal} />
                     </CardStyled>

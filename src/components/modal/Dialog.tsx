@@ -6,7 +6,7 @@ export function DialogDefault() {
 
   return (
     <>
-      <Group position="center">
+      <Group justify="center">
         <Button onClick={toggle}>Toggle dialog</Button>
       </Group>
 

@@ -12,7 +12,7 @@ export const MaintainerList = ({ maintainers }: { maintainers: MaintainerModel[]
 
   if (!maintainers.length) return <Text>No maintainer to the space</Text>;
   return (
-    <Stack spacing={16}>
+    <Stack gap={16}>
       {maintainers.map((maintainer) => {
         const Icon = Icons[maintainer.type as keyof typeof Icons] || Icons.Carpenter;
         return (
@@ -22,10 +22,10 @@ export const MaintainerList = ({ maintainers }: { maintainers: MaintainerModel[]
               href={`${PATH_CLIENT.maintainersDetail}/${maintainer.slug}`}
               key={maintainer._id}
             >
-              <Stack spacing={0}>
+              <Stack gap={0}>
                 <TextWithIcon
                   key={maintainer._id}
-                  icon={<Icon />}
+                  leftSection={<Icon />}
                   style={{ marginBottom: 10 }}
                   text={maintainer.name}
                 />

@@ -1,0 +1,31 @@
+
+  .link {
+    textDecoration: none;
+  };
+  .card {
+    background-color:  light-dark(var(--mantine-color-gray-4), var(--mantine-color-white))
+    padding: 10px;
+    min-width: 600px;
+    grid-row-end: span 1;
+    cursor: pointer;
+    &:.hover {
+      background-color: theme.colorScheme === dark ? theme.colors.dark[5] : theme.colors.gray[0];
+    };
+    @media (max-width: $mantine-breakpoint-sm) {
+      min-width: 300px;
+    };
+  };
+  .title {
+    font-weight: 800;
+    font-size: 20px;
+    font-family: Greycliff CF; var(--mantine-font-family);
+    line-height: 1.2;
+  };
+
+  .body {
+    padding: var(--mantine-spacing-md);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  };

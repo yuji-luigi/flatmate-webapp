@@ -63,7 +63,7 @@ export function PasswordStrength({ formControl }: { formControl: any }) {
         required
       />
 
-      <Group spacing={5} grow mt="xs" mb="md">
+      <Group gap={5} grow mt="xs" mb="md">
         {bars}
       </Group>
 

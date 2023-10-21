@@ -77,7 +77,7 @@ const PostEditButton = ({
                 Delete
               </Menu.Item>
               {/* <Menu.Item
-          icon={<IconSearch size={14} />}
+          leftSection={<IconSearch size={14} />}
           rightSection={
             <Text size="xs" color="dimmed">
               ⌘K
@@ -90,8 +90,8 @@ const PostEditButton = ({
               <Menu.Divider />
 
               {/* <Menu.Label>Danger zone</Menu.Label>
-        <Menu.Item icon={<IconArrowsLeftRight size={14} />}>Transfer my data</Menu.Item>
-        <Menu.Item color="red" icon={<IconTrash size={14} />}>
+        <Menu.Item leftSection={<IconArrowsLeftRight size={14} />}>Transfer my data</Menu.Item>
+        <Menu.Item color="red" leftSection={<IconTrash size={14} />}>
           Delete my account
         </Menu.Item> */}
             </Menu.Dropdown>

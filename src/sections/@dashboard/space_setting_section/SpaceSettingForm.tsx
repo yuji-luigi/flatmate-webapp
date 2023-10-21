@@ -2,17 +2,17 @@ import { useForm } from '@mantine/form';
 import { Text, Paper, Group, PaperProps, Button, Grid, Sx } from '@mantine/core';
 // import { GoogleButton, TwitterButton } from '../SocialButtons/SocialButtons';
 
+import { useEffect, useMemo } from 'react';
 import { SpaceSlugResponse } from '../../../types/api-response/space-response';
 
 import { UseFormReturnTypeCustom } from '../../../components/input/input_interfaces/useForm_interface';
 import { getDefaultValues } from '../../../utils/getDefaultValues';
-import { useEffect, useMemo } from 'react';
 import { spacesTableData } from '../../../../json/dataTable/formfields/spacesTableData';
 import FormFields from '../../../components/input/FormFields';
 import { useCrudSelectors, useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
 import { SpaceModel } from '../../../types/models/space-model';
 
-let filteredTableData = spacesTableData.filter(
+const filteredTableData = spacesTableData.filter(
   (item) => item.id !== 'organization' && item.id !== 'isTail' && item.id !== 'isMain'
 );
 interface SpaceSettingFormProps {
@@ -61,7 +61,7 @@ export function SpaceSettingForm(props: SpaceSettingFormProps) {
           </Item>
         </Grid>
 
-        <Group position="right" mt="xl">
+        <Group justify="right" mt="xl">
           <Button type="submit" disabled={!isSpaceAdmin} radius="xl">
             Submit
           </Button>

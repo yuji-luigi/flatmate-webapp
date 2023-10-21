@@ -64,7 +64,7 @@
 //         </Text>
 //       </Box>
 
-//       <Group position="apart" className={classes.footer}>
+//       <Group justify="apart" className={classes.footer}>
 //         <Stack>
 //           <Center>
 //             <Avatar src={''} size={24} radius="xl" mr="xs" />
@@ -79,7 +79,7 @@
 //           </Center>
 //         </Stack>
 
-//         <Group spacing={8} mr={0} className={classes.buttons}>
+//         <Group gap={8} mr={0} className={classes.buttons}>
 //           <ActionIcon className={classes.action}>
 //             <IconHeart size="1rem" color={theme.colors.red[6]} />
 //           </ActionIcon>

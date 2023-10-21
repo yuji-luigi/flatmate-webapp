@@ -10,7 +10,7 @@ export function UsersRolesTable({ data }: UsersTableProps) {
   const rows = data.map((item) => (
     <tr key={item.name}>
       <td>
-        <Group spacing="sm">
+        <Group gap="sm">
           <Avatar size={40} src={item.avatar} radius={40} />
           <div>
             <Text size="sm" weight={500}>

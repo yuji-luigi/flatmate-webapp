@@ -1,4 +1,4 @@
-import { Sx, FileInput, Group, Tooltip, ActionIcon, Stack } from '@mantine/core';
+import { FileInput, Group, Tooltip, ActionIcon, Stack, MantineStyleProp } from '@mantine/core';
 import { DropzoneProps } from '@mantine/dropzone';
 import { useCallback, useState } from 'react';
 import { UseFormReturnType } from '@mantine/form';
@@ -11,12 +11,12 @@ import { FileWithPreview } from '../../../../types/files/file-types';
 type Props = Partial<DropzoneProps> & {
   form: UseFormReturnType<any>;
   formField: UploadFormFieldType;
-  sx?: Sx;
+  style?: MantineStyleProp;
   fileFolder?: string;
 };
 
 export function FileInputMantine(props: Props) {
-  const { formField, sx, fileFolder } = props;
+  const { formField, style, fileFolder } = props;
   const [files, setFiles] = useState<FileWithPreview[]>([]);
   const handleFileChosen = useCallback((acceptedFiles: Array<File> | File | null) => {
     if (!acceptedFiles) return;
@@ -43,13 +43,13 @@ export function FileInputMantine(props: Props) {
     props.form.setFieldValue(formField.name, newFiles);
   };
   return (
-    <Stack style={{ position: relative, margin-bottom: 16, ...sx }}>
+    <Stack style={{ position: 'relative', marginBottom: 16, ...style }}>
       <FileInput
         valueComponent={IconValueComponent}
         multiple={formField.multi}
         onChange={handleFileChosen}
         value={files}
-        icon={<Icons.image />}
+        leftSection={<Icons.image />}
         placeholder={formField.label}
       />
       <Group>

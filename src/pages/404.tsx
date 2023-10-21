@@ -5,42 +5,6 @@ import image from '/public/images/404-mantine.svg';
 import Head from 'next/head';
 import classes from './404.module.css';
 
-// const useStyles = createStyles((theme) => ({
-//   root: {
-//     padding-top: 80,
-//     padding-bottom: 80,
-//   },
-
-//   title: {
-//     font-weight: 900,
-//     font-size: 34,
-//     margin-bottom: var(--mantine-spacing-md),
-//     font-family: Greycliff CF, var(--mantine-font-family),
-
-//     @media (max-width: $mantine-breakpoint-sm): {
-//       font-size: 32,
-//     },
-//   },
-
-//   control: {
-//     @media (max-width: $mantine-breakpoint-sm): {
-//       width: '100%',
-//     },
-//   },
-
-//   mobileImage: {
-//     @media (min-width: $mantine-breakpoint-sm): {
-//       display: 'none',
-//     },
-//   },
-
-//   desktopImage: {
-//     @media (max-width: $mantine-breakpoint-sm): {
-//       display: 'none',
-//     },
-//   },
-// }));
-
 export default function NotFoundImage() {
   return (
     <>

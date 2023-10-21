@@ -8,15 +8,15 @@ export const NoMaintainerCard = ({ type }: { type: string }) => {
     <Card
       component={Link}
       href={`${PATH_CLIENT.maintainers}?type=${type}`}
-      style={{ display: 'flex', flex-direction: 'row', align-items: 'center' }}
+      style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}
     >
       {' '}
       <Avatar size={160} radius="md" />
       <Stack>
-        <Text fw={600} size={24}>
+        <Text fw={600} fz={24}>
           NO MAINTAINER IS SELECTED
         </Text>
-        <Text size={16}>Click here and search {type}</Text>
+        <Text fz={16}>Click here and search {type}</Text>
       </Stack>
     </Card>
   );

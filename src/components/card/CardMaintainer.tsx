@@ -75,20 +75,20 @@ export function CardMaintainer({ data, entity }: { data: UserCardData; entity: S
         )}
 
         {data.company && (
-          <TextWithIcon icon={<Icons.buildings size={ICON_SIZE} />} text={data.company} />
+          <TextWithIcon leftSection={<Icons.buildings size={ICON_SIZE} />} text={data.company} />
         )}
 
         {data.email && (
           <TextWithIcon
             style={{ marginBottom: 4 }}
-            icon={<Icons.mail size={ICON_SIZE} />}
+            leftSection={<Icons.mail size={ICON_SIZE} />}
             text={data.email}
           />
         )}
         {data.address && (
           <TextWithIcon
             style={{ marginBottom: 4 }}
-            icon={<Icons.mapPin size={ICON_SIZE} />}
+            leftSection={<Icons.mapPin size={ICON_SIZE} />}
             text={data.address}
           />
         )}
@@ -97,7 +97,7 @@ export function CardMaintainer({ data, entity }: { data: UserCardData; entity: S
           {data.badges?.map((badge) => (
             <BadgeWithToolTip
               key={badge}
-              icon={data.badgeIcon}
+              leftSection={data.badgeIcon}
               text={badge || 'add address'}
               disabled={!badge}
               style={{ ...data.badgeSx }}

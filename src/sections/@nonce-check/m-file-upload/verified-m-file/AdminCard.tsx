@@ -22,7 +22,7 @@ export const AdminCard = (props: Props) => {
         return (
           <TextWithIcon
             key={admin._id}
-            icon={<Avatar src={admin.avatar?.url} size={24} radius="xl" />}
+            leftSection={<Avatar src={admin.avatar?.url} size={24} radius="xl" />}
             text={`${admin.name} ${admin.surname} - ${admin.email}`}
           />
         );

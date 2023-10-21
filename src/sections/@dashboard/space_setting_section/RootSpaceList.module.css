@@ -1,0 +1,7 @@
+.pinContainer {
+  display: grid;
+  gridtemplatecolumns: repeat(auto-fill, 400px);
+  gridautorows: minmax(50px, auto);
+  justify-content: center;
+  gap: var(--flex-gap);
+}
