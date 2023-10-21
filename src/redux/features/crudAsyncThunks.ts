@@ -185,6 +185,7 @@ export const updateCrudDocument = createAsyncThunk(
     // const endpoint = !parentId
     //   ? `${entity}/${documentId}`
     //   : `/linkedChildren/${entity}/${parentId}`;
+    // eslint-disable-next-line no-param-reassign
     updateData.media = undefined;
     const res = await axiosInstance.put(endpoint, updateData /* config */);
     const payload = {

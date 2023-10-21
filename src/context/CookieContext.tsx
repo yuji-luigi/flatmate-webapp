@@ -2,13 +2,16 @@ import { getCookie } from 'cookies-next';
 import { useRouter } from 'next/router';
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 import { useCrudSliceStore } from '../redux/features/crud/crudSlice';
-import { sections } from '../data';
+import { entities, sections } from '../data';
 import { CurrentSpace } from '../types/context/auth/useAuth';
 import { CookieContextState } from '../types/context/cookie-context';
 import { SpaceModel } from '../types/models/space-model';
 import { ParsedQueryCustom } from '../types/nextjs-custom-types/useRouter-types';
 import { isString } from '../utils/type-guard/isString';
+import { getEntityFromUrl, getEntityFromUrlForCookieCtx } from '../utils/helpers/helper-functions';
 
+// const exEntities = ['top/threads', 'top/maintenances', 'top/checks'];
+// const ENTITIES = [...entities, ...exEntities];
 export const CookieContext = createContext<CookieContextState>({
   currentSpace: null,
   setCurrentSpace: () => {},
@@ -22,7 +25,7 @@ const useStore = () => {
   const [currentSpace, setCurrentSpace] = useState<CurrentSpace | null>(null);
   const [currentOrganization, setCurrentOrganization] = useState<string | null>(null);
   const router: { query: ParsedQueryCustom; pathname: string } = useRouter();
-  const entity = router.query.entity || router.pathname.split('/').pop();
+  const entity = router.query.entity || getEntityFromUrlForCookieCtx();
 
   const { fetchCrudDocumentsWithPagination } = useCrudSliceStore();
 
@@ -56,15 +59,14 @@ const useStore = () => {
   // this is breaking SRP
   // when header selected space or organization changes then the documents in the current section(entity in url) will be updated
   useEffect(() => {
-    if (/* !currentSpace?._id ||  */ entity && !sections.includes(entity)) return;
+    if (/* !currentSpace?._id ||  */ !entity || !entities.includes(entity)) return;
     fetchCrudDocumentsWithPagination({ entity });
   }, [currentSpace?._id]);
 
   useEffect(() => {
-    if (!currentOrganization || !entity || !sections.includes(entity)) return;
+    if (!currentOrganization || !entity || !entities.includes(entity)) return;
     fetchCrudDocumentsWithPagination({ entity });
   }, [currentOrganization]);
-
   return {
     currentSpace,
     setCurrentSpace: (space: CurrentSpace | null) => {
