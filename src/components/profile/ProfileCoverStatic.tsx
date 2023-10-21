@@ -12,7 +12,7 @@ export interface CoverDataProp {
   disableAvatar?: boolean;
   cover?: UploadModel;
   // backgroundImage?: string;
-  sx?: MantineStyleProp;
+  style?: MantineStyleProp;
 }
 
 const ProfileCoverStatic = (props: CoverDataProp) => {
@@ -21,7 +21,7 @@ const ProfileCoverStatic = (props: CoverDataProp) => {
   // const { updateCrudDocument } = useCrudSliceStore();
 
   // const { currentSpace } = useCookieContext();
-  const { avatar, sx, cover, name, description, disableAvatar } = props;
+  const { avatar, style, cover, name, description, disableAvatar } = props;
 
   return (
     <Card

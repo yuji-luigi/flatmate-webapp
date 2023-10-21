@@ -26,7 +26,7 @@ export function DropzoneCustomImage(props: Props) {
 
   return (
     <>
-      <Text size="md" weight={500}>
+      <Text size="md" fw={500}>
         {formField.label}
       </Text>
       <Dropzone
@@ -34,7 +34,7 @@ export function DropzoneCustomImage(props: Props) {
         activateOnClick={!files.length}
         onDrop={handleDropFile}
         multiple={formField?.multi}
-        onReject={(files) => console.log('rejected files', files)}
+        onReject={(_files) => console.log('rejected files', files)}
         maxSize={3 * 1024 ** 2}
         accept={IMAGE_MIME_TYPE}
         {...props}
@@ -54,14 +54,14 @@ export function DropzoneCustomImage(props: Props) {
             <IconUpload
               size="3.2rem"
               stroke={1.5}
-              color={theme.colors[theme.primaryColor][theme.colorScheme === 'dark' ? 4 : 6]}
+              // color={theme.colors[theme.primaryColor][theme.colorScheme === 'dark' ? 4 : 6]}
             />
           </Dropzone.Accept>
           <Dropzone.Reject>
             <IconX
               size="3.2rem"
               stroke={1.5}
-              color={theme.colors.red[theme.colorScheme === 'dark' ? 4 : 6]}
+              // color={theme.colors.red[theme.colorScheme === 'dark' ? 4 : 6]}
             />
           </Dropzone.Reject>
 

@@ -29,7 +29,7 @@ export interface RegularModalParams extends BaseModalData {
     confirm?: string;
     cancel?: string;
   };
-  sx?: {
+  style?: {
     confirm: Sx;
     cancel: Sx;
   };

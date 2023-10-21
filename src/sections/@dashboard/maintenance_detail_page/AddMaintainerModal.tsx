@@ -1,13 +1,5 @@
-import {
-  Button,
-  Group,
-  LoadingOverlay,
-  MultiSelect,
-  Select,
-  SelectItem,
-  Stack,
-} from '@mantine/core';
-import React, { useEffect, useState } from 'react';
+import { Button, ComboboxData, Group, LoadingOverlay, MultiSelect, Stack } from '@mantine/core';
+import React, { useState } from 'react';
 import useSWR from 'swr';
 import { AxiosError } from 'axios';
 import { useForm } from '@mantine/form';
@@ -20,9 +12,9 @@ import LoadingScreen from '../../../components/screen/LoadingScreen';
 import useAuth from '../../../../hooks/useAuth';
 import { useCrudSelectors, useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
 import { getEntityFromUrl, sleep } from '../../../utils/helpers/helper-functions';
-import { Sections } from '../../../types/general/data/sections-type';
 import { useCustomModalContext } from '../../../context/modal-context/_ModalContext';
 import { SpaceModel } from '../../../types/models/space-model';
+import { SelectOption } from '../../../types/general/data/data-table/formField-types';
 
 const fetchMainSpaces = async () => {
   const res = await axiosInstance.get(`${PATH_API.getSpaceSelections}`);
@@ -58,7 +50,8 @@ const AddMaintainerModal = () => {
   );
 
   if (!data || isLoading) return <LoadingScreen />;
-  const options: SelectItem[] = data?.map((space: SpaceModel) => ({
+
+  const options: ComboboxData = data?.map((space: SpaceModel) => ({
     value: space._id,
     label: space.name,
   }));
@@ -101,7 +94,6 @@ const AddMaintainerModal = () => {
           placeholder="Choose spaces"
           label="select building/space to add a maintainer"
           data={options}
-          withinPortal
           {...form.getInputProps('spaces')}
         />
         <Group justify="right">

@@ -3,17 +3,16 @@ import { Icon123 } from '@tabler/icons-react';
 import React from 'react';
 import { Icons } from '../../../data/icons/icons';
 import { TEXT_SIZE } from '../../text/text-size';
-import { RADIUS } from '../../../styles/global-useStyles';
 import classes from './sideCardStyles.module.css';
 
 interface Prop {
   title?: string | React.ReactNode;
   children?: React.ReactNode;
   titleSx?: any;
-  sx?: any;
+  style?: any;
   indicator?: React.ReactNode;
 }
-const CardWithTitle = ({ title, children, titleSx, sx, indicator }: Prop) => {
+const CardWithTitle = ({ title, children, titleSx, style, indicator }: Prop) => {
   const indicatorTitle = indicator ? (
     <Indicator offset={-16} position="middle-end" size={16} color="red" label={indicator}>
       {title}
@@ -28,7 +27,7 @@ const CardWithTitle = ({ title, children, titleSx, sx, indicator }: Prop) => {
   );
 
   return (
-    <Card className={classes.card} style={sx}>
+    <Card className={classes.card} style={style}>
       {_title}
       <Box className={classes.textsContainer} style={{}}>
         {children}

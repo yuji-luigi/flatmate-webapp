@@ -24,7 +24,7 @@ export interface UserCardData {
   active?: boolean;
   badges?: string[];
   badgeIcon?: JSX.Element;
-  badgeSx?: MantineStyleProp;
+  badgestyle?: MantineStyleProp;
 }
 
 export function CardMaintainer({ data, entity }: { data: UserCardData; entity: Sections }) {
@@ -75,20 +75,20 @@ export function CardMaintainer({ data, entity }: { data: UserCardData; entity: S
         )}
 
         {data.company && (
-          <TextWithIcon leftSection={<Icons.buildings size={ICON_SIZE} />} text={data.company} />
+          <TextWithIcon icon={<Icons.buildings size={ICON_SIZE} />} text={data.company} />
         )}
 
         {data.email && (
           <TextWithIcon
             style={{ marginBottom: 4 }}
-            leftSection={<Icons.mail size={ICON_SIZE} />}
+            icon={<Icons.mail size={ICON_SIZE} />}
             text={data.email}
           />
         )}
         {data.address && (
           <TextWithIcon
             style={{ marginBottom: 4 }}
-            leftSection={<Icons.mapPin size={ICON_SIZE} />}
+            icon={<Icons.mapPin size={ICON_SIZE} />}
             text={data.address}
           />
         )}
@@ -97,10 +97,10 @@ export function CardMaintainer({ data, entity }: { data: UserCardData; entity: S
           {data.badges?.map((badge) => (
             <BadgeWithToolTip
               key={badge}
-              leftSection={data.badgeIcon}
+              icon={data.badgeIcon}
               text={badge || 'add address'}
               disabled={!badge}
-              style={{ ...data.badgeSx }}
+              style={{ ...data.badgestyle }}
             />
           ))}
         </Group>

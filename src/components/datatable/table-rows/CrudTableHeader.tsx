@@ -8,7 +8,7 @@ const CrudTableHeader = ({ overridingEntity }: { overridingEntity: Sections }) =
   const { query } = useRouter();
 
   const json = formFields[overridingEntity || (query.entity as Sections)];
-  json?.sort((a: FormFieldTypes, b: FormFieldTypes) => a.priority - b.priority);
+  json?.sort((a: FormFieldTypes, b: FormFieldTypes) => a.priority || 0 - (b.priority || 0));
   return (
     <thead>
       <tr>

@@ -11,7 +11,7 @@ export function DialogDefault() {
       </Group>
 
       <Dialog opened={opened} withCloseButton onClose={close} size="lg" radius="md">
-        <Text size="sm" mb="xs" weight={500}>
+        <Text size="sm" mb="xs" fw={500}>
           Subscribe to email newsletter
         </Text>
 

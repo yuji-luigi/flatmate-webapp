@@ -31,7 +31,7 @@ export const RegularModal = (props: RegularModalProps) => {
       setSubmitting(false);
     }
   };
-  const confirmStyle = modalData.sx?.confirm ? modalData.sx.confirm : {};
+  const confirmStyle = modalData.style?.confirm ? modalData.style.confirm : {};
   return (
     <>
       {modalData.children}
@@ -40,7 +40,7 @@ export const RegularModal = (props: RegularModalProps) => {
           display="flex"
           style={{ flexDirection: isMobile ? 'column' : 'row', gap: 8, justifyContent: 'end' }}
         >
-          <Button variant="outline" style={modalData.sx?.cancel} onClick={handleCancel}>
+          <Button variant="outline" style={modalData.style?.cancel} onClick={handleCancel}>
             {modalData.labels?.cancel || 'Cancel'}
           </Button>
           <Button

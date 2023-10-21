@@ -6,15 +6,15 @@ type Props = {
   variant?: string;
   mt?: number;
   size?: number;
-  sx?: MantineStyleProp;
+  style?: MantineStyleProp;
   className?: string;
 };
 
 export function ColorSchemeToggle(props: Props) {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
-  const { sx, className } = props;
+  const { style, className } = props;
   return (
-    <Group className={className} justify="center" style={sx} mt={props.mt}>
+    <Group className={className} justify="center" style={style} mt={props.mt}>
       <ActionIcon
         onClick={() => toggleColorScheme()}
         size={props.size || 'xl'}

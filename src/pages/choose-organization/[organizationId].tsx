@@ -51,7 +51,7 @@ const ChooseSpaceInOrganizationPage = () => {
   //         Back
   //       </Button>
   //     </Box>
-  //     <Text variant="text" size={36} weight={600} align="center">
+  //     <Text variant="text" size={36} fw={600} align="center">
   //       Choose a space
   //     </Text>
   //     <Box

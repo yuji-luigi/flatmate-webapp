@@ -11,7 +11,7 @@ const defaultModalValues: ModalDataTypes = {
   title: '',
   centered: true,
   children: <></>,
-  sx: {
+  style: {
     confirm: {},
     cancel: {},
   },
@@ -47,7 +47,7 @@ const useStore = () => {
       const newModalValues: ModalDataTypes = {
         // id: modalId,
         centered: true,
-        // sx: {},
+        // style: {},
         // labels: {},
         ...params,
       };

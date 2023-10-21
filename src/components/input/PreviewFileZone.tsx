@@ -26,7 +26,7 @@ const PreviewFileZone = ({ form, formField, entity }: Prop) => {
   }
   return (
     <Stack mt={10} gap={0}>
-      <Text mb={0} size="md" weight={500}>
+      <Text mb={0} size="md" fw={500}>
         {formField?.label}
       </Text>
       <OverlayCustom leftSection={<Icons.image />} onClick={open}>

@@ -1,4 +1,4 @@
-import { Box, Select, SelectItem, Sx } from '@mantine/core';
+import { Box, MantineStyleProp, Select } from '@mantine/core';
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { UseFormReturnType } from '@mantine/form';
@@ -8,9 +8,10 @@ import { PATH_API, _PATH_API } from '../../path/path-api';
 import { useCookieContext } from '../../context/CookieContext';
 import { convertToSelectItems } from '../../utils/helpers/helper-functions';
 import useAuth from '../../../hooks/useAuth';
+import { SelectOption } from '../../types/general/data/data-table/formField-types';
 
 interface OrganizationSpaceSelectProps {
-  sx?: Sx;
+  style?: MantineStyleProp;
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
   labels?: { organization: string; space: string };
   form?: UseFormReturnType<Record<string, unknown>> | null;
@@ -20,7 +21,7 @@ interface OrganizationSpaceSelectProps {
 }
 
 const OrganizationSpaceSelect = ({
-  sx,
+  style,
   size = 'xs',
   labels,
   form = null,
@@ -28,7 +29,7 @@ const OrganizationSpaceSelect = ({
 }: OrganizationSpaceSelectProps) => {
   // const [opened, { toggle }] = useDisclosure(false);
 
-  const [organizations, setOrganizations] = useState<SelectItem[] | []>([]);
+  const [organizations, setOrganizations] = useState<SelectOption[] | []>([]);
   const {
     setCurrentOrganization,
     setCurrentSpace,
@@ -37,7 +38,7 @@ const OrganizationSpaceSelect = ({
     resetCurrentSpace,
   } = useCookieContext();
 
-  const [spaces, setSpaces] = useState<SelectItem[] | []>([]);
+  const [spaces, setSpaces] = useState<SelectOption[] | []>([]);
   const router = useRouter();
   const { user } = useAuth();
   const isSuperAdmin = user?.role === 'super_admin';
@@ -139,7 +140,7 @@ const OrganizationSpaceSelect = ({
               form.setFieldValue('organization', value || '');
             }
           }}
-          style={sx}
+          style={style}
         />
       )}
       <Select
@@ -161,7 +162,7 @@ const OrganizationSpaceSelect = ({
             form.setFieldValue('space', value || '');
           }
         }}
-        style={sx}
+        style={style}
       />
     </Box>
   );

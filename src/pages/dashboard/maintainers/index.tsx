@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import React, { ReactElement, useEffect } from 'react';
-import { Stack, createStyles } from '@mantine/core';
+import { Stack } from '@mantine/core';
 import Page from '../../../components/Page';
 import { CrudDrawerDefault } from '../../../components/drawer/CrudDrawerDefault';
 import { usePaginationContext } from '../../../context/PaginationContext';

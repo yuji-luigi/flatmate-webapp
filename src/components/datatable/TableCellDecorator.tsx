@@ -1,7 +1,10 @@
 import React, { Fragment } from 'react';
 // import BadgeCell from './table-rows/tablecell/BadgeCell';
 import TableCellController from './table-rows/tablecell/crud-cells/TableCellController';
-import { FormFieldTypes } from '../../types/general/data/data-table/formField-types';
+import {
+  BadgeCellConfig,
+  FormFieldTypes,
+} from '../../types/general/data/data-table/formField-types';
 import BadgeCellDecorator from './table-rows/tablecell/crud-cells/BadgeCellDecorator';
 import { AllModels } from '../../types/models/allmodels';
 import classes from './TableCellDecorator.module.css';
@@ -34,7 +37,7 @@ export function TableCellDecorator({
 
   if (cellConfig.badge) {
     return (
-      <BadgeCellDecorator cellConfig={cellConfig} value={cellValue}>
+      <BadgeCellDecorator cellConfig={cellConfig as BadgeCellConfig} value={cellValue}>
         {tableCell}
       </BadgeCellDecorator>
     );
@@ -106,6 +109,7 @@ function getCellValueRecursive({
 }
 
 function handleObjectType({ value, cellConfig }: { value: any; cellConfig: FormFieldTypes }) {
+  if (cellConfig.type !== 'select') return '';
   if (Array.isArray(value)) {
     if (value.length === 0) {
       return '';

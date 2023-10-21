@@ -10,33 +10,6 @@ import { useTranslation } from 'next-i18next';
 import { Icons } from '../../data/icons/icons';
 import classesM from './StatsGrid.module.css';
 
-// const useStyles = createStyles((theme) => ({
-//   root: {
-//     padding: `calc(var(--mantine-spacing-xl)) * 1.5)`,
-//   },
-
-//   value: {
-//     font-size: 24,
-//     font-weight: 700,
-//     line-height: 1,
-//   },
-
-//   diff: {
-//     line-height: 1,
-//     display: 'flex',
-//     align-items: 'center',
-//   },
-
-//   icon: {
-//     color: light-dark(var(--mantine-color-gray-4), var(--mantine-color-dark-3)),
-//   },
-
-//   title: {
-//     font-weight: 700,
-//     textTransform: 'uppercase',
-//   },
-// }));
-
 const _icons = {
   // user: IconUserPlus,
   discount: IconDiscount2,

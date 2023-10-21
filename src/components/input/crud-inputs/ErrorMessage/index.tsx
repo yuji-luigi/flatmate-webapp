@@ -7,7 +7,7 @@ const ErrorMessage = (props: TextProps & { children?: string }) => {
   if (!children?.length) return null;
   return (
     <Text
-      weight={500}
+      fw={500}
       size="sm"
       style={{ wordBreak: 'break-word', display: 'block', position: 'relative' }}
       {...rest}

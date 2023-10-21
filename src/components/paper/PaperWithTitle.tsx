@@ -5,10 +5,10 @@ import classes from './PaperWithTitle.module.css';
 type PaperWithTitleProps = {
   title: ReactNode;
   children: ReactNode;
-  sx: MantineStyleProp;
+  style: MantineStyleProp;
 } & PaperProps;
 
-export const PaperWithTitle = ({ title, children, sx, ...others }: PaperWithTitleProps) => {
+export const PaperWithTitle = ({ title, children, style, ...others }: PaperWithTitleProps) => {
   return (
     <Paper radius="lg" p="xl" withBorder {...others}>
       <Box className={classes.title}>{title}</Box>

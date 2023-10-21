@@ -1,4 +1,4 @@
-import { createStyles, Card, Image, Avatar, Text, Group, Box, Stack } from '@mantine/core';
+import { Card, Image, Avatar, Text, Group, Box, Stack } from '@mantine/core';
 import Link from 'next/link';
 import { threadId } from 'worker_threads';
 import { useRouter } from 'next/router';

@@ -41,7 +41,7 @@ type BadgeCellConfig = BaseFormType &
 // };
 
 export type TextFormType = {
-  type: 'text' | 'number';
+  type: 'text' | 'number' | 'boolean';
   cellType?: 'text-on-hover' | 'text-on-dialog';
   // { type: 'text' | 'number' }
   // | { cellType?: 'text-on-hover' | 'text-on-dialog' }
@@ -66,6 +66,7 @@ export type SelectFormType = {
 
 export type StaticSelectFormFieldType = {
   type: 'static-select';
+  _entity?: '';
   options: StaticOption[];
 } & BaseFormType &
   BaseSelectFormType;
@@ -215,6 +216,7 @@ type FormTypes =
   | 'text-on-dialog'
   | 'password'
   | 'checkbox-group'
+  | 'boolean'
   | 'radio-group'
   | 'switch-group'
   | 'select'

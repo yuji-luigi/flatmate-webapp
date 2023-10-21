@@ -45,14 +45,14 @@ const ProfileCoverGeneric = ({
   entity,
   noAvatar = false,
   enableCover = false,
-  sx,
+  style,
 }: {
   data: CoverDataProp;
   enableCover?: boolean;
   entity?: Sections;
   noAvatar?: boolean;
   formFields?: FormFieldTypes[];
-  sx?: MantineStyleProp;
+  style?: MantineStyleProp;
 }) => {
   const { documentId } = useRouter().query;
   const _entity = entity || (getEntityFromUrl() as Sections);
@@ -139,7 +139,7 @@ const ProfileCoverGeneric = ({
     <Card
       shadow="sm"
       padding="lg"
-      // style={sx}
+      // style={style}
       className={classes.card}
       style={{
         backgroundSize: 'object-fit',

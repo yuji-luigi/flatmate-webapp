@@ -37,7 +37,7 @@ export function UserMenu() {
               />
 
               <div>
-                <Text weight={500}>Nancy Eggshacker</Text>
+                <Text fw={500}>Nancy Eggshacker</Text>
                 <Text size="xs" color="dimmed">
                   neggshaker@mantine.dev
                 </Text>

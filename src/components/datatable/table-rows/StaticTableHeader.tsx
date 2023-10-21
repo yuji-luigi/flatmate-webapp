@@ -13,7 +13,7 @@ const getAlignmentDataAttribute = (alignment: 'left' | 'center' | 'right' = 'lef
   return { [`data-align-${alignment}`]: true };
 };
 
-const StaticTableHeader = ({ json, actions }: { json: BaseFormType[]; actions?: any }) => {
+const StaticTableHeader = ({ json, actions }: { json: FormFieldTypes[]; actions?: any }) => {
   const { query } = useRouter();
 
   json?.sort((a: FormFieldTypes, b: FormFieldTypes) => a?.priority || 0 - (b?.priority || 0));

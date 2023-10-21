@@ -23,7 +23,6 @@ export const usersTableData: Array<FormFieldTypes> = [
     name: 'active',
     label: 'Active',
     type: 'boolean',
-    cellType: 'boolean',
     required: false,
     priority: 2,
   },

@@ -7,7 +7,7 @@ export const spacesTableData: Array<FormFieldTypes> = [
     name: 'name',
     label: 'Name',
     placeholder: 'Building East/Quarto oggiaro district(whole city as building)',
-    type: 'text',
+    type: 'link-children',
     cellType: 'link-children',
     linkRoot: PATH_CLIENT.childrenSpace,
     linkKey: '_id',

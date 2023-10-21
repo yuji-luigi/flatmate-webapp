@@ -5,11 +5,9 @@ import { Icons } from '../../../../../data/icons/icons';
 import TextWithIcon from '../../../../../components/text/TextWithIcon';
 import { MaintainerModel } from '../../../../../types/models/maintainer-model';
 import { PATH_CLIENT } from '../../../../../path/path-frontend';
-import { dashboardStyle } from '../../../../../styles/global-useStyles';
+import classes from '../../../../../styles/global-useStyles.module.css';
 
 export const MaintainerList = ({ maintainers }: { maintainers: MaintainerModel[] }) => {
-  const { classes: classes1 } = dashboardStyle();
-
   if (!maintainers.length) return <Text>No maintainer to the space</Text>;
   return (
     <Stack gap={16}>
@@ -18,14 +16,14 @@ export const MaintainerList = ({ maintainers }: { maintainers: MaintainerModel[]
         return (
           <Fragment key={maintainer.slug}>
             <Link
-              className={classes1.navList}
+              className={classes.navList}
               href={`${PATH_CLIENT.maintainersDetail}/${maintainer.slug}`}
               key={maintainer._id}
             >
               <Stack gap={0}>
                 <TextWithIcon
                   key={maintainer._id}
-                  leftSection={<Icon />}
+                  icon={<Icon />}
                   style={{ marginBottom: 10 }}
                   text={maintainer.name}
                 />

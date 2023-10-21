@@ -1,5 +1,6 @@
+/* eslint-disable no-restricted-syntax */
 /* eslint-disable react/jsx-pascal-case */
-import { Button, createStyles, Drawer } from '@mantine/core';
+import { Button, Drawer } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import {
   cleanNotifications,
@@ -99,6 +100,7 @@ export function CrudDrawerDefault({ overridingEntity = '' }: { overridingEntity?
     if (media && hasMedia(media)) {
       try {
         const uploadIdData = await uploadFileAndGetModelId(extractUploadingMedia(media), entity);
+        // eslint-disable-next-line guard-for-in
         for (const key in uploadIdData) {
           reqBody[key] = [...reqBody[key], ...uploadIdData[key]];
         }
@@ -202,7 +204,7 @@ export function CrudDrawerDefault({ overridingEntity = '' }: { overridingEntity?
       title="Register"
       padding="xl"
       size="xl"
-      justify="right"
+      position="right"
     >
       <Icons.close onClick={handleCloseDrawer} />
       <form className={classes.form} onSubmit={onSubmit}>

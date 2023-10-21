@@ -38,7 +38,9 @@ export function CrudDataTable({ overridingEntity = '' }: { overridingEntity?: Se
     return <h1>Please provide the formField.json file to display the table</h1>;
   }
 
-  sectionFormFields.sort((a: FormFieldTypes, b: FormFieldTypes) => a.priority - b.priority);
+  sectionFormFields.sort(
+    (a: FormFieldTypes, b: FormFieldTypes) => a.priority || 0 - (b.priority || 0)
+  );
 
   const TOTAL = Math.floor((totalDocumentsCount - 1) / ROWS_PER_PAGE) + 1;
 

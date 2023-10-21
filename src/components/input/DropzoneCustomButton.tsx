@@ -21,7 +21,7 @@ export function DropzoneCustomButton({ form, formField }: Props) {
   };
   return (
     <Box mt={10}>
-      <Text size="md" weight={500}>
+      <Text size="md" fw={500}>
         {formField.label}
       </Text>
       <Dropzone

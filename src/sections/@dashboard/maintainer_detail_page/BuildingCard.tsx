@@ -22,7 +22,7 @@ export const BuildingCard = () => {
         document.spaces?.map((space: SpaceModel) => (
           <TextWithIcon
             key={space._id}
-            leftSection={<Icons.buildings size={ICON_SIZE} />}
+            icon={<Icons.buildings size={ICON_SIZE} />}
             text={space.name}
           />
         ))

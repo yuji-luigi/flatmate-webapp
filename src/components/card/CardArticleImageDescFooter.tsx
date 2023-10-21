@@ -20,7 +20,7 @@
 //   title: string;
 //   description: string;
 //   rating: string;
-//   sx: CSSProperties;
+//   style: CSSProperties;
 //   author: {
 //     name: string;
 //     image?: string;
@@ -35,7 +35,7 @@
 //   description,
 //   author = { name: 'not registered user', image: '' },
 //   rating,
-//   sx,
+//   style,
 //   ...others
 // }: CardArticleImageDescFooterProps &
 //   Omit<React.ComponentPropsWithoutRef<'div'>, keyof CardArticleImageDescFooterProps>) {

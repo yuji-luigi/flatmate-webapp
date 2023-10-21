@@ -1,4 +1,4 @@
-import { Select, SelectItem, Skeleton } from '@mantine/core';
+import { Select, Skeleton } from '@mantine/core';
 import React from 'react';
 import useSWR from 'swr';
 import { CustomFormFieldType } from '../../../types/general/data/data-table/formField-types';
@@ -13,19 +13,15 @@ interface Props {
   form: UseFormReturnTypeCustom;
 }
 const fetchMaintainersOfBuilding = async (/* buildingId: string */) => {
-  try {
-    const res = await axiosInstance.get<AxiosResDataGeneric<MaintainerModel[]>>(
-      `${PATH_API.maintainersSpace}`
-    );
-    return res.data.data.map((maintainer) => ({
-      value: maintainer._id,
-      label: `${maintainer.type?.toUpperCase() || 'Job unspecified'}: ${maintainer.name} - ${
-        maintainer.email
-      }`,
-    }));
-  } catch (error) {
-    throw error;
-  }
+  const res = await axiosInstance.get<AxiosResDataGeneric<MaintainerModel[]>>(
+    `${PATH_API.maintainersSpace}`
+  );
+  return res.data.data.map((maintainer) => ({
+    value: maintainer._id,
+    label: `${maintainer.type?.toUpperCase() || 'Job unspecified'}: ${maintainer.name} - ${
+      maintainer.email
+    }`,
+  }));
 };
 export const MaintainerSelect = ({ formField, form, ...others }: Props) => {
   const { currentSpace } = useCookieContext();

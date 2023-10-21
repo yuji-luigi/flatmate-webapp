@@ -1,13 +1,8 @@
-import { Select, SelectItem } from '@mantine/core';
-import React, { ChangeEvent, useEffect } from 'react';
+import { Select } from '@mantine/core';
+import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useFilter } from '../../../../hooks/useFilter';
-import {
-  FormFieldTypes,
-  SelectFormType,
-  SelectOption,
-  StaticSelectFormFieldType,
-} from '../../../types/general/data/data-table/formField-types';
+import { StaticSelectFormFieldType } from '../../../types/general/data/data-table/formField-types';
 
 export const SelectFilterInput = ({ formField }: { formField: StaticSelectFormFieldType }) => {
   const { query } = useRouter();

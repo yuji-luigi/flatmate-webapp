@@ -18,7 +18,7 @@ const filteredTableData = spacesTableData.filter(
 interface SpaceSettingFormProps {
   paperProp?: PaperProps;
   data?: SpaceModel;
-  sx?: Sx;
+  style?: Sx;
   isSpaceAdmin?: boolean;
 }
 const entity = 'spaces';
@@ -48,7 +48,7 @@ export function SpaceSettingForm(props: SpaceSettingFormProps) {
 
   return (
     <Paper radius="lg" p="xl" withBorder {...props}>
-      <Text size="lg" weight={500} mb={8}>
+      <Text size="lg" fw={500} mb={8}>
         Settings for the building/space
       </Text>
 

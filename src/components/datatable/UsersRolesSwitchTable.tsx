@@ -13,7 +13,7 @@ export function UsersRolesTable({ data }: UsersTableProps) {
         <Group gap="sm">
           <Avatar size={40} src={item.avatar} radius={40} />
           <div>
-            <Text size="sm" weight={500}>
+            <Text size="sm" fw={500}>
               {item.name}
             </Text>
             <Text size="xs" color="dimmed">

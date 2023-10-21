@@ -73,7 +73,7 @@ const MaintainerList = ({ entity }: { entity: Sections }) => {
                 slug: maintainer.slug,
                 // badgeIcon: <Icons.check />,
                 badges: badge,
-                badgeSx: { paddingBlock: 8, maxWidth: 100 },
+                badgestyle: { paddingBlock: 8, maxWidth: 100 },
                 avatar: maintainer.avatar,
                 cover: maintainer.cover,
                 type: maintainer.type,
