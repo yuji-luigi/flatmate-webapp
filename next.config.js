@@ -81,7 +81,7 @@ const nextConfig = (phase) => {
     i18n,
     // trailingSlash: true,
     swcMinify: true,
-    // env,
+    env,
     // webpack,
     reactStrictMode: false,
 
