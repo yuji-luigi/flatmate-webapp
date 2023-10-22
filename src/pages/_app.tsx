@@ -1,28 +1,25 @@
-import '@mantine/notifications/styles.css';
 import '@mantine/core/styles.css';
+import '@mantine/notifications/styles.css';
 
-import { ActionIcon, MantineProvider } from '@mantine/core';
+import { MantineProvider } from '@mantine/core';
 import { Notifications } from '@mantine/notifications';
-import { getCookie, setCookie } from 'cookies-next';
+import { getCookie } from 'cookies-next';
 import { GetServerSidePropsContext, NextPage } from 'next';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
-import { ReactElement, ReactNode, useState } from 'react';
+import { ReactElement, ReactNode } from 'react';
 import { Provider as ReduxProvider } from 'react-redux';
 import { appWithTranslation } from 'next-i18next';
 import { DashboardLayoutContextProvider } from '../context/DashboardLayoutContext';
 import { DrawerContextProvider } from '../context/DataTableDrawerContext';
 import { AuthProvider } from '../context/JWTContext';
 import { PaginationContextProvider } from '../context/PaginationContext';
-import { myColors } from '../lib/custom-colors';
 import reduxStore from '../redux/store';
 // import { CurrentSpaceContextProvider } from '../context/CurrentSpaceContext';
-import { CookieContextProvider } from '../context/CookieContext';
 import { FilterContextProvider } from '../context/FilterContext';
 import { _ModalContextProvider } from '../context/modal-context/_ModalContext';
 import '../styles/global.css';
 import { ModalRootCustom } from '../context/modal-context/ModalRootCustom';
-import { CardOverride } from '../overrides/CardOverrides';
 import { components } from '../overrides';
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {

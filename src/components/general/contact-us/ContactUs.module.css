@@ -21,7 +21,7 @@
   line-height: 1px;
 }
 
-description {
+.description {
   color: var(--mantine-color-primary-color);
   max-width: 300px;
 
