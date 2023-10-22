@@ -47,23 +47,23 @@ LoginPage.getLayout = function getLayout(page: ReactElement) {
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   try {
-    const jwtToken = context.req.cookies.jwt;
-    if (!jwtToken) {
-      return { props: { user: null } };
-    }
-    console.log(`${process.env.NEXT_PUBLIC_API_URL}/${PATH_AUTH.me}`);
-    const rawRes = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/${PATH_AUTH.me}`, {
-      headers: {
-        Authorization: `Bearer ${jwtToken}`,
-      },
-    });
-    const { data } = rawRes;
+    // const jwtToken = context.req.cookies.jwt;
+    // if (!jwtToken) {
+    //   return { props: { user: null } };
+    // }
+    // console.log(`${process.env.NEXT_PUBLIC_API_URL}/${PATH_AUTH.me}`);
+    // const rawRes = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/${PATH_AUTH.me}`, {
+    //   headers: {
+    //     Authorization: `Bearer ${jwtToken}`,
+    //   },
+    // });
+    // const { data } = rawRes;
     // const data = await response.json();
 
     return {
       props: {
         ...(await serverSideTranslations(context.locale || '', ['common'])),
-        user: data.user,
+        user: null,
       },
     };
   } catch (error) {
