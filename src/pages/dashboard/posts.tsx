@@ -48,6 +48,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     return {
       redirect: {
         destination: '/logout',
+        permanent: false,
       },
     };
   }
