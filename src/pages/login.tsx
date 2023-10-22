@@ -10,6 +10,7 @@ import {
 } from '@mantine/core';
 import { ReactElement } from 'react';
 import { GetServerSidePropsContext } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import classes from './login.module.css';
 import Layout from '../layouts';
 import { API_BASE_URL, PATH_AUTH } from '../path/path-api';
@@ -58,7 +59,10 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     // const data = await response.json();
 
     return {
-      props: { user: data.user },
+      props: {
+        ...(await serverSideTranslations(context.locale || '', ['common'])),
+        user: data.user,
+      },
     };
   } catch (error) {
     return {

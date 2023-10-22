@@ -82,7 +82,4 @@ function App(props: AppProps) {
   );
 }
 
-App.getInitialProps = ({ ctx }: { ctx: GetServerSidePropsContext }) => ({
-  colorScheme: getCookie('mantine-color-scheme', ctx) || 'dark',
-});
 export default appWithTranslation(App);
