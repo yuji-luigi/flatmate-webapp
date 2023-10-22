@@ -1,6 +1,6 @@
 .listContainer {
   gap: var(--flex-gap);
-  padding: 0px;
+  padding: 0;
 }
 
 .drawerBody {

@@ -1,6 +1,6 @@
 
   .link {
-    textDecoration: none;
+    text-decoration: none;
   };
   .card {
     background-color:  light-dark(var(--mantine-color-gray-4), var(--mantine-color-white))
@@ -18,7 +18,7 @@
   .title {
     font-weight: 800;
     font-size: 20px;
-    font-family: Greycliff CF; var(--mantine-font-family);
+    font-family: 'Greycliff CF'; var(--mantine-font-family);
     line-height: 1.2;
   };
 

@@ -1,5 +1,5 @@
 .card {
-  borderradius: var(--radius-card);
+  border-radius: var(--radius-card);
   height: 100%;
   flex: 1;
   overflow: visible;

@@ -1,11 +1,11 @@
 .link {
-  textdecoration: none;
+  text-decoration: none;
 }
 .card {
   background-color: var(--mantine-color-body);
   height: 150px;
   padding: 10px;
-  gridrowend: span 1;
+  grid-row-end: span 1;
   cursor: pointer;
   &:hover {
     background-color: light-dark(var(--mantine-color-gray-5), var(--mantine-color-dark-0));
@@ -13,15 +13,15 @@
 }
 
 .title {
-  fontweight: 700;
-  font-family: Greycliff CF, var(--mantine-font-family);
-  lineheight: 1.2;
+  font-weight: 700;
+  font-family: 'Greycliff CF', var(--mantine-font-family);
+  line-height: 1.2;
 }
 
 .body {
   padding: var(--mantine-spacing-md);
   display: flex;
   flex-direction: column;
-  justifycontent: space-between;
+  justify-content: space-between;
   height: 100%;
 }

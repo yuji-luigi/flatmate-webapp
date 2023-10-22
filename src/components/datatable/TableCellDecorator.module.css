@@ -1,5 +1,4 @@
 @media (max-width: $mantine-breakpoint-sm) {
-  .cellContent,
   .cellContent .badgeContent {
     font-size: 12px;
     width: var(--table-cell-width-sm);

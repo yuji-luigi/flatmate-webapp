@@ -9,9 +9,9 @@
 
 .label {
   position: absolute;
-  pointerevents: none;
+  pointer-events: none;
   font-size: var(--mantine-font-size-xs);
-  paddingleft: var(--mantine-spacing-sm);
+  padding-left: var(--mantine-spacing-sm);
   padding-top: calc(var(--mantine-spacing-sm) / 2);
-  zindex: 1;
+  z-index: 1;
 }

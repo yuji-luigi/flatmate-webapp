@@ -1,6 +1,6 @@
 .articleArea {
   background-color: light-dark(var(--mantine-color-gray-0) ; var(--mantine-color-dark-5));
-  boxshadow: var(--mantine-shadow-xl);
+  box-shadow: var(--mantine-shadow-xl);
 }
 
 .action {
@@ -11,7 +11,7 @@
 }
 
 .articleMenuDivider {
-  marginblock: var(--mantine-spacing-xl);
+  margin-block: var(--mantine-spacing-xl);
 }
 .relatedArticlesSection {
   max-width: 300px;

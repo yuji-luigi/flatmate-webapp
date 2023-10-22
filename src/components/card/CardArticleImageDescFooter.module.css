@@ -3,14 +3,14 @@
   background-color: light-dark(var(--mantine-color-gray-7) ; var(--mantine-color-white));
   height: 300px;
   padding: 10px;
-  gridrowend: span 2;
+  grid-row-end: span 2;
 }
 
 .rating {
   position: absolute;
   top: var(--mantine-spacing-xs);
   right: rem(12);
-  pointerevents: none;
+  pointer-events: none;
 }
 
 .title {

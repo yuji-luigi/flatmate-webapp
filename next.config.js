@@ -1,4 +1,6 @@
 const { PHASE_DEVELOPMENT_SERVER, PHASE_PRODUCTION_BUILD } = require('next/constants');
+const StyleLintPlugin = require('stylelint-webpack-plugin');
+
 /** @type {import('next').NextConfig} */
 const { i18n } = require('./next-i18next.config');
 
@@ -26,31 +28,59 @@ const nextConfig = (phase) => {
     })(),
     NEXT_PUBLIC_SSG_SECRET: 'secretforssgishereman%^()_',
   };
-  const css = {
-    loaderOptions: {
-      postcss: {
-        plugins: [
-          require('postcss-preset-mantine')(),
-          require('postcss-simple-vars')({
-            variables: {
-              'mantine-breakpoint-xs': '36em',
-              'mantine-breakpoint-sm': '48em',
-              'mantine-breakpoint-md': '62em',
-              'mantine-breakpoint-lg': '75em',
-              'mantine-breakpoint-xl': '88em',
+  function webpack(config, options) {
+    // Enables source map for development
+    if (!options.isServer && options.dev) {
+      config.module.rules.push({
+        test: /\.(css|scss)/,
+        use: [
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true,
             },
-          }),
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true,
+            },
+          },
         ],
-      },
-    },
-  };
+      });
+    }
+    config.plugins.push(
+      new StyleLintPlugin({
+        files: 'src/**/*.(css|scss)', // Adjust this path to match your project structure
+        // Other stylelint-webpack-plugin options
+      })
+    );
+
+    // Update the CSS/SCSS loader rules
+    config.module.rules.push({
+      test: /\.(css|scss)$/,
+      use: [
+        'style-loader',
+        {
+          loader: 'css-loader',
+          options: {
+            importLoaders: 1,
+            sourceMap: true, // Enable source maps
+          },
+        },
+        'sass-loader',
+      ],
+    });
+    return config;
+  }
 
   return {
     i18n,
     reactStrictMode: true,
     trailingSlash: true,
-    swcMinify: false,
+    swcMinify: true,
     env,
+    webpack,
     typescript: {
       // !! WARN !!
       // Dangerously allow production builds to successfully complete even if

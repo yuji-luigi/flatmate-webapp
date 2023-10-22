@@ -1,5 +1,5 @@
 .link {
-  textdecoration: none;
+  text-decoration: none;
 }
 .card {
   height: 500px;
@@ -30,8 +30,8 @@
 
 .title {
   font-weight: 700;
-  font-family: Greycliff CF, var(--mantine-font-family);
-  wordbreak: break-word;
+  font-family: 'Greycliff CF', var(--mantine-font-family);
+  word-break: break-word;
   line-height: 1.2;
   z-index: 60;
 }

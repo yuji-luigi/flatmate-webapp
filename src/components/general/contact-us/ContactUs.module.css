@@ -1,8 +1,8 @@
 .wrapper {
-  minheight: 400;
+  min-height: 400px;
   box-sizing: border-box;
   background-image: linear-gradient(
-    -60deg var(--mantine-color-default-color) 0% var(--mantine-color-default-color) 100%
+    -60deg, var(--mantine-color-default-color), 0% ,var(--mantine-color-default-color), 100%
   );
   /* backgroundImage: linear-gradient(-60deg theme.colors[theme.primaryCo;lor][4] 0% 
       theme.colors[theme.primaryColor][7]
@@ -16,7 +16,7 @@
 }
 
 .title {
-  font-family: Greycliff CF var(--mantine-font-family);
+  font-family: 'Greycliff CF' var(--mantine-font-family);
   color: var(--mantine-color-white);
   line-height: 1px;
 }

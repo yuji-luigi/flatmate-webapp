@@ -2,7 +2,7 @@
   z-index: 10px;
   padding-top: 50px;
   @media (min-width: $mantine-breakpoint-md) {
-    paddingleft: 300px;
+    padding-left: 300px;
   }
 }
 .bg {

@@ -4,8 +4,8 @@
   position: relative;
   width: 100%;
   height: 100%;
-  backgroundsize: cover;
-  backgroundposition: center;
+  background-size: cover;
+  background-position: center;
   min-height: 200px;
   display: flex;
   align-items: flex-end;
@@ -29,7 +29,7 @@
 .avatarWrapper {
   position: relative;
   display: inline-block;
-  zindex: 20;
+  z-index: 20;
 }
 .avatarEditBox {
   position: absolute;

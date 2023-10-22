@@ -1,10 +1,6 @@
-import { Card, Image, Avatar, Text, Group, Box, Stack } from '@mantine/core';
+import { Card, Image, Avatar, Text, Group, Box } from '@mantine/core';
 import Link from 'next/link';
-import { threadId } from 'worker_threads';
 import { useRouter } from 'next/router';
-import { CARD_LINK_PATH, PATH_CLIENT } from '../../path/path-frontend';
-import { MaintenanceModel } from '../../types/models/maintenance-model';
-import { ThreadModel } from '../../types/models/thread-model';
 import { IUser } from '../../types/context/auth/useAuth';
 import classes from './CardArticleSmall.module.css';
 

@@ -9,16 +9,16 @@
   grid-row-end: span 2;
   &:hover {
     transform: scale(1.01);
-    boxshadow: var(--mantine-shadow-md);
+    box-shadow: var(--mantine-shadow-md);
   }
 }
 
 .title {
-  font-family: Greycliff CF, var(--mantine-font-family);
+  font-family: 'Greycliff CF', var(--mantine-font-family);
   font-weight: 600;
 }
 
 .description {
-  font-family: Greycliff CF, var(--mantine-font-family);
+  font-family: 'Greycliff CF', var(--mantine-font-family);
   font-weight: 600;
 }

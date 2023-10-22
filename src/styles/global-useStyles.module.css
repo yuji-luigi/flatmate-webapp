@@ -28,7 +28,7 @@
   }
 }
 .navList {
-  /* // textDecoration: none; */
+  /* // text-decoration: none; */
   /* ...theme.fn.focusStyles(); */
   display: flex;
   align-items: center;
@@ -37,7 +37,7 @@
   color: light-dark(var(--mantine-color-gray-7) ; var(--mantine-color-dark-1));
   padding: `var(--mantine-spacing-xs) var(--mantine-spacing-sm);
   border-radius: var(--mantine-radius-sm);
-  fontweight: 500;
+  font-weight: 500;
   &:hover {
     background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-4));
     color: light-dark(var(--mantine-color-black) ; var(--mantine-color-white));
@@ -48,10 +48,10 @@
 }
 
 .container {
-  paddingblock: 32px;
-  margininline: 16px;
+  padding-block: 32px;
+  margin-inline: 16px;
   @media (max-width: $mantine-breakpoint-sm) {
-    margininline: 0;
+    margin-inline: 0;
   }
 }
 .pinContainer {
@@ -126,7 +126,7 @@
   }
 }
 .feedCard {
-  minheight: 200;
+  min-height: 200px;
 }
 .feedContent {
   padding: 16;

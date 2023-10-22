@@ -1,5 +1,5 @@
 .title {
-  font-family: Greycliff CF, var(--mantine-font-family);
+  font-family: 'Greycliff CF', var(--mantine-font-family);
   font-size: 24;
   font-weight: 600;
   margin-bottom: var(--mantine-spacing-xl);

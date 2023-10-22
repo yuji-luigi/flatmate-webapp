@@ -1,0 +1,9 @@
+{
+	"extends": [
+		"stylelint-config-standard",
+		"stylelint-config-recommended"
+	],
+	"rules": {
+		"property-no-unknown": true
+	}
+}

@@ -3,7 +3,9 @@
   flex-direction: column;
   justify-content: center;
   z-index: 30;
+
   /* align-items: center; */
+
   /* width: 100%; */
   gap: var(--flex-gap);
 }

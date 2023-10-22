@@ -6,5 +6,5 @@
 }
 
 .articleMenuDivider {
-  marginblock: var(--mantine-spacing-xl);
+  margin-block: var(--mantine-spacing-xl);
 }

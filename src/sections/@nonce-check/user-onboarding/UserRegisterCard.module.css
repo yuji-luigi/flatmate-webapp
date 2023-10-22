@@ -1,6 +1,6 @@
 .formContainer {
   justify-content: start;
-  marginblock: var(--mantine-spacing-md);
+  margin-block: var(--mantine-spacing-md);
 }
 .buttonContainer {
   width: 100%;
