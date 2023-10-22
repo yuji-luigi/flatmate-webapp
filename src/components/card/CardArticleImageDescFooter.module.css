@@ -1,6 +1,6 @@
 .card {
   position: relative;
-  background-color: light-dark(var(--mantine-color-gray-7) ; var(--mantine-color-white));
+  background-color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-white));
   height: 300px;
   padding: 10px;
   grid-row-end: span 2;
@@ -24,9 +24,9 @@
   align-items: flex-end;
 }
 .action {
-  background-color: light-dark(var(--mantine-color-gray-6) ; var(--mantine-color-dark-0));
+  background-color: light-dark(var(--mantine-color-gray-6), var(--mantine-color-dark-0));
   &: hover(
-    {background-color: light-dark(var(--mantine-color-gray-5) ; var(--mantine-color-dark-1)) ;}
+    {background-color: light-dark(var(--mantine-color-gray-5), var(--mantine-color-dark-1)) ;}
   );
 }
 

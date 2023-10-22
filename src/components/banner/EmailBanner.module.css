@@ -32,7 +32,7 @@
 
 .title {
   color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-6));
-  /* font-family: 'Greycliff CF'; var(--mantine-font-family); */
+  /* font-family: 'Greycliff CF', var(--mantine-font-family); */
   line-height: 1px;
   margin-bottom: var(--mantine-spacing-md);
 }

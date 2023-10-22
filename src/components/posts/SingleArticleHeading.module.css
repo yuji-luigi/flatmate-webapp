@@ -1,6 +1,6 @@
 .card {
   position: relative;
-  background-color: light-dark(var(--mantine-color-gray-7) ; var(--mantine-color-white));
+  background-color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-white));
   min-height: 100vh;
 }
 .header {
