@@ -78,12 +78,13 @@ const nextConfig = (phase) => {
   // }
 
   return {
-    // i18n,
-    // reactStrictMode: false,
+    i18n,
     // trailingSlash: true,
-    //  swcMinify: true,
+    swcMinify: true,
     // env,
     // webpack,
+    reactStrictMode: false,
+
     typescript: {
       // !! WARN !!
       // Dangerously allow production builds to successfully complete even if
