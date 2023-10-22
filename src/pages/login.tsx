@@ -51,8 +51,8 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     if (!jwtToken) {
       return { props: { user: null } };
     }
-    console.log(`${API_BASE_URL}/${PATH_AUTH.me}`);
-    const rawRes = await axios.get(`${API_BASE_URL}/${PATH_AUTH.me}`, {
+    console.log(`${process.env.NEXT_PUBLIC_API_URL}/${PATH_AUTH.me}`);
+    const rawRes = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/${PATH_AUTH.me}`, {
       headers: {
         Authorization: `Bearer ${jwtToken}`,
       },
