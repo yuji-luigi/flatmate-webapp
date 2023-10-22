@@ -47,8 +47,10 @@ PostIdPage.getLayout = function getLayout(page: ReactElement) {
 };
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
+  console.log('getServerSideProps');
   const jwtToken = context.req.cookies.jwt;
   try {
+    console.log(jwtToken);
     const rawThread = await axiosInstance.get(
       `${process.env.NEXT_PUBLIC_API_URL}/threads/${context.query.postId}`,
       {
@@ -60,9 +62,12 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
       }
     );
 
+    console.log('after api call');
+    console.log(rawThread);
     const thread = rawThread.data.data;
     // define case nothing is in the data. go back to posts page
     if (!thread) {
+      console.log('no thread');
       return {
         redirect: {
           destination: '/dashboard/posts',
