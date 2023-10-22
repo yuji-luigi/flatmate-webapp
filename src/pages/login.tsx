@@ -11,6 +11,7 @@ import {
 import { ReactElement } from 'react';
 import { GetServerSidePropsContext } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import axios from 'axios';
 import classes from './login.module.css';
 import Layout from '../layouts';
 import { API_BASE_URL, PATH_AUTH } from '../path/path-api';
@@ -50,7 +51,8 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     if (!jwtToken) {
       return { props: { user: null } };
     }
-    const rawRes = await axiosInstance.get(`${API_BASE_URL}/${PATH_AUTH.me}`, {
+    console.log(`${API_BASE_URL}/${PATH_AUTH.me}`);
+    const rawRes = await axios.get(`${API_BASE_URL}/${PATH_AUTH.me}`, {
       headers: {
         Authorization: `Bearer ${jwtToken}`,
       },

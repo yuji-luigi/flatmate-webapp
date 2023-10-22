@@ -51,7 +51,7 @@ export default ChooseRootSpacePage;
 export async function getStaticProps({ locale }: { locale: string }) {
   return {
     props: {
-      ...(await serverSideTranslations('it', ['common'])),
+      ...(await serverSideTranslations(locale || 'it', ['common'])),
     },
   };
 }
