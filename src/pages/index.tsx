@@ -1,5 +1,6 @@
 import { ReactElement } from 'react';
 import Head from 'next/head';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Layout from '../layouts';
 import { HeroSection } from '../sections/@homepage/hero';
 // import { AboutSection } from '../sections/@homepage/AboutSection';
@@ -27,3 +28,12 @@ export default function HomePage() {
 HomePage.getLayout = function getLayout(page: ReactElement) {
   return <Layout variant="main">{page}</Layout>;
 };
+
+export async function getStaticProps({ locale }: { locale: string }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common'])),
+      // Will be passed to the page component as props
+    },
+  };
+}
