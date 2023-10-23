@@ -24,7 +24,6 @@ import { Sections } from '../../types/general/data/sections-type';
 import { FormFieldTypes } from '../../types/general/data/data-table/formField-types';
 import { MAX_FILE_SIZE } from '../../lib/files/file-sizes';
 import { formatSize } from '../../lib/formatters';
-import { useCookieContext } from '../../context/CookieContext';
 import { SpaceModel } from '../../types/models/space-model';
 import { MaintainerModel } from '../../types/models/maintainer-model';
 import classes from './ProfileCoverGeneric.module.css';
@@ -139,7 +138,6 @@ const ProfileCoverGeneric = ({
     <Card
       shadow="sm"
       padding="lg"
-      // style={style}
       className={classes.card}
       style={{
         backgroundSize: 'object-fit',
@@ -149,66 +147,68 @@ const ProfileCoverGeneric = ({
         })`,
       }}
     >
-      {enableCover && (
-        <Box onClick={handleLightBoxClicked} className={classes.lightBox}>
-          <Group justify="right">
-            <input
-              id="cover-input"
-              type="file"
-              ref={coverInputRef}
-              accept="image/*"
-              style={{ display: 'none' }}
-              onChange={(e) => handleImageChange(e, 'cover')}
-            />
-            <Button m={8} color="dark" onClick={onChangeCoverClicked}>
-              Change cover
-            </Button>
-          </Group>
-        </Box>
-      )}
-      <Group style={{ justifyContent: 'space-between', width: '100%' }}>
-        <Group>
-          {!noAvatar && (
-            <Box className={classes.avatarWrapper}>
-              <label htmlFor="avatar-input">
-                <Avatar
-                  style={{ cursor: 'pointer', marginRight: '1rem' }}
-                  size={100}
-                  radius={80}
-                  src={selectedImage}
-                  alt={`${crudDocument?.avatar?.originalFileName} avatar`}
-                />
-                <input
-                  id="avatar-input"
-                  type="file"
-                  accept="image/*"
-                  style={{ display: 'none' }}
-                  onChange={handleImageChange}
-                />
-                {formFields && (
-                  <Box className={classes.avatarEditBox}>
-                    <Text fw={800} mb={8}>
-                      Edit
-                    </Text>
-                  </Box>
-                )}
-              </label>
-            </Box>
-          )}
-          <Box style={{ alignSelf: 'center' }}>
-            <Text fw={700} size="xl">
-              {data.title}
-            </Text>
-            <Text size="md">{data.subtitle}</Text>
+      <Box className={classes.coverContent}>
+        {enableCover && (
+          <Box onClick={handleLightBoxClicked} className={classes.lightBox}>
+            <Group justify="right">
+              <input
+                id="cover-input"
+                type="file"
+                ref={coverInputRef}
+                accept="image/*"
+                style={{ display: 'none' }}
+                onChange={(e) => handleImageChange(e, 'cover')}
+              />
+              <Button m={8} color="dark" onClick={onChangeCoverClicked}>
+                Change cover
+              </Button>
+            </Group>
           </Box>
-        </Group>
-
-        {formFields && (
-          <ActionIcon onClick={handleEditClicked}>
-            <Icons.pencil />
-          </ActionIcon>
         )}
-      </Group>
+        <Group style={{ justifyContent: 'space-between', width: '100%' }}>
+          <Group>
+            {!noAvatar && (
+              <Box className={classes.avatarWrapper}>
+                <label htmlFor="avatar-input">
+                  <Avatar
+                    style={{ cursor: 'pointer', marginRight: '1rem' }}
+                    size={100}
+                    radius={80}
+                    src={selectedImage}
+                    alt={`${crudDocument?.avatar?.originalFileName} avatar`}
+                  />
+                  <input
+                    id="avatar-input"
+                    type="file"
+                    accept="image/*"
+                    style={{ display: 'none' }}
+                    onChange={handleImageChange}
+                  />
+                  {formFields && (
+                    <Box className={classes.avatarEditBox}>
+                      <Text fw={800} mb={8}>
+                        Edit
+                      </Text>
+                    </Box>
+                  )}
+                </label>
+              </Box>
+            )}
+            <Box style={{ alignSelf: 'center' }}>
+              <Text fw={700} size="xl">
+                {data.title}
+              </Text>
+              <Text size="md">{data.subtitle}</Text>
+            </Box>
+          </Group>
+
+          {formFields && (
+            <ActionIcon onClick={handleEditClicked}>
+              <Icons.pencil />
+            </ActionIcon>
+          )}
+        </Group>
+      </Box>
     </Card>
   );
 };

@@ -87,10 +87,7 @@
   flex-direction: column;
   gap: var(--flex-gap);
   width: 100%;
-  @media (max-width: $mantine-breakpoint-md) {
-    width: 60%;
-    /* // background-color: theme.cdolors.yellow[6]; */
-  }
+
   @media (max-width: $mantine-breakpoint-sm) {
     width: 100%;
     /* // background-color: theme.cdolors.yellow[6]; */
