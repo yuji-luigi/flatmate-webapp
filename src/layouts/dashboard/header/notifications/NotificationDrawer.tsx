@@ -13,8 +13,8 @@ export const NotificationDrawer = (props: NotificationDrawerProps) => {
   const { opened, close, notifications } = props;
   return (
     <Drawer
-      justify="right"
-      size="xs"
+      position="right"
+      size="sm"
       opened={opened}
       onClose={close}
       title="Notifications"

@@ -45,30 +45,29 @@ LoginPage.getLayout = function getLayout(page: ReactElement) {
   return <Layout variant="main">{page}</Layout>;
 };
 
-// export async function getServerSideProps(context: GetServerSidePropsContext) {
-//   try {
-//     // const jwtToken = context.req.cookies.jwt;
-//     // if (!jwtToken) {
-//     //   return { props: { user: null } };
-//     // }
-//     // console.log(`${process.env.NEXT_PUBLIC_API_URL}/${PATH_AUTH.me}`);
-//     // const rawRes = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/${PATH_AUTH.me}`, {
-//     //   headers: {
-//     //     Authorization: `Bearer ${jwtToken}`,
-//     //   },
-//     // });
-//     // const { data } = rawRes;
-//     // const data = await response.json();
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  try {
+    const jwtToken = context.req.cookies.jwt;
+    if (!jwtToken) {
+      return { props: { user: null } };
+    }
+    const rawRes = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/${PATH_AUTH.me}`, {
+      headers: {
+        Authorization: `Bearer ${jwtToken}`,
+      },
+    });
+    const { data } = rawRes;
+    const data = await response.json();
 
-//     return {
-//       props: {
-//         ...(await serverSideTranslations(context.locale || '', ['common'])),
-//         user: null,
-//       },
-//     };
-//   } catch (error) {
-//     return {
-//       props: { user: null },
-//     };
-//   }
-// }
+    return {
+      props: {
+        ...(await serverSideTranslations(context.locale || '', ['common'])),
+        user: null,
+      },
+    };
+  } catch (error) {
+    return {
+      props: { user: null },
+    };
+  }
+}

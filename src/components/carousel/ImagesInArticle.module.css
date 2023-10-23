@@ -1,23 +1,27 @@
 .gridWrapper {
   display: flex;
-  justify-content: center;
+  justify-content: start;
+  flex-wrap: wrap;
   margin-top: 0px;
   margin-bottom: 0px;
-  margin-left: 0px;
-  margin-right: 0px;
+  gap: 2px;
+  margin-inline: auto;
   padding: 0;
-  width: 100%;
+  width: 420px;
   height: 100%;
   overflow: hidden;
   /* background-color: red; */
 }
-.imagesGrid {
-  /* height: 347px; */
-  width: 347px;
-  margin-top: 0px;
-}
+
 .column {
   padding: 0;
   display: flex;
   justify-content: center;
+}
+.imagesGrid {
+}
+
+.image {
+  object-fit: cover;
+  /* margin: 4px; */
 }

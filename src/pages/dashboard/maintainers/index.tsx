@@ -9,10 +9,8 @@ import formFields from '../../../../json/dataTable/formfields';
 import { useCrudSliceStore, useCrudSelectors } from '../../../redux/features/crud/crudSlice';
 import { TableSectionHeader } from '../../../sections/@dashboard/datatable_section/TableSectionHeader';
 import MaintainerList from '../../../sections/@dashboard/maintainers_page/MaintainerList';
-import { HeaderContainer } from '../../../components/datatable/header/HeaderContainer';
 import { maintainersTableData } from '../../../../json/dataTable/formfields/maintainersTableData';
 import { QueryFilterWeb } from '../../../components/datatable/filter/QueryFilterWeb';
-import classes from './MaintainerPage.module.css';
 
 const MaintainerPage = () => {
   const { query, push } = useRouter();

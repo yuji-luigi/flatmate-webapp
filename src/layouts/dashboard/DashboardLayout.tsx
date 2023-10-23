@@ -1,22 +1,18 @@
 import React, { ReactNode, useEffect, useRef } from 'react';
-import { Box, Tabs, useMantineTheme } from '@mantine/core';
-import { useMediaQuery } from '@mantine/hooks';
+import { Box, Tabs } from '@mantine/core';
 import { useRouter } from 'next/router';
 import { DashboardHeaderSearch } from './header/DashboardHeaderSearch';
 import { NavbarVertical } from './navbar/NavbarVertical';
 import useLayoutContext from '../../../hooks/useLayoutContext';
 import { useCookieContext } from '../../context/CookieContext';
-import { TabContextProvider, useTabContext } from '../../context/tab-context/TabContextProvider';
+import { useTabContext } from '../../context/tab-context/TabContextProvider';
 import { TAB_LIST_CONFIG } from '../../sections/@dashboard/dashboard_top/sections-in-tabs/tabList';
-import tabClasses from './tab.module.css';
 import classes from './DashboardLayout.module.css';
 
 const DashboardLayout = ({ children }: { children: ReactNode }) => {
   const { setCurrentTab, currentTab } = useTabContext();
-  const theme = useMantineTheme();
   const { isOpen } = useLayoutContext();
-  const matches = useMediaQuery(`(max-width: ${theme.breakpoints.md}px)`);
-  // const paddingSmOpen = isOpen && matches ? { paddingLeft: 300 } : {};
+
   const { currentSpace } = useCookieContext();
   const containerRef = useRef<HTMLDivElement>(null);
   // const bgColor = theme.colorScheme === 'dark' ? 'rgba(0,0,0,0.85)' : 'rgba(255,255,255,0.85)';
@@ -42,12 +38,10 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
     setCurrentTab(section || '');
   }, [section]);
 
-  const handleChangeTab = (value: string) => {
+  const handleChangeTab = (value: string | null) => {
+    if (!value) return;
     setCurrentTab(value);
     router.push(`/dashboard/top/${value}`);
-    // if (section !== 'home') {
-    //   router.push('/dashboard/home');
-    // }
   };
 
   return (

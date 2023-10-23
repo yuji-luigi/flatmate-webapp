@@ -7,7 +7,7 @@
 }
 .bg {
   min-height: 100vh;
-  background-color: light-dark(rgba(255, 255, 255, 0.85), rgba(0, 0, 0, 0.85));
+  background-color: light-dark(rgba(240, 240, 240, 0.85), rgba(30, 30, 30, 30.85));
   background-blend-mode: overlay;
   background-size: cover;
   background-position: center;
