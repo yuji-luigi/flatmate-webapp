@@ -29,7 +29,7 @@ const ProfileCoverStatic = (props: CoverDataProp) => {
       padding="lg"
       className={classes.card}
       style={{
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${
+        backgroundImage: `linear-gradient(rgba(250, 250, 250, 250.5), rgba(0, 0, 0, 0.5)), url(${
           cover?.url || ''
         })`,
       }}

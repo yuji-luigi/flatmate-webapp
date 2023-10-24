@@ -14,6 +14,7 @@ import { MaintenanceModel } from '../../../../../types/models/maintenance-model'
 import { UseRouterWithCustomQuery } from '../../../../../types/nextjs-custom-types/useRouter-types';
 import { FileInputMantine } from '../../../../../components/input/crud-inputs/crud-file-input/FileInputMantine';
 import { FileWithPreview } from '../../../../../types/files/file-types';
+import { CardStyled } from '../../../../../styles/card/CardStyled';
 
 type CheckForm = {
   type: CheckType;
@@ -100,9 +101,9 @@ export const CheckInputTabCard = ({
           Receipt
         </Tabs.Tab>
       </Tabs.List>
-      <Card px={32} py={40}>
+      <CardStyled px={32} py={40}>
         <Box mb={16}>
-          <Text fw={800} size={32}>
+          <Text fw={800} fz={32}>
             {title}
           </Text>
         </Box>
@@ -135,11 +136,11 @@ export const CheckInputTabCard = ({
               }}
             />
           )}
-          <Button fullWidth type="submit" variant="light" color="blue">
+          <Button fullWidth type="submit" variant="filled" color="blue">
             Submit
           </Button>
         </form>
-      </Card>
+      </CardStyled>
     </Tabs>
   );
 };

@@ -49,6 +49,7 @@ function App(props: AppProps) {
       <AuthProvider>
         <ReduxProvider store={reduxStore}>
           <MantineProvider
+            defaultColorScheme="dark"
             theme={{
               // colors: myColors,
               primaryColor: 'yellow',

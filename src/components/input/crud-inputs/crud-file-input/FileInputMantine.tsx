@@ -43,7 +43,12 @@ export function FileInputMantine(props: Props) {
     props.form.setFieldValue(formField.name, newFiles);
   };
   return (
-    <Stack style={{ position: 'relative', marginBottom: 16, ...style }}>
+    <Stack
+      style={{
+        marginBottom: 16,
+        ...style,
+      }}
+    >
       <FileInput
         valueComponent={IconValueComponent}
         multiple={formField.multi}

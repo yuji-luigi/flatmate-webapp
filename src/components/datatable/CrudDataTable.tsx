@@ -1,4 +1,4 @@
-import { Table, ScrollArea, Pagination, Divider, Box } from '@mantine/core';
+import { Table, ScrollArea, Pagination, Divider, Box, Card } from '@mantine/core';
 import { useState, useEffect } from 'react';
 
 import { useRouter } from 'next/router';
@@ -49,7 +49,7 @@ export function CrudDataTable({ overridingEntity = '' }: { overridingEntity?: Se
     setPagination(pageNumber); //! after setting the pagination. useEffect will be called to fetch the documents
   }
   return (
-    <Box className={classes.dataTableContainer}>
+    <Card className={classes.dataTableContainer}>
       <Table.ScrollContainer minWidth={800}>
         {!crudDocuments.length && crudStatus === 'loading' ? (
           <p>loading</p>
@@ -72,6 +72,6 @@ export function CrudDataTable({ overridingEntity = '' }: { overridingEntity?: Se
         <Divider style={{ marginBottom: 20 }} />
       </Table.ScrollContainer>
       <Pagination value={page} onChange={(pageNumber) => onPageChange(pageNumber)} total={TOTAL} />
-    </Box>
+    </Card>
   );
 }
