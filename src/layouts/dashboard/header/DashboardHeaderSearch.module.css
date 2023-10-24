@@ -22,6 +22,7 @@
   justify-content: 'space-between';
   z-index: 50;
   align-items: center;
+  box-shadow: var(--mantine-box-shodow-xl);
 }
 
 .center {

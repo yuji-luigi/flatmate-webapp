@@ -1,20 +1,16 @@
 import { useRouter } from 'next/router';
-import { PATH_API } from '../../../../path/path-api';
-import { Container, Title, Transition } from '@mantine/core';
-
 import { ReactElement, useState } from 'react';
+import { PATH_API } from '../../../../path/path-api';
+
 import { PinVerifCardMCheck } from '../../../../sections/@nonce-check/m-file-upload/pin-verif/PinVerifCardMCheck';
-import { CheckInputTabCard } from '../../../../sections/@nonce-check/m-file-upload/verified-m-file/invoice-receipt-input/CheckInputTabCard';
-import { ChooseTypeCard } from '../../../../sections/@nonce-check/m-file-upload/verified-m-file/ChooseTypeCard';
 import { CheckType } from '../../../../types/models/check-type';
 import { MaintenanceCheckUploadSection } from '../../../../sections/@nonce-check/m-file-upload/verified-m-file/MainteanceCheckUploadSection';
 import Layout from '../../../../layouts';
 
 const MaintainerUploadFileAuthPage = () => {
-  const { query, push } = useRouter();
+  const { query } = useRouter();
   const [pinOk, setPinOk] = useState<boolean>(false); // todo: need to check if pin is ok or not
   const [checkType, setCheckType] = useState<CheckType | null>(null); // todo: need to check if pin is ok or not
-  const [submitting, setSubmitting] = useState<boolean>(false);
 
   const pinVerifEndpoint = `${PATH_API.maintenanceFileUpload}/${query.linkId}/${query.id}`;
   return (

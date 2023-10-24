@@ -13,8 +13,8 @@ function StackedAreaChart() {
   const mData = maintenances.map((m) => {
     return {
       x: intlDateFormat(m.createdAt),
-      y: m.cost,
-      change: m.cost,
+      y: m.cost || 0,
+      change: m.cost || 0,
     };
   });
 
@@ -22,16 +22,18 @@ function StackedAreaChart() {
 
   const mx = isMobile ? 30 : 50;
   const data = [
-    // {
-    //   id: 'A',
-    //   // data: [
-    //   //   { x: 1, y: 300000, change: 0 },
-    //   //   { x: 2, y: 300000 - 500, change: -500 },
-    //   //   { x: 3, y: 300000 - 500, change: 0 },
-    //   //   { x: 4, y: 300000 - 1000, change: -500 },
-    //   //   { x: 5, y: 300000 + 500, change: 1500 },
-    //   //   { x: 6, y: 300000 + 250, change: -250 },
-    //   // ],
+    {
+      id: 'A',
+      data: mData,
+    },
+    // data: [
+    //   { x: 1, y: 300000, change: 0 },
+    //   { x: 2, y: 300000 - 500, change: -500 },
+    //   { x: 3, y: 300000 - 500, change: 0 },
+    //   { x: 4, y: 300000 - 1000, change: -500 },
+    //   { x: 5, y: 300000 + 500, change: 1500 },
+    //   { x: 6, y: 300000 + 250, change: -250 },
+    // ],
     //   data: [
     //     { x: 'Feb 2', y: 900, change: 0 },
     //     { x: 'Feb 15', y: 500, change: -400 },
@@ -41,18 +43,18 @@ function StackedAreaChart() {
     //     { x: 'Mar 18', y: 250, change: -250 },
     //   ],
     // },
-    {
-      id: 'B',
-      // data: [
-      //   { x: 1, y: 300000, change: 0 },
-      //   { x: 2, y: 300000 - 500, change: -500 },
-      //   { x: 3, y: 300000 - 500, change: 0 },
-      //   { x: 4, y: 300000 - 1000, change: -500 },
-      //   { x: 5, y: 300000 + 500, change: 1500 },
-      //   { x: 6, y: 300000 + 250, change: -250 },
-      // ],
-      data: mData,
-    },
+    // {
+    //   id: 'B',
+    //   data: [
+    //     { x: 1, y: 3000, change: 0 },
+    //     { x: 2, y: 3000 - 500, change: -500 },
+    //     { x: 3, y: 2500 - 500, change: 0 },
+    //     { x: 4, y: 2000 - 500, change: -500 },
+    //     { x: 5, y: 1500 + 1500, change: 1500 },
+    //     { x: 6, y: 3000 + 250, change: 250 },
+    //   ],
+    //   // data: mData,
+    // },
     // {
     //   id: 'B',
     //   data: [

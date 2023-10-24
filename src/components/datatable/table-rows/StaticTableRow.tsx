@@ -1,17 +1,14 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import { useRouter } from 'next/router';
-import { Accordion, Text } from '@mantine/core';
+import { Table } from '@mantine/core';
 import { ActionCells } from './ActionCells';
 // import { useCrudSlice } from '../../../../hooks/redux-hooks/useCrudSlice';
 import { TableCellDecorator } from '../TableCellDecorator';
-import { useDrawerContext } from '../../../context/DataTableDrawerContext';
-import { usePaginationContext } from '../../../context/PaginationContext';
-import { useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
 import { Sections } from '../../../types/general/data/sections-type';
 import { FormFieldTypes } from '../../../types/general/data/data-table/formField-types';
 import { AllModels } from '../../../types/models/allmodels';
-import classes from './StaticTableHeader.module.css';
+import classes from '../header/StaticTableHeader.module.css';
 import { useCustomMQuery } from '../../../../hooks/useCustomMQuery';
 
 export function StaticTableRow({
@@ -61,21 +58,21 @@ export function StaticTableRow({
   // }
 
   return (
-    <tr>
+    <Table.Tr>
       {/*
           Regular cells defined here
       */}
       {sectionFormFields.map((cellConfig) =>
         cellConfig.noTable ? null : (
-          <td key={cellConfig.id} className={classes.tableCellContent}>
+          <Table.Td key={cellConfig.id} className={classes.tableCellContent}>
             <TableCellDecorator cellConfig={cellConfig} rowData={rowData} />
-          </td>
+          </Table.Td>
         )
       )}
       {/*
           Action cells defined here(modify, delete button)
       */}
       {actions && <ActionCells rowData={rowData} overridingEntity={entity} />}
-    </tr>
+    </Table.Tr>
   );
 }

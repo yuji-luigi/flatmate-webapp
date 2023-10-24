@@ -23,8 +23,12 @@ interface Props {
   // submitButton?: ReactNode;
 }
 const FormFields = ({ formField, form, ...others }: Props) => {
-  switch (formField.type) {
+  const formType = formField.type;
+
+  switch (formType) {
     case 'text':
+      return <CrudTextInput form={form} formField={formField} {...others} />;
+    case 'link-children':
       return <CrudTextInput form={form} formField={formField} {...others} />;
     case 'password':
       return <CrudPasswordInput form={form} formField={formField} {...others} />;

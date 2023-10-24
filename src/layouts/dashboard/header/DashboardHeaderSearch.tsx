@@ -1,14 +1,11 @@
-import { Group, Burger, Box, ActionIcon } from '@mantine/core';
+import { Group, Burger, Box } from '@mantine/core';
 // import { useDisclosure } from '@mantine/hooks';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useMediaQuery } from '@mantine/hooks';
 import links from '../../../../json/navbar/headerLinks.json';
 import useLayoutContext from '../../../../hooks/useLayoutContext';
 import { ColorSchemeToggle } from '../../../components/color-schemeToggle/ColorSchemeToggle';
 import { LogoBanner } from '../../../components/banner/LogoBanner';
 // import { useCurrentSpaceContext } from '../../context/CurrentSpaceContext';
-import { useCookieContext } from '../../../context/CookieContext';
 
 import OrganizationSpaceSelect from '../../../components/select-custom/OrganizationSpaceSelect';
 import { HeaderCreationModalWrapper } from '../../../components/modal/header-creation-modal/HeaderCreationModalWrapper';
@@ -16,7 +13,6 @@ import { TAB_LIST_CONFIG } from '../../../sections/@dashboard/dashboard_top/sect
 import { useCustomMQuery } from '../../../../hooks/useCustomMQuery';
 import { TabList } from '../../../components/tab/TabList';
 import classesM from './DashboardHeaderSearch.module.css';
-import { Icons } from '../../../data/icons/icons';
 import { HeaderNotificationButton } from './notifications/HeaderNotificationButton';
 
 export type JSONType = typeof links;

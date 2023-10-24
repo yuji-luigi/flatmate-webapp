@@ -19,6 +19,7 @@ type BaseFormType = {
   placeholder?: string;
   required?: boolean;
   type: FormTypes;
+  formType?: FormTypes; // ! todo set the actual types necessary.
   cellType?: CellTypes;
   multi?: boolean;
   col?: Col;

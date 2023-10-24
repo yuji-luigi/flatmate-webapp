@@ -2,6 +2,8 @@
   padding-inline: var(--mantine-spacing-lg);
   display: fixed;
   height: 60px;
+  /* background-color: var(--mantine-color-yellow-4); */
+  box-shadow: var(--mantine-shadow-lg);
 }
 
 .link {

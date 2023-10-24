@@ -1,10 +1,13 @@
 import { TextInput } from '@mantine/core';
 import React from 'react';
 import { UseFormReturnTypeCustom } from '../input_interfaces/useForm_interface';
-import { TextFormType } from '../../../types/general/data/data-table/formField-types';
+import {
+  LinkChildrenFormFieldType,
+  TextFormType,
+} from '../../../types/general/data/data-table/formField-types';
 
 interface Prop {
-  formField: TextFormType;
+  formField: TextFormType | LinkChildrenFormFieldType;
   form: UseFormReturnTypeCustom;
 }
 const CrudTextInput = ({ formField, form, ...others }: Prop) => {

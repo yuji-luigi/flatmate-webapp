@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 
 import { CrudTableRow } from './table-rows/CrudTableRow';
 
-import CrudTableHeader from './table-rows/CrudTableHeader';
+import CrudTableHeader from './header/CrudTableHeader';
 // import TableCellController from './table-rows/tablecell/TableCellController';
 import formFields from '../../../json/dataTable/formfields';
 // import { useCrudSlice } from '../../../hooks/redux-hooks/useCrudSlice';
@@ -50,14 +50,14 @@ export function CrudDataTable({ overridingEntity = '' }: { overridingEntity?: Se
   }
   return (
     <Box className={classes.dataTableContainer}>
-      <ScrollArea>
+      <Table.ScrollContainer minWidth={800}>
         {!crudDocuments.length && crudStatus === 'loading' ? (
           <p>loading</p>
         ) : (
-          <Table style={{ minWidth: 800 }} highlightOnHover>
+          <Table style={{}} highlightOnHover>
             <CrudTableHeader overridingEntity={overridingEntity} />
 
-            <tbody>
+            <Table.Tbody>
               {crudDocuments?.map((rowData) => (
                 <CrudTableRow
                   overridingEntity={overridingEntity}
@@ -66,11 +66,11 @@ export function CrudDataTable({ overridingEntity = '' }: { overridingEntity?: Se
                   rowData={rowData}
                 />
               ))}
-            </tbody>
+            </Table.Tbody>
           </Table>
         )}
         <Divider style={{ marginBottom: 20 }} />
-      </ScrollArea>
+      </Table.ScrollContainer>
       <Pagination value={page} onChange={(pageNumber) => onPageChange(pageNumber)} total={TOTAL} />
     </Box>
   );

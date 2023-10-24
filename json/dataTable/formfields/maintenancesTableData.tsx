@@ -31,15 +31,6 @@ export const maintenancesTableData: Array<FormFieldTypes> = [
   //   priority: 0,
   // },
   {
-    id: 'maintainer',
-    name: 'maintainer',
-    label: 'Maintainer',
-    type: 'custom',
-    required: true,
-    component: MaintainerSelect,
-    priority: 0,
-  },
-  {
     id: 'type',
     name: 'type',
     label: 'Type of maintenance',
@@ -48,6 +39,15 @@ export const maintenancesTableData: Array<FormFieldTypes> = [
     // _entity: 'maintenances',
     // selectValues: ['name'],
     required: false,
+    priority: 0,
+  },
+  {
+    id: 'maintainer',
+    name: 'maintainer',
+    label: 'Maintainer',
+    type: 'custom',
+    required: true,
+    component: MaintainerSelect,
     priority: 0,
   },
 ];

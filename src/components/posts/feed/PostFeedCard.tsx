@@ -16,7 +16,7 @@ const PostFeedCard = ({ data, style = {} }: FeedCardProps) => {
   const { user } = useAuth();
 
   return (
-    <Card className={classesM.feedCard} style={style}>
+    <Card className={classesM.feedCard}>
       <FeedHeading {...data} />
       <Box>
         <Title size={TEXT_SIZE.titleCard} mb={16}>

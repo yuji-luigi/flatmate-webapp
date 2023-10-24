@@ -6,6 +6,7 @@ export const CardOverride = () => {
     defaultProps: {
       style: {
         opacity: 0.8,
+        borderRadius: 12,
       },
     },
   });
