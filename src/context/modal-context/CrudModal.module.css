@@ -2,6 +2,9 @@
   overflow: 'scroll';
   z-index: 1000;
 }
+.container {
+  container-type: inline-size;
+}
 .modalContent {
   z-index: 10;
   padding-inline: 48;

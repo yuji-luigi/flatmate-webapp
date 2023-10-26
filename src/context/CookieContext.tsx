@@ -1,6 +1,6 @@
 import { getCookie } from 'cookies-next';
 import { useRouter } from 'next/router';
-import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
+import { createContext, ReactNode, use, useContext, useEffect, useRef, useState } from 'react';
 import { useCrudSliceStore } from '../redux/features/crud/crudSlice';
 import { entities, sections } from '../data';
 import { CurrentSpace } from '../types/context/auth/useAuth';
@@ -19,6 +19,7 @@ export const CookieContext = createContext<CookieContextState>({
   setCurrentOrganization: () => {},
   resetCurrentSpace: () => {},
   handleSetCurrentSpace: () => {},
+  hasSelectChanged: false,
 });
 
 const useStore = () => {
@@ -26,6 +27,12 @@ const useStore = () => {
   const [currentOrganization, setCurrentOrganization] = useState<string | null>(null);
   const router: { query: ParsedQueryCustom; pathname: string } = useRouter();
   const entity = router.query.entity || getEntityFromUrlForCookieCtx();
+  const prevSpaceRef = useRef(currentSpace);
+  const prevOrgRef = useRef(currentOrganization);
+
+  const hasSpaceChanged = prevSpaceRef.current !== currentSpace;
+  const hasOrgChanged = prevOrgRef.current !== currentOrganization;
+  const hasSelectChanged = hasSpaceChanged || hasOrgChanged;
 
   const { fetchCrudDocumentsWithPagination } = useCrudSliceStore();
 
@@ -87,6 +94,7 @@ const useStore = () => {
     },
     currentOrganization,
     setCurrentOrganization,
+    hasSelectChanged,
   };
 };
 
@@ -94,4 +102,19 @@ export const CookieContextProvider = ({ children }: { children: ReactNode }) => 
   <CookieContext.Provider value={useStore()}>{children}</CookieContext.Provider>
 );
 
-export const useCookieContext = () => useContext(CookieContext);
+type UseCookieCtxParams = {
+  reFetchCrudDocuments?: boolean;
+  url?: string;
+};
+export const useCookieContext = (/* args?: UseCookieCtxParams */) => {
+  // const { reFetchCrudDocuments, customRevalidate } = args;
+  // const cookieContext = useContext(CookieContext);
+  // const
+  // const {currentSpace,currentOrganization, hasSelectChanged} = cookieContext;
+  // useEffect(() => {
+  //   if(reFetchCrudDocuments){
+  //     fetch
+  //   }
+  // },[currentSpace,currentOrganization, ])
+  return useContext(CookieContext);
+};

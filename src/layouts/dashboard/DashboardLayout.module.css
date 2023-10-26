@@ -17,6 +17,7 @@
 
 .contentWrapper {
   padding-left: 300px;
+  container-type: inline-size;
   @media (max-width: $mantine-breakpoint-md) {
     padding-left: 0;
     &[data-is-pen='true'] {

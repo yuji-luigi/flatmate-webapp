@@ -40,15 +40,12 @@ export const MaintenanceCheckUploadSection = (props: Props) => {
       type: 'custom',
       fullScreen: true,
       centered: true,
-      title: 'Maintenance',
+      // title: 'Maintenance',
       withinPortal: true,
       children: (
-        <Box pt={56}>
-          <ActionIcon onClick={() => closeModal()}>
-            <CloseIcon />
-          </ActionIcon>
-          <PostFeedCard data={maintenance} />
-        </Box>
+        <>
+          <PostFeedCard data={maintenance} showFullText />
+        </>
       ),
     });
   };

@@ -1,15 +1,10 @@
-import { useDisclosure, useMediaQuery } from '@mantine/hooks';
-import { Modal, Group, Button, Stack, Box, Sx, LoadingOverlay } from '@mantine/core';
-import { ReactNode, useState } from 'react';
-import { showNotification } from '@mantine/notifications';
+import { Modal, Box } from '@mantine/core';
 
 import { CrudModal } from './CrudModal';
 import CustomModal from './CustomModal';
-import { FormFieldTypes } from '../../types/general/data/data-table/formField-types';
-import { constructErrorNotificationData } from '../../data/showNofification/notificationObjects';
-import { AllModels } from '../../types/models/allmodels';
 import { useCustomModalContext } from './_ModalContext';
 import { RegularModal } from './RegularModal';
+import classes from './CrudModal.module.css';
 
 export function ModalRootCustom() {
   const { isOpenModal: opened, closeModal: close, modalData } = useCustomModalContext();
@@ -37,7 +32,7 @@ export function ModalRootCustom() {
       onClose={close}
       title={modalData.title}
     >
-      {modalContent}
+      <Box className={classes.container}>{modalContent}</Box>
     </Modal>
   );
 }

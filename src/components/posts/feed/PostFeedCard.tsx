@@ -10,7 +10,7 @@ import classesM from './PostFeedCard.module.css';
 import { FeedHeading } from './feed-heading/FeedHeading';
 import { FeedCardProps } from '../../../types/components-types/feed/post-feed-card-type';
 
-const PostFeedCard = ({ data, style = {} }: FeedCardProps) => {
+const PostFeedCard = ({ data, style = {}, ...others }: FeedCardProps) => {
   const { createdBy, title, description, attachments, images, createdAt, receipts, invoices, _id } =
     data;
   const { user } = useAuth();
@@ -23,7 +23,7 @@ const PostFeedCard = ({ data, style = {} }: FeedCardProps) => {
           {title}
         </Title>
         {/* <Text>{description}</Text> */}
-        <FeedDescription className={classesM.description} data={data} />
+        <FeedDescription {...others} className={classesM.description} data={data} />
       </Box>
       <ImagesInArticle images={images} />
 

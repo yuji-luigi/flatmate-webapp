@@ -11,5 +11,6 @@ export type FeedCardData = (MaintenanceModel | ThreadModel) & {
 export type FeedCardProps = {
   popupFn?: () => void;
   data: FeedCardData;
+  showFullText?: boolean;
   style?: MantineStyleProp;
 };

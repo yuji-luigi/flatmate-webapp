@@ -104,7 +104,7 @@ export const CrudTableButtons = ({
         <>
           <Button
             variant="outline"
-            color="error"
+            color="orange"
             onClick={handleImportClicked}
             className={classes.button}
           >
