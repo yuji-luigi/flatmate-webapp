@@ -158,7 +158,10 @@ export function isCustomFile(value: any): value is CustomFile {
 }
 export function isCustomFiles(value: any): value is CustomFile[] {
   if (Array.isArray(value)) {
-    return value.every((val) => val.folder && val.preview && val instanceof File);
+    return value.every(
+      (val) =>
+        typeof val.folder === 'string' && typeof val.preview === 'string' && val instanceof File
+    );
   }
   return false;
 }
@@ -182,6 +185,7 @@ export async function handleUploadWithoutLogin({
   if (Array.isArray(files)) {
     files.forEach((file) => {
       // You can set the key to be the file name or any other custom key
+      // Todo: check if the file.field is used in api or other parts of the app
       formData.append(file.field || '', file);
       // formData.append(file.field, file, file.name);
     });

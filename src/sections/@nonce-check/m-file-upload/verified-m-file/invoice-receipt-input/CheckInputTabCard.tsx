@@ -21,6 +21,7 @@ import { FileWithPreview } from '../../../../../types/files/file-types';
 import { CardStyled } from '../../../../../styles/card/CardStyled';
 import { checksTableData } from '../../../../../../json/dataTable/formfields/checksTableData';
 import FormFields from '../../../../../components/input/FormFields';
+import { NOTIFICATIONS } from '../../../../../data/showNofification/notificationObjects';
 
 type CheckForm = {
   type: CheckType;
@@ -53,6 +54,11 @@ export const CheckInputTabCard = ({
     return null;
   }
 
+  const handleChangeTab = (value: string | null) => {
+    setCheckType(value as CheckType);
+    form.setValues({ ...form.values, type: value });
+  };
+
   const handleSubmit = async (e: any) => {
     try {
       e.preventDefault();
@@ -64,25 +70,30 @@ export const CheckInputTabCard = ({
         message: 'Please wait',
       });
       const fileData = form.values.files;
-      if (!fileData) {
-        showNotification({ message: 'Please Select a file', color: 'orange' });
+      if (!fileData || form.values.total === undefined) {
+        showNotification({
+          message: 'Please Select a file and fill the total price',
+          color: 'orange',
+        });
         return;
       }
+      //
       if (isCustomFiles(fileData)) {
-        // const uploadIds = await handleUploadWithoutLogin({
-        //   files: fileData,
-        //   mainSpace: maintenance.space.name,
-        //   organizationName: maintenance.organization.name,
-        //   entity: 'maintenances',
-        //   endpoint: PATH_API.uploadsMaintenance,
-        // });
+        const uploadIds = await handleUploadWithoutLogin({
+          files: fileData,
+          mainSpace: maintenance.space.name,
+          organizationName: maintenance.organization.name,
+          entity: 'maintenances',
+          endpoint: PATH_API.uploadsMaintenance,
+        });
+        const rawCheck = await axiosInstance.post(`${PATH_API.checks}/${checkType}`, {
+          maintenance,
+          ...form.values,
+          files: uploadIds,
+        });
+        console.log(rawCheck.data);
       }
 
-      const rawCheck = await axiosInstance.post(`${PATH_API.checks}/${checkType}`, {
-        maintenance,
-        ...form.values,
-        // files: uploadIds,
-      });
       await sleep(600);
       // if (rawCheck.data.success) {
       //   setSubmitting(false);
@@ -90,6 +101,7 @@ export const CheckInputTabCard = ({
       // }
     } catch (error: any) {
       // eslint-disable-next-line no-console
+      showNotification(NOTIFICATIONS.ERROR.general({ data: error }));
       console.error(error);
     } finally {
       setSubmitting(false);
@@ -100,15 +112,11 @@ export const CheckInputTabCard = ({
   const title = checkType === 'invoices' ? 'Upload Invoice' : 'Upload Receipt';
 
   return (
-    <Tabs style={{ width: '100%' }} defaultValue={checkType}>
+    <Tabs onChange={handleChangeTab} style={{ width: '100%' }} defaultValue={checkType}>
       <LoadingOverlay visible={submitting} />
       <Tabs.List>
-        <Tabs.Tab onClick={() => setCheckType('invoices')} value="invoices">
-          Invoice
-        </Tabs.Tab>
-        <Tabs.Tab onClick={() => setCheckType('receipts')} value="receipts">
-          Receipt
-        </Tabs.Tab>
+        <Tabs.Tab value="invoices">Invoice</Tabs.Tab>
+        <Tabs.Tab value="receipts">Receipt</Tabs.Tab>
       </Tabs.List>
       <CardStyled px={32} py={40}>
         <Box mb={16}>

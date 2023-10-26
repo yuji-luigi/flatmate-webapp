@@ -30,6 +30,7 @@ export function FileInputMantine(props: Props) {
       Object.assign(file, {
         preview: '', // No preview for non-image files
         field: fileFolder || file.name,
+        folder: fileFolder || file.name,
       })
     );
     setFiles(newFiles);
