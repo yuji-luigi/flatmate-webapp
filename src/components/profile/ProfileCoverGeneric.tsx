@@ -8,6 +8,7 @@ import {
   ActionIcon,
   Button,
   MantineStyleProp,
+  useMantineColorScheme,
 } from '@mantine/core';
 import { hideNotification, showNotification } from '@mantine/notifications';
 import { useRouter } from 'next/router';
@@ -56,6 +57,11 @@ const ProfileCoverGeneric = ({
   const { documentId } = useRouter().query;
   const _entity = entity || (getEntityFromUrl() as Sections);
   const { updateCrudDocument } = useCrudSliceStore();
+  const { colorScheme } = useMantineColorScheme();
+  const isDark = colorScheme === 'dark';
+  const gradient = isDark
+    ? 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))'
+    : 'linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5))';
 
   const { crudDocument } = useCrudSelectors<SpaceModel | MaintainerModel>(_entity);
   const coverInputRef = useRef<HTMLInputElement>(null);
@@ -142,9 +148,7 @@ const ProfileCoverGeneric = ({
       style={{
         backgroundSize: 'object-fit',
         backgroundRepeat: 'no-repeat',
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${
-          selectedCover || crudDocument?.avatar?.url || ''
-        })`,
+        backgroundImage: `${gradient}, url(${selectedCover || crudDocument?.avatar?.url || ''})`,
       }}
     >
       <Box className={classes.coverContent}>

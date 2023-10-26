@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import { Box, Button, Card, LoadingOverlay, Tabs, Text } from '@mantine/core';
-import { useForm } from '@mantine/form';
+import { UseFormReturnType, useForm } from '@mantine/form';
 import { useRouter } from 'next/router';
 import { notifications, showNotification } from '@mantine/notifications';
-import { handleUploadWithoutLogin } from '../../../../../utils/upload-helper';
+import {
+  handleUploadWithoutLogin,
+  isCustomFile,
+  isCustomFiles,
+} from '../../../../../utils/upload-helper';
 import { useCrudSelectors } from '../../../../../redux/features/crud/crudSlice';
 import { PATH_API } from '../../../../../path/path-api';
 import axiosInstance from '../../../../../utils/axios-instance';
@@ -15,6 +19,8 @@ import { UseRouterWithCustomQuery } from '../../../../../types/nextjs-custom-typ
 import { FileInputMantine } from '../../../../../components/input/crud-inputs/crud-file-input/FileInputMantine';
 import { FileWithPreview } from '../../../../../types/files/file-types';
 import { CardStyled } from '../../../../../styles/card/CardStyled';
+import { checksTableData } from '../../../../../../json/dataTable/formfields/checksTableData';
+import FormFields from '../../../../../components/input/FormFields';
 
 type CheckForm = {
   type: CheckType;
@@ -33,11 +39,11 @@ export const CheckInputTabCard = ({
   const { query } = router;
   const [submitting, setSubmitting] = useState<boolean>(false);
   const { crudDocument: maintenance } = useCrudSelectors<MaintenanceModel>('maintenances');
-  const form = useForm<CheckForm>({
+  const form = useForm<Record<string, unknown>>({
     initialValues: {
       type: checkType,
-      invoices: null,
-      receipts: null,
+      // invoices: null,
+      // receipts: null,
       // invoices: new File([], 'invoices'),
       // receipts: new File([], 'receipts'),
     },
@@ -57,28 +63,31 @@ export const CheckInputTabCard = ({
         title: 'Uploading...',
         message: 'Please wait',
       });
-      const fileData = form.values[checkType];
+      const fileData = form.values.files;
       if (!fileData) {
         showNotification({ message: 'Please Select a file', color: 'orange' });
         return;
       }
-      const uploadIds = await handleUploadWithoutLogin({
-        files: fileData,
-        mainSpace: maintenance.space.name,
-        organizationName: maintenance.organization.name,
-        entity: 'maintenances',
-        endpoint: PATH_API.uploadsMaintenance,
-      });
+      if (isCustomFiles(fileData)) {
+        // const uploadIds = await handleUploadWithoutLogin({
+        //   files: fileData,
+        //   mainSpace: maintenance.space.name,
+        //   organizationName: maintenance.organization.name,
+        //   entity: 'maintenances',
+        //   endpoint: PATH_API.uploadsMaintenance,
+        // });
+      }
 
       const rawCheck = await axiosInstance.post(`${PATH_API.checks}/${checkType}`, {
         maintenance,
-        files: uploadIds,
+        ...form.values,
+        // files: uploadIds,
       });
       await sleep(600);
-      if (rawCheck.data.success) {
-        setSubmitting(false);
-        router.push(`${PATH_CLIENT.uploadSuccess}/${query.linkId}/${rawCheck.data.data._id}`);
-      }
+      // if (rawCheck.data.success) {
+      //   setSubmitting(false);
+      //   router.push(`${PATH_CLIENT.uploadSuccess}/${query.linkId}/${rawCheck.data.data._id}`);
+      // }
     } catch (error: any) {
       // eslint-disable-next-line no-console
       console.error(error);
@@ -108,20 +117,20 @@ export const CheckInputTabCard = ({
           </Text>
         </Box>
         <form onSubmit={handleSubmit}>
-          {checkType === 'invoices' && (
-            <FileInputMantine
-              form={form}
-              fileFolder={checkType}
-              formField={{
-                id: 'invoices',
-                name: 'invoices',
-                label: 'Choose file',
-                type: 'attachment',
-                multi: true,
-                priority: 0,
-              }}
-            />
-          )}
+          {/* {checkType === 'invoices' && ( */}
+          <FileInputMantine
+            form={form}
+            fileFolder={checkType}
+            formField={{
+              id: 'files',
+              name: 'files',
+              label: 'Choose file',
+              type: 'attachment',
+              multi: true,
+              priority: 0,
+            }}
+          />
+          {/* )}
           {checkType === 'receipts' && (
             <FileInputMantine
               form={form}
@@ -135,8 +144,11 @@ export const CheckInputTabCard = ({
                 priority: 0,
               }}
             />
-          )}
-          <Button fullWidth type="submit" variant="filled" color="blue">
+          )} */}
+          {checksTableData.map((formField) => (
+            <FormFields formField={formField} key={formField.id} form={form} />
+          ))}
+          <Button mt={16} fullWidth type="submit" variant="filled" color="blue">
             Submit
           </Button>
         </form>

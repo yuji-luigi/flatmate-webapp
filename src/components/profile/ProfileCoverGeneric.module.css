@@ -10,6 +10,9 @@
   height: 100%;
   background-size: cover;
   background-position: center;
+  /* background-blend-mode: overlay;
+  background: linear-gradient(45deg, red, blue); */
+  /* background-color: light-dark(var(--liner-gradient-light), var(--liner-gradient-dark)); */
 }
 .coverContent {
   display: flex;

@@ -156,6 +156,12 @@ export function isCustomFile(value: any): value is CustomFile {
   }
   return false;
 }
+export function isCustomFiles(value: any): value is CustomFile[] {
+  if (Array.isArray(value)) {
+    return value.every((val) => val.folder && val.preview && val instanceof File);
+  }
+  return false;
+}
 
 export type CustomFile = File & { field: string; folder: string; preview: string };
 

@@ -8,6 +8,7 @@ import {
   useMantineTheme,
   Divider,
   Stack,
+  Text,
 } from '@mantine/core';
 import React from 'react';
 import { CloseIcon } from 'yet-another-react-lightbox';
@@ -30,7 +31,6 @@ type Props = {
 
 export const MaintenanceCheckUploadSection = (props: Props) => {
   const { pinOk, checkType, setCheckType } = props;
-  const theme = useMantineTheme();
   const { openConfirmModal, closeModal } = useCustomModalContext();
   const { crudDocument: maintenance } = useCrudSelectors<MaintenanceModel>('maintenances');
 
@@ -47,10 +47,7 @@ export const MaintenanceCheckUploadSection = (props: Props) => {
           <ActionIcon onClick={() => closeModal()}>
             <CloseIcon />
           </ActionIcon>
-          <PostFeedCard
-            data={maintenance}
-            // popupFn={handleOpenModal}
-          />
+          <PostFeedCard data={maintenance} />
         </Box>
       ),
     });
@@ -80,11 +77,9 @@ export const MaintenanceCheckUploadSection = (props: Props) => {
                   </Grid.Col>
                   <Grid.Col span={{ sm: 6, xs: 12 }}>
                     <CardStyled>
-                      <Divider
-                        label={<Title ta="center">Maintenance</Title>}
-                        labelPosition="center"
-                        mb={12} // --mantine-spacing-md
-                      />
+                      <Text component="h3" ta="center" fw={800} fz={30}>
+                        Maintenance
+                      </Text>
                       <PostFeedCard data={maintenance} popupFn={handleOpenModal} />
                     </CardStyled>
                   </Grid.Col>

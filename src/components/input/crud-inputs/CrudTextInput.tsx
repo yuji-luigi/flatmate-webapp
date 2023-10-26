@@ -20,6 +20,7 @@ const CrudTextInput = ({ formField, form, ...others }: Prop) => {
       size="md"
       // style={{ width: '100%' }}
       mt={10}
+      type={formField.type}
       {...others}
       {...form.getInputProps(formField.name || formField.id)}
     />

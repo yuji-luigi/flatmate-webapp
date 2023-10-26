@@ -17,5 +17,7 @@ export interface CheckInterface extends MongooseBaseModel {
   organization: OrganizationModel;
   mainSpace: SpaceModel;
   type: CheckType;
+  total: number;
+  subtoal: number;
   space?: string | SpaceModel;
 }

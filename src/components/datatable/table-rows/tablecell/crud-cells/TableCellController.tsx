@@ -1,5 +1,9 @@
 import React from 'react';
-import { FormFieldTypes } from '../../../../../types/general/data/data-table/formField-types';
+import { isArray } from 'util';
+import {
+  BadgeCellConfig,
+  FormFieldTypes,
+} from '../../../../../types/general/data/data-table/formField-types';
 import { AvatarCell } from './AvatarCell';
 import { TextCell } from './TextCell';
 import { BooleanCell } from './BooleanCell';
@@ -12,6 +16,7 @@ import {
 } from '../../../../../types/general/data/data-table/cellTypes';
 import { TextOnHoverCell } from './TextOnHoverCell';
 import { TextOnDialogCell } from './TextOnDialogCell';
+import BadgeCellDecorator from './BadgeCellDecorator';
 // import { IconPencil, IconTrash } from '@tabler/icons-react';
 // import { UsersTableRow } from '../../../../types/general/data/datatable/objects';
 export const jobColors: Record<string, string> = {
@@ -48,6 +53,13 @@ const TableCellController = ({
   // default cell is TextCell
   const Cell = cells[type] || TextCell;
 
+  if (cellConfig.badge) {
+    return (
+      <BadgeCellDecorator cellConfig={cellConfig as BadgeCellConfig} value={cellValue}>
+        <Cell cellValue={cellValue} cellConfig={cellConfig} rowData={rowData} />
+      </BadgeCellDecorator>
+    );
+  }
   return <Cell cellValue={cellValue} cellConfig={cellConfig} rowData={rowData} />;
 };
 export default TableCellController;

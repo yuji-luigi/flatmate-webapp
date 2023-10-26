@@ -45,28 +45,37 @@ export function FileInputMantine(props: Props) {
   return (
     <Stack
       style={{
-        marginBottom: 16,
+        // marginBottom: 16,
         ...style,
       }}
+      // gap={0}
     >
       <FileInput
+        label={formField.label}
         valueComponent={IconValueComponent}
         multiple={formField.multi}
+        size="md"
         onChange={handleFileChosen}
         value={files}
+        styles={{
+          label: {
+            fontSize: 16,
+          },
+        }}
         leftSection={<Icons.image />}
         placeholder={formField.label}
       />
-      <Group>
-        {!!files.length &&
-          files.map((file) => (
+      {!!files.length && (
+        <Group>
+          {files.map((file) => (
             <Tooltip key={file.name} label={file.name}>
               <ActionIcon onClick={() => handleFileClicked(file)}>
                 <FileIconHandler fileName={file.name} />
               </ActionIcon>
             </Tooltip>
           ))}
-      </Group>
+        </Group>
+      )}
     </Stack>
   );
 }

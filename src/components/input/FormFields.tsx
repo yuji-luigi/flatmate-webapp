@@ -26,6 +26,7 @@ const FormFields = ({ formField, form, ...others }: Props) => {
   const formType = formField.type;
 
   switch (formType) {
+    case 'number':
     case 'text':
       return <CrudTextInput form={form} formField={formField} {...others} />;
     case 'link-children':

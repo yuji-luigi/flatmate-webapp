@@ -17,6 +17,7 @@ export const TextCell = ({
   cellValue: string;
   cellConfig: TextFormType | StaticSelectFormFieldType;
 }) => {
+  // console.log(cellValue);
   // return cellValue;
   let displayValue = (
     <Text className={classes.text} size="sm">

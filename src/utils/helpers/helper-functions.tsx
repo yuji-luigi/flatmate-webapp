@@ -134,12 +134,10 @@ export function getEntityFromUrl(
   const regex = new RegExp(`${keyword}\\/(\\w+)`);
   const str = regex.exec(url);
   let match = regex.exec(url)?.[1];
-  console.log(match);
   match = transformMatchForExceptions(match);
   if (match && isSection(match)) {
     return match;
   }
-  console.log(match);
   throw new Error('entity is not valid. getEntityFromUrl');
 }
 export function getEntityFromUrlForCookieCtx(
@@ -151,10 +149,8 @@ export function getEntityFromUrlForCookieCtx(
   match = transformMatchForExceptions(match);
 
   if (match && isSection(match)) {
-    console.log(match);
     return match;
   }
-  console.log('no match');
   return undefined;
 }
 

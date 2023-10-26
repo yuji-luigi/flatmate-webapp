@@ -1,5 +1,13 @@
 import React from 'react';
-import { Card, Avatar, Text, Box, Group, MantineStyleProp } from '@mantine/core';
+import {
+  Card,
+  Avatar,
+  Text,
+  Box,
+  Group,
+  MantineStyleProp,
+  useMantineColorScheme,
+} from '@mantine/core';
 import { UploadModel } from '../../types/models/upload-model';
 import classes from './ProfileCoverGeneric.module.css';
 
@@ -16,22 +24,19 @@ export interface CoverDataProp {
 }
 
 const ProfileCoverStatic = (props: CoverDataProp) => {
-  // const { documentId } = useRouter().query;
-  // const _entity = entity || (getEntityFromUrl() as Sections);
-  // const { updateCrudDocument } = useCrudSliceStore();
-
-  // const { currentSpace } = useCookieContext();
+  const { colorScheme } = useMantineColorScheme();
+  const isDark = colorScheme === 'dark';
   const { avatar, style, cover, name, description, disableAvatar } = props;
-
+  const gradient = isDark
+    ? 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))'
+    : 'linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5))';
   return (
     <Card
       shadow="sm"
       padding="lg"
       className={classes.card}
       style={{
-        backgroundImage: `linear-gradient(rgba(250, 250, 250, 250.5), rgba(0, 0, 0, 0.5)), url(${
-          cover?.url || ''
-        })`,
+        backgroundImage: `${gradient}, url(${cover?.url || ''})`,
       }}
     >
       <Group style={{ justifyContent: 'space-between', width: '100%' }}>

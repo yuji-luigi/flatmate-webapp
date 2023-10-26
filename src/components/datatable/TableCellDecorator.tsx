@@ -10,7 +10,12 @@ import { AllModels } from '../../types/models/allmodels';
 import classes from './TableCellDecorator.module.css';
 
 function isObject(value: any): boolean {
-  return value && typeof value === 'object' && !Array.isArray(value) && typeof value !== 'string';
+  return (
+    (value && typeof value === 'object') || (!Array.isArray(value) && typeof value === 'object')
+  );
+}
+function isArray(value: any): value is Array<any> {
+  return Array.isArray(value);
 }
 
 //! todo: refactor this component to be more readable and rational.
@@ -24,29 +29,35 @@ export function TableCellDecorator({
 }) {
   /** get value of the cell (from object/array/primitive) */
   const cellValue = getCellValue({ rowData, cellConfig });
+
   // if (cellConfig.badge) {
   //   return (
-  //     <BadgeCellDecorator cellConfig={cellConfig} value={cellValue}>
-  //       {cellValue}
+  //     <BadgeCellDecorator cellConfig={cellConfig as BadgeCellConfig} value={cellValue}>
+  //       {tableCell}
   //     </BadgeCellDecorator>
   //   );
   // }
-  const tableCell = (
-    <TableCellController cellValue={cellValue} cellConfig={cellConfig} rowData={rowData} />
-  );
-
-  if (cellConfig.badge) {
-    return (
-      <BadgeCellDecorator cellConfig={cellConfig as BadgeCellConfig} value={cellValue}>
-        {tableCell}
-      </BadgeCellDecorator>
-    );
-  }
 
   if (cellConfig.noTable) return null;
 
   // inside of the cell
-  return <div className={classes.cellContent}>{tableCell}</div>;
+  if (isArray(cellValue)) {
+    return (
+      <>
+        {cellValue.map((value, index) => (
+          <div key={value} className={classes.cellContent}>
+            <TableCellController cellValue={value} cellConfig={cellConfig} rowData={rowData} />
+          </div>
+        ))}
+      </>
+    );
+  }
+  return (
+    <div className={classes.cellContent}>
+      {' '}
+      <TableCellController cellValue={cellValue} cellConfig={cellConfig} rowData={rowData} />
+    </div>
+  );
 }
 
 type ValueFunction = () => string;
@@ -64,7 +75,8 @@ function getCellValue({ rowData, cellConfig }: { rowData: any; cellConfig: FormF
   // 7. VALUE IS DATE
   // case primitive toString and return
   const value = rowData[cellConfig.name] ?? ''; // check for null or undefined
-  const valueType = typeof value;
+  const valueType: typeof value & 'array' = typeof value;
+  // valueType = Array.isArray(value) ? 'array' : valueType;
 
   const valueObject: Record<typeof value, string | ValueOrFunction> = {
     string: () => value.toString(),
@@ -73,7 +85,8 @@ function getCellValue({ rowData, cellConfig }: { rowData: any; cellConfig: FormF
     object: () => handleObjectType({ value, cellConfig }),
   };
   const returnValue = valueObject[valueType];
-  return isFunction(returnValue) ? returnValue() : returnValue;
+  const result = isFunction(returnValue) ? returnValue() : returnValue;
+  return result;
 }
 
 // recursively get the value of the cell indexed by the selectValues array.
@@ -82,30 +95,40 @@ function getCellValue({ rowData, cellConfig }: { rowData: any; cellConfig: FormF
 function getCellValueRecursive({
   value,
   selectValues,
+  object,
 }: {
   value: any;
   selectValues: Array<string>;
+  object: any;
 }) {
   if (selectValues?.length === 0) {
-    return value;
+    return value.join('');
   }
-  if (isObject(value)) {
+
+  if (selectValues[0].startsWith('_$')) {
+    const divider = selectValues[0].replaceAll('_$', '');
+    const clonedValue = structuredClone(value);
+    clonedValue[clonedValue.length - 1] = `${clonedValue[clonedValue.length - 1]}${divider}`;
     return getCellValueRecursive({
-      value: value[selectValues[0]],
+      value: clonedValue,
       selectValues: selectValues.slice(1),
-    });
-  }
-  // now it is an array of objects
-  if (Array.isArray(value)) {
-    return value.map((item) => {
-      return getCellValueRecursive({
-        value: item[selectValues[0]],
-        selectValues: selectValues.slice(1),
-      });
+      object,
     });
   }
 
-  return null;
+  if (!isArray(value) && isObject(value)) {
+    return getCellValueRecursive({
+      value: [value[selectValues[0]]],
+      selectValues: selectValues.slice(1),
+      object,
+    });
+  }
+  value.push(object[selectValues[0]]);
+  return getCellValueRecursive({
+    value,
+    selectValues: selectValues.slice(1),
+    object,
+  });
 }
 
 function handleObjectType({ value, cellConfig }: { value: any; cellConfig: FormFieldTypes }) {
@@ -116,13 +139,26 @@ function handleObjectType({ value, cellConfig }: { value: any; cellConfig: FormF
     }
     if (typeof value[0] === 'object') {
       // do not join if it is an array of objects. return the array. then handle array of objects create correct component/cell
-      return getCellValueRecursive({ value, selectValues: cellConfig.selectValues }).join(',');
+      const result = value.map((singleValue) => {
+        const resultInMap = getCellValueRecursive({
+          value: singleValue,
+          selectValues: cellConfig.selectValues,
+          object: singleValue,
+        });
+        return resultInMap;
+      });
+      console.log(result);
+      return result;
     }
     return value.map((item) => item.toString());
   }
   if (!cellConfig.selectValues?.length) {
     return value.name || 'set the selectValues array';
   }
-  return getCellValueRecursive({ value, selectValues: cellConfig.selectValues });
-  return value;
+  const result = getCellValueRecursive({
+    value,
+    selectValues: cellConfig.selectValues,
+    object: value,
+  });
+  return result;
 }
