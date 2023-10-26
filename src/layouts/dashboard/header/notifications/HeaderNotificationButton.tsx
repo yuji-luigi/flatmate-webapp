@@ -8,6 +8,7 @@ import { NotificationDrawer } from './NotificationDrawer';
 import axiosInstance, { AxiosResDataGeneric } from '../../../../utils/axios-instance';
 import { _PATH_API } from '../../../../path/path-api';
 import { NotificationModel } from '../../../../types/models/notification-model';
+import { useCookieContext } from '../../../../context/CookieContext';
 
 const fetchNotifications = async () => {
   const res = await axiosInstance.get<AxiosResDataGeneric<NotificationModel[]>>(
@@ -18,7 +19,13 @@ const fetchNotifications = async () => {
 export const HeaderNotificationButton = () => {
   // todo: add Notification route in Api to get formatted data. (threads, maintenances, etc. in formatted way as notifications)
   // const { crudDocuments: maintenances } = useCrudSelectors<MaintenanceModel>('maintenances');
-  const { data } = useSWR(() => _PATH_API.notifications.root, fetchNotifications, {});
+  const { currentSpace, currentOrganization } = useCookieContext();
+
+  const { data } = useSWR(
+    () => [currentSpace, currentOrganization, _PATH_API.notifications.root],
+    fetchNotifications,
+    {}
+  );
   // const notifications = useMemo(() => {
   //   return maintenances.map((maintenance) => ({
   //     ...maintenance,

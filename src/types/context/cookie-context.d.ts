@@ -9,4 +9,5 @@ interface CookieContextState {
   setCurrentOrganization: (organization: string | null) => void;
   resetCurrentSpace: () => void;
   handleSetCurrentSpace: (space: SpaceModel | null) => void;
+  hasSelectChanged: boolean;
 }

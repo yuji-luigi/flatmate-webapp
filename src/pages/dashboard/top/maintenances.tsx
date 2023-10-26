@@ -6,14 +6,17 @@ import { SpaceMaintenanceSection } from '../../../sections/@dashboard/dashboard_
 import { _PATH_API } from '../../../path/path-api';
 import { SegmentedControlContextProvider } from '../../../components/tab/useSegmentedControl';
 import { useCrudSelectors, useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
+import { useCookieContext } from '../../../context/CookieContext';
 
 const DashboardTopMaintenances = () => {
   const { fetchCrudDocuments } = useCrudSliceStore();
+
   const { crudDocuments } = useCrudSelectors('maintenances');
+  const { hasSelectChanged, currentOrganization, currentSpace } = useCookieContext();
   useEffect(() => {
-    if (crudDocuments.length > 0) return;
+    if (!hasSelectChanged && crudDocuments.length > 0) return;
     fetchCrudDocuments({ entity: 'maintenances', owEndpoint: _PATH_API.maintenances.home });
-  }, []);
+  }, [hasSelectChanged, currentOrganization, currentSpace]);
   return (
     <SegmentedControlContextProvider>
       <SpaceMaintenanceSection />
