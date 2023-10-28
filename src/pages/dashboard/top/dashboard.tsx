@@ -15,9 +15,11 @@ const DashboardPage = () => {
   useEffect(() => {
     handleSectionData();
   }, [currentOrganization, currentSpace]);
+
   const handleSectionData = async () => {
     const rawRes = await axiosInstance.get(`${process.env.NEXT_PUBLIC_API_URL}/home`);
-    const { space, maintainers, maintenances, threads, homeStatics } = rawRes.data.data || [];
+    const { space, maintainers, maintenances, threads, checksByMonth } = rawRes.data.data || [];
+    setCrudDocuments({ entity: 'statistics', documents: checksByMonth });
     setCrudDocument({ entity: 'spaces', document: space });
     setCrudDocuments({ entity: 'maintainers', documents: maintainers });
     setCrudDocuments({ entity: 'maintenances', documents: maintenances });

@@ -43,10 +43,6 @@ export const CheckInputTabCard = ({
   const form = useForm<Record<string, unknown>>({
     initialValues: {
       type: checkType,
-      // invoices: null,
-      // receipts: null,
-      // invoices: new File([], 'invoices'),
-      // receipts: new File([], 'receipts'),
     },
   });
   if (!maintenance) {
@@ -86,19 +82,18 @@ export const CheckInputTabCard = ({
           entity: 'maintenances',
           endpoint: PATH_API.uploadsMaintenance,
         });
-        const rawCheck = await axiosInstance.post(`${PATH_API.checks}/${checkType}`, {
+        const rawCheck = await axiosInstance.post(`${PATH_API.checks}`, {
           maintenance,
           ...form.values,
           files: uploadIds,
+          entity: 'maintenances',
         });
-        console.log(rawCheck.data);
+        await sleep(600);
+        if (rawCheck.data.success) {
+          setSubmitting(false);
+          router.push(`${PATH_CLIENT.uploadSuccess}/${query.linkId}/${rawCheck.data.data._id}`);
+        }
       }
-
-      await sleep(600);
-      // if (rawCheck.data.success) {
-      //   setSubmitting(false);
-      //   router.push(`${PATH_CLIENT.uploadSuccess}/${query.linkId}/${rawCheck.data.data._id}`);
-      // }
     } catch (error: any) {
       // eslint-disable-next-line no-console
       showNotification(NOTIFICATIONS.ERROR.general({ data: error }));

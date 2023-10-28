@@ -7,7 +7,7 @@
   font-weight: 900;
   font-size: 34;
   margin-bottom: var(--mantine-spacing-md);
-  font-family: 'Greycliff CF' var(--mantine-font-family);
+  font-family: 'Greycliff CF', var(--mantine-font-family);
 
   @media (max-width: $mantine-breakpoint-sm) {
     font-size: 32;
@@ -16,18 +16,19 @@
 
 .control {
   @media (max-width: $mantine-breakpoint-sm) {
-    width: '100%';
+    width: 100%;
   }
 }
 
 .mobileImage {
   @media (min-width: $mantine-breakpoint-sm) {
-    display: 'none';
+    display: none;
+    cd: go;
   }
 }
 
 .desktopImage {
   @media (max-width: $mantine-breakpoint-sm) {
-    display: 'none';
+    display: none;
   }
 }

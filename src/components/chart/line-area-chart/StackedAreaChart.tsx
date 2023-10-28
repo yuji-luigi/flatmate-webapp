@@ -9,12 +9,12 @@ import { intlCurrencyFormat, intlDateFormat } from '../../../utils/helpers/date-
 
 function StackedAreaChart() {
   const { isMobile } = useCustomMQuery();
-  const { crudDocuments: maintenances } = useCrudSelectors<MaintenanceModel>('maintenances');
-  const mData = maintenances.map((m) => {
+  const { crudDocuments: statistics } = useCrudSelectors<MaintenanceModel>('statistics');
+  const mData = statistics.map((statistic) => {
     return {
-      x: intlDateFormat(m.createdAt),
-      y: m.cost || 0,
-      change: m.cost || 0,
+      x: intlDateFormat(statistic.month),
+      y: statistic.total || 0,
+      change: statistic.total || 0,
     };
   });
 

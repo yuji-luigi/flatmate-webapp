@@ -9,6 +9,18 @@ interface ReduxDbEntity<Entity> {
   /** _id of singleCrudDocuments  */
   singleCrudDocuments: string[] | [];
 }
+interface ReduxDbStatistics {
+  entity: 'statistics';
+
+  // documentsArray: any[] | [];
+  // totalDocuments: number;
+  /** document */
+  // singleCrudDocument: AllModels | null;
+  /** now leave this */
+  // isChildrenTree: boolean;
+  /** _id of singleCrudDocuments  */
+  // singleCrudDocuments: string[] | [];
+}
 
 interface Reduxdb {
   [key: string]: ReduxDbEntity<AllModels>;
