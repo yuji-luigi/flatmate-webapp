@@ -9,13 +9,7 @@ import classes from './DashboardTopSection.module.css';
 import { StatsSummary } from './StatsSummary';
 import { DashboardTopHeader } from '../../components/DashboardTopHeader';
 import { useCookieContext } from '../../../../../context/CookieContext';
-
-const StackedAreaChart = dynamic(
-  () => import('../../../../../components/chart/line-area-chart/StackedAreaChart'),
-  {
-    ssr: false, // This will load the component only on the client side.
-  }
-);
+import { ChecksByMonthChart } from './components/ChecksByMonthChart';
 
 const DashboardSection = () => {
   const { currentSpace } = useCookieContext();
@@ -25,9 +19,7 @@ const DashboardSection = () => {
       <DashboardTopHeader header={currentSpace?.name} subHeader={currentSpace?.address} />
       <StatsSummary className={classes.summary} />
       <StatsGrid data={statsGridData as unknown as StatGridSchema[]} />
-      <Card>
-        <StackedAreaChart />
-      </Card>
+      <ChecksByMonthChart />
       <MaintenanceDatatable />
       <EventDataTable />
     </Box>

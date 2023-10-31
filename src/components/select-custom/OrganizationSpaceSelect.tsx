@@ -1,4 +1,4 @@
-import { Box, MantineStyleProp, Select } from '@mantine/core';
+import { Box, ComboboxItem, MantineStyleProp, Select } from '@mantine/core';
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { UseFormReturnType } from '@mantine/form';
@@ -29,7 +29,7 @@ const OrganizationSpaceSelect = ({
 }: OrganizationSpaceSelectProps) => {
   // const [opened, { toggle }] = useDisclosure(false);
 
-  const [organizations, setOrganizations] = useState<SelectOption[] | []>([]);
+  const [organizations, setOrganizations] = useState<ComboboxItem[]>([]);
   const {
     setCurrentOrganization,
     setCurrentSpace,
@@ -38,7 +38,7 @@ const OrganizationSpaceSelect = ({
     resetCurrentSpace,
   } = useCookieContext();
 
-  const [spaces, setSpaces] = useState<SelectOption[] | []>([]);
+  const [spaces, setSpaces] = useState<ComboboxItem[]>([]);
   const router = useRouter();
   const { user } = useAuth();
   const isSuperAdmin = user?.role === 'super_admin';

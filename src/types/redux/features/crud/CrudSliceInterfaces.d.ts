@@ -9,17 +9,25 @@ interface ReduxDbEntity<Entity> {
   /** _id of singleCrudDocuments  */
   singleCrudDocuments: string[] | [];
 }
-interface ReduxDbStatistics {
-  entity: 'statistics';
 
-  // documentsArray: any[] | [];
-  // totalDocuments: number;
-  /** document */
-  // singleCrudDocument: AllModels | null;
-  /** now leave this */
-  // isChildrenTree: boolean;
-  /** _id of singleCrudDocuments  */
-  // singleCrudDocuments: string[] | [];
+interface Statistics {
+  checksByMonth: {
+    nChecks: number;
+    month: Date;
+    total: number;
+  }[];
+  checksByDate:
+    | {
+        date: Date;
+        total: number;
+        data: {
+          date: Date;
+          total: number;
+          entity: string;
+          name: string;
+        }[];
+      }[]
+    | [];
 }
 
 interface Reduxdb {

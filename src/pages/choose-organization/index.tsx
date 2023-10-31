@@ -2,19 +2,12 @@ import React, { ReactElement, useEffect } from 'react';
 import { Box, Divider, Stack, Text } from '@mantine/core';
 import { useRouter } from 'next/router';
 import useAuth from '../../../hooks/useAuth';
-import PostList from '../../sections/@dashboard/posts_list_page/PostList';
-import {
-  CardArticleVerticalTextBottom,
-  CardData,
-} from '../../components/card/CardVerticalTextBottom';
-import { CARD_LINK_PATH, PATH_CLIENT } from '../../path/path-frontend';
+import { PATH_CLIENT } from '../../path/path-frontend';
 import axiosInstance from '../../utils/axios-instance';
 import { PATH_API } from '../../path/path-api';
-import { CardArticleVerticalTextCenter } from '../../components/card/CardVerticalTextCenter';
 import Layout from '../../layouts';
 import { OrganizationModel } from '../../types/models/organization-model';
 import { SpaceModel } from '../../types/models/space-model';
-import { CardArticleSmall } from '../../components/card/CardArticleSmall';
 import { CardForListSmall } from '../../components/card/CardForListSmall';
 import classes from '../../styles/global-useStyles.module.css';
 

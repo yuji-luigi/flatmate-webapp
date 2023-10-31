@@ -50,7 +50,7 @@ export function DashboardHeaderSearch() {
       {!isMobile && (
         <Box className={classesM.deskTopExNav}>
           <HeaderNotificationButton />
-          <OrganizationSpaceSelect />
+          <OrganizationSpaceSelect className={classesM.selectGroup} />
           <ColorSchemeToggle />
         </Box>
       )}

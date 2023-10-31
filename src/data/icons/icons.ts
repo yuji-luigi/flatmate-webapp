@@ -56,6 +56,7 @@ import {
   IconBell as bell,
   IconColumns as columns,
   IconTable as table,
+  IconCalendar as calendar,
 } from '@tabler/icons-react';
 /**
  * use the key name same as the slice name
@@ -117,6 +118,7 @@ export const Icons = {
   bell,
   columns,
   table,
+  calendar,
 } as const;
 export const ICON_SIZES = {
   textTile: 16,
