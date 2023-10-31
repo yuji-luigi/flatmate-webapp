@@ -1,75 +1,29 @@
-import { Box, Card } from '@mantine/core';
-import { Point, ResponsiveLine } from '@nivo/line';
+import { Box } from '@mantine/core';
+import { CustomLayer, ResponsiveLine } from '@nivo/line';
 import { useCustomMQuery } from '../../../../hooks/useCustomMQuery';
-import { LabelLayerCustom } from './LabelLayerCustom';
-import { LabelLayerCustomMini } from './LabelLayerCustomMini';
-import { useCrudSelectors } from '../../../redux/features/crud/crudSlice';
-import { MaintenanceModel } from '../../../types/models/maintenance-model';
-import { intlCurrencyFormat, intlDateFormat } from '../../../utils/helpers/date-formatters';
 
-function StackedAreaChart() {
+type StackedAreaChartProps = {
+  customLayer: CustomLayer;
+  statistics: {
+    data: {
+      x: string;
+      y: number;
+      change: number;
+    }[];
+    id: string;
+  }[];
+};
+
+function StackedAreaChart(props: StackedAreaChartProps) {
   const { isMobile } = useCustomMQuery();
-  const { crudDocuments: statistics } = useCrudSelectors<MaintenanceModel>('statistics');
-  const mData = statistics.map((statistic) => {
-    return {
-      x: intlDateFormat(statistic.month),
-      y: statistic.total || 0,
-      change: statistic.total || 0,
-    };
-  });
-
-  const formatedMData = 0;
+  const { statistics, customLayer } = props;
 
   const mx = isMobile ? 30 : 50;
-  const data = [
-    {
-      id: 'A',
-      data: mData,
-    },
-    // data: [
-    //   { x: 1, y: 300000, change: 0 },
-    //   { x: 2, y: 300000 - 500, change: -500 },
-    //   { x: 3, y: 300000 - 500, change: 0 },
-    //   { x: 4, y: 300000 - 1000, change: -500 },
-    //   { x: 5, y: 300000 + 500, change: 1500 },
-    //   { x: 6, y: 300000 + 250, change: -250 },
-    // ],
-    //   data: [
-    //     { x: 'Feb 2', y: 900, change: 0 },
-    //     { x: 'Feb 15', y: 500, change: -400 },
-    //     { x: 'Feb 23', y: 500, change: 0 },
-    //     { x: 'Feb 28', y: 1000, change: 500 },
-    //     { x: 'Mar 5', y: 500, change: -500 },
-    //     { x: 'Mar 18', y: 250, change: -250 },
-    //   ],
-    // },
-    // {
-    //   id: 'B',
-    //   data: [
-    //     { x: 1, y: 3000, change: 0 },
-    //     { x: 2, y: 3000 - 500, change: -500 },
-    //     { x: 3, y: 2500 - 500, change: 0 },
-    //     { x: 4, y: 2000 - 500, change: -500 },
-    //     { x: 5, y: 1500 + 1500, change: 1500 },
-    //     { x: 6, y: 3000 + 250, change: 250 },
-    //   ],
-    //   // data: mData,
-    // },
-    // {
-    //   id: 'B',
-    //   data: [
-    //     { x: 'Jan', y: 5 },
-    //     { x: 'Feb', y: 15 },
-    //     { x: 'Mar', y: 20 },
-    //   ],
-    // },
-  ];
 
   return (
-    //@ts-ignore
     <Box style={{ height: 400, width: '100%', overflow: 'visible' }}>
       <ResponsiveLine
-        data={data}
+        data={statistics}
         margin={{ top: 70, right: mx, bottom: 50, left: mx }}
         xScale={{ type: 'point' }}
         yScale={{ type: 'linear', min: 0, max: 'auto' }}
@@ -132,35 +86,11 @@ function StackedAreaChart() {
           'points',
           'slices',
           'mesh',
-          //@ts-ignore
-          CustomLayer,
+          customLayer,
         ]}
-      >
-        {null}
-      </ResponsiveLine>
+      />
     </Box>
   );
 }
 
 export default StackedAreaChart;
-type CustomLayerProps = {
-  points: PointCustom[];
-  xScale: any;
-  yScale: any;
-};
-type PointCustom = Point & {
-  data: { change: number; y: number; x: any };
-};
-const CustomLayer = (props: CustomLayerProps) => {
-  const { points, xScale, yScale } = props;
-  const { isMobile } = useCustomMQuery();
-  const LabelComponent = isMobile ? LabelLayerCustomMini : LabelLayerCustom;
-
-  return (
-    <>
-      {points.map((point) => (
-        <LabelComponent key={point.id} point={point} />
-      ))}
-    </>
-  );
-};
