@@ -9,9 +9,15 @@ export const maintenanceStatTableData: Array<FormFieldTypes> = [
     type: 'text',
   },
   {
-    id: 'cost',
-    name: 'cost',
-    label: 'Cost',
+    id: 'invoiceTotal',
+    name: 'invoiceTotal',
+    label: 'Invoice total',
+    type: 'text',
+  },
+  {
+    id: 'receiptsTotal',
+    name: 'receiptsTotal',
+    label: 'Paid total',
     type: 'text',
   },
   {
@@ -21,13 +27,19 @@ export const maintenanceStatTableData: Array<FormFieldTypes> = [
     type: 'static-select',
     options: [
       {
-        value: 'pending',
+        value: 'incomplete',
         label: 'In attesa',
         icon: Icons.clockStop,
         color: 'orange',
       },
       {
-        value: 'in progress',
+        value: 'invoiced',
+        label: 'In fatturazione',
+        icon: Icons.clockStop,
+        color: 'orange',
+      },
+      {
+        value: 'inProgress',
         label: 'In corso',
         icon: Icons.progressCheck,
         color: 'blue',

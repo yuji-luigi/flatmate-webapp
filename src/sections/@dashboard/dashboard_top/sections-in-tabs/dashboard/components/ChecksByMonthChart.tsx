@@ -1,4 +1,4 @@
-import { Card, Group } from '@mantine/core';
+import { Box, Card, Group } from '@mantine/core';
 import React from 'react';
 import dynamic from 'next/dynamic';
 import { MonthPickerInput } from '@mantine/dates';
@@ -46,11 +46,15 @@ export const ChecksByMonthChart = () => {
         endpoint=""
         onChangeCallback={handleQueryByDate}
       />
-      <StackedAreaChart
-        //@ts-ignore
-        customLayer={LabelLayer}
-        statistics={[{ id: 'this', data: mData }]}
-      />
+      <Box style={{ overflowX: 'scroll', overflowY: 'hidden' }}>
+        <Box style={{ minWidth: '100%', width: mData.length * 50 }}>
+          <StackedAreaChart
+            //@ts-ignore
+            customLayer={LabelLayer}
+            statistics={[{ id: 'this', data: mData }]}
+          />
+        </Box>
+      </Box>
     </Card>
   );
 };

@@ -23,7 +23,7 @@ type IconIndex = keyof typeof _icons;
 export type StatGridSchema = {
   title: string;
   value: number;
-  icon?: IconIndex | ((props?: TablerIconsProps) => JSX.Element);
+  icon?: IconIndex | ((props: TablerIconsProps) => JSX.Element);
   diff?: number;
   unit?: string;
 };

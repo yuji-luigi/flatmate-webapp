@@ -6,6 +6,9 @@ import { DividerStyled } from '../../../../styles/divider/DividerStyled';
 import { StatGridSchema, StatsGrid } from '../../../../components/stats/StatsGrid';
 import { StaticOption } from '../../../../types/general/data/data-table/formField-types';
 import { DataTableDateSwitch } from '../../../../components/datatable/filter/date/DataTableDateSwitch';
+import { useCrudSelectors } from '../../../../redux/features/crud/crudSlice';
+import { MaintenanceModel } from '../../../../types/models/maintenance-model';
+import { Icons } from '../../../../data/icons/icons';
 
 const mockData = [
   {
@@ -149,38 +152,80 @@ const mockData = [
   //   createdAt: '2021-07-15',
   // },
 ];
-const options: StaticOption[] = maintenanceStatTableData.find(
-  (item) => item.name === 'status'
-)?.options;
+// const options: StaticOption[] = maintenanceStatTableData.find(
+//   (item) => item.name === 'status'
+// )?.options;
 
-const calculatedStatsGridData = mockData.reduce<StatGridSchema[]>((acc, stat) => {
-  const option = options?.find((item) => item.value === stat.status);
-  const status = option?.value;
-  const icon = option?.icon;
-  if (stat.status === status) {
-    const existingField = acc.find((item: any) => item.title === status);
-    if (existingField) {
-      existingField.value += +stat.cost;
-      return acc;
-    }
-    acc.push({
-      title: status,
-      value: +stat.cost,
+// const calculatedStatsGridData = mockData.reduce<StatGridSchema[]>((acc, stat) => {
+//   const option = options?.find((item) => item.value === stat.status);
+//   const status = option?.value;
+//   const icon = option?.icon;
+//   if (stat.status === status) {
+//     const existingField = acc.find((item: any) => item.title === status);
+//     if (existingField) {
+//       existingField.value += +stat.cost;
+//       return acc;
+//     }
+//     acc.push({
+//       title: status,
+//       value: +stat.cost,
+//       unit: '€',
+//       icon,
+//     });
+//     return acc;
+//   }
+//   return acc;
+// }, []);
+function calculateStatsGridData(maintenances: MaintenanceModel[]): StatGridSchema[] {
+  const incomplete = maintenances.filter((item) => item.status === 'incomplete');
+  const completed = maintenances.filter((item) => item.status === 'completed');
+  const inProgress = maintenances.filter((item) => item.status === 'inProgress');
+  const invoiced = maintenances.filter((item) => item.status === 'invoiced');
+  const statGridData = [
+    {
+      title: 'Incomplete',
+      value: incomplete.length,
+      unit: '',
+      icon: Icons.clockStop,
+    },
+    {
+      title: 'Completed',
+      value: completed.length,
+      unit: '',
+      icon: Icons.check,
+    },
+    {
+      title: 'In Progress',
+      value: inProgress.length,
+      unit: '',
+      icon: Icons.progressCheck,
+    },
+    {
+      title: 'Total spent',
+      value: maintenances.reduce((acc, item) => acc + +item.invoicesTotal, 0),
       unit: '€',
-      icon,
-    });
-    return acc;
-  }
-  return acc;
-}, []);
+      icon: Icons.progressCheck,
+    },
+    // {
+    //   title: 'Invoiced',
+    //   value: invoiced.length,
+    //   unit: '',
+    //   icon: Icons.clockStop,
+    // },
+  ];
+  return statGridData;
+}
 
 export const MaintenanceDatatable = () => {
+  const { crudDocuments: maintenances } = useCrudSelectors<MaintenanceModel>('maintenances');
+
+  const statGridData = calculateStatsGridData(maintenances);
   return (
     <Card>
       <DataTableDateSwitch />
       <DividerStyled label="Maintenance" />
-      <StaticDataTable json={maintenanceStatTableData} data={mockData} />
-      <StatsGrid data={calculatedStatsGridData} />
+      <StaticDataTable json={maintenanceStatTableData} data={maintenances} />
+      <StatsGrid data={statGridData} />
     </Card>
   );
 };
