@@ -57,6 +57,7 @@ export enum PATH_API {
   onBoarding = 'on-boarding',
   threads = 'threads',
   maintenances = 'maintenances',
+  statistics = 'statistics',
 }
 
 const all = (entity: string) => `${entity}`;
@@ -124,6 +125,10 @@ export const _PATH_API = {
   },
   notifications: {
     root: 'notifications',
+  },
+  statistics: {
+    root: PATH_API.statistics,
+    byMonth: `${PATH_API.statistics}/by-month`,
   },
 } as const;
 

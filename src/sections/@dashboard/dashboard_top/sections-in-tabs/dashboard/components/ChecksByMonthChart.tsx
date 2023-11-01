@@ -3,12 +3,17 @@ import React from 'react';
 import dynamic from 'next/dynamic';
 import { MonthPickerInput } from '@mantine/dates';
 import { CustomLayer } from '@nivo/line';
-import { useCrudSelectors } from '../../../../../../redux/features/crud/crudSlice';
+import {
+  useCrudSelectors,
+  useCrudSliceStore,
+} from '../../../../../../redux/features/crud/crudSlice';
 import { intlDateFormatMonth } from '../../../../../../utils/helpers/date-formatters';
 import { Icons } from '../../../../../../data/icons/icons';
 import { LabelLayerCustom } from '../../../../../../components/chart/custom-layer/LabelLayerCustom';
 import { LabelLayer } from '../../../../../../components/chart/custom-layer/CustomLayer';
 import { FromToDateQueryInputs } from '../../../../../../components/input/filter-inputs/FromToDateQueryInputs';
+import axiosInstance from '../../../../../../utils/axios-instance';
+import { _PATH_API } from '../../../../../../path/path-api';
 
 const StackedAreaChart = dynamic(
   () => import('../../../../../../components/chart/line-area-chart/StackedAreaChart'),
@@ -17,6 +22,7 @@ const StackedAreaChart = dynamic(
   }
 );
 export const ChecksByMonthChart = () => {
+  const { setCrudDocument } = useCrudSliceStore();
   const { crudDocument: statistics } = useCrudSelectors<Statistics>('statistics');
   const { checksByMonth } = statistics || {};
   if (!checksByMonth) return null;
@@ -27,8 +33,9 @@ export const ChecksByMonthChart = () => {
       change: statistic.total || 0,
     };
   });
-  const handleQueryByDate = (values: { [key: string]: null | Date }) => {
-    console.log(values);
+  const handleQueryByDate = async (values: { [key: string]: null | Date }) => {
+    const rawRes = await axiosInstance.get(_PATH_API.statistics.byMonth, { params: values });
+    setCrudDocument({ entity: 'statistics', document: rawRes.data.data });
   };
 
   return (
