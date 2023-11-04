@@ -12,7 +12,7 @@ const LogoutPage = () => {
     replace('/login');
   }, []);
 
-  return <LoginPage user={undefined} />;
+  return <LoginPage />;
 };
 
 export default LogoutPage;

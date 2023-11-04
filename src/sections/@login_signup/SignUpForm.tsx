@@ -64,50 +64,48 @@ export function SignUpForm() {
   };
 
   return (
-    <GuestGuard>
-      <Container size={420} my={40}>
-        <Title
-          className={classes.title}
-          ta="center"
-          // style={(theme) => ({ font-family: Greycliff CF, var(--mantine-font-family), fontWeight: 900 })}
-        >
-          Register
-        </Title>
-        <Text color="dimmed" size="sm" ta="center" mt={5}>
-          Already have an account ? <Link href="/login">Login</Link>
-        </Text>
-        <Paper withBorder shadow="md" p={24} mt={10} radius="md">
-          <form onSubmit={form.onSubmit((values) => onSubmit(values))}>
-            {steps === 0 && <SignUpStepOne form={form} />}
-            {steps === 1 && <SignUpStepTwo form={form} />}
-            {steps === MAX_STEP && <SignUpConfirm form={form} />}
-            <Group justify="apart" mt="md">
-              <Checkbox label="Remember me" />
-            </Group>
-            <Flex mt="xl" gap="md">
-              <Button disabled={steps <= 0} type="button" fullWidth onClick={handlePrev} mt="xl">
-                Prev
+    <Container size={420} my={40}>
+      <Title
+        className={classes.title}
+        ta="center"
+        // style={(theme) => ({ font-family: Greycliff CF, var(--mantine-font-family), fontWeight: 900 })}
+      >
+        Register
+      </Title>
+      <Text color="dimmed" size="sm" ta="center" mt={5}>
+        Already have an account ? <Link href="/login">Login</Link>
+      </Text>
+      <Paper withBorder shadow="md" p={24} mt={10} radius="md">
+        <form onSubmit={form.onSubmit((values) => onSubmit(values))}>
+          {steps === 0 && <SignUpStepOne form={form} />}
+          {steps === 1 && <SignUpStepTwo form={form} />}
+          {steps === MAX_STEP && <SignUpConfirm form={form} />}
+          <Group justify="apart" mt="md">
+            <Checkbox label="Remember me" />
+          </Group>
+          <Flex mt="xl" gap="md">
+            <Button disabled={steps <= 0} type="button" fullWidth onClick={handlePrev} mt="xl">
+              Prev
+            </Button>
+            <Button
+              disabled={steps >= MAX_STEP}
+              type="button"
+              fullWidth
+              onClick={handleNext}
+              mt="xl"
+            >
+              Next
+            </Button>
+          </Flex>
+          {steps === MAX_STEP && (
+            <>
+              <Button type="submit" fullWidth mt="xs">
+                Register
               </Button>
-              <Button
-                disabled={steps >= MAX_STEP}
-                type="button"
-                fullWidth
-                onClick={handleNext}
-                mt="xl"
-              >
-                Next
-              </Button>
-            </Flex>
-            {steps === MAX_STEP && (
-              <>
-                <Button type="submit" fullWidth mt="xs">
-                  Register
-                </Button>
-              </>
-            )}
-          </form>
-        </Paper>
-      </Container>
-    </GuestGuard>
+            </>
+          )}
+        </form>
+      </Paper>
+    </Container>
   );
 }

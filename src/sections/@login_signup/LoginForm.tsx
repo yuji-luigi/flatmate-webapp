@@ -32,7 +32,7 @@ function LoginForm() {
       resetCurrentSpace();
       setCurrentOrganization(null);
       await login(values.email, values.password);
-      // router.push(PATH_CLIENT.chooseRootSpace);
+      router.push(PATH_CLIENT.chooseRootSpace);
       // return null;
     } catch (error: any) {
       notifications.show({
