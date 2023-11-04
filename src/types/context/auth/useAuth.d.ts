@@ -72,6 +72,7 @@ export type Login = (email?: string, password?: string) => Promise<void>;
 export interface AuthContextInterface extends JWTContextState {
   method: string;
   login: Login;
+
   logout: () => void;
   register: Register;
 }

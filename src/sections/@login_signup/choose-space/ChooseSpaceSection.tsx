@@ -1,6 +1,6 @@
 import { Box, Button, Text } from '@mantine/core';
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NextRouter, useRouter } from 'next/router';
 import {
   CardArticleVerticalTextBottom,
@@ -24,6 +24,7 @@ export const ChooseSpaceSection = ({ spaces }: { spaces: SpaceModel[] }) => {
     await axiosInstance.get(`${PATH_API.spaceCookie}/${spaceId}`);
     router.push(PATH_CLIENT.root);
   };
+
   if (!user) return null;
   return (
     <Box className={classes2.container}>

@@ -37,14 +37,14 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     return {
       props: {
         ...(await serverSideTranslations(locale || 'it', ['common', 'otherNamespace'])),
-        user,
+        initialUser: user,
         // other props you may need to pass to the page
       },
     };
   } catch (error) {
     return {
       props: {
-        user: null,
+        initialUser: null,
       },
     };
   }
@@ -58,23 +58,23 @@ export const fetchSpaceSelections = async (userId?: string | null) => {
   return res.data?.data;
 };
 
-const ChooseRootSpacePage = (props: { user?: UserModel }) => {
-  const { user } = props;
+const ChooseRootSpacePage = (props: { initialUser?: UserModel }) => {
+  const { initialUser } = props;
   const router = useRouter();
   // const title = t('choose-building-title');
   const {
     data: rootSpaces,
     error,
     isLoading,
-  } = useSWR<SpaceModel[] | null, AxiosError>(user?._id, fetchSpaceSelections);
+  } = useSWR<SpaceModel[] | null, AxiosError>(initialUser?._id, fetchSpaceSelections);
 
   useEffect(() => {
-    if (!user) {
+    if (!initialUser) {
       router.push(PATH_CLIENT.login);
     }
   }, []);
 
-  if (user?.role === 'super_admin') {
+  if (initialUser?.role === 'super_admin') {
     router.push(PATH_CLIENT.chooseOrganization);
     return null;
   }

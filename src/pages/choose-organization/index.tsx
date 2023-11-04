@@ -1,18 +1,51 @@
 import React, { ReactElement, useEffect } from 'react';
 import { Box, Divider, Stack, Text } from '@mantine/core';
 import { useRouter } from 'next/router';
+import { GetServerSidePropsContext } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import useAuth from '../../../hooks/useAuth';
 import { PATH_CLIENT } from '../../path/path-frontend';
 import axiosInstance from '../../utils/axios-instance';
-import { PATH_API } from '../../path/path-api';
+import { PATH_API, PATH_AUTH } from '../../path/path-api';
 import Layout from '../../layouts';
 import { OrganizationModel } from '../../types/models/organization-model';
 import { SpaceModel } from '../../types/models/space-model';
 import { CardForListSmall } from '../../components/card/CardForListSmall';
 import classes from '../../styles/global-useStyles.module.css';
+import { UserModel } from '../../types/models/user-model';
 
-const ChooseOrganizationPage = () => {
-  const { user } = useAuth();
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  try {
+    const { locale } = context;
+    const jwtToken = context.req.cookies.jwt;
+    if (!jwtToken) {
+      return { props: { user: null } };
+    }
+
+    const rawRes = await axiosInstance.get(`${process.env.NEXT_PUBLIC_API_URL}/${PATH_AUTH.me}`, {
+      headers: {
+        Authorization: `Bearer ${jwtToken}`,
+      },
+    });
+    const { data } = rawRes;
+    const { user } = data;
+    return {
+      props: {
+        ...(await serverSideTranslations(locale || 'it', ['common', 'otherNamespace'])),
+        user,
+        // other props you may need to pass to the page
+      },
+    };
+  } catch (error) {
+    return {
+      props: {
+        user: null,
+      },
+    };
+  }
+}
+const ChooseOrganizationPage = (props: { user: UserModel }) => {
+  const { user } = props;
   const [organizations, setOrganizations] = React.useState<OrganizationModel[] | SpaceModel[]>([]);
   const router = useRouter();
 
@@ -32,6 +65,7 @@ const ChooseOrganizationPage = () => {
   const hrefRoot = PATH_CLIENT.chooseOrganization;
 
   if (user?.role !== 'super_admin') {
+    router.push(PATH_CLIENT.login);
     return null;
   }
 
