@@ -9,20 +9,29 @@ type FromToDateQueryInputsProps = {
   fromName: string;
   toName: string;
   onChangeCallback?: (value: { [key: string]: null | Date }) => void;
+  defaultValues?: {
+    from: Date;
+    to: Date;
+  };
 };
 export const FromToDateQueryInputs = (props: FromToDateQueryInputsProps) => {
-  const { endpoint, fromName, toName, onChangeCallback } = props;
+  const { endpoint, fromName, toName, onChangeCallback, defaultValues } = props;
   const form = useForm<{
     [key: string]: null | Date;
   }>({
     initialValues: {
-      [fromName]: null,
-      [toName]: null,
+      [fromName]: defaultValues?.from || null,
+      [toName]: defaultValues?.to || null,
     },
   });
   const { values, setValues } = form;
   useEffect(() => {
     if (values[fromName] || (values[toName] && onChangeCallback)) {
+      onChangeCallback?.(values);
+    }
+  }, [values]);
+  useEffect(() => {
+    if (defaultValues?.from || defaultValues?.to) {
       onChangeCallback?.(values);
     }
   }, [values]);

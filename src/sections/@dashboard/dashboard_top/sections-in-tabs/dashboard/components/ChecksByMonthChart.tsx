@@ -37,10 +37,31 @@ export const ChecksByMonthChart = () => {
     const rawRes = await axiosInstance.get(_PATH_API.statistics.byMonth, { params: values });
     setCrudDocument({ entity: 'statistics', document: rawRes.data.data });
   };
+  const currentDate = new Date();
+
+  // Create a new date object for the current date
+  const now = new Date();
+  // Use the current date to subtract 6 months for the 'from' date
+  const fromDate = new Date(now); // Clone the current date
+  fromDate.setMonth(now.getMonth() - 6); // Subtract 6 months
+  fromDate.setDate(1); // Set to the first day of the month
+  fromDate.setHours(0, 0, 0, 0); // Set to midnight
+  // Create a new date object for the 'to' date, which is the first day of the current month at midnight
+  const toDate = new Date(now.getFullYear(), now.getMonth(), 1);
+  toDate.setHours(0, 0, 0, 0); // Set to midnight
+  // Now you have two separate dates:
+  // defFrom is the first day of the month, 6 months ago, at 00:00
+  const defFrom = fromDate;
+  // defTo is the first day of the current month, at 00:00
+  const defTo = toDate;
 
   return (
     <Card>
       <FromToDateQueryInputs
+        defaultValues={{
+          from: defFrom,
+          to: defTo,
+        }}
         fromName="from"
         toName="to"
         endpoint=""
