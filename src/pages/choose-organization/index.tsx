@@ -32,26 +32,26 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     return {
       props: {
         ...(await serverSideTranslations(locale || 'it', ['common', 'otherNamespace'])),
-        user,
+        initialUser: user,
         // other props you may need to pass to the page
       },
     };
   } catch (error) {
     return {
       props: {
-        user: null,
+        initialUser: null,
       },
     };
   }
 }
-const ChooseOrganizationPage = (props: { user: UserModel }) => {
-  const { user } = props;
+const ChooseOrganizationPage = (props: { initialUser: UserModel }) => {
+  const { initialUser } = props;
   const [organizations, setOrganizations] = React.useState<OrganizationModel[] | SpaceModel[]>([]);
   const router = useRouter();
 
   useEffect(() => {
-    if (!user) return;
-    if (user.role !== 'super_admin') {
+    if (!initialUser) return;
+    if (initialUser.role !== 'super_admin') {
       router.push(PATH_CLIENT.chooseRootSpace);
       return;
     }
@@ -59,12 +59,12 @@ const ChooseOrganizationPage = (props: { user: UserModel }) => {
     axiosInstance.get(`${PATH_API.getOrganizationsForAdmin}`).then((res) => {
       setOrganizations(res.data.data);
     });
-  }, [user?.role]);
+  }, [initialUser?.role]);
 
-  const title = user?.role === 'super_admin' ? 'Choose organization' : 'Choose space';
+  const title = initialUser?.role === 'super_admin' ? 'Choose organization' : 'Choose space';
   const hrefRoot = PATH_CLIENT.chooseOrganization;
 
-  if (user?.role !== 'super_admin') {
+  if (initialUser?.role !== 'super_admin') {
     router.push(PATH_CLIENT.login);
     return null;
   }
@@ -81,7 +81,7 @@ const ChooseOrganizationPage = (props: { user: UserModel }) => {
           className={classes.pinContainer}
           py="xl" /* cols={2} breakpoints={[{ max-width: 'sm', cols: 1 }]} */
         >
-          {user?.role === 'super_admin' && (
+          {initialUser?.role === 'super_admin' && (
             <CardForListSmall title="All organizations" href={PATH_CLIENT.root} image="" />
           )}
 

@@ -86,26 +86,26 @@ function AuthProvider({ children, initialUser }: { children: ReactNode; initialU
         const accessToken =
           typeof window !== 'undefined' ? localStorage.getItem('accessToken') : '';
 
-        if (accessToken && isValidToken(accessToken)) {
-          setSession(accessToken);
-          const response = await axiosInstance.get(PATH_AUTH.me, { withCredentials: true });
-          const { user } = response.data;
-          dispatch({
-            type: 'INITIALIZE',
-            payload: {
-              isAuthenticated: true,
-              user,
-            },
-          });
-        } else {
-          dispatch({
-            type: 'INITIALIZE',
-            payload: {
-              isAuthenticated: false,
-              user: null,
-            },
-          });
-        }
+        // if (accessToken && isValidToken(accessToken)) {
+        //   setSession(accessToken);
+        const response = await axiosInstance.get(PATH_AUTH.me, { withCredentials: true });
+        const { user } = response.data;
+        dispatch({
+          type: 'INITIALIZE',
+          payload: {
+            isAuthenticated: true,
+            user,
+          },
+        });
+        // } else {
+        //   dispatch({
+        //     type: 'INITIALIZE',
+        //     payload: {
+        //       isAuthenticated: false,
+        //       user: null,
+        //     },
+        //   });
+        // }
       } catch (error) {
         dispatch({
           type: 'INITIALIZE',

@@ -22,14 +22,14 @@ import { AUTH, PATH_CLIENT } from '../path/path-frontend';
 import GuestGuard from '../guards/GuestGuard';
 import { UserModel } from '../types/models/user-model';
 
-export default function LoginPage(props: { user?: UserModel }) {
-  const { user } = props;
+export default function LoginPage(props: { initialUser?: UserModel }) {
+  const { initialUser } = props;
   const { push } = useRouter();
   useEffect(() => {
-    if (user) {
+    if (initialUser) {
       push(PATH_CLIENT.chooseRootSpace);
     }
-  }, [user]);
+  }, [initialUser]);
   return (
     <div className={classes.wrapper}>
       <Paper className={classes.form} radius={0} p={30}>
@@ -68,12 +68,12 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     return {
       props: {
         ...(await serverSideTranslations(context.locale || '', ['common'])),
-        user,
+        initialUser: user,
       },
     };
   } catch (error) {
     return {
-      props: { user: null },
+      props: { initialUser: null },
     };
   }
 }

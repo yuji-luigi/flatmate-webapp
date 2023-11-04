@@ -61,7 +61,6 @@ export const fetchSpaceSelections = async (userId?: string | null) => {
 const ChooseRootSpacePage = (props: { initialUser?: UserModel }) => {
   const { initialUser } = props;
   const router = useRouter();
-  // const title = t('choose-building-title');
   const {
     data: rootSpaces,
     error,
