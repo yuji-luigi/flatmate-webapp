@@ -11,7 +11,7 @@ import {
 import { useCrudSelectors } from '../../../../../redux/features/crud/crudSlice';
 import { PATH_API } from '../../../../../path/path-api';
 import axiosInstance from '../../../../../utils/axios-instance';
-import { CheckType } from '../../../../../types/models/check-type';
+import { CheckType } from '../../../../../types/models/maintenance-check-type';
 import { PATH_CLIENT } from '../../../../../path/path-frontend';
 import { sleep } from '../../../../../utils/helpers/helper-functions';
 import { MaintenanceModel } from '../../../../../types/models/maintenance-model';

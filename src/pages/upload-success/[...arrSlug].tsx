@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import useSWR from 'swr';
 import { PATH_API } from '../../path/path-api';
 import axiosInstance, { AxiosResDataGeneric } from '../../utils/axios-instance';
-import { CheckInterface } from '../../types/models/check-type';
+import { CheckInterface } from '../../types/models/maintenance-check-type';
 import { ParsedQueryCustom } from '../../types/nextjs-custom-types/useRouter-types';
 import { MaintainerModel } from '../../types/models/maintainer-model';
 import { PreviewHandler } from '../../components/files/preview/PreviewHandler';

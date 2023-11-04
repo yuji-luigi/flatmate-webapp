@@ -1,4 +1,5 @@
 import { Icons } from '../../../src/data/icons/icons';
+import { MAINTENANCE_STATUS_OPTIONS } from '../../../src/lib/enums';
 import { FormFieldTypes } from '../../../src/types/general/data/data-table/formField-types';
 
 export const maintenanceStatTableData: Array<FormFieldTypes> = [
@@ -25,32 +26,7 @@ export const maintenanceStatTableData: Array<FormFieldTypes> = [
     name: 'status',
     label: 'Status',
     type: 'static-select',
-    options: [
-      {
-        value: 'incomplete',
-        label: 'In attesa',
-        icon: Icons.clockStop,
-        color: 'orange',
-      },
-      {
-        value: 'invoiced',
-        label: 'In fatturazione',
-        icon: Icons.clockStop,
-        color: 'orange',
-      },
-      {
-        value: 'inProgress',
-        label: 'In corso',
-        icon: Icons.progressCheck,
-        color: 'blue',
-      },
-      {
-        value: 'completed',
-        label: 'Completato',
-        icon: Icons.check,
-        color: 'green',
-      },
-    ],
+    options: [...MAINTENANCE_STATUS_OPTIONS],
     badge: true,
   },
   {

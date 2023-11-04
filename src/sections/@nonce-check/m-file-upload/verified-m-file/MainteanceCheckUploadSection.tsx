@@ -12,7 +12,7 @@ import {
 } from '@mantine/core';
 import React from 'react';
 import { CloseIcon } from 'yet-another-react-lightbox';
-import { CheckType } from '../../../../types/models/check-type';
+import { CheckType } from '../../../../types/models/maintenance-check-type';
 import { CheckInputTabCard } from './invoice-receipt-input/CheckInputTabCard';
 import ProfileCoverStatic from '../../../../components/profile/ProfileCoverStatic';
 import classes from '../../../../styles/global-useStyles.module.css';

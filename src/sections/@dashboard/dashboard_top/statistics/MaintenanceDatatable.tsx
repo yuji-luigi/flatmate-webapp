@@ -180,7 +180,7 @@ function calculateStatsGridData(maintenances: MaintenanceModel[]): StatGridSchem
   const incomplete = maintenances.filter((item) => item.status === 'incomplete');
   const completed = maintenances.filter((item) => item.status === 'completed');
   const inProgress = maintenances.filter((item) => item.status === 'inProgress');
-  const invoiced = maintenances.filter((item) => item.status === 'invoiced');
+  // const invoiced = maintenances.filter((item) => item.status === 'invoiced');
   const statGridData = [
     {
       title: 'Incomplete',

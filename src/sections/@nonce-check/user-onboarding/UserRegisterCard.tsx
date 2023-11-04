@@ -3,7 +3,7 @@ import React, { FormEvent, useMemo } from 'react';
 import { useForm } from '@mantine/form';
 import { showNotification } from '@mantine/notifications';
 import { useRouter } from 'next/router';
-import { CheckType } from '../../../types/models/check-type';
+import { CheckType } from '../../../types/models/maintenance-check-type';
 import { useCrudSelectors } from '../../../redux/features/crud/crudSlice';
 import FormFields from '../../../components/input/FormFields';
 import { UseFormReturnTypeCustom } from '../../../components/input/input_interfaces/useForm_interface';

@@ -12,12 +12,12 @@ import { SelectFilterInput } from './SelectFilterInput';
 export const QueryFilterWeb = ({
   className,
   formFields,
-  entity,
-}: // setFilter,
+}: // entity,
+// setFilter,
 {
   className?: string;
   formFields: FormFieldTypes[];
-  entity: Sections;
+  // entity: Sections;
   // setFilter: () => void;
 }) => {
   const { fetchCrudDocumentsInfiniteScroll } = useCrudSliceStore();

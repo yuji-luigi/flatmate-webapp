@@ -1,6 +1,6 @@
 [
 	{
-		"title": "Remain Now",
+		"title": "Reserves",
 		"icon": "coin",
 		"value": 13.456,
 		"diff": 34
@@ -12,7 +12,7 @@
 		"diff": -13
 	},
 	{
-		"title": "Maintenance to be done",
+		"title": "Amount due",
 		"icon": "receipt",
 		"value": 4.145,
 		"diff": -13

@@ -2,7 +2,7 @@ import { Container, Transition } from '@mantine/core';
 import React, { useEffect, useState } from 'react';
 import { CheckInputTabCard } from '../../../../sections/@nonce-check/m-file-upload/verified-m-file/invoice-receipt-input/CheckInputTabCard';
 import classes from '../../FileAuth.module.css';
-import { CheckType } from '../../../../types/models/check-type';
+import { CheckType } from '../../../../types/models/maintenance-check-type';
 
 import { UserRegisterCard } from '../../../../sections/@nonce-check/user-onboarding/UserRegisterCard';
 import { PinVerifCardController } from '../../../../components/card/auth/PinVerifCardController';

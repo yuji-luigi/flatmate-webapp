@@ -1,6 +1,6 @@
 import { Card, Title, Button, Group } from '@mantine/core';
 import React from 'react';
-import { CheckType } from '../../../../types/models/check-type';
+import { CheckType } from '../../../../types/models/maintenance-check-type';
 import classes from './ChooseTypeCard.module.css';
 
 export const ChooseTypeCard = ({

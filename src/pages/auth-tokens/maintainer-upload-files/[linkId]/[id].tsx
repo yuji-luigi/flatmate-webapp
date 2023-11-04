@@ -3,7 +3,7 @@ import { ReactElement, useState } from 'react';
 import { PATH_API } from '../../../../path/path-api';
 
 import { PinVerifCardMCheck } from '../../../../sections/@nonce-check/m-file-upload/pin-verif/PinVerifCardMCheck';
-import { CheckType } from '../../../../types/models/check-type';
+import { CheckType } from '../../../../types/models/maintenance-check-type';
 import { MaintenanceCheckUploadSection } from '../../../../sections/@nonce-check/m-file-upload/verified-m-file/MainteanceCheckUploadSection';
 import Layout from '../../../../layouts';
 

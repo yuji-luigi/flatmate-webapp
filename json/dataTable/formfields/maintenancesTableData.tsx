@@ -1,5 +1,11 @@
 import { MaintainerSelect } from '../../../src/components/input/custom-inputs/MaintainerSelect';
-import { MAINTAINER_TYPES, MAINTAINER_TYPES_ARRAY } from '../../../src/lib/enums';
+import {
+  MAINTAINER_TYPES,
+  MAINTAINER_TYPES_ARRAY,
+  MAINTAINER_TYPES_OPTIONS,
+  MAINTENANCE_STATUS_ARRAY,
+  MAINTENANCE_STATUS_OPTIONS,
+} from '../../../src/lib/enums';
 import { FormFieldTypes } from '../../../src/types/general/data/data-table/formField-types';
 
 export const maintenancesTableData: Array<FormFieldTypes> = [
@@ -8,6 +14,7 @@ export const maintenancesTableData: Array<FormFieldTypes> = [
     name: 'title',
     label: 'Title of the maintenance',
     type: 'text',
+    textSearch: true,
     required: true,
     priority: 0,
   },
@@ -16,6 +23,7 @@ export const maintenancesTableData: Array<FormFieldTypes> = [
     name: 'description',
     label: 'Description of the maintenance',
     type: 'text-area',
+    textSearch: true,
     cellType: 'text-on-dialog',
     minRows: 5,
     required: false,
@@ -35,10 +43,23 @@ export const maintenancesTableData: Array<FormFieldTypes> = [
     name: 'type',
     label: 'Type of maintenance',
     type: 'static-select',
-    options: [...MAINTAINER_TYPES_ARRAY],
+    options: [...MAINTAINER_TYPES_OPTIONS],
     // _entity: 'maintenances',
     // selectValues: ['name'],
     required: false,
+    textSearch: true,
+    priority: 0,
+  },
+  {
+    id: 'status',
+    name: 'status',
+    label: 'Status',
+    type: 'static-select',
+    options: [...MAINTENANCE_STATUS_OPTIONS],
+    // _entity: 'maintenances',
+    // selectValues: ['name'],
+    required: false,
+    textSearch: true,
     priority: 0,
   },
   {
@@ -46,6 +67,8 @@ export const maintenancesTableData: Array<FormFieldTypes> = [
     name: 'maintainer',
     label: 'Maintainer',
     type: 'custom',
+    // textSearch: true,
+
     required: true,
     component: MaintainerSelect,
     priority: 0,
