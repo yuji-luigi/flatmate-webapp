@@ -72,7 +72,7 @@ export const ChecksByMonthChart = () => {
           <StackedAreaChart
             //@ts-ignore
             customLayer={LabelLayer}
-            statistics={[{ id: 'this', data: mData }]}
+            statistics={[{ id: new Date().toISOString(), data: mData }]}
           />
         </Box>
       </Box>
