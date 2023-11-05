@@ -1,4 +1,4 @@
-import { Box, ComboboxItem, MantineStyleProp, Select } from '@mantine/core';
+import { Box, ComboboxItem, MantineStyleProp, Select, TextInput } from '@mantine/core';
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { UseFormReturnType } from '@mantine/form';
@@ -46,8 +46,9 @@ const OrganizationSpaceSelect = ({
   const deleteHeaderCookies = async () => {
     await axiosInstance.delete(`${PATH_API.organizationCookie}`);
     await axiosInstance.delete(PATH_API.spaceCookie);
-    setCurrentOrganization('not selected');
+    setCurrentOrganization(null);
     setCurrentSpace(null);
+    setSpaces([]);
   };
 
   const handleDeleteSpaceCookie = async () => {
@@ -108,16 +109,17 @@ const OrganizationSpaceSelect = ({
     }
   };
 
-  useEffect(() => {
-    if (currentSpace?._id) {
-      !spaces.length && setSpaces([{ value: currentSpace?._id, label: currentSpace?.name }]);
-    }
-  }, [currentSpace?._id, currentOrganization]);
+  // useEffect(() => {
+  //   if (currentSpace?._id) {
+  //     !spaces.length && setSpaces([{ value: currentSpace?._id, label: currentSpace?.name }]);
+  //   }
+  // }, [currentSpace?._id, currentOrganization]);
 
-  useEffect(() => {
-    getOrganizations();
-    handleGetSpaces();
-  }, []);
+  // useEffect(() => {
+  //   getOrganizations();
+  //   handleGetSpaces();
+  // }, []);
+  console.log({ organizations });
   return (
     <Box className={className}>
       {isSuperAdmin && (
@@ -150,6 +152,7 @@ const OrganizationSpaceSelect = ({
         label={labels?.space}
         onClick={handleGetSpaces}
         key={currentOrganization || ''}
+        // data={[]}
         data={spaces}
         value={currentSpace?._id?.toString() || ''}
         onChange={(value) => {
