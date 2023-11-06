@@ -8,14 +8,13 @@ import {
 } from '../../../types/general/data/data-table/formField-types';
 import { TextFilterInput } from './TextFilterInput';
 import { SelectFilterInput } from './SelectFilterInput';
+import classes from './QueryFilterWeb.module.css';
 
 export const QueryFilterWeb = ({
-  className,
   formFields,
 }: // entity,
 // setFilter,
 {
-  className?: string;
   formFields: FormFieldTypes[];
   // entity: Sections;
   // setFilter: () => void;
@@ -31,7 +30,7 @@ export const QueryFilterWeb = ({
   );
 
   return (
-    <Group className={className} style={{ marginTop: 32 }}>
+    <Group className={classes.group}>
       <TextFilterInput />
       {selectFilter.map((field) => (
         <SelectFilterInput key={field.id} formField={field as StaticSelectFormFieldType} />

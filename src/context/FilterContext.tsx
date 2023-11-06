@@ -1,4 +1,13 @@
-import { ChangeEvent, createContext, ReactNode, useState, Dispatch, SetStateAction } from 'react';
+import {
+  ChangeEvent,
+  createContext,
+  ReactNode,
+  useState,
+  Dispatch,
+  SetStateAction,
+  useEffect,
+} from 'react';
+import { useRouter } from 'next/router';
 import { Sections } from '../types/general/data/sections-type';
 import { FilterContextType } from '../types/context/filter-context.';
 
@@ -23,6 +32,7 @@ export const FilterContext = createContext<FilterContextType>({
 });
 
 export const useFilterStore = (): FilterContextType => {
+  const router = useRouter();
   const [selectFilters, setSelectFilters] = useState<
     { field: string; value: string | number | boolean | null | undefined }[]
   >([]);
@@ -34,7 +44,6 @@ export const useFilterStore = (): FilterContextType => {
   const handleSelectFilter = (newFilter: { field: string; value: string }) => {
     const { field } = newFilter;
     setSelectFilters((prev) => {
-      console.log(prev);
       const array = prev.filter((filter) => filter.field !== field);
       // check if filterd one is empty array
       if (!array.length) return [newFilter];
@@ -86,6 +95,15 @@ export const useFilterStore = (): FilterContextType => {
     return setBooleanFilters((prev) => [...prev, data]);
     // return setPage(0);
   };
+  const resetFilters = () => {
+    setSelectFilters([]);
+    setTextFilter('');
+    setDateFilters(null);
+    setBooleanFilters([]);
+  };
+  useEffect(() => {
+    resetFilters();
+  }, [router]);
   return {
     booleanFilters,
     setBooleanFilters,

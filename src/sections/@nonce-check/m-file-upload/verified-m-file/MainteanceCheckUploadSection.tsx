@@ -10,18 +10,18 @@ import {
   Stack,
   Text,
 } from '@mantine/core';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { CloseIcon } from 'yet-another-react-lightbox';
-import { CheckType } from '../../../../types/models/maintenance-check-type';
+import { CheckType, MaintenanceModel } from '../../../../types/models/maintenance-check-type';
 import { CheckInputTabCard } from './invoice-receipt-input/CheckInputTabCard';
 import ProfileCoverStatic from '../../../../components/profile/ProfileCoverStatic';
 import classes from '../../../../styles/global-useStyles.module.css';
 import PostFeedCard from '../../../../components/posts/feed/PostFeedCard';
 import { useCrudSelectors } from '../../../../redux/features/crud/crudSlice';
-import { MaintenanceModel } from '../../../../types/models/maintenance-model';
 import { useCustomModalContext } from '../../../../context/modal-context/_ModalContext';
 import { CardStyled } from '../../../../styles/card/CardStyled';
 import { AdminCard } from './AdminCard';
+import { useCookieContext } from '../../../../context/CookieContext';
 
 type Props = {
   pinOk: boolean;
@@ -34,7 +34,6 @@ export const MaintenanceCheckUploadSection = (props: Props) => {
   const { openConfirmModal, closeModal } = useCustomModalContext();
   const { crudDocument: maintenance } = useCrudSelectors<MaintenanceModel>('maintenances');
 
-  if (!maintenance) return null;
   const handleOpenModal = () => {
     openConfirmModal({
       type: 'custom',

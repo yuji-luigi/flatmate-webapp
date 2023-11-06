@@ -1,8 +1,8 @@
 import { Box, Card, Grid, Text } from '@mantine/core';
 
 import dynamic from 'next/dynamic';
-import { MaintenanceDatatable } from '../../statistics/MaintenanceDatatable';
-import { EventDataTable } from '../../statistics/EventDataTable';
+import { DashboardMaintenanceDatatable } from '../../statistics/DashboardMaintenanceDatatable';
+import { EventDataTable } from '../../statistics/DashboardEventDataTable';
 import { StatGridSchema, StatsGrid } from '../../../../../components/stats/StatsGrid';
 import statsGridData from '../../../../../../json/mock/statsGrid.json';
 import classes from './DashboardTopSection.module.css';
@@ -20,7 +20,7 @@ const DashboardSection = () => {
       <StatsSummary className={classes.summary} />
       <StatsGrid data={statsGridData as unknown as StatGridSchema[]} />
       <ChecksByMonthChart />
-      <MaintenanceDatatable />
+      <DashboardMaintenanceDatatable />
       <EventDataTable />
     </Box>
   );

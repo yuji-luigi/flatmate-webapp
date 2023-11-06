@@ -83,8 +83,8 @@ function AuthProvider({ children, initialUser }: { children: ReactNode; initialU
       try {
         if (state.isInitialized) return;
 
-        const accessToken =
-          typeof window !== 'undefined' ? localStorage.getItem('accessToken') : '';
+        // const accessToken =
+        //   typeof window !== 'undefined' ? localStorage.getItem('accessToken') : '';
 
         // if (accessToken && isValidToken(accessToken)) {
         //   setSession(accessToken);

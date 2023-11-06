@@ -147,7 +147,6 @@ function handleObjectType({ value, cellConfig }: { value: any; cellConfig: FormF
         });
         return resultInMap;
       });
-      console.log(result);
       return result;
     }
     return value.map((item) => item.toString());

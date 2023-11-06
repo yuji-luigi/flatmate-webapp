@@ -6,8 +6,10 @@ import { HomepageLayout } from './homepage';
 import { CookieContextProvider } from '../context/CookieContext';
 import { TabContextProvider } from '../context/tab-context/TabContextProvider';
 import classes from './index.module.css';
+import { AuthTokenRouteLayout } from './auth-token/AuthTokenRouteLayout';
+import { ClientProvider } from './ClientProvider';
 
-export type LayoutVariants = 'main' | 'logoOnly' | 'dashboard';
+export type LayoutVariants = 'main' | 'logoOnly' | 'dashboard' | 'auth-token';
 
 const Layout = ({
   variant = 'dashboard',
@@ -27,6 +29,15 @@ const Layout = ({
   // homepage
   if (variant === 'main') {
     return <HomepageLayout>{children}</HomepageLayout>;
+  }
+  if (variant === 'auth-token') {
+    return (
+      <ClientProvider>
+        <CookieContextProvider>
+          <AuthTokenRouteLayout>{children}</AuthTokenRouteLayout>
+        </CookieContextProvider>
+      </ClientProvider>
+    );
   }
   return (
     <AuthGuard>

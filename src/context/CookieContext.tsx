@@ -43,26 +43,25 @@ const useStore = () => {
       setCurrentOrganization(organizationId);
     }
   }, []);
-
   useEffect(() => {
-    if (!currentSpace) {
-      const spaceName = getCookie('spaceName');
-      const spaceAddress = getCookie('spaceAddress');
-      const spaceId = getCookie('spaceId');
-      const spaceSlug = getCookie('spaceSlug');
-      const spaceImage = getCookie('spaceImage');
-      if (isString(spaceId) && isString(spaceName) && isString(spaceSlug)) {
-        setCurrentSpace({
-          _id: spaceId,
-          name: spaceName,
-          slug: spaceSlug,
-          image: spaceImage,
-          address: spaceAddress,
-        });
-      }
-    }
+    if (!currentSpace) handleSetSpace();
   }, []);
-
+  const handleSetSpace = () => {
+    const spaceName = getCookie('spaceName');
+    const spaceAddress = getCookie('spaceAddress');
+    const spaceId = getCookie('spaceId');
+    const spaceSlug = getCookie('spaceSlug');
+    const spaceImage = getCookie('spaceImage');
+    if (isString(spaceId) && isString(spaceName) && isString(spaceSlug)) {
+      setCurrentSpace({
+        _id: spaceId,
+        name: spaceName,
+        slug: spaceSlug,
+        image: spaceImage,
+        address: spaceAddress,
+      });
+    }
+  };
   // this is breaking SRP
   // when header selected space or organization changes then the documents in the current section(entity in url) will be updated
   useEffect(() => {
@@ -79,16 +78,9 @@ const useStore = () => {
     setCurrentSpace: (space: CurrentSpace | null) => {
       setCurrentSpace(space);
     },
-    handleSetCurrentSpace: (space: SpaceModel | null) => {
-      if (!space) return;
-      setCurrentSpace({
-        _id: space._id,
-        name: space.name,
-        slug: space.slug,
-        address: space.address,
-        image: space.cover?.url,
-      });
-    },
+
+    handleSetCurrentSpace: handleSetSpace,
+
     resetCurrentSpace: () => {
       setCurrentSpace(null);
     },

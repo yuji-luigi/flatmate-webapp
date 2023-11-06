@@ -141,7 +141,7 @@ export function getEntityFromUrl(
   throw new Error('entity is not valid. getEntityFromUrl');
 }
 export function getEntityFromUrlForCookieCtx(
-  url: string = window.location.pathname,
+  url: string = window?.location.pathname,
   keyword: string = 'dashboard'
 ): Sections | undefined {
   const regex = new RegExp(`${keyword}\\/(\\w+)`);

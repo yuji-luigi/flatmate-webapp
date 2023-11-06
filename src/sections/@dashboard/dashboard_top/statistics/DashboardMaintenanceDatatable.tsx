@@ -7,8 +7,8 @@ import { StatGridSchema, StatsGrid } from '../../../../components/stats/StatsGri
 import { StaticOption } from '../../../../types/general/data/data-table/formField-types';
 import { DataTableDateSwitch } from '../../../../components/datatable/filter/date/DataTableDateSwitch';
 import { useCrudSelectors } from '../../../../redux/features/crud/crudSlice';
-import { MaintenanceModel } from '../../../../types/models/maintenance-model';
 import { Icons } from '../../../../data/icons/icons';
+import { MaintenanceModel } from '../../../../types/models/maintenance-check-type';
 
 const mockData = [
   {
@@ -216,7 +216,7 @@ function calculateStatsGridData(maintenances: MaintenanceModel[]): StatGridSchem
   return statGridData;
 }
 
-export const MaintenanceDatatable = () => {
+export const DashboardMaintenanceDatatable = () => {
   const { crudDocuments: maintenances } = useCrudSelectors<MaintenanceModel>('maintenances');
 
   const statGridData = calculateStatsGridData(maintenances);

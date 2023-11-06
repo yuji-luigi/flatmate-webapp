@@ -115,11 +115,11 @@ const OrganizationSpaceSelect = ({
   //   }
   // }, [currentSpace?._id, currentOrganization]);
 
-  // useEffect(() => {
-  //   getOrganizations();
-  //   handleGetSpaces();
-  // }, []);
-  console.log({ organizations });
+  useEffect(() => {
+    getOrganizations();
+    handleGetSpaces();
+  }, []);
+
   return (
     <Box className={className}>
       {isSuperAdmin && (
@@ -127,7 +127,7 @@ const OrganizationSpaceSelect = ({
           name="organization"
           size={size}
           label={labels?.organization}
-          allowDeselect
+          clearable
           onClick={getOrganizations}
           value={currentOrganization || ''}
           // defaultValue={getCookie('organization')?.toString()}
@@ -148,11 +148,11 @@ const OrganizationSpaceSelect = ({
       <Select
         name="space"
         size={size}
-        allowDeselect
+        clearable
+        disabled={!spaces.length}
         label={labels?.space}
         onClick={handleGetSpaces}
         key={currentOrganization || ''}
-        // data={[]}
         data={spaces}
         value={currentSpace?._id?.toString() || ''}
         onChange={(value) => {

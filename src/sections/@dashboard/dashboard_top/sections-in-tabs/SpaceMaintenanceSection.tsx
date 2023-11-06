@@ -34,7 +34,7 @@ export const SpaceMaintenanceSection = () => {
       <Stack gap={16}>
         <DashboardTopHeader header="Maintenances" rightSection={<FeedTableSwitch />} />
         {currentValue === 'table' && (
-          <StaticDataTable json={maintenancesTableData} data={filteredList} />
+          <StaticDataTable json={maintenancesTableData} data={filteredList} withFilter />
         )}
         {currentValue === 'posts' &&
           filteredList.map((maintenance) => (
