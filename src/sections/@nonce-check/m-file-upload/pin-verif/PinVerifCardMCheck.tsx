@@ -1,5 +1,5 @@
 import { Card, LoadingOverlay, Stack, Group, Title, PinInput, Container } from '@mantine/core';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { showNotification } from '@mantine/notifications';
@@ -9,7 +9,7 @@ import axiosInstance, { AxiosResDataGeneric } from '../../../../utils/axios-inst
 import { Icons } from '../../../../data/icons/icons';
 import { useCrudSliceStore } from '../../../../redux/features/crud/crudSlice';
 import { sleep } from '../../../../utils/helpers/helper-functions';
-import { MaintenanceModel } from '../../../../types/models/maintenance-model';
+import { MaintenanceModel } from '../../../../types/models/maintenance-check-type';
 
 /**
  * @description Send pin code after verified get maintenance and set maintenance in redux store
@@ -31,6 +31,7 @@ export const PinVerifCardMCheck = ({
       handleSubmit(value);
     }
   };
+
   const handleSubmit = useCallback(
     async (value: string) => {
       try {
@@ -53,6 +54,12 @@ export const PinVerifCardMCheck = ({
     },
     [endpoint]
   );
+  useEffect(() => {
+    if (!endpoint) return;
+    axiosInstance.get(endpoint).then((res) => {
+      console.log(res.data.data);
+    });
+  }, [endpoint]);
   return (
     <Container className={classes.container}>
       <Card className={classes.card}>
