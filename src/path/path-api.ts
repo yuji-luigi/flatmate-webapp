@@ -112,6 +112,13 @@ export const _PATH_API = {
       `${PATH_API.authTokens}/verify-pin/${linkId}/${_id}/${entity}`,
     getById: (_id: string) => byId(PATH_API.authTokens, _id),
     verifUser: (_id: string) => byId(PATH_API.authTokens, _id),
+    checkMaintainerFromMaintenance: ({
+      linkId,
+      authTokenId,
+    }: {
+      linkId: string;
+      authTokenId: string;
+    }) => `${PATH_API.authTokens}/maintenances/check/maintainer/${linkId}/${authTokenId}`,
   },
   users: {
     root: PATH_API.users,

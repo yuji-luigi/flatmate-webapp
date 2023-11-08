@@ -10,6 +10,7 @@ import { Icons } from '../../../../data/icons/icons';
 import { useCrudSliceStore } from '../../../../redux/features/crud/crudSlice';
 import { sleep } from '../../../../utils/helpers/helper-functions';
 import { MaintenanceModel } from '../../../../types/models/maintenance-check-type';
+import { _PATH_API } from '../../../../path/path-api';
 
 /**
  * @description Send pin code after verified get maintenance and set maintenance in redux store
@@ -24,7 +25,7 @@ export const PinVerifCardMCheck = ({
   const { query, push } = useRouter();
   const [submitting, setSubmitting] = useState<boolean>(false);
   const { setCrudDocument } = useCrudSliceStore();
-
+  const { linkId, id } = query;
   const handleChange = (value: string) => {
     if (value.length === 6) {
       setSubmitting(true);
@@ -35,6 +36,15 @@ export const PinVerifCardMCheck = ({
   const handleSubmit = useCallback(
     async (value: string) => {
       try {
+        if (typeof linkId !== 'string' || typeof id !== 'string') return;
+        const rawMaintainerCheck = await axiosInstance.post(
+          _PATH_API.authTokens.checkMaintainerFromMaintenance({ linkId, authTokenId: id }),
+          { pin: value }
+        );
+        if (rawMaintainerCheck.data.success === false) {
+          push('/');
+          return;
+        }
         const rawRes = await axiosInstance.post<
           AxiosResDataGeneric<{ maintenance: MaintenanceModel }>
         >(endpoint, { pin: value });
