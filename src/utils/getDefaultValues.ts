@@ -71,7 +71,9 @@ export function getDefaultValues(
       obj.media = { ...obj.media, [path]: crudDocument[path] || '' };
       return obj;
     }
-
+    if (field.type === 'checkbox-group-boolean') {
+      return obj;
+    }
     if (field.multi) {
       obj[path] = [];
     } else {

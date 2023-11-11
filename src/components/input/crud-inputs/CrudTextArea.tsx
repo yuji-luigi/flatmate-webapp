@@ -8,6 +8,7 @@ interface Prop {
   form: UseFormReturnTypeCustom;
 }
 const CrudTextArea = ({ formField, form, ...others }: Prop) => {
+  const { ...otherFormField } = formField;
   return (
     <Textarea
       placeholder={formField.placeholder}

@@ -13,6 +13,9 @@ import {
   SelectFormType,
 } from '../../types/general/data/data-table/formField-types';
 import CrudPasswordInput from './crud-inputs/CrudTextInput copy';
+import CrudCheckbox from './crud-inputs/CrudCheckbox';
+import { CrudSelectCheckboxGroup } from './crud-inputs/CrudSelectCheckboxGroup';
+import { CrudBooleanCheckboxGroup } from './crud-inputs/CrudBooleanCheckboxGroup';
 // import { FormFieldInterface } from '../../types/general/data/dataTable/formField-types';
 interface Props {
   formField: FormFieldTypes;
@@ -43,6 +46,12 @@ const FormFields = ({ formField, form, ...others }: Props) => {
       );
     case 'static-select':
       return <CrudSelect form={form} formField={formField} {...others} />;
+    case 'checkbox':
+      return <CrudCheckbox form={form} formField={formField} {...others} />;
+    case 'checkbox-group-select':
+      return <CrudSelectCheckboxGroup form={form} formField={formField} {...others} />;
+    case 'checkbox-group-boolean':
+      return <CrudBooleanCheckboxGroup form={form} formField={formField} {...others} />;
     case 'custom':
       // eslint-disable-next-line no-case-declarations
       const CustomComponent = formField.component;

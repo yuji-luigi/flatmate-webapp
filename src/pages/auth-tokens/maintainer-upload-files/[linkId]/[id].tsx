@@ -8,6 +8,7 @@ import { MaintenanceCheckUploadSection } from '../../../../sections/@nonce-check
 import Layout from '../../../../layouts';
 import { useCookieContext } from '../../../../context/CookieContext';
 import axiosInstance from '../../../../utils/axios-instance';
+import { MaintainerCompleteRegisterCard } from '../../../../sections/@nonce-check/m-file-upload/maintainer-complete-register/MaintainerCompleteRegisterCard';
 
 const MaintainerUploadFileAuthPage = () => {
   const { query } = useRouter();
@@ -18,11 +19,9 @@ const MaintainerUploadFileAuthPage = () => {
     handleSetCurrentSpace();
   }, [pinOk]);
 
-  const pinVerifEndpoint =
-    query.linkId && query.id ? `${PATH_API.maintenanceFileUpload}/${query.linkId}/${query.id}` : '';
   return (
     <>
-      {!pinOk && <PinVerifCardMCheck setPinOk={setPinOk} endpoint={pinVerifEndpoint} />}
+      {!pinOk && <PinVerifCardMCheck setPinOk={setPinOk} />}
       <MaintenanceCheckUploadSection
         pinOk={pinOk}
         checkType={checkType}

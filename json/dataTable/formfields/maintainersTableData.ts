@@ -28,6 +28,14 @@ export const maintainersTableData: Array<FormFieldTypes> = [
     priority: 2,
   },
   {
+    id: 'address',
+    name: 'address',
+    label: 'Address',
+    type: 'text',
+    required: false,
+    priority: 5,
+  },
+  {
     id: 'email',
     name: 'email',
     label: 'Email',
@@ -40,7 +48,7 @@ export const maintainersTableData: Array<FormFieldTypes> = [
     name: 'tel',
     label: 'Phone',
     type: 'text',
-    required: true,
+    required: false,
     priority: 2,
   },
   {
@@ -52,6 +60,7 @@ export const maintainersTableData: Array<FormFieldTypes> = [
     required: true,
     priority: 3,
   },
+
   // {
   //   id: 'cover',
   //   name: 'cover',
@@ -68,29 +77,51 @@ export const maintainersTableData: Array<FormFieldTypes> = [
     id: 'description',
     name: 'description',
     label: 'Description',
-    type: 'text',
+    type: 'text-area',
+    autosize: true,
+    minRows: 5,
+    col: {
+      xs: 12,
+      sm: 12,
+      md: 12,
+      lg: 12,
+    },
     required: false,
     priority: 5,
   },
 
   {
-    id: 'address',
-    name: 'address',
-    label: 'Address',
-    type: 'text',
-    required: false,
-    priority: 5,
-  },
-  {
     id: 'isIndividual',
     name: 'isIndividual',
-    label: 'Is individual',
-    type: 'checkbox-group',
-    options: [
-      { label: 'Yes', value: 'true' },
-      { label: 'No', value: 'false' },
-    ],
+    label: 'You are an individual?(Has own company/partita iva)',
+    type: 'checkbox',
     required: false,
     priority: 6,
+  },
+  {
+    id: 'consensus',
+    name: 'consensus',
+    label: 'Agree to terms',
+    type: 'checkbox-group-boolean',
+    options: [
+      {
+        label: 'I agree to the terms and conditions',
+        name: 'consensus',
+      },
+      {
+        label: 'I agree to the terms and conditions',
+        name: 'cons2',
+      },
+    ],
+    required: true,
+    priority: 3,
+  },
+  {
+    id: 'password',
+    name: 'password',
+    label: 'Agree to terms',
+    type: 'password',
+    required: true,
+    priority: 3,
   },
 ];

@@ -22,11 +22,12 @@ type BaseFormType = {
   formType?: FormTypes; // ! todo set the actual types necessary.
   cellType?: CellTypes;
   multi?: boolean;
-  col?: Col;
+  col?: Partial<Col>;
   textSearch?: boolean;
   priority?: number;
   grantTo?: UserRoles[];
   noTable?: boolean;
+  disabled?: boolean;
   // badge?: BadgeField;
   align?: 'left' | 'center' | 'right';
   badge?: boolean;
@@ -73,7 +74,19 @@ export type StaticSelectFormFieldType = {
   BaseSelectFormType;
 
 export type CheckBoxFormFieldType = {
-  type: 'checkbox-group';
+  type: 'checkbox';
+  // options: Array<SelectItem>;
+  filterSearch?: boolean;
+} & BaseFormType;
+
+export type CheckBoxGroupBooleanFormFieldType = {
+  type: 'checkbox-group-boolean';
+  options: { label: string; name: string; placeholder?: string }[];
+  filterSearch?: boolean;
+} & BaseFormType;
+
+export type CheckBoxGroupSelectFormFieldType = {
+  type: 'checkbox-group-select';
   options: Array<SelectItem>;
   filterSearch?: boolean;
 } & BaseFormType;
@@ -116,6 +129,8 @@ export type FormFieldTypes =
   | SelectFormType
   | StaticSelectFormFieldType
   | CheckBoxFormFieldType
+  | CheckBoxGroupBooleanFormFieldType
+  | CheckBoxGroupSelectFormFieldType
   | TextAreaFormFieldType
   | RadioGroupFormFieldType
   | AvatarFormFieldType
@@ -216,7 +231,9 @@ type FormTypes =
   | 'link-children'
   | 'text-on-dialog'
   | 'password'
-  | 'checkbox-group'
+  | 'checkbox'
+  | 'checkbox-group-boolean'
+  | 'checkbox-group-select'
   | 'boolean'
   | 'radio-group'
   | 'switch-group'

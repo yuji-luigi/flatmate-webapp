@@ -1,4 +1,13 @@
-import { Card, LoadingOverlay, Stack, Group, Title, PinInput, Container } from '@mantine/core';
+import {
+  Card,
+  LoadingOverlay,
+  Stack,
+  Group,
+  Title,
+  PinInput,
+  Container,
+  Transition,
+} from '@mantine/core';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
@@ -10,21 +19,19 @@ import { Icons } from '../../../../data/icons/icons';
 import { useCrudSliceStore } from '../../../../redux/features/crud/crudSlice';
 import { sleep } from '../../../../utils/helpers/helper-functions';
 import { MaintenanceModel } from '../../../../types/models/maintenance-check-type';
-import { _PATH_API } from '../../../../path/path-api';
+import { PATH_API, _PATH_API } from '../../../../path/path-api';
+import { MaintainerCompleteRegisterCard } from '../maintainer-complete-register/MaintainerCompleteRegisterCard';
 
 /**
  * @description Send pin code after verified get maintenance and set maintenance in redux store
  */
-export const PinVerifCardMCheck = ({
-  setPinOk,
-  endpoint,
-}: {
-  setPinOk: (bool: boolean) => void;
-  endpoint: string;
-}) => {
+export const PinVerifCardMCheck = ({ setPinOk }: { setPinOk: (bool: boolean) => void }) => {
   const { query, push } = useRouter();
-  const [submitting, setSubmitting] = useState<boolean>(false);
+  const [isCompleteRegister, setIsCompleteRegister] = useState<boolean>(false);
   const { setCrudDocument } = useCrudSliceStore();
+  const endpoint =
+    query.linkId && query.id ? `${PATH_API.maintenanceFileUpload}/${query.linkId}/${query.id}` : '';
+  const [submitting, setSubmitting] = useState<boolean>(false);
   const { linkId, id } = query;
   const handleChange = (value: string) => {
     if (value.length === 6) {
@@ -41,8 +48,9 @@ export const PinVerifCardMCheck = ({
           _PATH_API.authTokens.checkMaintainerFromMaintenance({ linkId, authTokenId: id }),
           { pin: value }
         );
-        if (rawMaintainerCheck.data.success === false) {
-          push('/');
+        if (rawMaintainerCheck.data.success === false && rawMaintainerCheck.data.data) {
+          setIsCompleteRegister(true);
+          setCrudDocument({ entity: 'maintainers', document: rawMaintainerCheck.data.data });
           return;
         }
         const rawRes = await axiosInstance.post<
@@ -72,26 +80,32 @@ export const PinVerifCardMCheck = ({
   }, [endpoint]);
   return (
     <Container className={classes.container}>
-      <Card className={classes.card}>
-        <LoadingOverlay visible={submitting} />
-        <Stack>
-          <Group justify="center">
-            <Image src={PATH_IMAGE.unlock} width={120} height={120} alt="unlock image" />
-          </Group>
-          <Stack justify="center" mt={24}>
-            <Title className={classes.heading}>Enter the pin code</Title>
+      {!isCompleteRegister && (
+        <Card className={classes.card}>
+          <LoadingOverlay visible={submitting} />
+          <Stack>
             <Group justify="center">
-              <PinInput
-                disabled={submitting}
-                size="sm"
-                length={6}
-                type="number"
-                onChange={handleChange}
-              />
+              <Image src={PATH_IMAGE.unlock} width={120} height={120} alt="unlock image" />
             </Group>
+            <Stack justify="center" mt={24}>
+              <Title className={classes.heading}>Enter the pin code</Title>
+              <Group justify="center">
+                <PinInput
+                  disabled={submitting}
+                  size="sm"
+                  length={6}
+                  type="number"
+                  onChange={handleChange}
+                />
+              </Group>
+            </Stack>
           </Stack>
-        </Stack>
-      </Card>
+        </Card>
+      )}
+
+      {isCompleteRegister && (
+        <MaintainerCompleteRegisterCard isCompleteRegister={isCompleteRegister} />
+      )}
     </Container>
   );
 };
