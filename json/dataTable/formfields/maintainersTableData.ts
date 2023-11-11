@@ -60,6 +60,14 @@ export const maintainersTableData: Array<FormFieldTypes> = [
     required: true,
     priority: 3,
   },
+  {
+    id: 'isIndividual',
+    name: 'isIndividual',
+    label: 'You are an individual?(Has own company/partita iva)',
+    type: 'checkbox',
+    required: false,
+    priority: 6,
+  },
 
   // {
   //   id: 'cover',
@@ -90,14 +98,6 @@ export const maintainersTableData: Array<FormFieldTypes> = [
     priority: 5,
   },
 
-  {
-    id: 'isIndividual',
-    name: 'isIndividual',
-    label: 'You are an individual?(Has own company/partita iva)',
-    type: 'checkbox',
-    required: false,
-    priority: 6,
-  },
   {
     id: 'consensus',
     name: 'consensus',

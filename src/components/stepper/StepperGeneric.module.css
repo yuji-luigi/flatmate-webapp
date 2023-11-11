@@ -1,0 +1,13 @@
+.buttonContainer {
+  width: 100%;
+  justify-content: center;
+  margin-top: var(--mantine-spacing-xl);
+}
+
+.button {
+  flex: 1;
+  @media (max-width: $mantine-breakpoint-sm) {
+    width: 100%;
+    flex: unset;
+  }
+}

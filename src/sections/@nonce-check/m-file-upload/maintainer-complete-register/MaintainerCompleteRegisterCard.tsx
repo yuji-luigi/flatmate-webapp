@@ -26,6 +26,12 @@ export const MaintainerCompleteRegisterCard = (props: { isCompleteRegister: bool
     (formField) => formField.name !== 'password'
   );
 
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    console.log(form.values);
+  };
+
   return (
     <Transition
       mounted={isCompleteRegister}
@@ -35,9 +41,9 @@ export const MaintainerCompleteRegisterCard = (props: { isCompleteRegister: bool
     >
       {(styles) => (
         <div style={styles}>
-          <Card px={32} py={40}>
+          <Card className={classes.card}>
             <Title mb={8}>Register To Flatmates</Title>
-            <form onSubmit={() => {}}>
+            <form onSubmit={onSubmit} className={classes.form}>
               <StepperGeneric
                 steps={[
                   {
@@ -83,8 +89,6 @@ export const MaintainerCompleteRegisterCard = (props: { isCompleteRegister: bool
                               <Grid.Col
                                 span={{
                                   xs: 12,
-                                  sm: 6,
-                                  lg: 6,
                                 }}
                                 key={formField.id}
                               >
@@ -99,14 +103,14 @@ export const MaintainerCompleteRegisterCard = (props: { isCompleteRegister: bool
                 completeStep={<>completed</>}
               />
 
-              <Group className={classes.buttonContainer} justify="right">
+              {/* <Group className={classes.buttonContainer} justify="right">
                 <Button className={classes.button} variant="gradient" type="submit">
                   Register
                 </Button>
                 <Button className={classes.button} variant="outline">
                   Cancel
                 </Button>
-              </Group>
+              </Group> */}
             </form>
           </Card>
         </div>

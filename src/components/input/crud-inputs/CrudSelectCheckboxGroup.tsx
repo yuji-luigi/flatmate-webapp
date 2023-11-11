@@ -1,4 +1,4 @@
-import { Checkbox } from '@mantine/core';
+import { Box, Checkbox } from '@mantine/core';
 import React from 'react';
 import { UseFormReturnTypeCustom } from '../input_interfaces/useForm_interface';
 import {
@@ -14,7 +14,7 @@ interface Prop {
 export const CrudSelectCheckboxGroup = ({ formField, form, ...others }: Prop) => {
   const { options } = formField;
   return (
-    <>
+    <Box mt={24}>
       {options.map((option) => (
         <Checkbox
           key={option}
@@ -28,6 +28,6 @@ export const CrudSelectCheckboxGroup = ({ formField, form, ...others }: Prop) =>
           {...form.getInputProps(formField.name || formField.id)}
         />
       ))}
-    </>
+    </Box>
   );
 };
