@@ -87,6 +87,7 @@ export function getDefaultValues(
 
 const fallbackValues: Record<string, string | number | Date | boolean | null> = {
   text: '',
+  password: '',
   'text-area': '',
   boolean: false,
   checkbox: false,

@@ -1,6 +1,9 @@
 import { FormFieldTypes } from '../../../src/types/general/data/data-table/formField-types';
 
-export const maintainersTableData: Array<FormFieldTypes> = [
+export const maintainersTableData: Array<
+  FormFieldTypes & { registerStep: 'company' | 'contact' | 'complete' }
+> = [
+  // company info
   {
     id: 'name',
     name: 'name',
@@ -8,6 +11,7 @@ export const maintainersTableData: Array<FormFieldTypes> = [
     placeholder: 'First name',
     type: 'text',
     required: true,
+    registerStep: 'company',
     priority: 1,
   },
   {
@@ -18,6 +22,7 @@ export const maintainersTableData: Array<FormFieldTypes> = [
     type: 'text',
     required: true,
     priority: 1,
+    registerStep: 'company',
   },
   {
     id: 'homepage',
@@ -26,6 +31,7 @@ export const maintainersTableData: Array<FormFieldTypes> = [
     type: 'text',
     required: false,
     priority: 2,
+    registerStep: 'company',
   },
   {
     id: 'address',
@@ -34,22 +40,7 @@ export const maintainersTableData: Array<FormFieldTypes> = [
     type: 'text',
     required: false,
     priority: 5,
-  },
-  {
-    id: 'email',
-    name: 'email',
-    label: 'Email',
-    type: 'text',
-    required: true,
-    priority: 2,
-  },
-  {
-    id: 'tel',
-    name: 'tel',
-    label: 'Phone',
-    type: 'text',
-    required: false,
-    priority: 2,
+    registerStep: 'company',
   },
   {
     id: 'type',
@@ -59,28 +50,8 @@ export const maintainersTableData: Array<FormFieldTypes> = [
     options: ['Plumber', 'Electrician', 'Carpenter', 'Other'],
     required: true,
     priority: 3,
+    registerStep: 'company',
   },
-  {
-    id: 'isIndividual',
-    name: 'isIndividual',
-    label: 'You are an individual?(Has own company/partita iva)',
-    type: 'checkbox',
-    required: false,
-    priority: 6,
-  },
-
-  // {
-  //   id: 'cover',
-  //   name: 'cover',
-  //   label: 'Cover',
-  //   type: 'image',
-  //   multi: true,
-  //   // type: 'dropzone',
-  //   accept: 'image/*',
-  //   selectValues: ['name'],
-  //   required: false,
-  //   priority: 2,
-  // },
   {
     id: 'description',
     name: 'description',
@@ -96,8 +67,59 @@ export const maintainersTableData: Array<FormFieldTypes> = [
     },
     required: false,
     priority: 5,
+    registerStep: 'company',
+  },
+  // contact
+  {
+    id: 'email',
+    name: 'email',
+    label: 'Email',
+    type: 'text',
+    required: true,
+    priority: 2,
+    registerStep: 'contact',
+  },
+  {
+    id: 'tel',
+    name: 'tel',
+    label: 'Phone',
+    type: 'text',
+    required: false,
+    priority: 2,
+    registerStep: 'contact',
   },
 
+  // {
+  //   id: 'isIndividual',
+  //   name: 'isIndividual',
+  //   label: 'You are an individual?(Has own company/partita iva)',
+  //   type: 'checkbox',
+  //   required: false,
+  //   priority: 6,
+  // },
+
+  // {
+  //   id: 'cover',
+  //   name: 'cover',
+  //   label: 'Cover',
+  //   type: 'image',
+  //   multi: true,
+  //   // type: 'dropzone',
+  //   accept: 'image/*',
+  //   selectValues: ['name'],
+  //   required: false,
+  //   priority: 2,
+  // },
+
+  {
+    id: 'password',
+    name: 'password',
+    label: 'Password',
+    type: 'password',
+    required: true,
+    priority: 3,
+    registerStep: 'complete',
+  },
   {
     id: 'consensus',
     name: 'consensus',
@@ -114,14 +136,7 @@ export const maintainersTableData: Array<FormFieldTypes> = [
       },
     ],
     required: true,
-    priority: 3,
-  },
-  {
-    id: 'password',
-    name: 'password',
-    label: 'Agree to terms',
-    type: 'password',
-    required: true,
-    priority: 3,
+    priority: 11,
+    registerStep: 'complete',
   },
 ];

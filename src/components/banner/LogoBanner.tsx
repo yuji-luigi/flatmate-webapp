@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useMantineColorScheme } from '@mantine/core';
+import { Box, useMantineColorScheme } from '@mantine/core';
 
 interface LogoBannerProps {
   transparent?: boolean;
@@ -10,6 +10,7 @@ interface LogoBannerProps {
   width?: number | null;
   height?: number | null;
   link?: string;
+  className?: string;
 }
 
 const LOGO_PATH = {
@@ -24,6 +25,7 @@ export function LogoBanner({
   width = null,
   height = null,
   link,
+  className,
 }: LogoBannerProps) {
   const { colorScheme } = useMantineColorScheme();
   const isDark = colorScheme === 'dark';
@@ -40,7 +42,13 @@ export function LogoBanner({
     />
   );
   // if there is a link, return the image wrapped in a link
-  if (link) return <Link href={link}>{image}</Link>;
+  if (link) {
+    return (
+      <Link className={className} href={link}>
+        {image}
+      </Link>
+    );
+  }
   // otherwise, return the image
-  return image;
+  return <Box className={className}>{image}</Box>;
 }

@@ -66,6 +66,9 @@ const getExcelEndpoint = (excelRoute: string, entity: string) => `${excelRoute}/
 // const getQrCodeEndpoint = ({qrCodeRoute, entity}) => `${qrCodeRoute}/${entity}`;
 
 export const _PATH_API = {
+  auth: {
+    registerMaintainer: 'auth/complete-register/maintainer',
+  },
   checks: {
     root: PATH_API.checks,
     home: `${PATH_API.checks}/home`,

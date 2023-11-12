@@ -21,7 +21,7 @@ const MaintainerUploadFileAuthPage = () => {
 
   return (
     <>
-      {!pinOk && <PinVerifCardMCheck setPinOk={setPinOk} />}
+      {!pinOk && <PinVerifCardMCheck pinOk={pinOk} setPinOk={setPinOk} />}
       <MaintenanceCheckUploadSection
         pinOk={pinOk}
         checkType={checkType}
@@ -32,7 +32,11 @@ const MaintainerUploadFileAuthPage = () => {
 };
 
 MaintainerUploadFileAuthPage.getLayout = function getLayout(page: ReactElement) {
-  return <Layout variant="auth-token">{page}</Layout>;
+  return (
+    <Layout variant="auth-token" title="Upload maintenance invoice/receipt">
+      {page}
+    </Layout>
+  );
 };
 
 export default MaintainerUploadFileAuthPage;

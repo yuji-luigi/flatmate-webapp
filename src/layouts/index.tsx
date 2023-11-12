@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, ReactNode } from 'react';
 import { Box } from '@mantine/core';
 import AuthGuard from '../guards/AuthGuard';
 import DashboardLayout from './dashboard/DashboardLayout';
@@ -13,9 +13,11 @@ export type LayoutVariants = 'main' | 'logoOnly' | 'dashboard' | 'auth-token';
 
 const Layout = ({
   variant = 'dashboard',
+  title,
   children,
 }: {
   variant?: LayoutVariants;
+  title?: ReactNode;
   children: ReactElement;
 }) => {
   if (variant === 'logoOnly') {
@@ -34,7 +36,7 @@ const Layout = ({
     return (
       <ClientProvider>
         <CookieContextProvider>
-          <AuthTokenRouteLayout>{children}</AuthTokenRouteLayout>
+          <AuthTokenRouteLayout title={title}>{children}</AuthTokenRouteLayout>
         </CookieContextProvider>
       </ClientProvider>
     );

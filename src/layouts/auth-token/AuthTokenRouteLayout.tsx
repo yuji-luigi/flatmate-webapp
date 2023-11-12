@@ -6,8 +6,15 @@ import { useCookieContext } from '../../context/CookieContext';
 import { useTabContext } from '../../context/tab-context/TabContextProvider';
 import { TAB_LIST_CONFIG } from '../../sections/@dashboard/dashboard_top/sections-in-tabs/tabList';
 import classes from './AuthTokenRouteLayout.module.css';
+import { AuthTokenLayoutHeader } from './AuthTokenLayoutHeader';
 
-export const AuthTokenRouteLayout = ({ children }: { children: ReactNode }) => {
+export const AuthTokenRouteLayout = ({
+  children,
+  title,
+}: {
+  children: ReactNode;
+  title?: ReactNode;
+}) => {
   const { currentSpace } = useCookieContext();
   const containerRef = useRef<HTMLDivElement>(null);
   // const bgColor = theme.colorScheme === 'dark' ? 'rgba(0,0,0,0.85)' : 'rgba(255,255,255,0.85)';
@@ -28,15 +35,18 @@ export const AuthTokenRouteLayout = ({ children }: { children: ReactNode }) => {
     };
   }, []);
   return (
-    <Box
-      ref={containerRef}
-      className={`${classes.pageContent} ${classes.bg}`}
-      style={{
-        paddingTop: 55,
-        backgroundImage: `url(${currentSpace?.image})`,
-      }}
-    >
-      {children}
-    </Box>
+    <>
+      <AuthTokenLayoutHeader title={title} />
+      <Box
+        ref={containerRef}
+        className={`${classes.pageContent} ${classes.bg}`}
+        style={{
+          paddingTop: 55,
+          backgroundImage: `url(${currentSpace?.image})`,
+        }}
+      >
+        {children}
+      </Box>
+    </>
   );
 };

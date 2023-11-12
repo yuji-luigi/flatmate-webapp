@@ -25,7 +25,11 @@ import { MaintainerCompleteRegisterCard } from '../maintainer-complete-register/
 /**
  * @description Send pin code after verified get maintenance and set maintenance in redux store
  */
-export const PinVerifCardMCheck = ({ setPinOk }: { setPinOk: (bool: boolean) => void }) => {
+export const PinVerifCardMCheck = (props: {
+  setPinOk: (bool: boolean) => void;
+  pinOk: boolean;
+}) => {
+  const { setPinOk } = props;
   const { query, push } = useRouter();
   const [isCompleteRegister, setIsCompleteRegister] = useState<boolean>(false);
   const { setCrudDocument } = useCrudSliceStore();
@@ -44,6 +48,8 @@ export const PinVerifCardMCheck = ({ setPinOk }: { setPinOk: (bool: boolean) => 
     async (value: string) => {
       try {
         if (typeof linkId !== 'string' || typeof id !== 'string') return;
+
+        // first check maintainer has completed the register.
         const rawMaintainerCheck = await axiosInstance.post(
           _PATH_API.authTokens.checkMaintainerFromMaintenance({ linkId, authTokenId: id }),
           { pin: value }
@@ -51,6 +57,10 @@ export const PinVerifCardMCheck = ({ setPinOk }: { setPinOk: (bool: boolean) => 
         if (rawMaintainerCheck.data.success === false && rawMaintainerCheck.data.data) {
           setIsCompleteRegister(true);
           setCrudDocument({ entity: 'maintainers', document: rawMaintainerCheck.data.data });
+          setCrudDocument({
+            entity: 'maintenances',
+            document: rawMaintainerCheck.data.maintenance,
+          });
           return;
         }
         const rawRes = await axiosInstance.post<
@@ -85,7 +95,13 @@ export const PinVerifCardMCheck = ({ setPinOk }: { setPinOk: (bool: boolean) => 
           <LoadingOverlay visible={submitting} />
           <Stack>
             <Group justify="center">
-              <Image src={PATH_IMAGE.unlock} width={120} height={120} alt="unlock image" />
+              <Image
+                priority={false}
+                src={PATH_IMAGE.unlock}
+                width={120}
+                height={120}
+                alt="unlock image"
+              />
             </Group>
             <Stack justify="center" mt={24}>
               <Title className={classes.heading}>Enter the pin code</Title>
@@ -103,9 +119,7 @@ export const PinVerifCardMCheck = ({ setPinOk }: { setPinOk: (bool: boolean) => 
         </Card>
       )}
 
-      {isCompleteRegister && (
-        <MaintainerCompleteRegisterCard isCompleteRegister={isCompleteRegister} />
-      )}
+      <MaintainerCompleteRegisterCard isCompleteRegister={isCompleteRegister} {...props} />
     </Container>
   );
 };

@@ -1,7 +1,56 @@
+.main {
+  display: flex;
+  direction: row;
+  width: 100%;
+  height: 100%;
+  gap: var(--flex-gap);
+  @media (max-width: $mantine-breakpoint-sm) {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
+.formSection {
+  width: 100%;
+  flex: 1;
+}
+
+.stepperRoot {
+  width: 100%;
+}
+
+.steps {
+}
+.stepContent {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.sumSection {
+  display: flex;
+  flex: 0.5;
+  width: 100%;
+  gap: var(--flex-gap);
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: flex-start;
+  @media (max-width: $mantine-breakpoint-sm) {
+    justify-content: center;
+    align-items: center;
+  }
+}
 .buttonContainer {
+  display: flex;
   width: 100%;
   justify-content: center;
-  margin-top: var(--mantine-spacing-xl);
+  align-items: flex-start;
+  align-self: flex-start;
+  gap: var(--flex-gap);
+  @media (max-width: $mantine-breakpoint-sm) {
+    max-width: 350px;
+    width: 100%;
+    flex-direction: column;
+  }
 }
 
 .button {
