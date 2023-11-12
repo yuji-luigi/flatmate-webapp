@@ -21,9 +21,9 @@ const CardWithTitle = ({ title, children, titleSx, style, indicator }: Prop) => 
     title
   );
   const _title = title && (
-    <Title style={{ display: 'flex', fontSize: TEXT_SIZE.titleCard, ...titleSx }} mb={8}>
+    <Text style={{ display: 'flex', fontSize: TEXT_SIZE.titleCard, ...titleSx }} mb={8}>
       {indicatorTitle}
-    </Title>
+    </Text>
   );
 
   return (

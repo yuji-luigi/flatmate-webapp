@@ -7,12 +7,15 @@ import {
   Title,
   Text,
   Anchor,
+  Card,
+  Group,
 } from '@mantine/core';
 import { ReactElement, useEffect } from 'react';
 import { GetServerSidePropsContext } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import axios from 'axios';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'react-i18next';
 import classes from './login.module.css';
 import Layout from '../layouts';
 import { API_BASE_URL, PATH_AUTH } from '../path/path-api';
@@ -21,10 +24,13 @@ import LoginForm from '../sections/@login_signup/LoginForm';
 import { AUTH, PATH_CLIENT } from '../path/path-frontend';
 import GuestGuard from '../guards/GuestGuard';
 import { UserModel } from '../types/models/user-model';
+import CardWithTitle from '../components/profile/side/CardWithTitle';
+import TextWithIcon from '../components/text/TextWithIcon';
 
 export default function LoginPage(props: { initialUser?: UserModel }) {
   const { initialUser } = props;
   const { push } = useRouter();
+  const { t } = useTranslation('common');
   useEffect(() => {
     if (initialUser) {
       push(PATH_CLIENT.chooseRootSpace);
@@ -36,6 +42,20 @@ export default function LoginPage(props: { initialUser?: UserModel }) {
         <Title order={2} className={classes.title} ta="center" mt="md" mb={50}>
           Welcome back to Mantine!
         </Title>
+        <CardWithTitle title={t('Use this credential')}>
+          <Group>
+            <Text>email:</Text>
+            <Text>
+              <b> admin.sato@demo.com</b>
+            </Text>
+          </Group>
+          <Group>
+            <Text>password:</Text>
+            <Text>
+              <b> testabc</b>
+            </Text>
+          </Group>
+        </CardWithTitle>
         <LoginForm />
 
         <Text ta="center" mt="md">
