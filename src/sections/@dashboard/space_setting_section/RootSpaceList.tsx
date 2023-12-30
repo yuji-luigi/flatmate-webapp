@@ -28,8 +28,9 @@ const RootSpaceList = () => {
             name: space.name,
             address: space.address,
             createdAt: '',
+            cover: space.cover,
           }}
-          href={`${PATH_CLIENT.spaceSettings}/${space._id}`}
+          href={`${PATH_CLIENT.spaceSettings}/${space.slug}`}
           style={{ height: 200, width: 400 }}
           // onClick={() => handleSpaceSelected(rootSpace._id)}
           // // href={`${hrefRoot}/${rootSpace._id}`}

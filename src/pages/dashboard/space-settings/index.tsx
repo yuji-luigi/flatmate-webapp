@@ -7,10 +7,10 @@ import classes from '../../../styles/global-useStyles.module.css';
 
 const SpaceSettingsPage = () => {
   return (
-    <Container className={classes.mainContainer}>
+    <>
       <h1 className={classes.title}>Choose condominium</h1>
       <RootSpaceList />
-    </Container>
+    </>
   );
 };
 
