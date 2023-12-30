@@ -1,7 +1,11 @@
 import { Overlay, Container, Title, Button, Text } from '@mantine/core';
+import { useTranslation } from 'react-i18next';
+import Link from 'next/link';
 import classes from './hero.module.css';
+import { PATH_CLIENT } from '../../path/path-frontend';
 
 export function HeroSection() {
+  const { t } = useTranslation('common');
   return (
     <div className={classes.hero}>
       <Overlay
@@ -10,13 +14,21 @@ export function HeroSection() {
         zIndex={0}
       />
       <Container className={classes.container} size="md">
-        <Title className={classes.title}>A fully featured React components library</Title>
+        <Title className={classes.title}>{t('Flatmates  condominium manager')}</Title>
         <Text className={classes.description} size="xl" mt="xl">
-          Build fully functional accessible web applications faster than ever – Mantine includes
-          more than 120 customizable components and hooks to cover you in any situation
+          {t(
+            'Where everyone can manage spending of condominiums and enables all kinds of communications within condominium.'
+          )}
         </Text>
 
-        <Button variant="gradient" size="xl" radius="xl" className={classes.control}>
+        <Button
+          component={Link}
+          href={PATH_CLIENT.signup}
+          variant="gradient"
+          size="xl"
+          radius="xl"
+          className={classes.control}
+        >
           Get started
         </Button>
       </Container>

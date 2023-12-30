@@ -22,7 +22,7 @@ export function EmailBanner() {
           <Button className={classes.control}>Subscribe</Button>
         </div>
       </div>
-      <Image src="./email_banner.svg" className={classes.image} />
+      <Image src="./email_banner.svg" className={classes.image} alt="Subscribe image" />
     </div>
   );
 }
