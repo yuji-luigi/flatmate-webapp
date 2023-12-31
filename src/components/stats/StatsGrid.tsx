@@ -23,9 +23,11 @@ type IconIndex = keyof typeof _icons;
 export type StatGridSchema = {
   title: string;
   value: number;
+  iconColor?: string;
   icon?: IconIndex | ((props: TablerIconsProps) => JSX.Element);
   diff?: number;
   unit?: string;
+  description?: string;
 };
 
 export function StatsGrid({ data }: { data: StatGridSchema[] }) {
@@ -37,15 +39,17 @@ export function StatsGrid({ data }: { data: StatGridSchema[] }) {
 
     return (
       <Box key={stat.title} className={classesM.card}>
-        <Paper withBorder p="md" radius="md" key={stat.title}>
+        <Paper className={classesM.paper} withBorder p="md" radius="md" key={stat.title}>
           <Group justify="apart">
             <Text size="xs" color="dimmed" className={classesM.title}>
               {t(stat.title)}
             </Text>
-            {Icon && <Icon className={classesM.icon} size={22} stroke={1.5} />}
+            {Icon && (
+              <Icon data-color={stat.iconColor} className={classesM.icon} size={22} stroke={1.5} />
+            )}
           </Group>
 
-          <Group align="flex-end" gap="xs" mt={25}>
+          <Group align="flex-end" gap="xs" mt={0}>
             <Text className={classesM.value}>
               {stat.unit}
               {stat.value}
@@ -64,7 +68,7 @@ export function StatsGrid({ data }: { data: StatGridSchema[] }) {
           </Group>
 
           <Text size="xs" color="dimmed" mt={7}>
-            Compared to previous month
+            {t(stat.description || '')}
           </Text>
         </Paper>
       </Box>

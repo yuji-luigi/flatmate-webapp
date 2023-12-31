@@ -1,8 +1,6 @@
-.card {
-}
+.card {}
 
-.container {
-}
+.container {}
 
 .root {
   padding: calc(var(--spacing-xl) * 1.5);
@@ -26,7 +24,13 @@
 }
 
 .root {
-  padding: calc(var(--mantine-spacing-xl)) * 1.5);
+  padding: calc(var(--mantine-spacing-xl) * 1.5);
+}
+
+.paper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mantine-spacing-md);
 }
 
 .value {
@@ -43,6 +47,23 @@
 
 .icon {
   color: light-dark(var(--mantine-color-gray-4), var(--mantine-color-dark-3));
+
+  &[data-color='error'] {
+    color: var(--mantine-color-red-6);
+  }
+
+  &[data-color='success'] {
+    color: var(--mantine-color-green-6);
+  }
+
+  &[data-color='warning'] {
+    color: var(--mantine-color-yellow-6);
+  }
+
+  &[data-color='info'] {
+    color: var(--mantine-color-blue-6);
+  }
+
 }
 
 .title {
