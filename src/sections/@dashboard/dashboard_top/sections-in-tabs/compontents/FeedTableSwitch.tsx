@@ -8,6 +8,9 @@ export const SWITCH_DATA = [
   { value: 'posts', label: <Icons.posts /> },
 ];
 
-export const FeedTableSwitch = () => {
-  return <GradientSegmentedControl data={SWITCH_DATA} />;
+type Props = {
+  localStorageKey?: string;
+};
+export const FeedTableSwitch = (props: Props) => {
+  return <GradientSegmentedControl switchDataList={SWITCH_DATA} {...props} />;
 };
