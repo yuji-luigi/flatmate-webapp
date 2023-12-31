@@ -33,6 +33,9 @@ body {}
   --liner-gradient-light: linear-gradient(rgba(100, 100, 100, 0.5), rgba(100, 100, 100, 1));
   --liner-gradient-dark: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
 
+  --max-width: var(--break-point-lg);
+  --max-width-feed-card: var(--break-point-sm);
+
   /* --font-size-article: 24px; */
   :root.light {
     --bg-color: rgba(255, 255, 255, 0.85);
