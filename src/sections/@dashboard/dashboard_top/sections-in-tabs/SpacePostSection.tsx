@@ -8,20 +8,19 @@ import { ThreadModel } from '../../../../types/models/thread-model';
 import { DashboardTopHeader } from '../components/DashboardTopHeader';
 import { NewPostInFeed } from '../../../../components/posts/feed/NewPostInFeed';
 import { SimpleDisclosureContextProvider } from '../../../../context/SimpleDisclosureContext';
+import classes from './SpacePostSection.module.css';
 
 export const SpacePostSection = () => {
   const { crudDocuments } = useCrudSelectors('threads') as { crudDocuments: ThreadModel[] };
   return (
-    <>
-      <Stack gap={16}>
-        <SimpleDisclosureContextProvider>
-          <NewPostInFeed />
-        </SimpleDisclosureContextProvider>
-        {/* <DashboardTopHeader header="Posts" /> */}
-        {crudDocuments.map((thread) => (
-          <PostFeedCard key={thread._id} data={thread} />
-        ))}
-      </Stack>
-    </>
+    <Stack gap={16} className={classes.feed}>
+      <SimpleDisclosureContextProvider>
+        <NewPostInFeed />
+      </SimpleDisclosureContextProvider>
+      {/* <DashboardTopHeader header="Posts" /> */}
+      {crudDocuments.map((thread) => (
+        <PostFeedCard key={thread._id} data={thread} />
+      ))}
+    </Stack>
   );
 };

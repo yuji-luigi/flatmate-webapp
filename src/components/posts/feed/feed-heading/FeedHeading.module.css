@@ -3,10 +3,33 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: var(--feed-card);
-  @container (max-width: $mantine-breakpoint-sm ) {
+
+  @container (max-width: $mantine-breakpoint-sm) {
     justify-content: space-between;
   }
+
   @container (min-width: $mantine-breakpoint-sm) {
+    justify-content: start;
+  }
+}
+
+.headerInfo {
+  display: flex;
+  flex-direction: column;
+
+  .name {
+    text-align: left;
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  .timeAgo {
+    margin-left: var(--flex-gap);
+
+  }
+
+  @container (min-width: $mantine-breakpoint-sm) {
+    flex-direction: column;
     justify-content: start;
   }
 }

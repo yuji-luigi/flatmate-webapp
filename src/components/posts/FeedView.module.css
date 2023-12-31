@@ -1,0 +1,5 @@
+.feed {
+  max-width: var(--max-width-feed-card);
+  margin: auto;
+  gap: var(--flex-gap);
+}

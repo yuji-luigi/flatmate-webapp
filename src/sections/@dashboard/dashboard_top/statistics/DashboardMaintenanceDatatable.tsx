@@ -181,30 +181,38 @@ function calculateStatsGridData(maintenances: MaintenanceModel[]): StatGridSchem
   const completed = maintenances.filter((item) => item.status === 'completed');
   const inProgress = maintenances.filter((item) => item.status === 'inProgress');
   // const invoiced = maintenances.filter((item) => item.status === 'invoiced');
-  const statGridData = [
+  const statGridData: StatGridSchema[] = [
     {
       title: 'Incomplete',
       value: incomplete.length,
       unit: '',
       icon: Icons.clockStop,
+      iconColor: 'error',
+      description: 'Not done for this month',
     },
     {
       title: 'Completed',
       value: completed.length,
       unit: '',
       icon: Icons.check,
+      iconColor: 'success',
+      description: 'Done for this month',
     },
     {
       title: 'In Progress',
       value: inProgress.length,
       unit: '',
       icon: Icons.progressCheck,
+      iconColor: 'info',
+      description: 'Started but not completed(this month)',
     },
     {
       title: 'Total spent',
       value: maintenances.reduce((acc, item) => acc + +item.invoicesTotal, 0),
       unit: '€',
-      icon: Icons.progressCheck,
+      icon: Icons.receipt,
+      iconColor: 'warning',
+      description: 'Total spent for this month',
     },
     // {
     //   title: 'Invoiced',

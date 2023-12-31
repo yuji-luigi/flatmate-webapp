@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Group, Stack, Text } from '@mantine/core';
+import { useLocalStorage } from '@mantine/hooks';
 import { useCrudSelectors } from '../../../../redux/features/crud/crudSlice';
 
 import PostFeedCard from '../../../../components/posts/feed/PostFeedCard';
@@ -13,10 +14,20 @@ import { filterList } from '../../../../components/datatable/filter/logic/applyF
 import { useFilter } from '../../../../../hooks/useFilter';
 import useTable, { getComparator } from '../../../../../hooks/useTable';
 import { MaintenanceModel } from '../../../../types/models/maintenance-check-type';
+import { FeedView } from '../../../../components/posts/FeedView';
+import { StackOverride } from '../../../../components/overrides/stack/StackOverride';
+
+const VIEW_KEY = 'feed-maintenance-view';
 
 export const SpaceMaintenanceSection = () => {
   const { crudDocuments } = useCrudSelectors<MaintenanceModel>('maintenances');
-  const { currentValue } = useSegmentedControl();
+  const [value, setValue] = useLocalStorage({
+    key: VIEW_KEY,
+    defaultValue: 'table',
+    getInitialValueInEffect: true,
+  });
+
+  const { currentValue, setCurrentValue } = useSegmentedControl();
   const { filters } = useFilter();
   const { order, orderBy } = useTable({
     defaultOrderBy: 'createdAt',
@@ -29,18 +40,31 @@ export const SpaceMaintenanceSection = () => {
     formFields: maintenancesTableData,
     comparator: getComparator(order, orderBy),
   });
+  useEffect(() => {
+    setCurrentValue(value || 'table');
+  }, [value]);
   return (
     <>
-      <Stack gap={16}>
-        <DashboardTopHeader header="Maintenances" rightSection={<FeedTableSwitch />} />
-        {currentValue === 'table' && (
-          <StaticDataTable json={maintenancesTableData} data={filteredList} withFilter />
-        )}
-        {currentValue === 'posts' &&
-          filteredList.map((maintenance) => (
+      {value === 'posts' && (
+        <FeedView>
+          <DashboardTopHeader
+            header="Maintenances"
+            rightSection={<FeedTableSwitch localStorageKey={VIEW_KEY} />}
+          />
+          {filteredList.map((maintenance) => (
             <PostFeedCard key={maintenance._id} data={maintenance} />
           ))}
-      </Stack>
+        </FeedView>
+      )}
+      {value === 'table' && (
+        <StackOverride>
+          <DashboardTopHeader
+            header="Maintenances"
+            rightSection={<FeedTableSwitch localStorageKey={VIEW_KEY} />}
+          />
+          <StaticDataTable json={maintenancesTableData} data={filteredList} withFilter />
+        </StackOverride>
+      )}
     </>
   );
 };
