@@ -53,14 +53,6 @@ HomePageSlug.getLayout = function getLayout(page: ReactElement) {
   return <Layout variant="dashboard">{page}</Layout>;
 };
 
-// export async function getStaticProps({ locale }: { locale: string }) {
-//   return {
-//     props: {
-//       ...(await serverSideTranslations('it', ['common'])),
-//     },
-//   };
-// }
-
 // export async function getStaticPaths() {
 //   // Generate paths for buildings
 //   const mainSpaces = await axiosInstance.get(

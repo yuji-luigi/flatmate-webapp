@@ -2,45 +2,59 @@ import React, { ReactElement, useEffect } from 'react';
 import { NextRouter, useRouter } from 'next/router';
 import useSWR from 'swr';
 import { AxiosError } from 'axios';
-import { Box, Button, Divider, Group, Stack, createStyles, Text } from '@mantine/core';
-import Link from 'next/link';
-import axiosInstance, { AxiosResData, AxiosResDataGeneric } from '../../utils/axios-instance';
-import { PATH_API } from '../../path/path-api';
+import { GetServerSidePropsContext } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import axiosInstance from '../../utils/axios-instance';
+import { PATH_API, PATH_AUTH } from '../../path/path-api';
 import Layout from '../../layouts';
 
-import { CardArticleVerticalTextCenter } from '../../components/card/CardVerticalTextCenter';
-import {
-  CardArticleVerticalTextBottom,
-  CardData,
-} from '../../components/card/CardVerticalTextBottom';
 import { PATH_CLIENT } from '../../path/path-frontend';
 import useAuth from '../../../hooks/useAuth';
 import { useCookieContext } from '../../context/CookieContext';
 import { SpaceModel } from '../../types/models/space-model';
 import { ParsedQueryCustom } from '../../types/nextjs-custom-types/useRouter-types';
-import { profilePageStyle } from '../../styles/global-useStyles';
 import { ChooseSpaceSection } from '../../sections/@login_signup/choose-space/ChooseSpaceSection';
+import { UserModel } from '../../types/models/user-model';
 
-const useStyles = createStyles((theme) => ({
-  pinContainer: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fill, 400px)',
-    gridAutoRows: 'minmax(50px, auto)',
-    justifyContent: 'center',
-    gap: 10,
-  },
-}));
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  try {
+    const { locale } = context;
+    const jwtToken = context.req.cookies.jwt;
+    if (!jwtToken) {
+      return { props: { user: null } };
+    }
+
+    const rawRes = await axiosInstance.get(`${process.env.NEXT_PUBLIC_API_URL}/${PATH_AUTH.me}`, {
+      headers: {
+        Authorization: `Bearer ${jwtToken}`,
+      },
+    });
+    const { data } = rawRes;
+    const { user } = data;
+    return {
+      props: {
+        ...(await serverSideTranslations(locale || 'it', ['common', 'otherNamespace'])),
+        initialUser: user,
+        // other props you may need to pass to the page
+      },
+    };
+  } catch (error) {
+    return {
+      props: {
+        initialUser: null,
+      },
+    };
+  }
+}
 const fetchSpaces = async (organizationId: string) => {
   if (!organizationId) return null;
   const res = await axiosInstance.get(`${PATH_API.organizationCookie}/${organizationId}`);
   return res.data.data;
 };
 
-const ChooseSpaceInOrganizationPage = () => {
+const ChooseSpaceInOrganizationPage = (props: { initialUser: UserModel }) => {
   const router: NextRouter & { query: ParsedQueryCustom; pathname: string } = useRouter();
-  const { user } = useAuth();
-  const { classes, cx, theme } = useStyles();
-  const { classes: classes2 } = profilePageStyle();
+
   const { setCurrentOrganization } = useCookieContext();
 
   useEffect(() => {
@@ -52,40 +66,9 @@ const ChooseSpaceInOrganizationPage = () => {
     router.query.organizationId,
     fetchSpaces
   );
-  const { data, error, isLoading } = useSWR<SpaceModel[] | null, AxiosError>(
-    router.query.organizationId,
-    fetchSpaces
-  );
-  const handleSpaceSelected = async (spaceId: string) => {
-    await axiosInstance.get(`${PATH_API.spaceCookie}/${spaceId}`);
-    router.push(PATH_CLIENT.root);
-  };
+
   if (!spaces) return <p>loading...</p>;
   return <ChooseSpaceSection spaces={spaces} />;
-  // return (
-  //   <Box className={classes2.container}>
-  //     <Box>
-  //       <Button component={Link} href={PATH_CLIENT.chooseOrganization} variant="outline">
-  //         Back
-  //       </Button>
-  //     </Box>
-  //     <Text variant="text" size={36} weight={600} align="center">
-  //       Choose a space
-  //     </Text>
-  //     <Box
-  //       className={classes.pinContainer}
-  //       py="xl" /* cols={2} breakpoints={[{ maxWidth: 'sm', cols: 1 }]} */
-  //     >
-  //       {spaces.map((rootSpace) => (
-  //         <CardArticleVerticalTextBottom
-  //           key={rootSpace._id}
-  //           data={rootSpace as CardData}
-  //           onClick={() => handleSpaceSelected(rootSpace._id)}
-  //         />
-  //       ))}
-  //     </Box>
-  //   </Box>
-  // );
 };
 
 ChooseSpaceInOrganizationPage.getLayout = (page: ReactElement) => {

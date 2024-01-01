@@ -1,10 +1,10 @@
-import { FormFieldInterface, FormTypes, LinkChildrenFormFieldType } from './formField-types';
+import { FormFieldTypes, FormTypes, LinkChildrenFormFieldType } from './formField-types';
 
 export type CellTypes = 'link-children' | 'avatar' | FormTypes;
 
 export type PartialCellTypes = Partial<Record<CellTypes, LinkChildrenCellFunc | RegularCellFunc>>;
 
-type LinkChildrenCellFunc = ({
+export type LinkChildrenCellFunc = ({
   cellConfig,
   rowData,
   cellValue,
@@ -14,12 +14,12 @@ type LinkChildrenCellFunc = ({
   cellValue: string;
 }) => JSX.Element;
 
-type RegularCellFunc = ({
+export type RegularCellFunc = ({
   cellValue,
   rowData,
   cellConfig,
 }: {
-  cellConfig: any;
+  cellConfig: Exclude<FormFieldTypes, LinkChildrenFormFieldType>;
   rowData: any;
   cellValue: string;
 }) => JSX.Element;

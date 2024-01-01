@@ -14,7 +14,7 @@ export const NotificationDrawer = (props: NotificationDrawerProps) => {
   return (
     <Drawer
       position="right"
-      size="xs"
+      size="sm"
       opened={opened}
       onClose={close}
       title="Notifications"

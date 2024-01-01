@@ -1,7 +1,11 @@
 .feedCard {
   min-height: 200;
   border-radius: var(--radius-card);
+  display: flex;
+  flex-direction: column;
+  gap: var(--feed-card-spacing);
 }
+
 .description {
   margin-bottom: var(--feed-card-spacing);
 }

@@ -15,7 +15,7 @@ const SlideObserver = ({ title, description }: SlideObserverProps) => {
     const [entry] = entries;
     console.log(entry.isIntersecting);
     setIsVisible(entry.isIntersecting);
-    entries.forEach((entry) => {
+    entries.forEach((_entry) => {
       //
     });
   };
@@ -40,7 +40,7 @@ const SlideObserver = ({ title, description }: SlideObserverProps) => {
       <Box ref={containerRef}>
         <Box
           className={isVisible ? classes.show : classes.hide}
-          sx={{
+          style={{
             display: 'grid',
             placeItems: 'center',
             alignContent: 'center',

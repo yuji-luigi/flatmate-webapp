@@ -1,31 +1,26 @@
-import { Badge, Text, Box, useMantineTheme, Tooltip, Sx } from '@mantine/core';
+import { Badge, Text, Box, useMantineTheme, Tooltip, MantineStyleProp } from '@mantine/core';
 import React, { use } from 'react';
 import { Icons } from '../../data/icons/icons';
+import classes from './BadgeWithToolTip.module.css';
 
 const BadgeWithToolTip = ({
   icon,
   text,
   disabled,
-  sx,
+  style,
 }: {
   icon?: JSX.Element;
   text: string;
   disabled?: boolean;
-  sx?: Sx;
+  style?: MantineStyleProp;
 }) => {
   const theme = useMantineTheme();
-  const dark = theme.colorScheme === 'dark';
+  // const dark = theme.colorScheme === 'dark';
   return (
-    <Tooltip
-      disabled={disabled}
-      label={text}
-      withArrow
-      multiline
-      // width={220}
-    >
-      <Badge sx={{ cursor: 'pointer', paddingBlock: 16, ...sx }}>
-        <Text color={dark ? '' : 'black'} truncate weight={300}>
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+    <Tooltip disabled={disabled} label={text} withArrow multiline>
+      <Badge style={{ cursor: 'pointer', paddingBlock: 16, ...style }}>
+        <Text className={classes.text} truncate fw={300}>
+          <Box style={{ display: 'flex', alignItems: 'center' }}>
             {icon && <Box mr={4}>{icon}</Box>}
             {text}
           </Box>

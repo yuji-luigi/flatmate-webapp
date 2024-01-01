@@ -6,17 +6,17 @@ export function DialogDefault() {
 
   return (
     <>
-      <Group position="center">
+      <Group justify="center">
         <Button onClick={toggle}>Toggle dialog</Button>
       </Group>
 
       <Dialog opened={opened} withCloseButton onClose={close} size="lg" radius="md">
-        <Text size="sm" mb="xs" weight={500}>
+        <Text size="sm" mb="xs" fw={500}>
           Subscribe to email newsletter
         </Text>
 
         <Group align="flex-end">
-          <TextInput placeholder="hello@gluesticker.com" sx={{ flex: 1 }} />
+          <TextInput placeholder="hello@gluesticker.com" style={{ flex: 1 }} />
           <Button onClick={close}>Subscribe</Button>
         </Group>
       </Dialog>

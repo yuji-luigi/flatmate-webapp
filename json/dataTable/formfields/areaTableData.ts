@@ -1,6 +1,6 @@
-import { FormFieldInterface } from '../../../src/types/general/data/data-table/formField-types';
+import { FormFieldTypes } from '../../../src/types/general/data/data-table/formField-types';
 
-export const areaTableData: Array<FormFieldInterface> = [
+export const areaTableData: Array<FormFieldTypes> = [
   {
     id: 'name',
     name: 'name',

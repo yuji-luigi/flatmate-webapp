@@ -1,26 +1,22 @@
-import { Group, Select, TextInput, createStyles } from '@mantine/core';
+import { Group } from '@mantine/core';
 import React from 'react';
 import { Sections } from '../../../types/general/data/sections-type';
 import { useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
-import { createQuery } from '../../../utils/helpers/helper-functions';
-import { useFilter } from '../../../../hooks/useFilter';
 import {
-  FormFieldInterface,
   FormFieldTypes,
   StaticSelectFormFieldType,
 } from '../../../types/general/data/data-table/formField-types';
 import { TextFilterInput } from './TextFilterInput';
 import { SelectFilterInput } from './SelectFilterInput';
+import classes from './QueryFilterWeb.module.css';
 
 export const QueryFilterWeb = ({
-  className,
   formFields,
-  entity,
-}: // setFilter,
+}: // entity,
+// setFilter,
 {
-  className?: string;
   formFields: FormFieldTypes[];
-  entity: Sections;
+  // entity: Sections;
   // setFilter: () => void;
 }) => {
   const { fetchCrudDocumentsInfiniteScroll } = useCrudSliceStore();
@@ -34,7 +30,7 @@ export const QueryFilterWeb = ({
   );
 
   return (
-    <Group className={className} sx={{ marginTop: 32 }}>
+    <Group className={classes.group}>
       <TextFilterInput />
       {selectFilter.map((field) => (
         <SelectFilterInput key={field.id} formField={field as StaticSelectFormFieldType} />

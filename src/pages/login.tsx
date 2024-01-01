@@ -1,109 +1,73 @@
-/* eslint-disable react/jsx-pascal-case */
-import { createStyles, Paper, Text, Title } from '@mantine/core';
+import {
+  Paper,
+  TextInput,
+  PasswordInput,
+  Checkbox,
+  Button,
+  Title,
+  Text,
+  Anchor,
+  Card,
+  Group,
+} from '@mantine/core';
+import { ReactElement, useEffect } from 'react';
 import { GetServerSidePropsContext } from 'next';
-import Link from 'next/link';
-import { ReactElement } from 'react';
-
-import Page from '../components/Page';
-import GuestGuard from '../guards/GuestGuard';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import axios from 'axios';
+import { useRouter } from 'next/router';
+import { useTranslation } from 'react-i18next';
+import classes from './login.module.css';
 import Layout from '../layouts';
 import { API_BASE_URL, PATH_AUTH } from '../path/path-api';
-import { AUTH } from '../path/path-frontend';
-import LoginForm from '../sections/@login_signup/LoginForm';
-import DashboardTopPage from './dashboard/statistics';
-import { DeleteAlertModal } from '../components/modal/DeleteAlertModal';
-import { UserModel } from '../types/models/user-model';
 import axiosInstance from '../utils/axios-instance';
+import LoginForm from '../sections/@login_signup/LoginForm';
+import { AUTH, PATH_CLIENT } from '../path/path-frontend';
+import GuestGuard from '../guards/GuestGuard';
+import { UserModel } from '../types/models/user-model';
+import CardWithTitle from '../components/profile/side/CardWithTitle';
+import TextWithIcon from '../components/text/TextWithIcon';
 
-const useStyles = createStyles((theme) => ({
-  wrapper: {
-    minHeight: 900,
-    backgroundSize: 'cover',
-    backgroundImage:
-      'url(https://images.unsplash.com/photo-1484242857719-4b9144542727?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1280&q=80)',
-  },
-
-  form: {
-    borderRight: `1px solid ${
-      theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[3]
-    }`,
-    minHeight: 900,
-    maxWidth: 450,
-    paddingTop: 80,
-
-    [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
-      maxWidth: '100%',
-    },
-  },
-
-  title: {
-    color: theme.colorScheme === 'dark' ? theme.white : theme.black,
-    fontFamily: `Greycliff CF, ${theme.fontFamily}`,
-  },
-  link: {
-    // color: 'black',
-    fontWeight: 700,
-    marginLeft: 8,
-    textDecoration: 'none',
-    color: theme.colors.green[5],
-  },
-  logo: {
-    color: theme.colorScheme === 'dark' ? theme.white : theme.black,
-    width: 120,
-    display: 'block',
-    marginLeft: 'auto',
-    marginRight: 'auto',
-  },
-  demoAccountBox: {
-    padding: 10,
-    border: 'solid black 1px',
-    borderColor: theme.colorScheme === 'dark' ? theme.white : theme.black,
-    borderRadius: 10,
-    background: theme.colorScheme === 'dark' ? theme.colors.gray : '',
-    color: theme.colorScheme === 'dark' ? theme.white : theme.black,
-  },
-}));
-
-const LoginPage = ({ user }: { user?: UserModel }) => {
-  const { classes } = useStyles();
-  // if (user?.active) {
-  //   return <DashboardTopPage />;
-  // }
-  // return null;
+export default function LoginPage(props: { initialUser?: UserModel }) {
+  const { initialUser } = props;
+  const { push } = useRouter();
+  const { t } = useTranslation('common');
+  useEffect(() => {
+    if (initialUser) {
+      push(PATH_CLIENT.chooseRootSpace);
+    }
+  }, [initialUser]);
   return (
-    <GuestGuard>
-      <Page title="Login">
-        <div className={classes.wrapper}>
-          <Paper className={classes.form} radius={0} p={30}>
-            <Title order={2} className={classes.title} align="center" mt="md" mb={50}>
-              Welcome back to Flatmates!
-            </Title>
-            <div className={classes.demoAccountBox}>
-              <b>
-                <span>-demo account-</span>
-                <br />
-                email: contardo@admin.com
-                <br />
-                password: user$$$
-              </b>
-            </div>
-            <br />
-            <LoginForm />
-            <Text align="center" mt="md">
-              Don&apos;t have an account?{' '}
-              <Link className={classes.link} href={AUTH.SIGNUP}>
-                Register
-              </Link>
+    <div className={classes.wrapper}>
+      <Paper className={classes.form} radius={0} p={30}>
+        <Title order={2} className={classes.title} ta="center" mt="md" mb={50}>
+          Welcome back to Mantine!
+        </Title>
+        <CardWithTitle title={t('Use this credential')}>
+          <Group>
+            <Text>email:</Text>
+            <Text>
+              <b> admin.sato@demo.com</b>
             </Text>
-          </Paper>
-        </div>
-      </Page>
-    </GuestGuard>
+          </Group>
+          <Group>
+            <Text>password:</Text>
+            <Text>
+              <b> testabc</b>
+            </Text>
+          </Group>
+        </CardWithTitle>
+        <LoginForm />
+
+        <Text ta="center" mt="md">
+          Don&apos;t have an account?{' '}
+          <Anchor<'a'> href={AUTH.SIGNUP} fw={700}>
+            Register
+          </Anchor>
+        </Text>
+      </Paper>
+    </div>
   );
-};
-
-export default LoginPage;
-
+}
 LoginPage.getLayout = function getLayout(page: ReactElement) {
   return <Layout variant="main">{page}</Layout>;
 };
@@ -114,20 +78,22 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     if (!jwtToken) {
       return { props: { user: null } };
     }
-    const rawRes = await axiosInstance.get(`${API_BASE_URL}/${PATH_AUTH.me}`, {
+    const rawRes = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/${PATH_AUTH.me}`, {
       headers: {
         Authorization: `Bearer ${jwtToken}`,
       },
     });
     const { data } = rawRes;
-    // const data = await response.json();
-
+    const { user } = data;
     return {
-      props: { user: data.user },
+      props: {
+        ...(await serverSideTranslations(context.locale || '', ['common'])),
+        initialUser: user,
+      },
     };
   } catch (error) {
     return {
-      props: { user: null },
+      props: { initialUser: null },
     };
   }
 }

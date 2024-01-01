@@ -1,26 +1,17 @@
-import { Group, ActionIcon, createStyles, Menu } from '@mantine/core';
-import React, { useEffect } from 'react';
+import { Group, ActionIcon, Menu } from '@mantine/core';
+import React from 'react';
+import { IconDots } from '@tabler/icons-react';
+import { useRouter } from 'next/router';
 import useAuth from '../../../hooks/useAuth';
 import { Icons } from '../../data/icons/icons';
 import { FONT_SIZES } from '../../lib/enums';
-import { IconBookmark, IconDots, IconHeart, IconSettings, IconShare } from '@tabler/icons-react';
-import { useCrudSelectors, useCrudSliceStore } from '../../redux/features/crud/crudSlice';
+import { useCrudSliceStore } from '../../redux/features/crud/crudSlice';
 import { useDrawerContext } from '../../context/DataTableDrawerContext';
-import { useRouter } from 'next/router';
 import { Sections } from '../../types/general/data/sections-type';
 import { PATH_CLIENT } from '../../path/path-frontend';
-import { AllModels } from '../../types/models/allmodels';
 import { ThreadModel } from '../../types/models/thread-model';
 import { MaintenanceModel } from '../../types/models/maintenance-model';
 
-const useStyles = createStyles((theme) => ({
-  action: {
-    backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
-    ...theme.fn.hover({
-      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[1],
-    }),
-  },
-}));
 const PostEditButton = ({
   data,
   entity,
@@ -36,7 +27,6 @@ const PostEditButton = ({
 
   const { openDrawer } = useDrawerContext();
 
-  const { classes, cx, theme } = useStyles();
   const handleClicked = () => selectCrudDocument({ document: data, entity });
   const handleEditClicked = () => openDrawer();
   // useEffect(() => {
@@ -51,7 +41,7 @@ const PostEditButton = ({
   return (
     <>
       {(user?._id === data.createdBy._id || data.createdBy?.role === 'super_admin') && (
-        <Group position="right" mb={10}>
+        <Group justify="end" mb={10}>
           <Menu shadow="lg">
             <Menu.Target>
               <ActionIcon onClick={handleClicked}>
@@ -61,33 +51,33 @@ const PostEditButton = ({
             <Menu.Dropdown>
               <Menu.Item
                 onClick={handleEditClicked}
-                sx={{ fontSize: FONT_SIZES.menuItemsS }}
-                icon={<Icons.article size={FONT_SIZES.menuItemsS} />}
+                style={{ fontSize: FONT_SIZES.menuItemsS }}
+                leftSection={<Icons.article size={FONT_SIZES.menuItemsS} />}
               >
                 Edit
               </Menu.Item>
               <Menu.Item
-                sx={{ fontSize: FONT_SIZES.menuItemsS }}
-                icon={<Icons.archive size={FONT_SIZES.menuItemsS} />}
+                style={{ fontSize: FONT_SIZES.menuItemsS }}
+                leftSection={<Icons.archive size={FONT_SIZES.menuItemsS} />}
               >
                 Mark as draft
               </Menu.Item>
               <Menu.Item
                 onClick={handleDeleteClicked}
-                sx={{
+                style={{
                   fontSize: FONT_SIZES.menuItemsS,
                   color: 'red',
                   // '&:hover': {
                   //   background:
-                  //     theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[1],
+                  //     light-dark(var(--mantine-color-gray-5), var(--mantine-color-dark-1)),
                   // },
                 }}
-                icon={<Icons.trash color="red" size={FONT_SIZES.menuItemsS} />}
+                leftSection={<Icons.trash color="red" size={FONT_SIZES.menuItemsS} />}
               >
                 Delete
               </Menu.Item>
               {/* <Menu.Item
-          icon={<IconSearch size={14} />}
+          leftSection={<IconSearch size={14} />}
           rightSection={
             <Text size="xs" color="dimmed">
               ⌘K
@@ -100,8 +90,8 @@ const PostEditButton = ({
               <Menu.Divider />
 
               {/* <Menu.Label>Danger zone</Menu.Label>
-        <Menu.Item icon={<IconArrowsLeftRight size={14} />}>Transfer my data</Menu.Item>
-        <Menu.Item color="red" icon={<IconTrash size={14} />}>
+        <Menu.Item leftSection={<IconArrowsLeftRight size={14} />}>Transfer my data</Menu.Item>
+        <Menu.Item color="red" leftSection={<IconTrash size={14} />}>
           Delete my account
         </Menu.Item> */}
             </Menu.Dropdown>

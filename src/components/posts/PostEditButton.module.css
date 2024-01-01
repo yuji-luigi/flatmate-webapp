@@ -1,0 +1,7 @@
+
+  .action {
+    background-color: light-dark(var(--mantine-color-gray-6), var(--mantine-color-dark-0));
+    &:hover{
+      background-color: light-dark(var(--mantine-color-gray-5), var(--mantine-color-dark-1));
+    };
+  },

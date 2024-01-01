@@ -1,21 +1,13 @@
-import { Card, Title, Button, Group, createStyles } from '@mantine/core';
+import { Card, Title, Button, Group } from '@mantine/core';
 import React from 'react';
-import { CheckType } from '../../../../types/models/check-type';
+import { CheckType } from '../../../../types/models/maintenance-check-type';
+import classes from './ChooseTypeCard.module.css';
 
-const useStyles = createStyles(() => ({
-  buttonContainer: {
-    justifyContent: 'center',
-  },
-  button: {
-    width: '45%',
-  },
-}));
 export const ChooseTypeCard = ({
   setCheckType,
 }: {
   setCheckType: (type: CheckType | null) => void;
 }) => {
-  const { classes } = useStyles();
   return (
     <Card px={32} py={40}>
       <Title mb={32}>Upload Invoice or Receipt?</Title>

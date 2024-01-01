@@ -1,28 +1,23 @@
-import { Card, Title, Text, createStyles, Box, Sx } from '@mantine/core';
-import { Icon123 } from '@tabler/icons-react';
+import { Card, Title, Box, MantineStyleProp } from '@mantine/core';
 import React from 'react';
-import { Icons } from '../../../data/icons/icons';
-import TextWithIcon from '../../text/TextWithIcon';
 import { TEXT_SIZE } from '../../text/text-size';
-import { RADIUS } from '../../../styles/global-useStyles';
-import { sideCardStyles } from './sideCardStyles';
+import classes from './sideCardStyles.module.css';
 
 interface Prop {
   title?: string | React.ReactNode;
   children?: React.ReactNode;
-  titleSx?: Sx;
-  sx?: Sx;
+  titleSx?: MantineStyleProp;
+  style?: MantineStyleProp;
 }
-const CardWithTitle = ({ title, children, titleSx, sx }: Prop) => {
-  const { classes, cx, theme } = sideCardStyles();
+const CardWithTitle = ({ title, children, titleSx, style }: Prop) => {
   return (
-    <Card className={classes.card} sx={sx}>
+    <Card className={classes.card} style={style}>
       {title && (
-        <Title sx={{ fontSize: TEXT_SIZE.titleCard, ...titleSx }} mb={8}>
+        <Title style={{ fontSize: TEXT_SIZE.titleCard, ...titleSx }} mb={8}>
           {title}
         </Title>
       )}
-      <Box className={classes.textsContainer} sx={{}}>
+      <Box className={classes.textsContainer} style={{}}>
         {children}
       </Box>
     </Card>

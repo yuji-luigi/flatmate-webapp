@@ -7,12 +7,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
 
-body {
-  /* font-family: 'Roboto', sans-serif; */
-  /* font-family: 'Pacifico', cursive; */
-  /* font-family: 'Lobster', cursive; */
-  /* font-family: 'Bangers', cursive; */
-}
+body {}
 
 :root {
   --break-point-xs: 576px;
@@ -33,18 +28,27 @@ body {
   --heading-font-size: 40px;
   --feed-card-spacing: 16px;
   --radius-card: 12px;
+  --opacity-card: 0.85;
+  --font-size-title: 32px;
+  --liner-gradient-light: linear-gradient(rgba(100, 100, 100, 0.5), rgba(100, 100, 100, 1));
+  --liner-gradient-dark: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+
+  --max-width: var(--break-point-lg);
+  --max-width-feed-card: var(--break-point-sm);
+
   /* --font-size-article: 24px; */
   :root.light {
     --bg-color: rgba(255, 255, 255, 0.85);
     --text-color: #123;
   }
+
   :root.dark {
     --bg-color: rgba(0, 0, 0, 0.85);
     --text-color: #45adfe;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: $mantine-breakpoint-sm) {
   :root {
     --heading-font-size: 24px;
 
@@ -62,4 +66,8 @@ body {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+p {
+  margin: 0;
 }

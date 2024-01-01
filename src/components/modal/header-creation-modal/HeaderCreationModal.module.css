@@ -1,0 +1,5 @@
+.modalBody {
+  @media (max-width: $mantine-breakpoint-sm) {
+    padding-inline: calc(- var(--pading-x));
+  }
+}

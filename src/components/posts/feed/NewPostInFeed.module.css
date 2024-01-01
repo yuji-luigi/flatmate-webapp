@@ -1,5 +1,6 @@
 .card {
   padding-inline: var(--padding-x);
+  border-radius: var(--radius-card);
 }
 /* .parentGroup {
   flex-wrap: nowrap;
@@ -35,7 +36,7 @@
 }
 
 .name {
-  font-family: Greycliff CF, var(--mantine-font-family);
+  font-family: 'Greycliff CF', var(--mantine-font-family);
 }
 .list {
 }

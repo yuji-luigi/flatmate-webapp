@@ -43,7 +43,7 @@ const MaintainerSearchPage = () => {
 
   return (
     <Page>
-      {/* <Group align="end" position="apart" pl={16} mb={32} sx={{ width: '100%' }}> */}
+      {/* <Group align="end" justify="apart" pl={16} mb={32} style={{ width: '100%' }}> */}
       <Box px={32}>
         <TableSectionHeader overridingEntity="maintainers" />
       </Box>

@@ -1,24 +1,14 @@
-import { Box, Paper, PaperProps, Sx, createStyles } from '@mantine/core';
+import { Box, MantineStyleProp, Paper, PaperProps } from '@mantine/core';
 import React, { ReactNode } from 'react';
+import classes from './PaperWithTitle.module.css';
 
 type PaperWithTitleProps = {
   title: ReactNode;
   children: ReactNode;
-  sx: Sx;
+  style: MantineStyleProp;
 } & PaperProps;
 
-const useStyles = createStyles((theme) => ({
-  title: {
-    fontFamily: `Greycliff CF, ${theme.fontFamily}`,
-    fontSize: 24,
-    fontWeight: 600,
-    marginBottom: theme.spacing.xl,
-    paddingInline: theme.spacing.xl,
-  },
-}));
-
-export const PaperWithTitle = ({ title, children, sx, ...others }: PaperWithTitleProps) => {
-  const { classes } = useStyles();
+export const PaperWithTitle = ({ title, children, style, ...others }: PaperWithTitleProps) => {
   return (
     <Paper radius="lg" p="xl" withBorder {...others}>
       <Box className={classes.title}>{title}</Box>

@@ -25,11 +25,11 @@ const PreviewFileZone = ({ form, formField, entity }: Prop) => {
     return null;
   }
   return (
-    <Stack mt={10} spacing={0}>
-      <Text mb={0} size="md" weight={500}>
+    <Stack mt={10} gap={0}>
+      <Text mb={0} size="md" fw={500}>
         {formField?.label}
       </Text>
-      <OverlayCustom icon={<Icons.image />} onClick={open}>
+      <OverlayCustom leftSection={<Icons.image />} onClick={open}>
         {!!files.length &&
           files.map((upload) => {
             /** is File object created when select file from machine, otherwise upload model from DB */

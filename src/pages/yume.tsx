@@ -24,7 +24,7 @@ const Yume = () => {
   return (
     <>
       <Box
-        sx={{
+        style={{
           width: '100%',
           height: '100vh',
           display: 'flex',
@@ -35,7 +35,7 @@ const Yume = () => {
         }}
       >
         <Stack>
-          <Text color="blue" weight={900} size={60}>
+          <Text color="blue" fw={900} fz={60}>
             yume
           </Text>
           <Button onClick={handleClick}>夢ボタン</Button>

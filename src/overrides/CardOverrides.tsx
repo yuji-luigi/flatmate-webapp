@@ -1,15 +1,14 @@
-import { RADIUS } from '../styles/global-useStyles';
+import { Card } from '@mantine/core';
+import { useColorScheme } from '@mantine/hooks';
+// import classes from './CardOverrides.module.css';
 
-export const CardOverride = (colorScheme: string) => {
-  const bgColor =
-    colorScheme === 'dark' ? 'var(--mantine-color-scheme-dark)' : 'var(--mantine-white)';
-  return {
-    styles: {
-      root: {
-        borderRadius: RADIUS.CARD,
-        // backgroundColor: bgColor,
+export const CardOverride = () => {
+  return Card.extend({
+    defaultProps: {
+      style: {
         opacity: 0.8,
+        borderRadius: 12,
       },
     },
-  };
+  });
 };

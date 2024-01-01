@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es2020",
     "lib": ["dom", "dom.iterable", "esnext", "es5", "es6"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -20,7 +20,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "src/redux/rootReducer.",
+    "src/redux/rootReducer.ts",
     "src/theme/cssVariableResolver.js"
   ],
   "exclude": ["node_modules", "quokka-test"]

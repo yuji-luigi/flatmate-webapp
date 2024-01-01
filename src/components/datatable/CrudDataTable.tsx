@@ -1,11 +1,11 @@
-import { Table, ScrollArea, Pagination, Divider, Box } from '@mantine/core';
+import { Table, ScrollArea, Pagination, Divider, Box, Card } from '@mantine/core';
 import { useState, useEffect } from 'react';
 
 import { useRouter } from 'next/router';
 
 import { CrudTableRow } from './table-rows/CrudTableRow';
 
-import CrudTableHeader from './table-rows/CrudTableHeader';
+import CrudTableHeader from './header/CrudTableHeader';
 // import TableCellController from './table-rows/tablecell/TableCellController';
 import formFields from '../../../json/dataTable/formfields';
 // import { useCrudSlice } from '../../../hooks/redux-hooks/useCrudSlice';
@@ -13,13 +13,13 @@ import { usePaginationContext } from '../../context/PaginationContext';
 import { useCrudSelectors } from '../../redux/features/crud/crudSlice';
 import { Sections } from '../../types/general/data/sections-type';
 import { FormFieldTypes } from '../../types/general/data/data-table/formField-types';
-import { dashboardStyle } from '../../styles/global-useStyles';
+import classes from '../../styles/global-useStyles.module.css';
 import { ParsedQueryCustom } from '../../types/nextjs-custom-types/useRouter-types';
 
 export function CrudDataTable({ overridingEntity = '' }: { overridingEntity?: Sections }) {
   const ROWS_PER_PAGE = 10;
   // const TOTAL = Math.ceil(users.length / ROWS_PER_PAGE);
-  const { classes } = dashboardStyle();
+  // const { classes } = dashboardStyle();
 
   const [page, setPage] = useState(1);
   const { setPagination } = usePaginationContext();
@@ -32,13 +32,14 @@ export function CrudDataTable({ overridingEntity = '' }: { overridingEntity?: Se
     setPage(1);
     setPagination(1);
   }, [entity]);
-  console.log('return');
 
   if (!sectionFormFields) {
     return <h1>Please provide the formField.json file to display the table</h1>;
   }
 
-  sectionFormFields.sort((a: FormFieldTypes, b: FormFieldTypes) => a.priority - b.priority);
+  sectionFormFields.sort(
+    (a: FormFieldTypes, b: FormFieldTypes) => a.priority || 0 - (b.priority || 0)
+  );
 
   const TOTAL = Math.floor((totalDocumentsCount - 1) / ROWS_PER_PAGE) + 1;
 
@@ -47,15 +48,15 @@ export function CrudDataTable({ overridingEntity = '' }: { overridingEntity?: Se
     setPagination(pageNumber); //! after setting the pagination. useEffect will be called to fetch the documents
   }
   return (
-    <Box className={classes.dataTableContainer}>
-      <ScrollArea>
+    <Card className={classes.dataTableContainer}>
+      <Table.ScrollContainer minWidth={800}>
         {!crudDocuments.length && crudStatus === 'loading' ? (
           <p>loading</p>
         ) : (
-          <Table sx={{ minWidth: 800 }} highlightOnHover>
+          <Table style={{}} highlightOnHover>
             <CrudTableHeader overridingEntity={overridingEntity} />
 
-            <tbody>
+            <Table.Tbody>
               {crudDocuments?.map((rowData) => (
                 <CrudTableRow
                   overridingEntity={overridingEntity}
@@ -64,12 +65,12 @@ export function CrudDataTable({ overridingEntity = '' }: { overridingEntity?: Se
                   rowData={rowData}
                 />
               ))}
-            </tbody>
+            </Table.Tbody>
           </Table>
         )}
-        <Divider sx={{ marginBottom: 20 }} />
-      </ScrollArea>
+        <Divider style={{ marginBottom: 20 }} />
+      </Table.ScrollContainer>
       <Pagination value={page} onChange={(pageNumber) => onPageChange(pageNumber)} total={TOTAL} />
-    </Box>
+    </Card>
   );
 }

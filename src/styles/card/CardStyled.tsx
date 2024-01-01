@@ -1,18 +1,10 @@
 import React from 'react';
-import { RADIUS } from '../global-useStyles';
-import { Card } from '@mantine/core';
+import { Card, CardProps } from '@mantine/core';
+import classes from './CardStyled.module.css';
 
 type Props = {
   children: React.ReactNode;
-};
+} & CardProps;
 export const CardStyled = (props: Props) => {
-  return (
-    <Card
-      sx={{
-        borderRadius: RADIUS.CARD,
-      }}
-    >
-      {props.children}
-    </Card>
-  );
+  return <Card className={classes.card}>{props.children}</Card>;
 };

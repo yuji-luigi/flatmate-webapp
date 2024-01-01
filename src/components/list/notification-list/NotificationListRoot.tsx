@@ -34,8 +34,8 @@ export const NotificationListRoot = (props: NotificationListProps) => {
         <Text className={classes.title} mt="xs" mb="md">
           The best laptop for Frontend engineers in 2022
         </Text>
-        <Group spacing={1}>
-          <Group spacing={2}>
+        <Group gap={1}>
+          <Group gap={2}>
             <Avatar
               size={20}
               src="https://images.unsplash.com/photo-1628890923662-2cb23c2e0cfe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&q=80"

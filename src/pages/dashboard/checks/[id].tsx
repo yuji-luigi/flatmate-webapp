@@ -8,7 +8,7 @@ import { Sections } from '../../../types/general/data/sections-type';
 import Layout from '../../../layouts';
 import axiosInstance, { AxiosResDataGeneric } from '../../../utils/axios-instance';
 import { PATH_API, _PATH_API } from '../../../path/path-api';
-import { CheckInterface } from '../../../types/models/check-type';
+import { CheckInterface } from '../../../types/models/maintenance-check-type';
 import { MaintainerModel } from '../../../types/models/maintainer-model';
 
 const fileFetcher = async (entity?: string, id?: string) => {

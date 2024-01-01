@@ -364,7 +364,7 @@ const useIsChildrenTree = (entity?: Sections): boolean =>
 
 /** Returns selected Document of the entity or if not selected returns null  */
 const useCrudDocument = <ModelType>(entity?: Sections): ModelType =>
-  useAppSelector((state) => state.crud.reduxdb?.[entity || '']?.singleCrudDocument);
+  useAppSelector((state) => state.crud.reduxdb?.[entity || '']?.singleCrudDocument) || {};
 /** Hook for selector. this time need do pass entity when initialize the hook. */
 export const useCrudSelectors = <ModelType = MongooseBaseModel>(entity?: Sections) => {
   const crudDocuments = useCrudDocuments<ModelType>(entity);

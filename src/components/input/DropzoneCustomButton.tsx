@@ -21,7 +21,7 @@ export function DropzoneCustomButton({ form, formField }: Props) {
   };
   return (
     <Box mt={10}>
-      <Text size="md" weight={500}>
+      <Text size="md" fw={500}>
         {formField.label}
       </Text>
       <Dropzone
@@ -40,7 +40,7 @@ export function DropzoneCustomButton({ form, formField }: Props) {
               height="150"
             />
           ))}
-        <Group position="right" my={8}>
+        <Group justify="right" my={8}>
           <Button onClick={() => openRef.current?.()}>Select files</Button>
         </Group>
       </Dropzone>

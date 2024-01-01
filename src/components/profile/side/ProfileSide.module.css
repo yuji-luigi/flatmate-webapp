@@ -1,0 +1,16 @@
+.sideBox {
+  width: 30%;
+  gap: var(--flex-gap);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  @media (max-width: $mantine-breakpoint-md) : {
+    width: 100%;
+    /* // background-color: theme.cdolors.yellow[6]; */
+  }
+  @media (max-width: $mantine-breakpoint-sm) : {
+    width: 100%;
+    /* // background-color: theme.cdolors.yellow[6]; */
+    /* // flex-direction: row; */
+  }
+}

@@ -1,37 +1,21 @@
 import React, { ReactNode, useEffect, useRef } from 'react';
-import { Box, Tabs, createStyles, useMantineTheme } from '@mantine/core';
-import { useMediaQuery } from '@mantine/hooks';
+import { Box, Tabs } from '@mantine/core';
 import { useRouter } from 'next/router';
 import { DashboardHeaderSearch } from './header/DashboardHeaderSearch';
 import { NavbarVertical } from './navbar/NavbarVertical';
 import useLayoutContext from '../../../hooks/useLayoutContext';
 import { useCookieContext } from '../../context/CookieContext';
-import { TabContextProvider, useTabContext } from '../../context/tab-context/TabContextProvider';
+import { useTabContext } from '../../context/tab-context/TabContextProvider';
 import { TAB_LIST_CONFIG } from '../../sections/@dashboard/dashboard_top/sections-in-tabs/tabList';
-import tabClasses from './tab.module.css';
-
-const useStyles = createStyles((theme /* _params, getRef */) => ({
-  pageContent: {
-    zIndex: 10,
-    // display: 'flex',
-    // alignItems: 'center',
-    paddingTop: 50,
-    [theme.fn.largerThan('md')]: {
-      paddingLeft: 300,
-    },
-  },
-}));
+import classes from './DashboardLayout.module.css';
 
 const DashboardLayout = ({ children }: { children: ReactNode }) => {
-  const { classes } = useStyles();
   const { setCurrentTab, currentTab } = useTabContext();
-  const theme = useMantineTheme();
   const { isOpen } = useLayoutContext();
-  const matches = useMediaQuery(`(max-width: ${theme.breakpoints.md}px)`);
-  const paddingSmOpen = isOpen && matches ? { paddingLeft: 300 } : {};
+
   const { currentSpace } = useCookieContext();
   const containerRef = useRef<HTMLDivElement>(null);
-  const bgColor = theme.colorScheme === 'dark' ? 'rgba(0,0,0,0.85)' : 'rgba(255,255,255,0.85)';
+  // const bgColor = theme.colorScheme === 'dark' ? 'rgba(0,0,0,0.85)' : 'rgba(255,255,255,0.85)';
   const router = useRouter();
   const section = router.pathname.split('/').pop();
   useEffect(() => {
@@ -54,41 +38,33 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
     setCurrentTab(section || '');
   }, [section]);
 
-  const handleChangeTab = (value: string) => {
+  const handleChangeTab = (value: string | null) => {
+    if (!value) return;
     setCurrentTab(value);
     router.push(`/dashboard/top/${value}`);
-    // if (section !== 'home') {
-    //   router.push('/dashboard/home');
-    // }
   };
 
   return (
     <Tabs
-      onTabChange={handleChangeTab}
+      // variant="pills"
+      onChange={handleChangeTab}
       keepMounted={false}
       defaultValue={TAB_LIST_CONFIG[0].value}
       value={currentTab}
     >
       <DashboardHeaderSearch />
       <Box
-        className={classes.pageContent}
-        style={paddingSmOpen}
         ref={containerRef}
-        sx={{
-          minHeight: '100vh',
+        className={`${classes.pageContent} ${classes.bg}`}
+        style={{
+          paddingTop: 55,
           backgroundImage: `url(${currentSpace?.image})`,
-          backgroundBlendMode: 'overlay',
-          backgroundColor: bgColor,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          // backgroundRepeat: 'no-repeat',
-          backgroundAttachment: 'fixed',
-          // minHeight: '100vh',
-          // set overlay color
         }}
       >
         <NavbarVertical />
-        <Box>{children}</Box>
+        <Box data-is-pen={isOpen} className={classes.contentWrapper}>
+          {children}
+        </Box>
       </Box>
     </Tabs>
   );

@@ -3,16 +3,16 @@ import { useCrudSelectors, useCrudSliceStore } from '../../src/redux/features/cr
 import { createLabelFromArrayStr } from '../../src/utils/helpers/helper-functions';
 import { Sections } from '../../src/types/general/data/sections-type';
 import {
-  FormFieldInterface,
   FormFieldTypes,
   SelectFormType,
-  SelectOption,
+  StaticSelectFormFieldType,
 } from '../../src/types/general/data/data-table/formField-types';
-import { SelectItem } from '@mantine/core';
 import { MongooseBaseModel } from '../../src/types/models/mongoose-base-model';
 // import { useCrudSlice } from '../redux-hooks/useCrudSlice';
 
-export const useGetSelectOptions = (formField: FormFieldTypes): Array<SelectItem | string> | [] => {
+export const useGetSelectOptions = (
+  formField: SelectFormType | StaticSelectFormFieldType
+): Array<{ value: string; label: string } | string> | [] => {
   // const options: Array<SelectOption> = [];
   // const [idleDocuments, setIdleDocuments] = useState<SelectOption[]>([]);
   /** fetch with query,  */

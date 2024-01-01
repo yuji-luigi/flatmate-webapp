@@ -1,16 +1,14 @@
-import { ActionIcon, Divider, Drawer, Indicator, Stack } from '@mantine/core';
-import React, { Fragment, useMemo } from 'react';
+import { ActionIcon, Indicator } from '@mantine/core';
+import React from 'react';
 import { useDisclosure } from '@mantine/hooks';
 import useSWR from 'swr';
 import { Icons } from '../../../../data/icons/icons';
-import { useCrudSelectors } from '../../../../redux/features/crud/crudSlice';
 
-import { MaintenanceModel } from '../../../../types/models/maintenance-model';
 import { NotificationDrawer } from './NotificationDrawer';
-import { CATEGORIES } from '../../../../components/list/notification-list/categories';
 import axiosInstance, { AxiosResDataGeneric } from '../../../../utils/axios-instance';
 import { _PATH_API } from '../../../../path/path-api';
 import { NotificationModel } from '../../../../types/models/notification-model';
+import { useCookieContext } from '../../../../context/CookieContext';
 
 const fetchNotifications = async () => {
   const res = await axiosInstance.get<AxiosResDataGeneric<NotificationModel[]>>(
@@ -21,7 +19,13 @@ const fetchNotifications = async () => {
 export const HeaderNotificationButton = () => {
   // todo: add Notification route in Api to get formatted data. (threads, maintenances, etc. in formatted way as notifications)
   // const { crudDocuments: maintenances } = useCrudSelectors<MaintenanceModel>('maintenances');
-  const { data } = useSWR(() => _PATH_API.notifications.root, fetchNotifications, {});
+  const { currentSpace, currentOrganization } = useCookieContext();
+
+  const { data } = useSWR(
+    () => [currentSpace, currentOrganization, _PATH_API.notifications.root],
+    fetchNotifications,
+    {}
+  );
   // const notifications = useMemo(() => {
   //   return maintenances.map((maintenance) => ({
   //     ...maintenance,
@@ -34,7 +38,7 @@ export const HeaderNotificationButton = () => {
 
   return (
     <>
-      <ActionIcon onClick={open}>
+      <ActionIcon variant="subtle" onClick={open}>
         <Indicator color="red" size={16} label={data?.length}>
           <Icons.bell />
         </Indicator>

@@ -30,10 +30,7 @@ const CrudPage = () => {
     if (!entity) {
       return;
     }
-    /** check if this is a childrenPage */
-    if (query.parentId) {
-      return;
-    }
+
     /** fetch all the entity if not childrenpage */
     fetchCrudDocumentsWithPagination({ entity, query: paginationQuery });
   }, [paginationQuery, entity, query.parentId]);

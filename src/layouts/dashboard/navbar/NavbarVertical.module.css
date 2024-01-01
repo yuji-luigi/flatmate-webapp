@@ -1,10 +1,82 @@
-.orgSpaceSelect {
+.navbar {
+  background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-6));
+  position: fixed;
+  height: rem(700px);
+  width: rem(300px);
+  padding: var(--mantine-spacing-md);
   display: flex;
   flex-direction: column;
+  border-right: rem(1px) solid light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
+  min-height: 100vh;
+  z-index: 100;
+  @media (max-width: $mantine-breakpoint-md) {
+    &[data-hidden='true'] {
+      display: none;
+    }
+    &[data-show='true'] {
+      display: flex;
+    }
+  }
+}
+
+.navbarMain {
+  flex: 1;
+}
+
+.header {
+  padding-bottom: var(--mantine-spacing-md);
+  margin-bottom: calc(var(--mantine-spacing-md) * 1.5);
+  border-bottom: rem(1px) solid light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
+}
+
+.footer {
+  padding-top: var(--mantine-spacing-md);
+  margin-top: var(--mantine-spacing-md);
+  border-top: rem(1px) solid light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
   width: 100%;
+  text-decoration: none;
+  font-size: var(--mantine-font-size-sm);
+  color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-dark-1));
+  padding: var(--mantine-spacing-xs) var(--mantine-spacing-sm);
+  border-radius: var(--mantine-radius-sm);
+  font-weight: 500;
+
+  @mixin hover {
+    background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-5));
+    color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
+
+    .linkIcon {
+      color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
+    }
+  }
+
+  &[data-active] {
+    &,
+    &:hover {
+      background-color: var(--mantine-color-blue-light);
+      color: var(--mantine-color-blue-light-color);
+
+      .linkIcon {
+        color: var(--mantine-color-blue-light-color);
+      }
+    }
+  }
+}
+
+.linkIcon {
+  color: light-dark(var(--mantine-color-gray-6), var(--mantine-color-dark-2));
+  margin-right: var(--mantine-spacing-sm);
+  width: rem(25px);
+  height: rem(25px);
 }
 .invBox {
-  display: none;
+  visibility: hidden;
   flex-direction: column;
   width: 100vw;
   height: 100vh;
@@ -13,18 +85,11 @@
   background-color: var(--bg-color-dark);
   opacity: 0;
   /* Add transition */
-  transition: opacity 0.3s ease;
-}
-
-.invBox.fadeIn {
-  display: flex;
-  position: fixed;
-  opacity: 0.7;
-}
-
-@media (min-width: 768px) {
-  .invBox {
-    /* display: none; */
-    z-index: 0;
+  transition: opacity 0.3s ease-in-out;
+  &[data-fadein='true'] {
+    visibility: visible;
+    display: flex;
+    position: fixed;
+    opacity: 0.7;
   }
 }

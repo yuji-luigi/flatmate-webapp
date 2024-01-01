@@ -1,5 +1,4 @@
 import React from 'react';
-import { CardArticleImageDescFooter } from '../../../components/card/CardArticleImageDescFooter';
 import { CardArticleSmall } from '../../../components/card/CardArticleSmall';
 import { CARD_LINK_PATH } from '../../../path/path-frontend';
 import { ThreadModel } from '../../../types/models/thread-model';
@@ -29,7 +28,7 @@ const PostList = ({ thread }: { thread: ThreadModel }) => {
           description={thread.description}
           author={thread.user}
           rating={'40' }
-          sx={{ width: 300 }}
+          style={{ width: 300 }}
         />
       )} */}
     </>

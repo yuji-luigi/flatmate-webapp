@@ -1,18 +1,4 @@
-import {
-  Card,
-  Image,
-  Text,
-  Badge,
-  Button,
-  Group,
-  Stack,
-  Avatar,
-  Box,
-  createStyles,
-  rem,
-  Tooltip,
-  Sx,
-} from '@mantine/core';
+import { Card, Text, Badge, Group, Stack, Avatar, MantineStyleProp } from '@mantine/core';
 import Link from 'next/link';
 import { Icons } from '../../data/icons/icons';
 import { IMAGES_ARRAY, PATH_IMAGE } from '../../lib/image-paths';
@@ -21,21 +7,7 @@ import { Sections } from '../../types/general/data/sections-type';
 import TextWithIcon from '../text/TextWithIcon';
 import BadgeWithToolTip from '../text/BadgeWithToolTip';
 import { UploadModel } from '../../types/models/upload-model';
-
-const useStyles = createStyles((theme) => ({
-  card: {
-    backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
-  },
-  address: {
-    cursor: 'pointer',
-  },
-  avatar: {
-    border: `${rem(4)} solid ${theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white}`,
-  },
-  pinIcon: {
-    marginRight: -4,
-  },
-}));
+import classes from './CardMaintainer.module.css';
 
 const ICON_SIZE = 16;
 
@@ -52,31 +24,22 @@ export interface UserCardData {
   active?: boolean;
   badges?: string[];
   badgeIcon?: JSX.Element;
-  badgeSx?: Sx;
+  badgestyle?: MantineStyleProp;
 }
 
 export function CardMaintainer({ data, entity }: { data: UserCardData; entity: Sections }) {
-  const { classes, theme } = useStyles();
-  const dark = theme.colorScheme === 'dark';
   return (
     <Card
+      className={classes.card}
       component={Link}
       href={`${entity}/detail/${data.slug}`}
-      shadow="sm"
-      padding="lg"
-      radius="md"
+      // shadow="sm"
+      // padding="lg"
+      // radius="md"
       withBorder
-      sx={{
-        cursor: 'pointer',
-        // onhover shadow
-        '&:hover': {
-          backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.white,
-          boxShadow: '0 0 0 1px rgba(0, 0, 0, 0.1), 0 4px 12px rgba(0, 0, 0, 0.1)',
-        },
-      }}
     >
       <Card.Section
-        sx={{
+        style={{
           backgroundImage: `url(${data.cover?.url || PATH_IMAGE.flatmateLogo1})`,
           height: 140,
           backgroundPosition: 'center',
@@ -94,19 +57,19 @@ export function CardMaintainer({ data, entity }: { data: UserCardData; entity: S
         mt={-40}
         className={classes.avatar}
       />
-      <Group position="right" align="center">
+      <Group justify="right" align="center">
         <Badge
           color="pink"
           variant="light"
-          sx={{ position: 'absolute', transform: 'translate(0, -24px)' }}
+          style={{ position: 'absolute', transform: 'translate(0, -24px)' }}
         >
           {data.type}
         </Badge>
       </Group>
 
-      <Stack spacing={4}>
+      <Stack gap={4}>
         {data.name && (
-          <Text size="lg" weight={800}>
+          <Text size="lg" fw={800}>
             {data.name}
           </Text>
         )}
@@ -117,14 +80,14 @@ export function CardMaintainer({ data, entity }: { data: UserCardData; entity: S
 
         {data.email && (
           <TextWithIcon
-            sx={{ marginBottom: 4 }}
+            style={{ marginBottom: 4 }}
             icon={<Icons.mail size={ICON_SIZE} />}
             text={data.email}
           />
         )}
         {data.address && (
           <TextWithIcon
-            sx={{ marginBottom: 4 }}
+            style={{ marginBottom: 4 }}
             icon={<Icons.mapPin size={ICON_SIZE} />}
             text={data.address}
           />
@@ -137,7 +100,7 @@ export function CardMaintainer({ data, entity }: { data: UserCardData; entity: S
               icon={data.badgeIcon}
               text={badge || 'add address'}
               disabled={!badge}
-              sx={{ ...data.badgeSx }}
+              style={{ ...data.badgestyle }}
             />
           ))}
         </Group>

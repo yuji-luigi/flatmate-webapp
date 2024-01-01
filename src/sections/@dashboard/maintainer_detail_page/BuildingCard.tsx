@@ -1,10 +1,10 @@
 import React from 'react';
+import { Skeleton, Text } from '@mantine/core';
+import { get } from 'http';
 import CardWithTitle from '../../../components/profile/side/CardWithTitle';
 import TextWithIcon from '../../../components/text/TextWithIcon';
 import { ICON_SIZES, Icons } from '../../../data/icons/icons';
 import { useCrudSelectors } from '../../../redux/features/crud/crudSlice';
-import { Skeleton, Text } from '@mantine/core';
-import { get } from 'http';
 import { getEntityFromUrl } from '../../../utils/helpers/helper-functions';
 import { Sections } from '../../../types/general/data/sections-type';
 import { SpaceModel } from '../../../types/models/space-model';

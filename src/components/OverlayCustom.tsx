@@ -1,25 +1,25 @@
-import { Box, Stack, StyleProperty, Sx } from '@mantine/core';
-import React from 'react';
+import { Box, MantineStyleProp, Stack } from '@mantine/core';
+import React, { CSSProperties } from 'react';
 
 interface OverlayProps {
   children: React.ReactNode;
   icon?: React.ReactNode;
-  sx?: Sx;
-  sxOverlay?: Sx;
+  styleOverlay?: CSSProperties;
+  style: MantineStyleProp;
   onClick?: () => void;
 }
 
-const OverlayCustom = ({ children, icon, sx, sxOverlay, onClick }: OverlayProps) => {
+const OverlayCustom = ({ children, icon, style, styleOverlay, onClick }: OverlayProps) => {
   return (
     <Stack
-      sx={{
+      style={{
         position: 'relative',
         transition: '0.3s',
         flexDirection: 'row',
       }}
     >
       <Box
-        sx={{
+        style={{
           display: 'flex',
           opacity: 0,
           justifyContent: 'center',
@@ -29,7 +29,7 @@ const OverlayCustom = ({ children, icon, sx, sxOverlay, onClick }: OverlayProps)
           height: '100%',
           transition: '0.3s',
           cursor: 'pointer',
-          ...sx,
+          ...style,
           '&:hover': {
             display: 'flex',
             justifyContent: 'center',
@@ -39,7 +39,7 @@ const OverlayCustom = ({ children, icon, sx, sxOverlay, onClick }: OverlayProps)
             opacity: 0.5,
             transition: '0.3s',
             color: 'white',
-            ...sxOverlay,
+            ...styleOverlay,
           },
         }}
         onClick={onClick}

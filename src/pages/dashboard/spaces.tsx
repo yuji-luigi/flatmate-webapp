@@ -17,10 +17,10 @@ const HeadSpaceTable = () => {
   const { currentSpace } = useCookieContext();
   const { fetchCrudDocumentsWithPagination } = useCrudSliceStore();
   useEffect(() => {
-    if (currentSpace) {
-      router.push(`${PATH_CLIENT.childrenSpace}/${currentSpace._id}`);
-      return;
-    }
+    // if (currentSpace) {
+    //   router.push(`${PATH_CLIENT.childrenSpace}/${currentSpace._id}`);
+    //   return;
+    // }
     // router.push(PATH_CLIENT.enterSpace)
     fetchCrudDocumentsWithPagination({ entity, query: '?isMain=true' });
   }, [entity, currentSpace?._id]); // include parentId: string | undefined to update on change page

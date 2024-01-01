@@ -1,0 +1,46 @@
+.formContainer {
+  justify-content: start;
+  margin-block: var(--mantine-spacing-md);
+  @media (max-width: $mantine-breakpoint-sm) {
+    max-width: 350px;
+  }
+}
+
+.transitionDiv {
+  width: 100%;
+  &[data-show='false'] {
+    display: none;
+  }
+}
+
+.card {
+  padding-block: 32px;
+  padding-inline: 40px;
+}
+.buttonContainer {
+  width: 100%;
+}
+.button {
+  flex: 1;
+  @media (max-width: $mantine-breakpoint-sm) {
+    width: 100%;
+    flex: unset;
+  }
+}
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: center;
+  height: 100%;
+}
+/* .stepButtons {
+  @media (max-width: $mantine-breakpoint-sm) {
+    max-width: 350px;
+  }
+} */
+
+.sumCard {
+  width: 100%;
+}

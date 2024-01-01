@@ -58,7 +58,7 @@ export const QrCodeModalContent = ({
   return (
     <>
       {qrCodeView}
-      <Stack spacing={16} px={80} mt={24}>
+      <Stack gap={16} px={80} mt={24}>
         <Button onClick={sendEmailToUser}>{sendText}</Button>
         <Button variant="outline">Back</Button>
         <LoadingOverlay visible={isLoading} />

@@ -14,6 +14,7 @@ import {
 } from '../types/context/auth/useAuth';
 import { isValidToken, setSession } from '../utils/jwt';
 import { useCookieContext } from './CookieContext';
+import { UserModel } from '../types/models/user-model';
 
 const initialState: JWTContextState = {
   isAuthenticated: false,
@@ -41,6 +42,7 @@ const handlers: JWTContextHandlers = {
       isSuperAdmin: user?.role === 'super_admin',
     };
   },
+
   LOGOUT: (state) => ({
     ...state,
     isAuthenticated: false,
@@ -64,39 +66,46 @@ const reducer = (state: JWTContextState, action: JWTContextReducerAction) =>
 const AuthContext = createContext<AuthContextInterface>({
   ...initialState,
   method: 'jwt',
-  login: () => Promise.resolve(),
   logout: () => Promise.resolve(),
+  login: () => Promise.resolve(),
   register: () => Promise.resolve(),
 });
 
-function AuthProvider({ children }: { children: ReactNode }) {
-  const [state, dispatch] = useReducer(reducer, initialState);
+function AuthProvider({ children, initialUser }: { children: ReactNode; initialUser?: UserModel }) {
+  const [state, dispatch] = useReducer(reducer, {
+    ...initialState,
+    user: initialUser,
+    isAuthenticated: !!initialUser,
+    isInitialized: !!initialUser,
+  });
   useEffect(() => {
     const initialize = async () => {
       try {
-        const accessToken =
-          typeof window !== 'undefined' ? localStorage.getItem('accessToken') : '';
+        if (state.isInitialized) return;
 
-        if (accessToken && isValidToken(accessToken)) {
-          setSession(accessToken);
-          const response = await axiosInstance.get(PATH_AUTH.me, { withCredentials: true });
-          const { user } = response.data;
-          dispatch({
-            type: 'INITIALIZE',
-            payload: {
-              isAuthenticated: true,
-              user,
-            },
-          });
-        } else {
-          dispatch({
-            type: 'INITIALIZE',
-            payload: {
-              isAuthenticated: false,
-              user: null,
-            },
-          });
-        }
+        // const accessToken =
+        //   typeof window !== 'undefined' ? localStorage.getItem('accessToken') : '';
+
+        // if (accessToken && isValidToken(accessToken)) {
+        //   setSession(accessToken);
+        const response = await axiosInstance.get(PATH_AUTH.me, { withCredentials: true });
+        const { user } = response.data;
+        dispatch({
+          type: 'INITIALIZE',
+          payload: {
+            isAuthenticated: true,
+            user,
+          },
+        });
+        // } else {
+        //   dispatch({
+        //     type: 'INITIALIZE',
+        //     payload: {
+        //       isAuthenticated: false,
+        //       user: null,
+        //     },
+        //   });
+        // }
       } catch (error) {
         dispatch({
           type: 'INITIALIZE',

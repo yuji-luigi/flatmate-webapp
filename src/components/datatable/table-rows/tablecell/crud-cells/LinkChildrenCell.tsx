@@ -1,10 +1,7 @@
 import { Group, Text } from '@mantine/core';
 import Link from 'next/link';
 import React from 'react';
-import {
-  FormFieldInterface,
-  LinkChildrenFormFieldType,
-} from '../../../../../types/general/data/data-table/formField-types';
+import { LinkChildrenFormFieldType } from '../../../../../types/general/data/data-table/formField-types';
 
 const LinkChildrenCell = ({
   cellConfig,
@@ -17,9 +14,9 @@ const LinkChildrenCell = ({
 }) => {
   const href = `${cellConfig.linkRoot || ''}/${rowData[cellConfig.linkKey] || ''}`;
   return (
-    <Group spacing="sm">
+    <Group gap="sm">
       <Link href={href}>
-        <Text size="sm" weight={500}>
+        <Text size="sm" fw={500}>
           {cellValue}
         </Text>
       </Link>

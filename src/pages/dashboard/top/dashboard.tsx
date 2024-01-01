@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect } from 'react';
 import { Box } from '@mantine/core';
 import router from 'next/router';
 import Layout from '../../../layouts';
-import DashboardSection from '../../../sections/@dashboard/dashboard_top/sections-in-tabs/stats-home/DashboardTopSection';
+import DashboardSection from '../../../sections/@dashboard/dashboard_top/sections-in-tabs/dashboard/DashboardTopSection';
 import classes from './dashboardTop.module.css';
 import axiosInstance from '../../../utils/axios-instance';
 import { useCookieContext } from '../../../context/CookieContext';
@@ -15,9 +15,11 @@ const DashboardPage = () => {
   useEffect(() => {
     handleSectionData();
   }, [currentOrganization, currentSpace]);
+
   const handleSectionData = async () => {
     const rawRes = await axiosInstance.get(`${process.env.NEXT_PUBLIC_API_URL}/home`);
-    const { space, maintainers, maintenances, threads, homeStatics } = rawRes.data.data || [];
+    const { space, maintainers, maintenances, threads, statistics } = rawRes.data.data || [];
+    setCrudDocument({ entity: 'statistics', document: statistics });
     setCrudDocument({ entity: 'spaces', document: space });
     setCrudDocuments({ entity: 'maintainers', documents: maintainers });
     setCrudDocuments({ entity: 'maintenances', documents: maintenances });

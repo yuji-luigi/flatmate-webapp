@@ -1,23 +1,15 @@
 import React from 'react';
-import { Box, createStyles } from '@mantine/core';
-import useSWR from 'swr';
-import { current } from '@reduxjs/toolkit';
-import { CardMaintainer, UserCardData } from '../../../components/card/CardMaintainer';
-import { PATH_IMAGE } from '../../../lib/image-paths';
+import { Box } from '@mantine/core';
+import { CardMaintainer } from '../../../components/card/CardMaintainer';
 import { Sections } from '../../../types/general/data/sections-type';
 import { useCrudSelectors } from '../../../redux/features/crud/crudSlice';
-import { useCookieContext } from '../../../context/CookieContext';
-import { fetchSpaceSelections } from '../../../pages/choose-root-space';
 import useAuth from '../../../../hooks/useAuth';
-import { Icons } from '../../../data/icons/icons';
-import { QueryFilterToApi } from '../../../components/datatable/filter/QueryFilterToApi';
 import { maintainersTableData } from '../../../../json/dataTable/formfields/maintainersTableData';
-import { QueryFilterWeb } from '../../../components/datatable/filter/QueryFilterWeb';
 import { filterList } from '../../../components/datatable/filter/logic/applyFilter';
 import useTable, { getComparator } from '../../../../hooks/useTable';
 import { useFilter } from '../../../../hooks/useFilter';
 import { SpaceModel } from '../../../types/models/space-model';
-
+import classes from './MaintainerList.module.css';
 /**
  * 1. fetch all the maintainers from database with redux.
  * 2. display all the maintainers in a card grid.
@@ -36,22 +28,7 @@ import { SpaceModel } from '../../../types/models/space-model';
  * @returns
  */
 
-const useStyles = createStyles((theme) => ({
-  pinContainer: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fill, 300px)',
-    gridAutoRows: 'minmax(50px, auto)',
-    justifyContent: 'start',
-    gap: 24,
-  },
-  QueryFilterToApi: {
-    gridColumn: '1 / -1', // This makes it span across all columns.
-    // height: 'px', // Or you can use 'min-content', 'max-content' or any other valid value.
-  },
-}));
-
 const MaintainerList = ({ entity }: { entity: Sections }) => {
-  const { classes, cx, theme } = useStyles();
   const { user } = useAuth();
   const { crudDocuments } = useCrudSelectors(entity);
   const { filters } = useFilter();
@@ -72,7 +49,7 @@ const MaintainerList = ({ entity }: { entity: Sections }) => {
     <>
       <Box
         className={classes.pinContainer}
-        /* cols={2} breakpoints={[{ maxWidth: 'sm', cols: 1 }]} */
+        /* cols={2} breakpoints={[{ max-width: 'sm', cols: 1 }]} */
       >
         {/* <QueryFilterWeb
           entity={entity}
@@ -96,7 +73,7 @@ const MaintainerList = ({ entity }: { entity: Sections }) => {
                 slug: maintainer.slug,
                 // badgeIcon: <Icons.check />,
                 badges: badge,
-                badgeSx: { paddingBlock: 8, maxWidth: 100 },
+                badgestyle: { paddingBlock: 8, maxWidth: 100 },
                 avatar: maintainer.avatar,
                 cover: maintainer.cover,
                 type: maintainer.type,

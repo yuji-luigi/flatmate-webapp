@@ -32,13 +32,12 @@ function LoginForm() {
       resetCurrentSpace();
       setCurrentOrganization(null);
       await login(values.email, values.password);
-      // router.push(PATH_CLIENT.chooseRootSpace);
+      router.push(PATH_CLIENT.chooseRootSpace);
       // return null;
     } catch (error: any) {
       notifications.show({
         title: 'Error',
         color: 'red',
-        // eslint-disable-next-line react/jsx-pascal-case
         icon: <Icons.alert />,
         message: error.message || error || 'connection error',
         autoClose: 2000,

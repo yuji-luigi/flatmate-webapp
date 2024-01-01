@@ -8,10 +8,9 @@ interface Prop {
   form: UseFormReturnTypeCustom;
 }
 const CrudTextArea = ({ formField, form, ...others }: Prop) => {
+  const { ...otherFormField } = formField;
   return (
     <Textarea
-      // name={formField.name}
-      // label={formField.label}
       placeholder={formField.placeholder}
       size="md"
       mt={10}

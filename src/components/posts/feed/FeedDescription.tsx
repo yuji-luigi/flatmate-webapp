@@ -40,7 +40,7 @@ export const FeedDescription = (props: FeedDescriptionProps) => {
   return (
     <Box className={`${className} `}>
       <Text>{_description}</Text>
-      <Text align="end">{!showFullText && link}</Text>
+      <Text ta="end">{!showFullText && link}</Text>
     </Box>
   );
 };

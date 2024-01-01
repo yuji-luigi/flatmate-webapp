@@ -1,25 +1,26 @@
-import { ColorScheme, ColorSchemeProvider, MantineProvider } from '@mantine/core';
+import '@mantine/core/styles.css';
+import '@mantine/notifications/styles.css';
+import '@mantine/dates/styles.css';
+import { MantineProvider } from '@mantine/core';
 import { Notifications } from '@mantine/notifications';
-import { getCookie, setCookie } from 'cookies-next';
+import { getCookie } from 'cookies-next';
 import { GetServerSidePropsContext, NextPage } from 'next';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
-import { ReactElement, ReactNode, useState } from 'react';
+import { ReactElement, ReactNode } from 'react';
 import { Provider as ReduxProvider } from 'react-redux';
 import { appWithTranslation } from 'next-i18next';
 import { DashboardLayoutContextProvider } from '../context/DashboardLayoutContext';
 import { DrawerContextProvider } from '../context/DataTableDrawerContext';
 import { AuthProvider } from '../context/JWTContext';
 import { PaginationContextProvider } from '../context/PaginationContext';
-import { myColors } from '../lib/custom-colors';
 import reduxStore from '../redux/store';
 // import { CurrentSpaceContextProvider } from '../context/CurrentSpaceContext';
-import { CookieContextProvider } from '../context/CookieContext';
 import { FilterContextProvider } from '../context/FilterContext';
 import { _ModalContextProvider } from '../context/modal-context/_ModalContext';
 import '../styles/global.css';
 import { ModalRootCustom } from '../context/modal-context/ModalRootCustom';
-import { CardOverride } from '../overrides/CardOverrides';
+import { components } from '../overrides';
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -28,15 +29,8 @@ export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };
-function App(props: AppProps & { colorScheme: ColorScheme }) {
+function App(props: AppProps) {
   const { Component, pageProps }: AppPropsWithLayout = props;
-  const [colorScheme, setColorScheme] = useState<ColorScheme>(props.colorScheme);
-
-  const toggleColorScheme = (value?: ColorScheme) => {
-    const nextColorScheme = value || (colorScheme === 'dark' ? 'dark' : 'light');
-    setColorScheme(nextColorScheme);
-    setCookie('mantine-color-scheme', nextColorScheme, { maxAge: 60 * 60 * 24 * 30 });
-  };
   const getLayout = Component.getLayout ?? ((page) => page);
 
   return (
@@ -52,46 +46,41 @@ function App(props: AppProps & { colorScheme: ColorScheme }) {
         <meta name="theme-color" content="#ffffff" />
       </Head>
 
-      <AuthProvider>
+      <AuthProvider initialUser={pageProps.initialUser}>
         <ReduxProvider store={reduxStore}>
-          <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
-            <MantineProvider
-              theme={{
-                // colors: myColors,
-                primaryColor: 'yellow',
-                // Default gradient used in components that support `variant="gradient"` (Button, ThemeIcon, etc.)
-                defaultGradient: { deg: 45, from: 'yellow', to: 'gold' }, // primaryColor: 'sw-dark-blue',
-                colorScheme,
-                fontFamily: 'Lato, sans-serif',
-                components: {
-                  Card: CardOverride(colorScheme),
-                },
-              }}
-              withGlobalStyles
-              withNormalizeCSS
-            >
-              <DashboardLayoutContextProvider>
-                <PaginationContextProvider>
-                  <DrawerContextProvider>
-                    <_ModalContextProvider>
-                      <FilterContextProvider>
-                        <Notifications />
-                        {getLayout(<Component {...pageProps} />)}
-                        <ModalRootCustom />
-                      </FilterContextProvider>
-                    </_ModalContextProvider>
-                  </DrawerContextProvider>
-                </PaginationContextProvider>
-              </DashboardLayoutContextProvider>
-            </MantineProvider>
-          </ColorSchemeProvider>
+          <MantineProvider
+            defaultColorScheme="dark"
+            theme={{
+              // colors: myColors,
+              primaryColor: 'yellow',
+              // Default gradient used in components that support `variant="gradient"` (Button, ThemeIcon, etc.)
+              defaultGradient: { deg: 45, from: 'yellow', to: 'gold' }, // primaryColor: 'sw-dark-blue',
+              fontFamily: 'Lato, sans-serif',
+              components,
+            }}
+            // withGlobalStyles
+            // cssVariablesResolver
+            withCssVariables
+            // withNormalizeCSS
+          >
+            <DashboardLayoutContextProvider>
+              <PaginationContextProvider>
+                <DrawerContextProvider>
+                  <_ModalContextProvider>
+                    <FilterContextProvider>
+                      <Notifications />
+                      {getLayout(<Component {...pageProps} />)}
+                      <ModalRootCustom />
+                    </FilterContextProvider>
+                  </_ModalContextProvider>
+                </DrawerContextProvider>
+              </PaginationContextProvider>
+            </DashboardLayoutContextProvider>
+          </MantineProvider>
         </ReduxProvider>
       </AuthProvider>
     </>
   );
 }
 
-App.getInitialProps = ({ ctx }: { ctx: GetServerSidePropsContext }) => ({
-  colorScheme: getCookie('mantine-color-scheme', ctx) || 'dark',
-});
 export default appWithTranslation(App);

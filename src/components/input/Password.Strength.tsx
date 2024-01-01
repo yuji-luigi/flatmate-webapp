@@ -42,7 +42,10 @@ export function PasswordStrength({ formControl }: { formControl: any }) {
     .fill(0)
     .map((_, index) => (
       <Progress
-        styles={{ bar: { transitionDuration: '0ms' } }}
+        styles={{
+          // was bar
+          section: { transitionDuration: '0ms' },
+        }}
         value={
           value.length > 0 && index === 0 ? 100 : strength >= ((index + 1) / 4) * 100 ? 100 : 0
         }
@@ -63,7 +66,7 @@ export function PasswordStrength({ formControl }: { formControl: any }) {
         required
       />
 
-      <Group spacing={5} grow mt="xs" mb="md">
+      <Group gap={5} grow mt="xs" mb="md">
         {bars}
       </Group>
 

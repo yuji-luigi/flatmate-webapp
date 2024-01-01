@@ -1,8 +1,5 @@
 import { Filters } from '../../../../types/context/filter-context.';
-import {
-  FormFieldInterface,
-  FormFieldTypes,
-} from '../../../../types/general/data/data-table/formField-types';
+import { FormFieldTypes } from '../../../../types/general/data/data-table/formField-types';
 
 type FilterListArgs = {
   list: any[];
@@ -11,6 +8,7 @@ type FilterListArgs = {
   comparator: (a: any, b: any) => number;
 };
 export function filterList({ list, filters, formFields, comparator }: FilterListArgs) {
+  let _list = structuredClone(list);
   const { selectFilters, textFilter, dateFilters, booleanFilters } = filters;
   // corresponds to condition in CrudTableToolBar
   // const selectSearchField = formFields.filter(
@@ -27,7 +25,7 @@ export function filterList({ list, filters, formFields, comparator }: FilterList
   // const booleanSearchField = formFields.filter(
   //   (field) => field.type === 'checkbox-group' && field.filterSearch
   // );
-  const stabilizedThis = list.map((el, index) => [el, index]);
+  const stabilizedThis = _list.map((el, index) => [el, index]);
 
   stabilizedThis.sort((a, b) => {
     const order = comparator(a[0], b[0]);
@@ -35,7 +33,7 @@ export function filterList({ list, filters, formFields, comparator }: FilterList
     return a[1] - b[1];
   });
 
-  list = stabilizedThis.map((el) => el[0]);
+  _list = stabilizedThis.map((el) => el[0]);
 
   /*
       Textfilter is inputText by user.
@@ -44,7 +42,7 @@ export function filterList({ list, filters, formFields, comparator }: FilterList
   */
   if (textFilter) {
     // This filter can be done by formfield formFields
-    list = list.filter(
+    _list = _list.filter(
       (item) =>
         textSearchField.some(
           (name) => {
@@ -58,10 +56,10 @@ export function filterList({ list, filters, formFields, comparator }: FilterList
       // const flatWorksites = item[entity].map(obj => obj.name.toLowerCase()).flat();
     );
   }
-  if (list.length === 0) return list;
+  if (_list.length === 0) return _list;
 
   if (/* selectSearchField && */ selectFilters.length) {
-    list = list.filter((item) =>
+    _list = _list.filter((item) =>
       selectFilters.every((filter) => {
         // filterSelect value is all then returns true. show all select of the entity
         if (!filter.value) return true;
@@ -76,7 +74,7 @@ export function filterList({ list, filters, formFields, comparator }: FilterList
     );
   }
   if (/* booleanSearchField && */ booleanFilters.length) {
-    list = list.filter((item) => {
+    _list = _list.filter((item) => {
       return booleanFilters.every((booleanFilter) => {
         return item[booleanFilter.field] === booleanFilter.value;
       });
@@ -85,7 +83,7 @@ export function filterList({ list, filters, formFields, comparator }: FilterList
   if (dateSearchField /*  && selectFilters.length */) {
     /*
       for reference
-       list = {
+       _list = {
           name: 'some name',
           dateExpected: 22/3/2022,
        }
@@ -114,12 +112,12 @@ export function filterList({ list, filters, formFields, comparator }: FilterList
           }
       ]
        */
-    //   list = list.filter((item) =>
+    //   _list = _list.filter((item) =>
     //     dateFilters.every((filter) => {
     //       // filterSelect value is all then returns true. show all select of the entity
     //       if (filter.value === 'all') return true;
     //       // check the same input name as dateFilter.inputName
-    //       // same one needs to compare the value of the datepicker and list value,
+    //       // same one needs to compare the value of the datepicker and _list value,
     //       // check the condition of the value
     //       // if the value matches according to the condition given in the formFields(need to specify in the formFields ex: same, gt, lt)
     //       let dataCompare = item[filter.inputName];
@@ -132,5 +130,5 @@ export function filterList({ list, filters, formFields, comparator }: FilterList
     //   );
   }
 
-  return list;
+  return _list;
 }

@@ -33,7 +33,7 @@ const LogosDiffer = ({ title }: { title: string }) => {
     <Box ref={containerRef}>
       <Box
         className={isVisible ? classes.show : classes.hide}
-        sx={{
+        style={{
           display: 'grid',
           placeItems: 'center',
           alignContent: 'center',

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { Table } from '@mantine/core';
 import { ActionCells } from './ActionCells';
 // import { useCrudSlice } from '../../../../hooks/redux-hooks/useCrudSlice';
 import { TableCellDecorator } from '../TableCellDecorator';
@@ -35,21 +36,21 @@ export function CrudTableRow({
     []
   );
   return (
-    <tr key={rowData._id}>
+    <Table.Tr key={rowData._id}>
       {/*
           Regular cells defined here
       */}
       {sectionFormFields.map((cellConfig) =>
         cellConfig.noTable ? null : (
-          <td key={cellConfig.id}>
+          <Table.Td key={cellConfig.id}>
             <TableCellDecorator cellConfig={cellConfig} rowData={rowData} />
-          </td>
+          </Table.Td>
         )
       )}
       {/*
           Action cells defined here(modify, delete button)
       */}
       <ActionCells rowData={rowData} overridingEntity={entity} />
-    </tr>
+    </Table.Tr>
   );
 }

@@ -1,25 +1,11 @@
-import {
-  ActionIcon,
-  Avatar,
-  Box,
-  Button,
-  Card,
-  Divider,
-  Group,
-  Paper,
-  Stack,
-  Text,
-} from '@mantine/core';
+import { ActionIcon, Box, Group, Stack, Text } from '@mantine/core';
 import React from 'react';
-import { UserInfoIcons } from '../../../../components/card/UserInfoIcons';
 import { SpaceSettingMaintainerCard } from './SpaceSettingMaintainerCard';
 import { PaperWithTitle } from '../../../../components/paper/PaperWithTitle';
 import { MaintainerModel } from '../../../../types/models/maintainer-model';
 import { MAINTAINER_TYPES } from '../../../../lib/enums';
 import { NoMaintainerCard } from './NoMaintainerCard';
 import { Icons } from '../../../../data/icons/icons';
-import Link from 'next/link';
-import { PATH_CLIENT } from '../../../../path/path-frontend';
 
 export const SpaceSettingMaintainersSection = ({
   maintainers,
@@ -51,7 +37,7 @@ export const SpaceSettingMaintainersSection = ({
             <Icons.plus />
           </ActionIcon>
         </Group>
-        <Stack sx={{ gap: 12 }}>
+        <Stack style={{ gap: 12 }}>
           {maintainersByType[type]?.map((maintainer) => (
             <SpaceSettingMaintainerCard maintainer={maintainer} />
           )) || <NoMaintainerCard type={type} />}
@@ -60,8 +46,8 @@ export const SpaceSettingMaintainersSection = ({
     );
   });
   return (
-    <PaperWithTitle title="Maintainers of the building/space" sx={{ marginBottom: 20 }}>
-      <Stack sx={{ gap: 32 }}>{list}</Stack>
+    <PaperWithTitle title="Maintainers of the building/space" style={{ marginBottom: 20 }}>
+      <Stack style={{ gap: 32 }}>{list}</Stack>
     </PaperWithTitle>
   );
 };

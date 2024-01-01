@@ -16,9 +16,9 @@ export function SpecificTableCell({
     return (
       <>
         {cellConfig.cellType === 'link-children' && (
-          <Group spacing="sm">
+          <Group gap="sm">
             <Link href={href || ''}>
-              <Text size="sm" weight={500}>
+              <Text size="sm" fw={500}>
                 {cellValue}
               </Text>
             </Link>

@@ -13,6 +13,7 @@ import { SectionDataJsonWithRoles } from '../../../types/general/data/data-table
 import { useSimpleDisclosureCtx } from '../../../../hooks/useSimpleDisclosureCtx';
 import { ModalType } from '../../../types/modal/modal-context-type';
 import { HeaderCreationModal } from './HeaderCreationModal';
+import classes from './HeaderCreationButton.module.css';
 
 export function HeaderCreationButton() {
   // const [opened, { open, close }] = useDisclosure(false);
@@ -43,29 +44,29 @@ export function HeaderCreationButton() {
     <>
       <Menu shadow="lg">
         <Menu.Target>
-          <ActionIcon variant="outline" size={18}>
+          <ActionIcon className={classes.icon} variant="gradient">
             <Icons.plus />
           </ActionIcon>
         </Menu.Target>
         <Menu.Dropdown>
-          <Menu.Label sx={{ textAlign: 'center' }}>Create something</Menu.Label>
+          <Menu.Label style={{ textAlign: 'center' }}>Create something</Menu.Label>
           <Menu.Item
             onClick={() => handleOpenModal('threads')}
-            sx={{ fontSize: FONT_SIZES.menuItems }}
-            icon={<Icons.article size={FONT_SIZES.menuItems} />}
+            style={{ fontSize: FONT_SIZES.menuItems }}
+            leftSection={<Icons.article size={FONT_SIZES.menuItems} />}
           >
             New post
           </Menu.Item>
           <Menu.Item
-            sx={{ fontSize: FONT_SIZES.menuItems }}
+            style={{ fontSize: FONT_SIZES.menuItems }}
             onClick={() => handleOpenModal('maintenances')}
-            icon={<Icons.maintenance size={FONT_SIZES.menuItems} />}
+            leftSection={<Icons.maintenance size={FONT_SIZES.menuItems} />}
           >
             Add maintenance
           </Menu.Item>
           <Menu.Item
-            sx={{ fontSize: FONT_SIZES.menuItems }}
-            icon={<Icons.messageDots size={FONT_SIZES.menuItems} />}
+            style={{ fontSize: FONT_SIZES.menuItems }}
+            leftSection={<Icons.messageDots size={FONT_SIZES.menuItems} />}
           >
             Send message
           </Menu.Item>

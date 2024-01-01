@@ -1,26 +1,36 @@
-import { Table, ScrollArea, Divider, Box } from '@mantine/core';
+import { Table, ScrollArea, Divider, Box, Card } from '@mantine/core';
 
-import StaticTableHeader from './table-rows/StaticTableHeader';
+import StaticTableHeader from './header/StaticTableHeader';
 import { StaticTableRow } from './table-rows/StaticTableRow';
-import classes from './StaticDataTable.module.css';
+import classes from './DataTable.module.css';
+import { QueryFilterWeb } from './filter/QueryFilterWeb';
 
-export function StaticDataTable({ json, data }: { json: any[]; data: any[] }) {
+export function StaticDataTable({
+  json,
+  data,
+  withFilter,
+}: {
+  json: any[];
+  data: any[];
+  withFilter?: boolean;
+}) {
   // const TOTAL = Math.ceil(users.length / ROWS_PER_PAGE);
   // const { classes } = dashboardStyle();
   return (
-    <Box>
-      <ScrollArea>
+    <Card>
+      {withFilter && <QueryFilterWeb formFields={json} />}
+      <Table.ScrollContainer minWidth={800}>
         <Table className={classes.table} highlightOnHover>
           <StaticTableHeader json={json} />
 
-          <tbody>
+          <Table.Tbody>
             {data?.map((rowData) => (
               <StaticTableRow key={rowData._id} sectionFormFields={json} rowData={rowData} />
             ))}
-          </tbody>
+          </Table.Tbody>
         </Table>
-        <Divider sx={{ marginBottom: 20 }} />
-      </ScrollArea>
-    </Box>
+        <Divider style={{ marginBottom: 20 }} />
+      </Table.ScrollContainer>
+    </Card>
   );
 }

@@ -54,6 +54,9 @@ import {
   IconClockStop as clockStop,
   IconReportAnalytics as reportAnalytics,
   IconBell as bell,
+  IconColumns as columns,
+  IconTable as table,
+  IconCalendar as calendar,
 } from '@tabler/icons-react';
 /**
  * use the key name same as the slice name
@@ -113,6 +116,9 @@ export const Icons = {
   clockStop,
   reportAnalytics,
   bell,
+  columns,
+  table,
+  calendar,
 } as const;
 export const ICON_SIZES = {
   textTile: 16,

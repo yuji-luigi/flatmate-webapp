@@ -1,91 +1,42 @@
 import React from 'react';
-import { Card, Avatar, Text, Box, Group, createStyles, Sx } from '@mantine/core';
-import { RADIUS } from '../../styles/global-useStyles';
+import {
+  Card,
+  Avatar,
+  Text,
+  Box,
+  Group,
+  MantineStyleProp,
+  useMantineColorScheme,
+} from '@mantine/core';
 import { UploadModel } from '../../types/models/upload-model';
+import classes from './ProfileCoverGeneric.module.css';
 
-const useStyles = createStyles(() => ({
-  card: {
-    flex: 3,
-    borderRadius: RADIUS.CARD,
-    position: 'relative',
-    width: '100%',
-    height: '100%',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    minHeight: '200px',
-    display: 'flex',
-    alignItems: 'flex-end',
-  },
-  lightBox: {
-    transition: 'opacity 200ms ease-in-out',
-    top: 0,
-    left: 0,
-    position: 'absolute',
-    width: '100%',
-    height: '100%',
-    background: 'rgba(0, 0, 0, 0.7)',
-    color: '#fff',
-    fontSize: '14px',
-    fontWeight: 500,
-    opacity: 0,
-    '&:hover': {
-      opacity: 0.7,
-    },
-  },
-  avatarWrapper: {
-    position: 'relative',
-    display: 'inline-block',
-    zIndex: 20,
-  },
-  avatarEditBox: {
-    position: 'absolute',
-    top: 0,
-    borderRadius: 100,
-    background: 'black',
-    height: 100,
-    width: 100,
-    opacity: 0,
-    cursor: 'pointer',
-    display: 'flex',
-    alignItems: 'end',
-    justifyContent: 'center',
-    transition: 'all 200ms ease-in-out',
-    '&:hover': {
-      opacity: 0.7,
-    },
-  },
-}));
 export interface CoverDataProp {
-  _id?: string;
+  // _id?: string;
   name?: string;
   description?: string;
-  subtitle?: string;
+  // subtitle?: string;
   avatar?: UploadModel;
   disableAvatar?: boolean;
   cover?: UploadModel;
-  backgroundImage?: string;
-  sx?: Sx;
+  // backgroundImage?: string;
+  style?: MantineStyleProp;
 }
 
 const ProfileCoverStatic = (props: CoverDataProp) => {
-  // const { documentId } = useRouter().query;
-  // const _entity = entity || (getEntityFromUrl() as Sections);
-  // const { updateCrudDocument } = useCrudSliceStore();
-
-  // const { currentSpace } = useCookieContext();
-  const { avatar, sx, cover, name, description, disableAvatar } = props;
-  const { classes } = useStyles();
-
+  const { colorScheme } = useMantineColorScheme();
+  const isDark = colorScheme === 'dark';
+  const { avatar, style, cover, name, description, disableAvatar } = props;
+  const gradient = isDark
+    ? 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))'
+    : 'linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5))';
   return (
     <Card
       shadow="sm"
       padding="lg"
-      sx={sx}
       className={classes.card}
       style={{
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${
-          cover?.url || ''
-        })`,
+        backgroundImage: `${gradient}, url(${cover?.url || ''})`,
       }}
     >
       <Group style={{ justifyContent: 'space-between', width: '100%' }}>
@@ -102,7 +53,7 @@ const ProfileCoverStatic = (props: CoverDataProp) => {
             </Box>
           )}
           <Box style={{ alignSelf: 'center' }}>
-            <Text weight={700} size="xl">
+            <Text fw={700} size="xl">
               {name}
             </Text>
             <Text size="md">{description}</Text>

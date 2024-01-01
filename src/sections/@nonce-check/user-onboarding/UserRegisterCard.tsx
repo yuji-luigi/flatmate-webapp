@@ -1,19 +1,9 @@
-import {
-  Card,
-  Title,
-  Box,
-  Button,
-  Text,
-  Group,
-  createStyles,
-  TextInput,
-  Grid,
-} from '@mantine/core';
+import { Card, Title, Button, Group, Grid } from '@mantine/core';
 import React, { FormEvent, useMemo } from 'react';
 import { useForm } from '@mantine/form';
 import { showNotification } from '@mantine/notifications';
 import { useRouter } from 'next/router';
-import { CheckType } from '../../../types/models/check-type';
+import { CheckType } from '../../../types/models/maintenance-check-type';
 import { useCrudSelectors } from '../../../redux/features/crud/crudSlice';
 import FormFields from '../../../components/input/FormFields';
 import { UseFormReturnTypeCustom } from '../../../components/input/input_interfaces/useForm_interface';
@@ -26,30 +16,13 @@ import { PATH_AFTER_LOGIN } from '../../../path/path-frontend';
 import { sleep } from '../../../utils/helpers/helper-functions';
 import useAuth from '../../../../hooks/useAuth';
 import { UserModel } from '../../../types/models/user-model';
+import classes from './UserRegisterCard.module.css';
 
-const useStyles = createStyles((theme) => ({
-  formContainer: {
-    justifyContent: 'start',
-    marginBlock: theme.spacing.md,
-  },
-  buttonContainer: {
-    // display: 'flex',
-    width: '100%',
-  },
-  button: {
-    flex: 1,
-    [theme.fn.smallerThan('sm')]: {
-      width: '100%',
-      flex: 'unset',
-    },
-  },
-}));
 export const UserRegisterCard = ({
   setCheckType,
 }: {
   setCheckType: (type: CheckType | null) => void;
 }) => {
-  const { classes } = useStyles();
   const { login } = useAuth();
   const { push } = useRouter();
   const { crudDocument: user } = useCrudSelectors<UserModel>('users');
@@ -102,13 +75,20 @@ export const UserRegisterCard = ({
             (formField) =>
               formField.name !== 'role' &&
               formField.name !== 'rootSpaces' && (
-                <Grid.Col xs={12} sm={6} lg={4} key={formField.id}>
+                <Grid.Col
+                  span={{
+                    xs: 12,
+                    sm: 6,
+                    lg: 4,
+                  }}
+                  key={formField.id}
+                >
                   <FormFields form={form} formField={formField} />
                 </Grid.Col>
               )
           )}
         </Grid>
-        <Group className={classes.buttonContainer} position="right">
+        <Group className={classes.buttonContainer} justify="right">
           <Button className={classes.button} variant="gradient" type="submit">
             Register
           </Button>

@@ -1,5 +1,5 @@
 import { useDisclosure, useMediaQuery } from '@mantine/hooks';
-import { Modal, Group, Button, Stack, Box, Sx, useMantineTheme, createStyles } from '@mantine/core';
+import { Modal, Group, Button, Stack, Box, useMantineTheme } from '@mantine/core';
 import { showNotification, notifications } from '@mantine/notifications';
 import { FormEvent, useMemo, useState } from 'react';
 import { useForm } from '@mantine/form';
@@ -16,21 +16,7 @@ import { Sections } from '../../types/general/data/sections-type';
 import { useCrudSliceStore } from '../../redux/features/crud/crudSlice';
 import { UploadModel } from '../../types/models/upload-model';
 import { BaseModalData, CrudModalData, ModalDataTypes } from '../../types/modal/modal-context-type';
-
-const useStyles = createStyles(() => ({
-  modal: {
-    overflow: 'scroll',
-    zIndex: 1000,
-  },
-  modalContent: {
-    zIndex: 10,
-    paddingInline: 48,
-  },
-  form: {
-    marginTop: 50,
-    height: '100vh',
-  },
-}));
+import classes from './CrudModal.module.css';
 
 type CrudModalProps = {
   modalData: CrudModalData;
@@ -38,7 +24,6 @@ type CrudModalProps = {
 
 export function CrudModal(props: CrudModalProps) {
   const { modalData } = props;
-  const { classes } = useStyles();
   const entity = getEntityFromUrl() as Sections;
   const { query } = useRouter();
 

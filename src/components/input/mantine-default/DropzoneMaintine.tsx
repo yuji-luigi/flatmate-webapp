@@ -1,4 +1,4 @@
-import { Group, Text, useMantineTheme, rem, Sx } from '@mantine/core';
+import { Group, Text, useMantineTheme, rem, MantineStyleProp } from '@mantine/core';
 import { IconUpload, IconX, IconFile } from '@tabler/icons-react';
 import { Dropzone, DropzoneProps } from '@mantine/dropzone';
 import { useCallback, useState } from 'react';
@@ -8,7 +8,7 @@ import { FormFieldInterface } from '../../../types/general/data/data-table/formF
 type Props = Partial<DropzoneProps> & {
   form: UseFormReturnType<any>;
   formField: Partial<FormFieldInterface>;
-  sx?: Sx;
+  style?: MantineStyleProp;
 };
 type FileWithPreview = File & { preview: string };
 
@@ -52,7 +52,7 @@ export function DropzoneMantine(props: Props) {
   }, []);
 
   return (
-    // <Box sx={sx}>
+    // <Box style={style}>
     <Dropzone
       // style={{
       //   display: 'flex',
@@ -78,23 +78,19 @@ export function DropzoneMantine(props: Props) {
           </div>
         ))
       ) : (
-        <Group
-          position="center"
-          spacing="sm"
-          style={{ minHeight: rem(220), pointerEvents: 'none' }}
-        >
+        <Group justify="center" gap="sm" style={{ minHeight: rem(220), pointerEvents: 'none' }}>
           <Dropzone.Accept>
             <IconUpload
               size="3.2rem"
               stroke={1.5}
-              color={theme.colors[theme.primaryColor][theme.colorScheme === 'dark' ? 4 : 6]}
+              // color={theme.colors[theme.primaryColor][theme.colorScheme === 'dark' ? 4 : 6]}
             />
           </Dropzone.Accept>
           <Dropzone.Reject>
             <IconX
               size="3.2rem"
               stroke={1.5}
-              color={theme.colors.red[theme.colorScheme === 'dark' ? 4 : 6]}
+              // color={theme.colors.red[theme.colorScheme === 'dark' ? 4 : 6]}
             />
           </Dropzone.Reject>
           <Dropzone.Idle>

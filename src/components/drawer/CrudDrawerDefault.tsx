@@ -1,5 +1,6 @@
+/* eslint-disable no-restricted-syntax */
 /* eslint-disable react/jsx-pascal-case */
-import { Button, createStyles, Drawer } from '@mantine/core';
+import { Button, Drawer } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import {
   cleanNotifications,
@@ -29,17 +30,7 @@ import { flattenSectionData } from '../../data';
 import { extractUploadingMedia, uploadFileAndGetModelId } from '../../utils/upload-helper';
 import { Sections } from '../../types/general/data/sections-type';
 import { FormFieldTypes } from '../../types/general/data/data-table/formField-types';
-
-const useStyles = createStyles(() => ({
-  drawer: {
-    overflow: 'scroll',
-    padding: 20,
-  },
-  form: {
-    marginTop: 50,
-    height: '100vh',
-  },
-}));
+import classes from './CrudDrawerDefault.module.css';
 
 export function CrudDrawerDefault({ overridingEntity = '' }: { overridingEntity?: Sections }) {
   const [submitting, setSubmitting] = useState(false);
@@ -47,7 +38,6 @@ export function CrudDrawerDefault({ overridingEntity = '' }: { overridingEntity?
   const { query } = useRouter();
   const entity = overridingEntity || (query.entity as Sections);
   const sectionJson = flattenSectionData.find((section) => section.entity === entity);
-  const { classes } = useStyles();
   const parentId = query.parentId as string;
   const paginationQuery = usePaginationQuery();
   const sectionFormFields: FormFieldTypes[] = allFormFields[entity];
@@ -110,6 +100,7 @@ export function CrudDrawerDefault({ overridingEntity = '' }: { overridingEntity?
     if (media && hasMedia(media)) {
       try {
         const uploadIdData = await uploadFileAndGetModelId(extractUploadingMedia(media), entity);
+        // eslint-disable-next-line guard-for-in
         for (const key in uploadIdData) {
           reqBody[key] = [...reqBody[key], ...uploadIdData[key]];
         }

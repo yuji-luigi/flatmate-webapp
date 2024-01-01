@@ -1,4 +1,3 @@
-import { createStyles, Box } from '@mantine/core';
 import React from 'react';
 import { ICON_SIZES, Icons } from '../../../data/icons/icons';
 import TextWithIcon from '../../text/TextWithIcon';

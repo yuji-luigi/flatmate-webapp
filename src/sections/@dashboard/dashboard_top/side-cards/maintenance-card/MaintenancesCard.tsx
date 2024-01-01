@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { Stack, Text } from '@mantine/core';
 import Link from 'next/link';
 import CardWithTitle from '../../../../../components/profile/side/CardWithTitle';
-import { dashboardStyle } from '../../../../../styles/global-useStyles';
+import classes from '../../../../../styles/global-useStyles.module.css';
 import { useCrudSelectors } from '../../../../../redux/features/crud/crudSlice';
 import { PATH_CLIENT } from '../../../../../path/path-frontend';
 import { MaintenanceModel } from '../../../../../types/models/maintenance-model';
@@ -13,7 +13,6 @@ import { SimpleLinkTile } from '../../../../../components/list/SimpleLinkTile';
 const LIST_LIMIT = 5;
 
 export const MaintenanceListCard = () => {
-  const { classes: classes1, cx } = dashboardStyle();
   const { crudDocuments: maintenances } = useCrudSelectors<MaintenanceModel>('maintenances');
 
   const count = maintenances.length;
@@ -32,8 +31,8 @@ export const MaintenanceListCard = () => {
         />
       ))}
       {showMore && (
-        <Link className={cx(classes1.navList)} href="/dashboard/maintenances">
-          <Text sx={{ width: '100%', textAlign: 'right' }} size="lg">
+        <Link className={classes.navList} href="/dashboard/maintenances">
+          <Text style={{ width: '100%', textAlign: 'right' }} size="lg">
             ...See more
           </Text>
         </Link>

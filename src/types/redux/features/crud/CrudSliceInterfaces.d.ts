@@ -10,6 +10,26 @@ interface ReduxDbEntity<Entity> {
   singleCrudDocuments: string[] | [];
 }
 
+interface Statistics {
+  checksByMonth: {
+    nChecks: number;
+    month: Date;
+    total: number;
+  }[];
+  checksByDate:
+    | {
+        date: Date;
+        total: number;
+        data: {
+          date: Date;
+          total: number;
+          entity: string;
+          name: string;
+        }[];
+      }[]
+    | [];
+}
+
 interface Reduxdb {
   [key: string]: ReduxDbEntity<AllModels>;
   home: ReduxDbEntity<Array<Record>>;

@@ -1,0 +1,8 @@
+.drawer {
+  overflow: 'scroll';
+  padding: 20px;
+}
+.form {
+  margin-top: 50px;
+  height: '100vh';
+}

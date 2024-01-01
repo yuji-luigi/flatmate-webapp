@@ -2,6 +2,7 @@ import { Box, Button, Group, SegmentedControlItem } from '@mantine/core';
 import React from 'react';
 import { useTranslation } from 'next-i18next';
 import { GradientSegmentedControl } from '../../../tab/GradientSegmentedControl';
+import { SegmentedControlContextProvider } from '../../../tab/useSegmentedControl';
 
 export const DataTableDateSwitch = () => {
   const { t } = useTranslation('common');
@@ -28,8 +29,10 @@ export const DataTableDateSwitch = () => {
     },
   ];
   return (
-    <Box sx={{ textAlign: 'right' }}>
-      <GradientSegmentedControl data={_data} />
+    <Box style={{ textAlign: 'right' }}>
+      <SegmentedControlContextProvider>
+        <GradientSegmentedControl switchDataList={_data} />
+      </SegmentedControlContextProvider>
     </Box>
   );
 };

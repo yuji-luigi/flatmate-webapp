@@ -1,0 +1,30 @@
+.header {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: rem(56px);
+  background-color: var(--mantine-color-body);
+  border-bottom: rem(1px) solid light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
+  padding-left: var(--mantine-spacing-md);
+  padding-right: var(--mantine-spacing-md);
+  margin-bottom: rem(120px);
+  z-index: 50;
+  box-shadow: var(--mantine-box-shodow-xl);
+}
+
+.logo {
+  width: 100%;
+  flex: 1;
+}
+.title {
+  font-size: var(--mantine-font-size-xl);
+  font-weight: bold;
+}
+.colorScheme {
+  display: flex;
+  justify-content: flex-end;
+  flex: 1;
+  width: 100%;
+}

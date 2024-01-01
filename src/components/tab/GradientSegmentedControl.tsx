@@ -1,26 +1,37 @@
 import { SegmentedControl, SegmentedControlItem } from '@mantine/core';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useLocalStorage } from '@mantine/hooks';
 import classes from './GradientSegmentedControl.module.css';
+import { useSegmentedControl } from './useSegmentedControl';
 
 type Props = {
-  data: string[] | SegmentedControlItem[];
+  switchDataList: SegmentedControlItem[];
+  localStorageKey?: string;
 };
 export function GradientSegmentedControl(props: Props) {
-  const { data } = props;
-  const [query, setQuery] = useState<string>('this-month');
+  const { switchDataList, localStorageKey } = props;
+  const { setCurrentValue, currentValue } = useSegmentedControl();
+  const [storageValue, setStorageValue] = useLocalStorage({ key: localStorageKey || '' });
   const handleChange = (value: string) => {
-    setQuery(value);
-    if (value === 'Advanced') {
-      console.log('open date picker and set advanced date range');
-      // then call api to get data
+    setCurrentValue(value);
+    console.log('value', value);
+    if (localStorageKey) {
+      setStorageValue(value);
     }
   };
+  useEffect(() => {
+    if (!storageValue) {
+      // the default value is the first item
+      setCurrentValue(switchDataList[0].value);
+    }
+  }, [storageValue]);
   return (
     <SegmentedControl
       radius="xl"
-      size="md"
+      size="xs"
       onChange={handleChange}
-      data={data}
+      data={switchDataList}
+      value={currentValue}
       classNames={classes}
     />
   );

@@ -1,31 +1,15 @@
 import { AxiosError } from 'axios';
 import React from 'react';
+import useSWR from 'swr';
+import { Box } from '@mantine/core';
 import useAuth from '../../../../hooks/useAuth';
 import { CardArticleVerticalTextBottom } from '../../../components/card/CardVerticalTextBottom';
 import { fetchSpaceSelections } from '../../../pages/choose-root-space';
-import useSWR from 'swr';
-import { Box, createStyles } from '@mantine/core';
 import { PATH_CLIENT } from '../../../path/path-frontend';
 import { SpaceModel } from '../../../types/models/space-model';
-
-const useStyles = createStyles((theme) => ({
-  pinContainer: {
-    // position: 'absolute',
-    // width: '100%',
-    // left: '50%',
-    // transform: 'translateX(-50%)',
-    display: 'grid',
-    // gridTemplateColumns: 'repeat(auto-fit, minmax(400px, max-content))',
-    gridTemplateColumns: 'repeat(auto-fill, 400px)',
-    // gridAutoColumns: 'repeat(400px, minmax(400px, 1fr))',
-    gridAutoRows: 'minmax(50px, auto)',
-    justifyContent: 'center',
-    gap: 10,
-  },
-}));
+import classes from './RootSpaceList.module.css';
 
 const RootSpaceList = () => {
-  const { classes, cx, theme } = useStyles();
   const { user } = useAuth();
   const {
     data: rootSpaces,
@@ -38,14 +22,16 @@ const RootSpaceList = () => {
     <Box className={classes.pinContainer} py="xl">
       {rootSpaces.map((space) => (
         <CardArticleVerticalTextBottom
+          key={space._id}
           data={{
             _id: space._id,
             name: space.name,
             address: space.address,
             createdAt: '',
+            cover: space.cover,
           }}
-          href={`${PATH_CLIENT.spaceSettings}/${space._id}`}
-          sx={{ height: 200, width: 400 }}
+          href={`${PATH_CLIENT.spaceSettings}/${space.slug}`}
+          style={{ height: 200, width: 400 }}
           // onClick={() => handleSpaceSelected(rootSpace._id)}
           // // href={`${hrefRoot}/${rootSpace._id}`}
         />

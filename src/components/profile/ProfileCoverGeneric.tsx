@@ -7,8 +7,8 @@ import {
   Group,
   ActionIcon,
   Button,
-  createStyles,
-  Sx,
+  MantineStyleProp,
+  useMantineColorScheme,
 } from '@mantine/core';
 import { hideNotification, showNotification } from '@mantine/notifications';
 import { useRouter } from 'next/router';
@@ -25,64 +25,11 @@ import { Sections } from '../../types/general/data/sections-type';
 import { FormFieldTypes } from '../../types/general/data/data-table/formField-types';
 import { MAX_FILE_SIZE } from '../../lib/files/file-sizes';
 import { formatSize } from '../../lib/formatters';
-import { useCookieContext } from '../../context/CookieContext';
 import { SpaceModel } from '../../types/models/space-model';
 import { MaintainerModel } from '../../types/models/maintainer-model';
-import { RADIUS } from '../../styles/global-useStyles';
+import classes from './ProfileCoverGeneric.module.css';
 import { NOTIFICATIONS } from '../../data/showNofification/notificationObjects';
 
-const useStyles = createStyles((theme) => ({
-  card: {
-    flex: 3,
-    borderRadius: RADIUS.CARD,
-    position: 'relative',
-    width: '100%',
-    height: '100%',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    minHeight: '200px',
-    display: 'flex',
-    alignItems: 'flex-end',
-  },
-  lightBox: {
-    transition: 'opacity 200ms ease-in-out',
-    top: 0,
-    left: 0,
-    position: 'absolute',
-    width: '100%',
-    height: '100%',
-    background: 'rgba(0, 0, 0, 0.7)',
-    color: '#fff',
-    fontSize: '14px',
-    fontWeight: 500,
-    opacity: 0,
-    '&:hover': {
-      opacity: 0.7,
-    },
-  },
-  avatarWrapper: {
-    position: 'relative',
-    display: 'inline-block',
-    zIndex: 20,
-  },
-  avatarEditBox: {
-    position: 'absolute',
-    top: 0,
-    borderRadius: 100,
-    background: 'black',
-    height: 100,
-    width: 100,
-    opacity: 0,
-    cursor: 'pointer',
-    display: 'flex',
-    alignItems: 'end',
-    justifyContent: 'center',
-    transition: 'all 200ms ease-in-out',
-    '&:hover': {
-      opacity: 0.7,
-    },
-  },
-}));
 export interface CoverDataProp {
   _id?: string;
   title: string;
@@ -98,22 +45,23 @@ const ProfileCoverGeneric = ({
   entity,
   noAvatar = false,
   enableCover = false,
-  sx,
+  style,
 }: {
   data: CoverDataProp;
   enableCover?: boolean;
   entity?: Sections;
   noAvatar?: boolean;
   formFields?: FormFieldTypes[];
-  sx?: Sx;
+  style?: MantineStyleProp;
 }) => {
   const { documentId } = useRouter().query;
   const _entity = entity || (getEntityFromUrl() as Sections);
   const { updateCrudDocument } = useCrudSliceStore();
-
-  const { currentSpace } = useCookieContext();
-
-  const { classes } = useStyles();
+  const { colorScheme } = useMantineColorScheme();
+  const isDark = colorScheme === 'dark';
+  const gradient = isDark
+    ? 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))'
+    : 'linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5))';
 
   const { crudDocument } = useCrudSelectors<SpaceModel | MaintainerModel>(_entity);
   const coverInputRef = useRef<HTMLInputElement>(null);
@@ -196,76 +144,75 @@ const ProfileCoverGeneric = ({
     <Card
       shadow="sm"
       padding="lg"
-      sx={sx}
       className={classes.card}
       style={{
-        // backgroundSize: 'object-fit',
-        // backgroundRepeat: 'no-repeat',
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${
-          selectedCover || crudDocument?.avatar?.url || ''
-        })`,
+        backgroundSize: 'object-fit',
+        backgroundRepeat: 'no-repeat',
+        backgroundImage: `${gradient}, url(${selectedCover || crudDocument?.avatar?.url || ''})`,
       }}
     >
-      {enableCover && (
-        <Box onClick={handleLightBoxClicked} className={classes.lightBox}>
-          <Group position="right">
-            <input
-              id="cover-input"
-              type="file"
-              ref={coverInputRef}
-              accept="image/*"
-              style={{ display: 'none' }}
-              onChange={(e) => handleImageChange(e, 'cover')}
-            />
-            <Button m={8} color="dark" onClick={onChangeCoverClicked}>
-              Change cover
-            </Button>
-          </Group>
-        </Box>
-      )}
-      <Group style={{ justifyContent: 'space-between', width: '100%' }}>
-        <Group>
-          {!noAvatar && (
-            <Box className={classes.avatarWrapper}>
-              <label htmlFor="avatar-input">
-                <Avatar
-                  style={{ cursor: 'pointer', marginRight: '1rem' }}
-                  size={100}
-                  radius={80}
-                  src={selectedImage}
-                  alt={`${crudDocument?.avatar?.originalFileName} avatar`}
-                />
-                <input
-                  id="avatar-input"
-                  type="file"
-                  accept="image/*"
-                  style={{ display: 'none' }}
-                  onChange={handleImageChange}
-                />
-                {formFields && (
-                  <Box className={classes.avatarEditBox}>
-                    <Text fw={800} mb={8}>
-                      Edit
-                    </Text>
-                  </Box>
-                )}
-              </label>
-            </Box>
-          )}
-          <Box style={{ alignSelf: 'center' }}>
-            <Text weight={700} size="xl">
-              {data.title}
-            </Text>
-            <Text size="md">{data.subtitle}</Text>
+      <Box className={classes.coverContent}>
+        {enableCover && (
+          <Box onClick={handleLightBoxClicked} className={classes.lightBox}>
+            <Group justify="right">
+              <input
+                id="cover-input"
+                type="file"
+                ref={coverInputRef}
+                accept="image/*"
+                style={{ display: 'none' }}
+                onChange={(e) => handleImageChange(e, 'cover')}
+              />
+              <Button m={8} color="dark" onClick={onChangeCoverClicked}>
+                Change cover
+              </Button>
+            </Group>
           </Box>
-        </Group>
-
-        {formFields && (
-          <ActionIcon onClick={handleEditClicked}>
-            <Icons.pencil />
-          </ActionIcon>
         )}
-      </Group>
+        <Group style={{ justifyContent: 'space-between', width: '100%' }}>
+          <Group>
+            {!noAvatar && (
+              <Box className={classes.avatarWrapper}>
+                <label htmlFor="avatar-input">
+                  <Avatar
+                    style={{ cursor: 'pointer', marginRight: '1rem' }}
+                    size={100}
+                    radius={80}
+                    src={selectedImage}
+                    alt={`${crudDocument?.avatar?.originalFileName} avatar`}
+                  />
+                  <input
+                    id="avatar-input"
+                    type="file"
+                    accept="image/*"
+                    style={{ display: 'none' }}
+                    onChange={handleImageChange}
+                  />
+                  {formFields && (
+                    <Box className={classes.avatarEditBox}>
+                      <Text fw={800} mb={8}>
+                        Edit
+                      </Text>
+                    </Box>
+                  )}
+                </label>
+              </Box>
+            )}
+            <Box style={{ alignSelf: 'center' }}>
+              <Text fw={700} size="xl">
+                {data.title}
+              </Text>
+              <Text size="md">{data.subtitle}</Text>
+            </Box>
+          </Group>
+
+          {formFields && (
+            <ActionIcon onClick={handleEditClicked}>
+              <Icons.pencil />
+            </ActionIcon>
+          )}
+        </Group>
+      </Box>
     </Card>
   );
 };

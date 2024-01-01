@@ -15,11 +15,11 @@ import {
 export function UserMenu() {
   const theme = useMantineTheme();
   return (
-    <Group position="center">
+    <Group justify="center">
       <Menu
         withArrow
         width={300}
-        position="bottom"
+        justify="bottom"
         transitionProps={{ transition: 'pop' }}
         withinPortal
       >
@@ -37,7 +37,7 @@ export function UserMenu() {
               />
 
               <div>
-                <Text weight={500}>Nancy Eggshacker</Text>
+                <Text fw={500}>Nancy Eggshacker</Text>
                 <Text size="xs" color="dimmed">
                   neggshaker@mantine.dev
                 </Text>
@@ -47,30 +47,38 @@ export function UserMenu() {
 
           <Menu.Divider />
 
-          <Menu.Item icon={<IconHeart size="0.9rem" stroke={1.5} color={theme.colors.red[6]} />}>
+          <Menu.Item
+            leftSection={<IconHeart size="0.9rem" stroke={1.5} color={theme.colors.red[6]} />}
+          >
             Liked posts
           </Menu.Item>
-          <Menu.Item icon={<IconStar size="0.9rem" stroke={1.5} color={theme.colors.yellow[6]} />}>
+          <Menu.Item
+            leftSection={<IconStar size="0.9rem" stroke={1.5} color={theme.colors.yellow[6]} />}
+          >
             Saved posts
           </Menu.Item>
-          <Menu.Item icon={<IconMessage size="0.9rem" stroke={1.5} color={theme.colors.blue[6]} />}>
+          <Menu.Item
+            leftSection={<IconMessage size="0.9rem" stroke={1.5} color={theme.colors.blue[6]} />}
+          >
             Your comments
           </Menu.Item>
 
           <Menu.Label>Settings</Menu.Label>
-          <Menu.Item icon={<IconSettings size="0.9rem" stroke={1.5} />}>Account settings</Menu.Item>
-          <Menu.Item icon={<IconSwitchHorizontal size="0.9rem" stroke={1.5} />}>
+          <Menu.Item leftSection={<IconSettings size="0.9rem" stroke={1.5} />}>
+            Account settings
+          </Menu.Item>
+          <Menu.Item leftSection={<IconSwitchHorizontal size="0.9rem" stroke={1.5} />}>
             Change account
           </Menu.Item>
-          <Menu.Item icon={<IconLogout size="0.9rem" stroke={1.5} />}>Logout</Menu.Item>
+          <Menu.Item leftSection={<IconLogout size="0.9rem" stroke={1.5} />}>Logout</Menu.Item>
 
           <Menu.Divider />
 
           <Menu.Label>Danger zone</Menu.Label>
-          <Menu.Item icon={<IconPlayerPause size="0.9rem" stroke={1.5} />}>
+          <Menu.Item leftSection={<IconPlayerPause size="0.9rem" stroke={1.5} />}>
             Pause subscription
           </Menu.Item>
-          <Menu.Item color="red" icon={<IconTrash size="0.9rem" stroke={1.5} />}>
+          <Menu.Item color="red" leftSection={<IconTrash size="0.9rem" stroke={1.5} />}>
             Delete account
           </Menu.Item>
         </Menu.Dropdown>

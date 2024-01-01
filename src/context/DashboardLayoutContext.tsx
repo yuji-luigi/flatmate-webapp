@@ -23,9 +23,10 @@ const useStore = () => {
   const setChildrenBreadcrumbs = (breadcrumb: BreadcrumbInterface) => {
     setBreadcrumbs((prev) => {
       const baseUrl = prev[1]?.href;
+
       const allButLast = prev.slice(0, -1);
       const idArray = prev.map((p) => p.href.split('/').pop());
-      const currentid = breadcrumb.href.split('/').pop();
+      const currentid = breadcrumb.href?.split('/').pop();
       const foundIndex = idArray.findIndex((id) => id === currentid);
       if (foundIndex !== -1) {
         //remove all breadcrumbs after foundIndex

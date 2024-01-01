@@ -71,7 +71,9 @@ export function getDefaultValues(
       obj.media = { ...obj.media, [path]: crudDocument[path] || '' };
       return obj;
     }
-
+    if (field.type === 'checkbox-group-boolean') {
+      return obj;
+    }
     if (field.multi) {
       obj[path] = [];
     } else {
@@ -85,6 +87,7 @@ export function getDefaultValues(
 
 const fallbackValues: Record<string, string | number | Date | boolean | null> = {
   text: '',
+  password: '',
   'text-area': '',
   boolean: false,
   checkbox: false,

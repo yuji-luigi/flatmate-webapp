@@ -13,9 +13,9 @@ const SimpleRow = ({
   return (
     <>
       {top && <Divider />}
-      <Group mt={8} sx={{ justifyContent: 'space-between' }}>
-        <Text weight={600}>{title}:</Text>
-        <Text weight={600}>{content}</Text>
+      <Group mt={8} style={{ justifyContent: 'space-between' }}>
+        <Text fw={600}>{title}:</Text>
+        <Text fw={600}>{content}</Text>
       </Group>
       <Divider mt={4} />
     </>

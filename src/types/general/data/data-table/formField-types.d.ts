@@ -1,4 +1,10 @@
-import { SelectItem, SelectProps, TextInputProps, TextareaProps } from '@mantine/core';
+import {
+  PasswordInputProps,
+  SelectItem,
+  SelectProps,
+  TextInputProps,
+  TextareaProps,
+} from '@mantine/core';
 import { TablerIconsProps } from '@tabler/icons-react';
 import React from 'react';
 
@@ -13,29 +19,35 @@ type BaseFormType = {
   placeholder?: string;
   required?: boolean;
   type: FormTypes;
+  formType?: FormTypes; // ! todo set the actual types necessary.
   cellType?: CellTypes;
   multi?: boolean;
-  col?: Col;
+  col?: Partial<Col>;
   textSearch?: boolean;
-  priority: number;
+  priority?: number;
   grantTo?: UserRoles[];
   noTable?: boolean;
-  badge?: BadgeField;
+  disabled?: boolean;
+  // badge?: BadgeField;
+  align?: 'left' | 'center' | 'right';
+  badge?: boolean;
   icon?: React.ReactNode;
 };
+type CellTypes = 'text-on-hover' | 'text-on-dialog' | 'link-children';
 
 type BadgeCellConfig = BaseFormType &
   FormFieldTypes & { badge: BadgeField; options: StaticOption[] };
 
-export type BadgeField = {
-  color: string;
-};
+// export type BadgeField = {
+//   color: string;
+// };
 
-export type TextFormType = (
-  | { type: 'text' | 'number'; password?: boolean }
-  | { cellType: 'text-on-hover' | 'text-on-dialog' }
-) &
-  BaseFormType &
+export type TextFormType = {
+  type: 'text' | 'number' | 'boolean';
+  cellType?: 'text-on-hover' | 'text-on-dialog';
+  // { type: 'text' | 'number' }
+  // | { cellType?: 'text-on-hover' | 'text-on-dialog' }
+} & BaseFormType &
   TextInputProps;
 
 export type PasswordFormType = { type: 'password' } & BaseFormType & PasswordInputProps;
@@ -56,18 +68,31 @@ export type SelectFormType = {
 
 export type StaticSelectFormFieldType = {
   type: 'static-select';
+  _entity?: '';
   options: StaticOption[];
 } & BaseFormType &
   BaseSelectFormType;
 
 export type CheckBoxFormFieldType = {
-  type: 'checkbox-group';
+  type: 'checkbox';
+  // options: Array<SelectItem>;
+  filterSearch?: boolean;
+} & BaseFormType;
+
+export type CheckBoxGroupBooleanFormFieldType = {
+  type: 'checkbox-group-boolean';
+  options: { label: string; name: string; placeholder?: string }[];
+  filterSearch?: boolean;
+} & BaseFormType;
+
+export type CheckBoxGroupSelectFormFieldType = {
+  type: 'checkbox-group-select';
   options: Array<SelectItem>;
   filterSearch?: boolean;
 } & BaseFormType;
 
 export type LinkChildrenFormFieldType = {
-  type: 'text';
+  type: 'link-children';
   cellType: 'link-children';
   linkRoot: string;
   linkKey: string;
@@ -104,6 +129,8 @@ export type FormFieldTypes =
   | SelectFormType
   | StaticSelectFormFieldType
   | CheckBoxFormFieldType
+  | CheckBoxGroupBooleanFormFieldType
+  | CheckBoxGroupSelectFormFieldType
   | TextAreaFormFieldType
   | RadioGroupFormFieldType
   | AvatarFormFieldType
@@ -201,9 +228,13 @@ type FormTypes =
   | 'text'
   | 'text-area'
   | 'text-on-hover'
+  | 'link-children'
   | 'text-on-dialog'
   | 'password'
-  | 'checkbox-group'
+  | 'checkbox'
+  | 'checkbox-group-boolean'
+  | 'checkbox-group-select'
+  | 'boolean'
   | 'radio-group'
   | 'switch-group'
   | 'select'

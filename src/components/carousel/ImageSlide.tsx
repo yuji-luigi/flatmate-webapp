@@ -18,10 +18,10 @@ const ImageSlide = ({
 
   return (
     <Carousel.Slide key={isFile ? image.name : image._id}>
-      <Box sx={{ position: 'relative' }}>
+      <Box style={{ position: 'relative' }}>
         <ActionIcon
           onClick={() => handleDelete(image)}
-          sx={{
+          style={{
             position: 'absolute',
             right: 10,
             top: 10,
@@ -34,7 +34,7 @@ const ImageSlide = ({
           <Icons.close />
         </ActionIcon>
         <Overlay
-          sx={{
+          style={{
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
@@ -49,7 +49,7 @@ const ImageSlide = ({
           }}
           component="div"
         >
-          <Button bg="transparent" variant="outline" leftIcon={<Icons.edit />}>
+          <Button bg="transparent" variant="outline" leftSection={<Icons.edit />}>
             Edit
           </Button>
         </Overlay>

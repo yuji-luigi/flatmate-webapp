@@ -1,4 +1,4 @@
-import { Sx, FileInput, Group, Tooltip, ActionIcon, Stack } from '@mantine/core';
+import { FileInput, Group, Tooltip, ActionIcon, Stack, MantineStyleProp } from '@mantine/core';
 import { DropzoneProps } from '@mantine/dropzone';
 import { useCallback, useState } from 'react';
 import { UseFormReturnType } from '@mantine/form';
@@ -11,12 +11,12 @@ import { FileWithPreview } from '../../../../types/files/file-types';
 type Props = Partial<DropzoneProps> & {
   form: UseFormReturnType<any>;
   formField: UploadFormFieldType;
-  sx?: Sx;
+  style?: MantineStyleProp;
   fileFolder?: string;
 };
 
 export function FileInputMantine(props: Props) {
-  const { formField, sx, fileFolder } = props;
+  const { formField, style, fileFolder } = props;
   const [files, setFiles] = useState<FileWithPreview[]>([]);
   const handleFileChosen = useCallback((acceptedFiles: Array<File> | File | null) => {
     if (!acceptedFiles) return;
@@ -30,6 +30,7 @@ export function FileInputMantine(props: Props) {
       Object.assign(file, {
         preview: '', // No preview for non-image files
         field: fileFolder || file.name,
+        folder: fileFolder || file.name,
       })
     );
     setFiles(newFiles);
@@ -43,25 +44,39 @@ export function FileInputMantine(props: Props) {
     props.form.setFieldValue(formField.name, newFiles);
   };
   return (
-    <Stack sx={{ position: 'relative', marginBottom: 16, ...sx }}>
+    <Stack
+      style={{
+        // marginBottom: 16,
+        ...style,
+      }}
+      // gap={0}
+    >
       <FileInput
+        label={formField.label}
         valueComponent={IconValueComponent}
         multiple={formField.multi}
+        size="md"
         onChange={handleFileChosen}
         value={files}
-        icon={<Icons.image />}
+        styles={{
+          label: {
+            fontSize: 16,
+          },
+        }}
+        leftSection={<Icons.image />}
         placeholder={formField.label}
       />
-      <Group>
-        {!!files.length &&
-          files.map((file) => (
+      {!!files.length && (
+        <Group>
+          {files.map((file) => (
             <Tooltip key={file.name} label={file.name}>
               <ActionIcon onClick={() => handleFileClicked(file)}>
                 <FileIconHandler fileName={file.name} />
               </ActionIcon>
             </Tooltip>
           ))}
-      </Group>
+        </Group>
+      )}
     </Stack>
   );
 }

@@ -1,20 +1,16 @@
 import React, { ReactElement } from 'react';
+import { Container } from '@mantine/core';
 import Layout from '../../../layouts';
 
 import RootSpaceList from '../../../sections/@dashboard/space_setting_section/RootSpaceList';
-import { Container, Title } from '@mantine/core';
-import { dashboardStyle } from '../../../styles/global-useStyles';
-
-const useStyles = dashboardStyle;
+import classes from '../../../styles/global-useStyles.module.css';
 
 const SpaceSettingsPage = () => {
-  const { classes } = useStyles();
-
   return (
-    <Container className={classes.mainContainer}>
+    <>
       <h1 className={classes.title}>Choose condominium</h1>
       <RootSpaceList />
-    </Container>
+    </>
   );
 };
 

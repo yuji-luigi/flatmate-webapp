@@ -57,6 +57,7 @@ export enum PATH_API {
   onBoarding = 'on-boarding',
   threads = 'threads',
   maintenances = 'maintenances',
+  statistics = 'statistics',
 }
 
 const all = (entity: string) => `${entity}`;
@@ -65,6 +66,9 @@ const getExcelEndpoint = (excelRoute: string, entity: string) => `${excelRoute}/
 // const getQrCodeEndpoint = ({qrCodeRoute, entity}) => `${qrCodeRoute}/${entity}`;
 
 export const _PATH_API = {
+  auth: {
+    registerMaintainer: 'auth/complete-register/maintainer',
+  },
   checks: {
     root: PATH_API.checks,
     home: `${PATH_API.checks}/home`,
@@ -111,6 +115,13 @@ export const _PATH_API = {
       `${PATH_API.authTokens}/verify-pin/${linkId}/${_id}/${entity}`,
     getById: (_id: string) => byId(PATH_API.authTokens, _id),
     verifUser: (_id: string) => byId(PATH_API.authTokens, _id),
+    checkMaintainerFromMaintenance: ({
+      linkId,
+      authTokenId,
+    }: {
+      linkId: string;
+      authTokenId: string;
+    }) => `${PATH_API.authTokens}/maintenances/check/maintainer/${linkId}/${authTokenId}`,
   },
   users: {
     root: PATH_API.users,
@@ -124,6 +135,10 @@ export const _PATH_API = {
   },
   notifications: {
     root: 'notifications',
+  },
+  statistics: {
+    root: PATH_API.statistics,
+    byMonth: `${PATH_API.statistics}/by-month`,
   },
 } as const;
 

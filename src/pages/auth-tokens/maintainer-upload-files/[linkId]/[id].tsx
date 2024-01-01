@@ -1,25 +1,27 @@
 import { useRouter } from 'next/router';
-import { PATH_API } from '../../../../path/path-api';
-import { Container, Title, Transition } from '@mantine/core';
+import { ReactElement, useEffect, useState } from 'react';
+import { PATH_API, _PATH_API } from '../../../../path/path-api';
 
-import { ReactElement, useState } from 'react';
 import { PinVerifCardMCheck } from '../../../../sections/@nonce-check/m-file-upload/pin-verif/PinVerifCardMCheck';
-import { CheckInputTabCard } from '../../../../sections/@nonce-check/m-file-upload/verified-m-file/invoice-receipt-input/CheckInputTabCard';
-import { ChooseTypeCard } from '../../../../sections/@nonce-check/m-file-upload/verified-m-file/ChooseTypeCard';
-import { CheckType } from '../../../../types/models/check-type';
+import { CheckType } from '../../../../types/models/maintenance-check-type';
 import { MaintenanceCheckUploadSection } from '../../../../sections/@nonce-check/m-file-upload/verified-m-file/MainteanceCheckUploadSection';
 import Layout from '../../../../layouts';
+import { useCookieContext } from '../../../../context/CookieContext';
+import axiosInstance from '../../../../utils/axios-instance';
+import { MaintainerCompleteRegisterCard } from '../../../../sections/@nonce-check/m-file-upload/maintainer-complete-register/MaintainerCompleteRegisterCard';
 
 const MaintainerUploadFileAuthPage = () => {
-  const { query, push } = useRouter();
+  const { query } = useRouter();
   const [pinOk, setPinOk] = useState<boolean>(false); // todo: need to check if pin is ok or not
   const [checkType, setCheckType] = useState<CheckType | null>(null); // todo: need to check if pin is ok or not
-  const [submitting, setSubmitting] = useState<boolean>(false);
+  const { handleSetCurrentSpace } = useCookieContext();
+  useEffect(() => {
+    handleSetCurrentSpace();
+  }, [pinOk]);
 
-  const pinVerifEndpoint = `${PATH_API.maintenanceFileUpload}/${query.linkId}/${query.id}`;
   return (
     <>
-      {!pinOk && <PinVerifCardMCheck setPinOk={setPinOk} endpoint={pinVerifEndpoint} />}
+      {!pinOk && <PinVerifCardMCheck pinOk={pinOk} setPinOk={setPinOk} />}
       <MaintenanceCheckUploadSection
         pinOk={pinOk}
         checkType={checkType}
@@ -30,7 +32,11 @@ const MaintainerUploadFileAuthPage = () => {
 };
 
 MaintainerUploadFileAuthPage.getLayout = function getLayout(page: ReactElement) {
-  return <Layout variant="main">{page}</Layout>;
+  return (
+    <Layout variant="auth-token" title="Upload maintenance invoice/receipt">
+      {page}
+    </Layout>
+  );
 };
 
 export default MaintainerUploadFileAuthPage;

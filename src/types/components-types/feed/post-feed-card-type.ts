@@ -1,5 +1,5 @@
-import { Sx } from '@mantine/core';
-import { CheckInterface } from '../../models/check-type';
+import { MantineStyleProp, Sx } from '@mantine/core';
+import { CheckInterface } from '../../models/maintenance-check-type';
 import { MaintenanceModel } from '../../models/maintenance-model';
 import { ThreadModel } from '../../models/thread-model';
 
@@ -11,5 +11,6 @@ export type FeedCardData = (MaintenanceModel | ThreadModel) & {
 export type FeedCardProps = {
   popupFn?: () => void;
   data: FeedCardData;
-  sx?: Sx;
+  showFullText?: boolean;
+  style?: MantineStyleProp;
 };

@@ -10,10 +10,10 @@ export function UsersRolesTable({ data }: UsersTableProps) {
   const rows = data.map((item) => (
     <tr key={item.name}>
       <td>
-        <Group spacing="sm">
+        <Group gap="sm">
           <Avatar size={40} src={item.avatar} radius={40} />
           <div>
-            <Text size="sm" weight={500}>
+            <Text size="sm" fw={500}>
               {item.name}
             </Text>
             <Text size="xs" color="dimmed">
@@ -41,7 +41,7 @@ export function UsersRolesTable({ data }: UsersTableProps) {
 
   return (
     <ScrollArea>
-      <Table sx={{ minWidth: 800 }} verticalSpacing="sm">
+      <Table style={{ minWidth: 800 }} verticalSpacing="sm">
         <thead>
           <tr>
             <th>Employee</th>

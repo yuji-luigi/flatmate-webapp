@@ -8,7 +8,7 @@ export function GoogleButton(props: ButtonProps) {
 }
 export function SocialButtons() {
   return (
-    <Group position="center" sx={{ padding: 15 }}>
+    <Group justify="center" style={{ padding: 15 }}>
       <GoogleButton>Continue with Google</GoogleButton>
       {/* <TwitterButton href="https://twitter.com/mantinedev" target="_blank">
         Follow on Twitter

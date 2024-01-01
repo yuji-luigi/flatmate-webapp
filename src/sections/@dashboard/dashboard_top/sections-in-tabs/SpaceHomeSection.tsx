@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import { Box, LoadingOverlay } from '@mantine/core';
-import { dashboardStyle, profilePageStyle } from '../../../../styles/global-useStyles';
+import classes from '../../../../styles/global-useStyles.module.css';
 
 import { useCrudSelectors } from '../../../../redux/features/crud/crudSlice';
 
@@ -8,17 +8,9 @@ import { SpaceModel } from '../../../../types/models/space-model';
 import { TAB_LIST_CONFIG } from './tabList';
 import { TabPanels } from '../../../../components/tab/TabPanels';
 
-// use style from global-useStyles
-const useStyles = dashboardStyle;
-const useStyles2 = profilePageStyle;
-
 const SpaceHomeSection = () => {
-  const { classes: classes1 } = useStyles();
   const entity = 'spaces';
-  // combine styles
-  const { classes: classes2 } = useStyles2();
-  // put 2 styles together in one object
-  const classes = { ...classes1, ...classes2 };
+
   const { crudDocument: document } = useCrudSelectors<SpaceModel>(entity);
 
   if (!document) {

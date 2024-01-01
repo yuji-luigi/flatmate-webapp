@@ -1,0 +1,7 @@
+.icon {
+  width: 32px;
+  border-radius: 999px;
+  @media (max-width: $mantine-breakpoint-sm) {
+    width: 12px;
+  }
+}

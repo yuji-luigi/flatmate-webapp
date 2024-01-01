@@ -1,0 +1,35 @@
+.card {
+  position: relative;
+  background-color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-white));
+  height: 300px;
+  padding: 10px;
+  grid-row-end: span 2;
+}
+
+.rating {
+  position: absolute;
+  top: var(--mantine-spacing-xs);
+  right: rem(12);
+  pointer-events: none;
+}
+
+.title {
+  display: block;
+  margin-top: var(--mantine-spacing-md);
+  margin-bottom: rem(5);
+}
+
+.buttons {
+  height: 100%;
+  align-items: flex-end;
+}
+.action {
+  background-color: light-dark(var(--mantine-color-gray-6), var(--mantine-color-dark-0));
+  &: hover(
+    {background-color: light-dark(var(--mantine-color-gray-5), var(--mantine-color-dark-1)) ;}
+  );
+}
+
+.footer {
+  margin-top: var(--mantine-spacing-md);
+}

@@ -1,6 +1,7 @@
 import React from 'react';
+import { isArray } from 'util';
 import {
-  FormFieldInterface,
+  BadgeCellConfig,
   FormFieldTypes,
 } from '../../../../../types/general/data/data-table/formField-types';
 import { AvatarCell } from './AvatarCell';
@@ -9,10 +10,13 @@ import { BooleanCell } from './BooleanCell';
 import LinkChildrenCell from './LinkChildrenCell';
 import {
   CellTypes,
+  LinkChildrenCellFunc,
   PartialCellTypes,
+  RegularCellFunc,
 } from '../../../../../types/general/data/data-table/cellTypes';
 import { TextOnHoverCell } from './TextOnHoverCell';
 import { TextOnDialogCell } from './TextOnDialogCell';
+import BadgeCellDecorator from './BadgeCellDecorator';
 // import { IconPencil, IconTrash } from '@tabler/icons-react';
 // import { UsersTableRow } from '../../../../types/general/data/datatable/objects';
 export const jobColors: Record<string, string> = {
@@ -36,7 +40,9 @@ const TableCellController = ({
 
   const type: CellTypes = cellConfig.cellType || cellConfig.type;
 
-  const cells: PartialCellTypes = {
+  // !todo: figure out how to correctly type formFieldTypes
+  // const cells: PartialCellTypes = {
+  const cells: any = {
     avatar: AvatarCell,
     boolean: BooleanCell,
     'link-children': LinkChildrenCell,
@@ -47,6 +53,13 @@ const TableCellController = ({
   // default cell is TextCell
   const Cell = cells[type] || TextCell;
 
+  if (cellConfig.badge) {
+    return (
+      <BadgeCellDecorator cellConfig={cellConfig as BadgeCellConfig} value={cellValue}>
+        <Cell cellValue={cellValue} cellConfig={cellConfig} rowData={rowData} />
+      </BadgeCellDecorator>
+    );
+  }
   return <Cell cellValue={cellValue} cellConfig={cellConfig} rowData={rowData} />;
 };
 export default TableCellController;

@@ -1,42 +1,32 @@
-import {
-  ActionIcon,
-  ActionIconProps,
-  Group,
-  MantineNumberSize,
-  MantineStyleSystemProps,
-  SpacingValue,
-  Sx,
-  SystemProp,
-  useMantineColorScheme,
-  Variants,
-} from '@mantine/core';
+import { ActionIcon, Group, MantineStyleProp, useMantineColorScheme } from '@mantine/core';
 import { SunIcon, MoonIcon } from '@modulz/radix-icons';
+import classes from './ColorSchemeToggle.module.css';
 
 type Props = {
-  variant?: Variants<
-    'subtle' | 'filled' | 'outline' | 'light' | 'default' | 'transparent' | 'gradient'
-  >;
-  mt?: SystemProp<SpacingValue>;
-  size?: MantineNumberSize;
-  sx?: Sx;
+  variant?: string;
+  mt?: number;
+  size?: number;
+  style?: MantineStyleProp;
   className?: string;
 };
+
 export function ColorSchemeToggle(props: Props) {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
-  const { sx, className } = props;
+  const { style, className } = props;
   return (
-    <Group className={className} position="center" sx={sx} mt={props.mt}>
+    <Group className={className} justify="center" style={style} mt={props.mt}>
       <ActionIcon
-        onClick={() => toggleColorScheme(colorScheme === 'light' ? 'dark' : 'light')}
+        onClick={() => toggleColorScheme()}
         size={props.size || 'xl'}
         variant={props.variant || 'filled'}
-        sx={(theme) => ({
-          backgroundColor:
-            theme.colorScheme === 'light' ? theme.colors.dark[6] : theme.colors.gray[0],
-          color: theme.colors.yellow[4],
-          // color: theme.colorScheme === 'light' ? theme.colors.yellow[4] : theme.colors.blue[6],
-          borderColor: theme.colorScheme === 'dark' ? theme.colors.dark[3] : theme.colors.gray[5],
-        })}
+        className={classes.icon}
+        // style={(theme) => ({
+        //   backgroundColor:
+        //    light-dark(var(--mantine-color-gray-6), var(--mantine-color-dark-0)),
+        //   color: var(--mantine-color-yellow-4),
+        //   // color: theme.colorScheme === 'light' ? var(--mantine-color-yellow-4) : theme.colors.blue[6],
+        //   borderColor: light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-5)),
+        // })}
       >
         {colorScheme === 'dark' ? (
           <SunIcon width={20} height={20} />
