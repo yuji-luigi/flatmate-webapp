@@ -16,6 +16,7 @@ import useTable, { getComparator } from '../../../../../hooks/useTable';
 import { MaintenanceModel } from '../../../../types/models/maintenance-check-type';
 import { FeedView } from '../../../../components/posts/FeedView';
 import { StackOverride } from '../../../../components/overrides/stack/StackOverride';
+import { DashboardTopCenteredHeader } from '../components/DashboardTopCenteredHeader';
 
 const VIEW_KEY = 'feed-maintenance-view';
 
@@ -47,9 +48,9 @@ export const SpaceMaintenanceSection = () => {
     <>
       {value === 'posts' && (
         <FeedView>
-          <DashboardTopHeader
+          <DashboardTopCenteredHeader
             header="Maintenances"
-            rightSection={<FeedTableSwitch localStorageKey={VIEW_KEY} />}
+            otherComponent={<FeedTableSwitch localStorageKey={VIEW_KEY} />}
           />
           {filteredList.map((maintenance) => (
             <PostFeedCard key={maintenance._id} data={maintenance} />
@@ -58,10 +59,14 @@ export const SpaceMaintenanceSection = () => {
       )}
       {value === 'table' && (
         <StackOverride>
-          <DashboardTopHeader
+          <DashboardTopCenteredHeader
             header="Maintenances"
-            rightSection={<FeedTableSwitch localStorageKey={VIEW_KEY} />}
+            otherComponent={<FeedTableSwitch localStorageKey={VIEW_KEY} />}
           />
+          {/* <DashboardTopHeader
+            // header="Maintenances"
+            rightSection={<FeedTableSwitch localStorageKey={VIEW_KEY} />}
+          /> */}
           <StaticDataTable json={maintenancesTableData} data={filteredList} withFilter />
         </StackOverride>
       )}
