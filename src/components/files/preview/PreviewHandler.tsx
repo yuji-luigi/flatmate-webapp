@@ -1,18 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Button, Stack, Tooltip } from '@mantine/core';
 import Link from 'next/link';
 import { PDFViewer } from '@react-pdf/renderer';
 import Image from 'next/image';
 import { UploadModel } from '../../../types/models/upload-model';
 import { intlDateFormat } from '../../../utils/helpers/date-formatters';
+import { PATH_IMAGE } from '../../../lib/image-paths';
 
 type Props = {
   file: UploadModel;
   enableLink?: boolean;
+  width?: number;
+  height?: number;
 };
 export const PreviewHandler = (props: Props) => {
-  const { file, enableLink } = props;
+  const { file, enableLink, width = 100, height = 100 } = props;
   const fileExt = file.extension;
+  const [hasError, setHasError] = useState(false);
+
   let preview = (
     <Button component={Link} href={file.url} target="_blank" size="md">
       {file.originalFileName}-{intlDateFormat(file.createdAt)}
@@ -29,7 +34,22 @@ export const PreviewHandler = (props: Props) => {
     case 'jpeg':
     case 'png':
     case 'gif':
-      preview = <Image src={file.url} alt={file.originalFileName} width="100" height="100" />;
+      preview = hasError ? (
+        <Image
+          src={PATH_IMAGE.notFound}
+          alt={file.originalFileName}
+          width={width}
+          height={height}
+        />
+      ) : (
+        <Image
+          src={file.url}
+          alt={file.originalFileName}
+          width={100}
+          height={100}
+          onError={() => setHasError(true)}
+        />
+      );
       break;
     case 'pdf':
       preview = (

@@ -6,6 +6,7 @@ import {
 } from '../utils/helpers/helper-functions';
 
 export const PATH_IMAGE = {
+  notFound: '/images/notfound.jpg',
   rootSpaceCard1: '/images/haussmann-buildings3.png',
   // flatmateLogo1: '/images/flatmate_circle_logo_yellow.png',
   flatmateLogo1: '/images/logos/logo2.png',

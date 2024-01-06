@@ -14,7 +14,7 @@ export function ChecksGrid({ checks }: { checks: CheckInterface[] }) {
           </div>
           {check.files.map((file) => (
             <div key={file._id} className={classes.flex}>
-              <PreviewHandler key={file._id} enableLink file={file} />
+              <PreviewHandler key={file._id} enableLink file={file} width={300} height={300} />
             </div>
           ))}
         </div>
