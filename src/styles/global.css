@@ -30,8 +30,16 @@ body {}
   --radius-card: 12px;
   --opacity-card: 0.85;
   --font-size-title: 32px;
+  --font-size-subtitle: 26px;
   --liner-gradient-light: linear-gradient(rgba(100, 100, 100, 0.5), rgba(100, 100, 100, 1));
   --liner-gradient-dark: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+  --font-weight-title: var(--font-weight-bold);
+  --padding-card: 32px 40px;
+
+  --spacing-md: 24px;
+
+  --font-size-card-title: 24px;
+
 
   --max-width: var(--break-point-lg);
   --max-width-feed-card: var(--break-point-sm);
