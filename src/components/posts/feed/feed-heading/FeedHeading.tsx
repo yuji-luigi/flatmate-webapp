@@ -12,11 +12,11 @@ import { FeedCardData } from '../../../../types/components-types/feed/post-feed-
 import classes from './FeedHeading.module.css';
 
 export const FeedHeading = (props: FeedCardData) => {
-  const { createdBy, createdAt, _id, receipts } = props;
+  const { createdBy, createdAt, _id, receipts, className = '', invoices } = props;
   const { user } = useAuth();
-
+  const hasChecks = !!receipts?.length || !!invoices?.length;
   return (
-    <Group className={classes.container}>
+    <Group className={`${classes.container} ${className}`}>
       <Group>
         <Avatar
           src={createdBy?.avatar?.url || 'https://picsum.photos/410/300'}
@@ -34,7 +34,7 @@ export const FeedHeading = (props: FeedCardData) => {
         </Box>
       </Group>
       <Group>
-        {receipts?.length && (
+        {hasChecks && (
           <ActionIcon
             // color="primary"
             component={Link}

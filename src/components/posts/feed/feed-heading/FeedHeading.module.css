@@ -2,15 +2,6 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
-  margin-bottom: var(--feed-card);
-
-  @container (max-width: $mantine-breakpoint-sm) {
-    justify-content: space-between;
-  }
-
-  @container (min-width: $mantine-breakpoint-sm) {
-    justify-content: start;
-  }
 }
 
 .headerInfo {
