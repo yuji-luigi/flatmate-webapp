@@ -53,7 +53,7 @@ export const _PATH_FRONTEND = {
   },
   maintenances: {
     root: PATH_CLIENT.maintenances,
-    checksPage: (maintenanceId: string) => `${PATH_CLIENT.checks}/${maintenanceId}`,
+    checksPage: (maintenanceId: string) => `${PATH_CLIENT.checks}/by-maintenance/${maintenanceId}`,
     byId: (maintenanceId: string) => `${PATH_CLIENT.maintenances}/${maintenanceId}`,
   },
   threads: {

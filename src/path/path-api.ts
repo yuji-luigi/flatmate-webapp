@@ -74,6 +74,8 @@ export const _PATH_API = {
     home: `${PATH_API.checks}/home`,
     byId: (threadId: string) => `${PATH_API.checks}/${threadId}`,
     withNonce: (checkId: string) => `${PATH_API.checks}/${checkId}/with-nonce`,
+    byMaintenanceId: (maintenanceId: string) =>
+      `${PATH_API.checks}/by-maintenance/${maintenanceId}`,
   },
   threads: {
     root: PATH_API.threads,

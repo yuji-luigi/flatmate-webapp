@@ -33,6 +33,7 @@
 		"@nivo/bar": "^0.83.0",
 		"@nivo/core": "^0.83.0",
 		"@nivo/line": "^0.83.0",
+		"@react-pdf/renderer": "^3.1.14",
 		"@reduxjs/toolkit": "^1.9.7",
 		"@tabler/icons": "^2.39.0",
 		"@tabler/icons-react": "^2.39.0",
