@@ -1,6 +1,8 @@
 import React from 'react';
 import { Box, Button, Stack, Tooltip } from '@mantine/core';
 import Link from 'next/link';
+import { PDFViewer } from '@react-pdf/renderer';
+import Image from 'next/image';
 import { UploadModel } from '../../../types/models/upload-model';
 import { intlDateFormat } from '../../../utils/helpers/date-formatters';
 
@@ -27,22 +29,37 @@ export const PreviewHandler = (props: Props) => {
     case 'jpeg':
     case 'png':
     case 'gif':
-      preview = <img src={file.url} alt={file.originalFileName} width="100" height="100" />;
+      preview = <Image src={file.url} alt={file.originalFileName} width="100" height="100" />;
       break;
     case 'pdf':
       preview = (
-        <iframe
-          title="pdf"
+        <PDFViewer
           style={{
-            maxWidth: '100%',
-            maxHeight: '100%',
-            overflow: 'hidden',
+            width: '100%',
           }}
-          src={file.url}
-          width="100"
-          height="100"
+          height="300"
+          showToolbar
+          // @ts-ignore
+          src={`${file.url}#zoom=50`}
         />
       );
+      // preview = <Box  bg="blue">preview</Box>;
+      // preview = (
+      //   <iframe
+      //     title="pdf"
+      //     style={{
+      //       maxWidth: '100%',
+      //       maxHeight: '100%',
+      //       overflow: 'hidden',
+      //       objectFit: 'contain',
+      //       scrollbarWidth: 'thin',
+      //       border: 'none',
+      //     }}
+      //     src={`${file.url}#scrollbar=0`}
+      //     width="100"
+      //     height="100"
+      //   />
+      // );
       break;
 
     case 'mp3':
