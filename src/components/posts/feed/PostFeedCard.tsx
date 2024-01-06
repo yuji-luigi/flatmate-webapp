@@ -17,7 +17,7 @@ const PostFeedCard = ({ data, style = {}, ...others }: FeedCardProps) => {
 
   return (
     <Card className={classesM.feedCard}>
-      <FeedHeading {...data} />
+      <FeedHeading {...data} className={classesM.spacing} />
       <Box>
         <Title size={TEXT_SIZE.titleCard} mb={16}>
           {title}
