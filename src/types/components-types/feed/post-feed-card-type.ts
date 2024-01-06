@@ -1,11 +1,11 @@
-import { MantineStyleProp, Sx } from '@mantine/core';
-import { CheckInterface } from '../../models/maintenance-check-type';
-import { MaintenanceModel } from '../../models/maintenance-model';
+import { MantineStyleProp } from '@mantine/core';
+import { CheckInterface, MaintenanceModel } from '../../models/maintenance-check-type';
 import { ThreadModel } from '../../models/thread-model';
 
 export type FeedCardData = (MaintenanceModel | ThreadModel) & {
   receipts?: CheckInterface[];
   invoices?: CheckInterface[];
+  className?: string;
 };
 
 export type FeedCardProps = {
