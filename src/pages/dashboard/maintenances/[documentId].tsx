@@ -4,10 +4,10 @@ import { GetServerSidePropsContext } from 'next';
 import axiosInstance from '../../../utils/axios-instance';
 import Layout from '../../../layouts';
 import RelatedArticlesArea from '../../../sections/@dashboard/maintenance_detail_page/RelatedArticleArea';
-import { MaintenanceModel } from '../../../types/models/maintenance-model';
 import { SingleArticleCard } from '../../../components/posts/SingleArticleCard';
 import { SingleArticleHeading } from '../../../components/posts/SingleArticleHeading';
 import classes from './MaintenancePage.module.css';
+import { MaintenanceModel } from '../../../types/models/maintenance-check-type';
 
 const MaintenancePage = ({ maintenance }: { maintenance: MaintenanceModel }) => {
   // return 'rendered';
