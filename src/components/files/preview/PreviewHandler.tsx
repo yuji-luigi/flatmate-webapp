@@ -53,23 +53,7 @@ export const PreviewHandler = (props: Props) => {
       break;
     case 'pdf':
       preview = <PDFPreview file={file} />;
-      // preview = <Box  bg="blue">preview</Box>;
-      // preview = (
-      //   <iframe
-      //     title="pdf"
-      //     style={{
-      //       maxWidth: '100%',
-      //       maxHeight: '100%',
-      //       overflow: 'hidden',
-      //       objectFit: 'contain',
-      //       scrollbarWidth: 'thin',
-      //       border: 'none',
-      //     }}
-      //     src={`${file.url}#scrollbar=0`}
-      //     width="100"
-      //     height="100"
-      //   />
-      // );
+
       break;
 
     case 'mp3':
