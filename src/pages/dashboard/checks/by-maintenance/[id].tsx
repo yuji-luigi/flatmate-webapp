@@ -43,7 +43,7 @@ const ChecksByEntityPage = () => {
   if (error) return <div>{error.message}</div>;
   return (
     <Stack>
-      <PageTitle title={`${t('Checks')}: ${maintenance?.title}`} />
+      <PageTitle title="Maintenance" subtitle="Checks" />
       <ChecksGrid checks={checks} />
     </Stack>
   );
