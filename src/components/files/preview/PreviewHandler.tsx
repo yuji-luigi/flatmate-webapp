@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Box, Button, Stack, Tooltip } from '@mantine/core';
 import Link from 'next/link';
-import { PDFViewer } from '@react-pdf/renderer';
 import Image from 'next/image';
 import { UploadModel } from '../../../types/models/upload-model';
 import { intlDateFormat } from '../../../utils/helpers/date-formatters';
 import { PATH_IMAGE } from '../../../lib/image-paths';
+import { PDFPreview } from './PDFPrevieww';
 
 type Props = {
   file: UploadModel;
@@ -52,17 +52,7 @@ export const PreviewHandler = (props: Props) => {
       );
       break;
     case 'pdf':
-      preview = (
-        <PDFViewer
-          style={{
-            width: '100%',
-          }}
-          height="300"
-          showToolbar
-          // @ts-ignore
-          src={`${file.url}#zoom=50`}
-        />
-      );
+      preview = <PDFPreview file={file} />;
       // preview = <Box  bg="blue">preview</Box>;
       // preview = (
       //   <iframe
@@ -102,6 +92,7 @@ export const PreviewHandler = (props: Props) => {
     default:
       preview = <>not defined for: &quot;{fileExt}&quot;</>;
   }
+  console.log({ enableLink });
   // return preview;
   if (enableLink) {
     preview = (
