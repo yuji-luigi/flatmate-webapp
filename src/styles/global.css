@@ -35,6 +35,7 @@ body {}
   --liner-gradient-dark: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
   --font-weight-title: 900;
   --padding-card: 32px 40px;
+  --padding-card-xs: 16px 8px;
 
   --spacing-md: 24px;
 
