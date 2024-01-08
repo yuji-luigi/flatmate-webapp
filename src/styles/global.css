@@ -33,7 +33,7 @@ body {}
   --font-size-subtitle: 26px;
   --liner-gradient-light: linear-gradient(rgba(100, 100, 100, 0.5), rgba(100, 100, 100, 1));
   --liner-gradient-dark: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
-  --font-weight-title: var(--font-weight-bold);
+  --font-weight-title: 900;
   --padding-card: 32px 40px;
 
   --spacing-md: 24px;
