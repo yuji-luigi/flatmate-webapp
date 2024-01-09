@@ -1,4 +1,4 @@
-import { Overlay, Container, Title, Button, Text } from '@mantine/core';
+import { Overlay, Container, Title, Button, Text, Box } from '@mantine/core';
 import { useTranslation } from 'react-i18next';
 import Link from 'next/link';
 import classes from './hero.module.css';
@@ -15,22 +15,24 @@ export function HeroSection() {
       />
       <Container className={classes.container} size="md">
         <Title className={classes.title}>{t('Flatmates  condominium manager')}</Title>
-        <Text className={classes.description} size="xl" mt="xl">
-          {t(
-            'Where everyone can manage spending of condominiums and enables all kinds of communications within condominium.'
-          )}
-        </Text>
+        <Box className={classes.descriptionSection}>
+          <Text className={classes.description} size="xl" mt="xl">
+            {t(
+              'Where everyone can manage spending of condominiums and enables all kinds of communications within condominium.'
+            )}
+          </Text>
 
-        <Button
-          component={Link}
-          href={PATH_CLIENT.signup}
-          variant="gradient"
-          size="xl"
-          radius="xl"
-          className={classes.control}
-        >
-          Get started
-        </Button>
+          <Button
+            component={Link}
+            href={PATH_CLIENT.signup}
+            variant="gradient"
+            size="xl"
+            radius="xl"
+            className={classes.control}
+          >
+            Get started
+          </Button>
+        </Box>
       </Container>
     </div>
   );
