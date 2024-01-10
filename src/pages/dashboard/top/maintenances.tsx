@@ -1,5 +1,6 @@
 import React, { ReactElement, useEffect } from 'react';
 import { Box } from '@mantine/core';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Layout from '../../../layouts';
 import classes from './dashboardTop.module.css';
 import { SpaceMaintenanceSection } from '../../../sections/@dashboard/dashboard_top/sections-in-tabs/SpaceMaintenanceSection';
@@ -27,3 +28,12 @@ DashboardTopMaintenances.getLayout = function getLayout(page: ReactElement) {
   return <Layout variant="dashboard">{page}</Layout>;
 };
 export default DashboardTopMaintenances;
+
+export async function getStaticProps({ locale }: { locale: string }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common'])),
+      // Will be passed to the page component as props
+    },
+  };
+}
