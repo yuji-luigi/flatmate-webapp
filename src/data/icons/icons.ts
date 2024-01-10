@@ -57,6 +57,9 @@ import {
   IconColumns as columns,
   IconTable as table,
   IconCalendar as calendar,
+  IconLogin as login,
+  IconLogin2 as login2,
+  IconWriting as writing,
 } from '@tabler/icons-react';
 /**
  * use the key name same as the slice name
@@ -119,6 +122,9 @@ export const Icons = {
   columns,
   table,
   calendar,
+  login,
+  login2,
+  signup: writing,
 } as const;
 export const ICON_SIZES = {
   textTile: 16,
