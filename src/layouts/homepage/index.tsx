@@ -3,7 +3,7 @@ import { ColorSchemeToggle } from '../../components/color-schemeToggle/ColorSche
 import AuthGuard from '../../guards/AuthGuard';
 import GuestGuard from '../../guards/GuestGuard';
 import { PropWithChildren } from '../../types/general/config';
-import { HomepageHeader } from './HomepageHeader';
+import { HomepageHeader } from './nav/header/HomepageHeader';
 import classes from './HomePageLayout.module.css';
 
 export function HomepageLayout(props: PropWithChildren) {
