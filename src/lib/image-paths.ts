@@ -5,6 +5,17 @@ import {
   getRandomNumberOne,
 } from '../utils/helpers/helper-functions';
 
+const LOCALE_IMAGES = {
+  english: '/images/flags/gb.svg',
+  french: '/images/flags/fr.svg',
+  spanish: '/images/flags/es.svg',
+  german: '/images/flags/de.svg',
+  italian: '/images/flags/it.svg',
+  portuguese: '/images/flags/pt.svg',
+  dutch: '/images/flags/am.svg',
+  russian: '/images/flags/ru.svg',
+  polish: '/images/flags/pl.svg',
+};
 export const PATH_IMAGE = {
   notFound: '/images/notfound.jpg',
   rootSpaceCard1: '/images/haussmann-buildings3.png',
@@ -23,6 +34,7 @@ export const PATH_IMAGE = {
     xls: '/file_images/xls.png',
   },
   unlock: '/images/unlock.png',
+  LOCALE_IMAGES,
 };
 
 const a = getRandomNumberOne;
