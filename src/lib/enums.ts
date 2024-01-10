@@ -1,3 +1,4 @@
+import { Loader } from '@mantine/core';
 import { Icons } from '../data/icons/icons';
 import { MAINTENANCE_STATUS } from '../types/models/check-type.d';
 
@@ -95,3 +96,7 @@ export const MAINTAINER_TYPES = Object.keys(MAINTAINER_TYPES_ARRAY).reduce((acc,
 export const USER_ROLES = ['admin', 'user', 'maintainer', 'super_admin'] as const;
 
 export type UserRoles = (typeof USER_ROLES)[number];
+
+export const LOCAL_STORAGE_KEYS = {
+  LOCALE: 'i18nextLng',
+} as const;
