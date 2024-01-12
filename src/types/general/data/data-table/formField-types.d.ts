@@ -123,6 +123,9 @@ export type CustomFormFieldType = {
   type: 'custom';
   component: React.FC<any>;
 } & BaseFormType;
+export type DateFormFieldType = {
+  type: 'date';
+} & BaseFormType;
 
 export type FormFieldTypes =
   | TextFormType
@@ -138,6 +141,7 @@ export type FormFieldTypes =
   | LinkChildrenFormFieldType
   | CustomFormFieldType
   | PasswordFormType
+  | DateFormFieldType
   | UploadFormFieldType;
 
 export interface FormFieldInterface {

@@ -1,0 +1,5 @@
+@media (max-width: $mantine-breakpoint-sm) {
+  .container {
+    display: none;
+  }
+}

@@ -1,5 +1,12 @@
-export const intlDateFormat = (date: string | Date, locale: 'en-US' | 'it-IT' = 'en-US') =>
-  new Intl.DateTimeFormat(locale).format(new Date(date));
+export const intlDateFormat = (date: string | Date, locale: 'it' | 'en' | 'it-IT' | 'en-US') =>
+  new Intl.DateTimeFormat(FullLocales[locale]).format(new Date(date));
+
+const FullLocales = {
+  it: 'it-IT',
+  en: 'en-US',
+  'it-IT': 'it-IT',
+  'en-US': 'en-US',
+} as const;
 
 // format date to yy-mm
 export const intlDateFormatMonth = (date: string | Date) => {

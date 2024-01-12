@@ -60,6 +60,7 @@ import {
   IconLogin as login,
   IconLogin2 as login2,
   IconWriting as writing,
+  IconHome2 as home,
 } from '@tabler/icons-react';
 /**
  * use the key name same as the slice name
@@ -68,7 +69,7 @@ import {
 export const Icons = {
   authentication: Authentication,
   notifications: Notification,
-  home: Dashboard,
+  home,
   database: Database,
   security: Security,
   statistics: Statistic,

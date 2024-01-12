@@ -1,6 +1,6 @@
 import { Group, Text } from '@mantine/core';
 import React, { ReactNode } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import classes from './PageTitle.module.css';
 
 export const PageTitle = ({ title = '', subtitle }: { title: string; subtitle?: string }) => {

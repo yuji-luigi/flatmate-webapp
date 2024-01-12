@@ -10,6 +10,18 @@ import { FormFieldTypes } from '../../../src/types/general/data/data-table/formF
 
 export const maintenancesTableData: Array<FormFieldTypes> = [
   {
+    id: 'status',
+    name: 'status',
+    label: 'Status',
+    type: 'static-select',
+    options: [...MAINTENANCE_STATUS_OPTIONS],
+    // _entity: 'maintenances',
+    // selectValues: ['name'],
+    required: false,
+    textSearch: true,
+    priority: 0,
+  },
+  {
     id: 'title',
     name: 'title',
     label: 'Title of the maintenance',
@@ -29,15 +41,14 @@ export const maintenancesTableData: Array<FormFieldTypes> = [
     required: false,
     priority: 0,
   },
-  // {
-  //   id: 'images',
-  //   name: 'images',
-  //   label: 'Tipo',
-  //   type: 'image',
-  //   multi: true,
-  //   required: false,
-  //   priority: 0,
-  // },
+  {
+    id: 'createdAt',
+    name: 'createdAt',
+    label: 'date of creation',
+    type: 'date',
+    required: false,
+    priority: 0,
+  },
   {
     id: 'type',
     name: 'type',
@@ -50,25 +61,13 @@ export const maintenancesTableData: Array<FormFieldTypes> = [
     textSearch: true,
     priority: 0,
   },
-  {
-    id: 'status',
-    name: 'status',
-    label: 'Status',
-    type: 'static-select',
-    options: [...MAINTENANCE_STATUS_OPTIONS],
-    // _entity: 'maintenances',
-    // selectValues: ['name'],
-    required: false,
-    textSearch: true,
-    priority: 0,
-  },
+
   {
     id: 'maintainer',
     name: 'maintainer',
     label: 'Maintainer',
     type: 'custom',
     // textSearch: true,
-
     required: true,
     component: MaintainerSelect,
     priority: 0,
