@@ -12,7 +12,6 @@ export const useLocale = (jsonPath: string = 'common') => {
     i18n.changeLanguage(lng, (err, a) => {
       localStorage.setItem(LOCALE, lng);
       setCurrentLocale(lng);
-      console.log({ lng, a: a('Welcome back to Flatmate!') });
     });
   };
   // console.log(t('Subscribe'));
@@ -22,6 +21,9 @@ export const useLocale = (jsonPath: string = 'common') => {
     if (!initialLocale) {
       initialLocale = 'it'; // if null set to default 'it'
       localStorage.setItem(LOCALE, initialLocale); // and save it in localStorage
+    }
+    if (initialLocale !== 'en') {
+      i18n.changeLanguage(initialLocale);
     }
     setCurrentLocale(initialLocale); // set whatever is in localStorage or default 'it'
   }, []);
