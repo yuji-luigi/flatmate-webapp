@@ -93,7 +93,6 @@ export function HomepageHeader() {
               Home
             </Link>
           </Group>
-
           <Group className={classes.mobileNav}>
             <Burger
               opened={drawerOpened}
@@ -102,10 +101,10 @@ export function HomepageHeader() {
             />
             <Group>
               {logNav}
-              <Box className={classes.utils}>
+              <Group className={classes.utils}>
                 <ColorSchemeToggle variant="outline" />
                 <LanguageMenu />
-              </Box>
+              </Group>
             </Group>
           </Group>
         </Group>

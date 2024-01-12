@@ -17,7 +17,7 @@ export function ColorSchemeToggle(props: Props) {
     <Group className={className} justify="center" style={style} mt={props.mt}>
       <ActionIcon
         onClick={() => toggleColorScheme()}
-        size={props.size || 'xl'}
+        size={props.size || 'lg'}
         variant={props.variant || 'filled'}
         className={classes.icon}
         // style={(theme) => ({
