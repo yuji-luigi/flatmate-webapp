@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import { CheckInterface } from '../../../types/models/maintenance-check-type';
 import { PreviewHandler } from '../../../components/files/preview/PreviewHandler';
 import classes from './ChecksGrid.module.css';
