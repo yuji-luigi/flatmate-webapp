@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { UnstyledButton, Menu, Image, Group } from '@mantine/core';
 import { IconChevronDown } from '@tabler/icons-react';
 import classes from './LanguageMenu.module.css';
@@ -28,7 +28,7 @@ export function LanguageMenu() {
   //   };
   // }
   const [opened, setOpened] = useState(false);
-  const { changeLanguage } = useLocale();
+  const { changeLanguage, locale } = useLocale();
   const [selected, setSelected] = useState<Language>(data[0]);
   const handleSelected = (item: Language) => {
     setSelected(item);
@@ -43,6 +43,10 @@ export function LanguageMenu() {
       {item.label}
     </Menu.Item>
   ));
+  useEffect(() => {
+    console.log({ locale });
+    setSelected(data.find((item) => item.value === locale) || data[0]);
+  }, [locale]);
   return (
     <Menu
       onOpen={() => setOpened(true)}
