@@ -32,7 +32,7 @@ export default DashboardTopMaintenances;
 export async function getStaticProps({ locale }: { locale: string }) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common'])),
+      ...(await serverSideTranslations(locale, ['common'], null, ['en', 'it'])),
       // Will be passed to the page component as props
     },
   };

@@ -21,6 +21,8 @@ import { _ModalContextProvider } from '../context/modal-context/_ModalContext';
 import '../styles/global.css';
 import { ModalRootCustom } from '../context/modal-context/ModalRootCustom';
 import { components } from '../overrides';
+import '../../next-i18next.config';
+import '../../i18n';
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;

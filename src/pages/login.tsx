@@ -15,7 +15,7 @@ import { GetServerSidePropsContext } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import axios from 'axios';
 import { useRouter } from 'next/router';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import classes from './login.module.css';
 import Layout from '../layouts';
 import { API_BASE_URL, PATH_AUTH } from '../path/path-api';
@@ -26,21 +26,26 @@ import GuestGuard from '../guards/GuestGuard';
 import { UserModel } from '../types/models/user-model';
 import CardWithTitle from '../components/profile/side/CardWithTitle';
 import TextWithIcon from '../components/text/TextWithIcon';
+import { LanguageMenu } from '../components/menu/LanguageMenu/LanguageMenu';
+import { useLocale } from '../../hooks/useLocale';
 
 export default function LoginPage(props: { initialUser?: UserModel }) {
   const { initialUser } = props;
   const { push } = useRouter();
-  const { t } = useTranslation('common');
+  const { t } = useLocale('common');
+  // const { changeLanguage, t } = useLocale();
   useEffect(() => {
+    // changeLanguage('it');
     if (initialUser) {
       push(PATH_CLIENT.chooseRootSpace);
     }
   }, [initialUser]);
+  // return null;
   return (
     <div className={classes.wrapper}>
       <Paper className={classes.form} radius={0} p={30}>
         <Title order={2} className={classes.title} ta="center" mt="md" mb={50}>
-          Welcome back to Mantine!
+          {t('Welcome back to Flatmate!')}
         </Title>
         <CardWithTitle title={t('Use this credential')}>
           <Group>
@@ -73,10 +78,14 @@ LoginPage.getLayout = function getLayout(page: ReactElement) {
 };
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const translationObj = await serverSideTranslations(context.locale || 'it', ['common'], null, [
+    'it',
+    'en',
+  ]);
   try {
     const jwtToken = context.req.cookies.jwt;
     if (!jwtToken) {
-      return { props: { user: null } };
+      return { props: { user: null, ...translationObj } };
     }
     const rawRes = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/${PATH_AUTH.me}`, {
       headers: {
@@ -87,13 +96,16 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     const { user } = data;
     return {
       props: {
-        ...(await serverSideTranslations(context.locale || '', ['common'])),
+        ...translationObj,
         initialUser: user,
       },
     };
   } catch (error) {
     return {
-      props: { initialUser: null },
+      props: {
+        initialUser: null,
+        ...translationObj,
+      },
     };
   }
 }
