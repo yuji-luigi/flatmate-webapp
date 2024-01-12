@@ -34,8 +34,6 @@
   }
 }
 
-
-
 .subLink {
   width: 100%;
   padding: var(--mantine-spacing-xs) px var(--mantine-spacing-md) px;
@@ -82,6 +80,5 @@
 .utils {
   @media (max-width: $mantine-breakpoint-sm) {
     display: none;
-
   }
 }
