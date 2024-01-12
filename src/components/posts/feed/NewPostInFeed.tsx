@@ -1,6 +1,6 @@
 import { Avatar, Text, Group, Card, Box, Stack, List } from '@mantine/core';
 import { IconPhoneCall, IconAt } from '@tabler/icons-react';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import classes from './NewPostInFeed.module.css';
 import { useCustomModalContext } from '../../../context/modal-context/_ModalContext';
 import { useSimpleDisclosureContext } from '../../../context/SimpleDisclosureContext';
