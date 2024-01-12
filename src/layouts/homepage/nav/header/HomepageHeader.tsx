@@ -23,6 +23,8 @@ import { LoginButton } from './LoginButton';
 import { SignUpButton } from './SignUpButton';
 import { LogoBanner } from '../../../../components/banner/LogoBanner';
 import { LanguageMenu } from '../../../../components/menu/LanguageMenu/LanguageMenu';
+import { LanguageMenuSmall } from '../../../../components/menu/LanguageMenu/LanguageMenuSmall';
+import DisplayController from '../../../../components/util-components/DisplayController';
 
 const mockdata = [
   {
@@ -72,28 +74,11 @@ export function HomepageHeader() {
         Logout
       </Button>
       <EnterButton />
-      <ColorSchemeToggle variant="outline" />
     </>
   ) : (
     <>
       <LoginButton />
       <SignUpButton />
-      <ColorSchemeToggle variant="outline" />
-    </>
-  );
-  const logNavDrawer = user ? (
-    <>
-      <Link variant="default" component={Link} href={PATH_CLIENT.logout}>
-        Logout
-      </Link>
-      <EnterButton />
-      <ColorSchemeToggle variant="outline" />
-    </>
-  ) : (
-    <>
-      <LoginButton />
-      <SignUpButton />
-      <ColorSchemeToggle variant="outline" />
     </>
   );
 
@@ -116,9 +101,11 @@ export function HomepageHeader() {
               className={classes.hiddenDesktop}
             />
             <Group>
-              {/* {logNav} */}
-              <ColorSchemeToggle variant="outline" />
-              <LanguageMenu />
+              {logNav}
+              <Box className={classes.utils}>
+                <ColorSchemeToggle variant="outline" />
+                <LanguageMenu />
+              </Box>
             </Group>
           </Group>
         </Group>

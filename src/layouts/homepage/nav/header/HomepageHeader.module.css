@@ -20,7 +20,7 @@
   text-decoration: none;
   color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
   font-weight: 500;
-  font-size: theme.fontSizes.sm;
+  font-size: var(--mantine-font-size-sm);
 
   @media (max-width: $mantine-breakpoint-sm) {
     height: 42px;
@@ -76,5 +76,12 @@
   @media (min-width: $mantine-breakpoint-sm) {
     display: none;
     justify-content: flex-end;
+  }
+}
+
+.utils {
+  @media (max-width: $mantine-breakpoint-sm) {
+    display: none;
+
   }
 }

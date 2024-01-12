@@ -25,6 +25,10 @@
   margin-right: var(--flex-gap);
 }
 
+.control {
+  margin-inline: var(--mantine-spacing-md);
+}
+
 .subLink {
   width: 100%;
   padding: var(--mantine-spacing-xs) px var(--mantine-spacing-md) px;
