@@ -1,9 +1,10 @@
 import { Text, Title, TextInput, Button, Image, rem } from '@mantine/core';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import classes from './EmailBanner.module.css';
+import { useLocale } from '../../../hooks/useLocale';
 
 export function EmailBanner() {
-  const { t } = useTranslation('common');
+  const { t } = useLocale('common');
   return (
     <div className={classes.wrapper}>
       <div className={classes.body}>
@@ -12,11 +13,12 @@ export function EmailBanner() {
           {t('Subscription is not available yet...')}
         </Text>
         <Text fw={500} fz="lg" mb={5} className={classes.disabled}>
-          Subscribe to our newsletter!
+          {t('Subscribe to our newsletter!')}
         </Text>
         <Text fz="sm" c="dimmed" className={classes.disabled}>
-          You will never miss important product updates, latest news and community QA sessions. Our
-          newsletter is once a week, every Sunday.
+          {t(
+            'You will never miss important product updates, latest news and community QA sessions. Our newsletter is once a week, every Sunday.'
+          )}
         </Text>
         <form>
           <div className={classes.controls}>
@@ -25,7 +27,7 @@ export function EmailBanner() {
               placeholder="Your email"
               classNames={{ input: classes.input, root: classes.inputWrapper }}
             />
-            <Button className={classes.control}>Subscribe</Button>
+            <Button className={classes.control}>{t('Subscribe')}</Button>
           </div>
         </form>
       </div>

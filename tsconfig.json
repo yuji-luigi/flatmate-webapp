@@ -21,7 +21,8 @@
     "**/*.ts",
     "**/*.tsx",
     "src/redux/rootReducer.ts",
-    "src/theme/cssVariableResolver.js"
+    "src/theme/cssVariableResolver.js",
+    "i18n.js"
   ],
   "exclude": ["node_modules", "quokka-test"]
 }

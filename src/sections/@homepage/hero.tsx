@@ -1,11 +1,12 @@
 import { Overlay, Container, Title, Button, Text, Box } from '@mantine/core';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import Link from 'next/link';
 import classes from './hero.module.css';
 import { PATH_CLIENT } from '../../path/path-frontend';
+import { useLocale } from '../../../hooks/useLocale';
 
 export function HeroSection() {
-  const { t } = useTranslation('common');
+  const { t } = useLocale('common');
   return (
     <div className={classes.hero}>
       <Overlay
