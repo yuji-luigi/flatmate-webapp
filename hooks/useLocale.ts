@@ -1,18 +1,21 @@
 import { set } from 'date-fns';
 import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import { LOCAL_STORAGE_KEYS } from '../src/lib/enums';
 
 const { LOCALE } = LOCAL_STORAGE_KEYS;
-export const useLocale = (jsonPath: string = '') => {
+export const useLocale = (jsonPath: string = 'common') => {
   const { t, i18n } = useTranslation(jsonPath);
   const [currentLocale, setCurrentLocale] = useState<string | null>(i18n.language);
 
   const changeLanguage = (lng: string) => {
-    i18n.changeLanguage(lng);
-    localStorage.setItem(LOCALE, lng);
-    setCurrentLocale(lng);
+    i18n.changeLanguage(lng, (err, a) => {
+      localStorage.setItem(LOCALE, lng);
+      setCurrentLocale(lng);
+      console.log({ lng, a: a('Welcome back to Flatmate!') });
+    });
   };
+  // console.log(t('Subscribe'));
 
   useEffect(() => {
     let initialLocale = localStorage.getItem(LOCALE); // potentially null
@@ -32,7 +35,6 @@ export const useLocale = (jsonPath: string = '') => {
   const removeResourceBundle = (lng: string, ns: string) => {
     i18n.removeResourceBundle(lng, ns);
   };
-
   return {
     t,
     changeLanguage,
