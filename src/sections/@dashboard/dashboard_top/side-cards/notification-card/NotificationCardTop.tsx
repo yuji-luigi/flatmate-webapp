@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Skeleton } from '@mantine/core';
 import useSWR from 'swr';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import { useDisclosure } from '@mantine/hooks';
 import CardWithTitle from '../../../../../components/profile/side/CardWithTitle';
 import { SimpleLinkTile } from '../../../../../components/list/SimpleLinkTile';

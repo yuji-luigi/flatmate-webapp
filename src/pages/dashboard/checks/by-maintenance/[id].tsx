@@ -4,7 +4,7 @@ import useSWR from 'swr';
 import Link from 'next/link';
 import { AxiosError } from 'axios';
 import { Stack, Text } from '@mantine/core';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import { ChecksGrid } from '../../../../sections/@dashboard/checks/ChecksGrid';
 import { UseRouterWithCustomQuery } from '../../../../types/nextjs-custom-types/useRouter-types';
 import { Sections } from '../../../../types/general/data/sections-type';
