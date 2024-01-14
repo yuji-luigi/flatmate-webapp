@@ -1,9 +1,11 @@
 import '@mantine/core/styles.css';
 import '@mantine/notifications/styles.css';
 import '@mantine/dates/styles.css';
+import 'dayjs/locale/it';
 import { MantineProvider } from '@mantine/core';
 import { Notifications } from '@mantine/notifications';
 import { getCookie } from 'cookies-next';
+import { DatesProvider } from '@mantine/dates';
 import { GetServerSidePropsContext, NextPage } from 'next';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
@@ -23,6 +25,7 @@ import { ModalRootCustom } from '../context/modal-context/ModalRootCustom';
 import { components } from '../overrides';
 import '../../next-i18next.config';
 import '../../i18n';
+import { useLocale } from '../../hooks/useLocale';
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -34,6 +37,7 @@ type AppPropsWithLayout = AppProps & {
 function App(props: AppProps) {
   const { Component, pageProps }: AppPropsWithLayout = props;
   const getLayout = Component.getLayout ?? ((page) => page);
+  const { locale } = useLocale();
 
   return (
     <>
@@ -71,8 +75,18 @@ function App(props: AppProps) {
                   <_ModalContextProvider>
                     <FilterContextProvider>
                       <Notifications />
-                      {getLayout(<Component {...pageProps} />)}
-                      <ModalRootCustom />
+                      <DatesProvider
+                        settings={{
+                          locale: locale || 'en',
+                          // locale: locale || 'it',
+                          // firstDayOfWeek: 0,
+                          // weekendDays: [0],
+                          // timezone: 'UTC',
+                        }}
+                      >
+                        {getLayout(<Component {...pageProps} />)}
+                        <ModalRootCustom />
+                      </DatesProvider>
                     </FilterContextProvider>
                   </_ModalContextProvider>
                 </DrawerContextProvider>
