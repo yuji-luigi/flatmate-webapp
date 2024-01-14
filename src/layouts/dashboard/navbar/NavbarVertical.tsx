@@ -1,5 +1,5 @@
-import { Fragment, useEffect, useRef, useState } from 'react';
-import { ScrollArea, Button, Stack, Drawer, Box, Group, Code, Divider } from '@mantine/core';
+import { Fragment, useEffect, useState } from 'react';
+import { ScrollArea, Button, Stack, Box, Divider } from '@mantine/core';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { useMediaQuery } from '@mantine/hooks';
@@ -11,28 +11,19 @@ import {
   Icon2fa,
   IconDatabaseImport,
   IconReceipt2,
-  IconSwitchHorizontal,
-  IconLogout,
 } from '@tabler/icons-react';
-import { MantineLogo } from '@mantine/ds';
 import useLayoutContext from '../../../../hooks/useLayoutContext';
 import useAuth from '../../../../hooks/useAuth';
 import { sectionData } from '../../../data';
 
-import { Icons } from '../../../data/icons/icons';
 import { PATH_CLIENT } from '../../../path/path-frontend';
 import { ProfilePopover } from '../../../components/navigation/ProfilePopover';
-import { useCookieContext } from '../../../context/CookieContext';
 import { NavbarVerticalItem } from './NavbarVerticalItem';
 // import classes from './navbarStyle.module.css';
 import { ColorSchemeToggle } from '../../../components/color-schemeToggle/ColorSchemeToggle';
 import LogoutButton from './LogoutButton';
-import OrganizationSpaceSelect from '../../../components/select-custom/OrganizationSpaceSelect';
 import classes from './NavbarVertical.module.css';
-import { useCustomMQuery } from '../../../../hooks/useCustomMQuery';
 import { getEntityOrUndefinedFromUrl } from '../../../utils/helpers/helper-functions';
-import { LanguageMenu } from '../../../components/menu/LanguageMenu/LanguageMenu';
-import { LanguageMenuSmall } from '../../../components/menu/LanguageMenu/LanguageMenuSmall';
 
 const data = [
   { link: '', label: 'Notifications', icon: IconBellRinging },
@@ -46,12 +37,10 @@ const data = [
 
 export function NavbarVertical() {
   const [active, setActive] = useState('Billing');
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
   const { isOpen, closeBar } = useLayoutContext();
-  const { asPath, query } = useRouter();
   const isMediaScreen = useMediaQuery('(max-width: 750px)');
   const isSuperAdmin = user?.role === 'super_admin';
-  const { isMobile } = useCustomMQuery();
   const chooseText = isSuperAdmin ? 'Organization' : 'Space';
   // const isMobile = useMediaQuery('(max-width: 600px)');
 
