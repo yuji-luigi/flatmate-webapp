@@ -9,9 +9,11 @@ import {
 } from '../../../types/general/data/data-table/formField-types';
 import classes from './StaticTableHeader.module.css';
 import { getAlignmentDataAttribute } from '../../../utils/data-table/getAlignmentDataAttribute';
+import { useLocale } from '../../../../hooks/useLocale';
 
 const StaticTableHeader = ({ json, actions }: { json: FormFieldTypes[]; actions?: any }) => {
   const { query } = useRouter();
+  const { t } = useLocale();
 
   json?.sort((a: FormFieldTypes, b: FormFieldTypes) => a?.priority || 0 - (b?.priority || 0));
   return (
@@ -19,11 +21,12 @@ const StaticTableHeader = ({ json, actions }: { json: FormFieldTypes[]; actions?
       <Table.Tr>
         {json?.map((cellData) => {
           const dataAlign = getAlignmentDataAttribute(cellData.align);
+          const _label = typeof cellData.label === 'string' ? t(cellData.label) : cellData.label;
           return (
             <Fragment key={cellData.id}>
               {!cellData.noTable && (
                 <Table.Th {...dataAlign} className={classes.tableCellContent}>
-                  {cellData.label}
+                  {_label}
                 </Table.Th>
               )}
             </Fragment>

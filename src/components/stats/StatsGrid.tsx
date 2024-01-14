@@ -9,6 +9,7 @@ import {
 import { useTranslation } from 'next-i18next';
 import { Icons } from '../../data/icons/icons';
 import classesM from './StatsGrid.module.css';
+import { useLocale } from '../../../hooks/useLocale';
 
 const _icons = {
   // user: IconUserPlus,
@@ -31,12 +32,12 @@ export type StatGridSchema = {
 };
 
 export function StatsGrid({ data }: { data: StatGridSchema[] }) {
-  const { t } = useTranslation('common');
+  const { t } = useLocale('common');
   const A = data as unknown;
   const stats = (A as Array<StatGridSchema>).map((stat) => {
     const Icon = typeof stat.icon === 'string' ? _icons[stat.icon] : stat.icon;
     const DiffIcon = stat.diff && stat.diff > 0 ? IconArrowUpRight : IconArrowDownRight;
-
+    console.log({ statTitle: stat.title });
     return (
       <Box key={stat.title} className={classesM.card}>
         <Paper className={classesM.paper} withBorder p="md" radius="md" key={stat.title}>
@@ -51,7 +52,7 @@ export function StatsGrid({ data }: { data: StatGridSchema[] }) {
 
           <Group align="flex-end" gap="xs" mt={0}>
             <Text className={classesM.value}>
-              {stat.unit}
+              {t(stat.unit || '')}
               {stat.value}
             </Text>
             {stat.diff && (

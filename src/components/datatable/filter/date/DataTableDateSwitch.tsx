@@ -9,23 +9,23 @@ export const DataTableDateSwitch = () => {
   const _data: SegmentedControlItem[] = [
     {
       value: 'this-month',
-      label: t('This month'),
+      label: 'This month',
     },
     {
       value: 'three-month',
-      label: t('3 month'),
+      label: '3 months',
     },
     {
-      value: 'six-month',
-      label: t('6 month'),
+      value: 'six-months',
+      label: '6 months',
     },
     {
-      value: '12-month',
-      label: t('Year'),
+      value: '12-months',
+      label: 'Year',
     },
     {
       value: 'Advanced',
-      label: t('Advanced'),
+      label: 'Advanced',
     },
   ];
   return (
