@@ -183,14 +183,6 @@ function calculateStatsGridData(maintenances: MaintenanceModel[]): StatGridSchem
   // const invoiced = maintenances.filter((item) => item.status === 'invoiced');
   const statGridData: StatGridSchema[] = [
     {
-      title: 'Incomplete',
-      value: incomplete.length,
-      unit: '',
-      icon: Icons.clockStop,
-      iconColor: 'error',
-      description: 'Not done for this month',
-    },
-    {
       title: 'Completed',
       value: completed.length,
       unit: '',
@@ -205,6 +197,14 @@ function calculateStatsGridData(maintenances: MaintenanceModel[]): StatGridSchem
       icon: Icons.progressCheck,
       iconColor: 'info',
       description: 'Started but not completed(this month)',
+    },
+    {
+      title: 'Incomplete',
+      value: incomplete.length,
+      unit: '',
+      icon: Icons.clockStop,
+      iconColor: 'error',
+      description: 'Not done for this month',
     },
     {
       title: 'Total spent',
