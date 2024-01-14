@@ -1,8 +1,3 @@
-.header {
-  padding-bottom: var(--mantine-spacing-md);
-  margin-bottom: calc(var(--mantine-spacing-md) * 1.5);
-  border-bottom: 1px solid light-dark(var(--mantine-color-gray-2), var(--mantine-color-dark-4));
-}
 .flexVertical {
   display: flex;
   flex-direction: column;
@@ -30,7 +25,9 @@
   color: light-dark(var(--mantine-color-gray-5), var(--mantine-color-dark-3));
   margin-right: var(--mantine-spacing-sm);
 }
-
+.profileText {
+  padding-left: var(--padding-x);
+}
 /* .linkActive {
       &; &:.hover {
         background-color: theme.fn.variant({

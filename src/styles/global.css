@@ -7,7 +7,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
 
-body {}
+body {
+}
 
 :root {
   --break-point-xs: 576px;
@@ -15,7 +16,6 @@ body {}
   --break-point-md: 992px;
   --break-point-lg: 1200px;
   --break-point-xl: 1408px;
-  --padding-x: 16px;
   --flex-gap: 16px;
   --text-table-mobile: 12px;
   --table-cell-width-sm: 60px;
@@ -23,8 +23,6 @@ body {}
   --table-min-width-sm: 300px;
   --bg-color-dark: rgba(0, 0, 0, 0.85);
   --bg-color-light: rgba(255, 255, 255, 0.85);
-  --padding-x-list: 16px;
-  --padding-y-list: 24px;
   --heading-font-size: 40px;
   --feed-card-spacing: 16px;
   --radius-card: 12px;
@@ -34,13 +32,18 @@ body {}
   --liner-gradient-light: linear-gradient(rgba(100, 100, 100, 0.5), rgba(100, 100, 100, 1));
   --liner-gradient-dark: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
   --font-weight-title: 900;
+
+  --padding-x: 16px;
+  --padding-x-list: var(--padding-x);
+  --padding-y-list: 24px;
+  --padding-y-list-sm: 12px;
+  --padding-y-list-xs: 6px;
   --padding-card: 32px 40px;
-  --padding-card-xs: 16px 8px;
+  --padding-card-xs: var(--padding-x) 8px;
 
   --spacing-md: 24px;
 
   --font-size-card-title: 24px;
-
 
   --max-width: var(--break-point-lg);
   --max-width-feed-card: var(--break-point-sm);

@@ -4,6 +4,7 @@ import useAuth from '../../../hooks/useAuth';
 import { Icons } from '../../data/icons/icons';
 import { PATH_CLIENT } from '../../path/path-frontend';
 import classes from './ProfilePopover.module.css';
+import { LanguageMenu } from '../menu/LanguageMenu/LanguageMenu';
 
 const popoverList = [
   {
@@ -22,13 +23,18 @@ export function ProfilePopover() {
 
   return (
     <Menu position="bottom" withArrow shadow="md">
-      <Group className={classes.header} justify="left">
+      <Group justify="left">
         <Menu.Target>
           <Avatar className={classes.avatar} size={50} />
         </Menu.Target>
         <div className={classes.flexVertical}>
-          <Text fw={700}>{user?.name}</Text>
-          <Text fw={500}>{user?.email}</Text>
+          <Text className={classes.profileText} fw={700}>
+            {user?.name}
+          </Text>
+          <Text className={classes.profileText} fw={500}>
+            {user?.email}
+          </Text>
+          <LanguageMenu />
         </div>
       </Group>
       <Menu.Dropdown>

@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useRef, useState } from 'react';
-import { ScrollArea, Button, Stack, Drawer, Box, Group, Code } from '@mantine/core';
+import { ScrollArea, Button, Stack, Drawer, Box, Group, Code, Divider } from '@mantine/core';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { useMediaQuery } from '@mantine/hooks';
@@ -31,89 +31,8 @@ import OrganizationSpaceSelect from '../../../components/select-custom/Organizat
 import classes from './NavbarVertical.module.css';
 import { useCustomMQuery } from '../../../../hooks/useCustomMQuery';
 import { getEntityOrUndefinedFromUrl } from '../../../utils/helpers/helper-functions';
-
-// type NavbarConfig = { link: string; label: string; icon: TablerIcon };
-// const navBarConfig: NavbarConfig[] = [];
-
-// Object.keys(sectionData).forEach((key: string): void => {
-//   const typedKey = key as Sections;
-//   const config: NavbarConfig = {
-//     link: sectionData[typedKey].link,
-//     label: sectionData[typedKey].navbarTitle,
-//     icon: /*  Icons[sectionData[typedKey].slice as IconsType] || Icons, */ Icons.home,
-//   };
-//   navBarConfig.push(config);
-// });
-
-// export function NavbarVertical() {
-//   const { user, logout } = useAuth();
-//   const [active, setActive] = useState('');
-//   const { isOpen, closeBar } = useLayoutContext();
-//   const { asPath, query } = useRouter();
-//   const isMediaScreen = useMediaQuery('(max-width: 750px)');
-//   const isSuperAdmin = user?.role === 'super_admin';
-//   const { isMobile } = useCustomMQuery();
-//   const chooseText = isSuperAdmin ? 'Organization' : 'Space';
-//   // const isMobile = useMediaQuery('(max-width: 600px)');
-
-//   const chooseHref = isSuperAdmin ? PATH_CLIENT.chooseOrganization : PATH_CLIENT.chooseRootSpace;
-
-//   if (!user) return null;
-//   const links = sectionData.map((section, i) => {
-//     return (
-//       <Fragment key={section.name}>
-//         {section.roles?.includes(user.role) && !section.hide && (
-//           <>
-//             <p>{section.name}</p>
-//             {/* contents are sections: Top, posts,,, */}
-//             {section.contents.map((navbarContent) => (
-//               <NavbarVerticalItem
-//                 key={navbarContent.navbarTitle}
-//                 navbarContent={navbarContent}
-//                 active={active}
-//               />
-//             ))}
-//           </>
-//         )}
-//       </Fragment>
-//     );
-//   });
-
-//   return (
-//     <>
-//       <nav className={classes.navbar}>
-//         <ScrollArea>
-//           <div className={classes.navbarMain}>
-//             <ProfilePopover />
-//             {links.map((navbarData) => navbarData)}
-//           </div>
-
-//           <div className={classes.footer}>
-//             <Stack>
-//               <LogoutButton />
-//               {isMediaScreen && (
-//                 <>
-//                   <Button
-//                     className={`${classes.button} ${classes.link}`}
-//                     component={Link}
-//                     href={chooseHref}
-//                   >
-//                     Choose {chooseText}
-//                   </Button>
-//                   <ColorSchemeToggle /* size="lg" */ /*  style={{ alignSelf: 'end' }} */ />
-//                 </>
-//               )}
-//             </Stack>
-//           </div>
-//         </ScrollArea>
-//       </nav>
-
-//       {isMobile && (
-//         <Box className={`${classes.invBox} ${isOpen ? classes.fadeIn : ''}`} onClick={closeBar} />
-//       )}
-//     </>
-//   );
-// }
+import { LanguageMenu } from '../../../components/menu/LanguageMenu/LanguageMenu';
+import { LanguageMenuSmall } from '../../../components/menu/LanguageMenu/LanguageMenuSmall';
 
 const data = [
   { link: '', label: 'Notifications', icon: IconBellRinging },
@@ -145,7 +64,7 @@ export function NavbarVertical() {
     // closeBar();
   }, [pageEntity]);
   if (!user) return null;
-  const _links = sectionData.map((section, i) => {
+  const navLists = sectionData.map((section, i) => {
     return (
       <Fragment key={section.name}>
         {section.roles?.includes(user.role) && !section.hide && (
@@ -165,21 +84,6 @@ export function NavbarVertical() {
       </Fragment>
     );
   });
-  const links = data.map((item) => (
-    <a
-      className={classes.link}
-      data-active={item.label === active || undefined}
-      href={item.link}
-      key={item.label}
-      onClick={(event) => {
-        event.preventDefault();
-        setActive(item.label);
-      }}
-    >
-      <item.icon className={classes.linkIcon} stroke={1.5} />
-      <span>{item.label}</span>
-    </a>
-  ));
 
   return (
     <>
@@ -187,8 +91,8 @@ export function NavbarVertical() {
         <ScrollArea>
           <div className={classes.navbarMain}>
             <ProfilePopover />
-            {/* {links.map((navbarData) => navbarData)} */}
-            {_links}
+            <Divider className={classes.divider} />
+            {navLists}
           </div>
 
           <div className={classes.footer}>
