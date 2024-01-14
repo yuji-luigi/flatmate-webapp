@@ -71,14 +71,16 @@
 
 .linkIcon {
   color: light-dark(var(--mantine-color-gray-6), var(--mantine-color-dark-2));
-  margin-right: var(--mantine-spacing-sm);
+  /* margin-right: var(--mantine-spacing-sm); */
   width: rem(25px);
   height: rem(25px);
 }
 .invBox {
   visibility: hidden;
+  display: none;
   flex-direction: column;
   width: 100vw;
+  background-color: red;
   height: 100vh;
   position: absolute;
   z-index: 30;
