@@ -15,18 +15,6 @@ const data = [
 ] as const;
 type Language = (typeof data)[number];
 export function LanguageMenu() {
-  // {
-  //   classNames,
-  // }: {
-  //   classNames?: {
-  //     dropdown?: string;
-  //     arrow?: string;
-  //     divider?: string;
-  //     label?: string;
-  //     item?: string;
-  //     itemLabel?: string;
-  //   };
-  // }
   const [opened, setOpened] = useState(false);
   const { changeLanguage, locale } = useLocale();
   const [selected, setSelected] = useState<Language>(data[0]);
@@ -44,7 +32,6 @@ export function LanguageMenu() {
     </Menu.Item>
   ));
   useEffect(() => {
-    console.log({ locale });
     setSelected(data.find((item) => item.value === locale) || data[0]);
   }, [locale]);
   return (
