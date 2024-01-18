@@ -1,17 +1,4 @@
-import {
-  ActionIcon,
-  Box,
-  Container,
-  Grid,
-  Title,
-  Transition,
-  useMantineTheme,
-  Divider,
-  Stack,
-  Text,
-} from '@mantine/core';
-import React, { useEffect } from 'react';
-import { CloseIcon } from 'yet-another-react-lightbox';
+import { Container, Grid, Transition, Stack, Text } from '@mantine/core';
 import { CheckType, MaintenanceModel } from '../../../../types/models/maintenance-check-type';
 import { CheckInputTabCard } from './invoice-receipt-input/CheckInputTabCard';
 import ProfileCoverStatic from '../../../../components/profile/ProfileCoverStatic';
@@ -21,7 +8,6 @@ import { useCrudSelectors } from '../../../../redux/features/crud/crudSlice';
 import { useCustomModalContext } from '../../../../context/modal-context/_ModalContext';
 import { CardStyled } from '../../../../styles/card/CardStyled';
 import { AdminCard } from './AdminCard';
-import { useCookieContext } from '../../../../context/CookieContext';
 
 type Props = {
   pinOk: boolean;
