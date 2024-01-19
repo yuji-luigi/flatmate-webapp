@@ -38,7 +38,9 @@ body {
   --padding-y-list: 24px;
   --padding-y-list-sm: 12px;
   --padding-y-list-xs: 6px;
-  --padding-card: 32px 40px;
+  --padding-card-x: 40px;
+  --padding-card-y: 32px;
+  --padding-card: var(--padding-card-y) var(--padding-card-x);
   --padding-card-xs: var(--padding-x) 8px;
 
   --spacing-md: 24px;
@@ -47,6 +49,8 @@ body {
 
   --max-width: var(--break-point-lg);
   --max-width-feed-card: var(--break-point-sm);
+
+  --color-primary: var(--mantine-color-primary-color);
 
   /* --font-size-article: 24px; */
   :root.light {
