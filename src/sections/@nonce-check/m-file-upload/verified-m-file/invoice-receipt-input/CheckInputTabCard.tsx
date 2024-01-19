@@ -11,10 +11,9 @@ import {
 import { useCrudSelectors } from '../../../../../redux/features/crud/crudSlice';
 import { PATH_API } from '../../../../../path/path-api';
 import axiosInstance from '../../../../../utils/axios-instance';
-import { CheckType } from '../../../../../types/models/maintenance-check-type';
+import { CheckType, MaintenanceModel } from '../../../../../types/models/maintenance-check-type';
 import { PATH_CLIENT } from '../../../../../path/path-frontend';
 import { sleep } from '../../../../../utils/helpers/helper-functions';
-import { MaintenanceModel } from '../../../../../types/models/maintenance-model';
 import { UseRouterWithCustomQuery } from '../../../../../types/nextjs-custom-types/useRouter-types';
 import { FileInputMantine } from '../../../../../components/input/crud-inputs/crud-file-input/FileInputMantine';
 import { FileWithPreview } from '../../../../../types/files/file-types';
