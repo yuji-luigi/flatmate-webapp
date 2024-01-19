@@ -50,8 +50,6 @@ body {
   --max-width: var(--break-point-lg);
   --max-width-feed-card: var(--break-point-sm);
 
-  --color-primary: var(--mantine-color-primary-color);
-
   /* --font-size-article: 24px; */
   :root.light {
     --bg-color: rgba(255, 255, 255, 0.85);
