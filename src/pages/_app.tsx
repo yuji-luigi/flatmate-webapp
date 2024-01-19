@@ -20,12 +20,14 @@ import reduxStore from '../redux/store';
 // import { CurrentSpaceContextProvider } from '../context/CurrentSpaceContext';
 import { FilterContextProvider } from '../context/FilterContext';
 import { _ModalContextProvider } from '../context/modal-context/_ModalContext';
-import '../styles/global.css';
 import { ModalRootCustom } from '../context/modal-context/ModalRootCustom';
 import { components } from '../overrides';
 import '../../next-i18next.config';
 import '../../i18n';
+import '../styles/global.css';
+import '../styles/nprogress.css';
 import { useLocale } from '../../hooks/useLocale';
+import { NprogressBar } from '../components/progress-bar/NprogressBar';
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -67,7 +69,6 @@ function App(props: AppProps) {
             // withGlobalStyles
             // cssVariablesResolver
             withCssVariables
-            // withNormalizeCSS
           >
             <DashboardLayoutContextProvider>
               <PaginationContextProvider>
@@ -84,8 +85,10 @@ function App(props: AppProps) {
                           // timezone: 'UTC',
                         }}
                       >
-                        {getLayout(<Component {...pageProps} />)}
-                        <ModalRootCustom />
+                        <NprogressBar>
+                          {getLayout(<Component {...pageProps} />)}
+                          <ModalRootCustom />
+                        </NprogressBar>
                       </DatesProvider>
                     </FilterContextProvider>
                   </_ModalContextProvider>
