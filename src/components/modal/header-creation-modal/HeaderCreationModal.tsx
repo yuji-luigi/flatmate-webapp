@@ -23,6 +23,8 @@ export const HeaderCreationModal = ({
       size="lg"
       title={section?.createButton}
       classNames={{
+        title: classes.modalTitle,
+        header: classes.modalHeader,
         body: classes.modalBody,
       }}
     >

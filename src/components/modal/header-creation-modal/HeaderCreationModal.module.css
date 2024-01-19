@@ -1,5 +1,16 @@
 .modalBody {
+  padding: var(--padding-card);
+  padding-top: 0;
   @media (max-width: $mantine-breakpoint-sm) {
     padding-inline: calc(- var(--pading-x));
   }
+}
+.modalTitle {
+  font-size: var(--font-size-title);
+  font-weight: var(--font-weight-title);
+  text-align: center;
+}
+.modalHeader {
+  padding-inline: var(--padding-card-x);
+  padding-top: var(--padding-card-y);
 }

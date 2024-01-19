@@ -2,6 +2,7 @@
   overflow: scroll;
 }
 .form {
-  margin-top: 5px;
+  /* margin-top: 5px; */
+  /* padding: var(--padding-card); */
   max-width: 900px;
 }
