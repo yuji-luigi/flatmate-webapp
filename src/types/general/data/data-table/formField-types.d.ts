@@ -25,6 +25,7 @@ type BaseFormType = {
   col?: Partial<Col>;
   textSearch?: boolean;
   priority?: number;
+  formOrder?: number | false;
   grantTo?: UserRoles[];
   noTable?: boolean;
   disabled?: boolean;
@@ -144,6 +145,7 @@ export type FormFieldTypes =
   | DateFormFieldType
   | UploadFormFieldType;
 
+//deprecate this
 export interface FormFieldInterface {
   /**
    * id and name of the field.

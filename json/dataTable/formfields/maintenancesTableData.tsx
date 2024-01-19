@@ -20,6 +20,7 @@ export const maintenancesTableData: Array<FormFieldTypes> = [
     required: false,
     textSearch: true,
     priority: 0,
+    formOrder: 5,
   },
   {
     id: 'title',
@@ -29,6 +30,7 @@ export const maintenancesTableData: Array<FormFieldTypes> = [
     textSearch: true,
     required: true,
     priority: 0,
+    formOrder: 1,
   },
   {
     id: 'description',
@@ -40,6 +42,7 @@ export const maintenancesTableData: Array<FormFieldTypes> = [
     minRows: 5,
     required: false,
     priority: 0,
+    formOrder: 2,
   },
   {
     id: 'createdAt',
@@ -48,6 +51,7 @@ export const maintenancesTableData: Array<FormFieldTypes> = [
     type: 'date',
     required: false,
     priority: 0,
+    formOrder: false,
   },
   {
     id: 'type',
@@ -60,6 +64,7 @@ export const maintenancesTableData: Array<FormFieldTypes> = [
     required: false,
     textSearch: true,
     priority: 0,
+    formOrder: 3,
   },
 
   {
@@ -71,5 +76,6 @@ export const maintenancesTableData: Array<FormFieldTypes> = [
     required: true,
     component: MaintainerSelect,
     priority: 0,
+    formOrder: 4,
   },
 ];
