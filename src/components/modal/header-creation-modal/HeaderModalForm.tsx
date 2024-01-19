@@ -117,22 +117,16 @@ const HeaderModalForm = ({ entity }: { entity: 'threads' | 'maintenances' }) => 
         </>
       )}
       <Box className={classes.inputsWrapper}>
-        {sectionFormFields?.map((formField) => (
-          <FormFields
-            // initialValues={initialValues}
-            form={form}
-            formField={formField}
-            key={formField.id}
-          />
-        ))}
-        {/* {isSuperAdmin && (
-        <OrganizationSpaceSelect
-        form={form}
-        size="md"
-        labels={{ organization: 'Organization', space: 'Spaces' }}
-        style={{ marginBlock: 16, display }}
-        />
-      )} */}
+        {sectionFormFields
+          .toSorted((a, b) => (a.formOrder || 0) - (b.formOrder || 0))
+          ?.map((formField) => (
+            <FormFields
+              // initialValues={initialValues}
+              form={form}
+              formField={formField}
+              key={formField.id}
+            />
+          ))}
       </Box>
       <CreationToolBar
         formFields={sectionFormFields}
