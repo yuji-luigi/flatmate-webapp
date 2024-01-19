@@ -39,7 +39,7 @@
 				"navbarTitle": "maintenances",
 				"link": "/dashboard/maintenances",
 				"importButton": "",
-				"createButton": "",
+				"createButton": "Assign Maintenance",
 				"hide": true,
 				"icon": "posts"
 			}
