@@ -1,6 +1,4 @@
-import { useDisclosure } from '@mantine/hooks';
-
-import { Menu, Modal, ActionIcon, Tooltip } from '@mantine/core';
+import { Menu, ActionIcon } from '@mantine/core';
 
 import { useState } from 'react';
 import { notifications } from '@mantine/notifications';
@@ -11,7 +9,6 @@ import { FONT_SIZES } from '../../../lib/enums';
 import { useCrudSelectors, useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
 import { SectionDataJsonWithRoles } from '../../../types/general/data/data-table/sectionsJson-type';
 import { useSimpleDisclosureCtx } from '../../../../hooks/useSimpleDisclosureCtx';
-import { ModalType } from '../../../types/modal/modal-context-type';
 import { HeaderCreationModal } from './HeaderCreationModal';
 import classes from './HeaderCreationButton.module.css';
 
