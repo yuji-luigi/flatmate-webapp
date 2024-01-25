@@ -1,4 +1,4 @@
-import { Paper, Title, Text, Anchor, Group, Card } from '@mantine/core';
+import { Paper, Title, Text, Anchor, Group, Card, Stack } from '@mantine/core';
 import { ReactElement, useEffect } from 'react';
 import { GetServerSidePropsContext } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -29,36 +29,40 @@ export default function LoginNewPage(props: { initialUser?: UserModel }) {
   // return null;
   return (
     <div className={classes.wrapper}>
-      <Group justify="space-between" align="center">
-        <Title order={2} className={classes.title} ta="center">
-          {t('Welcome back to Flatmate!')}
-        </Title>
-        <LogoSquare />
-      </Group>
-      <Card className={classes.form}>
-        <CardWithTitle title={t('Use this credential')}>
-          <Group>
-            <Text>email:</Text>
-            <Text>
-              <b> admin.sato@demo.com</b>
-            </Text>
+      <Stack>
+        <Card className={classes.form}>
+          <Group style={{ position: 'relative' }} justify="space-between" align="baseline">
+            <Title order={2} className={classes.title} ta="center">
+              {t('Welcome back to Flatmate!')}
+            </Title>
+            <LogoSquare className={classes.logo} size={60} />
           </Group>
-          <Group>
-            <Text>password:</Text>
-            <Text>
-              <b> testabc</b>
-            </Text>
-          </Group>
-        </CardWithTitle>
-        <LoginForm />
+          <Stack gap={0}>
+            <Text>You can use this credentials</Text>
+            <Group>
+              <Text>email:</Text>
+              <Text>
+                <b> admin.sato@demo.com</b>
+              </Text>
+            </Group>
+            <Group>
+              <Text>password:</Text>
+              <Text>
+                <b> testabc</b>
+              </Text>
+            </Group>
+          </Stack>
 
-        <Text ta="center" mt="md">
-          Don&apos;t have an account?{' '}
-          <Anchor<'a'> href={AUTH.SIGNUP} fw={700}>
-            Register
-          </Anchor>
-        </Text>
-      </Card>
+          <LoginForm />
+
+          <Text ta="center">
+            Don&apos;t have an account?{' '}
+            <Anchor<'a'> href={AUTH.SIGNUP} fw={700}>
+              Register
+            </Anchor>
+          </Text>
+        </Card>
+      </Stack>
     </div>
   );
 }
