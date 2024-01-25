@@ -128,7 +128,7 @@ function AuthProvider({ children, initialUser }: { children: ReactNode; initialU
         // { withCredentials: true }
       );
       const { token } = response.data.data;
-      setSession(token.accessToken);
+      // setSession(token.accessToken);
 
       // // call me and get the user
       const responseMe = await axiosInstance.get(PATH_AUTH.me);
@@ -157,7 +157,7 @@ function AuthProvider({ children, initialUser }: { children: ReactNode; initialU
       const response = await axiosInstance.post(PATH_AUTH.register, formData);
       const { accessToken, user } = response.data;
       localStorage.setItem('accessToken', accessToken);
-      setSession(accessToken);
+      // setSession(accessToken);
 
       dispatch({
         type: 'REGISTER',
@@ -175,9 +175,9 @@ function AuthProvider({ children, initialUser }: { children: ReactNode; initialU
     await axiosInstance.get(PATH_AUTH.logout, { withCredentials: true });
     deleteCookie('jwt');
     deleteCookie('space');
-    localStorage.removeItem('accessToken');
-    localStorage.removeItem('spaceToken');
-    setSession(null);
+    // localStorage.removeItem('accessToken');
+    // localStorage.removeItem('spaceToken');
+    // setSession(null);
     dispatch({
       type: 'LOGOUT',
     });
