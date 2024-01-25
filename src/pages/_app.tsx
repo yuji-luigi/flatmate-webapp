@@ -2,7 +2,7 @@ import '@mantine/core/styles.css';
 import '@mantine/notifications/styles.css';
 import '@mantine/dates/styles.css';
 import 'dayjs/locale/it';
-import { MantineProvider } from '@mantine/core';
+import { MantineProvider, CSSVariablesResolver } from '@mantine/core';
 import { Notifications } from '@mantine/notifications';
 import { getCookie } from 'cookies-next';
 import { DatesProvider } from '@mantine/dates';
@@ -29,6 +29,16 @@ import '../styles/nprogress.css';
 import { useLocale } from '../../hooks/useLocale';
 import { NprogressBar } from '../components/progress-bar/NprogressBar';
 
+const resolver: CSSVariablesResolver = (theme) => ({
+  variables: {
+    '--mantine-hero-height': theme.other.heroHeight,
+    '--mantine-color-body': 'red',
+  },
+  light: {},
+  dark: {
+    '--mantine-color-body': theme.other.deepOrangeDark,
+  },
+});
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
 };
@@ -61,13 +71,14 @@ function App(props: AppProps) {
             theme={{
               // colors: myColors,
               primaryColor: 'yellow',
+
               // Default gradient used in components that support `variant="gradient"` (Button, ThemeIcon, etc.)
               defaultGradient: { deg: 45, from: 'yellow', to: 'gold' }, // primaryColor: 'sw-dark-blue',
               fontFamily: 'Lato, sans-serif',
               components,
             }}
             // withGlobalStyles
-            // cssVariablesResolver
+            cssVariablesResolver={resolver}
             withCssVariables
           >
             <DashboardLayoutContextProvider>
