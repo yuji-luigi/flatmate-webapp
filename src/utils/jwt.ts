@@ -53,7 +53,9 @@ const setSession = (accessToken: string | null) => {
   }
 };
 
+// not used
 const setSpaceSession = (spaceJwt: string | null) => {
+  return;
   if (spaceJwt) {
     localStorage.setItem('spaceToken', spaceJwt);
     // setCookie('space', spaceJwt);
