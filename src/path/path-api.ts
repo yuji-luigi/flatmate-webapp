@@ -76,6 +76,7 @@ export const _PATH_API = {
     withNonce: (checkId: string) => `${PATH_API.checks}/${checkId}/with-nonce`,
     byMaintenanceId: (maintenanceId: string) =>
       `${PATH_API.checks}/by-maintenance/${maintenanceId}`,
+    ocrMaintenance: `${PATH_API.checks}/ocr-maintenance`,
   },
   threads: {
     root: PATH_API.threads,
