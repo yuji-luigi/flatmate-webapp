@@ -32,11 +32,12 @@ import { NprogressBar } from '../components/progress-bar/NprogressBar';
 const resolver: CSSVariablesResolver = (theme) => ({
   variables: {
     '--mantine-hero-height': theme.other.heroHeight,
-    '--mantine-color-body': 'red',
   },
-  light: {},
+  light: {
+    '--mantine-color-body': theme.colors.gray[3],
+  },
   dark: {
-    '--mantine-color-body': theme.other.deepOrangeDark,
+    // '--mantine-color-body': 'red',
   },
 });
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
