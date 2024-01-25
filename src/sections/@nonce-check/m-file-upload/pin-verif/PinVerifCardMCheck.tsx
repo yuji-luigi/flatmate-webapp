@@ -80,7 +80,7 @@ export const PinVerifCardMCheck = (props: {
         setSubmitting(false);
       }
     },
-    [endpoint]
+    [endpoint, id, linkId, setCrudDocument, setPinOk]
   );
   useEffect(() => {
     if (!endpoint) return;

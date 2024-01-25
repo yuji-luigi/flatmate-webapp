@@ -1,15 +1,11 @@
-import React, { useState } from 'react';
-import { Box, Button, Card, LoadingOverlay, Tabs, Text } from '@mantine/core';
-import { UseFormReturnType, useForm } from '@mantine/form';
+import { useState } from 'react';
+import { Box, Button, LoadingOverlay, Tabs, Text } from '@mantine/core';
+import { useForm } from '@mantine/form';
 import { useRouter } from 'next/router';
 import { notifications, showNotification } from '@mantine/notifications';
-import {
-  handleUploadWithoutLogin,
-  isCustomFile,
-  isCustomFiles,
-} from '../../../../../utils/upload-helper';
+import { handleUploadWithoutLogin, isCustomFiles } from '../../../../../utils/upload-helper';
 import { useCrudSelectors } from '../../../../../redux/features/crud/crudSlice';
-import { PATH_API } from '../../../../../path/path-api';
+import { PATH_API, _PATH_API } from '../../../../../path/path-api';
 import axiosInstance from '../../../../../utils/axios-instance';
 import { CheckType, MaintenanceModel } from '../../../../../types/models/maintenance-check-type';
 import { PATH_CLIENT } from '../../../../../path/path-frontend';
@@ -21,6 +17,7 @@ import { CardStyled } from '../../../../../styles/card/CardStyled';
 import { checksTableData } from '../../../../../../json/dataTable/formfields/checksTableData';
 import FormFields from '../../../../../components/input/FormFields';
 import { NOTIFICATIONS } from '../../../../../data/showNofification/notificationObjects';
+import { useLocale } from '../../../../../../hooks/useLocale';
 
 type CheckForm = {
   type: CheckType;
@@ -36,6 +33,8 @@ export const CheckInputTabCard = ({
   checkType: CheckType;
 }) => {
   const router: UseRouterWithCustomQuery = useRouter();
+  const { t: mt } = useLocale('notification');
+  const { t } = useLocale('common');
   const { query } = router;
   const [submitting, setSubmitting] = useState<boolean>(false);
   const { crudDocument: maintenance } = useCrudSelectors<MaintenanceModel>('maintenances');
@@ -61,19 +60,27 @@ export const CheckInputTabCard = ({
       notifications.show({
         id: 'loading',
         loading: submitting,
-        title: 'Uploading...',
-        message: 'Please wait',
+        title: mt('uploading'),
+        message: mt('Please wait'),
       });
       const fileData = form.values.files;
       if (!fileData || form.values.total === undefined) {
         showNotification({
-          message: 'Please Select a file and fill the total price',
+          message: mt('Select file first'),
           color: 'orange',
         });
         return;
       }
       //
       if (isCustomFiles(fileData)) {
+        // call api endpoint where OCR space + AI json generation. Get total + subtotals + taxes + (possibly other data) as response.data.data
+        const rawOcrData = await axiosInstance.post(_PATH_API.checks.ocrMaintenance, fileData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+        return;
+
         const uploadIds = await handleUploadWithoutLogin({
           files: fileData,
           mainSpace: maintenance.space.name,
@@ -109,8 +116,8 @@ export const CheckInputTabCard = ({
     <Tabs onChange={handleChangeTab} style={{ width: '100%' }} defaultValue={checkType}>
       <LoadingOverlay visible={submitting} />
       <Tabs.List>
-        <Tabs.Tab value="invoices">Invoice</Tabs.Tab>
-        <Tabs.Tab value="receipts">Receipt</Tabs.Tab>
+        <Tabs.Tab value="invoices">{t('Invoice')}</Tabs.Tab>
+        <Tabs.Tab value="receipts">{t('Receipt')}</Tabs.Tab>
       </Tabs.List>
       <CardStyled px={32} py={40}>
         <Box mb={16}>
@@ -126,7 +133,7 @@ export const CheckInputTabCard = ({
             formField={{
               id: 'files',
               name: 'files',
-              label: 'Choose file',
+              label: t('Choose file'),
               type: 'attachment',
               multi: true,
               priority: 0,
