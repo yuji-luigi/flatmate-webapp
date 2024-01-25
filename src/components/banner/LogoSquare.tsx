@@ -48,5 +48,6 @@ export function LogoSquare({
     );
   }
   // otherwise, return the image
-  return <Box className={className}>{image}</Box>;
+  if (className) return <Box className={className}>{image}</Box>;
+  return image;
 }
