@@ -7,9 +7,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
 
-body {
-}
-
 :root {
   --break-point-xs: 576px;
   --break-point-sm: 768px;
@@ -53,11 +50,13 @@ body {
   /* --font-size-article: 24px; */
   :root.light {
     --bg-color: rgba(255, 255, 255, 0.85);
+    --fg-color: rgba(255, 255, 255, 0.85);
     --text-color: #123;
   }
 
   :root.dark {
     --bg-color: rgba(0, 0, 0, 0.85);
+    --fg-color: rgba(0, 0, 0, 0.85);
     --text-color: #45adfe;
   }
 }
