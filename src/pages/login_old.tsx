@@ -1,21 +1,35 @@
-import { Paper, Title, Text, Anchor, Group, Card, Stack } from '@mantine/core';
+import {
+  Paper,
+  TextInput,
+  PasswordInput,
+  Checkbox,
+  Button,
+  Title,
+  Text,
+  Anchor,
+  Card,
+  Group,
+} from '@mantine/core';
 import { ReactElement, useEffect } from 'react';
 import { GetServerSidePropsContext } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import axios from 'axios';
 import { useRouter } from 'next/router';
-import classes from './login-new.module.css';
+import { useTranslation } from 'next-i18next';
+import classes from './login.module.css';
 import Layout from '../layouts';
-import { PATH_AUTH } from '../path/path-api';
-import LoginForm from '../sections/@login_signup/LoginForm';
+import { API_BASE_URL, PATH_AUTH } from '../path/path-api';
+import axiosInstance from '../utils/axios-instance';
+import LoginForm from '../sections/login_signup/LoginForm';
 import { AUTH, PATH_CLIENT } from '../path/path-frontend';
+import GuestGuard from '../guards/GuestGuard';
 import { UserModel } from '../types/models/user-model';
 import CardWithTitle from '../components/profile/side/CardWithTitle';
+import TextWithIcon from '../components/text/TextWithIcon';
+import { LanguageMenu } from '../components/menu/LanguageMenu/LanguageMenu';
 import { useLocale } from '../../hooks/useLocale';
-import { LogoBanner } from '../components/banner/LogoBanner';
-import { LogoSquare } from '../components/banner/LogoSquare';
 
-export default function LoginNewPage(props: { initialUser?: UserModel }) {
+export default function LoginPage(props: { initialUser?: UserModel }) {
   const { initialUser } = props;
   const { push } = useRouter();
   const { t } = useLocale('common');
@@ -29,44 +43,37 @@ export default function LoginNewPage(props: { initialUser?: UserModel }) {
   // return null;
   return (
     <div className={classes.wrapper}>
-      <Stack>
-        <Card className={classes.form}>
-          <Group style={{ position: 'relative' }} justify="space-between" align="baseline">
-            <Title order={2} className={classes.title} ta="center">
-              {t('Welcome back to Flatmate!')}
-            </Title>
-            <LogoSquare className={classes.logo} size={60} />
+      <Paper className={classes.form} radius={0} p={30}>
+        <Title order={2} className={classes.title} ta="center" mt="md" mb={50}>
+          {t('Welcome back to Flatmate!')}
+        </Title>
+        <CardWithTitle title={t('Use this credential')}>
+          <Group>
+            <Text>email:</Text>
+            <Text>
+              <b> admin.sato@demo.com</b>
+            </Text>
           </Group>
-          <Stack gap={0}>
-            <Text>You can use this credentials</Text>
-            <Group>
-              <Text>email:</Text>
-              <Text>
-                <b> admin.sato@demo.com</b>
-              </Text>
-            </Group>
-            <Group>
-              <Text>password:</Text>
-              <Text>
-                <b> testabc</b>
-              </Text>
-            </Group>
-          </Stack>
+          <Group>
+            <Text>password:</Text>
+            <Text>
+              <b> testabc</b>
+            </Text>
+          </Group>
+        </CardWithTitle>
+        <LoginForm />
 
-          <LoginForm />
-
-          <Text ta="center">
-            Don&apos;t have an account?{' '}
-            <Anchor<'a'> href={AUTH.SIGNUP} fw={700}>
-              Register
-            </Anchor>
-          </Text>
-        </Card>
-      </Stack>
+        <Text ta="center" mt="md">
+          Don&apos;t have an account?{' '}
+          <Anchor<'a'> href={AUTH.SIGNUP} fw={700}>
+            Register
+          </Anchor>
+        </Text>
+      </Paper>
     </div>
   );
 }
-LoginNewPage.getLayout = function getLayout(page: ReactElement) {
+LoginPage.getLayout = function getLayout(page: ReactElement) {
   return <Layout variant="main">{page}</Layout>;
 };
 

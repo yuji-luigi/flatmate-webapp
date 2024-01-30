@@ -1,7 +1,7 @@
 import { createContext, ReactNode, useEffect, useReducer } from 'react';
 import { deleteCookie } from 'cookies-next';
 import axiosInstance from '../utils/axios-instance';
-import { PATH_AUTH } from '../path/path-api';
+import { _PATH_API, PATH_AUTH } from '../path/path-api';
 import {
   JWTContextReducerAction,
   JWTContextState,
@@ -119,11 +119,11 @@ function AuthProvider({ children, initialUser }: { children: ReactNode; initialU
     initialize();
   }, []);
 
-  const login: Login = async (email, password) => {
+  const login: Login = async (email, password, role) => {
     // eslint-disable-next-line no-useless-catch
     try {
       const response = await axiosInstance.post(
-        PATH_AUTH.login,
+        _PATH_API.auth.login(role),
         { email, password }
         // { withCredentials: true }
       );

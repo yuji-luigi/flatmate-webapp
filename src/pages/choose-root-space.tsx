@@ -16,7 +16,7 @@ import Layout from '../layouts';
 import { UserModel } from '../types/models/user-model';
 import { SpaceModel } from '../types/models/space-model';
 import { useCookieContext } from '../context/CookieContext';
-import { ChooseSpaceSection } from '../sections/@login_signup/choose-space/ChooseSpaceSection';
+import { ChooseSpaceSection } from '../sections/login_signup/choose-space/ChooseSpaceSection';
 import LoadingScreen from '../components/screen/LoadingScreen';
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {

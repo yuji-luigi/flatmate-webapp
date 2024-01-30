@@ -18,6 +18,8 @@
   flex-direction: column;
   gap: var(--flex-gap);
   padding: var(--padding-card);
+  /* padding-top: 0; */
+
   width: rem(600px);
   /* padding-top: rem(80px); */
   margin-block: auto;

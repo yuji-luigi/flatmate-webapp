@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Layout from '../layouts';
-import { SignUpForm } from '../sections/@login_signup/SignUpForm';
+import { SignUpForm } from '../sections/login_signup/SignUpForm';
 
 const SignUpPage = () => <SignUpForm />;
 

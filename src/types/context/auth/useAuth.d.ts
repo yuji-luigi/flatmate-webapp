@@ -1,5 +1,5 @@
 import { CookieValueTypes } from 'cookies-next';
-import { UserModel } from '../../models/user-model';
+import { Role, UserModel } from '../../models/user-model';
 
 export type IUser = UserModel;
 
@@ -67,7 +67,7 @@ export interface RegisterData {
   // role: string | null;
 }
 export type Register = (data: RegisterData) => Promise<void>;
-export type Login = (email?: string, password?: string) => Promise<void>;
+export type Login = (email?: string, password?: string, role: Role) => Promise<void>;
 
 export interface AuthContextInterface extends JWTContextState {
   method: string;

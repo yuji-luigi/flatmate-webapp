@@ -1,5 +1,6 @@
 import { Sections } from '../types/general/data/sections-type';
 import { AuthTokenModel, HiddenAuthTokenInterface } from '../types/models/auth-token-model';
+import { Role } from '../types/models/user-model';
 
 export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 export type GetPathFunc = (path: string) => string;
@@ -21,7 +22,7 @@ type TAuthPath = {
 };
 
 export const PATH_AUTH: TAuthPath = {
-  login: getAuthPath('login'),
+  login: getAuthPath('login'), // deprecate this to _PATH_API
   register: getAuthPath('register'),
   logout: getAuthPath('logout'),
   me: getAuthPath('me'),
@@ -32,6 +33,7 @@ export enum PATH_API {
    * creation: /linkedChildren/${entity}/...
    * update: /linkedChildren/${entity}/${}
    * */
+  auth = 'auth',
   linkedChildren = 'linkedChildren',
   uploads = 'upload-files',
   importExcel = 'import-excel',
@@ -67,7 +69,10 @@ const getExcelEndpoint = (excelRoute: string, entity: string) => `${excelRoute}/
 
 export const _PATH_API = {
   auth: {
-    registerMaintainer: 'auth/complete-register/maintainer',
+    registerMaintainer: `${PATH_API.auth}/complete-register/maintainer`,
+    login: (role: Role) => `${PATH_API.auth}/login/${role}`,
+    register: (role: Role) => `${PATH_API.auth}/register/${role}`,
+    checkRoles: `${PATH_API.auth}/check-roles`,
   },
   checks: {
     root: PATH_API.checks,

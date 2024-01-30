@@ -10,8 +10,9 @@ import { LoginFormValues } from '../../types/context/auth/formData';
 import { Icons } from '../../data/icons/icons';
 import { PATH_CLIENT } from '../../path/path-frontend';
 import { useCookieContext } from '../../context/CookieContext';
+import { Role } from '../../types/models/user-model';
 
-function LoginForm() {
+function LoginForm({ role }: { role: Role }) {
   const { resetCurrentSpace, setCurrentOrganization } = useCookieContext();
   const { login } = useAuth();
   const router = useRouter();
@@ -31,7 +32,7 @@ function LoginForm() {
     try {
       resetCurrentSpace();
       setCurrentOrganization(null);
-      await login(values.email, values.password);
+      await login(values.email, values.password, role);
       router.push(PATH_CLIENT.chooseRootSpace);
       // return null;
     } catch (error: any) {

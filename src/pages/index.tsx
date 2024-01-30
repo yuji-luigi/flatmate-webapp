@@ -2,9 +2,9 @@ import { ReactElement } from 'react';
 import Head from 'next/head';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Layout from '../layouts';
-import { HeroSection } from '../sections/@homepage/hero';
+import { HeroSection } from '../sections/homepage/hero';
 // import { AboutSection } from '../sections/@homepage/AboutSection';
-import BannerSection from '../sections/@homepage/BannerSection';
+import BannerSection from '../sections/homepage/BannerSection';
 // import ContactUsSection from '../sections/@homepage/ContactUsSection';
 
 export default function HomePage() {

@@ -13,7 +13,7 @@ import useAuth from '../../../hooks/useAuth';
 import { useCookieContext } from '../../context/CookieContext';
 import { SpaceModel } from '../../types/models/space-model';
 import { ParsedQueryCustom } from '../../types/nextjs-custom-types/useRouter-types';
-import { ChooseSpaceSection } from '../../sections/@login_signup/choose-space/ChooseSpaceSection';
+import { ChooseSpaceSection } from '../../sections/login_signup/choose-space/ChooseSpaceSection';
 import { UserModel } from '../../types/models/user-model';
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {

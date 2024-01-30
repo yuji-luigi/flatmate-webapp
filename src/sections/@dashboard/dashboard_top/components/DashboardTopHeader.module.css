@@ -1,5 +1,0 @@
-.header {
-  @media (max-width: $mantine-breakpoint-sm) {
-    padding-inline: var(--padding-x);
-  }
-}
