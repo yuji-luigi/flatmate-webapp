@@ -8,8 +8,8 @@ interface List {
   component: () => JSX.Element;
 }
 export const TabPanels = ({ list }: { list: List[] }) => {
-  const Com = list[0].component;
-  return <Com />;
+  // const Com = list[0].component;
+  // return <Com />;
   return (
     <>
       {list.map((item) => (

@@ -4,7 +4,7 @@ import { AxiosError } from 'axios';
 import { useRouter } from 'next/router';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { GetServerSidePropsContext } from 'next';
-import { PATH_CLIENT } from '../path/path-frontend';
+import { PATH_CLIENT, _PATH_FRONTEND } from '../path/path-frontend';
 import axiosInstance, { AxiosResDataGeneric } from '../utils/axios-instance';
 import { PATH_API, PATH_AUTH } from '../path/path-api';
 
@@ -17,9 +17,14 @@ import LoadingScreen from '../components/screen/LoadingScreen';
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   try {
     const { locale } = context;
-    const jwtToken = context.req.cookies.jwt;
+    const { role, jwt: jwtToken } = context.req.cookies;
     if (!jwtToken) {
-      return { props: { user: null } };
+      return {
+        redirect: {
+          destination: '/',
+          permanent: false,
+        },
+      };
     }
 
     const rawRes = await axiosInstance.get(`${process.env.NEXT_PUBLIC_API_URL}/${PATH_AUTH.me}`, {
@@ -29,6 +34,21 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     });
     const { data } = rawRes;
     const { user } = data;
+    if (!user) {
+      throw new Error('User is not present from GET /me');
+    }
+
+    if (role === 'administrator') {
+      console.log('admin logged in show layout for admin');
+      return {
+        redirect: {
+          destination: 'dashboard/top/dashboard',
+        },
+      };
+    }
+    if (role === 'maintainer') {
+      console.log('maintainer logged in show layout for admin');
+    }
     return {
       props: {
         ...(await serverSideTranslations(locale || 'it', ['common', 'otherNamespace'])),
@@ -38,8 +58,8 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     };
   } catch (error) {
     return {
-      props: {
-        initialUser: null,
+      redirect: {
+        destination: '/500',
       },
     };
   }
@@ -62,11 +82,11 @@ const ChooseRootSpacePage = (props: { initialUser?: UserModel }) => {
     isLoading,
   } = useSWR<SpaceModel[] | null, AxiosError>(initialUser?._id, fetchSpaceSelections);
 
-  useEffect(() => {
-    if (!initialUser) {
-      router.push(PATH_CLIENT.login);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!initialUser) {
+  //     router.push(PATH_CLIENT.login);
+  //   }
+  // }, []);
 
   if (initialUser?.role === 'super_admin') {
     router.push(PATH_CLIENT.chooseOrganization);

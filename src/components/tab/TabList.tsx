@@ -3,6 +3,7 @@ import React from 'react';
 import { useCustomMQuery } from '../../../hooks/useCustomMQuery';
 import { SettingButtonSpaceHome } from '../../sections/dashboard/dashboard_top/components/SettingButtonSpaceHome';
 import classes from './TabList.module.css';
+import { TAB_LIST_CONFIG as list } from '../../sections/dashboard/dashboard_top/sections-in-tabs/tabList';
 
 interface List {
   icon: React.ReactNode;
@@ -12,13 +13,10 @@ interface List {
   // component: React.ReactNode;
 }
 export const TabList = ({
-  list,
   spaceSetting,
-  position = 'left',
 }: {
   spaceSetting?: boolean;
-  list: List[];
-  position?: 'left' | 'center' | 'right';
+  // position?: 'left' | 'center' | 'right';
 }) => {
   const { isLargeScreen } = useCustomMQuery();
   return (

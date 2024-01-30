@@ -8,6 +8,7 @@ import classes from './dashboardTop.module.css';
 import axiosInstance from '../../../utils/axios-instance';
 import { useCookieContext } from '../../../context/CookieContext';
 import { useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
+import { DashboardRoot } from '../../../sections/dashboard/dashboard_top/sections-in-tabs/dashboard/DashboardRoot';
 
 const DashboardPage = () => {
   const { currentOrganization, currentSpace } = useCookieContext();
@@ -26,6 +27,8 @@ const DashboardPage = () => {
     setCrudDocuments({ entity: 'maintenances', documents: maintenances });
     setCrudDocuments({ entity: 'threads', documents: threads });
   };
+  // return <div>jey</div>;
+  return <DashboardRoot />;
   return <DashboardSection />;
 };
 DashboardPage.getLayout = function getLayout(page: ReactElement) {
@@ -33,11 +36,11 @@ DashboardPage.getLayout = function getLayout(page: ReactElement) {
 };
 export default DashboardPage;
 
-export async function getStaticProps({ locale }: { locale: string }) {
-  return {
-    props: {
-      ...(await serverSideTranslations(locale, ['common'], null, ['en', 'it'])),
-      // Will be passed to the page component as props
-    },
-  };
-}
+// export async function getStaticProps({ locale }: { locale: string }) {
+//   return {
+//     props: {
+//       ...(await serverSideTranslations(locale, ['common'], null, ['en', 'it'])),
+//       // Will be passed to the page component as props
+//     },
+//   };
+// }

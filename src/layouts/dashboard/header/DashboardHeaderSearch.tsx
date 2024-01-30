@@ -41,7 +41,7 @@ export function DashboardHeaderSearch() {
           </Group>
         </>
       )}
-      <TabList list={TAB_LIST_CONFIG} />
+      <TabList />
       {isMobile && (
         <Box className={classesM.deskTopExNav}>
           <HeaderNotificationButton />

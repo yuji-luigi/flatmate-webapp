@@ -41,7 +41,7 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
   const handleChangeTab = (value: string | null) => {
     if (!value) return;
     setCurrentTab(value);
-    router.push(`/dashboard/top/${value}`);
+    // router.push(`/dashboard/top/${value}`);
   };
 
   return (
