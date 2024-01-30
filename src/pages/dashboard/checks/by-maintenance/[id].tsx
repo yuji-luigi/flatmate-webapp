@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { AxiosError } from 'axios';
 import { Stack, Text } from '@mantine/core';
 import { useTranslation } from 'next-i18next';
-import { ChecksGrid } from '../../../../sections/@dashboard/checks/ChecksGrid';
+import { ChecksGrid } from '../../../../sections/dashboard/checks/ChecksGrid';
 import { UseRouterWithCustomQuery } from '../../../../types/nextjs-custom-types/useRouter-types';
 import { Sections } from '../../../../types/general/data/sections-type';
 import Layout from '../../../../layouts';

@@ -1,6 +1,6 @@
 import { ReactElement, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { TableSectionHeader } from '../../sections/@dashboard/datatable_section/TableSectionHeader';
+import { TableSectionHeader } from '../../sections/dashboard/datatable_section/TableSectionHeader';
 
 import Layout from '../../layouts';
 import Page from '../../components/Page';

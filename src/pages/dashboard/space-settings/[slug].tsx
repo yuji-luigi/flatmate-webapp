@@ -12,12 +12,12 @@ import ProfileCoverGeneric, {
 //   CoverDataProp,
 // } from '../../../components/profile/ProfileCoverGenericGeneric';
 
-import { SpaceSettingForm } from '../../../sections/@dashboard/space_setting_section/SpaceSettingForm';
+import { SpaceSettingForm } from '../../../sections/dashboard/space_setting_section/SpaceSettingForm';
 import axiosInstance from '../../../utils/axios-instance';
 import { _PATH_API } from '../../../path/path-api';
 import LoadingScreen from '../../../components/screen/LoadingScreen';
 
-import { SpaceSettingMaintainersSection } from '../../../sections/@dashboard/space_setting_section/maintainers_section/SpaceSettingMaintainersSection';
+import { SpaceSettingMaintainersSection } from '../../../sections/dashboard/space_setting_section/maintainers_section/SpaceSettingMaintainersSection';
 import { useCookieContext } from '../../../context/CookieContext';
 import { PATH_CLIENT } from '../../../path/path-frontend';
 import { useCrudSelectors, useCrudSliceStore } from '../../../redux/features/crud/crudSlice';

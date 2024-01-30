@@ -5,7 +5,7 @@ import axiosInstance from '../../../utils/axios-instance';
 import { useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
 // import { useCurrentSpaceContext } from '../../../context/CurrentSpaceContext';
 import { useCookieContext } from '../../../context/CookieContext';
-import SpaceHomeSection from '../../../sections/@dashboard/dashboard_top/sections-in-tabs/SpaceHomeSection';
+import SpaceHomeSection from '../../../sections/dashboard/dashboard_top/sections-in-tabs/SpaceHomeSection';
 import { MaintainerModel } from '../../../types/models/maintainer-model';
 import { MaintenanceModel } from '../../../types/models/maintenance-model';
 import { SpaceModel } from '../../../types/models/space-model';

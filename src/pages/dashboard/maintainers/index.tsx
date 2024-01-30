@@ -7,8 +7,8 @@ import { usePaginationContext } from '../../../context/PaginationContext';
 import Layout from '../../../layouts';
 import formFields from '../../../../json/dataTable/formfields';
 import { useCrudSliceStore, useCrudSelectors } from '../../../redux/features/crud/crudSlice';
-import { TableSectionHeader } from '../../../sections/@dashboard/datatable_section/TableSectionHeader';
-import MaintainerList from '../../../sections/@dashboard/maintainers_page/MaintainerList';
+import { TableSectionHeader } from '../../../sections/dashboard/datatable_section/TableSectionHeader';
+import MaintainerList from '../../../sections/dashboard/maintainers_page/MaintainerList';
 import { maintainersTableData } from '../../../../json/dataTable/formfields/maintainersTableData';
 import { QueryFilterWeb } from '../../../components/datatable/filter/QueryFilterWeb';
 

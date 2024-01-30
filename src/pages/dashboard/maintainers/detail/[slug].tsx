@@ -18,13 +18,13 @@ import PostFeedCard from '../../../../components/posts/feed/PostFeedCard';
 import { lorem100 } from '../../../../_mock/strings';
 import { maintainersTableData } from '../../../../../json/dataTable/formfields/maintainersTableData';
 import { useCustomModalContext } from '../../../../context/modal-context/_ModalContext';
-import AddMaintainerModal from '../../../../sections/@dashboard/maintenance_detail_page/AddMaintainerModal';
+import AddMaintainerModal from '../../../../sections/dashboard/maintenance_detail_page/AddMaintainerModal';
 
 import classes from '../../../../styles/global-useStyles.module.css';
 
 import { UserModel } from '../../../../types/models/user-model';
-import { BuildingCard } from '../../../../sections/@dashboard/maintainer_detail_page/BuildingCard';
-import { AddRemoveButton } from '../../../../sections/@dashboard/maintainer_detail_page/AddRemoveButton';
+import { BuildingCard } from '../../../../sections/dashboard/maintainer_detail_page/BuildingCard';
+import { AddRemoveButton } from '../../../../sections/dashboard/maintainer_detail_page/AddRemoveButton';
 import { ThreadModel } from '../../../../types/models/thread-model';
 
 const getMaintainer = async (slug?: string) => {

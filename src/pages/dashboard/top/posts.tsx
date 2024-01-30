@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect } from 'react';
 import { Box } from '@mantine/core';
 import Layout from '../../../layouts';
-import { SpacePostSection } from '../../../sections/@dashboard/dashboard_top/sections-in-tabs/SpacePostSection';
+import { SpacePostSection } from '../../../sections/dashboard/dashboard_top/sections-in-tabs/SpacePostSection';
 import classes from './dashboardTop.module.css';
 import { useCrudSelectors, useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
 import { PATH_API, _PATH_API } from '../../../path/path-api';

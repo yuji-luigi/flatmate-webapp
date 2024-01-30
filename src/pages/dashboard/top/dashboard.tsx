@@ -3,7 +3,7 @@ import { Box } from '@mantine/core';
 import router from 'next/router';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Layout from '../../../layouts';
-import DashboardSection from '../../../sections/@dashboard/dashboard_top/sections-in-tabs/dashboard/DashboardTopSection';
+import DashboardSection from '../../../sections/dashboard/dashboard_top/sections-in-tabs/dashboard/DashboardTopSection';
 import classes from './dashboardTop.module.css';
 import axiosInstance from '../../../utils/axios-instance';
 import { useCookieContext } from '../../../context/CookieContext';
