@@ -1,21 +1,16 @@
-import React, { ReactElement, useEffect } from 'react';
-import { Box, Card, LoadingOverlay } from '@mantine/core';
+import { ReactElement, useEffect } from 'react';
 import useSWR from 'swr';
 import { AxiosError } from 'axios';
 import { useRouter } from 'next/router';
-import Link from 'next/link';
-import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { GetServerSidePropsContext } from 'next';
-import useAuth from '../../hooks/useAuth';
-import { CARD_LINK_PATH, PATH_CLIENT } from '../path/path-frontend';
+import { PATH_CLIENT } from '../path/path-frontend';
 import axiosInstance, { AxiosResDataGeneric } from '../utils/axios-instance';
 import { PATH_API, PATH_AUTH } from '../path/path-api';
 
 import Layout from '../layouts';
 import { UserModel } from '../types/models/user-model';
 import { SpaceModel } from '../types/models/space-model';
-import { useCookieContext } from '../context/CookieContext';
 import { ChooseSpaceSection } from '../sections/login_signup/choose-space/ChooseSpaceSection';
 import LoadingScreen from '../components/screen/LoadingScreen';
 
