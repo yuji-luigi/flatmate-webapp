@@ -42,7 +42,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       console.log('admin logged in show layout for admin');
       return {
         redirect: {
-          destination: 'dashboard/top/dashboard',
+          destination: _PATH_FRONTEND.administrator.dashboard.root,
         },
       };
     }
