@@ -1,42 +1,39 @@
-import fetch from 'node-fetch';
-
-import { GetServerSidePropsContext } from 'next';
-import { ReactElement, useEffect } from 'react';
+import React, { ReactElement, useEffect } from 'react';
+import { Box } from '@mantine/core';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Layout from '../../../layouts';
-import MaintenanceListPageSection from '../../../sections/dashboard/maintenance_list_page/MaintenanceListPageSection';
-import { useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
-import { ThreadModel } from '../../../types/models/thread-model';
+import classes from './dashboardTop.module.css';
+import { SpaceMaintenanceSection } from '../../../sections/dashboard/dashboard_top/sections-in-tabs/SpaceMaintenanceSection';
+import { _PATH_API } from '../../../path/path-api';
+import { SegmentedControlContextProvider } from '../../../components/tab/useSegmentedControl';
+import { useCrudSelectors, useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
+import { useCookieContext } from '../../../context/CookieContext';
 
-export default function MaintenanceListPage({ maintenances }: { maintenances: ThreadModel[] }) {
-  const { setCrudDocuments } = useCrudSliceStore();
+const DashboardTopMaintenances = () => {
+  const { fetchCrudDocuments } = useCrudSliceStore();
+
+  const { crudDocuments } = useCrudSelectors('maintenances');
+  const { hasSelectChanged, currentOrganization, currentSpace } = useCookieContext();
   useEffect(() => {
-    setCrudDocuments({ entity: 'maintenances', documents: maintenances });
-  }, [maintenances]);
-  return <MaintenanceListPageSection /* maintenances={maintenances} */ />;
-}
-
-MaintenanceListPage.getLayout = function getLayout(page: ReactElement) {
+    if (!hasSelectChanged && crudDocuments.length > 0) return;
+    fetchCrudDocuments({ entity: 'maintenances', owEndpoint: _PATH_API.maintenances.home });
+  }, [hasSelectChanged, currentOrganization, currentSpace]);
+  return (
+    <SegmentedControlContextProvider>
+      <SpaceMaintenanceSection />
+    </SegmentedControlContextProvider>
+  );
+};
+DashboardTopMaintenances.getLayout = function getLayout(page: ReactElement) {
   return <Layout variant="dashboard">{page}</Layout>;
 };
+export default DashboardTopMaintenances;
 
-export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const jwtToken = context.req.cookies.jwt;
-
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/maintenances`, {
-    headers: {
-      Authorization: `Bearer ${jwtToken}`,
-      space: context.req.cookies.space || '',
-      organization: context.req.cookies.organization || '',
-    },
-  });
-
-  const data = (await res.json()) as Record<string, any>;
-
-  const maintenances = data.data || [];
-
+export async function getStaticProps({ locale }: { locale: string }) {
   return {
     props: {
-      maintenances,
+      ...(await serverSideTranslations(locale, ['common'], null, ['en', 'it'])),
+      // Will be passed to the page component as props
     },
   };
 }

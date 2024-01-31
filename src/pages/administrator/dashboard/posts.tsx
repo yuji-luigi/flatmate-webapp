@@ -1,55 +1,27 @@
-import { GetServerSidePropsContext } from 'next';
-import { ReactElement, useEffect } from 'react';
+import React, { ReactElement, useEffect } from 'react';
+import { Box } from '@mantine/core';
 import Layout from '../../../layouts';
-import PostsPageSection from '../../../sections/dashboard/posts_list_page/PostsPageComponent';
-import axiosInstance from '../../../utils/axios-instance';
-import { useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
-// import { useCurrentSpaceContext } from '../../context/CurrentSpaceContext';
+import { SpacePostSection } from '../../../sections/dashboard/dashboard_top/sections-in-tabs/SpacePostSection';
+import classes from './dashboardTop.module.css';
+import { useCrudSelectors, useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
+import { PATH_API, _PATH_API } from '../../../path/path-api';
 import { useCookieContext } from '../../../context/CookieContext';
-import { ThreadModel } from '../../../types/models/thread-model';
 
-export default function PostsPage({ threads }: { threads: ThreadModel[] }) {
-  const { setCrudDocuments } = useCrudSliceStore();
-  const { currentSpace } = useCookieContext();
+const HomePostPage = () => {
+  const { fetchCrudDocuments, setCrudDocuments } = useCrudSliceStore();
+  const { crudDocuments } = useCrudSelectors('threads');
+  const { hasSelectChanged, currentOrganization, currentSpace } = useCookieContext();
+
   useEffect(() => {
-    setCrudDocuments({ entity: 'threads', documents: threads });
-    console.log();
-  }, [threads, currentSpace?._id]);
-  return <PostsPageSection /* threads={threads} */ />;
-}
+    if (!hasSelectChanged && crudDocuments.length > 0) return;
 
-PostsPage.getLayout = function getLayout(page: ReactElement) {
+    fetchCrudDocuments({ entity: 'threads', owEndpoint: _PATH_API.threads.home });
+  }, [hasSelectChanged, currentOrganization, currentSpace]);
+  return <SpacePostSection />;
+};
+
+HomePostPage.getLayout = function getLayout(page: ReactElement) {
   return <Layout variant="dashboard">{page}</Layout>;
 };
 
-export async function getServerSideProps(context: GetServerSidePropsContext) {
-  try {
-    const jwtToken = context.req.cookies.jwt;
-
-    const res = await axiosInstance.get(`${process.env.NEXT_PUBLIC_API_URL}/threads`, {
-      headers: {
-        Authorization: `Bearer ${jwtToken}`,
-        space: context.req.cookies.space || '',
-        organization: context.req.cookies.organization || '',
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-      },
-    });
-
-    // const data = (await res.data.data) as Record<string, any>;
-
-    const threads = res.data.data || [];
-
-    return {
-      props: {
-        threads,
-      },
-    };
-  } catch (error) {
-    return {
-      redirect: {
-        destination: '/logout',
-        permanent: false,
-      },
-    };
-  }
-}
+export default HomePostPage;

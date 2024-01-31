@@ -1,27 +1,46 @@
-import { useEffect } from 'react';
-// next
-import { useRouter } from 'next/router';
-// config
-import { PATH_AFTER_LOGIN, PATH_CLIENT } from '../../../path/path-frontend';
-import useAuth from '../../../../hooks/useAuth';
-import NotFoundImage from '../../404';
-// routes
+import React, { ReactElement, useEffect } from 'react';
+import { Box } from '@mantine/core';
+import router from 'next/router';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import Layout from '../../../layouts';
+import DashboardSection from '../../../sections/dashboard/dashboard_top/sections-in-tabs/dashboard/DashboardTopSection';
+import classes from './dashboardTop.module.css';
+import axiosInstance from '../../../utils/axios-instance';
+import { useCookieContext } from '../../../context/CookieContext';
+import { useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
+import { DashboardRoot } from '../../../sections/dashboard/dashboard_top/sections-in-tabs/dashboard/DashboardRoot';
 
-// ----------------------------------------------------------------------
-
-export default function Index() {
-  const { pathname, replace, prefetch } = useRouter();
-  const { isAuthenticated } = useAuth();
-  useEffect(() => {
-    if (!isAuthenticated) replace(PATH_CLIENT.login);
-    if (pathname === PATH_CLIENT.root) {
-      replace(PATH_CLIENT.posts);
-    }
-  }, [pathname]);
+const DashboardPage = () => {
+  const { currentOrganization, currentSpace } = useCookieContext();
+  const { setCrudDocument, setCrudDocuments } = useCrudSliceStore();
 
   useEffect(() => {
-    prefetch(PATH_AFTER_LOGIN);
-  }, []);
+    handleSectionData();
+  }, [currentOrganization, currentSpace]);
 
-  return <NotFoundImage />;
-}
+  const handleSectionData = async () => {
+    const rawRes = await axiosInstance.get(`${process.env.NEXT_PUBLIC_API_URL}/home`);
+    const { space, maintainers, maintenances, threads, statistics } = rawRes.data.data || [];
+    setCrudDocument({ entity: 'statistics', document: statistics });
+    setCrudDocument({ entity: 'spaces', document: space });
+    setCrudDocuments({ entity: 'maintainers', documents: maintainers });
+    setCrudDocuments({ entity: 'maintenances', documents: maintenances });
+    setCrudDocuments({ entity: 'threads', documents: threads });
+  };
+  // return <div>jey</div>;
+  return <DashboardRoot />;
+  return <DashboardSection />;
+};
+DashboardPage.getLayout = function getLayout(page: ReactElement) {
+  return <Layout variant="dashboard">{page}</Layout>;
+};
+export default DashboardPage;
+
+// export async function getStaticProps({ locale }: { locale: string }) {
+//   return {
+//     props: {
+//       ...(await serverSideTranslations(locale, ['common'], null, ['en', 'it'])),
+//       // Will be passed to the page component as props
+//     },
+//   };
+// }
