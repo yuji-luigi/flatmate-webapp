@@ -1,0 +1,17 @@
+
+  .link {
+    text-decoration: none;
+    display: block;
+    line-height: 1;
+    padding: 8px 12px;
+    border-radius: var(--mantine-radius-sm);
+    color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-dark-0));
+   
+    font-size: var(--mantine-font-size-sm));
+    font-weight: 500;
+    font-style: normal;
+
+    &:hover {
+      background-color: light-dark(var(--mantine-color-gray-6), var(--mantine-color-dark-0));
+    };
+  };
