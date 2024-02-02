@@ -8,18 +8,19 @@ import { useCookieContext } from '../../context/CookieContext';
 import { useTabContext } from '../../context/tab-context/TabContextProvider';
 import { TAB_LIST_CONFIG } from '../../sections/dashboard/dashboard_top/sections-in-tabs/tabList';
 import classes from './DashboardLayout.module.css';
+import { PATH_CLIENT } from '../../path/path-frontend';
 
 const DashboardLayout = ({ children }: { children: ReactNode }) => {
-  const { setCurrentTab, currentTab } = useTabContext();
+  // const { setCurrentTab, currentTab } = useTabContext();
   const { isOpen } = useLayoutContext();
 
   const { currentSpace } = useCookieContext();
   const containerRef = useRef<HTMLDivElement>(null);
   // const bgColor = theme.colorScheme === 'dark' ? 'rgba(0,0,0,0.85)' : 'rgba(255,255,255,0.85)';
   const router = useRouter();
-  const section = router.pathname.split('/').pop();
+  // const section = router.pathname.split('/').pop();
   useEffect(() => {
-    setCurrentTab(TAB_LIST_CONFIG[0].value);
+    // setCurrentTab(TAB_LIST_CONFIG[0].value);
     const handleScroll = () => {
       if (containerRef.current) {
         const { scrollY } = window;
@@ -34,24 +35,19 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
     };
   }, []);
 
-  useEffect(() => {
-    setCurrentTab(section || '');
-  }, [section]);
+  // useEffect(() => {
+  //   setCurrentTab(section || '');
+  // }, [section]);
 
   const handleChangeTab = (value: string | null) => {
     if (!value) return;
-    setCurrentTab(value);
-    // router.push(`/dashboard/top/${value}`);
+    router.replace(`${PATH_CLIENT.root}?tab=${value}`);
+    // setCurrentTab(value);
   };
-
+  const defTab = (router.query.tab as string) || TAB_LIST_CONFIG[0].value;
+  // console.log('defTab', defTab);
   return (
-    <Tabs
-      // variant="pills"
-      onChange={handleChangeTab}
-      keepMounted={false}
-      defaultValue={TAB_LIST_CONFIG[0].value}
-      value={currentTab}
-    >
+    <Tabs onChange={handleChangeTab} keepMounted={false} defaultValue={defTab} value={defTab}>
       <DashboardHeaderSearch />
       <Box
         ref={containerRef}
