@@ -9,6 +9,7 @@ import axiosInstance from '../../../utils/axios-instance';
 import { useCookieContext } from '../../../context/CookieContext';
 import { useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
 import { DashboardRoot } from '../../../sections/dashboard/dashboard_top/sections-in-tabs/dashboard/DashboardRoot';
+import { DashboardRootAdministrator } from '../../../sections/administrator/dashboard/DashboardRootAdministrator';
 
 const DashboardPage = () => {
   const { currentOrganization, currentSpace } = useCookieContext();
@@ -28,11 +29,11 @@ const DashboardPage = () => {
     setCrudDocuments({ entity: 'threads', documents: threads });
   };
   // return <div>jey</div>;
-  return <DashboardRoot />;
+  return <DashboardRootAdministrator />;
   return <DashboardSection />;
 };
 DashboardPage.getLayout = function getLayout(page: ReactElement) {
-  return <Layout variant="dashboard">{page}</Layout>;
+  return <Layout variant="administrator-dashboard">{page}</Layout>;
 };
 export default DashboardPage;
 
