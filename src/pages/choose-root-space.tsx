@@ -17,7 +17,7 @@ import LoadingScreen from '../components/screen/LoadingScreen';
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   try {
     const { locale } = context;
-    const { role, jwt: jwtToken } = context.req.cookies;
+    const { loggedAs, jwt: jwtToken } = context.req.cookies;
     if (!jwtToken) {
       return {
         redirect: {
@@ -38,7 +38,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       throw new Error('User is not present from GET /me');
     }
 
-    if (role === 'administrator') {
+    if (loggedAs === 'administrator') {
       console.log('admin logged in show layout for admin');
       return {
         redirect: {
@@ -46,7 +46,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
         },
       };
     }
-    if (role === 'maintainer') {
+    if (loggedAs === 'maintainer') {
       console.log('maintainer logged in show layout for admin');
     }
     return {
