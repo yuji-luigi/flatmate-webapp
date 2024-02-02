@@ -37,7 +37,6 @@ export function StatsGrid({ data }: { data: StatGridSchema[] }) {
   const stats = (A as Array<StatGridSchema>).map((stat) => {
     const Icon = typeof stat.icon === 'string' ? _icons[stat.icon] : stat.icon;
     const DiffIcon = stat.diff && stat.diff > 0 ? IconArrowUpRight : IconArrowDownRight;
-    console.log({ statTitle: stat.title });
     return (
       <Box key={stat.title} className={classesM.card}>
         <Paper className={classesM.paper} withBorder p="md" radius="md" key={stat.title}>
