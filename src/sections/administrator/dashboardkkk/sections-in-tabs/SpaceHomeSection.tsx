@@ -5,7 +5,7 @@ import classes from '../../../../styles/global-useStyles.module.css';
 import { useCrudSelectors } from '../../../../redux/features/crud/crudSlice';
 
 import { SpaceModel } from '../../../../types/models/space-model';
-import { TAB_LIST_CONFIG } from './tabList';
+import { TAB_LIST_CONFIG } from '../../dashboard/AdminDashBoardTabList';
 import { TabPanels } from '../../../../components/tab/TabPanels';
 
 const SpaceHomeSection = () => {

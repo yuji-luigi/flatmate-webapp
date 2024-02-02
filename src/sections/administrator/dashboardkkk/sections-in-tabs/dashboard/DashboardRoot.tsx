@@ -1,7 +1,7 @@
 import React from 'react';
 import { Tabs } from '@mantine/core';
 import { useRouter } from 'next/router';
-import { TAB_LIST_CONFIG } from '../tabList';
+import { TAB_LIST_CONFIG } from '../../../dashboard/AdminDashBoardTabList';
 
 export const DashboardRoot = () => {
   return (

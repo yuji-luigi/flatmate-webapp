@@ -1,14 +1,14 @@
 import { Box, Card, Grid, Text } from '@mantine/core';
 
 import dynamic from 'next/dynamic';
-import { DashboardMaintenanceDatatable } from '../../statistics/DashboardMaintenanceDatatable';
-import { EventDataTable } from '../../statistics/DashboardEventDataTable';
-import { StatGridSchema, StatsGrid } from '../../../../../components/stats/StatsGrid';
-import statsGridData from '../../../../../../json/mock/statsGrid.json';
+import { DashboardMaintenanceDatatable } from '../dashboardkkk/statistics/DashboardMaintenanceDatatable';
+import { EventDataTable } from '../dashboardkkk/statistics/DashboardEventDataTable';
+import { StatGridSchema, StatsGrid } from '../../../components/stats/StatsGrid';
+import statsGridData from '../../../../json/mock/statsGrid.json';
 import classes from './DashboardTopSection.module.css';
 import { StatsSummary } from './StatsSummary';
-import { DashboardTopHeader } from '../../components/DashboardTopHeader';
-import { useCookieContext } from '../../../../../context/CookieContext';
+import { DashboardTopHeader } from '../dashboardkkk/components/DashboardTopHeader';
+import { useCookieContext } from '../../../context/CookieContext';
 import { ChecksByMonthChart } from './components/ChecksByMonthChart';
 
 const DashboardSection = () => {

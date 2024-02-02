@@ -3,20 +3,17 @@ import React from 'react';
 import dynamic from 'next/dynamic';
 import { MonthPickerInput } from '@mantine/dates';
 import { CustomLayer } from '@nivo/line';
-import {
-  useCrudSelectors,
-  useCrudSliceStore,
-} from '../../../../../../redux/features/crud/crudSlice';
-import { intlDateFormatMonth } from '../../../../../../utils/helpers/date-formatters';
-import { Icons } from '../../../../../../data/icons/icons';
-import { LabelLayerCustom } from '../../../../../../components/chart/custom-layer/LabelLayerCustom';
-import { LabelLayer } from '../../../../../../components/chart/custom-layer/CustomLayer';
-import { FromToDateQueryInputs } from '../../../../../../components/input/filter-inputs/FromToDateQueryInputs';
-import axiosInstance from '../../../../../../utils/axios-instance';
-import { _PATH_API } from '../../../../../../path/path-api';
+import { useCrudSelectors, useCrudSliceStore } from '../../../../redux/features/crud/crudSlice';
+import { intlDateFormatMonth } from '../../../../utils/helpers/date-formatters';
+import { Icons } from '../../../../data/icons/icons';
+import { LabelLayerCustom } from '../../../../components/chart/custom-layer/LabelLayerCustom';
+import { LabelLayer } from '../../../../components/chart/custom-layer/CustomLayer';
+import { FromToDateQueryInputs } from '../../../../components/input/filter-inputs/FromToDateQueryInputs';
+import axiosInstance from '../../../../utils/axios-instance';
+import { _PATH_API } from '../../../../path/path-api';
 
 const StackedAreaChart = dynamic(
-  () => import('../../../../../../components/chart/line-area-chart/StackedAreaChart'),
+  () => import('../../../../components/chart/line-area-chart/StackedAreaChart'),
   {
     ssr: false, // This will load the component only on the client side.
   }
