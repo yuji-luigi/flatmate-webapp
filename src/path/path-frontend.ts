@@ -23,6 +23,7 @@ export enum PATH_CLIENT {
   authTokens = '/dashboard/auth-tokens',
   maintenances = '/dashboard/maintenances',
   dashboard = '/dashboard/home',
+  administrator = '/administrator',
   chooseRootSpace = '/choose-root-space',
   chooseOrganization = '/choose-organization',
   rootSpaceSelected = '/dashboard/enter-space',
@@ -59,5 +60,10 @@ export const _PATH_FRONTEND = {
   threads: {
     root: PATH_CLIENT.posts,
     byId: (threadId: string) => `${PATH_CLIENT.posts}/${threadId}`,
+  },
+  administrator: {
+    dashboard: {
+      root: `${PATH_CLIENT.administrator}/dashboard`,
+    },
   },
 };
