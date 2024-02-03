@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from '@mantine/core';
+import { Button, ButtonProps } from '@mantine/core';
 import Link from 'next/link';
 import { NextRequest } from 'next/server';
 import { useRouter } from 'next/router';
@@ -14,14 +14,14 @@ const isChoosePage = (path: string) =>
  *
  * @description regular login button. color dark
  */
-export const LoginButton = () => {
+export const LoginButton = (props?: ButtonProps) => {
   const { pathname } = useRouter();
 
   if (pathname === PATH_CLIENT.login) {
     return null;
   }
   return (
-    <Button component={Link} variant="default" href={PATH_CLIENT.login}>
+    <Button component={Link} variant={props?.variant || 'default'} href={PATH_CLIENT.login}>
       Log in
     </Button>
   );

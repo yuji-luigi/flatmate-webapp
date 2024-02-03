@@ -73,7 +73,7 @@ export function HomepageHeader() {
       <Button variant="default" component={Link} href={PATH_CLIENT.logout}>
         Logout
       </Button>
-      <EnterButton />
+      <LoginButton variant="outlined" />
     </>
   ) : (
     <>
