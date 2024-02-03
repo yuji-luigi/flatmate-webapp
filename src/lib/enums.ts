@@ -1,6 +1,4 @@
-import { Loader } from '@mantine/core';
 import { Icons } from '../data/icons/icons';
-import { MAINTENANCE_STATUS } from '../types/models/check-type.d';
 
 export const FONT_SIZES = {
   menuItems: 16,
@@ -93,7 +91,7 @@ export const MAINTAINER_TYPES = Object.keys(MAINTAINER_TYPES_ARRAY).reduce((acc,
   return acc;
 }, {} as Record<string, string>);
 
-export const USER_ROLES = ['admin', 'user', 'maintainer', 'super_admin'] as const;
+export const USER_ROLES = ['administrator', 'inhabitant', 'maintainer'] as const;
 
 export type UserRoles = (typeof USER_ROLES)[number];
 
