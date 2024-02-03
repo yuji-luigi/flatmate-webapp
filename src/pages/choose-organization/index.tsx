@@ -3,16 +3,17 @@ import { Box, Divider, Stack, Text } from '@mantine/core';
 import { useRouter } from 'next/router';
 import { GetServerSidePropsContext } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import Link from 'next/link';
 import useAuth from '../../../hooks/useAuth';
-import { PATH_CLIENT } from '../../path/path-frontend';
-import axiosInstance from '../../utils/axios-instance';
-import { PATH_API, PATH_AUTH } from '../../path/path-api';
+import { PATH_CLIENT, _PATH_FRONTEND } from '../../path/path-frontend';
+import axiosInstance, { AxiosMeResponse } from '../../utils/axios-instance';
+import { PATH_API, PATH_AUTH, _PATH_API } from '../../path/path-api';
 import Layout from '../../layouts';
 import { OrganizationModel } from '../../types/models/organization-model';
 import { SpaceModel } from '../../types/models/space-model';
 import { CardForListSmall } from '../../components/card/CardForListSmall';
 import classes from '../../styles/global-useStyles.module.css';
-import { UserModel } from '../../types/models/user-model';
+import { UserModel, UserWithRoleModel } from '../../types/models/user-model';
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   try {
@@ -22,13 +23,19 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       return { props: { user: null } };
     }
 
-    const rawRes = await axiosInstance.get(`${process.env.NEXT_PUBLIC_API_URL}/${PATH_AUTH.me}`, {
-      headers: {
-        Authorization: `Bearer ${jwtToken}`,
-      },
-    });
+    const rawRes = await axiosInstance.get<AxiosMeResponse>(
+      `${process.env.NEXT_PUBLIC_API_URL}/${PATH_AUTH.me}`,
+      {
+        headers: {
+          Authorization: `Bearer ${jwtToken}`,
+        },
+      }
+    );
     const { data } = rawRes;
     const { user } = data;
+    if (!user) {
+      throw new Error('User is not present from GET /me');
+    }
     return {
       props: {
         ...(await serverSideTranslations(locale || 'it', ['common', 'otherNamespace'])),
@@ -44,30 +51,21 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     };
   }
 }
-const ChooseOrganizationPage = (props: { initialUser: UserModel }) => {
+const ChooseOrganizationPage = (props: { initialUser: UserWithRoleModel }) => {
   const { initialUser } = props;
   const [organizations, setOrganizations] = React.useState<OrganizationModel[] | SpaceModel[]>([]);
   const router = useRouter();
 
   useEffect(() => {
     if (!initialUser) return;
-    if (initialUser.role !== 'super_admin') {
-      router.push(PATH_CLIENT.chooseRootSpace);
-      return;
-    }
 
-    axiosInstance.get(`${PATH_API.getOrganizationsForAdmin}`).then((res) => {
+    axiosInstance.get(`${_PATH_API.organizations.selections}`).then((res) => {
       setOrganizations(res.data.data);
     });
   }, [initialUser?.role]);
 
-  const title = initialUser?.role === 'super_admin' ? 'Choose organization' : 'Choose space';
+  const title = initialUser?.role.isSuperAdmin ? 'Choose organization' : 'Choose space';
   const hrefRoot = PATH_CLIENT.chooseOrganization;
-
-  if (initialUser?.role !== 'super_admin') {
-    router.push(PATH_CLIENT.login);
-    return null;
-  }
 
   return (
     <Box className={classes.container}>
@@ -81,7 +79,7 @@ const ChooseOrganizationPage = (props: { initialUser: UserModel }) => {
           className={classes.pinContainer}
           py="xl" /* cols={2} breakpoints={[{ max-width: 'sm', cols: 1 }]} */
         >
-          {initialUser?.role === 'super_admin' && (
+          {initialUser?.role.isSuperAdmin && (
             <CardForListSmall title="All organizations" href={PATH_CLIENT.root} image="" />
           )}
 
@@ -91,10 +89,21 @@ const ChooseOrganizationPage = (props: { initialUser: UserModel }) => {
               title={`• ${organization.name}`}
               description={organization.address}
               // subtitle={organization.admins[0]?.name || ''}
-              href={`${hrefRoot}/${organization._id}`}
+              href={{
+                pathname: _PATH_FRONTEND.auth.chooseSpace,
+                query: { organizationId: organization._id },
+              }}
               image=""
             />
           ))}
+          {organizations.length === 0 && (
+            <>
+              <Text variant="text" fz={24} ta="center">
+                No organizations found
+              </Text>
+              <Link href={_PATH_FRONTEND.homepage.root}>Go back to home</Link>
+            </>
+          )}
         </Box>
       </Stack>
     </Box>

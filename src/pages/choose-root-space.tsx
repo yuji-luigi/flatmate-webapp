@@ -1,15 +1,15 @@
-import { ReactElement, useEffect } from 'react';
+import { ReactElement } from 'react';
 import useSWR from 'swr';
 import { AxiosError } from 'axios';
 import { useRouter } from 'next/router';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { GetServerSidePropsContext } from 'next';
 import { PATH_CLIENT, _PATH_FRONTEND } from '../path/path-frontend';
-import axiosInstance, { AxiosResDataGeneric } from '../utils/axios-instance';
-import { PATH_API, PATH_AUTH } from '../path/path-api';
+import axiosInstance, { AxiosMeResponse, AxiosResDataGeneric } from '../utils/axios-instance';
+import { PATH_API, PATH_AUTH, _PATH_API } from '../path/path-api';
 
 import Layout from '../layouts';
-import { UserModel } from '../types/models/user-model';
+import { UserWithRoleModel } from '../types/models/user-model';
 import { SpaceModel } from '../types/models/space-model';
 import { ChooseSpaceSection } from '../sections/login_signup/choose-space/ChooseSpaceSection';
 import LoadingScreen from '../components/screen/LoadingScreen';
@@ -27,11 +27,14 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       };
     }
 
-    const rawRes = await axiosInstance.get(`${process.env.NEXT_PUBLIC_API_URL}/${PATH_AUTH.me}`, {
-      headers: {
-        Authorization: `Bearer ${jwtToken}`,
-      },
-    });
+    const rawRes = await axiosInstance.get<AxiosMeResponse>(
+      `${process.env.NEXT_PUBLIC_API_URL}/${PATH_AUTH.me}`,
+      {
+        headers: {
+          Authorization: `Bearer ${jwtToken}`,
+        },
+      }
+    );
     const { data } = rawRes;
     const { user } = data;
     if (!user) {
@@ -53,6 +56,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       props: {
         ...(await serverSideTranslations(locale || 'it', ['common', 'otherNamespace'])),
         initialUser: user,
+
         // other props you may need to pass to the page
       },
     };
@@ -65,33 +69,39 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   }
 }
 
-export const fetchSpaceSelections = async (userId?: string | null) => {
+export const fetchSpaceSelections = async (
+  userId?: string | null,
+  orgId: string | string[] = ''
+) => {
   if (!userId) return null;
+  const params = orgId ? { organization: orgId } : {};
+  // when the organization id query is present
+  if (orgId && typeof orgId === 'string') {
+    await axiosInstance.get(_PATH_API.organizations.cookie(orgId));
+  }
   const res = await axiosInstance.get<AxiosResDataGeneric<SpaceModel[]>>(
-    PATH_API.getSpaceSelections
+    PATH_API.getSpaceSelections,
+    { params }
   );
   return res.data?.data;
 };
 
-const ChooseRootSpacePage = (props: { initialUser?: UserModel }) => {
+const ChooseRootSpacePage = (props: { initialUser?: UserWithRoleModel }) => {
   const { initialUser } = props;
   const router = useRouter();
+  const { organizationId } = router.query;
   const {
     data: rootSpaces,
     error,
     isLoading,
-  } = useSWR<SpaceModel[] | null, AxiosError>(initialUser?._id, fetchSpaceSelections);
+  } = useSWR<SpaceModel[] | null, AxiosError>(initialUser?._id, () =>
+    fetchSpaceSelections(initialUser?._id, organizationId)
+  );
 
-  // useEffect(() => {
-  //   if (!initialUser) {
-  //     router.push(PATH_CLIENT.login);
-  //   }
-  // }, []);
-
-  if (initialUser?.role === 'super_admin') {
-    router.push(PATH_CLIENT.chooseOrganization);
-    return null;
+  if (!initialUser) {
+    throw new Error('Something went wrong');
   }
+
   if (!rootSpaces || isLoading) {
     return <LoadingScreen />;
   }
