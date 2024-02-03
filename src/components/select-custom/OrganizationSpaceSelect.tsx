@@ -41,7 +41,7 @@ const OrganizationSpaceSelect = ({
   const [spaces, setSpaces] = useState<ComboboxItem[]>([]);
   const router = useRouter();
   const { user } = useAuth();
-  const isSuperAdmin = user?.role === 'super_admin';
+  const isSuperAdmin = true;
 
   const deleteHeaderCookies = async () => {
     await axiosInstance.delete(`${PATH_API.organizationCookie}`);
