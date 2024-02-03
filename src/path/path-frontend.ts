@@ -52,6 +52,7 @@ export const _PATH_FRONTEND = {
   },
   auth: {
     login: PATH_CLIENT.login,
+    logout: PATH_CLIENT.logout,
     signup: PATH_CLIENT.signup,
     chooseOrganization: CHOOSE_ORGANIZATION,
     chooseSpace: '/choose-root-space',
