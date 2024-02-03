@@ -1,7 +1,8 @@
+import axios, { AxiosInstance, AxiosResponse } from 'axios';
 import { Sections } from '../types/general/data/sections-type';
 import { API_BASE_URL } from '../path/path-api';
-import axios, { AxiosInstance, AxiosResponse } from 'axios';
 import { AllModels } from '../types/models/allmodels';
+import { RoleModel, UserModel, UserWithRoleModel } from '../types/models/user-model';
 
 // ----------------------------------------------------------------------
 
@@ -20,10 +21,10 @@ export interface AxiosResDataGeneric<DataType> {
   collection: Sections;
   data: DataType;
 }
-export interface AxiosResDataMeResponse<DataType> {
+export interface AxiosMeResponse {
   success: boolean;
   collection: Sections;
-  user: DataType;
+  user: UserWithRoleModel;
 }
 axiosInstance.interceptors.request.use(
   (config) => {
