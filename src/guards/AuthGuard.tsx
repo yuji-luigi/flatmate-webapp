@@ -5,7 +5,6 @@ import { useRouter } from 'next/router';
 // hooks
 import { LoadingOverlay } from '@mantine/core';
 import useAuth from '../../hooks/useAuth';
-import LoginPage from '../sections/login_signup/LoginForm';
 
 export default function AuthGuard({ children }: { children: JSX.Element | JSX.Element[] }) {
   const { isAuthenticated, isInitialized, user } = useAuth();
