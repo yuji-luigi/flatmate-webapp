@@ -7,14 +7,15 @@ export interface UserModel extends MongooseBaseModel {
   name: string;
   email: string;
   active: boolean;
-  role: UserRoles;
-  roleNew: RoleModel | string;
+  role: RoleModel | string;
   rootSpaces: Array<string>;
   password: string;
   phone?: string;
   avatar?: UploadModel;
   organization: string;
 }
+
+export type UserWithRoleModel = UserModel & { role: RoleModel };
 
 type belongsToFields = {
   hasAccess: boolean;
@@ -42,4 +43,5 @@ export interface RoleModel extends MongooseBaseModel {
   administrator: belongsToFields & BillingProfileModel;
   maintainer: belongsToFields & BillingProfileModel;
   inhabitant: belongsToFields;
+  isSuperAdmin: boolean;
 }
