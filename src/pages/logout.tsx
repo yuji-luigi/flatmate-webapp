@@ -1,18 +1,20 @@
 import { useRouter } from 'next/router';
-import React, { ReactElement, useEffect } from 'react';
+import { useEffect } from 'react';
 import useAuth from '../../hooks/useAuth';
-import Layout from '../layouts';
-import LoginPage from './login_old';
+import LoginPage from './login';
+import LoadingScreen from '../components/screen/LoadingScreen';
+import { sleep } from '../utils/helpers/helper-functions';
+import { _PATH_FRONTEND } from '../path/path-frontend';
 
 const LogoutPage = () => {
   const { logout } = useAuth();
-  const { replace } = useRouter();
   useEffect(() => {
-    logout();
-    replace('/login');
+    handleLogout();
   }, []);
-
-  return <LoginPage />;
+  const handleLogout = async () => {
+    logout();
+  };
+  return <LoadingScreen />;
 };
 
 export default LogoutPage;
