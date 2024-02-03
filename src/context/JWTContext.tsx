@@ -1,5 +1,6 @@
 import { createContext, ReactNode, useEffect, useReducer } from 'react';
 import { deleteCookie } from 'cookies-next';
+import { useRouter } from 'next/router';
 import axiosInstance, { AxiosMeResponse } from '../utils/axios-instance';
 import { _PATH_API, PATH_AUTH } from '../path/path-api';
 import {
@@ -12,9 +13,8 @@ import {
   AuthContextInterface,
   RegisterData,
 } from '../types/context/auth/useAuth';
-import { isValidToken, setSession } from '../utils/jwt';
-import { useCookieContext } from './CookieContext';
-import { UserModel, UserWithRoleModel } from '../types/models/user-model';
+import { UserWithRoleModel } from '../types/models/user-model';
+import { _PATH_FRONTEND } from '../path/path-frontend';
 
 const initialState: JWTContextState = {
   isAuthenticated: false,
@@ -84,6 +84,7 @@ function AuthProvider({
     isAuthenticated: !!initialUser,
     isInitialized: !!initialUser,
   });
+  const { push } = useRouter();
   useEffect(() => {
     const initialize = async () => {
       try {
@@ -180,9 +181,11 @@ function AuthProvider({
   };
 
   const logout: Logout = async () => {
-    await axiosInstance.get(PATH_AUTH.logout, { withCredentials: true });
     deleteCookie('jwt');
     deleteCookie('space');
+    deleteCookie('loggedAs');
+    await axiosInstance.get(PATH_AUTH.logout, { withCredentials: true });
+    push(_PATH_FRONTEND.auth.login);
     // localStorage.removeItem('accessToken');
     // localStorage.removeItem('spaceToken');
     // setSession(null);
