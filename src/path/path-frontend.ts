@@ -45,8 +45,17 @@ export enum CARD_LINK_PATH {
   rootSpaceSelected = PATH_CLIENT.rootSpaceSelected,
   // organizationCookie = PATH_CLIENT.organizationCookie,
 }
-
+const CHOOSE_ORGANIZATION = '/choose-organization';
 export const _PATH_FRONTEND = {
+  homepage: {
+    root: '/',
+  },
+  auth: {
+    login: PATH_CLIENT.login,
+    signup: PATH_CLIENT.signup,
+    chooseOrganization: CHOOSE_ORGANIZATION,
+    chooseSpace: '/choose-root-space',
+  },
   authTokens: {
     dashboard: PATH_CLIENT.authTokens,
     qrCode: ({ entity, authToken }: { entity: Sections; authToken: HiddenAuthTokenInterface }) =>

@@ -97,6 +97,7 @@ export const _PATH_API = {
     root: PATH_API.spaces,
     home: `${PATH_API.spaces}/home`,
     settings: `${PATH_API.spaces}/settings`,
+    withQuery: (query?: string) => `${PATH_API.spaces}/with-query${query}`,
   },
   linkedChildren: {
     root: PATH_API.linkedChildren,
@@ -138,15 +139,21 @@ export const _PATH_API = {
     onBoarding: (_id: string) => `${PATH_API.users}/${_id}/on-boarding`,
     getAuthToken: (_id: string) => `${PATH_API.users}/${_id}/${PATH_API.authTokens}`,
   },
-  organizations: {
-    selections: `${ROOT_ORGANIZATION_AUTH}/organization-selections`,
-  },
+
   notifications: {
     root: 'notifications',
   },
   statistics: {
     root: PATH_API.statistics,
     byMonth: `${PATH_API.statistics}/by-month`,
+  },
+  organizations: {
+    root: PATH_API.organization,
+    selections: `${ROOT_ORGANIZATION_AUTH}/organization-selections`,
+    getOrganizationsForAdmin: PATH_API.getOrganizationsForAdmin,
+    getOrganizationsAndSpaces: PATH_API.getOrganizationsAndSpaces,
+    all: PATH_API.organizationAll,
+    cookie: (orgId: string) => `${PATH_API.organizationCookie}/${orgId}`,
   },
 } as const;
 
