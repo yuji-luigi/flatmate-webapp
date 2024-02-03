@@ -8,15 +8,16 @@ import classes from './login-new.module.css';
 import Layout from '../layouts';
 import { PATH_AUTH } from '../path/path-api';
 import LoginForm from '../sections/login_signup/LoginForm';
-import { AUTH, PATH_CLIENT } from '../path/path-frontend';
-import { UserModel } from '../types/models/user-model';
+import { AUTH, PATH_CLIENT, _PATH_FRONTEND } from '../path/path-frontend';
+import { UserModel, UserWithRoleModel } from '../types/models/user-model';
 import { useLocale } from '../../hooks/useLocale';
 import { LogoSquare } from '../components/banner/LogoSquare';
 import { RoleTabsLogin } from '../sections/login-new/RoleTabsLogin';
+import { AxiosMeResponse } from '../utils/axios-instance';
 
-export default function LoginNewPage(props: { initialUser?: UserModel }) {
+export default function LoginPage(props: { initialUser?: UserWithRoleModel }) {
   const { initialUser } = props;
-  const { push } = useRouter();
+  const { push, pathname, replace } = useRouter();
   const { t } = useLocale('common');
   // const { changeLanguage, t } = useLocale();
   useEffect(() => {
@@ -24,8 +25,10 @@ export default function LoginNewPage(props: { initialUser?: UserModel }) {
     if (initialUser) {
       push(PATH_CLIENT.chooseRootSpace);
     }
+    if (pathname === _PATH_FRONTEND.auth.logout) {
+      replace(_PATH_FRONTEND.auth.login);
+    }
   }, [initialUser]);
-  // return null;
   return (
     <div className={classes.wrapper}>
       <Stack>
@@ -68,7 +71,7 @@ export default function LoginNewPage(props: { initialUser?: UserModel }) {
     </div>
   );
 }
-LoginNewPage.getLayout = function getLayout(page: ReactElement) {
+LoginPage.getLayout = function getLayout(page: ReactElement) {
   return <Layout variant="main">{page}</Layout>;
 };
 
@@ -78,17 +81,28 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     'en',
   ]);
   try {
-    const jwtToken = context.req.cookies.jwt;
+    const { jwt: jwtToken, loggedAs } = context.req.cookies;
     if (!jwtToken) {
       return { props: { user: null, ...translationObj } };
     }
-    const rawRes = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/${PATH_AUTH.me}`, {
-      headers: {
-        Authorization: `Bearer ${jwtToken}`,
-      },
-    });
+    const rawRes = await axios.get<AxiosMeResponse>(
+      `${process.env.NEXT_PUBLIC_API_URL}/${PATH_AUTH.me}`,
+      {
+        headers: {
+          Authorization: `Bearer ${jwtToken}`,
+        },
+      }
+    );
     const { data } = rawRes;
     const { user } = data;
+    if (user) {
+      return {
+        redirect: {
+          destination: _PATH_FRONTEND.auth.chooseSpace,
+          permanent: false,
+        },
+      };
+    }
     return {
       props: {
         ...translationObj,
