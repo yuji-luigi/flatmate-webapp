@@ -1,6 +1,7 @@
 import { Card, Image, Avatar, Text, Group, Box } from '@mantine/core';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { Url } from 'next/dist/shared/lib/router/router';
 import { IUser } from '../../types/context/auth/useAuth';
 import classes from './CardArticleSmall.module.css';
 
@@ -9,7 +10,7 @@ interface CardArticleImageDescFooterVerticalProps {
   subtitle?: string;
   description?: string;
   image?: string;
-  href: string;
+  href: Url;
   createdBy?: IUser;
   createdAt?: Date | string;
 }
