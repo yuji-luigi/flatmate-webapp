@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useEffect, useReducer } from 'react';
 import { deleteCookie } from 'cookies-next';
-import axiosInstance from '../utils/axios-instance';
+import axiosInstance, { AxiosMeResponse } from '../utils/axios-instance';
 import { _PATH_API, PATH_AUTH } from '../path/path-api';
 import {
   JWTContextReducerAction,
@@ -14,7 +14,7 @@ import {
 } from '../types/context/auth/useAuth';
 import { isValidToken, setSession } from '../utils/jwt';
 import { useCookieContext } from './CookieContext';
-import { UserModel } from '../types/models/user-model';
+import { UserModel, UserWithRoleModel } from '../types/models/user-model';
 
 const initialState: JWTContextState = {
   isAuthenticated: false,
@@ -71,7 +71,13 @@ const AuthContext = createContext<AuthContextInterface>({
   register: () => Promise.resolve(),
 });
 
-function AuthProvider({ children, initialUser }: { children: ReactNode; initialUser?: UserModel }) {
+function AuthProvider({
+  children,
+  initialUser,
+}: {
+  children: ReactNode;
+  initialUser?: UserWithRoleModel;
+}) {
   const [state, dispatch] = useReducer(reducer, {
     ...initialState,
     user: initialUser,
@@ -88,7 +94,9 @@ function AuthProvider({ children, initialUser }: { children: ReactNode; initialU
 
         // if (accessToken && isValidToken(accessToken)) {
         //   setSession(accessToken);
-        const response = await axiosInstance.get(PATH_AUTH.me, { withCredentials: true });
+        const response = await axiosInstance.get<AxiosMeResponse>(PATH_AUTH.me, {
+          withCredentials: true,
+        });
         const { user } = response.data;
         dispatch({
           type: 'INITIALIZE',
