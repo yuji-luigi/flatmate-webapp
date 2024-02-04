@@ -70,7 +70,8 @@ const useStore = () => {
   }, [currentSpace?._id]);
 
   useEffect(() => {
-    if (!currentOrganization || !entity || !entities.includes(entity)) return;
+    if (!entity || !entities.includes(entity)) return;
+    // if (!currentOrganization || !entity || !entities.includes(entity)) return;
     fetchCrudDocumentsWithPagination({ entity });
   }, [currentOrganization]);
   return {
