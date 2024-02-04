@@ -13,24 +13,26 @@ import {
   AuthContextInterface,
   RegisterData,
 } from '../types/context/auth/useAuth';
-import { UserWithRoleModel } from '../types/models/user-model';
+import { Role, UserWithRoleModel } from '../types/models/user-model';
 import { _PATH_FRONTEND } from '../path/path-frontend';
 
 const initialState: JWTContextState = {
   isAuthenticated: false,
   isInitialized: false,
   user: null,
+  loggedAs: null,
 };
 
 const handlers: JWTContextHandlers = {
   INITIALIZE: (state, action) => {
-    const { isAuthenticated, user } = action.payload as JWTContextState;
+    const { isAuthenticated, user, loggedAs } = action.payload as JWTContextState;
     return {
       ...state,
       isAuthenticated,
       isInitialized: true,
       user,
-      isSuperAdmin: user?.role === 'super_admin',
+      loggedAs,
+      isSuperAdmin: user?.role.isSuperAdmin,
     };
   },
   LOGIN: (state, action) => {
@@ -39,7 +41,7 @@ const handlers: JWTContextHandlers = {
       ...state,
       isAuthenticated: true,
       user,
-      isSuperAdmin: user?.role === 'super_admin',
+      isSuperAdmin: user?.role.isSuperAdmin,
     };
   },
 
@@ -47,6 +49,7 @@ const handlers: JWTContextHandlers = {
     ...state,
     isAuthenticated: false,
     user: null,
+    loggedAs: null,
     isSuperAdmin: false,
   }),
   REGISTER: (state, action) => {
@@ -55,7 +58,7 @@ const handlers: JWTContextHandlers = {
       ...state,
       isAuthenticated: true,
       user,
-      isSuperAdmin: user?.role === 'super_admin',
+      isSuperAdmin: user?.role.isSuperAdmin,
     };
   },
 };
@@ -74,15 +77,18 @@ const AuthContext = createContext<AuthContextInterface>({
 function AuthProvider({
   children,
   initialUser,
+  initialLoggedAs,
 }: {
   children: ReactNode;
   initialUser?: UserWithRoleModel;
+  initialLoggedAs?: Role;
 }) {
   const [state, dispatch] = useReducer(reducer, {
     ...initialState,
     user: initialUser,
     isAuthenticated: !!initialUser,
     isInitialized: !!initialUser,
+    loggedAs: initialLoggedAs,
   });
   const { push } = useRouter();
   useEffect(() => {
@@ -98,12 +104,13 @@ function AuthProvider({
         const response = await axiosInstance.get<AxiosMeResponse>(PATH_AUTH.me, {
           withCredentials: true,
         });
-        const { user } = response.data;
+        const { user, loggedAs } = response.data;
         dispatch({
           type: 'INITIALIZE',
           payload: {
             isAuthenticated: true,
             user,
+            loggedAs,
           },
         });
         // } else {
@@ -140,8 +147,8 @@ function AuthProvider({
       // setSession(token.accessToken);
 
       // // call me and get the user
-      const responseMe = await axiosInstance.get(PATH_AUTH.me);
-      const { user } = responseMe.data;
+      const responseMe = await axiosInstance.get<AxiosMeResponse>(PATH_AUTH.me);
+      const { user, loggedAs } = responseMe.data;
       // const res = await fetch('/api/mock', {
       //   method: 'POST',
       //   headers: {
@@ -154,6 +161,7 @@ function AuthProvider({
         type: 'LOGIN',
         payload: {
           user,
+          loggedAs,
         },
       });
     } catch (error: any) {
