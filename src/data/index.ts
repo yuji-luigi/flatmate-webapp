@@ -31,4 +31,6 @@ export const allSectionArrayWithRoles = beta.flatMap((sectionData) => {
 export const entities = flattenSectionData.map((sectionData) => sectionData.entity);
 export const sectionData = beta;
 
+export type SectionData = typeof sectionData;
+
 export type FlattenSectionData = (typeof flattenSectionData)[number];
