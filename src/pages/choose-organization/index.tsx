@@ -13,13 +13,13 @@ import { OrganizationModel } from '../../types/models/organization-model';
 import { SpaceModel } from '../../types/models/space-model';
 import { CardForListSmall } from '../../components/card/CardForListSmall';
 import classes from '../../styles/global-useStyles.module.css';
-import { UserModel, UserWithRoleModel } from '../../types/models/user-model';
+import { Role, UserModel, UserWithRoleModel } from '../../types/models/user-model';
 import LoadingScreen from '../../components/screen/LoadingScreen';
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   try {
     const { locale } = context;
-    const { jwt: jwtToken, loggedAs } = context.req.cookies;
+    const { jwt: jwtToken } = context.req.cookies;
     if (!jwtToken) {
       return {
         redirect: {
@@ -38,7 +38,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       }
     );
     const { data } = rawRes;
-    const { user } = data;
+    const { user, loggedAs } = data;
     if (!user) {
       throw new Error('Invalid access');
     }
@@ -54,6 +54,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       props: {
         ...(await serverSideTranslations(locale || 'it', ['common', 'otherNamespace'])),
         initialUser: user,
+        initialLoggedAs: loggedAs,
         // other props you may need to pass to the page
       },
     };
@@ -65,8 +66,11 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     };
   }
 }
-const ChooseOrganizationPage = (props: { initialUser: UserWithRoleModel }) => {
-  const { initialUser } = props;
+const ChooseOrganizationPage = (props: {
+  initialUser: UserWithRoleModel;
+  initialLoggedAs: Role;
+}) => {
+  const { initialUser, initialLoggedAs } = props;
   const [organizations, setOrganizations] = React.useState<OrganizationModel[] | SpaceModel[]>([]);
   const router = useRouter();
 
@@ -78,7 +82,6 @@ const ChooseOrganizationPage = (props: { initialUser: UserWithRoleModel }) => {
   }, [initialUser?.role]);
 
   const title = initialUser?.role.isSuperAdmin ? 'Choose organization' : 'Choose space';
-  const hrefRoot = PATH_CLIENT.chooseOrganization;
   return (
     <Box className={classes.container}>
       <Stack justify="center">
@@ -92,7 +95,16 @@ const ChooseOrganizationPage = (props: { initialUser: UserWithRoleModel }) => {
           py="xl" /* cols={2} breakpoints={[{ max-width: 'sm', cols: 1 }]} */
         >
           {initialUser?.role.isSuperAdmin && (
-            <CardForListSmall title="All organizations" href={PATH_CLIENT.root} image="" />
+            <CardForListSmall
+              title="All organizations"
+              href={{
+                pathname: _PATH_FRONTEND[initialLoggedAs].dashboard.root,
+                query: {
+                  tab: 'dashboard',
+                },
+              }}
+              image=""
+            />
           )}
 
           {organizations.map((organization) => (
