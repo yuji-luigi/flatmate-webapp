@@ -1,8 +1,8 @@
 import axios, { AxiosInstance, AxiosResponse } from 'axios';
+import { Role, RoleModel, UserModel, UserWithRoleModel } from '../types/models/user-model.d';
 import { Sections } from '../types/general/data/sections-type';
 import { API_BASE_URL } from '../path/path-api';
 import { AllModels } from '../types/models/allmodels';
-import { RoleModel, UserModel, UserWithRoleModel } from '../types/models/user-model';
 
 // ----------------------------------------------------------------------
 
@@ -25,13 +25,14 @@ export interface AxiosMeResponse {
   success: boolean;
   collection: Sections;
   user: UserWithRoleModel;
+  loggedAs: Role;
 }
 axiosInstance.interceptors.request.use(
   (config) => {
     // const token = localStorage.getItem('accessToken');
     // config.headers.Authorization = token as string;
-    config.withCredentials = true;
-    return config;
+    // config.withCredentials = true;
+    return { ...config, withCredentials: true };
   },
   (error) => Promise.reject(error)
 );
