@@ -23,7 +23,7 @@ export default function LoginPage(props: { initialUser?: UserWithRoleModel }) {
   useEffect(() => {
     // changeLanguage('it');
     if (initialUser) {
-      push(PATH_CLIENT.chooseRootSpace);
+      push(PATH_CLIENT.chooseOrganization);
     }
     if (pathname === _PATH_FRONTEND.auth.logout) {
       replace(_PATH_FRONTEND.auth.login);
@@ -98,7 +98,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     if (user) {
       return {
         redirect: {
-          destination: _PATH_FRONTEND.auth.chooseSpace,
+          destination: _PATH_FRONTEND.auth.chooseOrganization,
           permanent: false,
         },
       };

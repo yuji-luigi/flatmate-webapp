@@ -22,7 +22,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       return {
         redirect: {
           destination: '/',
-          permanent: false,
+          permanent: true,
         },
       };
     }
@@ -40,24 +40,44 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     if (!user) {
       throw new Error('User is not present from GET /me');
     }
+    if (loggedAs === 'inhabitant' && user.role.inhabitant?.rootSpaces.length > 1) {
+      return {
+        props: {
+          ...(await serverSideTranslations(locale || 'it', ['common', 'otherNamespace'])),
+          initialUser: user,
 
-    if (loggedAs === 'administrator') {
-      console.log('admin logged in show layout for admin');
+          // other props you may need to pass to the page
+        },
+      };
+    }
+    return {
+      redirect: {
+        destination: _PATH_FRONTEND.administrator.dashboard.root,
+      },
+    };
+
+    if (user.role.isSuperAdmin || loggedAs === 'administrator' || loggedAs === 'maintainer') {
       return {
         redirect: {
           destination: _PATH_FRONTEND.administrator.dashboard.root,
         },
       };
     }
-    if (loggedAs === 'maintainer') {
-      console.log('maintainer logged in show layout for admin');
+    // in case check for inhabitant. even though there is only inhabitant at this point.
+    if (loggedAs === 'inhabitant' && user.role.inhabitant?.rootSpaces.length === 1) {
+      // only inhabitants with multiple buildings see this page to select which building he is seeing in case inhabitant has registered in multiple buildings
+      return {
+        props: {
+          ...(await serverSideTranslations(locale || 'it', ['common', 'otherNamespace'])),
+          initialUser: user,
+
+          // other props you may need to pass to the page
+        },
+      };
     }
     return {
-      props: {
-        ...(await serverSideTranslations(locale || 'it', ['common', 'otherNamespace'])),
-        initialUser: user,
-
-        // other props you may need to pass to the page
+      redirect: {
+        destination: _PATH_FRONTEND.auth.chooseOrganization,
       },
     };
   } catch (error) {

@@ -33,7 +33,7 @@ function LoginForm({ role }: { role: Role }) {
       resetCurrentSpace();
       setCurrentOrganization(null);
       await login(values.email, values.password, role);
-      router.push(PATH_CLIENT.chooseRootSpace);
+      router.push(PATH_CLIENT.chooseOrganization);
       // return null;
     } catch (error: any) {
       notifications.show({

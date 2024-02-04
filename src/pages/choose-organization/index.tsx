@@ -14,13 +14,19 @@ import { SpaceModel } from '../../types/models/space-model';
 import { CardForListSmall } from '../../components/card/CardForListSmall';
 import classes from '../../styles/global-useStyles.module.css';
 import { UserModel, UserWithRoleModel } from '../../types/models/user-model';
+import LoadingScreen from '../../components/screen/LoadingScreen';
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   try {
     const { locale } = context;
-    const jwtToken = context.req.cookies.jwt;
+    const { jwt: jwtToken, loggedAs } = context.req.cookies;
     if (!jwtToken) {
-      return { props: { user: null } };
+      return {
+        redirect: {
+          destination: '/500',
+          permanent: true,
+        },
+      };
     }
 
     const rawRes = await axiosInstance.get<AxiosMeResponse>(
@@ -34,8 +40,16 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     const { data } = rawRes;
     const { user } = data;
     if (!user) {
-      throw new Error('User is not present from GET /me');
+      throw new Error('Invalid access');
     }
+    // if (loggedAs === 'inhabitant' || loggedAs === 'maintainer') {
+    //   return {
+    //     redirect: {
+    //       destination: _PATH_FRONTEND.auth.chooseSpace,
+    //       permanent: true,
+    //     },
+    //   };
+    // }
     return {
       props: {
         ...(await serverSideTranslations(locale || 'it', ['common', 'otherNamespace'])),
@@ -58,7 +72,6 @@ const ChooseOrganizationPage = (props: { initialUser: UserWithRoleModel }) => {
 
   useEffect(() => {
     if (!initialUser) return;
-
     axiosInstance.get(`${_PATH_API.organizations.selections}`).then((res) => {
       setOrganizations(res.data.data);
     });
@@ -66,7 +79,6 @@ const ChooseOrganizationPage = (props: { initialUser: UserWithRoleModel }) => {
 
   const title = initialUser?.role.isSuperAdmin ? 'Choose organization' : 'Choose space';
   const hrefRoot = PATH_CLIENT.chooseOrganization;
-
   return (
     <Box className={classes.container}>
       <Stack justify="center">
