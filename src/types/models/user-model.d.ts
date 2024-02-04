@@ -7,7 +7,7 @@ export interface UserModel extends MongooseBaseModel {
   name: string;
   email: string;
   active: boolean;
-  role: RoleModel | string;
+  role: RoleModel | 'objectId or model';
   rootSpaces: Array<string>;
   password: string;
   phone?: string;
