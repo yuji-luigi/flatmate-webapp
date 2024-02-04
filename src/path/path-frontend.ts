@@ -24,6 +24,7 @@ export enum PATH_CLIENT {
   maintenances = '/dashboard/maintenances',
   dashboard = '/dashboard/home',
   administrator = '/administrator',
+  maintainer = '/maintainer',
   chooseRootSpace = '/choose-root-space',
   chooseOrganization = '/choose-organization',
   rootSpaceSelected = '/dashboard/enter-space',
@@ -74,6 +75,16 @@ export const _PATH_FRONTEND = {
   administrator: {
     dashboard: {
       root: `${PATH_CLIENT.administrator}/dashboard`,
+    },
+  },
+  inhabitant: {
+    dashboard: {
+      root: '/dashboard',
+    },
+  },
+  maintainer: {
+    dashboard: {
+      root: `${PATH_CLIENT.maintainer}/dashboard`,
     },
   },
 };
