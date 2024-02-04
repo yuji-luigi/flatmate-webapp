@@ -24,6 +24,7 @@ import { ColorSchemeToggle } from '../../../components/color-schemeToggle/ColorS
 import LogoutButton from './LogoutButton';
 import classes from './NavbarVertical.module.css';
 import { getEntityOrUndefinedFromUrl } from '../../../utils/helpers/helper-functions';
+import { NavList } from './NavList';
 
 const data = [
   { link: '', label: 'Notifications', icon: IconBellRinging },
@@ -81,9 +82,10 @@ export function NavbarVertical() {
           <div className={classes.navbarMain}>
             <ProfilePopover />
             <Divider className={classes.divider} />
-            {navLists}
           </div>
-
+          {sectionData.map((section, i) => (
+            <NavList key={section.name} section={section} />
+          ))}
           <div className={classes.footer}>
             <Stack>
               <LogoutButton />
