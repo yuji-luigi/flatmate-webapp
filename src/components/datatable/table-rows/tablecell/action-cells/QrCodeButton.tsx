@@ -2,6 +2,7 @@ import { ActionIcon, Box, Button, Card, Group, Stack } from '@mantine/core';
 import { IconQrcode } from '@tabler/icons-react';
 import React, { useState } from 'react';
 import QRCode from 'react-qr-code';
+import { showNotification } from '@mantine/notifications';
 import {
   AuthTokenModel,
   HiddenAuthTokenInterface,
@@ -25,17 +26,27 @@ export const QrCodeButton = ({ rowData }: { rowData: MongooseBaseModel }) => {
   const { _id } = rowData;
 
   const generateQrCode = async () => {
-    const rawAuthToken = await axiosInstance.get<AxiosResDataGeneric<HiddenAuthTokenInterface>>(
-      _PATH_API.users.getAuthToken(_id)
-    );
-    const payload = rawAuthToken.data.data;
+    try {
+      const rawAuthToken = await axiosInstance.get<AxiosResDataGeneric<HiddenAuthTokenInterface>>(
+        _PATH_API.users.getAuthToken(_id)
+      );
 
-    openConfirmModal({
-      title: 'QR Code',
-      type: 'custom',
-      children: <QrCodeModalContent authToken={payload} rowData={rowData} />,
-      // onConfirm: () => {},
-    });
+      const payload = rawAuthToken.data.data;
+
+      openConfirmModal({
+        title: 'QR Code',
+        type: 'custom',
+        children: <QrCodeModalContent authToken={payload} rowData={rowData} />,
+        // onConfirm: () => {},
+      });
+    } catch (error: any) {
+      console.error(error);
+      showNotification({
+        title: 'Error',
+        message: error.message || error,
+        color: 'red',
+      });
+    }
   };
   if (!showQrCode()) {
     return null;

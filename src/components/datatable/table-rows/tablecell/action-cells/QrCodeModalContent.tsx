@@ -1,13 +1,13 @@
 import { Box, Stack, Button, Text, LoadingOverlay } from '@mantine/core';
 import React, { useState } from 'react';
 import QRCode from 'react-qr-code';
+import { hideNotification, showNotification } from '@mantine/notifications';
 import { _PATH_FRONTEND } from '../../../../../path/path-frontend';
 import { HiddenAuthTokenInterface } from '../../../../../types/models/auth-token-model';
 import { _PATH_API } from '../../../../../path/path-api';
 import axiosInstance from '../../../../../utils/axios-instance';
 import { Sections } from '../../../../../types/general/data/sections-type';
 import { MongooseBaseModel } from '../../../../../types/models/mongoose-base-model';
-import { hideNotification, showNotification } from '@mantine/notifications';
 import {
   NOTIFICATIONS,
   constructErrorNotificationData,
