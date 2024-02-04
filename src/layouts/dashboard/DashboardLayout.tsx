@@ -1,6 +1,7 @@
-import React, { ReactNode, useEffect, useRef } from 'react';
+import React, { ReactNode, useEffect, useRef, useState } from 'react';
 import { Box, Tabs } from '@mantine/core';
 import { useRouter } from 'next/router';
+import { set } from 'nprogress';
 import { DashboardHeaderSearch } from './header/DashboardHeaderSearch';
 import { NavbarVertical } from './navbar/NavbarVertical';
 import useLayoutContext from '../../../hooks/useLayoutContext';
@@ -8,16 +9,18 @@ import { useCookieContext } from '../../context/CookieContext';
 import { useTabContext } from '../../context/tab-context/TabContextProvider';
 import { TAB_LIST_CONFIG } from '../../sections/dashboard/dashboard_top/sections-in-tabs/tabList';
 import classes from './DashboardLayout.module.css';
-import { PATH_CLIENT } from '../../path/path-frontend';
+import { PATH_CLIENT, _PATH_FRONTEND } from '../../path/path-frontend';
+import useAuth from '../../../hooks/useAuth';
 
 const DashboardLayout = ({ children }: { children: ReactNode }) => {
   // const { setCurrentTab, currentTab } = useTabContext();
   const { isOpen } = useLayoutContext();
-
+  const { loggedAs } = useAuth();
+  const router = useRouter();
+  const [currentTab, setCurrentTab] = useState<string | null>(router.query.tab as string);
   const { currentSpace } = useCookieContext();
   const containerRef = useRef<HTMLDivElement>(null);
   // const bgColor = theme.colorScheme === 'dark' ? 'rgba(0,0,0,0.85)' : 'rgba(255,255,255,0.85)';
-  const router = useRouter();
   // const section = router.pathname.split('/').pop();
   useEffect(() => {
     // setCurrentTab(TAB_LIST_CONFIG[0].value);
@@ -34,20 +37,23 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-
-  // useEffect(() => {
-  //   setCurrentTab(section || '');
-  // }, [section]);
-
+  useEffect(() => {
+    setCurrentTab((router.query.tab as string) || '');
+  }, [router.query.tab]);
   const handleChangeTab = (value: string | null) => {
+    console.log(router);
     if (!value) return;
-    router.replace(`${PATH_CLIENT.root}?tab=${value}`);
-    // setCurrentTab(value);
+    if (!loggedAs) return;
+    router.replace(`${_PATH_FRONTEND[loggedAs].dashboard.root}?tab=${value}`);
   };
-  const defTab = (router.query.tab as string) || TAB_LIST_CONFIG[0].value;
-  // console.log('defTab', defTab);
+
   return (
-    <Tabs onChange={handleChangeTab} keepMounted={false} defaultValue={defTab} value={defTab}>
+    <Tabs
+      onChange={handleChangeTab}
+      keepMounted={false}
+      defaultValue={currentTab}
+      value={currentTab}
+    >
       <DashboardHeaderSearch />
       <Box
         ref={containerRef}
