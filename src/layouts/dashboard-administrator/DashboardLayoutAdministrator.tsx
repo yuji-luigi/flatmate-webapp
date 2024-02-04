@@ -8,12 +8,13 @@ import { useCookieContext } from '../../context/CookieContext';
 import { useTabContext } from '../../context/tab-context/TabContextProvider';
 import { TAB_LIST_CONFIG } from '../../sections/dashboard/dashboard_top/sections-in-tabs/tabList';
 import classes from './DashboardLayoutAdministrator.module.css';
-import { PATH_CLIENT } from '../../path/path-frontend';
+import { PATH_CLIENT, _PATH_FRONTEND } from '../../path/path-frontend';
+import useAuth from '../../../hooks/useAuth';
 
 const DashboardLayoutAdministrator = ({ children }: { children: ReactNode }) => {
   // const { setCurrentTab, currentTab } = useTabContext();
   const { isOpen } = useLayoutContext();
-
+  const { loggedAs } = useAuth();
   const { currentSpace } = useCookieContext();
   const containerRef = useRef<HTMLDivElement>(null);
   // const bgColor = theme.colorScheme === 'dark' ? 'rgba(0,0,0,0.85)' : 'rgba(255,255,255,0.85)';
@@ -41,7 +42,7 @@ const DashboardLayoutAdministrator = ({ children }: { children: ReactNode }) => 
 
   const handleChangeTab = (value: string | null) => {
     if (!value) return;
-    router.replace(`${PATH_CLIENT.root}?tab=${value}`);
+    router.replace(`${_PATH_FRONTEND.administrator.dashboard.root}?tab=${value}`);
     // setCurrentTab(value);
   };
   const defTab = (router.query.tab as string) || TAB_LIST_CONFIG[0].value;
