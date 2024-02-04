@@ -1,5 +1,6 @@
 import { CookieValueTypes } from 'cookies-next';
 import { Role, UserModel, UserWithRoleModel } from '../../models/user-model';
+import { UserRoles } from '../../../lib/enums';
 
 export type IUser = UserModel;
 
@@ -29,6 +30,7 @@ export interface JWTContextState {
   isInitialized?: boolean | null;
   user?: UserWithRoleModel | null;
   isSuperAdmin?: boolean;
+  loggedAs?: UserRoles | null;
 }
 export interface ReducerStateAction {
   payload?: JWTContextState;
