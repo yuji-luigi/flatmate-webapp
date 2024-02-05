@@ -30,10 +30,11 @@ export const usersTableData: Array<FormFieldTypes> = [
     id: 'role',
     name: 'role',
     label: 'Ruolo',
+    multi: true,
     type: 'static-select',
     options: [
-      { label: 'admin', value: 'admin' },
-      { label: 'user', value: 'user' },
+      { label: 'Administrator', value: 'administrator' },
+      { label: 'Inhabitant', value: 'inhabitant' },
     ],
     // options: [{ value: 'static-slect-value', label: 'static-label' }],
     grantTo: ['super_admin', 'admin'],
@@ -75,7 +76,7 @@ export const usersTableData: Array<FormFieldTypes> = [
     selectValues: ['name'],
     grantTo: ['super_admin', 'admin'],
     multi: true,
-    required: false,
+    required: true,
     priority: 100,
   },
   // {
