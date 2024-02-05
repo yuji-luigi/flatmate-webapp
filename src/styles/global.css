@@ -84,3 +84,7 @@ a {
 p {
   margin: 0;
 }
+.title {
+  font-size: var(--font-size-title);
+  font-weight: var(--font-weight-title);
+}
