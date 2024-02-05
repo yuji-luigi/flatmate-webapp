@@ -19,8 +19,8 @@ export function CardForListSmall(props: CardArticleImageDescFooterVerticalProps)
 
   const router = useRouter();
   return (
-    <Link href={href} className={classes.link}>
-      <Card withBorder radius="md" p={0} className={classes.card}>
+    <Card withBorder radius="md" className={classes.card}>
+      <Link href={href} className={classes.link}>
         <Group wrap="nowrap" gap={0}>
           {image && <Image src={image} height={150} width={140} />}
           <div className={classes.body}>
@@ -55,7 +55,7 @@ export function CardForListSmall(props: CardArticleImageDescFooterVerticalProps)
             </Group>
           </div>
         </Group>
-      </Card>
-    </Link>
+      </Link>
+    </Card>
   );
 }
