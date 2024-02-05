@@ -1,4 +1,4 @@
-import { Select } from '@mantine/core';
+import { MultiSelect, Select } from '@mantine/core';
 import React from 'react';
 import { UseFormReturnTypeCustom } from '../input_interfaces/useForm_interface';
 import {
@@ -6,6 +6,7 @@ import {
   StaticSelectFormFieldType,
 } from '../../../types/general/data/data-table/formField-types';
 import { useGetSelectOptions } from '../../../../hooks/form-related/useGetSelectOptions';
+import CrudSelectMulti from './CrudSelectMulti';
 
 interface Prop {
   formField: SelectFormType | StaticSelectFormFieldType;
@@ -13,9 +14,9 @@ interface Prop {
 }
 const CrudSelect = ({ formField, form, ...others }: Prop) => {
   const options = useGetSelectOptions(formField as SelectFormType);
-
+  const SelectComponent = formField.multi ? MultiSelect : Select;
   return (
-    <Select
+    <SelectComponent
       searchable
       data={options}
       name={formField.name}
