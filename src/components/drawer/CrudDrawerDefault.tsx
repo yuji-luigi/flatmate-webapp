@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable react/jsx-pascal-case */
-import { Button, Drawer } from '@mantine/core';
+import { Button, Drawer, Text } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import {
   cleanNotifications,
@@ -96,7 +96,6 @@ export function CrudDrawerDefault({ overridingEntity = '' }: { overridingEntity?
       media: undefined,
     };
     const media = structuredClone(form.values.media);
-    console.log(media);
     if (media && hasMedia(media)) {
       try {
         const uploadIdData = await uploadFileAndGetModelId(extractUploadingMedia(media), entity);
@@ -201,12 +200,12 @@ export function CrudDrawerDefault({ overridingEntity = '' }: { overridingEntity?
       className={classes.drawer}
       opened={drawerIsOpen}
       onClose={handleCloseDrawer}
-      title="Register"
+      title={<Text className="title">Create/Edit {entityText}</Text>}
       padding="xl"
       size="xl"
       position="right"
     >
-      <Icons.close onClick={handleCloseDrawer} />
+      {/* <Icons.close onClick={handleCloseDrawer} /> */}
       <form className={classes.form} onSubmit={onSubmit}>
         {sectionFormFields?.map((formField) => (
           <FormFields
