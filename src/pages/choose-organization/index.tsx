@@ -4,17 +4,15 @@ import { useRouter } from 'next/router';
 import { GetServerSidePropsContext } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Link from 'next/link';
-import useAuth from '../../../hooks/useAuth';
-import { PATH_CLIENT, _PATH_FRONTEND } from '../../path/path-frontend';
+import { _PATH_FRONTEND } from '../../path/path-frontend';
 import axiosInstance, { AxiosMeResponse } from '../../utils/axios-instance';
-import { PATH_API, PATH_AUTH, _PATH_API } from '../../path/path-api';
+import { PATH_AUTH, _PATH_API } from '../../path/path-api';
 import Layout from '../../layouts';
 import { OrganizationModel } from '../../types/models/organization-model';
 import { SpaceModel } from '../../types/models/space-model';
 import { CardForListSmall } from '../../components/card/CardForListSmall';
-import classes from '../../styles/global-useStyles.module.css';
-import { Role, UserModel, UserWithRoleModel } from '../../types/models/user-model';
-import LoadingScreen from '../../components/screen/LoadingScreen';
+import { Role, UserWithRoleModel } from '../../types/models/user-model';
+import classes from './chooose-organization-page.module.css';
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   try {
@@ -83,54 +81,50 @@ const ChooseOrganizationPage = (props: {
 
   const title = initialUser?.role.isSuperAdmin ? 'Choose organization' : 'Choose space';
   return (
-    <Box className={classes.container}>
-      <Stack justify="center">
+    <div className={classes.container}>
+      <div className={classes.header}>
         <Text variant="text" fz={36} fw={600} ta="center">
           {title}
         </Text>
-        <Divider />
+      </div>
 
-        <Box
-          className={classes.pinContainer}
-          py="xl" /* cols={2} breakpoints={[{ max-width: 'sm', cols: 1 }]} */
-        >
-          {initialUser?.role.isSuperAdmin && (
-            <CardForListSmall
-              title="All organizations"
-              href={{
-                pathname: _PATH_FRONTEND[initialLoggedAs].dashboard.root,
-                query: {
-                  tab: 'dashboard',
-                },
-              }}
-              image=""
-            />
-          )}
+      <Box className={classes.list}>
+        {initialUser?.role.isSuperAdmin && (
+          <CardForListSmall
+            title="All organizations"
+            href={{
+              pathname: _PATH_FRONTEND[initialLoggedAs].dashboard.root,
+              query: {
+                tab: 'dashboard',
+              },
+            }}
+            image=""
+          />
+        )}
 
-          {organizations.map((organization) => (
-            <CardForListSmall
-              key={organization._id}
-              title={`• ${organization.name}`}
-              description={organization.address}
-              // subtitle={organization.admins[0]?.name || ''}
-              href={{
-                pathname: _PATH_FRONTEND.auth.chooseSpace,
-                query: { organizationId: organization._id },
-              }}
-              image=""
-            />
-          ))}
-          {organizations.length === 0 && (
-            <>
-              <Text variant="text" fz={24} ta="center">
-                No organizations found
-              </Text>
-              <Link href={_PATH_FRONTEND.homepage.root}>Go back to home</Link>
-            </>
-          )}
-        </Box>
-      </Stack>
-    </Box>
+        {organizations.map((organization) => (
+          <CardForListSmall
+            key={organization._id}
+            title={`• ${organization.name}`}
+            description={organization.address}
+            // subtitle={organization.admins[0]?.name || ''}
+            href={{
+              pathname: _PATH_FRONTEND.auth.chooseSpace,
+              query: { organizationId: organization._id },
+            }}
+            image=""
+          />
+        ))}
+        {organizations.length === 0 && (
+          <>
+            <Text variant="text" fz={24} ta="center">
+              No organizations found
+            </Text>
+            <Link href={_PATH_FRONTEND.homepage.root}>Go back to home</Link>
+          </>
+        )}
+      </Box>
+    </div>
   );
 };
 ChooseOrganizationPage.getLayout = (page: ReactElement) => <Layout variant="main">{page}</Layout>;
