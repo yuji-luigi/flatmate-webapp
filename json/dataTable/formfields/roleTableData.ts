@@ -1,6 +1,6 @@
 import { FormFieldTypes } from '../../../src/types/general/data/data-table/formField-types';
 
-export const usersTableData: Array<FormFieldTypes> = [
+export const rolesTableData: Array<FormFieldTypes> = [
   {
     id: 'name',
     name: 'name',
@@ -26,17 +26,7 @@ export const usersTableData: Array<FormFieldTypes> = [
     required: false,
     priority: 2,
   },
-  {
-    id: 'role',
-    name: 'role',
-    label: 'Ruolo',
-    multi: true,
-    type: 'user-role',
-    // options: [{ value: 'static-slect-value', label: 'static-label' }],
-    grantTo: ['super_admin', 'admin'],
-    required: true,
-    priority: 3,
-  },
+
   {
     id: 'email',
     name: 'email',
@@ -72,6 +62,9 @@ export const usersTableData: Array<FormFieldTypes> = [
     selectValues: ['name'],
     grantTo: ['super_admin', 'admin'],
     multi: true,
+    inputOptions: {
+      useCachedData: true,
+    },
     required: true,
     priority: 100,
   },
