@@ -55,6 +55,9 @@ export type PasswordFormType = { type: 'password' } & BaseFormType & PasswordInp
 
 type BaseSelectFormType = {
   filterSearch?: boolean;
+  inputOptions?: {
+    useCachedData?: boolean;
+  };
 } & Omit<SelectProps, 'data'>; // omit data property from SelectProps
 
 export type SelectFormType = {
@@ -109,6 +112,10 @@ export type UploadFormFieldType = {
   accept?: 'image/*' | 'application/pdf' | string;
 } & BaseFormType;
 
+export type UserRoleInput = {
+  type: 'user-role';
+} & BaseFormType;
+
 export type RadioGroupFormFieldType = {
   type: 'radio-group';
 } & BaseFormType;
@@ -143,6 +150,7 @@ export type FormFieldTypes =
   | CustomFormFieldType
   | PasswordFormType
   | DateFormFieldType
+  | UserRoleInput
   | UploadFormFieldType;
 
 //deprecate this
@@ -255,4 +263,5 @@ type FormTypes =
   | 'color'
   | 'custom'
   | 'boolean'
+  | 'user-role'
   | 'pin-input';

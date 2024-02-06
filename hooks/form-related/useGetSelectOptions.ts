@@ -21,7 +21,7 @@ export const useGetSelectOptions = (
   // const { fetchCrudDocuments, crudDocuments } = useCrudSlice(formField._entity);
 
   useEffect(() => {
-    if (formField.type === 'select') {
+    if (formField.type === 'select' && !formField.inputOptions?.useCachedData) {
       fetchCrudDocuments({
         entity: formField._entity!,
         queryObject: formField.query,
