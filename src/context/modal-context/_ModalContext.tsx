@@ -1,11 +1,5 @@
-import { ModalRoot } from '@mantine/core/lib/Modal/ModalRoot/ModalRoot';
 import { createContext, ReactNode, useCallback, useContext, useState } from 'react';
-import { Box } from '@mantine/core';
-import {
-  _ModalContextStates,
-  BaseModalData,
-  ModalDataTypes,
-} from '../../types/modal/modal-context-type';
+import { _ModalContextStates, ModalDataTypes } from '../../types/modal/modal-context-type';
 
 const defaultModalValues: ModalDataTypes = {
   title: '',
