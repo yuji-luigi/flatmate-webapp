@@ -14,6 +14,9 @@
   --break-point-lg: 1200px;
   --break-point-xl: 1408px;
   --flex-gap: 16px;
+  --flex-gap-sm: var(--flex-gap);
+  --flex-gap-md: 24px;
+  --flex-gap-lg: 32px;
   --text-table-mobile: 12px;
   --table-cell-width-sm: 60px;
   --table-min-width: 800px;
