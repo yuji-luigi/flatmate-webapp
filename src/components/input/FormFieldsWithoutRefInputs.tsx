@@ -1,7 +1,4 @@
 import { UseFormReturnType } from '@mantine/form';
-import React from 'react';
-
-import { useGetSelectOptions } from '../../../hooks/form-related/useGetSelectOptions';
 
 import CrudTextInput from './crud-inputs/CrudTextInput';
 import CrudTextArea from './crud-inputs/CrudTextArea';
@@ -13,7 +10,6 @@ import CrudPasswordInput from './crud-inputs/CrudTextInput copy';
 import CrudCheckbox from './crud-inputs/CrudCheckbox';
 import { CrudSelectCheckboxGroup } from './crud-inputs/CrudSelectCheckboxGroup';
 import { CrudBooleanCheckboxGroup } from './crud-inputs/CrudBooleanCheckboxGroup';
-import UserRoleInput from './crud-inputs/user-role-input/UserRoleInput';
 // import { FormFieldInterface } from '../../types/general/data/dataTable/formField-types';
 interface Props {
   formField: FormFieldTypes;
@@ -23,7 +19,7 @@ interface Props {
   disabled?: boolean;
   // submitButton?: ReactNode;
 }
-const FormFields = ({ formField, form, ...others }: Props) => {
+const FormFieldsWithoutRefInputs = ({ formField, form, ...others }: Props) => {
   const formType = formField.type;
 
   switch (formType) {
@@ -50,8 +46,7 @@ const FormFields = ({ formField, form, ...others }: Props) => {
       return <CrudSelectCheckboxGroup form={form} formField={formField} {...others} />;
     case 'checkbox-group-boolean':
       return <CrudBooleanCheckboxGroup form={form} formField={formField} {...others} />;
-    case 'user-role':
-      return <UserRoleInput form={form} formField={formField} {...others} />;
+
     case 'custom':
       // eslint-disable-next-line no-case-declarations
       const CustomComponent = formField.component;
@@ -90,4 +85,4 @@ const FormFields = ({ formField, form, ...others }: Props) => {
   }
 };
 
-export default FormFields;
+export default FormFieldsWithoutRefInputs;
