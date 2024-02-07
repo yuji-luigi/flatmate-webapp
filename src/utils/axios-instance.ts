@@ -1,5 +1,5 @@
 import axios, { AxiosInstance, AxiosResponse } from 'axios';
-import { Role, RoleModel, UserModel, UserWithRoleModel } from '../types/models/user-model.d';
+import { Role, RoleModel, UserModel, UserWithRoleModel } from '../types/models/user-model';
 import { Sections } from '../types/general/data/sections-type';
 import { API_BASE_URL } from '../path/path-api';
 import { AllModels } from '../types/models/allmodels';
