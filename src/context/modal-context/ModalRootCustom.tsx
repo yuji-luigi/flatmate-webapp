@@ -30,6 +30,7 @@ export function ModalRootCustom() {
       withinPortal={withinPortal}
       centered={modalData.centered}
       onClose={close}
+      fullScreen={modalData.fullScreen}
       title={modalData.title}
     >
       <Box className={classes.container}>{modalContent}</Box>
