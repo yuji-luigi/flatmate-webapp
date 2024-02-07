@@ -1,5 +1,7 @@
 import { UserRoles } from '../../lib/enums';
 import { MongooseBaseModel } from './mongoose-base-model';
+import { OrganizationModel } from './organization-model';
+import { SpaceModel } from './space-model';
 import { UploadModel } from './upload-model';
 
 export interface UserModel extends MongooseBaseModel {
@@ -37,8 +39,9 @@ export interface BillingProfileModel extends MongooseBaseModel {
   address?: string;
   _role: 'maintainer' | 'administrator';
 }
+export const ROLES = ['administrator', 'maintainer', 'inhabitant'] as const;
 
-export type Role = 'administrator' | 'maintainer' | 'inhabitant';
+export type Role = (typeof ROLES)[number];
 export interface RoleModel extends MongooseBaseModel {
   administrator: belongsToFields & BillingProfileModel;
   maintainer: belongsToFields & BillingProfileModel;
