@@ -1,0 +1,17 @@
+.inputContainer {
+  display: none;
+  &[data-show='true'] {
+    display: block;
+  }
+}
+
+.formControl {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--flex-gap-lg);
+  padding: var(--padding-card);
+  border: none;
+  @media screen and (max-width: $mantine-breakpoint-sm) {
+    grid-template-columns: 1fr;
+  }
+}
