@@ -18,6 +18,7 @@ import { organizationsTableData as organizations } from './organizationsTableDat
 import { spacesTableData as spaces } from './spacesTableData';
 import { uploadsTableData as uploads } from './uploadsTableData';
 import { maintenancesTableData as maintenances } from './maintenancesTableData';
+import { rolesTableData as roles } from './roleTableData';
 import { FormFieldTypes } from '../../../src/types/general/data/data-table/formField-types';
 
 // /**
@@ -60,6 +61,7 @@ const allFormFields: Record<string, FormFieldTypes[]> = {
   spaces,
   uploads,
   maintenances,
+  roles,
   maintainers: maintainersTableData,
 };
 export default allFormFields;

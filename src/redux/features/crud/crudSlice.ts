@@ -17,7 +17,7 @@ import {
 import { flattenSectionData } from '../../../data';
 import { useAppDispatch, useAppSelector } from '../../../../hooks/redux-hooks/useRedux';
 import { Sections } from '../../../types/general/data/sections-type';
-import { AllModels } from '../../../types/models/allmodels';
+import { AllModels } from '../../../types/models/mongoose-models';
 import { MongooseBaseModel } from '../../../types/models/mongoose-base-model';
 import { NOTIFICATIONS } from '../../../data/showNofification/notificationObjects';
 // import { appDispatch } from '../../store';

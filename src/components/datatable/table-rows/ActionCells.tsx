@@ -10,7 +10,7 @@ import { DeleteAlertModal } from '../../modal/DeleteAlertModal';
 import { useCustomModalContext } from '../../../context/modal-context/_ModalContext';
 import { Sections } from '../../../types/general/data/sections-type';
 import { QrCodeButton } from './tablecell/action-cells/QrCodeButton';
-import { AllModels } from '../../../types/models/allmodels';
+import { AllModels } from '../../../types/models/mongoose-models';
 import { MongooseBaseModel } from '../../../types/models/mongoose-base-model';
 
 export function ActionCells({
@@ -76,7 +76,7 @@ export function ActionCells({
 
   return (
     <td>
-      <Group gap={0} align="center">
+      <Group gap={0} justify="center" align="center">
         <ActionIcon onClick={onModify}>
           <IconPencil size={16} stroke={1.5} />
         </ActionIcon>

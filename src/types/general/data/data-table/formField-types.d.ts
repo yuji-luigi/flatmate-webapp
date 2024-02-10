@@ -21,6 +21,7 @@ type BaseFormType = {
   type: FormTypes;
   formType?: FormTypes; // ! todo set the actual types necessary.
   cellType?: CellTypes;
+  cellConfig?: CellConfig;
   multi?: boolean;
   col?: Partial<Col>;
   textSearch?: boolean;
@@ -35,7 +36,7 @@ type BaseFormType = {
   icon?: React.ReactNode;
 };
 type CellTypes = 'text-on-hover' | 'text-on-dialog' | 'link-children';
-
+type CellConfig = {};
 type BadgeCellConfig = BaseFormType &
   FormFieldTypes & { badge: BadgeField; options: StaticOption[] };
 
@@ -134,6 +135,9 @@ export type CustomFormFieldType = {
 export type DateFormFieldType = {
   type: 'date';
 } & BaseFormType;
+export type UserNameEmailCellType = {
+  type: 'user-name-email-head';
+} & BaseFormType;
 
 export type FormFieldTypes =
   | TextFormType
@@ -151,6 +155,7 @@ export type FormFieldTypes =
   | PasswordFormType
   | DateFormFieldType
   | UserRoleInput
+  | UserNameEmailCellType
   | UploadFormFieldType;
 
 //deprecate this
@@ -264,4 +269,5 @@ type FormTypes =
   | 'custom'
   | 'boolean'
   | 'user-role'
+  | 'user-name-email-head'
   | 'pin-input';

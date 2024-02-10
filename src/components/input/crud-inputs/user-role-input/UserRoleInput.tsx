@@ -1,5 +1,6 @@
 import { Box, Button, Dialog, Text } from '@mantine/core';
 import { useState } from 'react';
+import { Toolbar } from 'yet-another-react-lightbox';
 import { UseFormReturnTypeCustom } from '../../input_interfaces/useForm_interface';
 import { UserRoleInput } from '../../../../types/general/data/data-table/formField-types';
 import { rolesTableData } from '../../../../../json/dataTable/formfields/roleTableData';
@@ -8,7 +9,7 @@ import FormFieldsWithoutRefInputs from '../../FormFieldsWithoutRefInputs';
 import classes from './UserRoleInput.module.css';
 import { useCustomModalContext } from '../../../../context/modal-context/_ModalContext';
 import { ROLES } from '../../../../types/models/user-model';
-import { Toolbar } from 'yet-another-react-lightbox';
+import { useCrudSelectors } from '../../../../redux/features/crud/crudSlice';
 
 const rolesTableDataByRole = ROLES.map((role) => {
   return {
@@ -59,8 +60,8 @@ const UserRoleInput = ({ formField, form, ...others }: Prop) => {
 
 const RoleFormInputs = (props: Prop) => {
   const { t } = useLocale();
-  console.log(rolesTableDataByRole);
   const { form, formField, ...others } = props;
+
   return (
     <>
       <fieldset className={classes.formControl}>

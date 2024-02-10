@@ -11,7 +11,7 @@ import Layout from '../../layouts';
 import { OrganizationModel } from '../../types/models/organization-model';
 import { SpaceModel } from '../../types/models/space-model';
 import { CardForListSmall } from '../../components/card/CardForListSmall';
-import { Role, UserWithRoleModel } from '../../types/models/user-model';
+import { Role, UserModel } from '../../types/models/user-model';
 import classes from './chooose-organization-page.module.css';
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
@@ -64,10 +64,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     };
   }
 }
-const ChooseOrganizationPage = (props: {
-  initialUser: UserWithRoleModel;
-  initialLoggedAs: Role;
-}) => {
+const ChooseOrganizationPage = (props: { initialUser: UserModel; initialLoggedAs: Role }) => {
   const { initialUser, initialLoggedAs } = props;
   const [organizations, setOrganizations] = React.useState<OrganizationModel[] | SpaceModel[]>([]);
   const router = useRouter();
@@ -79,7 +76,7 @@ const ChooseOrganizationPage = (props: {
     });
   }, [initialUser?.role]);
 
-  const title = initialUser?.role.isSuperAdmin ? 'Choose organization' : 'Choose space';
+  const title = initialUser?.isSuperAdmin ? 'Choose organization' : 'Choose space';
   return (
     <div className={classes.container}>
       <div className={classes.header}>
@@ -89,18 +86,16 @@ const ChooseOrganizationPage = (props: {
       </div>
 
       <Box className={classes.list}>
-        {initialUser?.role.isSuperAdmin && (
-          <CardForListSmall
-            title="All organizations"
-            href={{
-              pathname: _PATH_FRONTEND[initialLoggedAs].dashboard.root,
-              query: {
-                tab: 'dashboard',
-              },
-            }}
-            image=""
-          />
-        )}
+        <CardForListSmall
+          title="All organizations"
+          href={{
+            pathname: _PATH_FRONTEND[initialLoggedAs].dashboard.root,
+            query: {
+              tab: 'dashboard',
+            },
+          }}
+          image=""
+        />
 
         {organizations.map((organization) => (
           <CardForListSmall

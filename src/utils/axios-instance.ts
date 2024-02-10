@@ -1,8 +1,8 @@
 import axios, { AxiosInstance, AxiosResponse } from 'axios';
-import { Role, RoleModel, UserModel, UserWithRoleModel } from '../types/models/user-model';
+import { Role, RoleModel, UserModel, UserModel } from '../types/models/user-model';
 import { Sections } from '../types/general/data/sections-type';
 import { API_BASE_URL } from '../path/path-api';
-import { AllModels } from '../types/models/allmodels';
+import { AllModels } from '../types/models/mongoose-models';
 
 // ----------------------------------------------------------------------
 
@@ -24,7 +24,7 @@ export interface AxiosResDataGeneric<DataType> {
 export interface AxiosMeResponse {
   success: boolean;
   collection: Sections;
-  user: UserWithRoleModel;
+  user: UserModel;
   loggedAs: Role;
 }
 axiosInstance.interceptors.request.use(

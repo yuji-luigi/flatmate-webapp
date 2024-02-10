@@ -10,7 +10,7 @@ type NavListProps = {
 export const NavList: React.FC<NavListProps> = (props: NavListProps) => {
   const { section } = props;
   const { user } = useAuth();
-  const show = user?.role.isSuperAdmin;
+  const show = user?.isSuperAdmin;
 
   return (
     <>

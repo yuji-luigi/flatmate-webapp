@@ -229,6 +229,18 @@
 		"hide": false,
 		"contents": [
 			{
+				"entity": "roles",
+				"entitySingle": "upload",
+				"title": "roles",
+				"subtitle": "subtitle",
+				"navbarTitle": "roles",
+				"link": "/dashboard/roles",
+				"importButton": "",
+				"createButton": "New Wallet",
+				"hide": false,
+				"icon": "Dashboard"
+			},
+			{
 				"entity": "uploads",
 				"entitySingle": "upload",
 				"title": "uploads",

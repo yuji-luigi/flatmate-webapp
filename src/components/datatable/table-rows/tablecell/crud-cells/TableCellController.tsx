@@ -18,6 +18,7 @@ import { TextOnHoverCell } from './TextOnHoverCell';
 import { TextOnDialogCell } from './TextOnDialogCell';
 import BadgeCellDecorator from './BadgeCellDecorator';
 import { DateCell } from './DateCell';
+import { UserNameEmailCell } from '../specific-cells/UserNameEmailCell';
 // import { IconPencil, IconTrash } from '@tabler/icons-react';
 // import { UsersTableRow } from '../../../../types/general/data/datatable/objects';
 export const jobColors: Record<string, string> = {
@@ -47,6 +48,7 @@ const TableCellController = ({
     avatar: AvatarCell,
     boolean: BooleanCell,
     date: DateCell,
+    'user-name-email-head': UserNameEmailCell,
     'link-children': LinkChildrenCell,
     'text-on-hover': TextOnHoverCell,
     'text-on-dialog': TextOnDialogCell,

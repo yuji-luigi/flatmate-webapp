@@ -33,6 +33,7 @@ export const sectionsArray = [
   'events',
   'spaces',
   'uploads',
+  'roles',
   'maintenances',
   '',
 ] as const;

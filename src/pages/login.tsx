@@ -9,13 +9,13 @@ import Layout from '../layouts';
 import { PATH_AUTH } from '../path/path-api';
 import LoginForm from '../sections/login_signup/LoginForm';
 import { AUTH, PATH_CLIENT, _PATH_FRONTEND } from '../path/path-frontend';
-import { UserModel, UserWithRoleModel } from '../types/models/user-model';
+import { UserModel, UserModel } from '../types/models/user-model';
 import { useLocale } from '../../hooks/useLocale';
 import { LogoSquare } from '../components/banner/LogoSquare';
 import { RoleTabsLogin } from '../sections/login-new/RoleTabsLogin';
 import { AxiosMeResponse } from '../utils/axios-instance';
 
-export default function LoginPage(props: { initialUser?: UserWithRoleModel }) {
+export default function LoginPage(props: { initialUser?: UserModel }) {
   const { initialUser } = props;
   const { push, pathname, replace } = useRouter();
   const { t } = useLocale('common');

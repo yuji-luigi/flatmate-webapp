@@ -9,7 +9,7 @@ import axiosInstance, { AxiosMeResponse, AxiosResDataGeneric } from '../utils/ax
 import { PATH_API, PATH_AUTH, _PATH_API } from '../path/path-api';
 
 import Layout from '../layouts';
-import { UserWithRoleModel } from '../types/models/user-model';
+import { UserModel } from '../types/models/user-model';
 import { SpaceModel } from '../types/models/space-model';
 import { ChooseSpaceSection } from '../sections/login_signup/choose-space/ChooseSpaceSection';
 import LoadingScreen from '../components/screen/LoadingScreen';
@@ -56,7 +56,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       },
     };
 
-    if (user.role.isSuperAdmin || loggedAs === 'administrator' || loggedAs === 'maintainer') {
+    if (user.isSuperAdmin || loggedAs === 'administrator' || loggedAs === 'maintainer') {
       return {
         redirect: {
           destination: _PATH_FRONTEND.administrator.dashboard.root,
@@ -106,7 +106,7 @@ export const fetchSpaceSelections = async (
   return res.data?.data;
 };
 
-const ChooseRootSpacePage = (props: { initialUser?: UserWithRoleModel }) => {
+const ChooseRootSpacePage = (props: { initialUser?: UserModel }) => {
   const { initialUser } = props;
   const router = useRouter();
   const { organizationId } = router.query;

@@ -1,7 +1,7 @@
 import { Sx } from '@mantine/core';
 import React from 'react';
 import { FormFieldTypes } from '../general/data/data-table/formField-types';
-import { AllModels } from '../models/allmodels';
+import { AllModels } from '../models/mongoose-models';
 
 export type _ModalContextStates = {
   isOpenModal: boolean;

@@ -84,7 +84,7 @@ const FormFields = ({ formField, form, ...others }: Props) => {
     //   return <RadioGroup form={form} formField={formField} {...others} />;
     // case 'switch-group':
     //   return <SwitchGroup form={form} formField={formField} {...others} />;
-
+    // if the type is specific return null
     default:
       return null;
   }

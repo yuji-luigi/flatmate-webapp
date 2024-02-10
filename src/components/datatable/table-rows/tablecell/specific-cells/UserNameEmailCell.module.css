@@ -1,0 +1,18 @@
+.parentGrid {
+  display: grid;
+  grid-template-columns: minmax(40px, 60px) 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  & p {
+    font-weight: bold;
+    text-decoration: underline;
+  }
+}
+.avatar {
+  place-self: center start;
+  grid-row: 1 / 4;
+}
+.nameSection {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+}

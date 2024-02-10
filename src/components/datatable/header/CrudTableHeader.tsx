@@ -17,11 +17,11 @@ const CrudTableHeader = ({ overridingEntity }: { overridingEntity: Sections }) =
       <Table.Tr>
         {json?.map((cellData: FormFieldTypes) => {
           const dataAlign = getAlignmentDataAttribute(cellData.align);
-
+          const cellStyle = cellData.cellConfig?.style || {};
           return (
             <Fragment key={cellData.id}>
               {!cellData.noTable && (
-                <Table.Th {...dataAlign} className={classes.tableCellContent}>
+                <Table.Th style={cellStyle} className={classes.tableCellContent}>
                   {cellData.label}
                 </Table.Th>
               )}

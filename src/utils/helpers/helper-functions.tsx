@@ -5,7 +5,7 @@
 import { PATH_API } from '../../path/path-api';
 import { MixedMediaType, UploadingMediaType } from '../../types/data/media/media-types';
 import { Sections, isSection, sectionsArray } from '../../types/general/data/sections-type';
-import { AllModels } from '../../types/models/allmodels';
+import { AllModels } from '../../types/models/mongoose-models';
 import axiosInstance from '../axios-instance';
 
 type ALotOfNumbers = number;

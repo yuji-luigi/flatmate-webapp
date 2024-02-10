@@ -13,7 +13,7 @@ import {
   AuthContextInterface,
   RegisterData,
 } from '../types/context/auth/useAuth';
-import { Role, UserWithRoleModel } from '../types/models/user-model';
+import { Role, UserModel } from '../types/models/user-model';
 import { _PATH_FRONTEND } from '../path/path-frontend';
 
 const initialState: JWTContextState = {
@@ -32,7 +32,7 @@ const handlers: JWTContextHandlers = {
       isInitialized: true,
       user,
       loggedAs,
-      isSuperAdmin: user?.role.isSuperAdmin,
+      isSuperAdmin: user?.isSuperAdmin,
     };
   },
   LOGIN: (state, action) => {
@@ -41,7 +41,7 @@ const handlers: JWTContextHandlers = {
       ...state,
       isAuthenticated: true,
       user,
-      isSuperAdmin: user?.role.isSuperAdmin,
+      isSuperAdmin: user?.isSuperAdmin,
     };
   },
 
@@ -58,7 +58,7 @@ const handlers: JWTContextHandlers = {
       ...state,
       isAuthenticated: true,
       user,
-      isSuperAdmin: user?.role.isSuperAdmin,
+      isSuperAdmin: user?.isSuperAdmin,
     };
   },
 };
@@ -80,7 +80,7 @@ function AuthProvider({
   initialLoggedAs,
 }: {
   children: ReactNode;
-  initialUser?: UserWithRoleModel;
+  initialUser?: UserModel;
   initialLoggedAs?: Role;
 }) {
   const [state, dispatch] = useReducer(reducer, {
