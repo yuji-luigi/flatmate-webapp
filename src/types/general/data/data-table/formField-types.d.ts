@@ -2,6 +2,7 @@ import {
   PasswordInputProps,
   SelectItem,
   SelectProps,
+  StyleProp,
   TextInputProps,
   TextareaProps,
 } from '@mantine/core';
@@ -36,7 +37,7 @@ type BaseFormType = {
   icon?: React.ReactNode;
 };
 type CellTypes = 'text-on-hover' | 'text-on-dialog' | 'link-children';
-type CellConfig = {};
+type CellConfig = { style: React.CSSProperties };
 type BadgeCellConfig = BaseFormType &
   FormFieldTypes & { badge: BadgeField; options: StaticOption[] };
 
