@@ -12,7 +12,7 @@ import CrudCheckbox from './crud-inputs/CrudCheckbox';
 import { CrudSelectCheckboxGroup } from './crud-inputs/CrudSelectCheckboxGroup';
 import { CrudBooleanCheckboxGroup } from './crud-inputs/CrudBooleanCheckboxGroup';
 import UserRoleInput from './crud-inputs/user-role-input/UserRoleInput';
-// import { FormFieldInterface } from '../../types/general/data/dataTable/formField-types';
+
 interface Props {
   formField: FormFieldTypes;
   // initialValues: Record<string, any>;

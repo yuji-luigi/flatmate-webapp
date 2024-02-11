@@ -1,44 +1,19 @@
 import {
   PasswordInputProps,
-  SelectItem,
   SelectProps,
-  StyleProp,
+  ComboboxItem,
   TextInputProps,
   TextareaProps,
 } from '@mantine/core';
 import { TablerIconsProps } from '@tabler/icons-react';
 import React from 'react';
 import { Sections } from '../../sections-type';
-import { UserRoles } from '../../../../../lib/enums';
 
-type StaticOption = SelectItem & {
+import { BaseFormType } from './base-form-type';
+
+export type StaticOption = ComboboxItem & {
   icon?: (props?: TablerIconsProps) => JSX.Element;
 };
-
-type BaseFormType = {
-  id: string;
-  name: string;
-  label: string;
-  placeholder?: string;
-  required?: boolean;
-  type: FormTypes;
-  formType?: FormTypes; // ! todo set the actual types necessary.
-  cellType?: CellTypes;
-  cellConfig?: CellConfig;
-  multi?: boolean;
-  col?: Partial<Col>;
-  textSearch?: boolean;
-  priority?: number;
-  formOrder?: number | false;
-  grantTo?: UserRoles[];
-  noTable?: boolean;
-  disabled?: boolean;
-  align?: 'left' | 'center' | 'right';
-  badge?: boolean;
-  icon?: React.ReactNode;
-};
-type CellTypes = 'text-on-hover' | 'text-on-dialog' | 'link-children';
-type CellConfig = { style: React.CSSProperties };
 
 export type TextFormType = {
   type: 'text' | 'number' | 'boolean';
@@ -74,7 +49,6 @@ export type StaticSelectFormFieldType = {
 
 export type CheckBoxFormFieldType = {
   type: 'checkbox';
-  // options: Array<SelectItem>;
   filterSearch?: boolean;
 } & BaseFormType;
 
@@ -86,7 +60,7 @@ export type CheckBoxGroupBooleanFormFieldType = {
 
 export type CheckBoxGroupSelectFormFieldType = {
   type: 'checkbox-group-select';
-  options: Array<SelectItem>;
+  options: Array<ComboboxItem>;
   filterSearch?: boolean;
 } & BaseFormType;
 
@@ -151,117 +125,3 @@ export type FormFieldTypes =
   | UserRoleInput
   | UserNameEmailCellType
   | UploadFormFieldType;
-
-//deprecate this
-export interface FormFieldInterface {
-  /**
-   * id and name of the field.
-   *  Dot(.) is not allowed.
-   * If the input value will be set to nested property of the object, use name property to use dot(.)
-   *
-   * example
-   * id: 'user-address-city'
-   *  name: 'user.address.city'
-   */
-  id: string;
-  /** Set the property in case of nested field.
-   * See id property */
-  name: string;
-  label: string;
-  placeholder?: string;
-
-  type: FormTypes;
-
-  /**
-   *  type refers to form type. this cellType specifically
-   * refers to how to display in the dataTable
-   * */
-  cellType?: 'link-children';
-  /** determines link root, then set the linkKey path after*/
-  linkRoot?: string;
-  linkKey?: string;
-  /**For type select */
-  multi?: boolean;
-  /**For type select for editing reason put under score meaning field in formField config json(object)*/
-  _entity?: Sections;
-  accept?: string;
-  query?: Record<string, string | number | boolean>;
-  /**
-   * from object. get the property [selectValue[0]] [selectValue[1]]... To show on the DataTable.
-   */
-  // style: Array<CellStyles>;
-  badge?: boolean;
-  selectValues?: Array<string>;
-  /** Type select. static options*/
-  options?: Array<SelectItem>;
-  /**
-   * Hide the input from the form but still send the data
-   * inside formData. -> noForm is opposite
-   */
-  hideFromForm?: boolean;
-  /** No table cell */
-  noTable?: boolean;
-  /** No form, no data will be sent. */
-  noForm?: boolean;
-  /**
-   * Only users who has specified role can fill the field.
-   */
-  grantTo?: Array<string>;
-  required?: boolean;
-  /** when defined: show the defaultValue on the dataTable.
-   */
-  priority?: number;
-
-  /**
-   * determines in which formField(table column) can be found the dropzone's file url
-   * since this current field doesn't have the file url. it should be string or string[]
-   * */
-  preview?: string;
-  col?: Col;
-}
-
-// interface FileFormType  {
-//   type: 'image' | 'attachment';
-//   accept: 'image/*' | 'application/pdf' | null | undefined;
-// };
-
-interface SelectOption extends React.ComponentPropsWithoutRef<'div'> {
-  /** both must be string or null */
-  value: string | number | boolean;
-  label: string;
-}
-type Col = {
-  xs: number;
-  sm: number;
-  md: number;
-  lg: number;
-};
-
-type FormTypes =
-  | 'text'
-  | 'text-area'
-  | 'text-on-hover'
-  | 'link-children'
-  | 'text-on-dialog'
-  | 'password'
-  | 'checkbox'
-  | 'checkbox-group-boolean'
-  | 'checkbox-group-select'
-  | 'boolean'
-  | 'radio-group'
-  | 'switch-group'
-  | 'select'
-  | 'static-select'
-  | 'number'
-  | 'currency'
-  | 'avatar'
-  | 'date'
-  | 'date-range'
-  | 'attachment'
-  | 'image'
-  | 'color'
-  | 'custom'
-  | 'boolean'
-  | 'user-role'
-  | 'user-name-email-head'
-  | 'pin-input';

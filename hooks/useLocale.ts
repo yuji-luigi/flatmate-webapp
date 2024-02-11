@@ -14,7 +14,6 @@ export const useLocale = (jsonPath: string = 'common') => {
       setCurrentLocale(lng);
     });
   };
-  // console.log(t('Subscribe'));
 
   useEffect(() => {
     let initialLocale = localStorage.getItem(LOCALE); // potentially null

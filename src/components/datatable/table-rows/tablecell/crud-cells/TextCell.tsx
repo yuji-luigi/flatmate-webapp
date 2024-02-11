@@ -1,7 +1,6 @@
 import { Box, Group, Text } from '@mantine/core';
 import React from 'react';
 import {
-  FormFieldTypes,
   StaticOption,
   StaticSelectFormFieldType,
   TextFormType,
@@ -39,7 +38,7 @@ export const TextCell = ({
       <Box className={classes.staticSelectBox}>
         {Icon && <Icon className={classes.icon} />}
         <Text className={classes.text} data-hidden={dataHidden}>
-          {t(text)}
+          {t(text || '')}
         </Text>
       </Box>
     );

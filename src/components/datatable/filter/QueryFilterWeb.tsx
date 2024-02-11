@@ -38,14 +38,3 @@ export const QueryFilterWeb = ({
     </Group>
   );
 };
-
-// const createQuery = (formFields: FormFieldInterface[]) => {
-//   const query: Record<string, string> = {};
-//   formFields.forEach((field) => {
-//     if (field.type === 'select' || field.type === 'static-select') {
-//       query[field.name] = ''
-//     }
-//   });
-
-//   return query;
-// }
