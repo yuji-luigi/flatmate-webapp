@@ -1,14 +1,11 @@
-import React from 'react';
-import { Box, Text, Container, Stack } from '@mantine/core';
-import { DatePickerInput } from '@mantine/dates';
+import { Stack } from '@mantine/core';
 import { useCrudSelectors } from '../../../../redux/features/crud/crudSlice';
 import PostFeedCard from '../../../../components/posts/feed/PostFeedCard';
-import { UserModel } from '../../../../types/models/user-model';
-import { ThreadModel } from '../../../../types/models/thread-model';
-import { DashboardTopHeader } from '../components/DashboardTopHeader';
+
 import { NewPostInFeed } from '../../../../components/posts/feed/NewPostInFeed';
 import { SimpleDisclosureContextProvider } from '../../../../context/SimpleDisclosureContext';
 import classes from './SpacePostSection.module.css';
+import { ThreadModel } from '../../../../types/models/space-model';
 
 export const SpacePostSection = () => {
   const { crudDocuments } = useCrudSelectors('threads') as { crudDocuments: ThreadModel[] };

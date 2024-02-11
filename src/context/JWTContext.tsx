@@ -13,8 +13,8 @@ import {
   AuthContextInterface,
   RegisterData,
 } from '../types/context/auth/useAuth';
-import { Role, UserModel } from '../types/models/user-model';
 import { _PATH_FRONTEND } from '../path/path-frontend';
+import { Role, UserModel } from '../types/models/space-model';
 
 const initialState: JWTContextState = {
   isAuthenticated: false,

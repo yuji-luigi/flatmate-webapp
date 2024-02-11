@@ -6,7 +6,6 @@ import { Icons } from '../../../../data/icons/icons';
 import { _PATH_FRONTEND } from '../../../../path/path-frontend';
 import { intlDateFormat } from '../../../../utils/helpers/date-formatters';
 import { TEXT_SIZE } from '../../../text/text-size';
-import { UserModel } from '../../../../types/models/user-model';
 import useAuth from '../../../../../hooks/useAuth';
 import { FeedCardData } from '../../../../types/components-types/feed/post-feed-card-type';
 import classes from './FeedHeading.module.css';

@@ -10,7 +10,7 @@ import { LoginFormValues } from '../../types/context/auth/formData';
 import { Icons } from '../../data/icons/icons';
 import { PATH_CLIENT } from '../../path/path-frontend';
 import { useCookieContext } from '../../context/CookieContext';
-import { Role } from '../../types/models/user-model';
+import { Role } from '../../types/models/space-model';
 
 function LoginForm({ role }: { role: Role }) {
   const { resetCurrentSpace, setCurrentOrganization } = useCookieContext();

@@ -1,5 +1,5 @@
 import React, { ReactElement, useEffect } from 'react';
-import { Box, Divider, Stack, Text } from '@mantine/core';
+import { Box, Text } from '@mantine/core';
 import { useRouter } from 'next/router';
 import { GetServerSidePropsContext } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -8,10 +8,8 @@ import { _PATH_FRONTEND } from '../../path/path-frontend';
 import axiosInstance, { AxiosMeResponse } from '../../utils/axios-instance';
 import { PATH_AUTH, _PATH_API } from '../../path/path-api';
 import Layout from '../../layouts';
-import { OrganizationModel } from '../../types/models/organization-model';
-import { SpaceModel } from '../../types/models/space-model';
+import { OrganizationModel, Role, SpaceModel, UserModel } from '../../types/models/space-model';
 import { CardForListSmall } from '../../components/card/CardForListSmall';
-import { Role, UserModel } from '../../types/models/user-model';
 import classes from './chooose-organization-page.module.css';
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {

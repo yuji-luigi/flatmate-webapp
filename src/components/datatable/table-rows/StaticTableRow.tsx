@@ -7,9 +7,9 @@ import { ActionCells } from './ActionCells';
 import { TableCellDecorator } from '../TableCellDecorator';
 import { Sections } from '../../../types/general/data/sections-type';
 import { FormFieldTypes } from '../../../types/general/data/data-table/formField-types';
-import { AllModels } from '../../../types/models/mongoose-models';
 import classes from '../header/StaticTableHeader.module.css';
 import { useCustomMQuery } from '../../../../hooks/useCustomMQuery';
+import { AllModels } from '../../../types/models/allmodels';
 
 export function StaticTableRow({
   rowData,

@@ -1,20 +1,14 @@
-import { Anchor, Box, Group, Stack, Tabs, Text, Title, rem } from '@mantine/core';
-import { IconPhoto, IconMessageCircle, IconSettings } from '@tabler/icons-react';
+import { Anchor, Box, Group, Stack, Tabs, Text, rem } from '@mantine/core';
+import { IconPhoto } from '@tabler/icons-react';
 import { ReactNode } from 'react';
 import { useLocale } from '../../../hooks/useLocale';
-import { LogoSquare } from '../../components/banner/LogoSquare';
 import { AUTH } from '../../path/path-frontend';
 import LoginForm from '../login_signup/LoginForm';
 import classes from './RoleTabsLogin.module.css';
 import { LoginTitleWithLogo } from './LoginTitleWithLogo';
-import { Role } from '../../types/models/user-model';
+import { Role } from '../../types/models/space-model';
 
 type RoleTabsLoginProps = {};
-const VALUES = {
-  USERS: 'Users',
-  ADMINISTRATORS: 'Administrators',
-  MAINTAINERS: 'Maintainers',
-};
 
 const tabs: {
   value: 'Users' | 'Administrators' | 'Maintainers';

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Avatar, MantineStyleProp } from '@mantine/core';
-import { UserModel } from '../../../../types/models/user-model';
 import TextWithIcon from '../../../../components/text/TextWithIcon';
 import CardWithTitle from '../../../../components/profile/side/CardWithTitle';
+import { UserModel } from '../../../../types/models/space-model';
 
 type Props = {
   admins: string[] | UserModel[];

@@ -1,4 +1,4 @@
-import { Title, Text, Anchor, Group, Card, Stack, Box } from '@mantine/core';
+import { Card, Stack } from '@mantine/core';
 import { ReactElement, useEffect } from 'react';
 import { GetServerSidePropsContext } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -7,13 +7,11 @@ import { useRouter } from 'next/router';
 import classes from './login-new.module.css';
 import Layout from '../layouts';
 import { PATH_AUTH } from '../path/path-api';
-import LoginForm from '../sections/login_signup/LoginForm';
-import { AUTH, PATH_CLIENT, _PATH_FRONTEND } from '../path/path-frontend';
-import { UserModel, UserModel } from '../types/models/user-model';
+import { PATH_CLIENT, _PATH_FRONTEND } from '../path/path-frontend';
 import { useLocale } from '../../hooks/useLocale';
-import { LogoSquare } from '../components/banner/LogoSquare';
 import { RoleTabsLogin } from '../sections/login-new/RoleTabsLogin';
 import { AxiosMeResponse } from '../utils/axios-instance';
+import { UserModel } from '../types/models/space-model';
 
 export default function LoginPage(props: { initialUser?: UserModel }) {
   const { initialUser } = props;

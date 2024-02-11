@@ -1,5 +1,4 @@
 import { CookieValueTypes } from 'cookies-next';
-import { Role, UserModel, UserModel } from '../../models/user-model';
 import { UserRoles } from '../../../lib/enums';
 
 export type IUser = UserModel;

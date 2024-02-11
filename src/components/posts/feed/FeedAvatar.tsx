@@ -1,6 +1,6 @@
 import { Avatar } from '@mantine/core';
 import React from 'react';
-import { UserModel } from '../../../types/models/user-model';
+import { UserModel } from '../../../types/models/space-model';
 
 type FeedAvatarProps = {
   createdBy?: UserModel;

@@ -9,8 +9,7 @@ import axiosInstance, { AxiosMeResponse, AxiosResDataGeneric } from '../utils/ax
 import { PATH_API, PATH_AUTH, _PATH_API } from '../path/path-api';
 
 import Layout from '../layouts';
-import { UserModel } from '../types/models/user-model';
-import { SpaceModel } from '../types/models/space-model';
+import { SpaceModel, UserModel } from '../types/models/space-model';
 import { ChooseSpaceSection } from '../sections/login_signup/choose-space/ChooseSpaceSection';
 import LoadingScreen from '../components/screen/LoadingScreen';
 

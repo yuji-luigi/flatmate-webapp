@@ -1,6 +1,4 @@
-import { Sections } from '../types/general/data/sections-type';
-import { AuthTokenModel, HiddenAuthTokenInterface } from '../types/models/auth-token-model';
-import { Role } from '../types/models/user-model';
+import { Role } from '../types/models/space-model';
 
 export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 export type GetPathFunc = (path: string) => string;

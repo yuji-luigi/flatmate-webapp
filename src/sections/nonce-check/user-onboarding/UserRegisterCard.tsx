@@ -15,8 +15,8 @@ import { constructErrorNotificationData } from '../../../data/showNofification/n
 import { PATH_AFTER_LOGIN } from '../../../path/path-frontend';
 import { sleep } from '../../../utils/helpers/helper-functions';
 import useAuth from '../../../../hooks/useAuth';
-import { UserModel } from '../../../types/models/user-model';
 import classes from './UserRegisterCard.module.css';
+import { UserModel } from '../../../types/models/space-model';
 
 export const UserRegisterCard = ({
   setCheckType,

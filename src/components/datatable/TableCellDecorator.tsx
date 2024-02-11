@@ -6,8 +6,8 @@ import {
   FormFieldTypes,
 } from '../../types/general/data/data-table/formField-types';
 import BadgeCellDecorator from './table-rows/tablecell/crud-cells/BadgeCellDecorator';
-import { AllModels } from '../../types/models/mongoose-models';
 import classes from './TableCellDecorator.module.css';
+import { AllModels } from '../../types/models/allmodels';
 
 function isObject(value: any): boolean {
   return (

@@ -1,5 +1,5 @@
 import { Box, Group } from '@mantine/core';
-import React, { ReactElement, useEffect } from 'react';
+import { ReactElement, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
 import { useMediaQuery } from '@mantine/hooks';
@@ -22,10 +22,9 @@ import AddMaintainerModal from '../../../../../sections/dashboard/maintenance_de
 
 import classes from '../../../../styles/global-useStyles.module.css';
 
-import { UserModel } from '../../../../../types/models/user-model';
 import { BuildingCard } from '../../../../../sections/dashboard/maintainer_detail_page/BuildingCard';
 import { AddRemoveButton } from '../../../../../sections/dashboard/maintainer_detail_page/AddRemoveButton';
-import { ThreadModel } from '../../../../../types/models/thread-model';
+import { UserModel, ThreadModel } from '../../../../../types/models/space-model';
 
 const getMaintainer = async (slug?: string) => {
   if (!slug) return null;

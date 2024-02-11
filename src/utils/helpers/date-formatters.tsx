@@ -1,5 +1,5 @@
-export const intlDateFormat = (date: string | Date, locale: 'it' | 'en' | 'it-IT' | 'en-US') =>
-  new Intl.DateTimeFormat(FullLocales[locale]).format(new Date(date));
+export const intlDateFormat = (date: string | Date, locale?: 'it' | 'en' | 'it-IT' | 'en-US') =>
+  new Intl.DateTimeFormat(FullLocales[locale || 'it']).format(new Date(date));
 
 const FullLocales = {
   it: 'it-IT',
