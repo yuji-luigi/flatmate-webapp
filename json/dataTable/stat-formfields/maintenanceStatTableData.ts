@@ -1,6 +1,6 @@
 import { Icons } from '../../../src/data/icons/icons';
 import { MAINTENANCE_STATUS_OPTIONS } from '../../../src/lib/enums';
-import { FormFieldTypes } from '../../../src/types/general/data/data-table/formField-types';
+import { FormFieldTypes } from '../../../src/types/general/data/data-table/form-field-type/formField-types';
 
 export const maintenanceStatTableData: Array<FormFieldTypes> = [
   {

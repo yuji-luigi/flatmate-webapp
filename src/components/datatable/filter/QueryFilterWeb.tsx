@@ -5,7 +5,7 @@ import { useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
 import {
   FormFieldTypes,
   StaticSelectFormFieldType,
-} from '../../../types/general/data/data-table/formField-types';
+} from '../../../types/general/data/data-table/form-field-type/formField-types';
 import { TextFilterInput } from './TextFilterInput';
 import { SelectFilterInput } from './SelectFilterInput';
 import classes from './QueryFilterWeb.module.css';

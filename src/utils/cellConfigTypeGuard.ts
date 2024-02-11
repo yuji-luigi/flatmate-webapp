@@ -1,4 +1,7 @@
-import { FormFieldTypes, SelectFormType } from '../types/general/data/data-table/formField-types';
+import {
+  FormFieldTypes,
+  SelectFormType,
+} from '../types/general/data/data-table/form-field-type/formField-types';
 
 function assertIsSelectMultiFormFieldType(
   config: FormFieldTypes

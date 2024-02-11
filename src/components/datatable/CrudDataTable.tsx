@@ -12,7 +12,7 @@ import formFields from '../../../json/dataTable/formfields';
 import { usePaginationContext } from '../../context/PaginationContext';
 import { useCrudSelectors } from '../../redux/features/crud/crudSlice';
 import { Sections } from '../../types/general/data/sections-type';
-import { FormFieldTypes } from '../../types/general/data/data-table/formField-types';
+import { FormFieldTypes } from '../../types/general/data/data-table/form-field-type/formField-types';
 import classes from '../../styles/global-useStyles.module.css';
 import { ParsedQueryCustom } from '../../types/nextjs-custom-types/useRouter-types';
 

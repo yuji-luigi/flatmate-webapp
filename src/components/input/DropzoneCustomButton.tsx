@@ -3,7 +3,7 @@ import { Box, Button, Group, Text } from '@mantine/core';
 import { Dropzone } from '@mantine/dropzone';
 import { UseFormReturnType } from '@mantine/form';
 import Image from 'next/image';
-import { FormFieldTypes } from '../../types/general/data/data-table/formField-types';
+import { FormFieldTypes } from '../../types/general/data/data-table/form-field-type/formField-types';
 
 interface Props {
   form: UseFormReturnType<Record<string, unknown>>;

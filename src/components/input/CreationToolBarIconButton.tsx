@@ -2,7 +2,7 @@ import { ActionIcon } from '@mantine/core';
 import React from 'react';
 import { Icons } from '../../data/icons/icons';
 import { UseFormReturnTypeCustom } from './input_interfaces/useForm_interface';
-import { UploadFormFieldType } from '../../types/general/data/data-table/formField-types';
+import { UploadFormFieldType } from '../../types/general/data/data-table/form-field-type/formField-types';
 
 const CreationToolBarIconButton = ({
   formField,

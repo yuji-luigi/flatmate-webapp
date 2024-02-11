@@ -1,7 +1,7 @@
 import { Box, Checkbox } from '@mantine/core';
 import React from 'react';
 import { UseFormReturnTypeCustom } from '../input_interfaces/useForm_interface';
-import { CheckBoxFormFieldType } from '../../../types/general/data/data-table/formField-types';
+import { CheckBoxFormFieldType } from '../../../types/general/data/data-table/form-field-type/formField-types';
 
 interface Prop {
   formField: CheckBoxFormFieldType;

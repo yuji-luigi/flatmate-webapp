@@ -6,7 +6,7 @@ import { Sections } from '../../../types/general/data/sections-type';
 import {
   BaseFormType,
   FormFieldTypes,
-} from '../../../types/general/data/data-table/formField-types';
+} from '../../../types/general/data/data-table/form-field-type/formField-types';
 import classes from './StaticTableHeader.module.css';
 import { getAlignmentDataAttribute } from '../../../utils/data-table/getAlignmentDataAttribute';
 import { useLocale } from '../../../../hooks/useLocale';

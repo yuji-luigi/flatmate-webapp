@@ -4,7 +4,7 @@ import TableCellController from './table-rows/tablecell/crud-cells/TableCellCont
 import {
   BadgeCellConfig,
   FormFieldTypes,
-} from '../../types/general/data/data-table/formField-types';
+} from '../../types/general/data/data-table/form-field-type/formField-types';
 import BadgeCellDecorator from './table-rows/tablecell/crud-cells/BadgeCellDecorator';
 import classes from './TableCellDecorator.module.css';
 import { AllModels } from '../../types/models/allmodels';

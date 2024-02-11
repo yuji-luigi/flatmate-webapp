@@ -1,7 +1,7 @@
 import { Group, Text } from '@mantine/core';
 import Link from 'next/link';
 import React from 'react';
-import { LinkChildrenFormFieldType } from '../../../../../types/general/data/data-table/formField-types';
+import { LinkChildrenFormFieldType } from '../../../../../types/general/data/data-table/form-field-type/formField-types';
 
 const LinkChildrenCell = ({
   cellConfig,

@@ -2,7 +2,7 @@ import { FileInput, Group, Tooltip, ActionIcon, Stack, MantineStyleProp } from '
 import { DropzoneProps } from '@mantine/dropzone';
 import { useCallback, useState } from 'react';
 import { UseFormReturnType } from '@mantine/form';
-import { UploadFormFieldType } from '../../../../types/general/data/data-table/formField-types';
+import { UploadFormFieldType } from '../../../../types/general/data/data-table/form-field-type/formField-types';
 import { FileIconHandler } from '../../../files/FileIconHandler';
 import { Icons } from '../../../../data/icons/icons';
 import { IconValueComponent } from './components/IconValueComponent';

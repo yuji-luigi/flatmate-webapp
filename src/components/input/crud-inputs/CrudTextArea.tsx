@@ -1,7 +1,7 @@
 import { TextInput, Textarea } from '@mantine/core';
 import React from 'react';
 import { UseFormReturnTypeCustom } from '../input_interfaces/useForm_interface';
-import { TextAreaFormFieldType } from '../../../types/general/data/data-table/formField-types';
+import { TextAreaFormFieldType } from '../../../types/general/data/data-table/form-field-type/formField-types';
 
 interface Prop {
   formField: TextAreaFormFieldType;

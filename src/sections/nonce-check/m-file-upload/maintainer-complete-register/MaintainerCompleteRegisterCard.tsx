@@ -9,7 +9,7 @@ import { useCrudSelectors } from '../../../../redux/features/crud/crudSlice';
 import { MaintainerModel } from '../../../../types/models/maintainer-model';
 import { StepperDemo } from '../../../../components/stepper/StepperDemo';
 import { StepperGeneric } from '../../../../components/stepper/StepperGeneric';
-import { PasswordFormType } from '../../../../types/general/data/data-table/formField-types';
+import { PasswordFormType } from '../../../../types/general/data/data-table/form-field-type/formField-types';
 import { _PATH_API } from '../../../../path/path-api';
 import axiosInstance from '../../../../utils/axios-instance';
 import { MaintenanceModel } from '../../../../types/models/maintenance-check-type';

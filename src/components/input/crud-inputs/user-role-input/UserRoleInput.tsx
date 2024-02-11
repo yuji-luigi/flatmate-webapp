@@ -1,14 +1,12 @@
-import { Box, Button, Dialog, Text } from '@mantine/core';
+import { Box, Button, Text } from '@mantine/core';
 import { useState } from 'react';
-import { Toolbar } from 'yet-another-react-lightbox';
 import { UseFormReturnTypeCustom } from '../../input_interfaces/useForm_interface';
-import { UserRoleInput } from '../../../../types/general/data/data-table/formField-types';
+import { UserRoleInput } from '../../../../types/general/data/data-table/form-field-type/formField-types';
 import { rolesTableData } from '../../../../../json/dataTable/formfields/roleTableData';
 import { useLocale } from '../../../../../hooks/useLocale';
 import FormFieldsWithoutRefInputs from '../../FormFieldsWithoutRefInputs';
 import classes from './UserRoleInput.module.css';
 import { useCustomModalContext } from '../../../../context/modal-context/_ModalContext';
-import { useCrudSelectors } from '../../../../redux/features/crud/crudSlice';
 import { ROLES } from '../../../../types/models/space-model';
 
 const rolesTableDataByRole = ROLES.map((role) => {

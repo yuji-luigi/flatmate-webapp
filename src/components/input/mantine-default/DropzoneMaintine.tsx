@@ -3,7 +3,7 @@ import { IconUpload, IconX, IconFile } from '@tabler/icons-react';
 import { Dropzone, DropzoneProps } from '@mantine/dropzone';
 import { useCallback, useState } from 'react';
 import { UseFormReturnType } from '@mantine/form';
-import { FormFieldInterface } from '../../../types/general/data/data-table/formField-types';
+import { FormFieldInterface } from '../../../types/general/data/data-table/form-field-type/formField-types';
 
 type Props = Partial<DropzoneProps> & {
   form: UseFormReturnType<any>;

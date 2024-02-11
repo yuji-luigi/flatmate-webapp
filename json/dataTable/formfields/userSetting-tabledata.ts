@@ -1,4 +1,4 @@
-import { FormFieldTypes } from '../../../src/types/general/data/data-table/formField-types';
+import { FormFieldTypes } from '../../../src/types/general/data/data-table/form-field-type/formField-types';
 
 export const userSettingTableData: Array<FormFieldTypes> = [
   {

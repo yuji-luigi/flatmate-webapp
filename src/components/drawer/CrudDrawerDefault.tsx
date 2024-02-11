@@ -29,7 +29,7 @@ import { flattenSectionData } from '../../data';
 
 import { extractUploadingMedia, uploadFileAndGetModelId } from '../../utils/upload-helper';
 import { Sections } from '../../types/general/data/sections-type';
-import { FormFieldTypes } from '../../types/general/data/data-table/formField-types';
+import { FormFieldTypes } from '../../types/general/data/data-table/form-field-type/formField-types';
 import classes from './CrudDrawerDefault.module.css';
 
 export function CrudDrawerDefault({ overridingEntity = '' }: { overridingEntity?: Sections }) {

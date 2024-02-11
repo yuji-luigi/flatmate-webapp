@@ -1,4 +1,4 @@
-import { FormFieldTypes } from './formField-types';
+import { FormFieldTypes } from './form-field-type/formField-types';
 
 interface SectionDataJson {
   entity: string;

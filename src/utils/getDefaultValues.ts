@@ -1,4 +1,4 @@
-import { FormFieldTypes } from '../types/general/data/data-table/formField-types';
+import { FormFieldTypes } from '../types/general/data/data-table/form-field-type/formField-types';
 import { AllModels } from '../types/models/mongoose-models';
 import { _get, _set } from './helpers/helper-functions';
 

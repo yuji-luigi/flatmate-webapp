@@ -8,7 +8,7 @@ import { Icons } from '../../data/icons/icons';
 import ImagesInArticle from '../carousel/ImagesInArticle';
 import CrudCarousel from '../carousel/CrudCarousel';
 import { Sections } from '../../types/general/data/sections-type';
-import { FormFieldTypes } from '../../types/general/data/data-table/formField-types';
+import { FormFieldTypes } from '../../types/general/data/data-table/form-field-type/formField-types';
 // import ImagesInArticle from '../carousel/ImagesInArticle';
 
 interface Prop {

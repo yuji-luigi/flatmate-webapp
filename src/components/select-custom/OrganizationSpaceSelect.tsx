@@ -8,7 +8,7 @@ import { PATH_API, _PATH_API } from '../../path/path-api';
 import { useCookieContext } from '../../context/CookieContext';
 import { convertToSelectItems } from '../../utils/helpers/helper-functions';
 import useAuth from '../../../hooks/useAuth';
-import { SelectOption } from '../../types/general/data/data-table/formField-types';
+import { SelectOption } from '../../types/general/data/data-table/form-field-type/formField-types';
 
 interface OrganizationSpaceSelectProps {
   style?: MantineStyleProp;

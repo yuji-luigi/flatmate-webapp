@@ -6,7 +6,7 @@ import {
   MAINTENANCE_STATUS_ARRAY,
   MAINTENANCE_STATUS_OPTIONS,
 } from '../../../src/lib/enums';
-import { FormFieldTypes } from '../../../src/types/general/data/data-table/formField-types';
+import { FormFieldTypes } from '../../../src/types/general/data/data-table/form-field-type/formField-types';
 
 export const maintenancesTableData: Array<FormFieldTypes> = [
   {

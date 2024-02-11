@@ -1,6 +1,6 @@
 import { Sx } from '@mantine/core';
 import React from 'react';
-import { FormFieldTypes } from '../general/data/data-table/formField-types';
+import { FormFieldTypes } from '../general/data/data-table/form-field-type/formField-types';
 import { AllModels } from '../models/mongoose-models';
 
 export type _ModalContextStates = {

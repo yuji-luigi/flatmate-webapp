@@ -19,7 +19,7 @@ import { spacesTableData as spaces } from './spacesTableData';
 import { uploadsTableData as uploads } from './uploadsTableData';
 import { maintenancesTableData as maintenances } from './maintenancesTableData';
 import { rolesTableData as roles } from './roleTableData';
-import { FormFieldTypes } from '../../../src/types/general/data/data-table/formField-types';
+import { FormFieldTypes } from '../../../src/types/general/data/data-table/form-field-type/formField-types';
 
 // /**
 //  * typing support when making conditions in jsx (tabelcell component)

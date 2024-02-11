@@ -3,7 +3,7 @@ import { isArray } from 'util';
 import {
   BadgeCellConfig,
   FormFieldTypes,
-} from '../../../../../types/general/data/data-table/formField-types';
+} from '../../../../../types/general/data/data-table/form-field-type/formField-types';
 import { AvatarCell } from './AvatarCell';
 import { TextCell } from './TextCell';
 import { BooleanCell } from './BooleanCell';

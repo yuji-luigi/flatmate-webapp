@@ -10,7 +10,7 @@ import { TableSectionHeader } from '../../../sections/dashboard/datatable_sectio
 import { Sections } from '../../../types/general/data/sections-type';
 import formFields from '../../../../json/dataTable/formfields';
 import Layout from '../../../layouts';
-import { FormFieldTypes } from '../../../types/general/data/data-table/formField-types';
+import { FormFieldTypes } from '../../../types/general/data/data-table/form-field-type/formField-types';
 import { CrudDataTable } from '../../../components/datatable/CrudDataTable';
 
 const MaintainerSearchPage = () => {

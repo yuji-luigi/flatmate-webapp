@@ -1,6 +1,6 @@
 import { Group, Text } from '@mantine/core';
 import Link from 'next/link';
-import { FormFieldTypes } from '../../../../../types/general/data/data-table/formField-types';
+import { FormFieldTypes } from '../../../../../types/general/data/data-table/form-field-type/formField-types';
 
 export function SpecificTableCell({
   rowData,

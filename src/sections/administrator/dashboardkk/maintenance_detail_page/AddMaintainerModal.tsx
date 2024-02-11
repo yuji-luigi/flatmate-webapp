@@ -14,7 +14,7 @@ import { useCrudSelectors, useCrudSliceStore } from '../../../../redux/features/
 import { getEntityFromUrl, sleep } from '../../../../utils/helpers/helper-functions';
 import { useCustomModalContext } from '../../../../context/modal-context/_ModalContext';
 import { SpaceModel } from '../../../../types/models/space-model';
-import { SelectOption } from '../../../../types/general/data/data-table/formField-types';
+import { SelectOption } from '../../../../types/general/data/data-table/form-field-type/formField-types';
 
 const fetchMainSpaces = async () => {
   const res = await axiosInstance.get(`${PATH_API.getSpaceSelections}`);

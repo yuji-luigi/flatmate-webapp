@@ -22,7 +22,7 @@ import { DateInputProps as MantineDateInputProps } from '@mantine/dates';
 import { ReactNode } from 'react';
 // import { FieldValues, UseFormReturn } from 'react-hook-form';
 import { UseFormReturnTypeCustom } from '../../../../components/input/input_interfaces/useForm_interface';
-import { FormFieldTypes } from './formField-types';
+import { FormFieldTypes } from './form-field-type/formField-types';
 
 export type Option<OtherProps = {}> = {
   label: ReactNode;

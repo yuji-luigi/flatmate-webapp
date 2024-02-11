@@ -4,7 +4,7 @@ import { StaticDataTable } from '../../../../components/datatable/StaticDataTabl
 import { maintenanceStatTableData } from '../../../../../json/dataTable/stat-formfields/maintenanceStatTableData';
 import { DividerStyled } from '../../../../styles/divider/DividerStyled';
 import { StatGridSchema, StatsGrid } from '../../../../components/stats/StatsGrid';
-import { StaticOption } from '../../../../types/general/data/data-table/formField-types';
+import { StaticOption } from '../../../../types/general/data/data-table/form-field-type/formField-types';
 import { DataTableDateSwitch } from '../../../../components/datatable/filter/date/DataTableDateSwitch';
 import { useCrudSelectors } from '../../../../redux/features/crud/crudSlice';
 import { Icons } from '../../../../data/icons/icons';

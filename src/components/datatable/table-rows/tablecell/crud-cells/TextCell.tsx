@@ -5,7 +5,7 @@ import {
   StaticOption,
   StaticSelectFormFieldType,
   TextFormType,
-} from '../../../../../types/general/data/data-table/formField-types';
+} from '../../../../../types/general/data/data-table/form-field-type/formField-types';
 import classes from './Cell.module.css';
 import { useLocale } from '../../../../../../hooks/useLocale';
 

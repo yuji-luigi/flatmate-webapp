@@ -8,7 +8,7 @@ import { Sections } from '../../types/general/data/sections-type';
 import {
   FormFieldTypes,
   UploadFormFieldType,
-} from '../../types/general/data/data-table/formField-types';
+} from '../../types/general/data/data-table/form-field-type/formField-types';
 
 interface Props {
   form: UseFormReturnTypeCustom;

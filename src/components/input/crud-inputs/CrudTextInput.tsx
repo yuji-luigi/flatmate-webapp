@@ -4,7 +4,7 @@ import { UseFormReturnTypeCustom } from '../input_interfaces/useForm_interface';
 import {
   LinkChildrenFormFieldType,
   TextFormType,
-} from '../../../types/general/data/data-table/formField-types';
+} from '../../../types/general/data/data-table/form-field-type/formField-types';
 
 interface Prop {
   formField: TextFormType | LinkChildrenFormFieldType;

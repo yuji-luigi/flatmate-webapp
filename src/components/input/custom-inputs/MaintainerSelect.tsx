@@ -1,7 +1,7 @@
 import { Select, Skeleton } from '@mantine/core';
 import React from 'react';
 import useSWR from 'swr';
-import { CustomFormFieldType } from '../../../types/general/data/data-table/formField-types';
+import { CustomFormFieldType } from '../../../types/general/data/data-table/form-field-type/formField-types';
 import { UseFormReturnTypeCustom } from '../input_interfaces/useForm_interface';
 import axiosInstance, { AxiosResDataGeneric } from '../../../utils/axios-instance';
 import { PATH_API } from '../../../path/path-api';

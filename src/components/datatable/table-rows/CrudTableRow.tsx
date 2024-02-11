@@ -8,7 +8,7 @@ import { useDrawerContext } from '../../../context/DataTableDrawerContext';
 import { usePaginationContext } from '../../../context/PaginationContext';
 import { useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
 import { Sections } from '../../../types/general/data/sections-type';
-import { FormFieldTypes } from '../../../types/general/data/data-table/formField-types';
+import { FormFieldTypes } from '../../../types/general/data/data-table/form-field-type/formField-types';
 import { AllModels } from '../../../types/models/mongoose-models';
 
 export function CrudTableRow({

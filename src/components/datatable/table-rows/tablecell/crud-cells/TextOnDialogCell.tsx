@@ -2,7 +2,7 @@ import { Group, Avatar, Tooltip, Box, Chip, Badge, useMantineColorScheme } from 
 import React from 'react';
 import { useCustomModalContext } from '../../../../../context/modal-context/_ModalContext';
 import classes from './TextOnDialogCell.module.css';
-import { TextFormType } from '../../../../../types/general/data/data-table/formField-types';
+import { TextFormType } from '../../../../../types/general/data/data-table/form-field-type/formField-types';
 
 export const TextOnDialogCell = ({
   cellValue,

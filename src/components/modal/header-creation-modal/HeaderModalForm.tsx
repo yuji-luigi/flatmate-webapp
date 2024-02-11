@@ -14,7 +14,7 @@ import { hasMedia } from '../../../redux/features/crudAsyncThunks';
 import { uploadFileAndGetModelId, extractUploadingMedia } from '../../../utils/upload-helper';
 import useAuth from '../../../../hooks/useAuth';
 import { sleep } from '../../../utils/helpers/helper-functions';
-import { FormFieldTypes } from '../../../types/general/data/data-table/formField-types';
+import { FormFieldTypes } from '../../../types/general/data/data-table/form-field-type/formField-types';
 import { useSimpleDisclosureContext } from '../../../context/SimpleDisclosureContext';
 import classes from './HeaderModalForm.module.css';
 

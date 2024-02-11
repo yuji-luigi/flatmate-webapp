@@ -8,6 +8,8 @@ import {
 } from '@mantine/core';
 import { TablerIconsProps } from '@tabler/icons-react';
 import React from 'react';
+import { Sections } from '../../sections-type';
+import { UserRoles } from '../../../../../lib/enums';
 
 type StaticOption = SelectItem & {
   icon?: (props?: TablerIconsProps) => JSX.Element;
@@ -31,25 +33,16 @@ type BaseFormType = {
   grantTo?: UserRoles[];
   noTable?: boolean;
   disabled?: boolean;
-  // badge?: BadgeField;
   align?: 'left' | 'center' | 'right';
   badge?: boolean;
   icon?: React.ReactNode;
 };
 type CellTypes = 'text-on-hover' | 'text-on-dialog' | 'link-children';
 type CellConfig = { style: React.CSSProperties };
-type BadgeCellConfig = BaseFormType &
-  FormFieldTypes & { badge: BadgeField; options: StaticOption[] };
-
-// export type BadgeField = {
-//   color: string;
-// };
 
 export type TextFormType = {
   type: 'text' | 'number' | 'boolean';
   cellType?: 'text-on-hover' | 'text-on-dialog';
-  // { type: 'text' | 'number' }
-  // | { cellType?: 'text-on-hover' | 'text-on-dialog' }
 } & BaseFormType &
   TextInputProps;
 

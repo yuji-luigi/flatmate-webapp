@@ -5,7 +5,7 @@ import {
   BadgeCellConfig,
   StaticOption,
   StaticSelectFormFieldType,
-} from '../../../../../types/general/data/data-table/formField-types';
+} from '../../../../../types/general/data/data-table/form-field-type/formField-types';
 import { Icons } from '../../../../../data/icons/icons';
 
 import classes from './Cell.module.css';

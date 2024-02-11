@@ -2,7 +2,7 @@ import { Select } from '@mantine/core';
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useFilter } from '../../../../hooks/useFilter';
-import { StaticSelectFormFieldType } from '../../../types/general/data/data-table/formField-types';
+import { StaticSelectFormFieldType } from '../../../types/general/data/data-table/form-field-type/formField-types';
 import classes from './SelectFilterInput.module.css';
 
 export const SelectFilterInput = ({ formField }: { formField: StaticSelectFormFieldType }) => {

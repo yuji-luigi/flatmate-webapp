@@ -1,5 +1,5 @@
 import { Filters } from '../../../../types/context/filter-context.';
-import { FormFieldTypes } from '../../../../types/general/data/data-table/formField-types';
+import { FormFieldTypes } from '../../../../types/general/data/data-table/form-field-type/formField-types';
 
 type FilterListArgs = {
   list: any[];

@@ -6,7 +6,7 @@ import {
   FormFieldTypes,
   SelectFormType,
   StaticSelectFormFieldType,
-} from '../../src/types/general/data/data-table/formField-types';
+} from '../../src/types/general/data/data-table/form-field-type/formField-types';
 import { MongooseBaseModel } from '../../src/types/models/mongoose-base-model';
 // import { useCrudSlice } from '../redux-hooks/useCrudSlice';
 

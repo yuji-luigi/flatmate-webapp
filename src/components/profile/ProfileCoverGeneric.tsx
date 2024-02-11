@@ -22,7 +22,7 @@ import { getEntityFromUrl, sleep } from '../../utils/helpers/helper-functions';
 import { uploadFileAndGetModelId } from '../../utils/upload-helper';
 import { useCustomModalContext } from '../../context/modal-context/_ModalContext';
 import { Sections } from '../../types/general/data/sections-type';
-import { FormFieldTypes } from '../../types/general/data/data-table/formField-types';
+import { FormFieldTypes } from '../../types/general/data/data-table/form-field-type/formField-types';
 import { MAX_FILE_SIZE } from '../../lib/files/file-sizes';
 import { formatSize } from '../../lib/formatters';
 import { SpaceModel } from '../../types/models/space-model';

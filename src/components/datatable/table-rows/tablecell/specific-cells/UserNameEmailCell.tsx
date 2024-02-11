@@ -1,6 +1,6 @@
 import { Avatar, Box, Group, Stack, Text } from '@mantine/core';
 import Link from 'next/link';
-import { FormFieldInterface } from '../../../../../types/general/data/data-table/formField-types';
+import { FormFieldInterface } from '../../../../../types/general/data/data-table/form-field-type/formField-types';
 import classes from './UserNameEmailCell.module.css';
 import cellClasses from '../crud-cells/Cell.module.css';
 import { _PATH_FRONTEND } from '../../../../../path/path-frontend';
