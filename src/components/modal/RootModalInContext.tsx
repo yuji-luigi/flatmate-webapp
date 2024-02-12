@@ -1,10 +1,10 @@
 import { Modal, Box } from '@mantine/core';
 
-import { CrudModal } from './CrudModal';
-import CustomModal from './CustomModal';
-import { useCustomModalContext } from './_ModalContext';
-import { RegularModal } from './RegularModal';
-import classes from './CrudModal.module.css';
+import { CrudModal } from '../../context/modal-context/CrudModal';
+import CustomModal from '../../context/modal-context/CustomModal';
+import { useCustomModalContext } from '../../context/modal-context/_ModalContext';
+import { RegularModal } from '../../context/modal-context/RegularModal';
+import classes from './modal-base.module.css';
 
 export function ModalRootCustom() {
   const { isOpenModal: opened, closeModal: close, modalData } = useCustomModalContext();
@@ -23,15 +23,19 @@ export function ModalRootCustom() {
       modalContent = <RegularModal modalData={modalData} />;
   }
   const withinPortal = modalData.withinPortal !== false;
-
   return (
     <Modal
+      {...modalData}
       opened={opened}
       withinPortal={withinPortal}
       centered={modalData.centered}
       onClose={close}
-      fullScreen={modalData.fullScreen}
       title={modalData.title}
+      classNames={{
+        title: classes.modalTitle,
+        header: classes.modalHeader,
+        body: classes.modalBody,
+      }}
     >
       <Box className={classes.container}>{modalContent}</Box>
     </Modal>

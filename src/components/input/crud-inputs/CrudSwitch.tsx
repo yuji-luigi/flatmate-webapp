@@ -8,7 +8,7 @@ interface Prop {
   form: UseFormReturnTypeCustom;
   // checked: boolean;
 }
-const CrudDatePicker = ({ formField, form, ...others }: Prop) => {
+const CrudSwitch = ({ formField, form, ...others }: Prop) => {
   return (
     <Switch
       // checked={form.values[formField.name]}
@@ -23,4 +23,4 @@ const CrudDatePicker = ({ formField, form, ...others }: Prop) => {
   );
 };
 
-export default CrudDatePicker;
+export default CrudSwitch;

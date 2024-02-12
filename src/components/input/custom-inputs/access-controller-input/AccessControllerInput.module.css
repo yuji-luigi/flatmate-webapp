@@ -1,0 +1,50 @@
+.chipsGrid {
+  display: grid;
+  gap: var(--flex-gap);
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  place-items: center start;
+}
+.spaceInput {
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
+  align-items: end;
+  width: 100%;
+}
+.spacefdInput {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  width: 100%;
+}
+.formsByRole {
+  display: grid;
+  gap: var(--flex-gap-lg);
+  grid-template-columns: minmax(auto, 200px) auto;
+  place-items: start;
+}
+.tabList {
+  display: flex;
+  flex-direction: row;
+  /* grid-row: 2 / 3; */
+}
+.tab {
+  /* display: flex;
+  width: 100%; */
+  /* justify-content: start; */
+  font-size: var(--mantine-font-size-xs);
+  /* font-size: var(--mantine-font-size-xs); */
+}
+
+.tabPanels {
+  grid-row: 2/3;
+  grid-column: 2/3;
+}
+
+.buttons {
+  display: flex;
+  gap: var(--flex-gap);
+  grid-row: 3/4;
+  grid-column: 2/3;
+  place-self: end;
+}

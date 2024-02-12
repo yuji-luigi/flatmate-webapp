@@ -47,7 +47,6 @@ export function CrudDataTable({ overridingEntity = '' }: { overridingEntity?: Se
     setPage(pageNumber);
     setPagination(pageNumber); //! after setting the pagination. useEffect will be called to fetch the documents
   }
-  console.log({ entity });
   return (
     <Card className={classes.dataTableContainer}>
       <Table.ScrollContainer minWidth={800}>

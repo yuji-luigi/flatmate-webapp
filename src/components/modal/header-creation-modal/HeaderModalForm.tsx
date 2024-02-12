@@ -108,7 +108,7 @@ const HeaderModalForm = ({ entity }: { entity: 'threads' | 'maintenances' }) => 
   }, [crudStatus]);
 
   return (
-    <form className={classes.form} onSubmit={onSubmit}>
+    <form onSubmit={onSubmit}>
       {submitting && (
         // {crudStatus === 'loading' && (
         <>

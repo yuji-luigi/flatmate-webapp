@@ -13,4 +13,5 @@
 .modalHeader {
   padding-inline: var(--padding-card-x);
   padding-top: var(--padding-card-y);
+  padding-bottom: calc(var(--padding-card-y) / 1.25);
 }

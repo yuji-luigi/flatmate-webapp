@@ -11,7 +11,8 @@ import CrudPasswordInput from './crud-inputs/CrudTextInput copy';
 import CrudCheckbox from './crud-inputs/CrudCheckbox';
 import { CrudSelectCheckboxGroup } from './crud-inputs/CrudSelectCheckboxGroup';
 import { CrudBooleanCheckboxGroup } from './crud-inputs/CrudBooleanCheckboxGroup';
-import UserRoleInput from './crud-inputs/user-role-input/UserRoleInput';
+import UserRoleInput from './custom-inputs/user-role-input/UserRoleInput';
+import { AccessControllerForm } from './custom-inputs/access-controller-input/AccessControllerInput';
 
 interface Props {
   formField: FormFieldTypes;
@@ -50,6 +51,8 @@ const FormFields = ({ formField, form, ...others }: Props) => {
       return <CrudBooleanCheckboxGroup form={form} formField={formField} {...others} />;
     case 'user-role':
       return <UserRoleInput form={form} formField={formField} {...others} />;
+    case 'access-controller':
+      return <AccessControllerForm form={form} formField={formField} {...others} />;
     case 'custom':
       // eslint-disable-next-line no-case-declarations
       const CustomComponent = formField.component;

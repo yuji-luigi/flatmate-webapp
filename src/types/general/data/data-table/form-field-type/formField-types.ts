@@ -107,6 +107,10 @@ export type UserNameEmailCellType = {
   type: 'user-name-email-head';
 } & BaseFormType;
 
+export type AccessControllerFormFieldType = {
+  type: 'access-controller';
+} & BaseFormType;
+
 export type FormFieldTypes =
   | TextFormType
   | SelectFormType
@@ -124,4 +128,5 @@ export type FormFieldTypes =
   | DateFormFieldType
   | UserRoleInput
   | UserNameEmailCellType
+  | AccessControllerFormFieldType
   | UploadFormFieldType;

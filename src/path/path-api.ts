@@ -32,6 +32,7 @@ export enum PATH_API {
    * update: /linkedChildren/${entity}/${}
    * */
   auth = 'auth',
+  accessControllers = 'accessControllers',
   linkedChildren = 'linkedChildren',
   uploads = 'upload-files',
   importExcel = 'import-excel',
@@ -152,6 +153,9 @@ export const _PATH_API = {
     getOrganizationsAndSpaces: PATH_API.getOrganizationsAndSpaces,
     all: PATH_API.organizationAll,
     cookie: (orgId: string) => `${PATH_API.organizationCookie}/${orgId}`,
+  },
+  accessControllers: {
+    root: `${PATH_API.accessControllers}`,
   },
 } as const;
 

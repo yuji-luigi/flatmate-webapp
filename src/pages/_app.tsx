@@ -20,7 +20,7 @@ import reduxStore from '../redux/store';
 // import { CurrentSpaceContextProvider } from '../context/CurrentSpaceContext';
 import { FilterContextProvider } from '../context/FilterContext';
 import { _ModalContextProvider } from '../context/modal-context/_ModalContext';
-import { ModalRootCustom } from '../context/modal-context/ModalRootCustom';
+import { ModalRootCustom } from '../components/modal/RootModalInContext';
 import { components } from '../overrides';
 import '../../next-i18next.config';
 import '../../i18n';

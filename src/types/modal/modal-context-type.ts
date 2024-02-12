@@ -1,7 +1,7 @@
-import { Sx } from '@mantine/core';
+import { ModalProps } from '@mantine/core';
 import React from 'react';
 import { FormFieldTypes } from '../general/data/data-table/form-field-type/formField-types';
-import { AllModels } from '../models/mongoose-models';
+import { AllModels } from '../models/allmodels';
 
 export type _ModalContextStates = {
   isOpenModal: boolean;
@@ -19,7 +19,7 @@ export type BaseModalData = {
   centered?: boolean;
   fullScreen?: boolean;
   withinPortal?: boolean;
-};
+} & ModalProps;
 
 export interface RegularModalParams extends BaseModalData {
   type: 'confirm' | 'alert';
@@ -30,8 +30,8 @@ export interface RegularModalParams extends BaseModalData {
     cancel?: string;
   };
   style?: {
-    confirm: Sx;
-    cancel: Sx;
+    confirm: React.CSSProperties;
+    cancel: React.CSSProperties;
   };
   onCancel?: () => void;
   onConfirm: (data: any) => void | Promise<void>;

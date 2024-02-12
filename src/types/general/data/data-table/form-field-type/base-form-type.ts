@@ -61,4 +61,5 @@ type FormTypes =
   | 'boolean'
   | 'user-role'
   | 'user-name-email-head'
+  | 'access-controller'
   | 'pin-input';

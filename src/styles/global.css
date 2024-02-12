@@ -17,6 +17,7 @@
   --flex-gap-sm: var(--flex-gap);
   --flex-gap-md: 24px;
   --flex-gap-lg: 32px;
+  --flex-gap-xl: 56px;
   --text-table-mobile: 12px;
   --table-cell-width-sm: 60px;
   --table-min-width: 800px;
@@ -38,8 +39,8 @@
   --padding-y-list: 24px;
   --padding-y-list-sm: 12px;
   --padding-y-list-xs: 6px;
-  --padding-card-x: 40px;
-  --padding-card-y: 32px;
+  --padding-card-x: 64px;
+  --padding-card-y: 48px;
   --padding-card: var(--padding-card-y) var(--padding-card-x);
   --padding-card-xs: var(--padding-x) 8px;
 
@@ -90,4 +91,10 @@ p {
 .title {
   font-size: var(--font-size-title);
   font-weight: var(--font-weight-title);
+}
+
+.columnFlex {
+  display: flex;
+  flex-direction: column;
+  gap: var(--flex-gap);
 }

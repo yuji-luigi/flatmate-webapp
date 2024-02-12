@@ -42,10 +42,7 @@ export const ROLES = ['administrator', 'maintainer', 'inhabitant'] as const;
 
 export type Role = (typeof ROLES)[number];
 export interface RoleModel extends MongooseBaseModel {
-  administrator: belongsToFields & BillingProfileModel;
-  maintainer: belongsToFields & BillingProfileModel;
-  inhabitant: belongsToFields;
-  isSuperAdmin: boolean;
+  name: string;
 }
 
 export interface SpaceModel extends MongooseBaseModel {

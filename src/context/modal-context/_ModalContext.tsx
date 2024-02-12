@@ -3,6 +3,8 @@ import { _ModalContextStates, ModalDataTypes } from '../../types/modal/modal-con
 
 const defaultModalValues: ModalDataTypes = {
   title: '',
+  opened: false,
+  onClose() {},
   centered: true,
   children: <></>,
   style: {

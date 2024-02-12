@@ -3,7 +3,7 @@ import { Modal } from '@mantine/core';
 import HeaderModalForm from './HeaderModalForm';
 import { useSimpleDisclosureCtx } from '../../../../hooks/useSimpleDisclosureCtx';
 import { SectionDataJsonWithRoles } from '../../../types/general/data/data-table/sectionsJson-type';
-import classes from './HeaderCreationModal.module.css';
+import classes from '../modal-base.module.css';
 
 export const HeaderCreationModal = ({
   modalType,
