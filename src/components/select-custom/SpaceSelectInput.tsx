@@ -1,15 +1,13 @@
-import { Box, ComboboxItem, MantineStyleProp, Select, TextInput } from '@mantine/core';
-import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+import { Box, ComboboxItem, MantineStyleProp, Select } from '@mantine/core';
+import { useEffect, useState } from 'react';
 import { UseFormReturnType } from '@mantine/form';
 import { showNotification } from '@mantine/notifications';
-import { on } from 'events';
 import axiosInstance from '../../utils/axios-instance';
-import { PATH_API, _PATH_API } from '../../path/path-api';
-import { useCookieContext } from '../../context/CookieContext';
+import { PATH_API } from '../../path/path-api';
 import { convertToSelectItems } from '../../utils/helpers/helper-functions';
-import useAuth from '../../../hooks/useAuth';
 import { useItemSlice } from '../../redux/features/crud/selectedItemSlice';
+import { SpaceModel } from '../../types/models/space-model';
+import { useCrudSelectors, useCrudSliceStore } from '../../redux/features/crud/crudSlice';
 
 interface SpaceSelectInputProps {
   style?: MantineStyleProp;
@@ -31,14 +29,19 @@ const SpaceSelectInput = ({
   onChangeCallback,
 }: SpaceSelectInputProps) => {
   const [spaces, setSpaces] = useState<ComboboxItem[]>([]);
-  const [selectedSpace, setSelectedSpace] = useState<string | null>(null);
-  const { set, get } = useItemSlice<{ space: string | null }>({ space: '' });
+  const { setCrudDocuments, setCrudDocument } = useCrudSliceStore();
+  const { crudDocuments } = useCrudSelectors<SpaceModel>('spaces');
+  const { set, get } = useItemSlice<{ space: string | null; spaceObject?: null | SpaceModel }>({
+    space: '',
+    spaceObject: null,
+  });
   const handleGetSpaces = async () => {
     try {
       // if (isSuperAdmin) return;
       const response = await axiosInstance.get(`${PATH_API.getSpaceSelections}`);
       const selectOptions = convertToSelectItems(response.data.data);
       setSpaces(selectOptions);
+      setCrudDocuments({ entity: 'spaces', documents: response.data.data });
     } catch (error) {
       showNotification({
         title: 'Error',
@@ -52,7 +55,8 @@ const SpaceSelectInput = ({
     handleGetSpaces();
   }, []);
   const handleChange = (value: string | null) => {
-    set({ space: value });
+    set({ space: value, spaceObject: crudDocuments.find((space) => space._id === value) });
+
     onChangeCallback?.(value);
   };
 
