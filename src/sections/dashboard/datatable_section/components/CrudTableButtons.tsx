@@ -53,23 +53,10 @@ export const CrudTableButtons = ({
       title: `Import excel file: ${file?.name}`,
       async onConfirm() {
         await confirmEvent(file);
-        // const formData = new FormData();
-        // formData.append('file', file);
-        // const rawRes = await axiosInstance.post(`${entity}/${PATH_API.importExcel}`, formData, {
-        //   headers: {
-        //     'Content-Type': 'multipart/form-data',
-        //   },
-        // });
-        // await sleep(1000);
-        // console.log(rawRes.data.data);
-        // showNotification({
-        //   title: 'Action Success',
-        //   message: 'Import success!!',
-        //   color: 'green',
-        // });
-        // setCrudDocuments({ entity, documents: rawRes.data.data });
       },
       children: undefined,
+      opened: false,
+      onClose(): void {},
     });
   }
   const confirmEvent = async (file: File) => {
