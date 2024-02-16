@@ -5,6 +5,7 @@ import {
   CheckBoxFormFieldType,
   CheckBoxGroupBooleanFormFieldType,
 } from '../../../types/general/data/data-table/form-field-type/formField-types';
+import classes from '../input-style.module.css';
 
 interface Prop {
   formField: CheckBoxGroupBooleanFormFieldType;
@@ -18,11 +19,11 @@ export const CrudBooleanCheckboxGroup = ({ formField, form, ...others }: Prop) =
       {options.map((option) => (
         <Checkbox
           key={option.name}
+          className={`${classes.input}`}
           name={option.name}
           label={option.label}
           placeholder={option.placeholder}
           size="md"
-          mt={10}
           {...others}
           {...form.getInputProps(option.name)}
         />

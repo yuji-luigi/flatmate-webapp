@@ -2,6 +2,7 @@ import { TextInput, Textarea } from '@mantine/core';
 import React from 'react';
 import { UseFormReturnTypeCustom } from '../input_interfaces/useForm_interface';
 import { TextAreaFormFieldType } from '../../../types/general/data/data-table/form-field-type/formField-types';
+import classes from '../input-style.module.css';
 
 interface Prop {
   formField: TextAreaFormFieldType;
@@ -12,8 +13,8 @@ const CrudTextArea = ({ formField, form, ...others }: Prop) => {
   return (
     <Textarea
       placeholder={formField.placeholder}
+      className={`${classes.input}`}
       size="md"
-      mt={10}
       {...others}
       {...formField}
       {...form.getInputProps(formField.name || formField.id)}

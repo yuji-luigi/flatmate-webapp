@@ -7,6 +7,7 @@ import {
 } from '../../../types/general/data/data-table/form-field-type/formField-types';
 import { useGetSelectOptions } from '../../../../hooks/form-related/useGetSelectOptions';
 import CrudSelectMulti from './CrudSelectMulti';
+import classes from '../input-style.module.css';
 
 interface Prop {
   formField: SelectFormType | StaticSelectFormFieldType;
@@ -18,12 +19,12 @@ const CrudSelect = ({ formField, form, ...others }: Prop) => {
   return (
     <SelectComponent
       searchable
+      className={`${classes.input}`}
       data={options}
       name={formField.name}
       label={formField.label}
       placeholder={formField.placeholder}
       size="md"
-      mt={10}
       {...others}
       {...form.getInputProps(formField.name || formField.id)}
     />

@@ -5,6 +5,7 @@ import {
   PasswordFormType,
   TextFormType,
 } from '../../../types/general/data/data-table/form-field-type/formField-types';
+import classes from '../input-style.module.css';
 
 interface Prop {
   formField: PasswordFormType;
@@ -13,13 +14,13 @@ interface Prop {
 const CrudPasswordInput = ({ formField, form, ...others }: Prop) => {
   return (
     <PasswordInput
+      className={`${classes.input}`}
       key={formField.id}
       name={formField.name}
       label={formField.label}
       placeholder={formField.placeholder}
       size="md"
       // style={{ width: '100%' }}
-      mt={10}
       // {...others}
       {...form.getInputProps(formField.name || formField.id)}
     />

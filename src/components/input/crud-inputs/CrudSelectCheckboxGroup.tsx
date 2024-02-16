@@ -5,6 +5,7 @@ import {
   CheckBoxFormFieldType,
   CheckBoxGroupSelectFormFieldType,
 } from '../../../types/general/data/data-table/form-field-type/formField-types';
+import classes from '../input-style.module.css';
 
 interface Prop {
   formField: CheckBoxGroupSelectFormFieldType;
@@ -18,12 +19,12 @@ export const CrudSelectCheckboxGroup = ({ formField, form, ...others }: Prop) =>
       {options.map((option) => (
         <Checkbox
           key={option}
+          className={`${classes.input}`}
           checked={form.values[formField.name]}
           name={formField.name}
           label={formField.label}
           placeholder={formField.placeholder}
           size="md"
-          mt={10}
           {...others}
           {...form.getInputProps(formField.name || formField.id)}
         />
