@@ -2,6 +2,15 @@ import { FormFieldTypes } from '../../../src/types/general/data/data-table/form-
 
 export const usersTableData: Array<FormFieldTypes> = [
   {
+    id: 'role',
+    name: 'role',
+    label: 'Ruolo',
+    type: 'access-controller',
+    noTable: true,
+    required: true,
+    priority: 0,
+  },
+  {
     id: 'user-name-email-head',
     name: 'name',
     label: 'User',
@@ -43,15 +52,7 @@ export const usersTableData: Array<FormFieldTypes> = [
     required: false,
     priority: 2,
   },
-  {
-    id: 'role',
-    name: 'role',
-    label: 'Ruolo',
-    type: 'access-controller',
-    noTable: true,
-    required: true,
-    priority: 3,
-  },
+
   {
     id: 'email',
     name: 'email',
