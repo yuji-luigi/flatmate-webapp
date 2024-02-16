@@ -66,7 +66,7 @@ export const NOTIFICATIONS = {
       title: 'Error',
       color: 'red',
       icon: <Icons.alert />,
-      message: data?.message || data || 'connection error',
+      message: data?.message || data || 'Something went wrong',
       autoClose: ms,
     }),
   },
