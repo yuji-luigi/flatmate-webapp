@@ -1,5 +1,6 @@
 import { ReactElement, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { Box } from '@mantine/core';
 import { TableSectionHeader } from '../../sections/dashboard/datatable_section/TableSectionHeader';
 
 import Layout from '../../layouts';
@@ -37,10 +38,11 @@ const CrudPage = () => {
 
   return (
     <Page title={`Flatmates | ${entity}`}>
-      <TableSectionHeader />
-      {/* <Tables /> */}
-      <CrudDataTable />
-      <CrudDrawerDefault />
+      <Box style={{ display: 'flex', flexDirection: 'column', gap: 'var(--flex-gap)' }}>
+        <TableSectionHeader />
+        <CrudDataTable />
+        <CrudDrawerDefault />
+      </Box>
     </Page>
   );
 };
