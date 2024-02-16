@@ -27,7 +27,7 @@ export const PermissionsByRole = (props: PermissionsByRoleProps) => {
           <Switch
             label="Create Maintenance"
             name="canCreateMaintenance"
-            {...(form.getInputProps(`${role}.canCreateMaintenance`), { type: 'checkbox' })}
+            {...form.getInputProps(`${role}.canCreateMaintenance`, { type: 'checkbox' })}
           />
           <Switch
             label="Notify Maintainer"
