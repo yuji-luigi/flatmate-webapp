@@ -11,7 +11,7 @@ export interface TabList<ComponentProps = any> {
   value: string;
   component: (props: any) => JSX.Element | null;
   componentProps?: ComponentProps;
-  form: UseFormReturnType<Record<string, unknown>>;
+  form?: UseFormReturnType<Record<string, unknown>>;
   // component: React.ReactNode;
 }
 export const TabList = ({
