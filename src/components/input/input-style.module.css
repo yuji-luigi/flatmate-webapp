@@ -1,0 +1,20 @@
+.input {
+  grid-column: span 2;
+  place-self: end center;
+  width: 100%;
+  &[data-column='4'] {
+    grid-column: span 4;
+  }
+  @container (max-width: $mantine-breakpoint-xs) {
+    grid-column: span 4;
+  }
+}
+
+/* .accessControllerButton {
+  grid-row: end;
+  grid-column: end;
+} */
+
+/* .lastGridItem {
+  grid-row: end;
+} */
