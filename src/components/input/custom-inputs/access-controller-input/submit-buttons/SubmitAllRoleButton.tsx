@@ -10,13 +10,12 @@ import { RoleModel } from '../../../../../types/models/space-model';
 
 type SubmitAllRoleButtonProps = {
   form: UseFormReturnType<Record<string, unknown>>;
-  currentRole: string | null;
 };
 
 export const SubmitAllRoleButton: React.FC<SubmitAllRoleButtonProps> = (
   props: SubmitAllRoleButtonProps
 ) => {
-  const { form, currentRole } = props;
+  const { form } = props;
   const { crudDocuments: roles } = useCrudSelectors<RoleModel>('roles');
   const roleNames = roles.map((role) => role.name);
   const { parentForm } = form.values as Record<string, unknown> & {
@@ -43,7 +42,6 @@ export const SubmitAllRoleButton: React.FC<SubmitAllRoleButtonProps> = (
     });
 
     // case update user: (user, rootSpace are present update the accessController of the user)
-    const currentFields = form.values as Record<string, any>;
     if (user && rootSpace) {
       const rawAccessControl = await axiosInstance.post(_PATH_API.accessControllers.root, {
         user,

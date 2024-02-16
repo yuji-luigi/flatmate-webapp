@@ -1,7 +1,6 @@
-import { Accordion, Box, Chip, Group, Stack, Text } from '@mantine/core';
+import { Accordion, Box, Group, Text } from '@mantine/core';
 import { t } from 'i18next';
 import classes from './AccessControllerDisplay.module.css';
-import { useCrudSelectors } from '../../../../../redux/features/crud/crudSlice';
 import { SpaceModel } from '../../../../../types/models/space-model';
 import { useItemSlice } from '../../../../../redux/features/crud/selectedItemSlice';
 import { Icons } from '../../../../../data/icons/icons';

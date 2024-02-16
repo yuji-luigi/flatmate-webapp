@@ -14,7 +14,6 @@ export const PermissionsByRole = (props: PermissionsByRoleProps) => {
   const { get } = useItemSlice<{ space: string }>();
   const value = get?.space || '';
   if (!form) return null;
-  console.log({ role });
   return (
     <Box className={classes.container}>
       <div className={classes.pl}>{props.role.toUpperCase()}</div>
@@ -22,35 +21,35 @@ export const PermissionsByRole = (props: PermissionsByRoleProps) => {
         <Box className={classes.inputs}>
           <Switch
             label="Create Post"
-            name="canCreatePost"
-            {...form.getInputProps(`${role}.canCreatePost`)}
+            name={`${role}.canCreatePost`}
+            {...form.getInputProps(`${role}.canCreatePost`, { type: 'checkbox' })}
           />
           <Switch
             label="Create Maintenance"
             name="canCreateMaintenance"
-            {...form.getInputProps(`${role}.canCreateMaintenance`)}
+            {...(form.getInputProps(`${role}.canCreateMaintenance`), { type: 'checkbox' })}
           />
           <Switch
             label="Notify Maintainer"
             name="canNotifyMaintainer"
-            {...form.getInputProps(`${role}.canNotifyMaintainer`)}
+            {...form.getInputProps(`${role}.canNotifyMaintainer`, { type: 'checkbox' })}
           />
         </Box>
         <Box className={classes.inputs}>
           <Switch
             label="Delete Post"
             name="canDeletePost"
-            {...form.getInputProps(`${role}.canDeletePost`)}
+            {...form.getInputProps(`${role}.canDeletePost`, { type: 'checkbox' })}
           />
           <Switch
             label="Delete Maintenance"
             name="canDeleteMaintenance"
-            {...form.getInputProps(`${role}.canDeleteMaintenance`)}
+            {...form.getInputProps(`${role}.canDeleteMaintenance`, { type: 'checkbox' })}
           />
           <Switch
             label="Delete Comment"
             name="canDeleteComment"
-            {...form.getInputProps(`${role}.canDeleteComment`)}
+            {...form.getInputProps(`${role}.canDeleteComment`, { type: 'checkbox' })}
           />
         </Box>
       </fieldset>
