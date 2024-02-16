@@ -220,7 +220,14 @@ export function CrudDrawerDefault({ overridingEntity = '' }: { overridingEntity?
           form={form}
           entity={entity}
           submitButton={
-            <Button fullWidth disabled={submitting} type="submit" mt="xl" size="md">
+            <Button
+              fullWidth
+              className={classes.submitButton}
+              disabled={submitting}
+              type="submit"
+              mt="xl"
+              size="md"
+            >
               {submitText}
             </Button>
           }
