@@ -19,6 +19,8 @@ import axiosInstance from '../../../../utils/axios-instance';
 import { PATH_API, _PATH_API } from '../../../../path/path-api';
 import { SubmitByRoleButton } from './submit-buttons/SubmitByRoleButton';
 import { SubmitAllRoleButton } from './submit-buttons/SubmitAllRoleButton';
+import inputClasses from '../../input-style.module.css';
+import { AccessControllerDisplay } from './access-controller-display/AccessControllerDisplay';
 
 interface Prop {
   formField: AccessControllerFormFieldType;
@@ -42,7 +44,21 @@ export const AccessControllerForm = ({ formField, form, ...others }: Prop) => {
   };
   const { openConfirmModal } = useCustomModalContext();
 
-  return <Button onClick={handleShowInputs}>{t('Manage Access')}</Button>;
+  return (
+    <>
+      <Button
+        style={{ placeContent: 'center' }}
+        className={`${inputClasses.input}`}
+        onClick={handleShowInputs}
+        data-column="4"
+        variant="outline"
+        leftSection={<Icons.alert size={20} />}
+      >
+        {t('Manage Access')}
+      </Button>
+      <AccessControllerDisplay aCtrlValues={form.values.accessController} />
+    </>
+  );
 };
 
 const buildingItems = [
@@ -67,7 +83,7 @@ const buildingItems = [
 const AccessControllerFormContents = (props: Prop) => {
   const { t } = useLocale();
   const [currentRole, setCurrentRole] = useState<string | null>('');
-  const { formField, ...others } = props;
+  const { formField, form: parentForm, ...others } = props;
   const { fetchCrudDocuments } = useCrudSliceStore();
   const { get } = useItemSlice<{ space: string | null }>();
   const { crudDocuments: roles, crudStatus } = useCrudSelectors<RoleModel>('roles');
@@ -79,6 +95,7 @@ const AccessControllerFormContents = (props: Prop) => {
     const object: Record<string, unknown> = {
       rootSpace: get?.space,
       user: selectedUser._id,
+      parentForm,
     };
     roles.forEach((role) => {
       object[role.name] = {

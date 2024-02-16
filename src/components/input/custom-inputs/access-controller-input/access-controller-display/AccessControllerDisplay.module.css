@@ -1,0 +1,14 @@
+.accordion {
+  grid-column: 1 / -1;
+}
+
+.contentsContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+.accordionPanel {
+  width: 100%;
+  border-bottom: dotted 1px #000;
+  border-right: dotted 1px #000;
+  /* outline: solid 1px #000; */
+}
