@@ -44,24 +44,12 @@ export function TableSectionHeader({
       setBreadcrumbs({ title, href: `/dashboard/${entity}` });
       setPrevBreadcrumbs(breadcrumbs);
     }
-    /** if null is passed set to [] in condition. */
     return () => setBreadcrumbs(null);
   }, [query.entity]);
 
-  /** define case when theres no entity,
-   * seem like gives an error in other component
-   */
   if (!section) {
     return <p>loading...</p>;
   }
-  /** define openDrawer function. Button onClick openDrawer */
-
-  // function handleOpenDrawer() {
-  //   if (typeof entity !== 'undefined') {
-  //     selectCrudDocument({ entity, document: null });
-  //   }
-  //   openDrawer();
-  // }
 
   let { title } = section;
   if (query.parentId && instanceOfParentDataInterface(parentData)) {
