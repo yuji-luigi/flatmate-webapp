@@ -21,7 +21,6 @@ export const PermissionsByRole = (props: PermissionsByRoleProps) => {
         <Box className={classes.inputs}>
           <Switch
             label="Create Post"
-            name={`${role}.canCreatePost`}
             {...form.getInputProps(`${role}.canCreatePost`, { type: 'checkbox' })}
           />
           <Switch

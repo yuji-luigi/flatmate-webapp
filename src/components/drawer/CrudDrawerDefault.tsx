@@ -11,7 +11,6 @@ import {
 import { useRouter } from 'next/router';
 import { FormEvent, useEffect, useState, useMemo } from 'react';
 import allFormFields from '../../../json/dataTable/formfields';
-import { Icons } from '../../data/icons/icons';
 import { constructErrorNotificationData } from '../../data/showNofification/notificationObjects';
 // import { useCrudSlice } from '../../../hooks/redux-hooks/useCrudSlice';
 import { capitalize, sleep } from '../../utils/helpers/helper-functions';
@@ -24,7 +23,6 @@ import { usePaginationQuery } from '../../context/PaginationContext';
 import { hasMedia } from '../../redux/features/crudAsyncThunks';
 import CreationToolBar from '../input/CreationToolBar';
 import { UseFormReturnTypeCustom } from '../input/input_interfaces/useForm_interface';
-import useAuth from '../../../hooks/useAuth';
 import { flattenSectionData } from '../../data';
 
 import { extractUploadingMedia, uploadFileAndGetModelId } from '../../utils/upload-helper';
@@ -63,15 +61,8 @@ export function CrudDrawerDefault({ overridingEntity = '' }: { overridingEntity?
   const form = useForm({
     initialValues,
     // TODO: Make Validate function and set by string value from formField.
-    // validate: 'email' uses this email validator.
-    // validate: {
-    //   email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
-    // },
   }) as UseFormReturnTypeCustom;
-  /**
-   *  Define submit function
-   *  show notification/error
-   */
+
   function handleCloseDrawer() {
     closeDrawer();
     selectCrudDocument({ entity, document: null });

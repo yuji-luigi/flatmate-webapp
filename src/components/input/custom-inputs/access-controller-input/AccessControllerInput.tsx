@@ -80,8 +80,8 @@ const AccessControllerFormContents = (props: Prop) => {
         parentForm.values?.accessController as Record<string, any>[]
       )?.find((item) => item.roleName === role.name);
       object[role.name] = {
-        canCreatePost: permissionsByRole?.canCreatePost || false,
-        canCreateMaintenance: permissionsByRole?.canCreateMaintenance || false,
+        canCreatePost: permissionsByRole?.canCreatePost || true,
+        canCreateMaintenance: permissionsByRole?.canCreateMaintenance || true,
         canNotifyMaintainer: permissionsByRole?.canNotifyMaintainer || false,
         canDeletePost: permissionsByRole?.canDeletePost || false,
         canDeleteMaintenance: permissionsByRole?.canDeleteMaintenance || false,
