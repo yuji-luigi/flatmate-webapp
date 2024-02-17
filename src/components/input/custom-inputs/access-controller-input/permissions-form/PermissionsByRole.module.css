@@ -4,20 +4,19 @@
   grid-template-rows: auto auto;
   place-items: start start;
   width: 100%;
-  --pl: 56px;
+  --pl: 0;
 }
 .fieldset {
-  display: grid;
-  gap: (var(--flex-gap));
   border: none;
-  grid-template-columns: repeat(2, minmax(10px, 1fr));
 }
 
 .inputs {
-  display: flex;
-  flex-direction: column;
-  gap: var(--flex-gap);
+  display: grid;
+  grid-auto-flow: column;
+  column-gap: calc(var(--flex-gap) * 1.5);
   row-gap: calc(var(--flex-gap) * 1.5);
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
   padding-left: var(--pl);
 }
 

@@ -1,6 +1,7 @@
-import { Box, Button, Tabs, Text } from '@mantine/core';
+import { Box, Button, Chip, Tabs, Text } from '@mantine/core';
 import { useEffect, useMemo, useState } from 'react';
 import { UseFormReturnType, useForm } from '@mantine/form';
+import { access } from 'fs';
 import { AccessControllerFormFieldType } from '../../../../types/general/data/data-table/form-field-type/formField-types';
 import { useLocale } from '../../../../../hooks/useLocale';
 import { useCustomModalContext } from '../../../../context/modal-context/_ModalContext';
@@ -17,6 +18,11 @@ import { SubmitByRoleButton } from './submit-buttons/SubmitByRoleButton';
 import { SubmitAllRoleButton } from './submit-buttons/SubmitAllRoleButton';
 import inputClasses from '../../input-style.module.css';
 import { AccessControllerDisplay } from './access-controller-display/AccessControllerDisplay';
+import {
+  AccessControllerModel,
+  permissionsFormField,
+} from '../../../../types/models/access-controller-type';
+import { AccCtrlSpaceChip } from './space-chip/AccCtrlSpaceChip';
 
 interface Prop {
   formField: AccessControllerFormFieldType;
@@ -66,27 +72,36 @@ const AccessControllerFormContents = (props: Prop) => {
   const { get } = useItemSlice<{ space: string | null }>();
   const { crudDocuments: roles, crudStatus } = useCrudSelectors<RoleModel>('roles');
   const { crudDocument: selectedUser } = useCrudSelectors<UserModel>('users');
+  const { crudDocuments: accessControllers } =
+    useCrudSelectors<AccessControllerModel>('accessControllers');
+  console.log(accessControllers);
   useEffect(() => {
     fetchCrudDocuments({ entity: 'roles' });
+    fetchCrudDocuments({ entity: 'accessControllers', queryObject: { user: selectedUser._id } });
   }, []);
   const initialValues = useMemo(() => {
-    const object: Record<string, unknown> = {
+    const object: Record<string, any> = {
       rootSpace: get?.space,
       user: selectedUser._id,
       parentForm,
     };
+
+    //
     roles.forEach((role) => {
-      const permissionsByRole = (
-        parentForm.values?.accessController as Record<string, any>[]
-      )?.find((item) => item.roleName === role.name);
-      object[role.name] = {
-        canCreatePost: permissionsByRole?.canCreatePost || true,
-        canCreateMaintenance: permissionsByRole?.canCreateMaintenance || true,
-        canNotifyMaintainer: permissionsByRole?.canNotifyMaintainer || false,
-        canDeletePost: permissionsByRole?.canDeletePost || false,
-        canDeleteMaintenance: permissionsByRole?.canDeleteMaintenance || false,
-        canDeleteComment: permissionsByRole?.canDeleteComment || false,
-      };
+      const roleName = role.name;
+      const permissionsByRole = accessControllers
+        ?.filter((ctrl) => ctrl.rootSpace === get?.space)
+
+        .find((item) => item.role?.name === roleName);
+      permissionsFormField.forEach((field) => {
+        const { name: permissionName } = field;
+        object[roleName] = {
+          ...object[roleName],
+          [permissionName]:
+            permissionsByRole?.permissions.find((p) => p.name === permissionName)?.allowed ||
+            field.defaultValue,
+        };
+      });
     });
     return object;
   }, [roles.length, selectedUser._id, get?.space]);
@@ -121,7 +136,17 @@ const AccessControllerFormContents = (props: Prop) => {
             tab: classes.tab,
           }}
         />
-        <Text fw="bold">select building and give access to the user for the selected building</Text>
+        <Box>
+          {accessControllers?.length ? (
+            accessControllers.map((accessController) => (
+              <AccCtrlSpaceChip key={accessController._id} accCtrl={accessController} />
+            ))
+          ) : (
+            <Text fw="bold">
+              select building and give access to the user for the selected building
+            </Text>
+          )}
+        </Box>
         <Box className={classes.tabPanels}>
           <TabPanels list={tabList} form={form} />
         </Box>

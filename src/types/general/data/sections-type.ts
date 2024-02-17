@@ -35,6 +35,7 @@ export const sectionsArray = [
   'uploads',
   'roles',
   'maintenances',
+  'accessControllers',
   '',
 ] as const;
 

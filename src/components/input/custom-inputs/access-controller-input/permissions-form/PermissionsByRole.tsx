@@ -3,6 +3,7 @@ import { ChangeEvent } from 'react';
 import { UseFormReturnType } from '@mantine/form';
 import { useItemSlice } from '../../../../../redux/features/crud/selectedItemSlice';
 import classes from './PermissionsByRole.module.css';
+import { permissionsFormField } from '../../../../../types/models/access-controller-type';
 
 type PermissionsByRoleProps = {
   role: string;
@@ -19,7 +20,14 @@ export const PermissionsByRole = (props: PermissionsByRoleProps) => {
       <div className={classes.pl}>{props.role.toUpperCase()}</div>
       <fieldset className={classes.fieldset}>
         <Box className={classes.inputs}>
-          <Switch
+          {permissionsFormField.map((field) => (
+            <Switch
+              key={field.name}
+              label={field.label}
+              {...form.getInputProps(`${role}.${field.name}`, { type: 'checkbox' })}
+            />
+          ))}
+          {/* <Switch
             label="Create Post"
             {...form.getInputProps(`${role}.canCreatePost`, { type: 'checkbox' })}
           />
@@ -49,7 +57,7 @@ export const PermissionsByRole = (props: PermissionsByRoleProps) => {
             label="Delete Comment"
             name="canDeleteComment"
             {...form.getInputProps(`${role}.canDeleteComment`, { type: 'checkbox' })}
-          />
+          /> */}
         </Box>
       </fieldset>
     </Box>

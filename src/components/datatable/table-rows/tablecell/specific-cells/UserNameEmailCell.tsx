@@ -26,7 +26,7 @@ export const UserNameEmailCell: React.FC<UserNameEmailCellProps> = (
         <Text>{surname}</Text>
       </Box>
       <Text>{email}</Text>
-      <Text>root spaces...</Text>
+      {/* <Text>root spaces...</Text> */}
     </Box>
   );
 };

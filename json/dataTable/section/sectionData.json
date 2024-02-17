@@ -241,6 +241,18 @@
 				"icon": "Dashboard"
 			},
 			{
+				"entity": "accessControllers",
+				"entitySingle": "accessController",
+				"title": "AccessControllers",
+				"subtitle": "subtitle",
+				"navbarTitle": "Access controller",
+				"link": "/dashboard/accessControllers",
+				"importButton": "",
+				"createButton": "New AccessController",
+				"hide": true,
+				"icon": "Dashboard"
+			},
+			{
 				"entity": "uploads",
 				"entitySingle": "upload",
 				"title": "uploads",
