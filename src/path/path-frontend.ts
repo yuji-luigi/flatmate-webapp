@@ -47,7 +47,9 @@ export enum CARD_LINK_PATH {
   // organizationCookie = PATH_CLIENT.organizationCookie,
 }
 const CHOOSE_ORGANIZATION = '/choose-organization';
+const CHOOSE_ROOT_SPACE = '/choose-root-space';
 export const _PATH_FRONTEND = {
+  pathAfterLogin: PATH_AFTER_LOGIN,
   homepage: {
     root: '/',
   },
@@ -56,7 +58,7 @@ export const _PATH_FRONTEND = {
     logout: PATH_CLIENT.logout,
     signup: PATH_CLIENT.signup,
     chooseOrganization: CHOOSE_ORGANIZATION,
-    chooseSpace: '/choose-root-space',
+    chooseRootSpace: CHOOSE_ROOT_SPACE,
   },
   authTokens: {
     dashboard: PATH_CLIENT.authTokens,

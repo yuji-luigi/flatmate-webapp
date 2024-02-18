@@ -36,9 +36,8 @@ export interface BillingProfileModel extends MongooseBaseModel {
   logo?: string | UploadModel; // or string if you prefer
   description?: string;
   address?: string;
-  _role: 'maintainer' | 'administrator';
 }
-export const ROLES = ['administrator', 'maintainer', 'inhabitant'] as const;
+export const ROLES = ['Administrator', 'Maintainer', 'Inhabitant'] as const;
 
 export type Role = (typeof ROLES)[number];
 export interface RoleModel extends MongooseBaseModel {
