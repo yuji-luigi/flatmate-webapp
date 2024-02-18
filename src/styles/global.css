@@ -14,10 +14,11 @@
   --break-point-lg: 1200px;
   --break-point-xl: 1408px;
   --flex-gap: 16px;
+  --flex-gap-xs: calc(var(--flex-gap) / 2);
   --flex-gap-sm: var(--flex-gap);
-  --flex-gap-md: 24px;
-  --flex-gap-lg: 32px;
-  --flex-gap-xl: 56px;
+  --flex-gap-md: calc(var(--flex-gap) * 1.5);
+  --flex-gap-lg: calc(var(--flex-gap) * 2);
+  --flex-gap-xl: calc(var(--flex-gap) * 3.5);
   --text-table-mobile: 12px;
   --table-cell-width-sm: 60px;
   --table-min-width: 800px;
