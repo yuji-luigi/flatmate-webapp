@@ -1,0 +1,10 @@
+.spaceChipContainer {
+  display: grid;
+  gap: var(--flex-gap);
+  /* grid-template-columns: repeat(3, 1fr); */
+}
+
+.chips {
+  display: grid;
+  gap: var(--flex-gap-xs);
+}

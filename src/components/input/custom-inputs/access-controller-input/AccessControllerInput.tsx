@@ -22,7 +22,7 @@ import {
   AccessControllerModel,
   permissionsFormField,
 } from '../../../../types/models/access-controller-type';
-import { AccCtrlSpaceChip } from './space-chip/AccCtrlSpaceChip';
+import { AccCtrlSpaceChips } from './space-chip/AccCtrlSpaceChips';
 
 interface Prop {
   formField: AccessControllerFormFieldType;
@@ -78,6 +78,7 @@ const AccessControllerFormContents = (props: Prop) => {
   useEffect(() => {
     fetchCrudDocuments({ entity: 'roles' });
     fetchCrudDocuments({ entity: 'accessControllers', queryObject: { user: selectedUser._id } });
+    return () => {};
   }, []);
   const initialValues = useMemo(() => {
     const object: Record<string, any> = {
@@ -138,9 +139,7 @@ const AccessControllerFormContents = (props: Prop) => {
         />
         <Box>
           {accessControllers?.length ? (
-            accessControllers.map((accessController) => (
-              <AccCtrlSpaceChip key={accessController._id} accCtrl={accessController} />
-            ))
+            <AccCtrlSpaceChips />
           ) : (
             <Text fw="bold">
               select building and give access to the user for the selected building
