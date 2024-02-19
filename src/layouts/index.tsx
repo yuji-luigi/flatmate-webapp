@@ -8,7 +8,6 @@ import { TabContextProvider } from '../context/tab-context/TabContextProvider';
 import classes from './index.module.css';
 import { AuthTokenRouteLayout } from './auth-token/AuthTokenRouteLayout';
 import { ClientProvider } from './ClientProvider';
-import DashboardLayoutAdministrator from './dashboard-administrator/DashboardLayoutAdministrator';
 
 export type LayoutVariants =
   | 'main'
@@ -26,7 +25,6 @@ const Layout = ({
   title?: ReactNode;
   children: ReactElement;
 }) => {
-  let LayoutComponent = DashboardLayout;
   if (variant === 'logoOnly') {
     return (
       <>
@@ -48,16 +46,14 @@ const Layout = ({
       </ClientProvider>
     );
   }
-  if (variant === 'administrator-dashboard') {
-    LayoutComponent = DashboardLayoutAdministrator;
-  }
+
   return (
     <AuthGuard>
       <CookieContextProvider>
         <TabContextProvider>
-          <LayoutComponent>
+          <DashboardLayout>
             <Box className={classes.dashboardContainer}>{children}</Box>
-          </LayoutComponent>
+          </DashboardLayout>
         </TabContextProvider>
       </CookieContextProvider>
     </AuthGuard>

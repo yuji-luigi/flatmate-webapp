@@ -1,6 +1,6 @@
 import { TabList } from '../../../../components/tab/TabList';
 import { Icons } from '../../../../data/icons/icons';
-import DashboardSection from './dashboard/DashboardTopSection';
+import DashboardSection from './dashboard/DashboardSection';
 import { SpaceMaintenanceSection } from './SpaceMaintenanceSection';
 import { SpacePostSection } from './SpacePostSection';
 
