@@ -39,7 +39,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     if (!user) {
       throw new Error('User is not present from GET /me');
     }
-    if (loggedAs === 'inhabitant' && user.role.inhabitant?.rootSpaces.length > 1) {
+    if (loggedAs === 'inhabitant') {
       return {
         props: {
           ...(await serverSideTranslations(locale || 'it', ['common', 'otherNamespace'])),
