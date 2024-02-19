@@ -26,7 +26,7 @@ const Layout = ({
   title?: ReactNode;
   children: ReactElement;
 }) => {
-  let Layout = DashboardLayout;
+  let LayoutComponent = DashboardLayout;
   if (variant === 'logoOnly') {
     return (
       <>
@@ -49,15 +49,15 @@ const Layout = ({
     );
   }
   if (variant === 'administrator-dashboard') {
-    Layout = DashboardLayoutAdministrator;
+    LayoutComponent = DashboardLayoutAdministrator;
   }
   return (
     <AuthGuard>
       <CookieContextProvider>
         <TabContextProvider>
-          <Layout>
+          <LayoutComponent>
             <Box className={classes.dashboardContainer}>{children}</Box>
-          </Layout>
+          </LayoutComponent>
         </TabContextProvider>
       </CookieContextProvider>
     </AuthGuard>
