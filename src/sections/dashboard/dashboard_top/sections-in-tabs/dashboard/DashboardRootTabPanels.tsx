@@ -2,7 +2,7 @@ import React from 'react';
 import { Tabs } from '@mantine/core';
 import { TAB_LIST_CONFIG } from '../tabList';
 
-export const DashboardRoot = () => {
+export const DashboardRootTabPanels = () => {
   return (
     <>
       {TAB_LIST_CONFIG.map((tabItem) => (
@@ -12,5 +12,4 @@ export const DashboardRoot = () => {
       ))}
     </>
   );
-  return <div>DashboardRoot</div>;
 };
