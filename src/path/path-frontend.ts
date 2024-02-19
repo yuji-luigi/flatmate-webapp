@@ -10,7 +10,7 @@ export const AUTH = {
 
 export const FRONTEND_ROOT = process.env.NEXT_PUBLIC_FRONTEND_URL;
 
-export const PATH_AFTER_LOGIN = '/dashboard/home';
+export const PATH_AFTER_LOGIN = '/dashboard?tab=dashboard';
 
 // export const PATH_ROOT {}
 
@@ -50,6 +50,7 @@ const CHOOSE_ORGANIZATION = '/choose-organization';
 const CHOOSE_ROOT_SPACE = '/choose-root-space';
 export const _PATH_FRONTEND = {
   pathAfterLogin: PATH_AFTER_LOGIN,
+  pathAfterLoginInhabitant: CHOOSE_ROOT_SPACE,
   homepage: {
     root: '/',
   },
