@@ -8,7 +8,7 @@ import useAuth from '../../../hooks/useAuth';
 import { LoginFormValues } from '../../types/context/auth/formData';
 
 import { Icons } from '../../data/icons/icons';
-import { PATH_CLIENT } from '../../path/path-frontend';
+import { PATH_CLIENT, _PATH_FRONTEND } from '../../path/path-frontend';
 import { useCookieContext } from '../../context/CookieContext';
 import { Role } from '../../types/models/space-model';
 
@@ -33,7 +33,11 @@ function LoginForm({ role }: { role: Role }) {
       resetCurrentSpace();
       setCurrentOrganization(null);
       await login(values.email, values.password, role);
-      router.push(PATH_CLIENT.chooseOrganization);
+      if (role === 'Inhabitant') {
+        router.push(_PATH_FRONTEND.pathAfterLoginInhabitant);
+        return;
+      }
+      router.push(_PATH_FRONTEND.pathAfterLogin);
       // return null;
     } catch (error: any) {
       notifications.show({

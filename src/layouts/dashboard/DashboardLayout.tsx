@@ -17,7 +17,9 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
   const { isOpen } = useLayoutContext();
   const { loggedAs } = useAuth();
   const router = useRouter();
-  const [currentTab, setCurrentTab] = useState<string | null>(router.query.tab as string);
+  const [currentTab, setCurrentTab] = useState<string | null>(
+    (router.query.tab as string) || 'dashboard'
+  );
   const { currentSpace } = useCookieContext();
   const containerRef = useRef<HTMLDivElement>(null);
   // const bgColor = theme.colorScheme === 'dark' ? 'rgba(0,0,0,0.85)' : 'rgba(255,255,255,0.85)';
@@ -38,10 +40,9 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
     };
   }, []);
   useEffect(() => {
-    setCurrentTab((router.query.tab as string) || '');
+    setCurrentTab(router.query.tab as string);
   }, [router.query.tab]);
   const handleChangeTab = (value: string | null) => {
-    console.log(router);
     if (!value) return;
     if (!loggedAs) return;
     router.replace(`${_PATH_FRONTEND[loggedAs].dashboard.root}?tab=${value}`);
@@ -51,7 +52,7 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
     <Tabs
       onChange={handleChangeTab}
       keepMounted={false}
-      defaultValue={currentTab}
+      defaultValue="dashboard"
       value={currentTab}
     >
       <DashboardHeaderSearch />
