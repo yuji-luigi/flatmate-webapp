@@ -21,7 +21,7 @@ export default function LoginPage(props: { initialUser?: UserModel }) {
   useEffect(() => {
     // changeLanguage('it');
     if (initialUser) {
-      push(PATH_CLIENT.chooseRootSpace);
+      push(_PATH_FRONTEND.pathAfterLogin);
     }
     if (pathname === _PATH_FRONTEND.auth.logout) {
       replace(_PATH_FRONTEND.auth.login);
@@ -32,38 +32,6 @@ export default function LoginPage(props: { initialUser?: UserModel }) {
       <Stack>
         <Card p={0}>
           <RoleTabsLogin />
-          {/* <Box className={classes.form}>
-            <Group style={{ position: 'relative' }} justify="space-between" align="baseline">
-              <Title order={2} className={classes.title} ta="center">
-                {t('Welcome back to Flatmate!')}
-              </Title>
-              <LogoSquare className={classes.logo} size={60} />
-            </Group>
-            <Stack gap={0}>
-              <Text>You can use this credentials</Text>
-              <Group>
-                <Text>email:</Text>
-                <Text>
-                  <b> admin.sato@demo.com</b>
-                </Text>
-              </Group>
-              <Group>
-                <Text>password:</Text>
-                <Text>
-                  <b> testabc</b>
-                </Text>
-              </Group>
-            </Stack>
-
-            <LoginForm />
-
-            <Text ta="center">
-              Don&apos;t have an account?{' '}
-              <Anchor<'a'> href={AUTH.SIGNUP} fw={700}>
-                Register
-              </Anchor>
-            </Text>
-          </Box> */}
         </Card>
       </Stack>
     </div>
