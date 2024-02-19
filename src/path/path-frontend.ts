@@ -74,17 +74,17 @@ export const _PATH_FRONTEND = {
     root: PATH_CLIENT.posts,
     byId: (threadId: string) => `${PATH_CLIENT.posts}/${threadId}`,
   },
-  administrator: {
+  Administrator: {
     dashboard: {
       root: `${PATH_CLIENT.administrator}/dashboard`,
     },
   },
-  inhabitant: {
+  Inhabitant: {
     dashboard: {
       root: '/dashboard',
     },
   },
-  maintainer: {
+  Maintainer: {
     dashboard: {
       root: `${PATH_CLIENT.maintainer}/dashboard`,
     },

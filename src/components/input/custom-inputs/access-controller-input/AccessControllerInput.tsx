@@ -82,7 +82,7 @@ const AccessControllerFormContents = (props: Prop) => {
   }, []);
   const initialValues = useMemo(() => {
     const object: Record<string, any> = {
-      rootSpace: get?.space,
+      space: get?.space,
       user: selectedUser._id,
       parentForm,
     };
@@ -91,7 +91,7 @@ const AccessControllerFormContents = (props: Prop) => {
     roles.forEach((role) => {
       const roleName = role.name;
       const permissionsByRole = accessControllers
-        ?.filter((ctrl) => ctrl.rootSpace === get?.space)
+        ?.filter((ctrl) => ctrl.space === get?.space)
 
         .find((item) => item.role?.name === roleName);
       permissionsFormField.forEach((field) => {

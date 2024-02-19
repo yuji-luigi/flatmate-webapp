@@ -170,13 +170,13 @@ export type CustomFile = File & { field: string; folder: string; preview: string
 
 export async function handleUploadWithoutLogin({
   files,
-  mainSpace,
+  space,
   organizationName,
   entity,
   endpoint,
 }: {
   files: FileWithPreview[] | FileWithPreview;
-  mainSpace: string;
+  space: string;
   organizationName: string;
   entity: Sections;
   endpoint: PATH_API;
@@ -191,12 +191,12 @@ export async function handleUploadWithoutLogin({
     });
   } else {
     formData.append('0', files, files.name);
-    formData.append('mainSpace', mainSpace);
+    formData.append('space', space);
     formData.append('organizationName', organizationName);
     formData.append('entity', entity);
   }
   // formData.append('0', files, files.name);
-  formData.append('mainSpace', mainSpace);
+  formData.append('space', space);
   formData.append('organizationName', organizationName);
   formData.append('entity', entity);
   const response = await axiosInstance.post(endpoint, formData, {

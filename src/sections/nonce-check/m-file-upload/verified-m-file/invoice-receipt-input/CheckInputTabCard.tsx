@@ -83,7 +83,7 @@ export const CheckInputTabCard = ({
 
         const uploadIds = await handleUploadWithoutLogin({
           files: fileData,
-          mainSpace: maintenance.space.name,
+          space: maintenance.space.name,
           organizationName: maintenance.organization.name,
           entity: 'maintenances',
           endpoint: PATH_API.uploadsMaintenance,

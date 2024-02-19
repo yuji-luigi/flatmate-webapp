@@ -51,7 +51,7 @@ export interface PermissionInterface {
 }
 
 export type ACtrlDtoDashboard = {
-  rootSpace: string;
+  space: string;
   roleName: string;
   user: string;
 } & {
@@ -60,7 +60,7 @@ export type ACtrlDtoDashboard = {
 
 export interface AccessControllerModel extends MongooseBaseModel {
   user: string | UserModel;
-  rootSpace: string | SpaceModel;
+  space: string | SpaceModel;
   role: RoleModel;
   permissions: PermissionInterface[];
 }

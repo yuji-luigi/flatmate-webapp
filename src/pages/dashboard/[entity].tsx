@@ -12,13 +12,14 @@ import { usePaginationContext } from '../../context/PaginationContext';
 import { Sections } from '../../types/general/data/sections-type';
 import { HeaderContainer } from '../../components/datatable/header/HeaderContainer';
 import { CrudDataTable } from '../../components/datatable/CrudDataTable';
+import { useGetCrudDocuments } from '../../hooks/useGetCrudDocuments';
 
 const CrudPage = () => {
   const { query, push } = useRouter();
 
   const entity = query.entity as Sections;
   const { paginationQuery } = usePaginationContext();
-
+  useGetCrudDocuments({ entity, withPagination: true });
   const { fetchCrudDocumentsWithPagination } = useCrudSliceStore();
   useEffect(() => {
     if (!sections.includes(entity)) {

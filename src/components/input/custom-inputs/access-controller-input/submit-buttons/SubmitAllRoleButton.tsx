@@ -25,8 +25,8 @@ export const SubmitAllRoleButton: React.FC<SubmitAllRoleButtonProps> = (
   const { closeModal } = useCustomModalContext();
 
   const handleSubmitAllRoles: React.MouseEventHandler<HTMLButtonElement> = async () => {
-    const { user, rootSpace } = form.values;
-    if (!rootSpace) {
+    const { user, space } = form.values;
+    if (!space) {
       showNotification({ message: t('Please select a building/space'), title: t('Error') });
       return;
     }
@@ -37,19 +37,19 @@ export const SubmitAllRoleButton: React.FC<SubmitAllRoleButtonProps> = (
         //@ts-ignore
         ...form.values[role],
         roleName: role,
-        rootSpace,
+        space,
       };
     });
 
-    // case update user: (user, rootSpace are present update the accessController of the user)
-    if (user && rootSpace) {
+    // case update user: (user, space are present update the accessController of the user)
+    if (user && space) {
       const rawAccessControl = await axiosInstance.post(_PATH_API.accessControllers.root, {
         user,
-        rootSpace,
+        space,
       });
     }
     // case creation of a new user.
-    if (!user && rootSpace) {
+    if (!user && space) {
       parentForm.setValues({
         ...parentForm.values,
         accessController: aCtrlValues,

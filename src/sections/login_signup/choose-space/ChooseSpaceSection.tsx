@@ -42,11 +42,11 @@ export const ChooseSpaceSection = ({ spaces }: { spaces: SpaceModel[] }) => {
         className={classes.pinContainer}
         py="xl" /* cols={2} breakpoints={[{ max-width: 'sm', cols: 1 }]} */
       >
-        {spaces.map((rootSpace) => (
+        {spaces.map((space) => (
           <CardArticleVerticalTextBottom
-            key={rootSpace._id}
-            data={rootSpace as CardData}
-            onClick={() => handleSpaceSelected(rootSpace._id)}
+            key={space._id}
+            data={space as CardData}
+            onClick={() => handleSpaceSelected(space._id)}
           />
         ))}
       </Box>

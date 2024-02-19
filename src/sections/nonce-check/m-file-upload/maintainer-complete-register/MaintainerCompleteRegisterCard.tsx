@@ -67,13 +67,13 @@ export const MaintainerCompleteRegisterCard = (props: {
     e.preventDefault();
 
     try {
-      const rootSpace = maintenance.space;
+      const { space } = maintenance;
       const { organization } = maintenance;
       const rawRes = await axiosInstance.post(_PATH_API.auth.registerMaintainer, {
         ...form.values,
         _id: maintainer._id,
         organization,
-        rootSpace,
+        space,
         maintenanceId: maintenance._id,
       });
       console.log(rawRes);

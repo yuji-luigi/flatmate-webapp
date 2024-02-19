@@ -24,26 +24,26 @@ export const SubmitByRoleButton: React.FC<SubmitByRoleButtonProps> = (
     parentForm: UseFormReturnType<Record<string, unknown>>;
   };
   const handleSubmitByRole = async () => {
-    const { user, rootSpace } = form.values;
+    const { user, space } = form.values;
     if (!currentRole) return;
-    if (!rootSpace) {
+    if (!space) {
       showNotification({ message: t('Please select a building/space'), title: t('Error') });
       return;
     }
-    // case update user: (user, rootSpace are present update the accessController of the user)
+    // case update user: (user, space are present update the accessController of the user)
     const currentFields = form.values[currentRole] as Record<string, boolean>;
-    if (user && rootSpace) {
+    if (user && space) {
       const rawAccessControl = await axiosInstance.post(_PATH_API.accessControllers.root, {
         user,
-        rootSpace,
+        space,
         [currentRole]: currentFields,
       });
     }
     // case creation of a new user.
-    if (!user && rootSpace) {
+    if (!user && space) {
       parentForm.setValues({
         ...parentForm.values,
-        accessController: [{ ...currentFields, rootSpace, roleName: currentRole }],
+        accessController: [{ ...currentFields, space, roleName: currentRole }],
       });
       closeModal();
     }

@@ -62,18 +62,7 @@ const useStore = () => {
       });
     }
   };
-  // this is breaking SRP
-  // when header selected space or organization changes then the documents in the current section(entity in url) will be updated
-  useEffect(() => {
-    if (/* !currentSpace?._id ||  */ !entity || !entities.includes(entity)) return;
-    fetchCrudDocumentsWithPagination({ entity });
-  }, [currentSpace?._id]);
 
-  useEffect(() => {
-    if (!entity || !entities.includes(entity)) return;
-    // if (!currentOrganization || !entity || !entities.includes(entity)) return;
-    fetchCrudDocumentsWithPagination({ entity });
-  }, [currentOrganization]);
   return {
     currentSpace,
     setCurrentSpace: (space: CurrentSpace | null) => {
@@ -100,14 +89,6 @@ type UseCookieCtxParams = {
   url?: string;
 };
 export const useCookieContext = (/* args?: UseCookieCtxParams */) => {
-  // const { reFetchCrudDocuments, customRevalidate } = args;
-  // const cookieContext = useContext(CookieContext);
-  // const
-  // const {currentSpace,currentOrganization, hasSelectChanged} = cookieContext;
-  // useEffect(() => {
-  //   if(reFetchCrudDocuments){
-  //     fetch
-  //   }
-  // },[currentSpace,currentOrganization, ])
+  if (!CookieContext) console.log('CookieContext is not defined');
   return useContext(CookieContext);
 };

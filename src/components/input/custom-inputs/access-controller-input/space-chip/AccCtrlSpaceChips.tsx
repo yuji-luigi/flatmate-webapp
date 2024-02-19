@@ -12,7 +12,7 @@ export const AccCtrlSpaceChips: React.FC = () => {
   const actlSpaceId = [
     ...new Set(
       accessControllers.map((actl) =>
-        typeof actl.rootSpace === 'string' ? actl.rootSpace : actl.rootSpace._id
+        typeof actl.space === 'string' ? actl.space : actl.space._id
       )
     ),
   ];
