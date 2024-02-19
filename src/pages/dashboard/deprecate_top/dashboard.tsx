@@ -1,14 +1,9 @@
-import React, { ReactElement, useEffect } from 'react';
-import { Box } from '@mantine/core';
-import router from 'next/router';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { ReactElement, useEffect } from 'react';
 import Layout from '../../../layouts';
-import DashboardSection from '../../../sections/dashboard/dashboard_top/sections-in-tabs/dashboard/DashboardTopSection';
-import classes from './dashboardTop.module.css';
 import axiosInstance from '../../../utils/axios-instance';
 import { useCookieContext } from '../../../context/CookieContext';
 import { useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
-import { DashboardRoot } from '../../../sections/dashboard/dashboard_top/sections-in-tabs/dashboard/DashboardRoot';
+import { DashboardRootTabPanels } from '../../../sections/dashboard/dashboard_top/sections-in-tabs/dashboard/DashboardRootTabPanels';
 
 const DashboardPage = () => {
   const { currentOrganization, currentSpace } = useCookieContext();
@@ -28,8 +23,7 @@ const DashboardPage = () => {
     setCrudDocuments({ entity: 'threads', documents: threads });
   };
   // return <div>jey</div>;
-  return <DashboardRoot />;
-  return <DashboardSection />;
+  return <DashboardRootTabPanels />;
 };
 DashboardPage.getLayout = function getLayout(page: ReactElement) {
   return <Layout variant="dashboard">{page}</Layout>;
