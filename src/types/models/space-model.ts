@@ -41,7 +41,7 @@ export const ROLES = ['Administrator', 'Maintainer', 'Inhabitant'] as const;
 
 export type Role = (typeof ROLES)[number];
 export interface RoleModel extends MongooseBaseModel {
-  name: string;
+  name: Role;
 }
 
 export interface SpaceModel extends MongooseBaseModel {

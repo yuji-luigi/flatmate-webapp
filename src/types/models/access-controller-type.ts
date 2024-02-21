@@ -14,34 +14,39 @@ export const permissionsFormField = [
   {
     name: 'canCreatePost',
     label: 'Create Post',
-    defaultValue: true,
+    allowed: true,
   },
   {
     name: 'canCreateMaintenance',
     label: 'Create Maintenance',
-    defaultValue: true,
+    allowed: true,
   },
   {
     name: 'canNotifyMaintainer',
     label: 'Notify Maintainer',
-    defaultValue: false,
+    allowed: false,
   },
   {
     name: 'canDeletePost',
     label: 'Delete Post',
-    defaultValue: false,
+    allowed: false,
   },
   {
     name: 'canDeleteMaintenance',
     label: 'Delete Maintenance',
-    defaultValue: false,
+    allowed: false,
   },
   {
     name: 'canDeleteComment',
     label: 'Delete Comment',
-    defaultValue: false,
+    allowed: false,
   },
 ] as const;
+
+export const permissionsDefaultValues = permissionsFormField.map((permission) => ({
+  name: permission.name,
+  allowed: permission.allowed,
+}));
 
 export type Permission = (typeof permissionsFormField)[number]['name'];
 
@@ -61,6 +66,6 @@ export type ACtrlDtoDashboard = {
 export interface AccessControllerModel extends MongooseBaseModel {
   user: string | UserModel;
   space: string | SpaceModel;
-  role: RoleModel;
+  role: RoleModel | string;
   permissions: PermissionInterface[];
 }
