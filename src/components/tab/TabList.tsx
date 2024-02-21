@@ -29,6 +29,8 @@ export const TabList = ({
   // position?: 'left' | 'center' | 'right';
 }) => {
   const { isLargeScreen } = useCustomMQuery();
+  const { form } = other;
+  console.log({ values: form?.values });
   return (
     <Tabs.List className={`${classes.tabListWrapper} ${classNames?.tabList}`}>
       {list.map((item) => (

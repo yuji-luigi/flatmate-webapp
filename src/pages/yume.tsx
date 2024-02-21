@@ -24,16 +24,49 @@ const Yume = () => {
   return (
     <>
       <Box
+        className="yumePage"
         style={{
+          display: 'grid',
+          placeContent: 'center',
           width: '100%',
           height: '100vh',
-          display: 'flex',
+          // display: 'flex',
           backgroundColor: color,
           transition: 'background-color 0.5s',
           justifyContent: 'center',
           alignItems: 'center',
         }}
       >
+        <div className="gridContainer">
+          <input type="checkbox" />
+          <input type="text" />
+        </div>
+        <h1>
+          This is the yume page
+          <p>p in h1</p>
+        </h1>
+        <p className="paragraph">pragraph with class</p>
+        <h1>this is h1 without p</h1>
+        <div className="gridContainer cards">
+          <div className="card">
+            <p>text</p>
+          </div>
+          <div className="card">
+            <p>text</p>
+          </div>
+          <div className="card">
+            <p>text</p>
+          </div>
+          <div className="card">
+            <p>text</p>
+          </div>
+          <div className="card">
+            <p>text</p>
+          </div>
+          <div className="card">
+            <p>text</p>
+          </div>
+        </div>
         <Stack>
           <Text color="blue" fw={900} fz={60}>
             yume

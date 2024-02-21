@@ -15,6 +15,7 @@ interface SpaceSelectInputProps {
   labels?: { organization: string; space: string };
   form?: UseFormReturnType<Record<string, unknown>> | null;
   className?: string;
+  placeholder?: string;
   onChangeCallback?: (value: string | null) => void;
   // organizationsLabel?: string;
   // spacesLabel?: string;
@@ -25,6 +26,7 @@ const SpaceSelectInput = ({
   size = 'xs',
   labels,
   form = null,
+  placeholder = '',
   className,
   onChangeCallback,
 }: SpaceSelectInputProps) => {
@@ -71,6 +73,7 @@ const SpaceSelectInput = ({
         label={labels?.space}
         onClick={handleGetSpaces}
         data={spaces}
+        placeholder={placeholder}
         value={get?.space}
         onChange={handleChange}
         style={style}

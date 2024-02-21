@@ -25,6 +25,7 @@ import { components } from '../overrides';
 import '../../next-i18next.config';
 import '../../i18n';
 import '../styles/global.css';
+import '../styles/test.css';
 import '../styles/nprogress.css';
 import { useLocale } from '../../hooks/useLocale';
 import { NprogressBar } from '../components/progress-bar/NprogressBar';

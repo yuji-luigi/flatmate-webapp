@@ -1,0 +1,77 @@
+@scope (.yumePage) {
+  :scope {
+    h1:has(p) {
+      background-color: red;
+    }
+
+    p:not(.paragraph) {
+      color: green;
+    }
+
+    /* .gridContainer {
+  display: grid;
+  grid-template-rows: repeat(auto-fill, 1fr);
+  grid-template-columns: repeat(auto-fit, 1fr);
+
+  gap: var(--flex-gap);
+  place-content: start stretch;
+  place-items: center start;
+} */
+    .gridContainer {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(50px, 1fr)); /* Adjust 200px to your needs */
+      gap: var(--flex-gap);
+      place-content: start stretch;
+      place-items: center start;
+    }
+    /* .card {
+  display: grid;
+  width: 100%;
+  grid-template-rows: repeat(auto-fill, 1fr);
+  background-color: white;
+  border-radius: 4px;
+  padding: var(--padding-card-xs);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  &:hover {
+    background-color: grey;
+    transform: scale(1.05);
+  }
+}
+
+.card:has(:not(:hover)) {
+  background-color: white;
+  transform: scale(0.5);
+} */
+    /* Base card styles */
+
+    .card {
+      display: grid;
+      width: 100%;
+      grid-template-rows: repeat(auto-fill, 1fr);
+      background-color: white;
+      border-radius: 4px;
+      padding: var(--padding-card-xs);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    /* Container for cards */
+    .cards {
+      /* This will be the flex or grid container holding the cards */
+      display: grid;
+      gap: 10px; /* Adjust the gap as necessary */
+    }
+
+    .cards:has(.card:hover) .card:not(:hover) {
+      /* Default transform for non-hovered cards when any card is hovered */
+      transform: scale(0.95); /* Slightly smaller */
+    }
+
+    .card:hover {
+      background-color: grey;
+      transform: scale(1.05); /* Make hovered card bigger */
+      z-index: 2; /* Ensure hovered card is above others */
+    }
+  }
+}
