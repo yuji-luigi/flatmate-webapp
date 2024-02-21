@@ -24,40 +24,9 @@ export const PermissionsByRole = (props: PermissionsByRoleProps) => {
             <Switch
               key={field.name}
               label={field.label}
-              {...form.getInputProps(`${role}.${field.name}`, { type: 'checkbox' })}
+              {...form.getInputProps(`${field.name}`, { type: 'checkbox' })}
             />
           ))}
-          {/* <Switch
-            label="Create Post"
-            {...form.getInputProps(`${role}.canCreatePost`, { type: 'checkbox' })}
-          />
-          <Switch
-            label="Create Maintenance"
-            name="canCreateMaintenance"
-            {...form.getInputProps(`${role}.canCreateMaintenance`, { type: 'checkbox' })}
-          />
-          <Switch
-            label="Notify Maintainer"
-            name="canNotifyMaintainer"
-            {...form.getInputProps(`${role}.canNotifyMaintainer`, { type: 'checkbox' })}
-          />
-        </Box>
-        <Box className={classes.inputs}>
-          <Switch
-            label="Delete Post"
-            name="canDeletePost"
-            {...form.getInputProps(`${role}.canDeletePost`, { type: 'checkbox' })}
-          />
-          <Switch
-            label="Delete Maintenance"
-            name="canDeleteMaintenance"
-            {...form.getInputProps(`${role}.canDeleteMaintenance`, { type: 'checkbox' })}
-          />
-          <Switch
-            label="Delete Comment"
-            name="canDeleteComment"
-            {...form.getInputProps(`${role}.canDeleteComment`, { type: 'checkbox' })}
-          /> */}
         </Box>
       </fieldset>
     </Box>
