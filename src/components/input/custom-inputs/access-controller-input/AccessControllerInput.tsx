@@ -1,37 +1,41 @@
-import { Box, Button, Chip, Tabs, Text } from '@mantine/core';
+import { Box, Button, Tabs, Text } from '@mantine/core';
 import { useEffect, useMemo, useState } from 'react';
 import { UseFormReturnType, useForm } from '@mantine/form';
-import { access } from 'fs';
 import { AccessControllerFormFieldType } from '../../../../types/general/data/data-table/form-field-type/formField-types';
 import { useLocale } from '../../../../../hooks/useLocale';
 import { useCustomModalContext } from '../../../../context/modal-context/_ModalContext';
 import { TabList } from '../../../tab/TabList';
 import { Icons } from '../../../../data/icons/icons';
-import { TabPanels } from '../../../tab/TabPanels';
 import SpaceSelectInput from '../../../select-custom/SpaceSelectInput';
 import classes from './AccessControllerInput.module.css';
 import { PermissionsByRole } from './permissions-form/PermissionsByRole';
 import { useItemSlice } from '../../../../redux/features/crud/selectedItemSlice';
 import { useCrudSelectors, useCrudSliceStore } from '../../../../redux/features/crud/crudSlice';
-import { RoleModel, UserModel } from '../../../../types/models/space-model';
+import { Role, RoleModel, UserModel } from '../../../../types/models/space-model';
 import { SubmitByRoleButton } from './submit-buttons/SubmitByRoleButton';
 import { SubmitAllRoleButton } from './submit-buttons/SubmitAllRoleButton';
 import inputClasses from '../../input-style.module.css';
 import { AccessControllerDisplay } from './access-controller-display/AccessControllerDisplay';
 import {
   AccessControllerModel,
+  permissionsDefaultValues,
   permissionsFormField,
 } from '../../../../types/models/access-controller-type';
 import { AccCtrlSpaceChips } from './space-chip/AccCtrlSpaceChips';
+import AddRoleButton from './add-role-button/AddRoleButton';
+import { PermissionsArraySwitches } from './permissions-form/PermissionsArraySwitches';
 
 interface Prop {
   formField: AccessControllerFormFieldType;
   form: UseFormReturnType<Record<string, unknown>>;
 }
-export const AccessControllerForm = ({ formField, form, ...others }: Prop) => {
+export const AccessControllerInputButton = ({ formField, form, ...others }: Prop) => {
   const [show, setShow] = useState(false);
   const { t } = useLocale();
   useItemSlice<{ space: string | null }>({ space: '' });
+  const { fetchCrudDocuments } = useCrudSliceStore();
+  const { crudDocument: selectedUser } = useCrudSelectors<UserModel>('users');
+
   const handleShowInputs = () => {
     setShow(!show);
     openConfirmModal({
@@ -45,7 +49,11 @@ export const AccessControllerForm = ({ formField, form, ...others }: Prop) => {
     });
   };
   const { openConfirmModal } = useCustomModalContext();
-
+  useEffect(() => {
+    fetchCrudDocuments({ entity: 'roles' });
+    fetchCrudDocuments({ entity: 'accessControllers', queryObject: { user: selectedUser._id } });
+    return () => {};
+  }, []);
   return (
     <>
       <Button
@@ -66,52 +74,43 @@ export const AccessControllerForm = ({ formField, form, ...others }: Prop) => {
 };
 
 const AccessControllerFormContents = (props: Prop) => {
-  const [currentRole, setCurrentRole] = useState<string | null>('');
-  const { formField, form: parentForm, ...others } = props;
-  const { fetchCrudDocuments } = useCrudSliceStore();
+  const [currentRole, setCurrentRole] = useState<RoleModel | null | undefined>(null);
+  const { formField, form, ...others } = props;
+  const [go, setGo] = useState(false);
+  const accessControlForm = useForm<Record<string, unknown>>();
   const { get } = useItemSlice<{ space: string | null }>();
   const { crudDocuments: roles, crudStatus } = useCrudSelectors<RoleModel>('roles');
   const { crudDocument: selectedUser } = useCrudSelectors<UserModel>('users');
-  const { crudDocuments: accessControllers } =
-    useCrudSelectors<AccessControllerModel>('accessControllers');
-  console.log(accessControllers);
-  useEffect(() => {
-    fetchCrudDocuments({ entity: 'roles' });
-    fetchCrudDocuments({ entity: 'accessControllers', queryObject: { user: selectedUser._id } });
-    return () => {};
-  }, []);
-  const initialValues = useMemo(() => {
-    const object: Record<string, any> = {
-      space: get?.space,
-      user: selectedUser._id,
-      parentForm,
-    };
+  const { crudDocuments: accessControllers } = useCrudSelectors<
+    AccessControllerModel & { role: { name: Role; _id: string } }
+  >('accessControllers');
+  const accessController = useMemo(() => {
+    const _accessController = accessControllers.find(
+      (aCtrl) => aCtrl.role._id === currentRole?._id && aCtrl.space
+    );
+    const defaultValue = permissionsFormField.reduce<
+      Omit<AccessControllerModel, 'createdAt' | '_id' | 'updatedAt'>
+    >(
+      (acc, permission) => {
+        return acc;
+      },
+      {
+        user: selectedUser._id,
+        role: currentRole?._id || '',
+        space: get?.space || '',
+        permissions: permissionsDefaultValues,
+      }
+    );
 
-    //
-    roles.forEach((role) => {
-      const roleName = role.name;
-      const permissionsByRole = accessControllers
-        ?.filter((ctrl) => ctrl.space === get?.space)
+    return _accessController || defaultValue;
+  }, [currentRole?._id, get?.space]);
 
-        .find((item) => item.role?.name === roleName);
-      permissionsFormField.forEach((field) => {
-        const { name: permissionName } = field;
-        object[roleName] = {
-          ...object[roleName],
-          [permissionName]:
-            permissionsByRole?.permissions.find((p) => p.name === permissionName)?.allowed ||
-            field.defaultValue,
-        };
-      });
-    });
-    return object;
-  }, [roles.length, selectedUser._id, get?.space]);
-  const form = useForm<Record<string, unknown>>({ initialValues });
+  // const form = useForm<Record<string, unknown>>({ initialValues });
 
   useEffect(() => {
-    form.setValues(initialValues);
-    setCurrentRole(roles[0]?.name);
-  }, [initialValues]);
+    accessControlForm.setValues(accessController);
+    // setGo(true);
+  }, [accessController]);
 
   if (crudStatus === 'loading') return <div>Loading...</div>;
   const tabList: TabList[] = roles.map((role) => {
@@ -119,17 +118,23 @@ const AccessControllerFormContents = (props: Prop) => {
       icon: <Icons.user size={20} />,
       label: role.name.toUpperCase(),
       value: role.name,
-      component: PermissionsByRole,
+      component: PermissionsArraySwitches,
       componentProps: { role: role.name },
-      form,
+      form: accessControlForm,
     };
   });
 
   if (!tabList.length) return <div>loading...</div>;
   return (
-    <Tabs defaultValue={tabList[0].value} onChange={setCurrentRole}>
+    <Tabs onChange={(value) => setCurrentRole(roles.find((role) => role._id === value))}>
       <Box component="form" className={classes.formsByRole}>
-        <SpaceSelectInput size="sm" className={classes.spaceInput} />
+        <SpaceSelectInput
+          placeholder="Add permission in"
+          size="sm"
+          className={classes.spaceInput}
+        />
+        <AddRoleButton />
+
         <TabList
           list={tabList}
           classNames={{
@@ -146,12 +151,13 @@ const AccessControllerFormContents = (props: Prop) => {
             </Text>
           )}
         </Box>
-        <Box className={classes.tabPanels}>
+        <PermissionsArraySwitches role={currentRole?.name || ''} form={accessControlForm} />
+        {/* <Box className={classes.tabPanels}>
           <TabPanels list={tabList} form={form} />
-        </Box>
+        </Box> */}
         <Box className={classes.buttons}>
-          <SubmitByRoleButton form={form} currentRole={currentRole} />
-          <SubmitAllRoleButton form={form} />
+          <SubmitByRoleButton form={accessControlForm} currentRole={currentRole} />
+          <SubmitAllRoleButton form={accessControlForm} />
         </Box>
       </Box>
     </Tabs>
