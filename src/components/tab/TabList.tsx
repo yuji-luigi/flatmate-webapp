@@ -9,7 +9,7 @@ export interface TabList<ComponentProps = any> {
   icon: React.ReactNode;
   label: string;
   value: string;
-  component: (props: any) => JSX.Element | null;
+  component: ((props: any) => JSX.Element) | null;
   componentProps?: ComponentProps;
   form?: UseFormReturnType<Record<string, unknown>>;
   // component: React.ReactNode;
@@ -29,8 +29,6 @@ export const TabList = ({
   // position?: 'left' | 'center' | 'right';
 }) => {
   const { isLargeScreen } = useCustomMQuery();
-  const { form } = other;
-  console.log({ values: form?.values });
   return (
     <Tabs.List className={`${classes.tabListWrapper} ${classNames?.tabList}`}>
       {list.map((item) => (

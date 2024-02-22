@@ -35,7 +35,8 @@ export const AccessControllerInputButton = ({ formField, form, ...others }: Prop
   useItemSlice<{ space: string | null }>({ space: '' });
   const { fetchCrudDocuments } = useCrudSliceStore();
   const { crudDocument: selectedUser } = useCrudSelectors<UserModel>('users');
-
+  const { get } = useItemSlice<{ space: string | null; role: RoleModel }>();
+  const { crudDocument: currentRole } = useCrudSelectors<RoleModel>('roles');
   const handleShowInputs = () => {
     setShow(!show);
     openConfirmModal({
@@ -54,33 +55,6 @@ export const AccessControllerInputButton = ({ formField, form, ...others }: Prop
     fetchCrudDocuments({ entity: 'accessControllers', queryObject: { user: selectedUser._id } });
     return () => {};
   }, []);
-  return (
-    <>
-      <Button
-        style={{ placeContent: 'center' }}
-        className={`${inputClasses.input}`}
-        onClick={handleShowInputs}
-        data-column="4"
-        variant="outline"
-        leftSection={<Icons.alert size={20} />}
-      >
-        {t('Manage Access')}
-      </Button>
-      <AccessControllerDisplay
-        aCtrlValues={form.values.accessController as Record<string, boolean>[]}
-      />
-    </>
-  );
-};
-
-const AccessControllerFormContents = (props: Prop) => {
-  const [currentRole, setCurrentRole] = useState<RoleModel | null | undefined>(null);
-  const { formField, form, ...others } = props;
-  const [go, setGo] = useState(false);
-  const accessControlForm = useForm<Record<string, unknown>>();
-  const { get } = useItemSlice<{ space: string | null }>();
-  const { crudDocuments: roles, crudStatus } = useCrudSelectors<RoleModel>('roles');
-  const { crudDocument: selectedUser } = useCrudSelectors<UserModel>('users');
   const { crudDocuments: accessControllers } = useCrudSelectors<
     AccessControllerModel & { role: { name: Role; _id: string } }
   >('accessControllers');
@@ -105,12 +79,41 @@ const AccessControllerFormContents = (props: Prop) => {
     return _accessController || defaultValue;
   }, [currentRole?._id, get?.space]);
 
-  // const form = useForm<Record<string, unknown>>({ initialValues });
-
   useEffect(() => {
-    accessControlForm.setValues(accessController);
+    form.setValues((prev) => ({ ...prev, accessController }));
+    form.setValues((prev) => ({ ...prev, jjjjj: 'kjopjoih;i' }));
     // setGo(true);
   }, [accessController]);
+  return (
+    <>
+      <Button
+        style={{ placeContent: 'center' }}
+        className={`${inputClasses.input}`}
+        onClick={handleShowInputs}
+        data-column="4"
+        variant="outline"
+        leftSection={<Icons.alert size={20} />}
+      >
+        {t('Manage Access')}
+      </Button>
+      <AccessControllerDisplay
+        aCtrlValues={form.values.accessController as Record<string, boolean>[]}
+      />
+    </>
+  );
+};
+
+const AccessControllerFormContents = (props: Prop) => {
+  const [currentRole, setCurrentRole] = useState<RoleModel | null | undefined>(null);
+  const { formField, form, ...others } = props;
+  const { crudDocuments: roles, crudStatus } = useCrudSelectors<RoleModel>('roles');
+  const { crudDocument: selectedUser } = useCrudSelectors<UserModel>('users');
+  const { crudDocuments: accessControllers } = useCrudSelectors<
+    AccessControllerModel & { role: { name: Role; _id: string } }
+  >('accessControllers');
+  const { setCrudDocument } = useCrudSliceStore();
+
+  // const form = useForm<Record<string, unknown>>({ initialValues });
 
   if (crudStatus === 'loading') return <div>Loading...</div>;
   const tabList: TabList[] = roles.map((role) => {
@@ -118,15 +121,17 @@ const AccessControllerFormContents = (props: Prop) => {
       icon: <Icons.user size={20} />,
       label: role.name.toUpperCase(),
       value: role.name,
-      component: PermissionsArraySwitches,
+      component: null,
       componentProps: { role: role.name },
-      form: accessControlForm,
     };
   });
-
   if (!tabList.length) return <div>loading...</div>;
   return (
-    <Tabs onChange={(value) => setCurrentRole(roles.find((role) => role._id === value))}>
+    <Tabs
+      onChange={(value) =>
+        setCrudDocument({ entity: 'roles', document: roles.find((role) => role._id === value) })
+      }
+    >
       <Box component="form" className={classes.formsByRole}>
         <SpaceSelectInput
           placeholder="Add permission in"
@@ -151,13 +156,12 @@ const AccessControllerFormContents = (props: Prop) => {
             </Text>
           )}
         </Box>
-        <PermissionsArraySwitches role={currentRole?.name || ''} form={accessControlForm} />
-        {/* <Box className={classes.tabPanels}>
-          <TabPanels list={tabList} form={form} />
-        </Box> */}
+        <Box className={classes.tabPanels}>
+          <PermissionsArraySwitches form={form} />
+        </Box>
         <Box className={classes.buttons}>
-          <SubmitByRoleButton form={accessControlForm} currentRole={currentRole} />
-          <SubmitAllRoleButton form={accessControlForm} />
+          <SubmitByRoleButton form={form} />
+          <SubmitAllRoleButton form={form} />
         </Box>
       </Box>
     </Tabs>
