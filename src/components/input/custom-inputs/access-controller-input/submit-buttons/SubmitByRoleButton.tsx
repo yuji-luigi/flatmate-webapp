@@ -9,6 +9,7 @@ import { useLocale } from '../../../../../../hooks/useLocale';
 import { useCustomModalContext } from '../../../../../context/modal-context/_ModalContext';
 import { useCrudSelectors } from '../../../../../redux/features/crud/crudSlice';
 import { RoleModel } from '../../../../../types/models/space-model';
+import { useItemSlice } from '../../../../../redux/features/crud/selectedItemSlice';
 
 type SubmitByRoleButtonProps = {
   form: UseFormReturnType<Record<string, unknown>>;
