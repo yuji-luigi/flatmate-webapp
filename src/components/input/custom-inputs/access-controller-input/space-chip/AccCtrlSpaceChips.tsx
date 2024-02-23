@@ -29,14 +29,19 @@ export const AccCtrlSpaceChips: React.FC = () => {
   );
 };
 function SpaceChip({ spaceId, spaces }: { spaceId: string; spaces: SpaceModel[] }) {
-  const { get, set } = useItemSlice<{ space: string | null; spaceObject?: null | SpaceModel }>();
+  const { get, set } = useItemSlice<{ space?: null | SpaceModel }>();
   const handleSelected = () => {
-    set({ space: spaceId, spaceObject: spaces.find((space) => space._id === spaceId) });
+    set({ space: spaces.find((space) => space._id === spaceId) });
   };
   const spaceName = spaces.find((space) => space._id === spaceId)?.name;
   return (
     <>
-      <Chip onClick={handleSelected} checked={get?.space === spaceId} value={spaceId} fw="bold">
+      <Chip
+        onClick={handleSelected}
+        checked={get?.space?._id === spaceId}
+        value={spaceId}
+        fw="bold"
+      >
         {spaceName || 'Error: Space not found'}
       </Chip>
     </>

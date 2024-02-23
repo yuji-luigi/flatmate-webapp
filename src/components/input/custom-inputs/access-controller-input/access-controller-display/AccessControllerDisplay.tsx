@@ -12,7 +12,7 @@ type AccessControllerDisplayProps = {
 export const AccessControllerDisplay: React.FC<AccessControllerDisplayProps> = (
   props: AccessControllerDisplayProps
 ) => {
-  const { get } = useItemSlice<{ space: string | null; spaceObject?: null | SpaceModel }>();
+  const { get } = useItemSlice<{ space?: null | SpaceModel }>();
   const { aCtrlValues } = props;
   if (!aCtrlValues?.length) return null;
   return (
@@ -20,7 +20,7 @@ export const AccessControllerDisplay: React.FC<AccessControllerDisplayProps> = (
       <Accordion className={classes.accordion} chevronPosition="right" variant="contained">
         <Accordion.Item value="a">
           <Accordion.Control>
-            {get?.spaceObject?.name}
+            {get?.space?.name}
             {t(" : See user's granted accesses")}
           </Accordion.Control>
           <Box className={classes.contentsContainer}>
