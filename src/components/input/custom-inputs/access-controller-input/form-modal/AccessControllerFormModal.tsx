@@ -3,7 +3,7 @@ import { UseFormReturnType } from '@mantine/form';
 import { Icons } from '../../../../../data/icons/icons';
 import { useCrudSelectors, useCrudSliceStore } from '../../../../../redux/features/crud/crudSlice';
 import { AccessControllerModel } from '../../../../../types/models/access-controller-type';
-import { RoleModel, Role } from '../../../../../types/models/space-model';
+import { RoleModel, Role, SpaceModel } from '../../../../../types/models/space-model';
 import SpaceSelectInput from '../../../../select-custom/SpaceSelectInput';
 import { TabList } from '../../../../tab/TabList';
 import AddRoleButton from '../add-role-button/AddRoleButton';
@@ -11,18 +11,16 @@ import { PermissionsArraySwitches } from '../permissions-form/PermissionsArraySw
 import { AccCtrlSpaceChips } from '../space-chip/AccCtrlSpaceChips';
 import { SubmitByRoleButton } from '../submit-buttons/SubmitByRoleButton';
 import classes from '../AccessControllerInput.module.css';
+import { useItemSlice } from '../../../../../redux/features/crud/selectedItemSlice';
 
 export const AccessControllerFormModal = (props: {
+  form: UseFormReturnType<Record<string, any>>;
   opened: boolean;
   closeModal: () => void;
-  form: UseFormReturnType<Record<string, any>>;
 }) => {
-  const { form, opened, closeModal } = props;
+  const { opened, closeModal, form } = props;
+  const { get } = useItemSlice<{ space?: SpaceModel; role?: RoleModel }>();
   const { crudDocuments: roles, crudStatus } = useCrudSelectors<RoleModel>('roles');
-  const { crudDocuments: accessControllers } = useCrudSelectors<
-    AccessControllerModel & { role: { name: Role; _id: string } }
-  >('accessControllers');
-  const { setCrudDocument } = useCrudSliceStore();
 
   if (crudStatus === 'loading') return <div>Loading...</div>;
   const tabList: TabList[] = roles.map((role) => {
@@ -35,7 +33,7 @@ export const AccessControllerFormModal = (props: {
     };
   });
   if (!tabList.length) return <div>loading...</div>;
-
+  const canProceed = get?.space && get.role;
   return (
     <Modal
       centered
@@ -48,10 +46,10 @@ export const AccessControllerFormModal = (props: {
         body: 'modalBody',
       }}
     >
-      {/* <ModalHeader>hhh</ModalHeader> */}
       <Box component="form" className={classes.formsByRole}>
         <SpaceSelectInput placeholder="Add permission in" size="sm" />
         <AddRoleButton />
+        {canProceed && <PermissionsArraySwitches form={form} />}
 
         {/* <Box>
           {accessControllers?.length ? (

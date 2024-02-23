@@ -38,12 +38,14 @@
   --padding-x: 16px;
   --padding-x-list: var(--padding-x);
   --padding-y-list: 24px;
+  --padding-y-list-md: 40px;
   --padding-y-list-sm: 12px;
   --padding-y-list-xs: 6px;
   --padding-card-x: 40px;
   --padding-card-y: 32px;
   --padding-card: var(--padding-card-y) var(--padding-card-x);
   --padding-card-xs: var(--padding-x) 8px;
+  --padding-card-sm: var(--padding-x) 8px;
 
   --spacing-md: 24px;
 
@@ -51,6 +53,8 @@
 
   --max-width: var(--break-point-lg);
   --max-width-feed-card: var(--break-point-sm);
+
+  --list-height: 40px;
 
   /* --font-size-article: 24px; */
   :root.light {
@@ -89,6 +93,18 @@ a {
 p {
   margin: 0;
 }
+
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
 .title {
   font-size: var(--font-size-title);
   font-weight: var(--font-weight-title);
@@ -117,16 +133,38 @@ p {
   padding-top: var(--padding-card-y);
   padding-bottom: calc(var(--padding-card-y) / 1.25);
 }
-
-.ulEl {
+.listWrapper {
+  padding: var(--padding-card);
+  padding-top: 0;
+  @media (max-width: $mantine-breakpoint-sm) {
+    padding-inline: calc(- var(--pading-x));
+  }
+}
+.modalList {
   display: flex;
+  justify-content: center;
   flex-direction: column;
-  list-style: none;
-  gap: var(--flex-gap);
+  padding-inline: calc(var(--padding-x-list) * 4);
+  padding-block: var(--padding-y-list);
+  @media (max-width: $mantine-breakpoint-sm) {
+    padding-inline: calc(- var(--pading-x-list));
+    padding-block: var(--padding-y-list-sm);
+  }
 }
 
-.ulEl > li {
-  &:hover {
-    transform: scale(1.2);
+.modalListItem {
+  font-size: var(--font-size-card-title);
+  padding-block: var(--padding-y-list-sm);
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  @media (max-width: $mantine-breakpoint-sm) {
+    padding-block: var(--padding-y-list);
   }
+  &.expand:hover {
+    transform: scale(1.1);
+  }
+}
+
+.modalList:has(.expand):has(:hover) .modalListItem:not(:hover) {
+  transform: scale(0.9);
 }
