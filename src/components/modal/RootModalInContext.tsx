@@ -4,7 +4,6 @@ import { CrudModal } from '../../context/modal-context/CrudModal';
 import CustomModal from '../../context/modal-context/CustomModal';
 import { useCustomModalContext } from '../../context/modal-context/_ModalContext';
 import { RegularModal } from '../../context/modal-context/RegularModal';
-import classes from './modal-base.module.css';
 
 export function ModalRootCustom() {
   const { isOpenModal: opened, closeModal: close, modalData } = useCustomModalContext();
@@ -32,12 +31,12 @@ export function ModalRootCustom() {
       onClose={close}
       title={modalData.title}
       classNames={{
-        title: classes.modalTitle,
-        header: classes.modalHeader,
-        body: classes.modalBody,
+        title: 'modalTitle',
+        header: 'modalHeader',
+        body: 'modalBody',
       }}
     >
-      <Box className={classes.container}>{modalContent}</Box>
+      <Box>{modalContent}</Box>
     </Modal>
   );
 }

@@ -3,7 +3,6 @@ import { Modal } from '@mantine/core';
 import HeaderModalForm from './HeaderModalForm';
 import { useSimpleDisclosureCtx } from '../../../../hooks/useSimpleDisclosureCtx';
 import { SectionDataJsonWithRoles } from '../../../types/general/data/data-table/sectionsJson-type';
-import classes from '../modal-base.module.css';
 
 export const HeaderCreationModal = ({
   modalType,
@@ -23,9 +22,9 @@ export const HeaderCreationModal = ({
       size="lg"
       title={section?.createButton}
       classNames={{
-        title: classes.modalTitle,
-        header: classes.modalHeader,
-        body: classes.modalBody,
+        title: 'modalTitle',
+        header: 'modalHeader',
+        body: 'modalBody',
       }}
     >
       <HeaderModalForm entity={modalType} />
