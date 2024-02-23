@@ -19,7 +19,7 @@ export function UserMenu() {
       <Menu
         withArrow
         width={300}
-        justify="bottom"
+        position="bottom"
         transitionProps={{ transition: 'pop' }}
         withinPortal
       >
