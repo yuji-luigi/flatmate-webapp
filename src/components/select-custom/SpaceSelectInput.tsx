@@ -33,9 +33,8 @@ const SpaceSelectInput = ({
   const [spaces, setSpaces] = useState<ComboboxItem[]>([]);
   const { setCrudDocuments, setCrudDocument } = useCrudSliceStore();
   const { crudDocuments } = useCrudSelectors<SpaceModel>('spaces');
-  const { set, get } = useItemSlice<{ space: string | null; spaceObject?: null | SpaceModel }>({
-    space: '',
-    spaceObject: null,
+  const { set, get } = useItemSlice<{ space: SpaceModel | null }>({
+    space: null,
   });
   const handleGetSpaces = async () => {
     try {
@@ -57,28 +56,28 @@ const SpaceSelectInput = ({
     handleGetSpaces();
   }, []);
   const handleChange = (value: string | null) => {
-    set({ space: value, spaceObject: crudDocuments.find((space) => space._id === value) });
-
+    set((prev) => ({
+      ...prev,
+      space: crudDocuments.find((space) => space._id === value) || null,
+    }));
     onChangeCallback?.(value);
   };
 
   return (
-    <Box className={className}>
-      <Select
-        name="space"
-        size={size}
-        clearable
-        searchable
-        disabled={!spaces.length}
-        label={labels?.space}
-        onClick={handleGetSpaces}
-        data={spaces}
-        placeholder={placeholder}
-        value={get?.space}
-        onChange={handleChange}
-        style={style}
-      />
-    </Box>
+    <Select
+      name="space"
+      size={size}
+      clearable
+      searchable
+      disabled={!spaces.length}
+      label={labels?.space}
+      data={spaces}
+      placeholder={placeholder}
+      value={get?.space?._id || null}
+      onChange={handleChange}
+      style={style}
+      className={className}
+    />
   );
 };
 
