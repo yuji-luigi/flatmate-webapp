@@ -13,7 +13,7 @@ interface Prop {
   form: UseFormReturnType<Record<string, any>>;
 }
 export const AccessControllerFormButton = ({ form, ...others }: Prop) => {
-  const { t } = useLocale();
+  const { t } = useLocale('common');
   const { fetchCrudDocuments } = useCrudSliceStore();
   const { crudDocument: selectedUser } = useCrudSelectors<UserModel>('users');
   const [opened, setOpened] = useState(false);

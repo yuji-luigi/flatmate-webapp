@@ -20,7 +20,7 @@ export const SubmitByRoleButton: React.FC<SubmitByRoleButtonProps> = (
 ) => {
   const { closeModal } = useCustomModalContext();
   const { form } = props;
-  const { t } = useLocale();
+  const { t } = useLocale('common');
   const { crudDocument: currentRole } = useCrudSelectors<RoleModel>('roles');
   const handleSubmitByRole = async () => {
     const { user, space } = form.values;

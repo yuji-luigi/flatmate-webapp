@@ -2,43 +2,91 @@ import {
   ActionIcon,
   Box,
   Button,
+  Group,
   List,
   ListItem,
   Menu,
   Modal,
   MultiSelect,
+  Stack,
   TextInput,
+  Tooltip,
 } from '@mantine/core';
 import React from 'react';
+import { showNotification } from '@mantine/notifications';
+import { UseFormReturnType } from '@mantine/form';
 import { Icons } from '../../../../../data/icons/icons';
 import { useCrudSelectors } from '../../../../../redux/features/crud/crudSlice';
-import { RoleModel } from '../../../../../types/models/space-model';
+import { RoleModel, SpaceModel } from '../../../../../types/models/space-model';
 import { useItemSlice } from '../../../../../redux/features/crud/selectedItemSlice';
+import { useLocale } from '../../../../../../hooks/useLocale';
+import { useCreateAccessControllerValue } from '../useCreateAccessControllerValue';
+import { AccessControllerModel } from '../../../../../types/models/access-controller-type';
 
-const AddRoleButton = () => {
+const AddRoleButton = ({ form }: { form: UseFormReturnType<Record<string, any>> }) => {
   const { crudDocuments: roles, crudStatus } = useCrudSelectors<RoleModel>('roles');
-  const { get, set } = useItemSlice<{ space: string; role: null | RoleModel }>();
+  const { t } = useLocale('common');
+  const { get, set } = useItemSlice<{ space: SpaceModel; role: null | RoleModel }>();
+  const [selectedRole, setSelectedRole] = React.useState<RoleModel | null>(null);
+  const newlyACrtl = useCreateAccessControllerValue();
   const [opened, setOpened] = React.useState(false);
   const handleOpen = () => setOpened(true);
   const handleClose = () => setOpened(false);
+  const handleAddRole = () => {
+    if (!selectedRole) {
+      showNotification({ title: t('Error'), message: t('Please select a role'), color: 'red' });
+      return;
+    }
+    set((prev) => ({ ...prev, role: selectedRole }));
+    const foundAccessController = form.values.accessControllers?.find(
+      (actrl: Omit<AccessControllerModel, '_id'>) =>
+        actrl.role === newlyACrtl.role && actrl.space === newlyACrtl.space
+    );
+    const updatedAccessControllers = foundAccessController
+      ? form.values.accessControllers?.map((actrl: Omit<AccessControllerModel, '_id'>) => {
+          if (actrl.role === newlyACrtl.role && actrl.space === newlyACrtl.space) {
+            return newlyACrtl;
+          }
+          return actrl;
+        })
+      : [...form.values.accessControllers, newlyACrtl];
+
+    form.setValues((prev) => ({ ...prev, accessControllers: updatedAccessControllers }));
+  };
+  const handleReset = () => {
+    setSelectedRole(null);
+    set((prev) => ({ ...prev, role: null }));
+  };
+  const disabled = !get?.space;
   return (
     <>
       <TextInput
+        disabled={disabled}
         readOnly
         onClick={handleOpen}
-        placeholder="Add a role"
-        value={get?.role?.name || ''}
+        placeholder={t('Add a role')}
+        value={selectedRole?.name || ''}
+        rightSectionWidth={70}
         rightSection={
-          <ActionIcon onClick={handleOpen}>
-            <Icons.plus />
-          </ActionIcon>
+          <Box className="inputRightIcons">
+            <Tooltip label={disabled ? t('Please select a space') : t('Add')}>
+              <ActionIcon disabled={disabled} onClick={handleAddRole}>
+                <Icons.plus />
+              </ActionIcon>
+            </Tooltip>
+            <Tooltip label={disabled ? t('Please select a space') : t('Reset')}>
+              <ActionIcon disabled={disabled} onClick={handleReset}>
+                <Icons.reload />
+              </ActionIcon>
+            </Tooltip>
+          </Box>
         }
       />
       <Modal
         centered
         onClose={handleClose}
         opened={opened}
-        title="Select a role"
+        title={t('Select a role')}
         classNames={{
           title: 'modalTitle',
           header: 'modalHeader',
@@ -51,7 +99,7 @@ const AddRoleButton = () => {
               className="modalListItem expand"
               key={role._id}
               onClick={() => {
-                set((prev) => ({ ...prev, role }));
+                setSelectedRole(role);
                 handleClose();
               }}
             >

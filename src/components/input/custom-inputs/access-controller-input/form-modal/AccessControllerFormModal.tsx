@@ -12,6 +12,7 @@ import { AccCtrlSpaceChips } from '../space-chip/AccCtrlSpaceChips';
 import { SubmitByRoleButton } from '../submit-buttons/SubmitByRoleButton';
 import classes from '../AccessControllerInput.module.css';
 import { useItemSlice } from '../../../../../redux/features/crud/selectedItemSlice';
+import { useLocale } from '../../../../../../hooks/useLocale';
 
 export const AccessControllerFormModal = (props: {
   form: UseFormReturnType<Record<string, any>>;
@@ -19,6 +20,7 @@ export const AccessControllerFormModal = (props: {
   closeModal: () => void;
 }) => {
   const { opened, closeModal, form } = props;
+  const { t } = useLocale('common');
   const { get } = useItemSlice<{ space?: SpaceModel; role?: RoleModel }>();
   const { crudDocuments: roles, crudStatus } = useCrudSelectors<RoleModel>('roles');
 
@@ -39,18 +41,34 @@ export const AccessControllerFormModal = (props: {
       centered
       opened={opened}
       onClose={closeModal}
-      title="Manage Access Control"
+      fullScreen
+      // title={t('Manage Access Control')}
       classNames={{
         title: 'modalTitle',
         header: 'modalHeader',
         body: 'modalBody',
       }}
     >
-      <Box component="form" className={classes.formsByRole}>
-        <SpaceSelectInput placeholder="Add permission in" size="sm" />
-        <AddRoleButton />
-        {canProceed && <PermissionsArraySwitches form={form} />}
-
+      <Box component="form" className="access-control-modal-content">
+        <Text className="modalTitle" mb={16}>
+          {t('Manage Access Control')}
+        </Text>
+        <Box className="access-control-modal-Add-new-section">
+          <Box className="access-control-modal-first-inputs">
+            <Text size="xl" fw={700}>
+              {t('Add new access control')}
+            </Text>
+            <SpaceSelectInput placeholder={t('Add permission in')} size="sm" />
+            <AddRoleButton form={form} />
+          </Box>
+          <Box className="access-control-modal-permission-switches">
+            {form.values.accessControllers?.map((actrl: AccessControllerModel) => (
+              <PermissionsArraySwitches key={actrl.role} form={form} actrl={actrl} />
+            ))}
+          </Box>
+        </Box>
+        {/* {canProceed && <PermissionsArraySwitches form={form} />}
+        {canProceed && <PermissionsArraySwitches form={form} />} */}
         {/* <Box>
           {accessControllers?.length ? (
             <AccCtrlSpaceChips />

@@ -5,12 +5,6 @@
   place-items: center start;
 }
 
-.formsByRole {
-  display: grid;
-  gap: var(--flex-gap-lg);
-  /* grid-template-columns: minmax(auto, 200px) auto; */
-  /* place-items: start; */
-}
 .tabList {
   display: flex;
   flex-direction: row;

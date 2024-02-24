@@ -21,7 +21,7 @@ export const SubmitAllRoleButton: React.FC<SubmitAllRoleButtonProps> = (
   const { parentForm } = form.values as Record<string, unknown> & {
     parentForm: UseFormReturnType<Record<string, unknown>>;
   };
-  const { t } = useLocale();
+  const { t } = useLocale('common');
   const { closeModal } = useCustomModalContext();
 
   const handleSubmitAllRoles: React.MouseEventHandler<HTMLButtonElement> = async () => {
