@@ -168,3 +168,33 @@ ul {
 .modalList:has(.expand):has(:hover) .modalListItem:not(:hover) {
   transform: scale(0.9);
 }
+
+.inputRightIcons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--flex-gap-xs);
+}
+
+/* AccessControllerInput component */
+.access-control-modal-content {
+  display: grid;
+  place-content: center;
+  place-items: ceneter;
+}
+.access-control-modal-Add-new-section {
+  display: grid;
+  grid-template-columns: minmax(auto, 300px) 1fr;
+  gap: var(--flex-gap-xl);
+}
+.access-control-modal-first-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: var(--flex-gap);
+}
+.access-control-modal-permission-switches {
+  display: flex;
+  flex-direction: column;
+  gap: var(--flex-gap-xl);
+}
+/* END AccessControllerInput component END*/
