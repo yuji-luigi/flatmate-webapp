@@ -39,5 +39,16 @@
 	"Done for this month": "Fatto per questo mese",
 	"Started but not completed(this month)": "Iniziato ma non completato (questo mese)",
 	"Not done for this month": "Non fatto per questo mese",
-	"Total spent for this month": "Totale speso per questo mese"
+	"Total spent for this month": "Totale speso per questo mese",
+	"Error": "Errore",
+	"Please select a role": "Seleziona un ruolo",
+	"Add": "Aggiungi",
+	"Reset": "Reset",
+	"Manage Access": "Gestisci Accesso",
+	"Please select a space": "Seleziona uno spazio",
+	"Manage Access Control": "Gestisci Controllo Accesso",
+	"Add permission in": "Aggiungi accesso in",
+	"Add a role": "Aggiungi un ruolo",
+	"Select a role": "Seleziona un ruolo",
+	"Add new access control": "Aggiungi nuovo controllo accesso"
 }

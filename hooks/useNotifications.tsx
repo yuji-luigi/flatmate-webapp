@@ -4,7 +4,7 @@ import { useLocale } from './useLocale';
 type useNotificationsProps = { message: string; title: string };
 
 export const useNotifications = () => {
-  const { t } = useLocale();
+  const { t } = useLocale('common');
   const notification = {
     show: (data: NotificationData, store: NotificationsStore) => {
       const message = typeof data.message === 'string' ? t(data.message) : data.message;
