@@ -63,7 +63,11 @@ export const AccessControllerFormModal = (props: {
           </Box>
           <Box className="access-control-modal-permission-switches">
             {form.values.accessControllers?.map((actrl: AccessControllerModel) => (
-              <PermissionsArraySwitches key={actrl.role} form={form} actrl={actrl} />
+              <PermissionsArraySwitches
+                key={typeof actrl.role === 'string' ? actrl.role : actrl.role._id}
+                form={form}
+                actrl={actrl}
+              />
             ))}
           </Box>
         </Box>
