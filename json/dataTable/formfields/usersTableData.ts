@@ -3,7 +3,7 @@ import { FormFieldTypes } from '../../../src/types/general/data/data-table/form-
 export const usersTableData: Array<FormFieldTypes> = [
   {
     id: 'role',
-    name: 'accessController',
+    name: 'accessControllers',
     label: 'Ruolo',
     type: 'access-controller',
     noTable: true,
