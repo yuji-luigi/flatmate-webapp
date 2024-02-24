@@ -28,7 +28,7 @@ const AddRoleButton = ({ form }: { form: UseFormReturnType<Record<string, any>> 
   const { t } = useLocale('common');
   const { get, set } = useItemSlice<{ space: SpaceModel; role: null | RoleModel }>();
   const [selectedRole, setSelectedRole] = React.useState<RoleModel | null>(null);
-  const newlyACrtl = useCreateAccessControllerValue();
+  const newlyACrtl = useCreateAccessControllerValue({ selectedRole });
   const [opened, setOpened] = React.useState(false);
   const handleOpen = () => setOpened(true);
   const handleClose = () => setOpened(false);
@@ -70,12 +70,12 @@ const AddRoleButton = ({ form }: { form: UseFormReturnType<Record<string, any>> 
         rightSection={
           <Box className="inputRightIcons">
             <Tooltip label={disabled ? t('Please select a space') : t('Add')}>
-              <ActionIcon disabled={disabled} onClick={handleAddRole}>
+              <ActionIcon disabled={disabled || !selectedRole} onClick={handleAddRole}>
                 <Icons.plus />
               </ActionIcon>
             </Tooltip>
             <Tooltip label={disabled ? t('Please select a space') : t('Reset')}>
-              <ActionIcon disabled={disabled} onClick={handleReset}>
+              <ActionIcon disabled={disabled || !selectedRole} onClick={handleReset}>
                 <Icons.reload />
               </ActionIcon>
             </Tooltip>

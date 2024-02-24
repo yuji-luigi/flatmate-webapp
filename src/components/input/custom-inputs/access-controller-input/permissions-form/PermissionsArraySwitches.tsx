@@ -32,7 +32,7 @@ export const PermissionsArraySwitches = (props: PermissionsByRoleSelectProps) =>
         <Box className={classes.inputs}>
           {permissionsFormField.map((permission) => (
             <div key={permission.name} className={classes.input}>
-              <SwitchForArray permission={permission} form={form} actrl={actrl} />
+              <SwitchForArray switchFormField={permission} form={form} actrl={actrl} />
             </div>
           ))}
         </Box>
@@ -43,20 +43,23 @@ export const PermissionsArraySwitches = (props: PermissionsByRoleSelectProps) =>
 
 type SwitchForArrayProps = {
   form: UseFormReturnType<Record<string, any>>;
-  permission: any;
+  switchFormField: any;
   actrl: Omit<AccessControllerModel, '_id'>;
   // localForm: any;
 };
 
 function SwitchForArray(props: SwitchForArrayProps) {
-  const { form, permission, actrl } = props;
+  const { form, switchFormField, actrl } = props;
 
-  const currentField = form.values.accessControllers?.find(
+  const currentActrl = (form.values.accessControllers as AccessControllerModel[])?.find(
     (formActrl: AccessControllerModel) => formActrl.role === actrl.role
   );
-
+  const permission =
+    currentActrl?.permissions.find(
+      (currentPermission) => currentPermission.name === switchFormField.name
+    ) || undefined;
   const handleChange = (value: boolean, permissionName: string) => {
-    const { permissions } = currentField;
+    const { permissions } = currentActrl || { permissions: [] };
     const updatedPermissions = permissions.map((p) => {
       const updatedPermission = structuredClone(p);
       if (p.name === permissionName) {
@@ -77,10 +80,10 @@ function SwitchForArray(props: SwitchForArrayProps) {
   };
   return (
     <Switch
-      label={permission.label}
-      checked={currentField?.allowed as boolean}
+      label={switchFormField.label}
+      checked={permission?.allowed as boolean}
       onChange={(event: ChangeEvent<HTMLInputElement>) =>
-        handleChange(event.currentTarget.checked, permission.name)
+        handleChange(event.currentTarget.checked, switchFormField?.name)
       }
     />
   );
