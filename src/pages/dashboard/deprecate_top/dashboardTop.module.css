@@ -1,7 +1,0 @@
-.container {
-  padding-block: 32px;
-  margin-inline: 16px;
-  @media (max-width: $mantine-breakpoint-sm) {
-    margin-inline: 0;
-  }
-}
