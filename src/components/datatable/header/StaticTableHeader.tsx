@@ -13,7 +13,7 @@ import { useLocale } from '../../../../hooks/useLocale';
 
 const StaticTableHeader = ({ json, actions }: { json: FormFieldTypes[]; actions?: any }) => {
   const { query } = useRouter();
-  const { t } = useLocale();
+  const { t } = useLocale('common');
 
   json?.sort((a: FormFieldTypes, b: FormFieldTypes) => a?.priority || 0 - (b?.priority || 0));
   return (

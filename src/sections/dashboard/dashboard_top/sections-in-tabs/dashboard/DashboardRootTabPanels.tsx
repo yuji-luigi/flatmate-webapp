@@ -7,7 +7,7 @@ export const DashboardRootTabPanels = () => {
     <>
       {TAB_LIST_CONFIG.map((tabItem) => (
         <Tabs.Panel key={tabItem.value} value={tabItem.value}>
-          <tabItem.component />
+          {tabItem.component !== null && <tabItem.component />}
         </Tabs.Panel>
       ))}
     </>

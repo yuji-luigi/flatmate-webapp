@@ -12,7 +12,7 @@ type DashboardTopHeaderProps = {
 };
 export const DashboardTopCenteredHeader = (props: DashboardTopHeaderProps) => {
   const { header = '', otherComponent, subHeader = '' } = props;
-  const { t } = useLocale();
+  const { t } = useLocale('common');
   const _subHeader = typeof subHeader === 'string' ? t(subHeader) : subHeader;
   return (
     <Group justify="center" gap={8}>

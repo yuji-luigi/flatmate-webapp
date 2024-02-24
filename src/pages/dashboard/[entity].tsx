@@ -1,6 +1,8 @@
 import { ReactElement, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Box } from '@mantine/core';
+import { GetServerSidePropsContext } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { TableSectionHeader } from '../../sections/dashboard/datatable_section/TableSectionHeader';
 
 import Layout from '../../layouts';
@@ -51,5 +53,17 @@ const CrudPage = () => {
 CrudPage.getLayout = function getLayout(page: ReactElement) {
   return <Layout>{page}</Layout>;
 };
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const translationObj = await serverSideTranslations(context.locale || 'it', ['common'], null, [
+    'it',
+    'en',
+  ]);
+  return {
+    props: {
+      ...translationObj,
+    },
+  };
+}
 
 export default CrudPage;

@@ -16,7 +16,7 @@ const data = [
 type Language = (typeof data)[number];
 export function LanguageMenu() {
   const [opened, setOpened] = useState(false);
-  const { changeLanguage, locale } = useLocale();
+  const { changeLanguage, locale } = useLocale('common');
   const [selected, setSelected] = useState<Language>(data[0]);
   const handleSelected = (item: Language) => {
     setSelected(item);

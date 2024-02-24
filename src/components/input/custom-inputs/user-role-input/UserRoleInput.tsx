@@ -39,7 +39,7 @@ interface Prop {
   form: UseFormReturnTypeCustom;
 }
 const UserRoleInput = ({ formField, form, ...others }: Prop) => {
-  const { t } = useLocale();
+  const { t } = useLocale('common');
   const [show, setShow] = useState(false);
   const handleShowInputs = () => {
     setShow(!show);
@@ -57,7 +57,7 @@ const UserRoleInput = ({ formField, form, ...others }: Prop) => {
 };
 
 const RoleFormInputs = (props: Prop) => {
-  const { t } = useLocale();
+  const { t } = useLocale('common');
   const { form, formField, ...others } = props;
 
   return (

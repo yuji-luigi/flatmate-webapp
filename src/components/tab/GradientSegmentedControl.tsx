@@ -11,7 +11,7 @@ type Props = {
 };
 export function GradientSegmentedControl(props: Props) {
   const { switchDataList, localStorageKey } = props;
-  const { t } = useLocale();
+  const { t } = useLocale('common');
   const _switchDataList = switchDataList.map((item) => ({
     ...item,
     label: typeof item.label === 'string' ? t(item.label) : item.label,

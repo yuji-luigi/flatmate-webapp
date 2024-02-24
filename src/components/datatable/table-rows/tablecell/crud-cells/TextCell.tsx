@@ -19,7 +19,7 @@ export const TextCell = ({
 }) => {
   // console.log(cellValue);
   // return cellValue;
-  const { t, locale } = useLocale();
+  const { t, locale } = useLocale('common');
   let displayValue = (
     <Text className={classes.text} size="sm">
       {cellValue}
