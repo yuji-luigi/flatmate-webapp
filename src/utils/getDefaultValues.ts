@@ -85,7 +85,7 @@ export function getDefaultValues(
   return defaultValueObj || {};
 }
 
-const fallbackValues: Record<string, string | number | Date | boolean | null> = {
+const fallbackValues: Record<string, string | number | Date | boolean | null | []> = {
   text: '',
   password: '',
   'text-area': '',
@@ -101,4 +101,5 @@ const fallbackValues: Record<string, string | number | Date | boolean | null> = 
   attachment: null,
   image: null,
   color: '',
+  'access-controller': [],
 };
