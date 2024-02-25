@@ -8,7 +8,7 @@ import axiosInstance from '../../../utils/axios-instance';
 import { setSession, setSpaceSession } from '../../../utils/jwt';
 // import { useCurrentSpaceContext } from '../../../context/CurrentSpaceContext';
 import { useCookieContext } from '../../../context/CookieContext';
-import { PATH_CLIENT } from '../../../path/path-frontend';
+import { PATH_CLIENT, _PATH_FRONTEND } from '../../../path/path-frontend';
 
 const getSpaceAsCookie = async (crudId: string) => {
   const res = await axiosInstance.get(`${PATH_API.spaceCookie}/${crudId}`, {
@@ -43,7 +43,7 @@ const EnterSpacePage = () => {
 
   // setSpaceSession(data.jwt);
 
-  router.push(PATH_CLIENT.root);
+  router.push(_PATH_FRONTEND.dashboard.root);
   return <p>loading...</p>;
 };
 

@@ -6,7 +6,7 @@ import {
   CardArticleVerticalTextBottom,
   CardData,
 } from '../../../components/card/CardVerticalTextBottom';
-import { PATH_CLIENT } from '../../../path/path-frontend';
+import { PATH_CLIENT, _PATH_FRONTEND } from '../../../path/path-frontend';
 import classes2 from '../../../styles/global-useStyles.module.css';
 import { SpaceModel } from '../../../types/models/space-model';
 import axiosInstance from '../../../utils/axios-instance';
@@ -22,7 +22,7 @@ export const ChooseSpaceSection = ({ spaces }: { spaces: SpaceModel[] }) => {
 
   const handleSpaceSelected = async (spaceId: string) => {
     await axiosInstance.get(`${PATH_API.spaceCookie}/${spaceId}`);
-    router.push(PATH_CLIENT.root);
+    router.push(_PATH_FRONTEND.dashboard.root);
   };
 
   if (!user) return null;

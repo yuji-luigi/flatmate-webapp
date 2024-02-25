@@ -14,19 +14,6 @@ import { AxiosMeResponse } from '../utils/axios-instance';
 import { UserModel } from '../types/models/space-model';
 
 export default function LoginPage(props: { initialUser?: UserModel }) {
-  const { initialUser } = props;
-  const { push, pathname, replace } = useRouter();
-  const { t } = useLocale('common');
-  // const { changeLanguage, t } = useLocale();
-  useEffect(() => {
-    // changeLanguage('it');
-    if (initialUser) {
-      push(_PATH_FRONTEND.pathAfterLogin);
-    }
-    if (pathname === _PATH_FRONTEND.auth.logout) {
-      replace(_PATH_FRONTEND.auth.login);
-    }
-  }, [initialUser]);
   return (
     <div className={classes.wrapper}>
       <Stack>
@@ -47,6 +34,9 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     'en',
   ]);
   try {
+    if (context.query.redirect === 'no') {
+      return { props: { user: null, ...translationObj } };
+    }
     const { jwt: jwtToken, loggedAs } = context.req.cookies;
     if (!jwtToken) {
       return { props: { user: null, ...translationObj } };

@@ -17,7 +17,6 @@ export const PATH_AFTER_LOGIN = '/dashboard?tab=dashboard';
 export enum PATH_CLIENT {
   // root = '/dashboard',
   /** the initial page after login is root */
-  root = '/dashboard/top/dashboard',
   posts = '/dashboard/posts',
   threads = '/dashboard/posts',
   authTokens = '/dashboard/auth-tokens',
@@ -50,12 +49,16 @@ const CHOOSE_ORGANIZATION = '/choose-organization';
 const CHOOSE_ROOT_SPACE = '/choose-root-space';
 export const _PATH_FRONTEND = {
   pathAfterLogin: PATH_AFTER_LOGIN,
+  dashboard: {
+    root: PATH_AFTER_LOGIN,
+  },
   pathAfterLoginInhabitant: CHOOSE_ROOT_SPACE,
   homepage: {
     root: '/',
   },
   auth: {
     login: PATH_CLIENT.login,
+    guardToLogin: `${PATH_CLIENT.login}?redirect=no`,
     logout: PATH_CLIENT.logout,
     signup: PATH_CLIENT.signup,
     chooseOrganization: CHOOSE_ORGANIZATION,

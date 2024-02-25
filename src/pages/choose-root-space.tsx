@@ -12,6 +12,7 @@ import Layout from '../layouts';
 import { SpaceModel, UserModel } from '../types/models/space-model';
 import { ChooseSpaceSection } from '../sections/login_signup/choose-space/ChooseSpaceSection';
 import LoadingScreen from '../components/screen/LoadingScreen';
+import useAuth from '../../hooks/useAuth';
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   try {
@@ -20,7 +21,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     if (!jwtToken) {
       return {
         redirect: {
-          destination: '/',
+          destination: _PATH_FRONTEND.auth.guardToLogin,
           permanent: true,
         },
       };
@@ -69,9 +70,9 @@ export const fetchSpaceSelections = async (
   if (!userId) return null;
   const params = orgId ? { organization: orgId } : {};
   // when the organization id query is present
-  if (orgId && typeof orgId === 'string') {
-    await axiosInstance.get(_PATH_API.organizations.cookie(orgId));
-  }
+  // if (orgId && typeof orgId === 'string') {
+  //   await axiosInstance.get(_PATH_API.organizations.cookie(orgId));
+  // }
   const res = await axiosInstance.get<AxiosResDataGeneric<SpaceModel[]>>(
     PATH_API.getSpaceSelections,
     { params }
@@ -81,6 +82,7 @@ export const fetchSpaceSelections = async (
 
 const ChooseRootSpacePage = (props: { initialUser?: UserModel }) => {
   const { initialUser } = props;
+  const { user } = useAuth();
   const router = useRouter();
   const { organizationId } = router.query;
   const {
@@ -91,7 +93,7 @@ const ChooseRootSpacePage = (props: { initialUser?: UserModel }) => {
     fetchSpaceSelections(initialUser?._id, organizationId)
   );
 
-  if (!initialUser) {
+  if (!initialUser && !user) {
     throw new Error('Something went wrong');
   }
 
@@ -102,6 +104,6 @@ const ChooseRootSpacePage = (props: { initialUser?: UserModel }) => {
   return <ChooseSpaceSection spaces={rootSpaces} />;
 };
 
-ChooseRootSpacePage.getLayout = (page: ReactElement) => <Layout variant="main">{page}</Layout>;
+// ChooseRootSpacePage.getLayout = (page: ReactElement) => <Layout variant="main">{page}</Layout>;
 
 export default ChooseRootSpacePage;

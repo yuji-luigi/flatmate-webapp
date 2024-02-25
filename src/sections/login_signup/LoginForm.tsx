@@ -32,13 +32,8 @@ function LoginForm({ role }: { role: Role }) {
     try {
       resetCurrentSpace();
       setCurrentOrganization(null);
+      // the hook handle the redirect see jwt-context.tsx
       await login(values.email, values.password, role);
-      if (role === 'Inhabitant') {
-        router.push(_PATH_FRONTEND.pathAfterLoginInhabitant);
-        return;
-      }
-      router.push(_PATH_FRONTEND.pathAfterLogin);
-      // return null;
     } catch (error: any) {
       notifications.show({
         title: 'Error',

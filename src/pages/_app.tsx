@@ -66,7 +66,7 @@ function App(props: AppProps) {
         <meta name="theme-color" content="#ffffff" />
       </Head>
 
-      <AuthProvider initialUser={pageProps.initialUser}>
+      <AuthProvider initialUser={pageProps.initialUser} initialLoggedAs={pageProps.initialLoggedAs}>
         <ReduxProvider store={reduxStore}>
           <MantineProvider
             defaultColorScheme="dark"

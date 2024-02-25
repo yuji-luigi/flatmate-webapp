@@ -2,10 +2,11 @@ import { ReactElement, useEffect } from 'react';
 import { GetServerSidePropsContext } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Layout from '../../layouts';
-import axiosInstance from '../../utils/axios-instance';
+import axiosInstance, { AxiosMeResponse } from '../../utils/axios-instance';
 import { useCookieContext } from '../../context/CookieContext';
 import { useCrudSliceStore } from '../../redux/features/crud/crudSlice';
 import { DashboardRootTabPanels } from '../../sections/dashboard/dashboard_top/sections-in-tabs/dashboard/DashboardRootTabPanels';
+import { PATH_AUTH } from '../../path/path-api';
 
 const DashboardPage = () => {
   const { currentOrganization, currentSpace } = useCookieContext();
@@ -35,9 +36,31 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     'it',
     'en',
   ]);
+  const { jwt: jwtToken, loggedAs } = context.req.cookies;
+  if (!jwtToken) {
+    return { props: { user: null, ...translationObj } };
+  }
+  const rawRes = await axiosInstance.get<AxiosMeResponse>(
+    `${process.env.NEXT_PUBLIC_API_URL}/${PATH_AUTH.me}`,
+    {
+      headers: {
+        Authorization: `Bearer ${jwtToken}`,
+      },
+    }
+  );
+  const { user } = rawRes.data;
+  if (!user) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: true,
+      },
+    };
+  }
   return {
     props: {
-      initialUser: null,
+      initialUser: user,
+      initialLoggedAs: loggedAs,
       ...translationObj,
     },
   };

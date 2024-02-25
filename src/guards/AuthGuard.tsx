@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 // hooks
 import { LoadingOverlay } from '@mantine/core';
 import useAuth from '../../hooks/useAuth';
+import { _PATH_FRONTEND } from '../path/path-frontend';
 
 export default function AuthGuard({ children }: { children: JSX.Element | JSX.Element[] }) {
   const { isAuthenticated, isInitialized, user } = useAuth();
@@ -13,8 +14,6 @@ export default function AuthGuard({ children }: { children: JSX.Element | JSX.El
 
   useEffect(() => {
     if (requestedLocation && pathname !== requestedLocation) {
-      // console.log('if (requestedLocation && pathname !== requestedLocation) {');
-      // console.log('AuthGuard: requestedLocation', requestedLocation);
       push(requestedLocation);
     }
     if (isAuthenticated) {
@@ -23,18 +22,16 @@ export default function AuthGuard({ children }: { children: JSX.Element | JSX.El
   }, [isAuthenticated, pathname, push, requestedLocation]);
 
   if (!isInitialized) {
-    // console.log('AuthGuard: !isInitialized');
     return <LoadingOverlay visible />;
   }
 
   if (!isAuthenticated) {
     if (pathname !== requestedLocation) {
-      // console.log('AuthGuard: !isAuthenticated && pathname !== requestedLocation');
       setRequestedLocation(pathname);
       return <LoadingOverlay visible />;
     }
-    // console.log('AuthGuard: !isAuthenticated && pathname === requestedLocation');
-    push('/login');
+
+    push(_PATH_FRONTEND.auth.guardToLogin);
     return <LoadingOverlay visible />;
   }
   /** finally authenticated user enters here */

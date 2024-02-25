@@ -91,7 +91,7 @@ export const MAINTAINER_TYPES = Object.keys(MAINTAINER_TYPES_ARRAY).reduce((acc,
   return acc;
 }, {} as Record<string, string>);
 
-export const USER_ROLES = ['administrator', 'inhabitant', 'maintainer'] as const;
+export const USER_ROLES = ['Administrator', 'Inhabitant', 'Maintainer'] as const;
 
 export type UserRoles = (typeof USER_ROLES)[number];
 

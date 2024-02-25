@@ -95,12 +95,6 @@ function AuthProvider({
     const initialize = async () => {
       try {
         if (state.isInitialized) return;
-
-        // const accessToken =
-        //   typeof window !== 'undefined' ? localStorage.getItem('accessToken') : '';
-
-        // if (accessToken && isValidToken(accessToken)) {
-        //   setSession(accessToken);
         const response = await axiosInstance.get<AxiosMeResponse>(PATH_AUTH.me, {
           withCredentials: true,
         });
@@ -143,27 +137,21 @@ function AuthProvider({
         { email, password }
         // { withCredentials: true }
       );
-      const { token } = response.data.data;
-      // setSession(token.accessToken);
+      const { user } = response.data.data;
 
-      // // call me and get the user
-      const responseMe = await axiosInstance.get<AxiosMeResponse>(PATH_AUTH.me);
-      const { user, loggedAs } = responseMe.data;
-      // const res = await fetch('/api/mock', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: JSON.stringify({ email, password }),
-      // });
-      // const user = await res.json();
       dispatch({
         type: 'LOGIN',
         payload: {
           user,
-          loggedAs,
+          loggedAs: role,
         },
       });
+
+      if (role === 'Inhabitant') {
+        push(_PATH_FRONTEND.pathAfterLoginInhabitant);
+        return;
+      }
+      push(_PATH_FRONTEND.pathAfterLogin);
     } catch (error: any) {
       throw error;
     }
