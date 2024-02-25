@@ -1,5 +1,5 @@
-import { Box, ComboboxItem, MantineStyleProp, Select, TextInput } from '@mantine/core';
-import React, { useEffect, useState } from 'react';
+import { Box, ComboboxItem, MantineStyleProp, Select } from '@mantine/core';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { UseFormReturnType } from '@mantine/form';
 import { showNotification } from '@mantine/notifications';
@@ -8,7 +8,6 @@ import { PATH_API, _PATH_API } from '../../path/path-api';
 import { useCookieContext } from '../../context/CookieContext';
 import { convertToSelectItems } from '../../utils/helpers/helper-functions';
 import useAuth from '../../../hooks/useAuth';
-import { SelectOption } from '../../types/general/data/data-table/form-field-type/formField-types';
 
 interface OrganizationSpaceSelectProps {
   style?: MantineStyleProp;

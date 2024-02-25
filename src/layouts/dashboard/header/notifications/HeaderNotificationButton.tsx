@@ -38,11 +38,11 @@ export const HeaderNotificationButton = () => {
 
   return (
     <>
-      <ActionIcon variant="subtle" onClick={open}>
-        <Indicator color="red" size={16} label={data?.length}>
+      <Indicator color="red" offset={4} size={16} label={data?.length}>
+        <ActionIcon radius={999} variant="subtle" size={32} onClick={open}>
           <Icons.bell />
-        </Indicator>
-      </ActionIcon>
+        </ActionIcon>
+      </Indicator>
       <NotificationDrawer notifications={data} opened={opened} close={close} />
     </>
   );
