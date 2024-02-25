@@ -140,32 +140,6 @@ export function getEntityFromUrl(
   }
   throw new Error('entity is not valid. getEntityFromUrl');
 }
-export function getEntityFromUrlForCookieCtx(
-  url: string = window?.location.pathname,
-  keyword: string = 'dashboard'
-): Sections | undefined {
-  const regex = new RegExp(`${keyword}\\/(\\w+)`);
-  let match = regex.exec(url)?.[1];
-  match = transformMatchForExceptions(match);
-
-  if (match && isSection(match)) {
-    return match;
-  }
-  return undefined;
-}
-
-export function getEntityOrUndefinedFromUrl(
-  url: string = window.location.pathname,
-  keyword: string = 'dashboard'
-): Sections | undefined {
-  const regex = new RegExp(`${keyword}\\/(\\w+)`);
-  let match = regex.exec(url)?.[1];
-  match = transformMatchForExceptions(match);
-  if (match && isSection(match)) {
-    return match;
-  }
-  return undefined;
-}
 
 export function getWordNextFromUrl(url = window.location.pathname, keyword = 'dashboard') {
   const regex = new RegExp(`${keyword}\\/(\\w+)`);

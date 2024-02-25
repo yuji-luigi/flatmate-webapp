@@ -4,11 +4,6 @@ import { Box, Group } from '@mantine/core';
 import { useRouter } from 'next/router';
 import { Icons } from '../../../data/icons/icons';
 import classes from './NavbarVertical.module.css';
-import {
-  getEntityFromUrl,
-  getEntityOrUndefinedFromUrl,
-} from '../../../utils/helpers/helper-functions';
-// import classes from './navbarStyle.module.css';
 
 type NavbarVerticalItemProp = {
   navbarContent: any;

@@ -8,7 +8,6 @@ import { CookieContextState } from '../types/context/cookie-context';
 import { SpaceModel } from '../types/models/space-model';
 import { ParsedQueryCustom } from '../types/nextjs-custom-types/useRouter-types';
 import { isString } from '../utils/type-guard/isString';
-import { getEntityFromUrl, getEntityFromUrlForCookieCtx } from '../utils/helpers/helper-functions';
 
 // const exEntities = ['top/threads', 'top/maintenances', 'top/checks'];
 // const ENTITIES = [...entities, ...exEntities];
@@ -26,7 +25,6 @@ const useStore = () => {
   const [currentSpace, setCurrentSpace] = useState<CurrentSpace | null>(null);
   const [currentOrganization, setCurrentOrganization] = useState<string | null>(null);
   const router: { query: ParsedQueryCustom; pathname: string } = useRouter();
-  const entity = router.query.entity || getEntityFromUrlForCookieCtx();
   const prevSpaceRef = useRef(currentSpace);
   const prevOrgRef = useRef(currentOrganization);
 

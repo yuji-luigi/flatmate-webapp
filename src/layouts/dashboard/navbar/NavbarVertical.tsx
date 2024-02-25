@@ -23,7 +23,6 @@ import { NavbarVerticalItem } from './NavbarVerticalItem';
 import { ColorSchemeToggle } from '../../../components/color-schemeToggle/ColorSchemeToggle';
 import LogoutButton from './LogoutButton';
 import classes from './NavbarVertical.module.css';
-import { getEntityOrUndefinedFromUrl } from '../../../utils/helpers/helper-functions';
 import { NavList } from './NavList';
 
 const data = [
@@ -46,13 +45,7 @@ export function NavbarVertical() {
   // const isMobile = useMediaQuery('(max-width: 600px)');
 
   const chooseHref = isSuperAdmin ? PATH_CLIENT.chooseOrganization : PATH_CLIENT.chooseRootSpace;
-  const pageEntity = getEntityOrUndefinedFromUrl();
-  useEffect(() => {
-    if (!pageEntity) {
-      setActive('');
-    }
-    // closeBar();
-  }, [pageEntity]);
+
   if (!user) return null;
   const navLists = sectionData.map((section, i) => {
     return (
@@ -62,12 +55,7 @@ export function NavbarVertical() {
             <p>{section.name}</p>
             {/* contents are sections: Top, posts,,, */}
             {section.contents.map((navbarContent) => (
-              <NavbarVerticalItem
-                key={navbarContent.navbarTitle}
-                navbarContent={navbarContent}
-                active={active}
-                setActive={setActive}
-              />
+              <NavbarVerticalItem key={navbarContent.navbarTitle} navbarContent={navbarContent} />
             ))}
           </Stack>
         )}
