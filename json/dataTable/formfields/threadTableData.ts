@@ -23,18 +23,6 @@ export const threadTableData: Array<FormFieldTypes> = [
     priority: 1,
   },
 
-  {
-    id: 'description',
-    name: 'description',
-    label: 'body',
-    placeholder: 'Have you ever seen the cat with 6 colors?...',
-    type: 'text-area',
-    autosize: true,
-    maxRows: 20,
-    minRows: 10,
-    required: true,
-    priority: 1,
-  },
   // {
   //   id: 'tags',
   //   name: 'tags',
