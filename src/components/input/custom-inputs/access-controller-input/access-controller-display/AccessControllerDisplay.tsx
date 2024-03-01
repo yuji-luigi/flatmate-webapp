@@ -29,18 +29,21 @@ export const AccessControllerDisplay: React.FC<AccessControllerDisplayProps> = (
                 <Text fw="bold" mb={4}>
                   {ctrlV.roleName}
                 </Text>
-                <PermissionTile permission="Create post" allowed={ctrlV.canCreatePost} />
+                <PermissionTile permission="Create post" allowed={ctrlV.canCreatePosts} />
                 <PermissionTile
                   permission="Create maintenance"
-                  allowed={ctrlV.canCreateMaintenance}
+                  allowed={ctrlV.canCreateMaintenances}
                 />
-                <PermissionTile permission="Notify Maintener" allowed={ctrlV.canNotifyMaintainer} />
-                <PermissionTile permission="Delete post" allowed={ctrlV.canDeletePost} />
+                <PermissionTile
+                  permission="Notify Maintener"
+                  allowed={ctrlV.canNotifyMaintainers}
+                />
+                <PermissionTile permission="Delete post" allowed={ctrlV.canDeletePosts} />
                 <PermissionTile
                   permission="Delete maintenance"
-                  allowed={ctrlV.canDeleteMaintenance}
+                  allowed={ctrlV.canDeleteMaintenances}
                 />
-                <PermissionTile permission="Delete comment" allowed={ctrlV.canDeleteComment} />
+                <PermissionTile permission="Delete comment" allowed={ctrlV.canDeleteComments} />
               </Accordion.Panel>
             ))}
           </Box>

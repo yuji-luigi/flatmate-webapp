@@ -2,42 +2,42 @@ import { MongooseBaseModel } from './mongoose-base-model';
 import { Role, RoleModel, SpaceModel, UserModel } from './space-model';
 
 export const permissions = [
-  'canCreatePost',
-  'canCreateMaintenance',
-  'canNotifyMaintainer',
-  'canDeletePost',
-  'canDeleteMaintenance',
-  'canDeleteComment',
+  'canCreatePosts',
+  'canCreateMaintenances',
+  'canNotifyMaintainers',
+  'canDeletePosts',
+  'canDeleteMaintenances',
+  'canDeleteComments',
 ] as const;
 
 export const permissionsFormField = [
   {
-    name: 'canCreatePost',
+    name: 'canCreatePosts',
     label: 'Create Post',
     allowed: true,
   },
   {
-    name: 'canCreateMaintenance',
+    name: 'canCreateMaintenances',
     label: 'Create Maintenance',
     allowed: true,
   },
   {
-    name: 'canNotifyMaintainer',
+    name: 'canNotifyMaintainers',
     label: 'Notify Maintainer',
     allowed: false,
   },
   {
-    name: 'canDeletePost',
+    name: 'canDeletePosts',
     label: 'Delete Post',
     allowed: false,
   },
   {
-    name: 'canDeleteMaintenance',
+    name: 'canDeleteMaintenances',
     label: 'Delete Maintenance',
     allowed: false,
   },
   {
-    name: 'canDeleteComment',
+    name: 'canDeleteComments',
     label: 'Delete Comment',
     allowed: false,
   },

@@ -63,19 +63,14 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   }
 }
 
-export const fetchSpaceSelections = async (
-  userId?: string | null,
-  orgId: string | string[] = ''
-) => {
+export const fetchSpaceSelections = async (userId?: string | null) => {
   if (!userId) return null;
-  const params = orgId ? { organization: orgId } : {};
   // when the organization id query is present
   // if (orgId && typeof orgId === 'string') {
   //   await axiosInstance.get(_PATH_API.organizations.cookie(orgId));
   // }
   const res = await axiosInstance.get<AxiosResDataGeneric<SpaceModel[]>>(
-    PATH_API.getSpaceSelections,
-    { params }
+    PATH_API.getSpaceSelections
   );
   return res.data?.data;
 };
@@ -84,13 +79,12 @@ const ChooseRootSpacePage = (props: { initialUser?: UserModel }) => {
   const { initialUser } = props;
   const { user } = useAuth();
   const router = useRouter();
-  const { organizationId } = router.query;
   const {
     data: rootSpaces,
     error,
     isLoading,
   } = useSWR<SpaceModel[] | null, AxiosError>(initialUser?._id, () =>
-    fetchSpaceSelections(initialUser?._id, organizationId)
+    fetchSpaceSelections(initialUser?._id)
   );
 
   if (!initialUser && !user) {
