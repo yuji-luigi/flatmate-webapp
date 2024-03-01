@@ -1,6 +1,7 @@
 import { createContext, ReactNode, useEffect, useReducer } from 'react';
 import { deleteCookie } from 'cookies-next';
 import { useRouter } from 'next/router';
+import { showNotification } from '@mantine/notifications';
 import axiosInstance, { AxiosMeResponse } from '../utils/axios-instance';
 import { _PATH_API, PATH_AUTH } from '../path/path-api';
 import {
@@ -15,6 +16,7 @@ import {
 } from '../types/context/auth/useAuth';
 import { _PATH_FRONTEND } from '../path/path-frontend';
 import { Role, UserModel } from '../types/models/space-model';
+import { NOTIFICATIONS } from '../data/showNofification/notificationObjects';
 
 const initialState: JWTContextState = {
   isAuthenticated: false,
@@ -107,15 +109,6 @@ function AuthProvider({
             loggedAs,
           },
         });
-        // } else {
-        //   dispatch({
-        //     type: 'INITIALIZE',
-        //     payload: {
-        //       isAuthenticated: false,
-        //       user: null,
-        //     },
-        //   });
-        // }
       } catch (error) {
         dispatch({
           type: 'INITIALIZE',
@@ -130,14 +123,10 @@ function AuthProvider({
   }, []);
 
   const login: Login = async (email, password, role) => {
-    // eslint-disable-next-line no-useless-catch
     try {
-      const response = await axiosInstance.post(
-        _PATH_API.auth.login(role),
-        { email, password }
-        // { withCredentials: true }
-      );
-      const { user } = response.data.data;
+      await axiosInstance.post(_PATH_API.auth.login(role), { email, password });
+      const rawMe = await axiosInstance.get<AxiosMeResponse>(PATH_AUTH.me);
+      const { user } = rawMe.data;
 
       dispatch({
         type: 'LOGIN',
@@ -153,7 +142,7 @@ function AuthProvider({
       }
       push(_PATH_FRONTEND.pathAfterLogin);
     } catch (error: any) {
-      throw error;
+      showNotification(NOTIFICATIONS.ERROR.general({}));
     }
   };
 

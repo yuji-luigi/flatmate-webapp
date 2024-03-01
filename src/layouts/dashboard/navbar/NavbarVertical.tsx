@@ -47,21 +47,6 @@ export function NavbarVertical() {
   const chooseHref = isSuperAdmin ? PATH_CLIENT.chooseOrganization : PATH_CLIENT.chooseRootSpace;
 
   if (!user) return null;
-  const navLists = sectionData.map((section, i) => {
-    return (
-      <Fragment key={section.name}>
-        {section.roles?.includes(user.role) && !section.hide && (
-          <Stack align="start">
-            <p>{section.name}</p>
-            {/* contents are sections: Top, posts,,, */}
-            {section.contents.map((navbarContent) => (
-              <NavbarVerticalItem key={navbarContent.navbarTitle} navbarContent={navbarContent} />
-            ))}
-          </Stack>
-        )}
-      </Fragment>
-    );
-  });
 
   return (
     <>
