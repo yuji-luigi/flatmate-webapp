@@ -19,7 +19,7 @@ export const CrudSelectCheckboxGroup = ({ formField, form, ...others }: Prop) =>
       {options.map((option) => (
         <Checkbox
           key={option}
-          className={`${classes.input}`}
+          className="crud-input"
           checked={form.values[formField.name]}
           name={formField.name}
           label={formField.label}

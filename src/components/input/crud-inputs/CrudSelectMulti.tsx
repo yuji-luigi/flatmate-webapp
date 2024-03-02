@@ -15,7 +15,7 @@ const CrudSelectMulti = ({ formField, form, ...others }: Prop) => {
   return (
     <MultiSelect
       searchable
-      className={`${classes.input}`}
+      className="crud-input"
       data={options}
       name={formField.name}
       label={formField.label}

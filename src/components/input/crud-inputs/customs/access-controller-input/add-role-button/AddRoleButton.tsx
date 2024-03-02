@@ -15,15 +15,15 @@ import {
 import React from 'react';
 import { showNotification } from '@mantine/notifications';
 import { UseFormReturnType } from '@mantine/form';
-import { Icons } from '../../../../../data/icons/icons';
-import { useCrudSelectors } from '../../../../../redux/features/crud/crudSlice';
+import { Icons } from '../../../../../../data/icons/icons';
+import { useCrudSelectors } from '../../../../../../redux/features/crud/crudSlice';
 import {
   RoleModel,
   SpaceModel,
   AccessControllerModel,
-} from '../../../../../types/models/space-model';
-import { useItemSlice } from '../../../../../redux/features/crud/selectedItemSlice';
-import { useLocale } from '../../../../../../hooks/useLocale';
+} from '../../../../../../types/models/space-model';
+import { useItemSlice } from '../../../../../../redux/features/crud/selectedItemSlice';
+import { useLocale } from '../../../../../../../hooks/useLocale';
 import { useCreateAccessControllerValue } from '../useCreateAccessControllerValue';
 
 const AddRoleButton = ({ form }: { form: UseFormReturnType<Record<string, any>> }) => {

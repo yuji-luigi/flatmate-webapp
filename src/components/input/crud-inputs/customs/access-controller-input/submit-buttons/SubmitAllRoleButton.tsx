@@ -1,12 +1,12 @@
 import { Button } from '@mantine/core';
 import { UseFormReturnType } from '@mantine/form';
 import { showNotification } from '@mantine/notifications';
-import { _PATH_API } from '../../../../../path/path-api';
-import axiosInstance from '../../../../../utils/axios-instance';
-import { useLocale } from '../../../../../../hooks/useLocale';
-import { useCustomModalContext } from '../../../../../context/modal-context/_ModalContext';
-import { useCrudSelectors } from '../../../../../redux/features/crud/crudSlice';
-import { RoleModel } from '../../../../../types/models/space-model';
+import { _PATH_API } from '../../../../../../path/path-api';
+import axiosInstance from '../../../../../../utils/axios-instance';
+import { useLocale } from '../../../../../../../hooks/useLocale';
+import { useCustomModalContext } from '../../../../../../context/modal-context/_ModalContext';
+import { useCrudSelectors } from '../../../../../../redux/features/crud/crudSlice';
+import { RoleModel } from '../../../../../../types/models/space-model';
 
 type SubmitAllRoleButtonProps = {
   form: UseFormReturnType<Record<string, unknown>>;

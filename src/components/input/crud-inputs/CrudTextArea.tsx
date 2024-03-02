@@ -13,7 +13,7 @@ const CrudTextArea = ({ formField, form, ...others }: Prop) => {
   return (
     <Textarea
       placeholder={formField.placeholder}
-      className={`${classes.input}`}
+      className="crud-input"
       size="md"
       {...others}
       {...formField}

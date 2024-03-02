@@ -1,7 +1,7 @@
 import { Box, Chip, Text } from '@mantine/core';
-import { useItemSlice } from '../../../../../redux/features/crud/selectedItemSlice';
-import { AccessControllerModel, SpaceModel } from '../../../../../types/models/space-model';
-import { useCrudSelectors } from '../../../../../redux/features/crud/crudSlice';
+import { useItemSlice } from '../../../../../../redux/features/crud/selectedItemSlice';
+import { AccessControllerModel, SpaceModel } from '../../../../../../types/models/space-model';
+import { useCrudSelectors } from '../../../../../../redux/features/crud/crudSlice';
 import classes from './AccCtrlSpaceChips.module.css';
 
 export const AccCtrlSpaceChips: React.FC = () => {

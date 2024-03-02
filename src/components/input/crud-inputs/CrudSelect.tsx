@@ -19,7 +19,7 @@ const CrudSelect = ({ formField, form, ...others }: Prop) => {
   return (
     <SelectComponent
       searchable
-      className={`${classes.input}`}
+      className="crud-input"
       data={options}
       name={formField.name}
       label={formField.label}

@@ -14,7 +14,7 @@ interface Prop {
 const CrudPasswordInput = ({ formField, form, ...others }: Prop) => {
   return (
     <PasswordInput
-      className={`${classes.input}`}
+      className="crud-input"
       key={formField.id}
       name={formField.name}
       label={formField.label}

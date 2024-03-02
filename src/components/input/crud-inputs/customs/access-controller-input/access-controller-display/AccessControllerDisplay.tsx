@@ -1,9 +1,9 @@
 import { Accordion, Box, Group, Text } from '@mantine/core';
 import { t } from 'i18next';
 import classes from './AccessControllerDisplay.module.css';
-import { SpaceModel } from '../../../../../types/models/space-model';
-import { useItemSlice } from '../../../../../redux/features/crud/selectedItemSlice';
-import { Icons } from '../../../../../data/icons/icons';
+import { SpaceModel } from '../../../../../../types/models/space-model';
+import { useItemSlice } from '../../../../../../redux/features/crud/selectedItemSlice';
+import { Icons } from '../../../../../../data/icons/icons';
 
 type AccessControllerDisplayProps = {
   aCtrlValues: Record<string, boolean>[] | null;

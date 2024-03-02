@@ -16,7 +16,7 @@ const CrudTextInput = ({ formField, form, ...others }: Prop) => {
   // return null;
   return (
     <TextInput
-      className={`${classes.input}`}
+      className="crud-input"
       key={id}
       name={name}
       label={label}

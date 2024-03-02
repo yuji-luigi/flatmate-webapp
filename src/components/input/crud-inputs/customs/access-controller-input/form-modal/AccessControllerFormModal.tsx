@@ -1,22 +1,25 @@
 import { Modal, Tabs, Box, Text, ModalHeader } from '@mantine/core';
 import { UseFormReturnType } from '@mantine/form';
-import { Icons } from '../../../../../data/icons/icons';
-import { useCrudSelectors, useCrudSliceStore } from '../../../../../redux/features/crud/crudSlice';
+import { Icons } from '../../../../../../data/icons/icons';
+import {
+  useCrudSelectors,
+  useCrudSliceStore,
+} from '../../../../../../redux/features/crud/crudSlice';
 import {
   RoleModel,
   Role,
   SpaceModel,
   AccessControllerModel,
-} from '../../../../../types/models/space-model';
-import SpaceSelectInput from '../../../../select-custom/SpaceSelectInput';
-import { TabList } from '../../../../tab/TabList';
+} from '../../../../../../types/models/space-model';
+import SpaceSelectInput from '../../../../custom-inputs/SpaceSelectInput';
+import { TabList } from '../../../../../tab/TabList';
 import AddRoleButton from '../add-role-button/AddRoleButton';
 import { PermissionsArraySwitches } from '../permissions-form/PermissionsArraySwitches';
 import { AccCtrlSpaceChips } from '../space-chip/AccCtrlSpaceChips';
 import { SubmitByRoleButton } from '../submit-buttons/SubmitByRoleButton';
 import classes from '../AccessControllerInput.module.css';
-import { useItemSlice } from '../../../../../redux/features/crud/selectedItemSlice';
-import { useLocale } from '../../../../../../hooks/useLocale';
+import { useItemSlice } from '../../../../../../redux/features/crud/selectedItemSlice';
+import { useLocale } from '../../../../../../../hooks/useLocale';
 
 export const AccessControllerFormModal = (props: {
   form: UseFormReturnType<Record<string, any>>;

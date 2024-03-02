@@ -13,7 +13,7 @@ const CrudCheckbox = ({ formField, form, ...others }: Prop) => {
   return (
     <Box mt={40}>
       <Checkbox
-        className={`${classes.input}`}
+        className="crud-input"
         // style={{ paddingTop: '28px' }}
         checked={form.values[formField.name]}
         name={formField.name}

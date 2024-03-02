@@ -1,15 +1,15 @@
 import { Box, Switch } from '@mantine/core';
 import { ChangeEvent } from 'react';
 import { UseFormReturnType } from '@mantine/form';
-import { useItemSlice } from '../../../../../redux/features/crud/selectedItemSlice';
+import { useItemSlice } from '../../../../../../redux/features/crud/selectedItemSlice';
 import classes from './PermissionsByRole.module.css';
 
 import {
   AccessControllerModel,
   RoleModel,
   permissionsFormField,
-} from '../../../../../types/models/space-model';
-import { useCrudSelectors } from '../../../../../redux/features/crud/crudSlice';
+} from '../../../../../../types/models/space-model';
+import { useCrudSelectors } from '../../../../../../redux/features/crud/crudSlice';
 
 type PermissionsByRoleSelectProps = {
   form: UseFormReturnType<Record<string, unknown>>;
@@ -31,7 +31,7 @@ export const PermissionsArraySwitches = (props: PermissionsByRoleSelectProps) =>
       <fieldset className={classes.fieldset}>
         <Box className={classes.inputs}>
           {permissionsFormField.map((permission) => (
-            <div key={permission.name} className={classes.input}>
+            <div key={permission.name} className={'crud-input'}>
               <SwitchForArray switchFormField={permission} form={form} actrl={actrl} />
             </div>
           ))}

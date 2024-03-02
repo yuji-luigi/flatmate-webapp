@@ -1,16 +1,17 @@
 import { Button } from '@mantine/core';
 import { useEffect, useState } from 'react';
 import { UseFormReturnType } from '@mantine/form';
-import { useLocale } from '../../../../../hooks/useLocale';
-import { Icons } from '../../../../data/icons/icons';
-import { useCrudSelectors, useCrudSliceStore } from '../../../../redux/features/crud/crudSlice';
-import { UserModel } from '../../../../types/models/space-model';
-import inputClasses from '../../input-style.module.css';
+import { useLocale } from '../../../../../../hooks/useLocale';
+import { Icons } from '../../../../../data/icons/icons';
+import { useCrudSelectors, useCrudSliceStore } from '../../../../../redux/features/crud/crudSlice';
+import { UserModel } from '../../../../../types/models/space-model';
 import { AccessControllerDisplay } from './access-controller-display/AccessControllerDisplay';
 import { AccessControllerFormModal } from './form-modal/AccessControllerFormModal';
+import { AccessControllerFormFieldType } from '../../../../../types/general/data/data-table/form-field-type/formField-types';
 
 interface Prop {
   form: UseFormReturnType<Record<string, any>>;
+  formField: AccessControllerFormFieldType;
 }
 export const AccessControllerFormButton = ({ form, ...others }: Prop) => {
   const { t } = useLocale('common');
@@ -28,7 +29,7 @@ export const AccessControllerFormButton = ({ form, ...others }: Prop) => {
     <>
       <Button
         style={{ placeContent: 'center' }}
-        className={`${inputClasses.input}`}
+        className="crud-input"
         onClick={() => setOpened(true)}
         data-column="4"
         variant="outline"
