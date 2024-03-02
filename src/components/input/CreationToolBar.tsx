@@ -26,7 +26,7 @@ function CreationToolBar({ form, formFields, submitButton, entity }: Props) {
   ) as UploadFormFieldType[];
   //todo: need to iterate over the formFields and create a upload icon for each one
   return (
-    <Stack>
+    <Stack style={{ width: '100%' }}>
       {uploadFormFields?.map((uploadField) => (
         <PreviewFileZone entity={entity} key={uploadField.id} formField={uploadField} form={form} />
       ))}

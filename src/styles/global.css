@@ -231,6 +231,15 @@ ul {
   }
 }
 
+.crud-form-fields {
+  /* margin-top: 50px; */
+  /* height: 100vh; */
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--flex-gap);
+  container-type: inline-size;
+}
+
 .crud-input {
   grid-column: span 2;
   place-self: end center;
@@ -241,4 +250,35 @@ ul {
   @container (max-width: $mantine-breakpoint-xs) {
     grid-column: span 4;
   }
+}
+.gallery-overlay-container {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  transition: 0.3s;
+  flex-direction: row;
+}
+.gallery-overlay {
+  display: flex;
+  background: black;
+  color: white;
+  opacity: 0;
+  border-radius: var(--radius-card);
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: 0.3s;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.5;
+  }
+}
+
+.crud-form-image-gallery {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 150px));
+  gap: var(--flex-gap);
 }
