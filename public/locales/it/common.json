@@ -50,5 +50,9 @@
 	"Add permission in": "Aggiungi accesso in",
 	"Add a role": "Aggiungi un ruolo",
 	"Select a role": "Seleziona un ruolo",
-	"Add new access control": "Aggiungi nuovo controllo accesso"
+	"Add new access control": "Aggiungi nuovo controllo accesso",
+	"errorPage": {
+		"Something is not right...": "Qualcosa non va...",
+		"spaceNotFoundMsg1": "Qualcosa è andato storto. Durante l'elaborazione della tua richiesta, non siamo riusciti a trovare spazi associati al tuo account."
+	}
 }

@@ -13,8 +13,13 @@ import { SpaceModel, UserModel } from '../types/models/space-model';
 import { ChooseSpaceSection } from '../sections/login_signup/choose-space/ChooseSpaceSection';
 import LoadingScreen from '../components/screen/LoadingScreen';
 import useAuth from '../../hooks/useAuth';
+import { NoSpacesFound } from '../sections/login_signup/choose-space/NoSpacesFound';
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const translationObj = await serverSideTranslations(context.locale || 'it', ['common'], null, [
+    'it',
+    'en',
+  ]);
   try {
     const { locale } = context;
     const { loggedAs, jwt: jwtToken } = context.req.cookies;
@@ -38,12 +43,17 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     const { data } = rawRes;
     const { user } = data;
     if (!user) {
-      throw new Error('User is not present from GET /me');
+      return {
+        props: {
+          ...translationObj,
+          initialUser: null,
+        },
+      };
     }
     if (!user.isSuperAdmin && loggedAs === 'Inhabitant') {
       return {
         props: {
-          ...(await serverSideTranslations(locale || 'it', ['common', 'otherNamespace'])),
+          ...translationObj,
           initialUser: user,
         },
       };
@@ -62,13 +72,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     };
   }
 }
-
 export const fetchSpaceSelections = async (userId?: string | null) => {
-  if (!userId) return null;
-  // when the organization id query is present
-  // if (orgId && typeof orgId === 'string') {
-  //   await axiosInstance.get(_PATH_API.organizations.cookie(orgId));
-  // }
   const res = await axiosInstance.get<AxiosResDataGeneric<SpaceModel[]>>(
     PATH_API.getSpaceSelections
   );
@@ -77,7 +81,6 @@ export const fetchSpaceSelections = async (userId?: string | null) => {
 
 const ChooseRootSpacePage = (props: { initialUser?: UserModel }) => {
   const { initialUser } = props;
-  const { user } = useAuth();
   const router = useRouter();
   const {
     data: rootSpaces,
@@ -86,13 +89,14 @@ const ChooseRootSpacePage = (props: { initialUser?: UserModel }) => {
   } = useSWR<SpaceModel[] | null, AxiosError>(initialUser?._id, () =>
     fetchSpaceSelections(initialUser?._id)
   );
-
-  if (!initialUser && !user) {
-    throw new Error('Something went wrong');
-  }
-
-  if (!rootSpaces || isLoading) {
+  if (isLoading) {
     return <LoadingScreen />;
+  }
+  if (error) {
+    return <div>{JSON.stringify(error)}</div>;
+  }
+  if (!rootSpaces?.length) {
+    return <NoSpacesFound />;
   }
 
   return <ChooseSpaceSection spaces={rootSpaces} />;

@@ -2,8 +2,12 @@ import { Modal, Tabs, Box, Text, ModalHeader } from '@mantine/core';
 import { UseFormReturnType } from '@mantine/form';
 import { Icons } from '../../../../../data/icons/icons';
 import { useCrudSelectors, useCrudSliceStore } from '../../../../../redux/features/crud/crudSlice';
-import { AccessControllerModel } from '../../../../../types/models/access-controller-type';
-import { RoleModel, Role, SpaceModel } from '../../../../../types/models/space-model';
+import {
+  RoleModel,
+  Role,
+  SpaceModel,
+  AccessControllerModel,
+} from '../../../../../types/models/space-model';
 import SpaceSelectInput from '../../../../select-custom/SpaceSelectInput';
 import { TabList } from '../../../../tab/TabList';
 import AddRoleButton from '../add-role-button/AddRoleButton';

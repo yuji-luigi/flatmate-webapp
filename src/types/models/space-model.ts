@@ -1,3 +1,4 @@
+import { IUser } from '../context/auth/useAuth';
 import { MongooseBaseModel } from './mongoose-base-model';
 
 import { UploadModel } from './upload-model';
@@ -11,6 +12,17 @@ export interface UserModel extends MongooseBaseModel {
   rootSpaces: Array<string>;
   password: string;
   phone?: string;
+  avatar?: UploadModel;
+  isSuperAdmin: boolean;
+  organization: string;
+}
+export interface MeUser extends MongooseBaseModel {
+  surname: string;
+  name: string;
+  email: string;
+  active: boolean;
+  phone?: string;
+  accessController?: AccessControllerModel;
   avatar?: UploadModel;
   isSuperAdmin: boolean;
   organization: string;
@@ -107,4 +119,73 @@ export interface FundModel extends MongooseBaseModel {
   space?: string | SpaceModel;
 
   user?: string | UserModel | undefined;
+}
+
+export const permissions = [
+  'canCreatePosts',
+  'canCreateMaintenances',
+  'canNotifyMaintainers',
+  'canDeletePosts',
+  'canDeleteMaintenances',
+  'canDeleteComments',
+] as const;
+
+export const permissionsFormField = [
+  {
+    name: 'canCreatePosts',
+    label: 'Create Post',
+    allowed: true,
+  },
+  {
+    name: 'canCreateMaintenances',
+    label: 'Create Maintenance',
+    allowed: true,
+  },
+  {
+    name: 'canNotifyMaintainers',
+    label: 'Notify Maintainer',
+    allowed: false,
+  },
+  {
+    name: 'canDeletePosts',
+    label: 'Delete Post',
+    allowed: false,
+  },
+  {
+    name: 'canDeleteMaintenances',
+    label: 'Delete Maintenance',
+    allowed: false,
+  },
+  {
+    name: 'canDeleteComments',
+    label: 'Delete Comment',
+    allowed: false,
+  },
+] as const;
+
+export const permissionsDefaultValues = permissionsFormField.map((permission) => ({
+  name: permission.name,
+  allowed: permission.allowed,
+}));
+
+export type Permission = (typeof permissionsFormField)[number]['name'];
+
+export interface PermissionInterface {
+  name: Permission;
+  allowed: boolean;
+}
+
+export type ACtrlDtoDashboard = {
+  space: string;
+  roleName: string;
+  user: string;
+} & {
+  [key in Permission]: boolean;
+};
+
+export interface AccessControllerModel extends MongooseBaseModel {
+  user: string | UserModel;
+  space: string | SpaceModel;
+  role: RoleModel | string;
+  permissions: PermissionInterface[];
 }

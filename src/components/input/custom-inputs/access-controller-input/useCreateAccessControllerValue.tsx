@@ -2,11 +2,14 @@ import React, { useMemo } from 'react';
 import { useCrudSelectors } from '../../../../redux/features/crud/crudSlice';
 import { useItemSlice } from '../../../../redux/features/crud/selectedItemSlice';
 import {
+  RoleModel,
+  Role,
+  UserModel,
+  SpaceModel,
   AccessControllerModel,
-  permissionsFormField,
   permissionsDefaultValues,
-} from '../../../../types/models/access-controller-type';
-import { RoleModel, Role, UserModel, SpaceModel } from '../../../../types/models/space-model';
+  permissionsFormField,
+} from '../../../../types/models/space-model';
 import { crudFormActions } from '../../../drawer/crud-form-action';
 
 export const useCreateAccessControllerValue = ({

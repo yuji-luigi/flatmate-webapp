@@ -48,7 +48,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     // }
     return {
       props: {
-        ...(await serverSideTranslations(locale || 'it', ['common', 'otherNamespace'])),
+        ...(await serverSideTranslations(locale || 'it', ['common'])),
         initialUser: user,
         initialLoggedAs: loggedAs,
         // other props you may need to pass to the page

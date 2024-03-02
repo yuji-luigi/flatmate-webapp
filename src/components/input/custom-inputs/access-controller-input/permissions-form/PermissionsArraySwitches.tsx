@@ -3,12 +3,12 @@ import { ChangeEvent } from 'react';
 import { UseFormReturnType } from '@mantine/form';
 import { useItemSlice } from '../../../../../redux/features/crud/selectedItemSlice';
 import classes from './PermissionsByRole.module.css';
+
 import {
   AccessControllerModel,
-  PermissionInterface,
+  RoleModel,
   permissionsFormField,
-} from '../../../../../types/models/access-controller-type';
-import { RoleModel } from '../../../../../types/models/space-model';
+} from '../../../../../types/models/space-model';
 import { useCrudSelectors } from '../../../../../redux/features/crud/crudSlice';
 
 type PermissionsByRoleSelectProps = {

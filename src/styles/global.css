@@ -35,6 +35,8 @@
   --liner-gradient-dark: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
   --font-weight-title: 900;
 
+  --padding-main: 40px 0;
+
   --padding-x: 16px;
   --padding-x-list: var(--padding-x);
   --padding-y-list: 24px;
@@ -198,3 +200,27 @@ ul {
   gap: var(--flex-gap-xl);
 }
 /* END AccessControllerInput component END*/
+
+.error-page-container {
+  display: flex;
+  padding: var(--padding-main);
+  flex-direction: column;
+  gap: var(--flex-gap);
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+.error-page-description {
+  display: flex;
+  flex-direction: column;
+  gap: var(--flex-gap);
+  align-items: center;
+  p {
+    text-align: center;
+  }
+}
+
+.error-page-description > img {
+  width: 400px;
+}

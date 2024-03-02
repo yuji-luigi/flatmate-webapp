@@ -41,11 +41,6 @@ export function CrudModal(props: CrudModalProps) {
   );
   const form = useForm({
     initialValues,
-    // TODO: Make Validate function and set by string value from formField.
-    // validate: 'email' uses this email validator.
-    // validate: {
-    //   email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
-    // },
   }) as UseFormReturnTypeCustom;
 
   const onSubmit = async (e: FormEvent) => {

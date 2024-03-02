@@ -61,8 +61,6 @@ export function CrudDrawerDefault({ overridingEntity = '' }: { overridingEntity?
   const form = useForm({
     name: 'crud-form',
     initialValues,
-
-    // TODO: Make Validate function and set by string value from formField.
   }) as UseFormReturnTypeCustom;
 
   function handleCloseDrawer() {

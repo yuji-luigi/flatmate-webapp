@@ -17,11 +17,14 @@ import { showNotification } from '@mantine/notifications';
 import { UseFormReturnType } from '@mantine/form';
 import { Icons } from '../../../../../data/icons/icons';
 import { useCrudSelectors } from '../../../../../redux/features/crud/crudSlice';
-import { RoleModel, SpaceModel } from '../../../../../types/models/space-model';
+import {
+  RoleModel,
+  SpaceModel,
+  AccessControllerModel,
+} from '../../../../../types/models/space-model';
 import { useItemSlice } from '../../../../../redux/features/crud/selectedItemSlice';
 import { useLocale } from '../../../../../../hooks/useLocale';
 import { useCreateAccessControllerValue } from '../useCreateAccessControllerValue';
-import { AccessControllerModel } from '../../../../../types/models/access-controller-type';
 
 const AddRoleButton = ({ form }: { form: UseFormReturnType<Record<string, any>> }) => {
   const { crudDocuments: roles, crudStatus } = useCrudSelectors<RoleModel>('roles');
