@@ -1,7 +1,5 @@
 import { CookieValueTypes } from 'cookies-next';
-import { UserRoles } from '../../../lib/enums';
-
-export type IUser = UserModel;
+import { MeUser } from '../../models/space-model';
 
 interface CurrentSpace {
   _id: string;
@@ -27,9 +25,8 @@ type ActionEnum = 'LOGIN' | 'REGISTER' | 'LOGOUT' | 'INITIALIZE';
 export interface JWTContextState {
   isAuthenticated?: boolean | null;
   isInitialized?: boolean | null;
-  user?: UserModel | null;
+  user?: MeUser | null;
   isSuperAdmin?: boolean;
-  loggedAs?: UserRoles | null;
 }
 export interface ReducerStateAction {
   payload?: JWTContextState;

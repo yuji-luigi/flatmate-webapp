@@ -25,6 +25,7 @@ export const SpaceAutoSelect = (props: Props) => {
       label={props.formField.label}
       clearable
       searchable
+      size="md"
       data={spaces.map((space) => ({ value: space._id, label: space.name }))}
       {...props.form.getInputProps(props.formField.name)}
     />

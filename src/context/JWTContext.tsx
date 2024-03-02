@@ -15,25 +15,23 @@ import {
   RegisterData,
 } from '../types/context/auth/useAuth';
 import { _PATH_FRONTEND } from '../path/path-frontend';
-import { Role, UserModel } from '../types/models/space-model';
+import { MeUser, Role, UserModel } from '../types/models/space-model';
 import { NOTIFICATIONS } from '../data/showNofification/notificationObjects';
 
 const initialState: JWTContextState = {
   isAuthenticated: false,
   isInitialized: false,
   user: null,
-  loggedAs: null,
 };
 
 const handlers: JWTContextHandlers = {
   INITIALIZE: (state, action) => {
-    const { isAuthenticated, user, loggedAs } = action.payload as JWTContextState;
+    const { isAuthenticated, user } = action.payload as JWTContextState;
     return {
       ...state,
       isAuthenticated,
       isInitialized: true,
       user,
-      loggedAs,
       isSuperAdmin: user?.isSuperAdmin,
     };
   },
@@ -51,7 +49,6 @@ const handlers: JWTContextHandlers = {
     ...state,
     isAuthenticated: false,
     user: null,
-    loggedAs: null,
     isSuperAdmin: false,
   }),
   REGISTER: (state, action) => {
@@ -82,7 +79,7 @@ function AuthProvider({
   initialLoggedAs,
 }: {
   children: ReactNode;
-  initialUser?: UserModel;
+  initialUser?: MeUser;
   initialLoggedAs?: Role;
 }) {
   const [state, dispatch] = useReducer(reducer, {
@@ -90,7 +87,6 @@ function AuthProvider({
     user: initialUser,
     isAuthenticated: !!initialUser,
     isInitialized: !!initialUser,
-    loggedAs: initialLoggedAs,
   });
   const { push } = useRouter();
   useEffect(() => {
@@ -100,13 +96,12 @@ function AuthProvider({
         const response = await axiosInstance.get<AxiosMeResponse>(PATH_AUTH.me, {
           withCredentials: true,
         });
-        const { user, loggedAs } = response.data;
+        const { user } = response.data;
         dispatch({
           type: 'INITIALIZE',
           payload: {
             isAuthenticated: true,
             user,
-            loggedAs,
           },
         });
       } catch (error) {
@@ -132,7 +127,6 @@ function AuthProvider({
         type: 'LOGIN',
         payload: {
           user,
-          loggedAs: role,
         },
       });
 
@@ -168,7 +162,6 @@ function AuthProvider({
   const logout: Logout = async () => {
     deleteCookie('jwt');
     deleteCookie('space');
-    deleteCookie('loggedAs');
     await axiosInstance.get(PATH_AUTH.logout, { withCredentials: true });
     push(_PATH_FRONTEND.auth.login);
     // localStorage.removeItem('accessToken');

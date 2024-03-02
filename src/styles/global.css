@@ -244,6 +244,15 @@ ul {
   grid-column: span 2;
   place-self: end center;
   width: 100%;
+  &[data-column='1'] {
+    grid-column: span 1;
+  }
+  &[data-column='2'] {
+    grid-column: span 2;
+  }
+  &[data-column='3'] {
+    grid-column: span;
+  }
   &[data-column='4'] {
     grid-column: span 4;
   }

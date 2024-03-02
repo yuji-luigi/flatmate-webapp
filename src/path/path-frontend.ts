@@ -50,7 +50,8 @@ const CHOOSE_ROOT_SPACE = '/choose-root-space';
 export const _PATH_FRONTEND = {
   pathAfterLogin: PATH_AFTER_LOGIN,
   dashboard: {
-    root: PATH_AFTER_LOGIN,
+    root: '/dashboard',
+    home: PATH_AFTER_LOGIN,
   },
   pathAfterLoginInhabitant: CHOOSE_ROOT_SPACE,
   homepage: {
@@ -78,19 +79,8 @@ export const _PATH_FRONTEND = {
     root: PATH_CLIENT.posts,
     byId: (threadId: string) => `${PATH_CLIENT.posts}/${threadId}`,
   },
-  Administrator: {
-    dashboard: {
-      root: `${PATH_CLIENT.administrator}/dashboard`,
-    },
-  },
-  Inhabitant: {
-    dashboard: {
-      root: '/dashboard',
-    },
-  },
-  Maintainer: {
-    dashboard: {
-      root: `${PATH_CLIENT.maintainer}/dashboard`,
-    },
+
+  dashboard: {
+    root: '/dashboard',
   },
 };

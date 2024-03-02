@@ -15,7 +15,7 @@ import useAuth from '../../../hooks/useAuth';
 const DashboardLayout = ({ children }: { children: ReactNode }) => {
   // const { setCurrentTab, currentTab } = useTabContext();
   const { isOpen } = useLayoutContext();
-  const { loggedAs } = useAuth();
+  const { user } = useAuth();
   const router = useRouter();
   const [currentTab, setCurrentTab] = useState<string | null>(
     (router.query.tab as string) || 'dashboard'
@@ -42,10 +42,9 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     setCurrentTab(router.query.tab as string);
   }, [router.query.tab]);
+
   const handleChangeTab = (value: string | null) => {
-    if (!value) return;
-    if (!loggedAs) return;
-    router.replace(`${_PATH_FRONTEND[loggedAs].dashboard.root}?tab=${value}`);
+    router.replace(`${_PATH_FRONTEND.dashboard.root}?tab=${value}`);
   };
 
   return (

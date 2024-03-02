@@ -9,11 +9,11 @@ import PostEditButton from '../../../components/posts/PostEditButton';
 import RelatedArticlesArea from '../../../sections/dashboard/single_post_page/RelatedArticleArea';
 import { CrudDrawerDefault } from '../../../components/drawer/CrudDrawerDefault';
 import { useCrudSliceStore, useCrudSelectors } from '../../../redux/features/crud/crudSlice';
-import { ThreadModel } from '../../../types/models/thread-model';
 import { ParsedQueryCustom } from '../../../types/nextjs-custom-types/useRouter-types';
 import { SingleArticleCard } from '../../../components/posts/SingleArticleCard';
 import { SingleArticleHeading } from '../../../components/posts/SingleArticleHeading';
 import classes from './PostIdPage.module.css';
+import { ThreadModel } from '../../../types/models/space-model';
 
 const PostIdPage = ({ thread }: { thread: ThreadModel }) => {
   const { query }: { query: ParsedQueryCustom } = useRouter();
@@ -47,7 +47,6 @@ PostIdPage.getLayout = function getLayout(page: ReactElement) {
 };
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
-  console.log('getServerSideProps');
   const jwtToken = context.req.cookies.jwt;
   try {
     const rawThread = await axiosInstance.get(

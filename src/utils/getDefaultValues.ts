@@ -1,5 +1,6 @@
 import { FormFieldTypes } from '../types/general/data/data-table/form-field-type/formField-types';
-import { AllModels } from '../types/models/mongoose-models';
+import { AllModels } from '../types/models/allmodels';
+import { MongooseBaseModel } from '../types/models/mongoose-base-model';
 import { _get, _set } from './helpers/helper-functions';
 
 export function getDefaultValues(
@@ -27,7 +28,7 @@ export function getDefaultValues(
            * set array of ids as a default values.
            */
           Array.isArray(crudDocument[path])
-            ? crudDocument[path].map((list: AllModels) => list._id || list) || ''
+            ? crudDocument[path].map((list: MongooseBaseModel) => list._id || list) || ''
             : /** otherwise set only id as defaultValue */
               crudDocument[path]?._id || ''
         );

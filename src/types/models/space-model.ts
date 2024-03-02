@@ -1,7 +1,8 @@
-import { IUser } from '../context/auth/useAuth';
 import { MongooseBaseModel } from './mongoose-base-model';
 
 import { UploadModel } from './upload-model';
+
+export type IUser = UserModel;
 
 export interface UserModel extends MongooseBaseModel {
   surname: string;
@@ -22,6 +23,7 @@ export interface MeUser extends MongooseBaseModel {
   cover: string;
   isSuperAdmin: boolean;
   isSystemAdmin: boolean;
+  loggedAs: Role;
   phone: string;
   active: boolean;
   accessController: MeAccessController;

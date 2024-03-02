@@ -11,6 +11,13 @@ export const threadTableData: Array<FormFieldTypes> = [
     priority: 1,
   },
   {
+    id: 'spaces',
+    name: 'spaces',
+    label: 'Spaces',
+    type: 'space-auto-select',
+    multi: true,
+  },
+  {
     id: 'description',
     name: 'description',
     label: 'body',
@@ -19,6 +26,7 @@ export const threadTableData: Array<FormFieldTypes> = [
     autosize: true,
     maxRows: 20,
     minRows: 10,
+    col: { xs: 4 },
     required: true,
     priority: 1,
   },
@@ -45,12 +53,5 @@ export const threadTableData: Array<FormFieldTypes> = [
     // selectValues: ['name'],
     required: false,
     priority: 2,
-  },
-  {
-    id: 'spaces',
-    name: 'spaces',
-    label: 'Spaces',
-    type: 'space-auto-select',
-    multi: true,
   },
 ];

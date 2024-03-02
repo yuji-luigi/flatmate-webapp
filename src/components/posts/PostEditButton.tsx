@@ -9,8 +9,8 @@ import { useCrudSliceStore } from '../../redux/features/crud/crudSlice';
 import { useDrawerContext } from '../../context/DataTableDrawerContext';
 import { Sections } from '../../types/general/data/sections-type';
 import { PATH_CLIENT } from '../../path/path-frontend';
-import { ThreadModel } from '../../types/models/thread-model';
-import { MaintenanceModel } from '../../types/models/maintenance-model';
+import { MaintenanceModel } from '../../types/models/maintenance-check-type';
+import { ThreadModel } from '../../types/models/space-model';
 
 const PostEditButton = ({
   data,
@@ -40,7 +40,7 @@ const PostEditButton = ({
   };
   return (
     <>
-      {(user?._id === data.createdBy._id || data.createdBy?.role === 'super_admin') && (
+      {(user?._id === data.createdBy._id || user?.isSuperAdmin) && (
         <Group justify="end" mb={10}>
           <Menu shadow="lg">
             <Menu.Target>

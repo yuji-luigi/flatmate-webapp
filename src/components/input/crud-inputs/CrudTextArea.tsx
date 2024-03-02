@@ -13,11 +13,21 @@ const CrudTextArea = ({ formField, form, ...others }: Prop) => {
   return (
     <Textarea
       placeholder={formField.placeholder}
-      className="crud-input"
       size="md"
+      data-column="4"
       {...others}
       {...formField}
       {...form.getInputProps(formField.name || formField.id)}
+      classNames={{
+        input: 'crud-input',
+        wrapper: 'crud-input',
+        description: 'crud-input',
+        error: 'crud-input',
+        label: 'crud-input',
+        section: 'crud-input',
+        root: 'crud-input',
+      }}
+      style={{ gridColumn: 'span 4' }}
     />
   );
 };

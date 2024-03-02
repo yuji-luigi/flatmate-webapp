@@ -65,7 +65,7 @@ export function CrudDrawerDefault({ overridingEntity = '' }: { overridingEntity?
 
   function handleCloseDrawer() {
     closeDrawer();
-    selectCrudDocument({ entity, document: null });
+    // selectCrudDocument({ entity, document: null });
     // form.reset();
   }
 
@@ -197,15 +197,17 @@ export function CrudDrawerDefault({ overridingEntity = '' }: { overridingEntity?
       position="right"
     >
       {/* <Icons.close onClick={handleCloseDrawer} /> */}
-      <form className={classes.form} onSubmit={onSubmit}>
-        {sectionFormFields?.map((formField) => (
-          <FormFields
-            // initialValues={initialValues}
-            form={form}
-            formField={formField}
-            key={formField.id}
-          />
-        ))}
+      <form onSubmit={onSubmit}>
+        <div className="crud-form-fields">
+          {sectionFormFields?.map((formField) => (
+            <FormFields
+              // initialValues={initialValues}
+              form={form}
+              formField={formField}
+              key={formField.id}
+            />
+          ))}
+        </div>
         <CreationToolBar
           formFields={sectionFormFields}
           form={form}

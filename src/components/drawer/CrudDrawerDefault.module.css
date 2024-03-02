@@ -3,14 +3,6 @@
   padding: 20px;
   /* container-type: inline-size; */
 }
-.form {
-  /* margin-top: 50px; */
-  /* height: 100vh; */
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--flex-gap);
-  container-type: inline-size;
-}
 
 .submitButton {
   /* set last row of the grid */

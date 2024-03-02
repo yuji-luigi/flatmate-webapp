@@ -65,7 +65,7 @@ const HeaderModalForm = ({ entity }: { entity: 'threads' | 'maintenances' }) => 
           reqBody[key] = [...reqBody[key], ...uploadIdData[key]];
         }
       } catch (error) {
-        console.log(error);
+        console.error(error);
         notifications.hide('submit');
         setSubmitting(false);
         return;
