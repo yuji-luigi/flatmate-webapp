@@ -29,16 +29,10 @@ const HeaderSpaceSelect = ({
 }: OrganizationSpaceSelectProps) => {
   // const [opened, { toggle }] = useDisclosure(false);
 
-  const { setCurrentSpace, resetCurrentSpace } = useCookieContext();
+  const { setCurrentSpace, resetCurrentSpace, currentSpace } = useCookieContext();
   const { fetchCrudDocuments } = useCrudSliceStore();
   const { crudDocuments: spaces } = useCrudSelectors<SpaceModel>('spaces');
   // const [spaces, setSpaces] = useState<ComboboxItem[]>([]);
-
-  const deleteHeaderCookies = async () => {
-    await axiosInstance.delete(PATH_API.spaceCookie);
-    setCurrentSpace(null);
-    // setSpaces([]);
-  };
 
   const handleDeleteSpaceCookie = async () => {
     await axiosInstance.delete(PATH_API.spaceCookie);
@@ -59,7 +53,7 @@ const HeaderSpaceSelect = ({
   useEffect(() => {
     fetchCrudDocuments({ entity: 'spaces' });
   }, []);
-
+  console.log(currentSpace);
   return (
     <Box className={className}>
       <Select
@@ -68,7 +62,6 @@ const HeaderSpaceSelect = ({
         clearable
         disabled={!spaces.length}
         label={labels?.space}
-        // onClick={handleGetSpaces}
         data={spaces.map((space) => ({ value: space._id, label: space.name }))}
         onChange={(value) => {
           if (value === null) {
@@ -80,6 +73,7 @@ const HeaderSpaceSelect = ({
             form.setFieldValue('space', value || '');
           }
         }}
+        value={currentSpace?._id || null}
         style={style}
       />
     </Box>

@@ -121,9 +121,6 @@ ul {
 .modalBody {
   padding: var(--padding-card);
   padding-top: 0;
-  @media (max-width: $mantine-breakpoint-sm) {
-    padding-inline: calc(- var(--pading-x));
-  }
 }
 .modalTitle {
   font-size: var(--font-size-subtitle);
@@ -223,6 +220,15 @@ ul {
 
 .error-page-description > img {
   width: 400px;
+}
+
+.modal-inputs-container {
+  display: grid;
+  gap: var(--flex-gap);
+  grid-template-columns: 1fr 1fr;
+  @media (max-width: $mantine-breakpoint-sm) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .crud-input {

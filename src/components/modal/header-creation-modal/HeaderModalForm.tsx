@@ -75,7 +75,10 @@ const HeaderModalForm = ({ entity }: { entity: 'threads' | 'maintenances' }) => 
   };
 
   useEffect(() => {
-    sleep(3000).then(() => {});
+    handleLoadingStatus();
+  }, [crudStatus]);
+  const handleLoadingStatus = async () => {
+    await sleep(1000);
     if (crudStatus === 'succeed' && submitting) {
       notifications.hide('submit');
       notifications.show({
@@ -85,7 +88,6 @@ const HeaderModalForm = ({ entity }: { entity: 'threads' | 'maintenances' }) => 
         message: 'Successfully created a new thread.',
         autoClose: 5000,
       });
-
       setSubmitting(false);
       form.reset();
       close();
@@ -103,8 +105,7 @@ const HeaderModalForm = ({ entity }: { entity: 'threads' | 'maintenances' }) => 
       resetCrudStatus();
       setSubmitting(false);
     }
-  }, [crudStatus]);
-
+  };
   return (
     <form onSubmit={onSubmit}>
       {submitting && (
@@ -114,7 +115,7 @@ const HeaderModalForm = ({ entity }: { entity: 'threads' | 'maintenances' }) => 
           <LoadingOverlay visible />
         </>
       )}
-      <Box className={classes.inputsWrapper}>
+      <Box className="modal-inputs-container">
         {sectionFormFields
           .toSorted((a, b) => (a.formOrder || 0) - (b.formOrder || 0))
           ?.map((formField) => (
