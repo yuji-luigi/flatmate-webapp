@@ -62,4 +62,5 @@ type FormTypes =
   | 'user-role'
   | 'user-name-email-head'
   | 'access-controller'
+  | 'space-auto-select'
   | 'pin-input';

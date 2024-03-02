@@ -2,7 +2,7 @@ import axios, { AxiosInstance, AxiosResponse } from 'axios';
 import { Sections } from '../types/general/data/sections-type';
 import { API_BASE_URL } from '../path/path-api';
 import { AllModels } from '../types/models/allmodels';
-import { UserModel, Role } from '../types/models/space-model';
+import { UserModel, Role, MeUser } from '../types/models/space-model';
 
 // ----------------------------------------------------------------------
 
@@ -24,7 +24,7 @@ export interface AxiosResDataGeneric<DataType> {
 export interface AxiosMeResponse {
   success: boolean;
   collection: Sections;
-  user: UserModel;
+  user: MeUser;
   loggedAs: Role;
 }
 axiosInstance.interceptors.request.use(

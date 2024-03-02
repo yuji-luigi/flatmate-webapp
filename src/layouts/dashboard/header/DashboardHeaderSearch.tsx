@@ -7,21 +7,19 @@ import { ColorSchemeToggle } from '../../../components/color-schemeToggle/ColorS
 import { LogoBanner } from '../../../components/banner/LogoBanner';
 // import { useCurrentSpaceContext } from '../../context/CurrentSpaceContext';
 
-import OrganizationSpaceSelect from '../../../components/select-custom/OrganizationSpaceSelect';
+import OrganizationSpaceSelect from '../../../components/input/custom-inputs/OrganizationSpaceSelect';
 import { HeaderCreationModalWrapper } from '../../../components/modal/header-creation-modal/HeaderCreationModalWrapper';
 import { TAB_LIST_CONFIG } from '../../../sections/dashboard/dashboard_top/sections-in-tabs/tabList';
 import { useCustomMQuery } from '../../../../hooks/useCustomMQuery';
 import { TabList } from '../../../components/tab/TabList';
 import classesM from './DashboardHeaderSearch.module.css';
 import { HeaderNotificationButton } from './notifications/HeaderNotificationButton';
+import SpaceSelectInput from '../../../components/input/custom-inputs/SpaceSelectInput';
+import HeaderSpaceSelect from '../../../components/input/custom-inputs/HeaderSpaceSelect';
 
 export type JSONType = typeof links;
 
 export function DashboardHeaderSearch() {
-  // const [opened, { toggle }] = useDisclosure(false);
-  // const [organizations, setOrganizations] = useState<SelectItem[] | []>([]);
-  // const [spaces, setSpaces] = useState<SelectItem[] | []>([]);
-  const router = useRouter();
   const { isOpen, toggleBarOpen } = useLayoutContext();
   const { isMobile } = useCustomMQuery();
 
@@ -50,7 +48,8 @@ export function DashboardHeaderSearch() {
       {!isMobile && (
         <Box className={classesM.deskTopExNav}>
           <HeaderNotificationButton />
-          <OrganizationSpaceSelect className={classesM.selectGroup} />
+          {/* <OrganizationSpaceSelect className={classesM.selectGroup} /> */}
+          <HeaderSpaceSelect />
           <ColorSchemeToggle />
         </Box>
       )}

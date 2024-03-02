@@ -224,3 +224,15 @@ ul {
 .error-page-description > img {
   width: 400px;
 }
+
+.crud-input {
+  grid-column: span 2;
+  place-self: end center;
+  width: 100%;
+  &[data-column='4'] {
+    grid-column: span 4;
+  }
+  @container (max-width: $mantine-breakpoint-xs) {
+    grid-column: span 4;
+  }
+}

@@ -23,16 +23,6 @@ export const threadTableData: Array<FormFieldTypes> = [
     priority: 1,
   },
 
-  // {
-  //   id: 'tags',
-  //   name: 'tags',
-  //   label: 'tag',
-  //   placeholder: 'Tag',
-  //   type: 'text',
-  //   required: true,
-  //   priority: 1,
-  // },
-
   {
     id: 'images',
     name: 'images',
@@ -57,23 +47,10 @@ export const threadTableData: Array<FormFieldTypes> = [
     priority: 2,
   },
   {
-    id: 'space',
-    name: 'space',
-    label: 'Space',
-    type: 'select',
+    id: 'spaces',
+    name: 'spaces',
+    label: 'Spaces',
+    type: 'space-auto-select',
     multi: true,
-    _entity: 'spaces',
-    selectValues: ['name'],
-    required: false,
-    priority: 2,
   },
-  // {
-  //   id: 'isImportant',
-  //   name: 'isImportant',
-  //   label: 'Important',
-  //   options: ['Important'],
-  //   type: 'checkbox-group',
-  //   required: false,
-  //   priority: 2,
-  // },
 ];

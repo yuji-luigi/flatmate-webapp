@@ -8,24 +8,23 @@ export interface UserModel extends MongooseBaseModel {
   name: string;
   email: string;
   active: boolean;
-  role: RoleModel | 'objectId or model';
   rootSpaces: Array<string>;
   password: string;
   phone?: string;
   avatar?: UploadModel;
   isSuperAdmin: boolean;
-  organization: string;
 }
 export interface MeUser extends MongooseBaseModel {
-  surname: string;
+  _id: string;
   name: string;
-  email: string;
-  active: boolean;
-  phone?: string;
-  accessController?: AccessControllerModel;
-  avatar?: UploadModel;
+  surname: string;
+  avatar: string;
+  cover: string;
   isSuperAdmin: boolean;
-  organization: string;
+  isSystemAdmin: boolean;
+  phone: string;
+  active: boolean;
+  accessController: MeAccessController;
 }
 
 export type UserWithRoleModel = UserModel & { role: RoleModel };
@@ -49,7 +48,7 @@ export interface BillingProfileModel extends MongooseBaseModel {
   description?: string;
   address?: string;
 }
-export const ROLES = ['Administrator', 'Maintainer', 'Inhabitant'] as const;
+export const ROLES = ['Administrator', 'Maintainer', 'Inhabitant', 'System Admin'] as const;
 
 export type Role = (typeof ROLES)[number];
 export interface RoleModel extends MongooseBaseModel {
@@ -187,5 +186,11 @@ export interface AccessControllerModel extends MongooseBaseModel {
   user: string | UserModel;
   space: string | SpaceModel;
   role: RoleModel | string;
+  permissions: PermissionInterface[];
+}
+export interface MeAccessController extends MongooseBaseModel {
+  user: string | UserModel;
+  space: string | SpaceModel;
+  role: Role;
   permissions: PermissionInterface[];
 }

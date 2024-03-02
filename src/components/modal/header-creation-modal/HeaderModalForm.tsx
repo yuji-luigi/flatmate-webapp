@@ -32,8 +32,6 @@ const HeaderModalForm = ({ entity }: { entity: 'threads' | 'maintenances' }) => 
   const { setSubmitting, resetCrudStatus, createCrudDocument } = useCrudSliceStore();
   const { crudStatus, crudError } = useCrudSelectors();
   const initialValues = useMemo(() => getDefaultValues(sectionFormFields), []);
-  // const [organizationOptions, setOrganizationOptions] = useState<SelectItem[] | []>([]);
-  // const [spaceOptions, setSpaceOptions] = useState<SelectItem[] | []>([]);
 
   const form = useForm({
     initialValues,
@@ -50,7 +48,6 @@ const HeaderModalForm = ({ entity }: { entity: 'threads' | 'maintenances' }) => 
       loading: true,
     });
     // force to wait for 1.5 seconds to show the loading notification
-    await sleep(1000);
 
     const reqBody: Record<string, any> = {
       ...form.values,
@@ -76,7 +73,9 @@ const HeaderModalForm = ({ entity }: { entity: 'threads' | 'maintenances' }) => 
     }
     createCrudDocument({ entity, newDocument: reqBody });
   };
+
   useEffect(() => {
+    sleep(3000).then(() => {});
     if (crudStatus === 'succeed' && submitting) {
       notifications.hide('submit');
       notifications.show({
@@ -86,6 +85,7 @@ const HeaderModalForm = ({ entity }: { entity: 'threads' | 'maintenances' }) => 
         message: 'Successfully created a new thread.',
         autoClose: 5000,
       });
+
       setSubmitting(false);
       form.reset();
       close();

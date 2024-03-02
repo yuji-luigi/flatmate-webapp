@@ -29,7 +29,7 @@ export const SelectFilterInput = ({ formField }: { formField: StaticSelectFormFi
         root: classes.inputRoot,
         wrapper: classes.inputWrapper,
         label: classes.inputLabel,
-        input: classes.input,
+        input: 'crud-input',
       }}
       value={query[formField.name] as string}
       key={formField.id}

@@ -111,6 +111,11 @@ export type AccessControllerFormFieldType = {
   type: 'access-controller';
 } & BaseFormType;
 
+export type SpaceSelectAuto = {
+  type: 'space-auto-select';
+  multi?: boolean;
+} & BaseFormType;
+
 export type FormFieldTypes =
   | TextFormType
   | SelectFormType
@@ -129,4 +134,5 @@ export type FormFieldTypes =
   | UserRoleInput
   | UserNameEmailCellType
   | AccessControllerFormFieldType
+  | SpaceSelectAuto
   | UploadFormFieldType;

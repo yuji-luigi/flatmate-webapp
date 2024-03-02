@@ -25,7 +25,7 @@ export function EmailBanner() {
             <TextInput
               aria-disabled="true"
               placeholder="Your email"
-              classNames={{ input: classes.input, root: classes.inputWrapper }}
+              classNames={{ input: 'crud-input', root: classes.inputWrapper }}
             />
             <Button className={classes.control}>{t('Subscribe')}</Button>
           </div>
