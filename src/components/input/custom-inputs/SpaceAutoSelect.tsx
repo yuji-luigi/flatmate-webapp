@@ -15,7 +15,8 @@ export const SpaceAutoSelect = (props: Props) => {
   const { crudDocuments: spaces } = useCrudSelectors<SpaceModel>('spaces');
   const { currentSpace } = useCookieContext();
   useEffect(() => {
-    props.form.setFieldValue(props.formField.name, [currentSpace?._id]);
+    const defaultValue = currentSpace?._id ? [currentSpace?._id] : [];
+    props.form.setFieldValue(props.formField.name, defaultValue);
   }, [currentSpace?._id]);
   return (
     <MultiSelect
