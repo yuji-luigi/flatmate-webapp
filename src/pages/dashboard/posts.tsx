@@ -6,7 +6,7 @@ import axiosInstance from '../../utils/axios-instance';
 import { useCrudSliceStore } from '../../redux/features/crud/crudSlice';
 // import { useCurrentSpaceContext } from '../../context/CurrentSpaceContext';
 import { useCookieContext } from '../../context/CookieContext';
-import { ThreadModel } from '../../types/models/thread-model';
+import { ThreadModel } from '../../types/models/space-model';
 
 export default function PostsPage({ threads }: { threads: ThreadModel[] }) {
   const { setCrudDocuments } = useCrudSliceStore();
@@ -15,7 +15,7 @@ export default function PostsPage({ threads }: { threads: ThreadModel[] }) {
     setCrudDocuments({ entity: 'threads', documents: threads });
     console.log();
   }, [threads, currentSpace?._id]);
-  return <PostsPageSection /* threads={threads} */ />;
+  return <PostsPageSection />;
 }
 
 PostsPage.getLayout = function getLayout(page: ReactElement) {

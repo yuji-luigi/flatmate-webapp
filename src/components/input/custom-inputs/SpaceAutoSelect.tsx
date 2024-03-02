@@ -1,5 +1,5 @@
 import { UseFormReturnType } from '@mantine/form';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { MultiSelect } from '@mantine/core';
 import { SpaceSelectAuto } from '../../../types/general/data/data-table/form-field-type/formField-types';
 import useAuth from '../../../../hooks/useAuth';
@@ -14,6 +14,9 @@ type Props = {
 export const SpaceAutoSelect = (props: Props) => {
   const { crudDocuments: spaces } = useCrudSelectors<SpaceModel>('spaces');
   const { currentSpace } = useCookieContext();
+  useEffect(() => {
+    props.form.setFieldValue(props.formField.name, [currentSpace?._id]);
+  }, [currentSpace?._id]);
   return (
     <MultiSelect
       className="crud-input"
@@ -21,8 +24,8 @@ export const SpaceAutoSelect = (props: Props) => {
       label={props.formField.label}
       clearable
       searchable
-      defaultValue={currentSpace ? [currentSpace._id] : []}
       data={spaces.map((space) => ({ value: space._id, label: space.name }))}
+      {...props.form.getInputProps(props.formField.name)}
     />
   );
 };
