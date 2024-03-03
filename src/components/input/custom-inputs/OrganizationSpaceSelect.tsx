@@ -44,14 +44,14 @@ const OrganizationSpaceSelect = ({
 
   const deleteHeaderCookies = async () => {
     await axiosInstance.delete(`${PATH_API.organizationCookie}`);
-    await axiosInstance.delete(PATH_API.spaceCookie);
+    await axiosInstance.delete(PATH_API.getSpaceSelections);
     setCurrentOrganization(null);
     setCurrentSpace(null);
     setSpaces([]);
   };
 
   const handleDeleteSpaceCookie = async () => {
-    await axiosInstance.delete(PATH_API.spaceCookie);
+    await axiosInstance.delete(PATH_API.getSpaceSelections);
     setCurrentSpace(null);
   };
 
@@ -74,7 +74,7 @@ const OrganizationSpaceSelect = ({
     try {
       const response = await axiosInstance.get(`${PATH_API.organizationCookie}/${organizationId}`);
       const selectOptions = convertToSelectItems(response.data.data);
-      await axiosInstance.delete(`${PATH_API.spaceCookie}`);
+      await axiosInstance.delete(`${PATH_API.getSpaceSelections}`);
       setCurrentSpace(null);
       setSpaces(selectOptions);
       setCurrentOrganization(organizationId);
@@ -85,11 +85,11 @@ const OrganizationSpaceSelect = ({
 
   const getSpaceCookieFromApi = async (spaceId: string) => {
     if (spaceId === '') {
-      await axiosInstance.delete(PATH_API.spaceCookie);
+      await axiosInstance.delete(PATH_API.getSpaceSelections);
       resetCurrentSpace();
       return;
     }
-    const response = await axiosInstance.get(`${PATH_API.spaceCookie}/${spaceId}`);
+    const response = await axiosInstance.get(`${PATH_API.getSpaceSelections}/${spaceId}`);
     setCurrentSpace(response.data.data.space);
   };
 

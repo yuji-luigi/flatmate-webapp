@@ -21,7 +21,7 @@ export const ChooseSpaceSection = ({ spaces }: { spaces: SpaceModel[] }) => {
   const router: NextRouter & { query: ParsedQueryCustom; pathname: string } = useRouter();
 
   const handleSpaceSelected = async (spaceId: string) => {
-    await axiosInstance.get(`${PATH_API.spaceCookie}/${spaceId}`);
+    await axiosInstance.get(`${PATH_API.getSpaceSelections}/${spaceId}`);
     router.push(_PATH_FRONTEND.dashboard.root);
   };
 

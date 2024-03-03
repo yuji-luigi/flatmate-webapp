@@ -39,24 +39,24 @@ const OrganizationSpaceSelect = ({
   const [spaces, setSpaces] = useState<ComboboxItem[]>([]);
 
   const deleteHeaderCookies = async () => {
-    await axiosInstance.delete(PATH_API.spaceCookie);
+    await axiosInstance.delete(PATH_API.getSpaceSelections);
     setCurrentOrganization(null);
     setCurrentSpace(null);
     setSpaces([]);
   };
 
   const handleDeleteSpaceCookie = async () => {
-    await axiosInstance.delete(PATH_API.spaceCookie);
+    await axiosInstance.delete(PATH_API.getSpaceSelections);
     setCurrentSpace(null);
   };
 
   const getSpaceCookieFromApi = async (spaceId: string) => {
     if (spaceId === '') {
-      await axiosInstance.delete(PATH_API.spaceCookie);
+      await axiosInstance.delete(PATH_API.getSpaceSelections);
       resetCurrentSpace();
       return;
     }
-    const response = await axiosInstance.get(`${PATH_API.spaceCookie}/${spaceId}`);
+    const response = await axiosInstance.get(`${PATH_API.getSpaceSelections}/${spaceId}`);
     setCurrentSpace(response.data.data.space);
   };
 

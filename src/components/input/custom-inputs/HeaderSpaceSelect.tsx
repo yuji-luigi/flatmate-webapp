@@ -9,6 +9,10 @@ import { useCookieContext } from '../../../context/CookieContext';
 import { convertToSelectItems } from '../../../utils/helpers/helper-functions';
 import { useCrudSelectors, useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
 import { SpaceModel } from '../../../types/models/space-model';
+import {
+  useSpaceSelectionSelectors,
+  useSpaceSelectionSliceStore,
+} from '../../../redux/features/crud/spaceSelectionSlice';
 
 interface OrganizationSpaceSelectProps {
   style?: MantineStyleProp;
@@ -30,30 +34,29 @@ const HeaderSpaceSelect = ({
   // const [opened, { toggle }] = useDisclosure(false);
 
   const { setCurrentSpace, resetCurrentSpace, currentSpace } = useCookieContext();
-  const { fetchCrudDocuments } = useCrudSliceStore();
-  const { crudDocuments: spaces } = useCrudSelectors<SpaceModel>('spaces');
+  const { fetchSpaceSelections: fetchCrudDocuments } = useSpaceSelectionSliceStore();
+  const { spaceSelections: spaces } = useSpaceSelectionSelectors();
   // const [spaces, setSpaces] = useState<ComboboxItem[]>([]);
 
   const handleDeleteSpaceCookie = async () => {
-    await axiosInstance.delete(PATH_API.spaceCookie);
+    await axiosInstance.delete(PATH_API.getSpaceSelections);
     setCurrentSpace(null);
   };
 
   const getSpaceCookieFromApi = async (spaceId: string) => {
     // case select is cleared
     if (spaceId === '') {
-      await axiosInstance.delete(PATH_API.spaceCookie);
+      await axiosInstance.delete(PATH_API.getSpaceSelections);
       resetCurrentSpace();
       return;
     }
-    const response = await axiosInstance.get(`${PATH_API.spaceCookie}/${spaceId}`);
+    const response = await axiosInstance.get(`${PATH_API.getSpaceSelections}/${spaceId}`);
     setCurrentSpace(response.data.data.space);
   };
 
   useEffect(() => {
-    fetchCrudDocuments({ entity: 'spaces' });
+    fetchCrudDocuments({});
   }, []);
-  console.log(currentSpace);
   return (
     <Box className={className}>
       <Select

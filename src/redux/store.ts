@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import crudReducer from './features/crud/crudSlice';
 import selectedItemReducer from './features/crud/selectedItemSlice';
+import spaceSelectionSlice from './features/crud/spaceSelectionSlice';
 // import { rootReducer } from './rootReducer';
 // import { useDispatch, useSelector } from 'react-redux';
 
@@ -9,6 +10,7 @@ export const store = configureStore({
   reducer: {
     crud: crudReducer,
     item: selectedItemReducer,
+    spaceSelection: spaceSelectionSlice,
   },
 });
 

@@ -6,13 +6,14 @@ import useAuth from '../../../../hooks/useAuth';
 import { useCrudSelectors } from '../../../redux/features/crud/crudSlice';
 import { SpaceModel } from '../../../types/models/space-model';
 import { useCookieContext } from '../../../context/CookieContext';
+import { useSpaceSelectionSelectors } from '../../../redux/features/crud/spaceSelectionSlice';
 
 type Props = {
   form: UseFormReturnType<Record<string, unknown>>;
   formField: SpaceSelectAuto;
 };
 export const SpaceAutoSelect = (props: Props) => {
-  const { crudDocuments: spaces } = useCrudSelectors<SpaceModel>('spaces');
+  const { spaceSelections: spaces } = useSpaceSelectionSelectors();
   const { currentSpace } = useCookieContext();
   useEffect(() => {
     const defaultValue = currentSpace?._id ? [currentSpace?._id] : [];

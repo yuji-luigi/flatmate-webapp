@@ -11,7 +11,7 @@ import { useCookieContext } from '../../../context/CookieContext';
 import { PATH_CLIENT, _PATH_FRONTEND } from '../../../path/path-frontend';
 
 const getSpaceAsCookie = async (crudId: string) => {
-  const res = await axiosInstance.get(`${PATH_API.spaceCookie}/${crudId}`, {
+  const res = await axiosInstance.get(`${PATH_API.getSpaceSelections}/${crudId}`, {
     withCredentials: true,
   });
 
