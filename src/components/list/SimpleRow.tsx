@@ -3,11 +3,11 @@ import React from 'react';
 
 const SimpleRow = ({
   title,
-  content,
+  content = '',
   top = false,
 }: {
   title: string;
-  content: string | number;
+  content?: string | number;
   top?: boolean;
 }) => {
   return (

@@ -1,3 +1,5 @@
+import { Role } from '../../types/models/space-model';
+
 export interface IInitialValues {
   email: string;
   password: string;
@@ -5,7 +7,7 @@ export interface IInitialValues {
   name: string;
   surname: string;
   organization: string;
-  purpose: 'condoAdmin' | 'flatAdmin' | 'companyAdmin' | '';
+  role?: Role | '';
   space: {
     maxUsers: number;
     name: string;
@@ -20,7 +22,7 @@ export const initialValues: IInitialValues = {
   password2: '',
   name: '',
   surname: '',
-  purpose: '',
+  // role: '',
   organization: '',
   space: {
     maxUsers: 0,

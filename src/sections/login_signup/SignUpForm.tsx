@@ -6,26 +6,29 @@ import { useForm } from '@mantine/form';
 import { notifications, showNotification } from '@mantine/notifications';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import { set } from 'nprogress';
 import useAuth from '../../../hooks/useAuth';
 
 import { RegisterData } from '../../types/context/auth/useAuth';
-import GuestGuard from '../../guards/GuestGuard';
 import { Icons } from '../../data/icons/icons';
 import SignUpStepOne from './SignUpStepOne';
 import SignUpStepTwo from './SignUpStepTwo';
 import classes from './SignUpForm.module.css';
 import { IInitialValues, initialValues } from './defaultValues';
 import SignUpConfirm from './SignUpConfirm';
+import { sleep } from '../../utils/helpers/helper-functions';
 
 const MAX_STEP = 2;
 
 export function SignUpForm() {
   const { register } = useAuth();
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const [steps, setSteps] = useState(0);
   const form = useForm<IInitialValues>({ initialValues });
   const onSubmit = async (data: RegisterData) => {
     try {
+      setIsLoading(true);
       // const {email, password, name, surname} = data;
       await register(data);
       notifications.show({
@@ -36,6 +39,7 @@ export function SignUpForm() {
         autoClose: 2000,
         id: 'register-success',
       });
+      await sleep(750);
       router.push('/choose-root-space');
     } catch (error: any) {
       showNotification({
@@ -45,7 +49,10 @@ export function SignUpForm() {
         message: error.message || error || 'connection error',
         autoClose: 2000,
       });
+      await sleep(750);
       console.error(error.message || error);
+    } finally {
+      setIsLoading(false);
     }
   };
   const handleNext = () => {
@@ -77,12 +84,12 @@ export function SignUpForm() {
       </Text>
       <Paper withBorder shadow="md" p={24} mt={10} radius="md">
         <form onSubmit={form.onSubmit((values) => onSubmit(values))}>
-          {steps === 0 && <SignUpStepOne form={form} />}
-          {steps === 1 && <SignUpStepTwo form={form} />}
-          {steps === MAX_STEP && <SignUpConfirm form={form} />}
-          <Group justify="apart" mt="md">
-            <Checkbox label="Remember me" />
-          </Group>
+          <fieldset aria-disabled={isLoading} className="fieldset">
+            {steps === 0 && <SignUpStepOne form={form} />}
+            {steps === 1 && <SignUpStepTwo form={form} />}
+            {steps === MAX_STEP && <SignUpConfirm form={form} />}
+          </fieldset>
+
           <Flex mt="xl" gap="md">
             <Button disabled={steps <= 0} type="button" fullWidth onClick={handlePrev} mt="xl">
               Prev

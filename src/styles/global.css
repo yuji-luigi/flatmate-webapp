@@ -222,6 +222,25 @@ ul {
   width: 400px;
 }
 
+.fieldset {
+  display: flex;
+  flex-direction: column;
+  border: none;
+  gap: var(--flex-gap);
+  border-radius: var(--radius-card);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  transition: 0.3s;
+  &:hover {
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+  }
+  &[aria-disabled='true'] {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}
+
 .crud-modal-form-fields {
   display: flex;
   flex-direction: column;
