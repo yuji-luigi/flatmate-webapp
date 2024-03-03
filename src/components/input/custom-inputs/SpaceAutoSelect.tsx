@@ -13,22 +13,24 @@ type Props = {
   formField: SpaceSelectAuto;
 };
 export const SpaceAutoSelect = (props: Props) => {
+  const { form, formField } = props;
   const { spaceSelections: spaces } = useSpaceSelectionSelectors();
   const { currentSpace } = useCookieContext();
   useEffect(() => {
+    if ((form.values[formField.name] as []).length) return;
     const defaultValue = currentSpace?._id ? [currentSpace?._id] : [];
-    props.form.setFieldValue(props.formField.name, defaultValue);
+    form.setFieldValue(formField.name, defaultValue);
   }, [currentSpace?._id]);
   return (
     <MultiSelect
       className="crud-input"
       name="space"
-      label={props.formField.label}
+      label={formField.label}
       clearable
       searchable
       size="md"
       data={spaces.map((space) => ({ value: space._id, label: space.name }))}
-      {...props.form.getInputProps(props.formField.name)}
+      {...form.getInputProps(formField.name)}
     />
   );
 };

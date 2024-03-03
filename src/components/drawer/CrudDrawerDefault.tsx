@@ -198,7 +198,7 @@ export function CrudDrawerDefault({ overridingEntity = '' }: { overridingEntity?
     >
       {/* <Icons.close onClick={handleCloseDrawer} /> */}
       <form onSubmit={onSubmit}>
-        <div className="crud-form-fields">
+        <div className="crud-drawer-form-fields">
           {sectionFormFields?.map((formField) => (
             <FormFields
               // initialValues={initialValues}

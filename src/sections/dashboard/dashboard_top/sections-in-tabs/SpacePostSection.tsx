@@ -6,10 +6,12 @@ import { NewPostInFeed } from '../../../../components/posts/feed/NewPostInFeed';
 import { SimpleDisclosureContextProvider } from '../../../../context/SimpleDisclosureContext';
 import classes from './SpacePostSection.module.css';
 import { ThreadModel } from '../../../../types/models/space-model';
+import { useGetCrudDocuments } from '../../../../hooks/useGetCrudDocuments';
 
 export const SpacePostSection = () => {
   const { fetchCrudDocuments } = useCrudSliceStore();
   const { crudDocuments } = useCrudSelectors('threads') as { crudDocuments: ThreadModel[] };
+  useGetCrudDocuments({ entity: 'threads', withPagination: false });
   useEffect(() => {
     if (!crudDocuments.length) {
       fetchCrudDocuments({ entity: 'threads' });

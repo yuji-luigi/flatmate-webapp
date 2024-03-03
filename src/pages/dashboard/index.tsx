@@ -7,6 +7,7 @@ import { useCookieContext } from '../../context/CookieContext';
 import { useCrudSliceStore } from '../../redux/features/crud/crudSlice';
 import { DashboardRootTabPanels } from '../../sections/dashboard/dashboard_top/sections-in-tabs/dashboard/DashboardRootTabPanels';
 import { PATH_AUTH } from '../../path/path-api';
+import { useGetCrudDocuments } from '../../hooks/useGetCrudDocuments';
 
 const DashboardPage = () => {
   const { currentOrganization, currentSpace } = useCookieContext();
@@ -14,16 +15,16 @@ const DashboardPage = () => {
 
   useEffect(() => {
     handleSectionData();
-  }, [currentOrganization, currentSpace]);
+  }, []);
 
   const handleSectionData = async () => {
     const rawRes = await axiosInstance.get(`${process.env.NEXT_PUBLIC_API_URL}/home`);
     const { space, maintainers, maintenances, threads, statistics } = rawRes.data.data || [];
     setCrudDocument({ entity: 'statistics', document: statistics });
     setCrudDocument({ entity: 'spaces', document: space });
-    setCrudDocuments({ entity: 'maintainers', documents: maintainers });
+    // setCrudDocuments({ entity: 'maintainers', documents: maintainers });
     setCrudDocuments({ entity: 'maintenances', documents: maintenances });
-    setCrudDocuments({ entity: 'threads', documents: threads });
+    // setCrudDocuments({ entity: 'threads', documents: threads });
   };
   return <DashboardRootTabPanels />;
 };

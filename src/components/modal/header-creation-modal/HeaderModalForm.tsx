@@ -115,7 +115,7 @@ const HeaderModalForm = ({ entity }: { entity: 'threads' | 'maintenances' }) => 
           <LoadingOverlay visible />
         </>
       )}
-      <Box className="modal-inputs-container">
+      <Box className="crud-modal-form-fields">
         {sectionFormFields
           .toSorted((a, b) => (a.formOrder || 0) - (b.formOrder || 0))
           ?.map((formField) => (

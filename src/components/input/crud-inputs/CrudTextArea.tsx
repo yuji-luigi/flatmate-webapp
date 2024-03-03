@@ -20,7 +20,7 @@ const CrudTextArea = ({ formField, form, ...others }: Prop) => {
       {...form.getInputProps(formField.name || formField.id)}
       classNames={{
         input: 'crud-input',
-        wrapper: 'crud-input',
+        wrapper: 'crud-input crud-textarea',
         description: 'crud-input',
         error: 'crud-input',
         label: 'crud-input',

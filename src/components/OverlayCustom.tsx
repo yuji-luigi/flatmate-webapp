@@ -6,7 +6,7 @@ interface OverlayProps {
   children: React.ReactNode;
   icon?: React.ReactNode;
   // styleOverlay?: CSSProperties;
-  style: MantineStyleProp;
+  style?: MantineStyleProp;
   onClick?: () => void;
 }
 

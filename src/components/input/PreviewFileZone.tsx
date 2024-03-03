@@ -29,9 +29,9 @@ const PreviewFileZone = ({ form, formField, entity }: Prop) => {
       <Text mb={0} size="md" fw={500}>
         {formField?.label}
       </Text>
-      <OverlayCustom leftSection={<Icons.image />} onClick={open}>
+      <OverlayCustom icon={<Icons.image />} onClick={open}>
         {!!files.length &&
-          [...files, ...files].map((upload) => {
+          files.map((upload) => {
             /** is File object created when select file from machine, otherwise upload model from DB */
             const isFile = upload instanceof File;
             return (
