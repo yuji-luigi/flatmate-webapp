@@ -26,7 +26,7 @@
 				"title": "Posts",
 				"subtitle": "subtitle",
 				"navbarTitle": "posts",
-				"link": "/dashboard/posts",
+				"link": "/dashboard",
 				"importButton": "",
 				"createButton": "",
 				"icon": "posts",

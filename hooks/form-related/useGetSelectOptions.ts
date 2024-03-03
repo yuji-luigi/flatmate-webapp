@@ -17,6 +17,7 @@ export const useGetSelectOptions = (
   // const [idleDocuments, setIdleDocuments] = useState<SelectOption[]>([]);
   /** fetch with query,  */
   const { fetchCrudDocuments } = useCrudSliceStore();
+  console.log(formField._entity, 'formField._entity');
   const { crudDocuments } = useCrudSelectors(formField._entity as Sections);
   // const { fetchCrudDocuments, crudDocuments } = useCrudSlice(formField._entity);
 
