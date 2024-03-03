@@ -12,7 +12,7 @@ import CrudCheckbox from './crud-inputs/CrudCheckbox';
 import { CrudSelectCheckboxGroup } from './crud-inputs/CrudSelectCheckboxGroup';
 import { CrudBooleanCheckboxGroup } from './crud-inputs/CrudBooleanCheckboxGroup';
 import UserRoleInput from './custom-inputs/user-role-input/UserRoleInput';
-import { AccessControllerFormButton } from './crud-inputs/customs/access-controller-input/AccessControllerInput';
+import { AccessPermissionFormButton } from './crud-inputs/customs/access-permission-input/AccessPermissionInput';
 import { SpaceAutoSelect } from './custom-inputs/SpaceAutoSelect';
 
 interface Props {
@@ -53,7 +53,7 @@ const FormFields = ({ formField, form, ...others }: Props) => {
     case 'user-role':
       return <UserRoleInput form={form} formField={formField} {...others} />;
     case 'access-controller':
-      return <AccessControllerFormButton form={form} formField={formField} {...others} />;
+      return <AccessPermissionFormButton form={form} formField={formField} {...others} />;
     case 'space-auto-select':
       return <SpaceAutoSelect form={form} formField={formField} {...others} />;
     case 'custom':

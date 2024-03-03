@@ -43,7 +43,7 @@ export const SubmitAllRoleButton: React.FC<SubmitAllRoleButtonProps> = (
 
     // case update user: (user, space are present update the accessController of the user)
     if (user && space) {
-      const rawAccessControl = await axiosInstance.post(_PATH_API.accessControllers.root, {
+      const rawAccessControl = await axiosInstance.post(_PATH_API.accessPermissions.root, {
         user,
         space,
       });

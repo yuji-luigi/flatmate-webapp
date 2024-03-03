@@ -241,14 +241,14 @@
 				"icon": "Dashboard"
 			},
 			{
-				"entity": "accessControllers",
+				"entity": "accessPermissions",
 				"entitySingle": "accessController",
-				"title": "AccessControllers",
+				"title": "AccessPermissions",
 				"subtitle": "subtitle",
 				"navbarTitle": "Access controller",
-				"link": "/dashboard/accessControllers",
+				"link": "/dashboard/accessPermissions",
 				"importButton": "",
-				"createButton": "New AccessController",
+				"createButton": "New AccessPermission",
 				"hide": true,
 				"icon": "Dashboard"
 			},

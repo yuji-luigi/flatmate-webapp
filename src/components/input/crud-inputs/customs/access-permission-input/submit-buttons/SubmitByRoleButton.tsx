@@ -32,7 +32,7 @@ export const SubmitByRoleButton: React.FC<SubmitByRoleButtonProps> = (
     // case update user: (user, space are present update the accessController of the user)
     const data = form.values.accessController as Record<string, boolean>;
     if (user && space) {
-      const rawAccessControl = await axiosInstance.post(_PATH_API.accessControllers.root, data);
+      const rawAccessControl = await axiosInstance.post(_PATH_API.accessPermissions.root, data);
       showNotification({ message: t('Access Control updated'), title: t('Success') });
     }
     // case creation of a new user.

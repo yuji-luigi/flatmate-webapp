@@ -20,18 +20,18 @@ import { useCrudSelectors } from '../../../../../../redux/features/crud/crudSlic
 import {
   RoleModel,
   SpaceModel,
-  AccessControllerModel,
+  AccessPermissionModel,
 } from '../../../../../../types/models/space-model';
 import { useItemSlice } from '../../../../../../redux/features/crud/selectedItemSlice';
 import { useLocale } from '../../../../../../../hooks/useLocale';
-import { useCreateAccessControllerValue } from '../useCreateAccessControllerValue';
+import { useCreateAccessPermissionValue } from '../useCreateAccessPermissionValue';
 
 const AddRoleButton = ({ form }: { form: UseFormReturnType<Record<string, any>> }) => {
   const { crudDocuments: roles, crudStatus } = useCrudSelectors<RoleModel>('roles');
   const { t } = useLocale('common');
   const { get, set } = useItemSlice<{ space: SpaceModel; role: null | RoleModel }>();
   const [selectedRole, setSelectedRole] = React.useState<RoleModel | null>(null);
-  const newlyACrtl = useCreateAccessControllerValue({ selectedRole });
+  const newlyACrtl = useCreateAccessPermissionValue({ selectedRole });
   const [opened, setOpened] = React.useState(false);
   const handleOpen = () => setOpened(true);
   const handleClose = () => setOpened(false);
@@ -41,20 +41,20 @@ const AddRoleButton = ({ form }: { form: UseFormReturnType<Record<string, any>> 
       return;
     }
     set((prev) => ({ ...prev, role: selectedRole }));
-    const foundAccessController = form.values.accessControllers?.find(
-      (actrl: Omit<AccessControllerModel, '_id'>) =>
+    const foundAccessPermission = form.values.accessPermissions?.find(
+      (actrl: Omit<AccessPermissionModel, '_id'>) =>
         actrl.role === newlyACrtl.role && actrl.space === newlyACrtl.space
     );
-    const updatedAccessControllers = foundAccessController
-      ? form.values.accessControllers?.map((actrl: Omit<AccessControllerModel, '_id'>) => {
+    const updatedAccessPermissions = foundAccessPermission
+      ? form.values.accessPermissions?.map((actrl: Omit<AccessPermissionModel, '_id'>) => {
           if (actrl.role === newlyACrtl.role && actrl.space === newlyACrtl.space) {
             return newlyACrtl;
           }
           return actrl;
         })
-      : [...form.values.accessControllers, newlyACrtl];
+      : [...form.values.accessPermissions, newlyACrtl];
 
-    form.setValues((prev) => ({ ...prev, accessControllers: updatedAccessControllers }));
+    form.setValues((prev) => ({ ...prev, accessPermissions: updatedAccessPermissions }));
   };
   const handleReset = () => {
     setSelectedRole(null);

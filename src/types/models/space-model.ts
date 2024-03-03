@@ -26,7 +26,7 @@ export interface MeUser extends MongooseBaseModel {
   loggedAs: Role;
   phone: string;
   active: boolean;
-  accessController: MeAccessController;
+  accessController: MeAccessPermission;
 }
 
 export type UserWithRoleModel = UserModel & { role: RoleModel };
@@ -184,13 +184,13 @@ export type ACtrlDtoDashboard = {
   [key in Permission]: boolean;
 };
 
-export interface AccessControllerModel extends MongooseBaseModel {
+export interface AccessPermissionModel extends MongooseBaseModel {
   user: string | UserModel;
   space: string | SpaceModel;
   role: RoleModel | string;
   permissions: PermissionInterface[];
 }
-export interface MeAccessController extends MongooseBaseModel {
+export interface MeAccessPermission extends MongooseBaseModel {
   user: string | UserModel;
   space: string | SpaceModel;
   role: Role;

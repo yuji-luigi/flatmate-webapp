@@ -9,7 +9,7 @@ import {
   RoleModel,
   Role,
   SpaceModel,
-  AccessControllerModel,
+  AccessPermissionModel,
 } from '../../../../../../types/models/space-model';
 import SpaceSelectInput from '../../../../custom-inputs/SpaceSelectInput';
 import { TabList } from '../../../../../tab/TabList';
@@ -17,11 +17,11 @@ import AddRoleButton from '../add-role-button/AddRoleButton';
 import { PermissionsArraySwitches } from '../permissions-form/PermissionsArraySwitches';
 import { AccCtrlSpaceChips } from '../space-chip/AccCtrlSpaceChips';
 import { SubmitByRoleButton } from '../submit-buttons/SubmitByRoleButton';
-import classes from '../AccessControllerInput.module.css';
+import classes from '../AccessPermissionInput.module.css';
 import { useItemSlice } from '../../../../../../redux/features/crud/selectedItemSlice';
 import { useLocale } from '../../../../../../../hooks/useLocale';
 
-export const AccessControllerFormModal = (props: {
+export const AccessPermissionFormModal = (props: {
   form: UseFormReturnType<Record<string, any>>;
   opened: boolean;
   closeModal: () => void;
@@ -69,7 +69,7 @@ export const AccessControllerFormModal = (props: {
             <AddRoleButton form={form} />
           </Box>
           <Box className="access-control-modal-permission-switches">
-            {form.values.accessControllers?.map((actrl: AccessControllerModel) => (
+            {form.values.accessPermissions?.map((actrl: AccessPermissionModel) => (
               <PermissionsArraySwitches
                 key={typeof actrl.role === 'string' ? actrl.role : actrl.role._id}
                 form={form}
@@ -81,7 +81,7 @@ export const AccessControllerFormModal = (props: {
         {/* {canProceed && <PermissionsArraySwitches form={form} />}
         {canProceed && <PermissionsArraySwitches form={form} />} */}
         {/* <Box>
-          {accessControllers?.length ? (
+          {accessPermissions?.length ? (
             <AccCtrlSpaceChips />
           ) : (
             <Text fw="bold">

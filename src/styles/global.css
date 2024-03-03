@@ -175,7 +175,7 @@ ul {
   gap: var(--flex-gap-xs);
 }
 
-/* AccessControllerInput component */
+/* AccessPermissionInput component */
 .access-control-modal-content {
   display: grid;
   place-content: center;
@@ -196,7 +196,7 @@ ul {
   flex-direction: column;
   gap: var(--flex-gap-xl);
 }
-/* END AccessControllerInput component END*/
+/* END AccessPermissionInput component END*/
 
 .error-page-container {
   display: flex;

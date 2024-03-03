@@ -5,15 +5,15 @@ import { useLocale } from '../../../../../../hooks/useLocale';
 import { Icons } from '../../../../../data/icons/icons';
 import { useCrudSelectors, useCrudSliceStore } from '../../../../../redux/features/crud/crudSlice';
 import { UserModel } from '../../../../../types/models/space-model';
-import { AccessControllerDisplay } from './access-controller-display/AccessControllerDisplay';
-import { AccessControllerFormModal } from './form-modal/AccessControllerFormModal';
-import { AccessControllerFormFieldType } from '../../../../../types/general/data/data-table/form-field-type/formField-types';
+import { AccessPermissionDisplay } from './access-permission-display/AccessPermissionDisplay';
+import { AccessPermissionFormModal } from './form-modal/AccessPermissionFormModal';
+import { AccessPermissionFormFieldType } from '../../../../../types/general/data/data-table/form-field-type/formField-types';
 
 interface Prop {
   form: UseFormReturnType<Record<string, any>>;
-  formField: AccessControllerFormFieldType;
+  formField: AccessPermissionFormFieldType;
 }
-export const AccessControllerFormButton = ({ form, ...others }: Prop) => {
+export const AccessPermissionFormButton = ({ form, ...others }: Prop) => {
   const { t } = useLocale('common');
   const { fetchCrudDocuments } = useCrudSliceStore();
   const { crudDocument: selectedUser } = useCrudSelectors<UserModel>('users');
@@ -21,7 +21,7 @@ export const AccessControllerFormButton = ({ form, ...others }: Prop) => {
 
   useEffect(() => {
     fetchCrudDocuments({ entity: 'roles' });
-    fetchCrudDocuments({ entity: 'accessControllers', queryObject: { user: selectedUser._id } });
+    fetchCrudDocuments({ entity: 'accessPermissions', queryObject: { user: selectedUser._id } });
     return () => {};
   }, []);
 
@@ -37,11 +37,11 @@ export const AccessControllerFormButton = ({ form, ...others }: Prop) => {
       >
         {t('Manage Access')}
       </Button>
-      <AccessControllerDisplay
+      <AccessPermissionDisplay
         aCtrlValues={form.values.accessController as Record<string, boolean>[]}
       />
 
-      <AccessControllerFormModal
+      <AccessPermissionFormModal
         form={form}
         opened={opened}
         closeModal={() => setOpened(false)}

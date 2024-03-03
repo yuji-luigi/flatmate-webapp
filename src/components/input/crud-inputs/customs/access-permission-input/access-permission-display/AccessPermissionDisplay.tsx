@@ -1,16 +1,16 @@
 import { Accordion, Box, Group, Text } from '@mantine/core';
 import { t } from 'i18next';
-import classes from './AccessControllerDisplay.module.css';
+import classes from './AccessPermissionDisplay.module.css';
 import { SpaceModel } from '../../../../../../types/models/space-model';
 import { useItemSlice } from '../../../../../../redux/features/crud/selectedItemSlice';
 import { Icons } from '../../../../../../data/icons/icons';
 
-type AccessControllerDisplayProps = {
+type AccessPermissionDisplayProps = {
   aCtrlValues: Record<string, boolean>[] | null;
 };
 
-export const AccessControllerDisplay: React.FC<AccessControllerDisplayProps> = (
-  props: AccessControllerDisplayProps
+export const AccessPermissionDisplay: React.FC<AccessPermissionDisplayProps> = (
+  props: AccessPermissionDisplayProps
 ) => {
   const { get } = useItemSlice<{ space?: null | SpaceModel }>();
   const { aCtrlValues } = props;

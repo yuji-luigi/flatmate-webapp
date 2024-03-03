@@ -1,16 +1,16 @@
 import { Box, Chip, Text } from '@mantine/core';
 import { useItemSlice } from '../../../../../../redux/features/crud/selectedItemSlice';
-import { AccessControllerModel, SpaceModel } from '../../../../../../types/models/space-model';
+import { AccessPermissionModel, SpaceModel } from '../../../../../../types/models/space-model';
 import { useCrudSelectors } from '../../../../../../redux/features/crud/crudSlice';
 import classes from './AccCtrlSpaceChips.module.css';
 
 export const AccCtrlSpaceChips: React.FC = () => {
   const { crudDocuments: spaces } = useCrudSelectors<SpaceModel>('spaces');
-  const { crudDocuments: accessControllers } =
-    useCrudSelectors<AccessControllerModel>('accessControllers');
+  const { crudDocuments: accessPermissions } =
+    useCrudSelectors<AccessPermissionModel>('accessPermissions');
   const actlSpaceId = [
     ...new Set(
-      accessControllers.map((actl) =>
+      accessPermissions.map((actl) =>
         typeof actl.space === 'string' ? actl.space : actl.space._id
       )
     ),
