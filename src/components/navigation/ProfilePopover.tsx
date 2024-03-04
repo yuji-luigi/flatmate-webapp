@@ -29,7 +29,7 @@ export function ProfilePopover() {
         </Menu.Target>
         <div className={classes.flexVertical}>
           <Text className={classes.profileText} fw={700}>
-            {user?.name}
+            {user?.name} {user?.surname}
           </Text>
           <Text className={classes.profileText} fw={500}>
             {user?.email}

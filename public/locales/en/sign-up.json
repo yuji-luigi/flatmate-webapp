@@ -1,0 +1,32 @@
+{
+	"spaceLabel1": "Name of the building",
+	"spaceLabel2": "address of the building",
+	"passLabel": "Set password for the building",
+	"switchLabel": "Let the profile visible to all users",
+	"successMsg": "You have successfully created a building",
+	"Register": "Register",
+	"Already have an account?": "Already have an account?",
+	"Prev": "Prev",
+	"Next": "Next",
+	"Login": "Login",
+	"Name": "Name",
+	"First name": "First name",
+	"Surname": "Surname",
+	"Email": "Email",
+	"Password": "Password",
+	"Confirm password": "Confirm password",
+	"confirm password": "confirm password",
+	"step2": {
+		"label1": "Register as",
+		"label2": "Name of the building",
+		"Not share any details. only name surname email": "We do not share any details. Only name, surname and email"
+	},
+	"name": "Name",
+	"surname": "Surname",
+	"email": "Email",
+	"role": "Role",
+	"password": "Password",
+	"Name of the place": "Name of the place",
+	"Address of the place": "Address of the place",
+	"Password of building": "Password of the building"
+}

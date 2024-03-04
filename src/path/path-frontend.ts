@@ -49,6 +49,9 @@ const CHOOSE_ORGANIZATION = '/choose-organization';
 const CHOOSE_ROOT_SPACE = '/choose-root-space';
 export const _PATH_FRONTEND = {
   pathAfterLogin: PATH_AFTER_LOGIN,
+  maintainerDashboard: {
+    root: '/maintainer/dashboard',
+  },
   dashboard: {
     root: '/dashboard',
     home: PATH_AFTER_LOGIN,
@@ -78,9 +81,5 @@ export const _PATH_FRONTEND = {
   threads: {
     root: PATH_CLIENT.posts,
     byId: (threadId: string) => `${PATH_CLIENT.posts}/${threadId}`,
-  },
-
-  dashboard: {
-    root: '/dashboard',
   },
 };

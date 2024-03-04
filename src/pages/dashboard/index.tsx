@@ -8,6 +8,7 @@ import { useCrudSliceStore } from '../../redux/features/crud/crudSlice';
 import { DashboardRootTabPanels } from '../../sections/dashboard/dashboard_top/sections-in-tabs/dashboard/DashboardRootTabPanels';
 import { PATH_AUTH } from '../../path/path-api';
 import { useGetCrudDocuments } from '../../hooks/useGetCrudDocuments';
+import { _PATH_FRONTEND } from '../../path/path-frontend';
 
 const DashboardPage = () => {
   const { currentOrganization, currentSpace } = useCookieContext();
@@ -54,6 +55,14 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     return {
       redirect: {
         destination: '/',
+        permanent: true,
+      },
+    };
+  }
+  if (user.loggedAs === 'Maintainer') {
+    return {
+      redirect: {
+        destination: _PATH_FRONTEND.maintainerDashboard.root,
         permanent: true,
       },
     };

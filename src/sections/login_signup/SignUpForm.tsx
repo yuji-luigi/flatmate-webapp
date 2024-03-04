@@ -17,6 +17,7 @@ import classes from './SignUpForm.module.css';
 import { IInitialValues, initialValues } from './defaultValues';
 import SignUpConfirm from './SignUpConfirm';
 import { sleep } from '../../utils/helpers/helper-functions';
+import { useLocale } from '../../../hooks/useLocale';
 
 const MAX_STEP = 2;
 
@@ -26,6 +27,7 @@ export function SignUpForm() {
   const router = useRouter();
   const [steps, setSteps] = useState(0);
   const form = useForm<IInitialValues>({ initialValues });
+  const { t } = useLocale('sign-up');
   const onSubmit = async (data: RegisterData) => {
     try {
       setIsLoading(true);
@@ -33,7 +35,7 @@ export function SignUpForm() {
       await register(data);
       notifications.show({
         title: 'Registered!',
-        message: 'You have successfully registered',
+        message: t('successMsg'),
         color: 'green',
         icon: <Icons.check />,
         autoClose: 2000,
@@ -77,10 +79,10 @@ export function SignUpForm() {
         ta="center"
         // style={(theme) => ({ font-family: Greycliff CF, var(--mantine-font-family), fontWeight: 900 })}
       >
-        Register
+        {t('Register')}
       </Title>
       <Text color="dimmed" size="sm" ta="center" mt={5}>
-        Already have an account ? <Link href="/login">Login</Link>
+        {t('Already have an account?')} <Link href="/login">{t('Login')}</Link>
       </Text>
       <Paper withBorder shadow="md" p={24} mt={10} radius="md">
         <form onSubmit={form.onSubmit((values) => onSubmit(values))}>
@@ -92,7 +94,7 @@ export function SignUpForm() {
 
           <Flex mt="xl" gap="md">
             <Button disabled={steps <= 0} type="button" fullWidth onClick={handlePrev} mt="xl">
-              Prev
+              {t('Prev')}
             </Button>
             <Button
               disabled={steps >= MAX_STEP}
@@ -101,13 +103,13 @@ export function SignUpForm() {
               onClick={handleNext}
               mt="xl"
             >
-              Next
+              {t('Next')}
             </Button>
           </Flex>
           {steps === MAX_STEP && (
             <>
               <Button type="submit" fullWidth mt="xs">
-                Register
+                {t('Register')}
               </Button>
             </>
           )}

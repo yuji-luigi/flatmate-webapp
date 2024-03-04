@@ -58,17 +58,22 @@
 
   --list-height: 40px;
 
-  /* --font-size-article: 24px; */
+  --text-color-link: #45adfe;
+  /* todo: delete and use something works --font-size-article: 24px; */
   :root.light {
+    display: none;
     --bg-color: rgba(255, 255, 255, 0.85);
     --fg-color: rgba(255, 255, 255, 0.85);
     --text-color: #123;
+    --text-color-link: #45adfe;
   }
 
   :root.dark {
+    display: none;
     --bg-color: rgba(0, 0, 0, 0.85);
     --fg-color: rgba(0, 0, 0, 0.85);
     --text-color: #45adfe;
+    --text-color-link: #45adfe;
   }
 }
 
@@ -318,4 +323,8 @@ ul {
   width: 100%;
   grid-template-columns: repeat(auto-fit, minmax(100px, 150px));
   gap: var(--flex-gap);
+}
+
+.detail-helper-text {
+  color: var(--text-color-link);
 }

@@ -6,7 +6,6 @@ export interface IInitialValues {
   password2: string;
   name: string;
   surname: string;
-  organization: string;
   role?: Role | '';
   space: {
     maxUsers: number;
@@ -22,8 +21,6 @@ export const initialValues: IInitialValues = {
   password2: '',
   name: '',
   surname: '',
-  // role: '',
-  organization: '',
   space: {
     maxUsers: 0,
     name: '',

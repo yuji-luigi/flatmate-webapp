@@ -4,7 +4,8 @@ import { useTranslation } from 'next-i18next';
 import { LOCAL_STORAGE_KEYS } from '../src/lib/enums';
 
 const { LOCALE } = LOCAL_STORAGE_KEYS;
-export const useLocale = (jsonPath: string = 'common') => {
+export const useLocale = (jsonPath: string | string[] = 'common') => {
+  console.log({ jsonPath });
   const { t, i18n } = useTranslation(jsonPath);
   const [currentLocale, setCurrentLocale] = useState<string | null>(i18n.language);
 
