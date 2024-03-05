@@ -16,26 +16,19 @@ import { HeaderContainer } from '../../components/datatable/header/HeaderContain
 import { CrudDataTable } from '../../components/datatable/CrudDataTable';
 import { useGetCrudDocuments } from '../../hooks/useGetCrudDocuments';
 import useAuth from '../../../hooks/useAuth';
+import { useCurrentEntityContext } from '../../context/CurrentEntityContext';
 
 const CrudPage = () => {
-  const { query, push,  } = useRouter();
-  const { user } = useAuth();
+  const { query, push } = useRouter();
+
   const entity = 'roles';
-  const { paginationQuery } = usePaginationContext();
+  useCurrentEntityContext(entity);
   useGetCrudDocuments({ entity, withPagination: true });
-  const { fetchCrudDocumentsWithPagination } = useCrudSliceStore();
   useEffect(() => {
     if (!sections.includes(entity)) {
       push('/dashboard/home');
     }
   }, [entity]); // include parentId: string | undefined to update on change page
-
-  // useEffect(() => {
-  //   if (!user?.isSuperAdmin) {
-  //     push('/500');
-  //   }
-  //   fetchCrudDocumentsWithPagination({ entity, query: paginationQuery });
-  // }, [paginationQuery, entity, query.parentId]);
 
   return (
     <Page title={`Flatmates | ${entity}`}>

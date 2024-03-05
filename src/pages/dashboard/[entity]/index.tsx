@@ -19,14 +19,13 @@ import { useCurrentEntityContext } from '../../../context/CurrentEntityContext';
 
 const CrudPage = () => {
   const { query, push } = useRouter();
-  const { currentEntity: _entity } = useCurrentEntityContext();
-  console.log({ _entity });
-  const entity = query.entity as Sections;
+  const { currentEntity: entity } = useCurrentEntityContext(query.entity as Sections);
+  // const entity = query.entity as Sections;
   const { paginationQuery } = usePaginationContext();
   useGetCrudDocuments({ entity, withPagination: true });
   const { fetchCrudDocumentsWithPagination } = useCrudSliceStore();
   useEffect(() => {
-    if (!sections.includes(entity)) {
+    if (entity && !sections.includes(entity)) {
       push('/dashboard/home');
     }
   }, [entity]); // include parentId: string | undefined to update on change page

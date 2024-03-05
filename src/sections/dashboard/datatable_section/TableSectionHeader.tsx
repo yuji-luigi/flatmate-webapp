@@ -8,6 +8,7 @@ import { Sections } from '../../../types/general/data/sections-type';
 import classes from '../../../styles/global-useStyles.module.css';
 import { CrudTableButtons } from './components/CrudTableButtons';
 import { ParsedQueryCustom } from '../../../types/nextjs-custom-types/useRouter-types';
+import { useCurrentEntityContext } from '../../../context/CurrentEntityContext';
 
 function instanceOfParentDataInterface(object: any): object is ParentDataInterface {
   return 'name' in object;
@@ -25,13 +26,8 @@ export function TableSectionHeader({
 
   const { setBreadcrumbs, breadcrumbs, setPrevBreadcrumbs, parentData } = useLayoutContext();
 
-  /** use style defined above */
-  /** get url string by useRouter */
   const { query }: { query: ParsedQueryCustom } = useRouter();
-
-  /** get entity from url using useRouter().query */
-  let { entity } = query;
-  entity = overridingEntity || entity; // if overridingEntity is present entity is set to override one
+  const { currentEntity: entity } = useCurrentEntityContext();
 
   const section = flattenSectionData.find((data) => data.entity === entity);
 
@@ -45,7 +41,7 @@ export function TableSectionHeader({
       setPrevBreadcrumbs(breadcrumbs);
     }
     return () => setBreadcrumbs(null);
-  }, [query.entity]);
+  }, [entity]);
 
   if (!section) {
     return <p>loading...</p>;

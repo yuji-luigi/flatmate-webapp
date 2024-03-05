@@ -1,16 +1,12 @@
-import { Group, ActionIcon, Stack, Text } from '@mantine/core';
-import { IconPencil, IconTrash, IconQrcode } from '@tabler/icons-react';
+import { Group, ActionIcon, Text } from '@mantine/core';
+import { IconPencil, IconTrash } from '@tabler/icons-react';
 import { useRouter } from 'next/router';
-import React from 'react';
 import { useDrawerContext } from '../../../context/DataTableDrawerContext';
 import { usePaginationContext } from '../../../context/PaginationContext';
 import { useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
-import { DialogDefault } from '../../modal/Dialog';
-import { DeleteAlertModal } from '../../modal/DeleteAlertModal';
 import { useCustomModalContext } from '../../../context/modal-context/_ModalContext';
 import { Sections } from '../../../types/general/data/sections-type';
 import { QrCodeButton } from './tablecell/action-cells/QrCodeButton';
-import { AllModels } from '../../../types/models/mongoose-models';
 import { MongooseBaseModel } from '../../../types/models/mongoose-base-model';
 
 export function ActionCells({
@@ -18,7 +14,7 @@ export function ActionCells({
   overridingEntity,
 }: {
   rowData: MongooseBaseModel;
-  overridingEntity?: Sections;
+  overridingEntity?: Sections | null;
 }) {
   const { paginationQuery } = usePaginationContext();
   const { openModal, openConfirmModal, closeModal } = useCustomModalContext();
@@ -31,14 +27,11 @@ export function ActionCells({
   const entity = overridingEntity || (router.query.entity as Sections);
 
   /** use hook useCrudSlice */
-  // const { selectCrudDocument } = useCrudSlice();
   const {
     selectCrudDocument,
     deleteCrudDocumentWithPagination,
     deleteLinkedChildDocumentWithPagination,
   } = useCrudSliceStore();
-
-  // selectCrudDocument({ entity, document: rowData });
 
   const onModify = (): void => {
     selectCrudDocument({ entity, document: rowData });
@@ -69,6 +62,10 @@ export function ActionCells({
               documentId: rowData._id,
               query: paginationQuery,
             });
+        closeModal();
+      },
+      opened: false,
+      onClose(): void {
         closeModal();
       },
     });

@@ -13,13 +13,6 @@ export const CurrentEntityContext = createContext<{
 
 const useStore = () => {
   const [currentEntity, setCurrentEntity] = useState<Sections | null>(null);
-  const { query } = useRouter();
-  const urlEntity = query.entity as Sections;
-  useEffect(() => {
-    if (urlEntity) {
-      setCurrentEntity(urlEntity);
-    }
-  }, [urlEntity]);
 
   return {
     currentEntity,
@@ -31,4 +24,17 @@ export const CurrentEntityContextProvider = ({ children }: { children: ReactNode
   <CurrentEntityContext.Provider value={useStore()}>{children}</CurrentEntityContext.Provider>
 );
 
-export const useCurrentEntityContext = () => useContext(CurrentEntityContext);
+export const useCurrentEntityContext = (initialEntity?: Sections) => {
+  const { currentEntity, setCurrentEntity } = useContext(CurrentEntityContext);
+  const { query } = useRouter();
+  const urlEntity = query.entity as Sections;
+  useEffect(() => {
+    if (urlEntity) {
+      setCurrentEntity(urlEntity);
+    }
+    if (initialEntity) {
+      setCurrentEntity(initialEntity);
+    }
+  }, [urlEntity, initialEntity]);
+  return { currentEntity, setCurrentEntity };
+};

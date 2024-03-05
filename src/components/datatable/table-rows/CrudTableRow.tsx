@@ -9,7 +9,8 @@ import { usePaginationContext } from '../../../context/PaginationContext';
 import { useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
 import { Sections } from '../../../types/general/data/sections-type';
 import { FormFieldTypes } from '../../../types/general/data/data-table/form-field-type/formField-types';
-import { AllModels } from '../../../types/models/mongoose-models';
+import { useCurrentEntityContext } from '../../../context/CurrentEntityContext';
+import { MongooseBaseModel } from '../../../types/models/mongoose-base-model';
 
 export function CrudTableRow({
   rowData,
@@ -17,17 +18,16 @@ export function CrudTableRow({
   overridingEntity,
 }: {
   overridingEntity?: Sections;
-  rowData: AllModels;
+  rowData: MongooseBaseModel;
   sectionFormFields: Array<FormFieldTypes>;
 }) {
   /** use hook context */
   /** use hook router hook */
-  const { query } = useRouter();
   /** use hook useCrudSlice */
   const { selectCrudDocument } = useCrudSliceStore();
 
   /** get runtime value of the entity */
-  const entity = overridingEntity || (query.entity as Sections);
+  const { currentEntity: entity } = useCurrentEntityContext();
 
   useEffect(
     () => () => {

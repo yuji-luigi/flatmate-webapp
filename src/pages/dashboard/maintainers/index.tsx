@@ -11,15 +11,15 @@ import { TableSectionHeader } from '../../../sections/dashboard/datatable_sectio
 import MaintainerList from '../../../sections/dashboard/maintainers_page/MaintainerList';
 import { maintainersTableData } from '../../../../json/dataTable/formfields/maintainersTableData';
 import { QueryFilterWeb } from '../../../components/datatable/filter/QueryFilterWeb';
+import { useCurrentEntityContext } from '../../../context/CurrentEntityContext';
 
 const MaintainerPage = () => {
-  const { query, push } = useRouter();
+  const { query } = useRouter();
 
   const entity = 'maintainers';
-  const { setPagination, paginationQuery } = usePaginationContext();
-
+  const { paginationQuery } = usePaginationContext();
+  useCurrentEntityContext(entity);
   const { fetchCrudDocumentsWithPagination } = useCrudSliceStore();
-  const { crudDocuments, isChildrenTree } = useCrudSelectors(entity);
   formFields;
 
   useEffect(() => {
@@ -39,7 +39,7 @@ const MaintainerPage = () => {
     <Page title="Maintainers">
       <Stack>
         <TableSectionHeader overridingEntity="maintainers" />
-        <QueryFilterWeb entity={entity} formFields={maintainersTableData} />
+        <QueryFilterWeb formFields={maintainersTableData} />
         <MaintainerList entity={entity} />
         <CrudDrawerDefault overridingEntity="maintainers" />
       </Stack>

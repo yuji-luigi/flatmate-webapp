@@ -8,13 +8,14 @@ export const useGetCrudDocuments = ({
   entity,
   withPagination = true,
 }: {
-  entity: Sections;
+  entity: Sections | null;
   withPagination: boolean;
 }) => {
   const { fetchCrudDocumentsWithPagination } = useCrudSliceStore();
   const { currentSpace, currentOrganization } = useCookieContext();
 
   useEffect(() => {
+    if (!entity) return;
     fetchCrudDocumentsWithPagination({ entity });
   }, [currentSpace?._id]);
 
