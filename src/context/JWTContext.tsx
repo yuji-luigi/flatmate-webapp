@@ -88,7 +88,8 @@ function AuthProvider({
     isAuthenticated: !!initialUser,
     isInitialized: !!initialUser,
   });
-  const { push } = useRouter();
+  const router = useRouter();
+  const { push } = router;
   useEffect(() => {
     const initialize = async () => {
       try {
@@ -115,7 +116,7 @@ function AuthProvider({
       }
     };
     initialize();
-  }, []);
+  }, [router]);
 
   const login: Login = async (email, password, role) => {
     try {

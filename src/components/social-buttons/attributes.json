@@ -1,12 +1,9 @@
 {
-	"title": "Social buttons",
-	"category": "buttons",
-	"author": "rtivital",
-	"dependencies": [
-		"/core/button/",
-		"/core/group/"
-	],
-	"canvas": {
-		"center": true
-	}
+  "title": "Social buttons",
+  "category": "buttons",
+  "author": "rtivital",
+  "dependencies": ["/core/button/", "/core/group/"],
+  "canvas": {
+    "center": true
+  }
 }

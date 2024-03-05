@@ -16,7 +16,6 @@
 
   .timeAgo {
     margin-left: var(--flex-gap);
-
   }
 
   @container (min-width: $mantine-breakpoint-sm) {

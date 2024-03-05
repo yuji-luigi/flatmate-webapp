@@ -11,7 +11,6 @@ export default function AuthGuard({ children }: { children: JSX.Element | JSX.El
   const { isAuthenticated, isInitialized, user } = useAuth();
   const { pathname, push } = useRouter();
   const [requestedLocation, setRequestedLocation] = useState<string | null>(null);
-
   useEffect(() => {
     if (requestedLocation && pathname !== requestedLocation) {
       push(requestedLocation);

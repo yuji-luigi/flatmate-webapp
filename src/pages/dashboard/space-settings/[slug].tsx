@@ -64,7 +64,6 @@ const SpaceSettingSinglePage = () => {
     avatarUrl: space.avatar?.url,
   };
   // return null;
-  console.log('isSpaceAdmin', isSpaceAdmin);
   return (
     <Grid className={classes.container}>
       {/* <Box className={classes.box}> */}

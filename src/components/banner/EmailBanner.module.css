@@ -52,7 +52,7 @@
   margin-top: var(--mantine-spacing-xl);
   cursor: not-allowed;
 
-  & [aria-disabled="true"] {
+  & [aria-disabled='true'] {
     pointer-events: none;
   }
 

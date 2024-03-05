@@ -1,8 +1,8 @@
 {
-	"choose-building-title": "choose building",
-	"In attesa": "Waiting",
-	"errorPage": {
-		"Something is not right...": "Something is not right...",
-		"spaceNotFoundMsg1": "Something went wrong. During processing your request, we could not find any spaces associated with your account."
-	}
+  "choose-building-title": "choose building",
+  "In attesa": "Waiting",
+  "errorPage": {
+    "Something is not right...": "Something is not right...",
+    "spaceNotFoundMsg1": "Something went wrong. During processing your request, we could not find any spaces associated with your account."
+  }
 }

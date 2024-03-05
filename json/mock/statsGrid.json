@@ -1,20 +1,20 @@
 [
-	{
-		"title": "Reserves",
-		"icon": "coin",
-		"value": 13.456,
-		"diff": 34
-	},
-	{
-		"title": "Spent this month",
-		"icon": "receipt",
-		"value": 4.145,
-		"diff": -13
-	},
-	{
-		"title": "Amount due",
-		"icon": "receipt",
-		"value": 4.145,
-		"diff": -13
-	}
+  {
+    "title": "Reserves",
+    "icon": "coin",
+    "value": 13.456,
+    "diff": 34
+  },
+  {
+    "title": "Spent this month",
+    "icon": "receipt",
+    "value": 4.145,
+    "diff": -13
+  },
+  {
+    "title": "Amount due",
+    "icon": "receipt",
+    "value": 4.145,
+    "diff": -13
+  }
 ]

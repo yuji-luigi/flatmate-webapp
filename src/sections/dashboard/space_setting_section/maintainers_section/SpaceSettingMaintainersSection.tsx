@@ -13,14 +13,17 @@ export const SpaceSettingMaintainersSection = ({
   maintainers: MaintainerModel[];
 }) => {
   // create array of array of maintainers by type
-  const maintainersByType = maintainers.reduce((acc, maintainer) => {
-    if (acc[maintainer.type]) {
-      acc[maintainer.type].push(maintainer);
-    } else {
-      acc[maintainer.type] = [maintainer];
-    }
-    return acc;
-  }, {} as { [key: string]: MaintainerModel[] });
+  const maintainersByType = maintainers.reduce(
+    (acc, maintainer) => {
+      if (acc[maintainer.type]) {
+        acc[maintainer.type].push(maintainer);
+      } else {
+        acc[maintainer.type] = [maintainer];
+      }
+      return acc;
+    },
+    {} as { [key: string]: MaintainerModel[] }
+  );
 
   const list = Object.keys(MAINTAINER_TYPES).map((type) => {
     return (

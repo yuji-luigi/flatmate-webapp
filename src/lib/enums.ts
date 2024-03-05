@@ -86,10 +86,13 @@ export const MAINTENANCE_STATUS_OPTIONS = [
     color: 'green',
   },
 ];
-export const MAINTAINER_TYPES = Object.keys(MAINTAINER_TYPES_ARRAY).reduce((acc, key) => {
-  acc[MAINTAINER_TYPES_ARRAY[+key]] = MAINTAINER_TYPES_ARRAY[+key];
-  return acc;
-}, {} as Record<string, string>);
+export const MAINTAINER_TYPES = Object.keys(MAINTAINER_TYPES_ARRAY).reduce(
+  (acc, key) => {
+    acc[MAINTAINER_TYPES_ARRAY[+key]] = MAINTAINER_TYPES_ARRAY[+key];
+    return acc;
+  },
+  {} as Record<string, string>
+);
 
 export const USER_ROLES = ['Administrator', 'Inhabitant', 'Maintainer'] as const;
 
