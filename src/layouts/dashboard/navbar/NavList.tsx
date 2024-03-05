@@ -10,11 +10,11 @@ type NavListProps = {
 export const NavList: React.FC<NavListProps> = (props: NavListProps) => {
   const { section } = props;
   const { user } = useAuth();
-  const show = user?.isSuperAdmin;
+  // const show = user?.isSuperAdmin;
 
   return (
     <>
-      {show && !section.hide && (
+      {true && !section.hide && (
         <Stack align="start">
           <p>{section.name}</p>
           {/* contents are sections: Top, posts,,, */}

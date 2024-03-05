@@ -136,7 +136,7 @@ function AuthProvider({
       }
       push(_PATH_FRONTEND.pathAfterLogin);
     } catch (error: any) {
-      showNotification(NOTIFICATIONS.ERROR.general({}));
+      showNotification(NOTIFICATIONS.ERROR.general({ data: error.message || error }));
     }
   };
 

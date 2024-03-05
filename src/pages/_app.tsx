@@ -29,6 +29,7 @@ import '../styles/test.css';
 import '../styles/nprogress.css';
 import { useLocale } from '../../hooks/useLocale';
 import { NprogressBar } from '../components/progress-bar/NprogressBar';
+import { CurrentEntityContextProvider } from '../context/CurrentEntityContext';
 
 const resolver: CSSVariablesResolver = (theme) => ({
   variables: {
@@ -83,31 +84,33 @@ function App(props: AppProps) {
             cssVariablesResolver={resolver}
             withCssVariables
           >
-            <DashboardLayoutContextProvider>
-              <PaginationContextProvider>
-                <DrawerContextProvider>
-                  <_ModalContextProvider>
-                    <FilterContextProvider>
-                      <Notifications />
-                      <DatesProvider
-                        settings={{
-                          locale: locale || 'en',
-                          // locale: locale || 'it',
-                          // firstDayOfWeek: 0,
-                          // weekendDays: [0],
-                          // timezone: 'UTC',
-                        }}
-                      >
-                        <NprogressBar>
-                          {getLayout(<Component {...pageProps} />)}
-                          <ModalRootCustom />
-                        </NprogressBar>
-                      </DatesProvider>
-                    </FilterContextProvider>
-                  </_ModalContextProvider>
-                </DrawerContextProvider>
-              </PaginationContextProvider>
-            </DashboardLayoutContextProvider>
+            <CurrentEntityContextProvider>
+              <DashboardLayoutContextProvider>
+                <PaginationContextProvider>
+                  <DrawerContextProvider>
+                    <_ModalContextProvider>
+                      <FilterContextProvider>
+                        <Notifications />
+                        <DatesProvider
+                          settings={{
+                            locale: locale || 'en',
+                            // locale: locale || 'it',
+                            // firstDayOfWeek: 0,
+                            // weekendDays: [0],
+                            // timezone: 'UTC',
+                          }}
+                        >
+                          <NprogressBar>
+                            {getLayout(<Component {...pageProps} />)}
+                            <ModalRootCustom />
+                          </NprogressBar>
+                        </DatesProvider>
+                      </FilterContextProvider>
+                    </_ModalContextProvider>
+                  </DrawerContextProvider>
+                </PaginationContextProvider>
+              </DashboardLayoutContextProvider>
+            </CurrentEntityContextProvider>
           </MantineProvider>
         </ReduxProvider>
       </AuthProvider>

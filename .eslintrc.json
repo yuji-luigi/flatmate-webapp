@@ -35,8 +35,7 @@
         "ignoreTemplateLiterals": true,
         "ignoreRegExpLiterals": true
       }
-    ]
-
-    // "allowAllCaps": true
+    ],
+    "no-spaced-func": 0
   }
 }

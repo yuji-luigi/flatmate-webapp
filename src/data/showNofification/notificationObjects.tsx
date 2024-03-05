@@ -61,7 +61,7 @@ export const NOTIFICATIONS = {
     },
   },
   ERROR: {
-    general: ({ data, ms = 1000, id = 'error' }: ErrorArgs) => ({
+    general: ({ data, ms = 2000, id = 'error' }: ErrorArgs) => ({
       id,
       title: 'Error',
       color: 'red',
