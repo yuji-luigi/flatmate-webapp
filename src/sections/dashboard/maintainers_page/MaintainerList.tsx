@@ -57,10 +57,10 @@ const MaintainerList = ({ entity }: { entity: Sections }) => {
           formFields={maintainersTableData}
         /> */}
         {filteredList.map((maintainer, i) => {
-          let badge = maintainer.spaces
-            .filter((space: SpaceModel) => space.organization?._id === user?.organization)
-            .map((space: SpaceModel) => space.name);
-          badge = badge.length > 0 ? badge : ['Not assigned to any space'];
+          // let badges = maintainer.spaces
+          //   .filter((space: SpaceModel) => space.organization?._id === user?.organization)
+          //   .map((space: SpaceModel) => space.name);
+          // badge = badge.length > 0 ? badge : ['Not assigned to any space'];
           return (
             <CardMaintainer
               entity={entity}
@@ -72,7 +72,7 @@ const MaintainerList = ({ entity }: { entity: Sections }) => {
                 company: maintainer.company,
                 slug: maintainer.slug,
                 // badgeIcon: <Icons.check />,
-                badges: badge,
+                badges: ['spaces', 'needs to be joined'],
                 badgestyle: { paddingBlock: 8, maxWidth: 100 },
                 avatar: maintainer.avatar,
                 cover: maintainer.cover,

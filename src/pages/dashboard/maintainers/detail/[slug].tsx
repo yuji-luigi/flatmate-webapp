@@ -81,9 +81,10 @@ const MaintainerDetailsPage = () => {
       title: 'Add Maintainer to Building',
       centered: true,
       children: <AddMaintainerModal />,
-      // onConfirm(): void {
-      //   throw new Error('Function not implemented.');
-      // },
+      opened: false,
+      onClose(): void {
+        throw new Error('Function not implemented.');
+      },
     });
   };
 

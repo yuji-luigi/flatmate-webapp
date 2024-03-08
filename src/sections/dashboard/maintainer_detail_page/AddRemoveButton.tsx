@@ -8,11 +8,12 @@ import { MaintainerModel } from '../../../types/models/maintainer-model';
 import axiosInstance from '../../../utils/axios-instance';
 import { PATH_API } from '../../../path/path-api';
 import { useCustomModalContext } from '../../../context/modal-context/_ModalContext';
+import { useLocale } from '../../../../hooks/useLocale';
 
 export const AddRemoveButton = ({ onClick }: { onClick: () => void }) => {
   const _entity = getEntityFromUrl();
   const { setCrudDocument } = useCrudSliceStore();
-
+  const { t } = useLocale();
   const [submitting, setSubmitting] = useState(false);
 
   const { crudDocument: document } = useCrudSelectors<MaintainerModel>(_entity);
@@ -73,8 +74,14 @@ export const AddRemoveButton = ({ onClick }: { onClick: () => void }) => {
       setSubmitting(false);
     }
   };
-
-  if (!document?.spaces) return <Skeleton />;
+  console.log(document);
+  if (!document?.spaces) {
+    return (
+      <Button variant="outline" color="yellow">
+        {t('Add/Remove maintainer to building')}
+      </Button>
+    );
+  }
   const assignedToCurrentSpace = currentSpace?._id
     ? document.spaces.map((space) => space._id)?.includes(currentSpace?._id)
     : false;
