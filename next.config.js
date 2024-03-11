@@ -93,11 +93,28 @@ const nextConfig = (phase) => {
       ignoreBuildErrors: true,
     },
     images: {
-      domains: [
-        'flatmates-api.yuji-luigi.com',
-        'flatmates.eu-central-1.linodeobjects.com',
-        'fastly.picsum.photos',
-        'picsum.photos',
+      remotePatterns: [
+        {
+          protocol: 'https',
+          hostname: 'flatmates-api.yuji-luigi.com',
+          pathname: '**',
+        },
+        {
+          protocol: 'https',
+          hostname: 'flatmates.eu-central-1.linodeobjects.com',
+          pathname: '**',
+        },
+        {
+          protocol: 'https',
+          hostname: 'fastly.picsum.photos',
+          pathname: '**',
+        },
+
+        {
+          protocol: 'https',
+          hostname: 'picsum.photos',
+          pathname: '**',
+        },
       ],
     },
     eslint: {

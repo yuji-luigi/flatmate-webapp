@@ -15,7 +15,7 @@ export function HeroSection() {
         zIndex={0}
       />
       <Container className={classes.container} size="md">
-        <Title className={classes.title}>{t('Flatmates  condominium manager')}</Title>
+        <Title className={classes.title}>{t('Flatmates condominium manager')}</Title>
         <Box className={classes.descriptionSection}>
           <Text className={classes.description} size="xl" mt="xl">
             {t(
