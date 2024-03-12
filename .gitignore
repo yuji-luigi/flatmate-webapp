@@ -39,7 +39,7 @@ yarn-error.log*
 storybook-static
 
 .history
-pnpm-lock.yaml
+# pnpm-lock.yaml
 
 
 .vscode
