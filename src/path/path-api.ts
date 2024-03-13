@@ -159,6 +159,12 @@ export const _PATH_API = {
   accessPermissions: {
     root: `${PATH_API.accessPermissions}`,
   },
+  maintainers: {
+    root: PATH_API.maintainers,
+    byId: (maintainerId: string) => `${PATH_API.maintainers}/${maintainerId}`,
+    bySlug: (slug: string) => `${PATH_API.maintainersSlug}/${slug}`,
+    spaces: (idMaintainer: string) => `${PATH_API.maintainers}/${idMaintainer}/spaces`,
+  },
 } as const;
 
 export const PATH_API_DATA_TABLE_ROOT = 'with-pagination';

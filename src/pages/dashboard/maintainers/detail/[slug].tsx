@@ -88,18 +88,6 @@ const MaintainerDetailsPage = () => {
     });
   };
 
-  const profileSide = (
-    <ProfileSide
-      contents={
-        <>
-          <AddRemoveButton onClick={handleAddMaintainer} />
-          <AboutCard aboutData={aboutData} />
-          <BuildingCard />
-        </>
-      }
-    />
-  );
-
   return (
     <>
       <Box className={classes.container}>
@@ -107,8 +95,15 @@ const MaintainerDetailsPage = () => {
           <Box className={classes.cardMain}>
             <Group>
               <ProfileCoverGeneric formFields={maintainersTableData} data={data} />
-              {isMobile && profileSide}
-              {!isMobile && profileSide}
+              <ProfileSide
+                contents={
+                  <>
+                    <AddRemoveButton onClick={handleAddMaintainer} />
+                    <AboutCard aboutData={aboutData} />
+                    <BuildingCard />
+                  </>
+                }
+              />
             </Group>
             <PostFeedCard
               data={

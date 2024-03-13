@@ -5,7 +5,7 @@ import { AxiosError } from 'axios';
 import { useForm } from '@mantine/form';
 import { useRouter } from 'next/router';
 import { hideNotification, notifications } from '@mantine/notifications';
-import { PATH_API } from '../../../path/path-api';
+import { PATH_API, _PATH_API } from '../../../path/path-api';
 import axiosInstance from '../../../utils/axios-instance';
 import { useCookieContext } from '../../../context/CookieContext';
 import LoadingScreen from '../../../components/screen/LoadingScreen';
@@ -15,6 +15,7 @@ import { getEntityFromUrl, sleep } from '../../../utils/helpers/helper-functions
 import { useCustomModalContext } from '../../../context/modal-context/_ModalContext';
 import { SpaceModel } from '../../../types/models/space-model';
 import { SelectOption } from '../../../types/general/data/data-table/form-field-type/formField-types';
+import { useFetchSwr } from '../../../../hooks/useFetch';
 
 const fetchMainSpaces = async () => {
   const res = await axiosInstance.get(`${PATH_API.getSpaceSelections}`);
@@ -37,21 +38,18 @@ const AddMaintainerModal = () => {
 
   const form = useForm({
     initialValues: {
-      spaces: [currentSpace?._id],
+      spaces: currentSpace ? [currentSpace?._id] : [],
     },
   });
   const {
     data,
     error: errorSwr,
     isLoading,
-  } = useSWR<SpaceModel[] | null, AxiosError>(
-    currentOrganization || user?.organization,
-    fetchMainSpaces
-  );
+  } = useFetchSwr<SpaceModel[]>({ path: PATH_API.getSpaceSelections, method: 'get' });
 
   if (!data || isLoading) return <LoadingScreen />;
-
-  const options: ComboboxData = data?.map((space: SpaceModel) => ({
+  const spaces = data.data;
+  const options: ComboboxData = spaces?.map((space: SpaceModel) => ({
     value: space._id,
     label: space.name,
   }));
@@ -66,19 +64,20 @@ const AddMaintainerModal = () => {
       color: 'blue',
       loading: true,
     });
-    await sleep(1500);
     if (form.values.spaces.length === 0) return;
     // call api to add maintainer with axiosInstance in utils
     try {
-      const rawMaintainer = await axiosInstance.put(
-        `${PATH_API.maintainers}/${crudDocument?._id}`,
+      const rawMaintainer = await axiosInstance.post(
+        _PATH_API.maintainers.spaces(crudDocument._id),
         form.values
       );
       // update crud document
-      setCrudDocument({ entity: _entity, document: rawMaintainer.data.data });
+      // setCrudDocument({ entity: _entity, document: rawMaintainer.data.data });
+      await sleep(500);
       notifications.show({ id: '1', message: 'Maintainer added to building' });
       closeModal();
     } catch (error: any) {
+      await sleep(500);
       notifications.show({ id: '1', message: error.message, color: 'red' });
     } finally {
       setSubmitting(false);
@@ -90,7 +89,7 @@ const AddMaintainerModal = () => {
     <form onSubmit={onSubmit}>
       <Stack>
         <MultiSelect
-          my={24}
+          searchable
           placeholder="Choose spaces"
           label="select building/space to add a maintainer"
           data={options}

@@ -19,7 +19,7 @@ export const AddRemoveButton = ({ onClick }: { onClick: () => void }) => {
   const { crudDocument: document } = useCrudSelectors<MaintainerModel>(_entity);
   const { currentSpace } = useCookieContext();
   const { openConfirmModal } = useCustomModalContext();
-  const handleRemove = function () {
+  const handleRemove = () => {
     openConfirmModal({
       labels: {
         confirm: 'Proceed',
@@ -30,6 +30,10 @@ export const AddRemoveButton = ({ onClick }: { onClick: () => void }) => {
       title: 'Remove maintainer from building',
       children: 'Are you sure you want to remove this maintainer from this building?',
       onConfirm: removeMaintainer,
+      opened: false,
+      onClose(): void {
+        throw new Error('Function not implemented.');
+      },
     });
   };
 
@@ -77,7 +81,7 @@ export const AddRemoveButton = ({ onClick }: { onClick: () => void }) => {
   console.log(document);
   if (!document?.spaces) {
     return (
-      <Button variant="outline" color="yellow">
+      <Button onClick={onClick} variant="outline" color="yellow">
         {t('Add/Remove maintainer to building')}
       </Button>
     );
