@@ -1,6 +1,8 @@
 import '@mantine/core/styles.css';
 import '@mantine/notifications/styles.css';
 import '@mantine/dates/styles.css';
+import '@geoapify/geocoder-autocomplete/styles/minimal.css';
+
 import 'dayjs/locale/it';
 import { MantineProvider, CSSVariablesResolver } from '@mantine/core';
 import { Notifications } from '@mantine/notifications';
@@ -37,8 +39,10 @@ const resolver: CSSVariablesResolver = (theme) => ({
   },
   light: {
     '--mantine-color-body': theme.colors.gray[3],
+    '--mantine-color-primary': theme.colors.yellow[5],
   },
   dark: {
+    '--mantine-color-primary': theme.colors.yellow[5],
     // '--mantine-color-body': 'red',
   },
 });

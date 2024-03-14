@@ -8,6 +8,7 @@ import TextWithIcon from '../text/TextWithIcon';
 import BadgeWithToolTip from '../text/BadgeWithToolTip';
 import { UploadModel } from '../../types/models/upload-model';
 import classes from './CardMaintainer.module.css';
+import { truncateString } from '../../utils/helpers/truncateString';
 
 const ICON_SIZE = 16;
 
@@ -94,12 +95,13 @@ export function CardMaintainer({ data, entity }: { data: UserCardData; entity: S
         )}
 
         <Group>
-          {data.badges?.map((badge) => (
+          {data.badges?.map((text) => (
             <BadgeWithToolTip
-              key={badge}
+              key={text}
               icon={data.badgeIcon}
-              text={badge || 'add address'}
-              disabled={!badge}
+              text={text || 'add address'}
+              disabled={!text}
+              textLength={30}
               style={{ ...data.badgestyle }}
             />
           ))}

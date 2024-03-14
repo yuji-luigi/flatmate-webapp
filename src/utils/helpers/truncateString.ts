@@ -1,6 +1,10 @@
-export function truncateString(str: string, num: number) {
+export function truncateString(str: string, num?: number) {
+  if (!num) return str;
   if (str.length <= num) {
     return str;
   }
-  return `${str.slice(0, num)}...`;
+  if (str.length > num) {
+    return `${str.slice(0, num)}...`;
+  }
+  return str;
 }

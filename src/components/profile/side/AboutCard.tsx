@@ -6,6 +6,7 @@ import CardWithTitle from './CardWithTitle';
 interface Props {
   title?: string;
   aboutData: AboutData;
+  children?: React.ReactNode;
 }
 
 export interface AboutData {
@@ -15,7 +16,7 @@ export interface AboutData {
   address?: string;
 }
 const ICON_SIZE = ICON_SIZES.textTile;
-const AboutCard = ({ aboutData, title }: Props) => {
+const AboutCard = ({ aboutData, title, children }: Props) => {
   return (
     <>
       <CardWithTitle>
@@ -31,6 +32,7 @@ const AboutCard = ({ aboutData, title }: Props) => {
         {aboutData.email && (
           <TextWithIcon icon={<Icons.mail size={ICON_SIZE} />} text={aboutData.email} />
         )}
+        {children && children}
       </CardWithTitle>
     </>
   );

@@ -11,7 +11,7 @@ const TextWithIcon = ({
   textSm = false,
   textLg = false,
 }: {
-  icon: ReactJSXElement;
+  icon?: ReactJSXElement;
   text: string;
   style?: MantineStyleProp;
   textSm?: boolean;

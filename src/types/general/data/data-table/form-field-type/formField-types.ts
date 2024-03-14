@@ -115,6 +115,9 @@ export type SpaceSelectAuto = {
   type: 'space-auto-select';
   multi?: boolean;
 } & BaseFormType;
+export type GeoApiInput = {
+  type: 'geo-api';
+} & BaseFormType;
 
 export type FormFieldTypes =
   | TextFormType
@@ -135,4 +138,5 @@ export type FormFieldTypes =
   | UserNameEmailCellType
   | AccessPermissionFormFieldType
   | SpaceSelectAuto
+  | GeoApiInput
   | UploadFormFieldType;

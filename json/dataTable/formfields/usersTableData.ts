@@ -72,6 +72,14 @@ export const usersTableData: Array<FormFieldTypes> = [
     priority: 5,
   },
   {
+    id: 'geo',
+    name: 'geo',
+    label: 'Telefono',
+    type: 'geo-api',
+    required: false,
+    priority: 5,
+  },
+  {
     id: 'password',
     name: 'password',
     label: 'Password',

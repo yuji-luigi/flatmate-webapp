@@ -63,4 +63,5 @@ type FormTypes =
   | 'user-name-email-head'
   | 'access-controller'
   | 'space-auto-select'
+  | 'geo-api'
   | 'pin-input';

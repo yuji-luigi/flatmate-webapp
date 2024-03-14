@@ -56,6 +56,7 @@ const FormFields = ({ formField, form, ...others }: Props) => {
       return <AccessPermissionFormButton form={form} formField={formField} {...others} />;
     case 'space-auto-select':
       return <SpaceAutoSelect form={form} formField={formField} {...others} />;
+
     case 'custom':
       // eslint-disable-next-line no-case-declarations
       const CustomComponent = formField.component;

@@ -25,6 +25,7 @@ import classes from '../../../../styles/global-useStyles.module.css';
 import { BuildingCard } from '../../../../sections/dashboard/maintainer_detail_page/BuildingCard';
 import { AddRemoveButton } from '../../../../sections/dashboard/maintainer_detail_page/AddRemoveButton';
 import { UserModel, ThreadModel } from '../../../../types/models/space-model';
+import TextWithIcon from '../../../../components/text/TextWithIcon';
 
 const getMaintainer = async (slug?: string) => {
   if (!slug) return null;

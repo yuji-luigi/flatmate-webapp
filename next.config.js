@@ -17,6 +17,9 @@ const nextConfig = (phase) => {
   console.log(`isDev:${isDev}  isProd:${isProd}   isStaging:${isStaging}`);
 
   const env = {
+    GEO_API_KEY: (() => {
+      return '1d01645972cc4761b58c286fab852716';
+    })(),
     NEXT_PUBLIC_API_URL: (() => {
       if (isDev) return 'http://generic.host:5001/api/v1';
       if (isProd) return 'https://flatmates-api.yuji-luigi.com/api/v1';
@@ -31,6 +34,7 @@ const nextConfig = (phase) => {
     })(),
     NEXT_PUBLIC_SSG_SECRET: 'secretforssgishereman%^()_',
   };
+
   // function webpack(config, options) {
   //   // Enables source map for development
   //   if (!options.isServer && options.dev) {
