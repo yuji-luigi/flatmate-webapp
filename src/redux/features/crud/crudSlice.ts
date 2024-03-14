@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { useEffect } from 'react';
-import { hideNotification, showNotification } from '@mantine/notifications';
-import { useCrudError } from '../../../context/DataTableDrawerContext';
+import { showNotification } from '@mantine/notifications';
 import {
   fetchCrudDocumentsWithPagination,
   addCrudDocumentDataTable,
