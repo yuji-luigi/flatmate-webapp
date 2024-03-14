@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { useEffect } from 'react';
 import { hideNotification, showNotification } from '@mantine/notifications';
+import { useCrudError } from '../../../context/DataTableDrawerContext';
 import {
   fetchCrudDocumentsWithPagination,
   addCrudDocumentDataTable,
@@ -58,7 +59,7 @@ export const crudSlice = createSlice({
       state.reduxdb[entity].documentsArray.filter((data) => data._id !== documentId);
     },
     /** update by new document already fetched. */
-    updateCrudDocumentInStore: (state, action: PayloadAction<UpdateCrudDocumentInStorePayload>) => {
+    setOneInArrayInStore: (state, action: PayloadAction<UpdateCrudDocumentInStorePayload>) => {
       const { document, entity } = action.payload;
       const documentIndex = state.reduxdb[entity].documentsArray.findIndex(
         (doc) => doc._id === document._id
@@ -269,7 +270,7 @@ export const {
   deleteCrud,
   resetStatus,
   setCrudDocument,
-  updateCrudDocumentInStore,
+  setOneInArrayInStore,
 } = crudSlice.actions;
 
 export default crudSlice.reducer;
@@ -279,17 +280,18 @@ export const useCrudSliceStore = () => {
 
   return {
     /** update single document in array without calling api. with already new document fetched. or updated in some how */
-    updateCrudDocumentInStore(data: UpdateCrudDocumentInStorePayload) {
-      appDispatch(crudSlice.actions.updateCrudDocumentInStore(data));
+    setOneInArrayInStore(data: UpdateCrudDocumentInStorePayload) {
+      appDispatch(crudSlice.actions.setOneInArrayInStore(data));
     },
     /** get documents from api and set in documentsArray in redux */
     fetchCrudDocuments(data: FetchCrudPayload) {
       appDispatch(fetchCrudDocuments(data));
     },
-    /** get documents from api and set in documentsArray in redux */
+    /** get documents with pagination from api and set in documentsArray in redux */
     fetchCrudDocumentsWithPagination(data: FetchCrudPayload) {
       appDispatch(fetchCrudDocumentsWithPagination(data));
     },
+    // todo: add infinite scroll
     fetchCrudDocumentsInfiniteScroll(data: FetchCrudPayload) {
       appDispatch(fetchCrudDocumentsInfiniteScroll(data));
     },
@@ -339,8 +341,9 @@ export const useCrudSliceStore = () => {
   };
 };
 
+function useGetCrudWithSwr(entity) {}
 /** Returns Array of Documents of the entity: whole array of entity */
-const useCrudDocuments = <ModelType>(entity?: Sections): ModelType[] =>
+const useCrudDocuments = <ModelType>(entity?: Sections): ModelType[] | [] =>
   useAppSelector((state) => state.crud.reduxdb?.[entity || '']?.documentsArray);
 // const useCrudDocuments = <ModelType>(entity?: Sections): ModelType[] =>
 //   useAppSelector((state) => state.crud.reduxdb?.[entity || '']?.documentsArray);

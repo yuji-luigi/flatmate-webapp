@@ -14,11 +14,12 @@ import { Icons } from '../../../data/icons/icons';
 export const AddRemoveButton = ({ onClick }: { onClick: () => void }) => {
   const _entity = getEntityFromUrl();
   const { t } = useLocale();
-  const { updateCrudDocumentInStore:  } = useCrudSliceStore();
+  const { setCrudDocument: setMaintainer } = useCrudSliceStore();
   const { crudDocument: maintainer } = useCrudSelectors<MaintainerModel>(_entity);
   const { currentSpace } = useCookieContext();
   const hasSpace = maintainer.spaces?.map((s) => s._id).includes(currentSpace?._id || '');
-
+  let a = '';
+  a = '';
   const handleAddRemoveFromSpace = async () => {
     if (!currentSpace?._id) {
       showNotification({
@@ -32,11 +33,18 @@ export const AddRemoveButton = ({ onClick }: { onClick: () => void }) => {
       // remove maintainer from space
     }
 
-    if (!hasSpace) {
+    if (hasSpace) {
       const rawMaintainer = await axiosInstance.post(_PATH_API.maintainers.spaces(maintainer._id), {
-        spaces: currentSpace._id,
+        spaces: [currentSpace._id],
       });
-
+      setMaintainer({
+        entity: _entity,
+        document: {
+          surname: 'hay',
+          name: 'yuji',
+          spaces: ['rawMaintainer.data.data'],
+        },
+      });
     }
   };
   return (

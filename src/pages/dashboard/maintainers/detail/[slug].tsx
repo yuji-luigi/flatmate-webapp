@@ -39,6 +39,7 @@ const MaintainerDetailsPage = () => {
   const { openConfirmModal } = useCustomModalContext();
 
   const _entity = getEntityFromUrl();
+  //todo: use useCrudSelectors + combine useSWR and fetchCrudDocument hook
   const {
     data: fetchedData,
     // error,
