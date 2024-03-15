@@ -164,6 +164,7 @@ export const _PATH_API = {
     byId: (maintainerId: string) => `${PATH_API.maintainers}/${maintainerId}`,
     bySlug: (slug: string) => `${PATH_API.maintainersSlug}/${slug}`,
     spaces: (idMaintainer: string) => `${PATH_API.maintainers}/${idMaintainer}/spaces`,
+    space: (idMaintainer: string) => `${PATH_API.maintainers}/${idMaintainer}/space`,
   },
 } as const;
 

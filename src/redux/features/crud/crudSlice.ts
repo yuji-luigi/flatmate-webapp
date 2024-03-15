@@ -339,8 +339,8 @@ export const useCrudSliceStore = () => {
     },
   };
 };
-
-function useGetCrudWithSwr(entity) {}
+// todo: implement swr
+function useGetCrudWithSwr(entity: Sections) {}
 /** Returns Array of Documents of the entity: whole array of entity */
 const useCrudDocuments = <ModelType>(entity?: Sections): ModelType[] | [] =>
   useAppSelector((state) => state.crud.reduxdb?.[entity || '']?.documentsArray);

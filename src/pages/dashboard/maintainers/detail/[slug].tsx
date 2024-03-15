@@ -7,7 +7,7 @@ import Layout from '../../../../layouts';
 import ProfileCoverGeneric, {
   CoverDataProp,
 } from '../../../../components/profile/ProfileCoverGeneric';
-import { useCrudSliceStore } from '../../../../redux/features/crud/crudSlice';
+import { useCrudSelectors, useCrudSliceStore } from '../../../../redux/features/crud/crudSlice';
 import { getEntityFromUrl } from '../../../../utils/helpers/helper-functions';
 import axiosInstance from '../../../../utils/axios-instance';
 import { PATH_API } from '../../../../path/path-api';
@@ -23,9 +23,10 @@ import AddMaintainerModal from '../../../../sections/dashboard/maintenance_detai
 import classes from '../../../../styles/global-useStyles.module.css';
 
 import { BuildingCard } from '../../../../sections/dashboard/maintainer_detail_page/BuildingCard';
-import { AddRemoveButton } from '../../../../sections/dashboard/maintainer_detail_page/AddRemoveButton';
+import { FavoriteMaintainerButton } from '../../../../sections/dashboard/maintainer_detail_page/FavoritMaintainerButton';
 import { UserModel, ThreadModel } from '../../../../types/models/space-model';
 import TextWithIcon from '../../../../components/text/TextWithIcon';
+import { MaintainerModel } from '../../../../types/models/maintainer-model';
 
 const getMaintainer = async (slug?: string) => {
   if (!slug) return null;
@@ -47,6 +48,7 @@ const MaintainerDetailsPage = () => {
   } = useSWR(['maintainer', router.query.slug], () => getMaintainer(router.query.slug as string));
 
   const { setCrudDocument } = useCrudSliceStore();
+  const { crudDocument } = useCrudSelectors<MaintainerModel>('maintainers');
   // const { crudDocument: document } = useCrudSelectors(_entity);
 
   const isMobile = useMediaQuery('(max-width: 800px)');
@@ -59,21 +61,21 @@ const MaintainerDetailsPage = () => {
 
   if (isLoading) return 'isLoading';
 
-  const data = fetchedData
+  const data = crudDocument
     ? {
-        title: fetchedData.name,
-        subtitle: fetchedData.company,
-        avatarUrl: fetchedData.avatar?.url,
-        coverUrl: fetchedData.cover?.url,
+        title: crudDocument.name,
+        subtitle: crudDocument.company,
+        avatarUrl: crudDocument.avatar?.url,
+        coverUrl: crudDocument.cover?.url,
       }
     : ({} as CoverDataProp);
   // create about data
   const aboutData = {
     // title: 'About',
-    email: fetchedData?.email,
-    tel: fetchedData?.tel,
-    company: fetchedData?.company,
-    address: fetchedData?.address,
+    email: crudDocument?.email,
+    tel: crudDocument?.tel,
+    company: crudDocument?.company,
+    address: crudDocument?.address,
   };
   const handleAddMaintainer = async () => {
     // setSpaces(data);
@@ -100,7 +102,7 @@ const MaintainerDetailsPage = () => {
               <ProfileSide
                 contents={
                   <>
-                    <AddRemoveButton onClick={handleAddMaintainer} />
+                    <FavoriteMaintainerButton onClick={handleAddMaintainer} />
                     <AboutCard aboutData={aboutData} />
                     <BuildingCard />
                   </>
