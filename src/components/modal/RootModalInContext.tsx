@@ -1,4 +1,4 @@
-import { Modal, Box } from '@mantine/core';
+import { Modal, Box, LoadingOverlay } from '@mantine/core';
 
 import { CrudModal } from '../../context/modal-context/CrudModal';
 import CustomModal from '../../context/modal-context/CustomModal';
@@ -18,6 +18,8 @@ export function ModalRootCustom() {
     case 'crud':
       modalContent = <CrudModal modalData={modalData} />;
       break;
+    case 'loading':
+      return <LoadingModal />;
     default:
       modalContent = <RegularModal modalData={modalData} />;
   }
@@ -37,6 +39,33 @@ export function ModalRootCustom() {
       }}
     >
       <Box>{modalContent}</Box>
+    </Modal>
+  );
+}
+
+function LoadingModal() {
+  const { isOpenModal: opened, closeModal: close, modalData } = useCustomModalContext();
+  return (
+    <Modal
+      fullScreen
+      opened={modalData.opened}
+      withinPortal={modalData.withinPortal}
+      centered={modalData.centered}
+      onClose={close}
+      onClick={close}
+      styles={{
+        root: { background: 'transparent' },
+        body: { background: 'transparent' },
+        content: { background: 'transparent' },
+        header: { background: 'transparent' },
+      }}
+    >
+      <LoadingOverlay
+        styles={{
+          overlay: { background: 'transparent' },
+        }}
+        visible
+      />
     </Modal>
   );
 }

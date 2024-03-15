@@ -11,7 +11,8 @@ export type _ModalContextStates = {
   toggleOpenModal: (isOpenModal: boolean) => void;
   openConfirmModal: (confirmModalProps: ModalDataTypes) => void;
 };
-export type ModalType = 'confirm' | 'alert' | 'crud' | 'custom';
+export type ModalType = 'confirm' | 'alert' | 'crud' | 'custom' | 'loading';
+
 export type BaseModalData = {
   // id?: string;
   title?: string | React.ReactNode;
@@ -22,7 +23,7 @@ export type BaseModalData = {
 } & ModalProps;
 
 export interface RegularModalParams extends BaseModalData {
-  type: 'confirm' | 'alert';
+  type: 'confirm' | 'alert' | 'loading';
   // formFields?: FormFieldTypes[];
   children?: React.ReactNode;
   labels?: {

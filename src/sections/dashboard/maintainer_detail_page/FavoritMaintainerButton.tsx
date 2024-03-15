@@ -1,6 +1,6 @@
 import { ActionIcon, Button, Skeleton } from '@mantine/core';
 import React, { useState } from 'react';
-import { notifications, showNotification } from '@mantine/notifications';
+import { hideNotification, notifications, showNotification } from '@mantine/notifications';
 import { AxiosRequestConfig } from 'axios';
 import { useCrudSelectors, useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
 import { useCookieContext } from '../../../context/CookieContext';
@@ -11,44 +11,69 @@ import { PATH_API, _PATH_API } from '../../../path/path-api';
 import { useCustomModalContext } from '../../../context/modal-context/_ModalContext';
 import { useLocale } from '../../../../hooks/useLocale';
 import { Icons } from '../../../data/icons/icons';
+import LoadingScreen from '../../../components/screen/LoadingScreen';
 
 export const FavoriteMaintainerButton = ({ onClick }: { onClick: () => void }) => {
   const _entity = getEntityFromUrl();
   const { t } = useLocale();
+  const [isLoading, setIsLoading] = useState(false);
   const { setCrudDocument: setMaintainer } = useCrudSliceStore();
   const { crudDocument: maintainer } = useCrudSelectors<MaintainerModel>(_entity);
   const { currentSpace } = useCookieContext();
   const hasSpace = maintainer.spaces?.map((s) => s._id).includes(currentSpace?._id || '');
+  const { openConfirmModal } = useCustomModalContext();
 
   const handleAddRemoveFromSpace = async () => {
-    if (!currentSpace?._id) {
+    setIsLoading(true);
+    const id = showNotification({
+      title: 'Submitting',
+      message: t('Please wait...'),
+      loading: true,
+    });
+    try {
+      if (!currentSpace?._id) {
+        showNotification({
+          title: 'Error',
+          message: t('Please select a building first'),
+          color: 'red',
+        });
+        return;
+      }
+
+      const config: AxiosRequestConfig = {
+        method: hasSpace ? 'delete' : 'post',
+        url: _PATH_API.maintainers.space(maintainer._id),
+        ...(hasSpace
+          ? { data: { space: currentSpace._id } }
+          : { data: { space: currentSpace._id } }),
+      };
+
+      const rawMaintainer = await axiosInstance(config);
+      await sleep(750);
+      hideNotification(id);
+
+      setMaintainer({
+        entity: _entity,
+        document: rawMaintainer.data.data,
+      });
+    } catch (error: any) {
+      hideNotification(id);
       showNotification({
         title: 'Error',
-        message: t('Please select a building first'),
+        message: error.message || error,
         color: 'red',
       });
-      return;
+    } finally {
+      setIsLoading(false);
     }
-
-    const config: AxiosRequestConfig = {
-      method: hasSpace ? 'delete' : 'post',
-      url: _PATH_API.maintainers.space(maintainer._id),
-      ...(hasSpace ? { data: { space: currentSpace._id } } : { data: { space: currentSpace._id } }),
-    };
-
-    const rawMaintainer = await axiosInstance(config);
-    setMaintainer({
-      entity: _entity,
-      document: rawMaintainer.data.data,
-    });
   };
-
   return (
-    <ActionIcon onClick={handleAddRemoveFromSpace}>
+    <ActionIcon disabled={isLoading} onClick={handleAddRemoveFromSpace}>
       <Icons.star
         style={{
           color: hasSpace ? 'var(--mantine-color-primary)' : 'var(--mantine-color-grey)',
           fill: hasSpace ? 'var(--mantine-color-primary)' : '',
+          opacity: isLoading ? 0.5 : 1,
         }}
       />
     </ActionIcon>
