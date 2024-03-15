@@ -18,7 +18,7 @@ const fetchMaintainersOfBuilding = async (/* buildingId: string */) => {
   );
   return res.data.data.map((maintainer) => ({
     value: maintainer._id,
-    label: `${maintainer.type?.toUpperCase() || 'Job unspecified'}: ${maintainer.name} - ${
+    label: `${`${maintainer.jobTitle?.toUpperCase()}: ` || ''}${maintainer.name} - ${
       maintainer.email
     }`,
   }));

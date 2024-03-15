@@ -22,4 +22,5 @@ export interface MaintainerModel extends MongooseBaseModel {
   isInSpace: boolean;
   createdBy: string | IUser;
   slug: string;
+  jobTitle?: string;
 }
