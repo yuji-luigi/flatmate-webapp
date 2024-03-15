@@ -1,0 +1,27 @@
+name: ci
+
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    # outputs:
+    #   release_created: ${{ steps.release.outputs.release_created }}
+    #   version: '${{steps.release.outputs.major}}.${{steps.release.outputs.minor}}.${{steps.release.outputs.patch}}'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Release Generation
+        id: release
+        uses: google-github-actions/release-please-action@v4
+        with:
+          config-file: .github/workflows/release-please-config.json
