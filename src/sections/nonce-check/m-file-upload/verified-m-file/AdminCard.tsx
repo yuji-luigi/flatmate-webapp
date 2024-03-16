@@ -11,6 +11,7 @@ type Props = {
 
 export const AdminCard = (props: Props) => {
   const { admins, style } = props;
+  return <div>adminCard</div>;
   return (
     <CardWithTitle title="Contacts" style={{ background: 'transparent' }}>
       {admins.map((admin, index) => {

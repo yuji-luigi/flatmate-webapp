@@ -78,4 +78,16 @@ export const maintenancesTableData: Array<FormFieldTypes> = [
     priority: 0,
     formOrder: 4,
   },
+  {
+    id: 'images',
+    name: 'images',
+    label: 'Photos',
+    type: 'image',
+    multi: true,
+    // type: 'dropzone',
+    accept: 'image/*',
+    // selectValues: ['name'],
+    required: false,
+    priority: 2,
+  },
 ];
