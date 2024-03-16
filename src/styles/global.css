@@ -351,14 +351,17 @@ ul {
 }
 .login-tab-panel {
   /* background-color: green; */
+  @media (max-width: $mantine-breakpoint-xs) {
+    padding-inline: 0;
+  }
 }
 .login-tab-root {
   /* background-color: purple; */
-  display: flex;
-  flex-direction: column;
+  /* display: flex; */
+  /* flex-direction: column; */
 }
 .login-tab-label {
-  /* background-color: orange; */
+  /* background-color:q orange; */
   /* font-size: 10px; */
 }
 .login-tab-section {

@@ -20,7 +20,7 @@ export const LoginTitleWithLogo: React.FC<LoginTitleWithLogoProps> = (
         justify="space-between"
         align="baseline"
       >
-        <Title order={2} className={classes.title} ta="center">
+        <Title order={2} className={classes.title}>
           {t('Welcome back to Flatmate!')}
         </Title>
         <LogoSquare size={60} />
