@@ -1,4 +1,4 @@
-import { Anchor, Box, Group, Stack, Tabs, Text, rem } from '@mantine/core';
+import { Anchor, Box, Group, Select, Stack, Tabs, Text, rem } from '@mantine/core';
 import { IconPhoto } from '@tabler/icons-react';
 import { ReactNode } from 'react';
 import { useLocale } from '../../../hooks/useLocale';
@@ -38,15 +38,26 @@ export const RoleTabsLogin: React.FC<RoleTabsLoginProps> = (props: RoleTabsLogin
 
   return (
     <>
-      <Tabs defaultValue="Users">
+      <Tabs
+        // orientation="vertical"
+        defaultValue="Users"
+        classNames={{
+          tab: 'login-tab',
+          list: 'login-tab-list',
+          panel: 'login-tab-panel',
+          root: 'login-tab-root',
+          tabLabel: 'login-tab-label',
+          tabSection: 'login-tab-section',
+        }}
+      >
         <Tabs.List>
           {tabs.map((tab) => (
             <Tabs.Tab
               key={tab.value}
               value={tab.value}
-              leftSection={<IconPhoto style={iconStyle} />}
+              // leftSection={<IconPhoto style={iconStyle} />}
             >
-              {t(tab.value)}
+              <span>{t(tab.value)}</span>
             </Tabs.Tab>
           ))}
         </Tabs.List>

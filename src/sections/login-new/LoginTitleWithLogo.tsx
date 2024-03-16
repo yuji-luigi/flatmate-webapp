@@ -11,11 +11,19 @@ export const LoginTitleWithLogo: React.FC<LoginTitleWithLogoProps> = (
   const { t } = useLocale('login');
   return (
     <>
-      <Group style={{ position: 'relative' }} justify="space-between" align="baseline">
+      <Group
+        style={{
+          display: 'grid',
+          gridTemplateColumns: '1fr minmax(10px, 60px)',
+          placeItems: 'center',
+        }}
+        justify="space-between"
+        align="baseline"
+      >
         <Title order={2} className={classes.title} ta="center">
           {t('Welcome back to Flatmate!')}
         </Title>
-        <LogoSquare className={classes.logo} size={60} />
+        <LogoSquare size={60} />
       </Group>
     </>
   );

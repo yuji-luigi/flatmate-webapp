@@ -16,11 +16,9 @@ import { UserModel } from '../types/models/space-model';
 export default function LoginPage(props: { initialUser?: UserModel }) {
   return (
     <div className={classes.wrapper}>
-      <Stack>
-        <Card p={0}>
-          <RoleTabsLogin />
-        </Card>
-      </Stack>
+      <Card>
+        <RoleTabsLogin />
+      </Card>
     </div>
   );
 }

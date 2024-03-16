@@ -328,3 +328,39 @@ ul {
 .detail-helper-text {
   color: var(--text-color-link);
 }
+
+.sm-d-none {
+  display: block;
+  @media (max-width: $mantine-breakpoint-xs) {
+    display: none;
+  }
+}
+
+.login-tab {
+  /* background-color: red; */
+  @media (max-width: $mantine-breakpoint-xs) {
+    padding-inline: 8px;
+  }
+}
+.login-tab-list {
+  /* background-color: yellow; */
+  @media (max-width: $mantine-breakpoint-xs) {
+    display: flex;
+    justify-content: center;
+  }
+}
+.login-tab-panel {
+  /* background-color: green; */
+}
+.login-tab-root {
+  /* background-color: purple; */
+  display: flex;
+  flex-direction: column;
+}
+.login-tab-label {
+  /* background-color: orange; */
+  /* font-size: 10px; */
+}
+.login-tab-section {
+  /* background-color: brown; */
+}

@@ -8,7 +8,7 @@
   padding: var(--padding-card);
   /* padding-top: 0; */
 
-  width: rem(600px);
+  /* width: rem(600px); */
   /* padding-top: rem(80px); */
   margin-block: auto;
   box-shadow: var(--mantine-shadow-lg);
