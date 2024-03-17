@@ -20,12 +20,13 @@ export type BaseModalData = {
   centered?: boolean;
   fullScreen?: boolean;
   withinPortal?: boolean;
-} & ModalProps;
+};
 
 export interface RegularModalParams extends BaseModalData {
   type: 'confirm' | 'alert' | 'loading';
   // formFields?: FormFieldTypes[];
   children?: React.ReactNode;
+  opened: boolean;
   labels?: {
     confirm?: string;
     cancel?: string;
