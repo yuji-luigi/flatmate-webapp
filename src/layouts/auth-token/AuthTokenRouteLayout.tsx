@@ -39,7 +39,7 @@ export const AuthTokenRouteLayout = ({
       <AuthTokenLayoutHeader title={title} />
       <Box
         ref={containerRef}
-        className={`${classes.pageContent} ${classes.bg}`}
+        // className={`${classes.pageContent} ${classes.bg}`}
         style={{
           paddingTop: 55,
           backgroundImage: `url(${currentSpace?.image})`,

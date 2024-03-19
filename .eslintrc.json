@@ -6,11 +6,18 @@
     "plugin:jest/recommended",
     "plugin:storybook/recommended"
   ],
-  "plugins": ["testing-library", "jest"],
+  "plugins": [
+    "testing-library",
+    "jest"
+  ],
   "overrides": [
     {
-      "files": ["**/?(*.)+(spec|test).[jt]s?(x)"],
-      "extends": ["plugin:testing-library/react"]
+      "files": [
+        "**/?(*.)+(spec|test).[jt]s?(x)"
+      ],
+      "extends": [
+        "plugin:testing-library/react"
+      ]
     }
   ],
   "parserOptions": {
@@ -21,10 +28,18 @@
     "react/react-in-jsx-scope": "off",
     "react/jsx-pascal-case": "off",
     "no-unused-vars": 0,
+    "quotes": [
+      "warn",
+      "double"
+    ],
     "@typescript-eslint/no-unused-vars": "warn",
     "@typescript-eslint/no-use-before-define": [
       "off"
       // { "functions": false, "classes": true, "variables": true, "typedefs": true }
+    ],
+    "@typescript-eslint/quotes": [
+      "warn",
+      "double"
     ],
     "max-len": [
       "warn",

@@ -33,7 +33,7 @@ export const SubmitAllRoleButton: React.FC<SubmitAllRoleButtonProps> = (
 
     const aCtrlValues = roleNames.map((role) => {
       return {
-        // todo: fix the type of form.values
+        // TODO: fix the type of form.values
         //@ts-ignore
         ...form.values[role],
         roleName: role,

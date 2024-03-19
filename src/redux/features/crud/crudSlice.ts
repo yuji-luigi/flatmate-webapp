@@ -290,7 +290,7 @@ export const useCrudSliceStore = () => {
     fetchCrudDocumentsWithPagination(data: FetchCrudPayload) {
       appDispatch(fetchCrudDocumentsWithPagination(data));
     },
-    // todo: add infinite scroll
+    // TODO: add infinite scroll
     fetchCrudDocumentsInfiniteScroll(data: FetchCrudPayload) {
       appDispatch(fetchCrudDocumentsInfiniteScroll(data));
     },
@@ -339,7 +339,7 @@ export const useCrudSliceStore = () => {
     },
   };
 };
-// todo: implement swr
+// TODO: implement swr
 function useGetCrudWithSwr(entity: Sections) {}
 /** Returns Array of Documents of the entity: whole array of entity */
 const useCrudDocuments = <ModelType>(entity?: Sections): ModelType[] | [] =>

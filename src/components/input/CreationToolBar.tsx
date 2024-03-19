@@ -24,7 +24,7 @@ function CreationToolBar({ form, formFields, submitButton, entity }: Props) {
   const uploadFormFields = formFields.filter(
     (field) => field.type === 'image' || field.type === 'attachment'
   ) as UploadFormFieldType[];
-  //todo: need to iterate over the formFields and create a upload icon for each one
+  //TODO: need to iterate over the formFields and create a upload icon for each one
   return (
     <Stack style={{ width: '100%' }}>
       {uploadFormFields?.map((uploadField) => (

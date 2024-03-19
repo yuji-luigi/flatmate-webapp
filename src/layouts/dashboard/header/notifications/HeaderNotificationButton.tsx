@@ -17,7 +17,7 @@ const fetchNotifications = async () => {
   return res.data.data;
 };
 export const HeaderNotificationButton = () => {
-  // todo: add Notification route in Api to get formatted data. (threads, maintenances, etc. in formatted way as notifications)
+  // TODO: add Notification route in Api to get formatted data. (threads, maintenances, etc. in formatted way as notifications)
   // const { crudDocuments: maintenances } = useCrudSelectors<MaintenanceModel>('maintenances');
   const { currentSpace, currentOrganization } = useCookieContext();
 

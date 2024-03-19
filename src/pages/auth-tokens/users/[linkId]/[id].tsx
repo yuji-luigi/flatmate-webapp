@@ -10,8 +10,8 @@ import useAuth from '../../../../../hooks/useAuth';
 
 const UserRegisterByTokenPage = () => {
   const { logout } = useAuth();
-  const [pinOk, setPinOk] = useState<boolean>(false); // todo: need to check if pin is ok or not
-  const [checkType, setCheckType] = useState<CheckType | null>(null); // todo: need to check if pin is ok or not
+  const [pinOk, setPinOk] = useState<boolean>(false); // TODO: need to check if pin is ok or not
+  const [checkType, setCheckType] = useState<CheckType | null>(null); // TODO: need to check if pin is ok or not
 
   useEffect(() => {
     logout();

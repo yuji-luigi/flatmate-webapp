@@ -126,7 +126,7 @@ export function CrudDrawerDefault({ overridingEntity = '' }: { overridingEntity?
     // form.reset();
   };
 
-  /** todo: separate the function in to hooks or util function.*/
+  /** TODO: separate the function in to hooks or util function.*/
   async function handleSubmitSucceed() {
     /**
      * delay for drawer closing and ect these lines

@@ -59,7 +59,7 @@
   --list-height: 40px;
 
   --text-color-link: #45adfe;
-  /* todo: delete and use something works --font-size-article: 24px; */
+  /* TODO: delete and use something works --font-size-article: 24px; */
   :root.light {
     display: none;
     --bg-color: rgba(255, 255, 255, 0.85);
@@ -366,4 +366,45 @@ ul {
 }
 .login-tab-section {
   /* background-color: brown; */
+}
+
+.page-title {
+  font-size: var(--font-size-title);
+  font-weight: var(--font-weight-title);
+}
+.page-subtitle {
+  font-size: var(--font-size-subtitle);
+}
+
+.image-cover {
+  object-fit: contain;
+  border-radius: var(--radius-card);
+}
+
+.profile-cover-static {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: var(--radius-card);
+  position: relative;
+  min-height: 200px;
+
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: overlay;
+
+  transition: 0.3s;
+  &:hover {
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+  }
+  &[aria-disabled='true'] {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}
+
+.flex-box-column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--flex-gap);
 }

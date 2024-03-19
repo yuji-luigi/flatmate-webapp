@@ -28,37 +28,33 @@ const ProfileCoverStatic = (props: CoverDataProp) => {
   const isDark = colorScheme === 'dark';
   const { avatar, style, cover, name, description, disableAvatar } = props;
   const gradient = isDark
-    ? 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))'
-    : 'linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5))';
+    ? 'linear-gradient(rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 0.01))'
+    : 'linear-gradient(rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.01))';
   return (
     <Card
       shadow="sm"
       padding="lg"
-      className={classes.card}
+      className="profile-cover-static"
       style={{
         backgroundImage: `${gradient}, url(${cover?.url || ''})`,
       }}
     >
-      <Group style={{ justifyContent: 'space-between', width: '100%' }}>
-        <Group>
-          {!disableAvatar && (
-            <Box className={classes.avatarWrapper}>
-              <Avatar
-                style={{ cursor: 'pointer', marginRight: '1rem' }}
-                size={100}
-                radius={80}
-                src={avatar?.url}
-                alt={`${avatar?.originalFileName} avatar`}
-              />
-            </Box>
-          )}
-          <Box style={{ alignSelf: 'center' }}>
-            <Text fw={700} size="xl">
-              {name}
-            </Text>
-            <Text size="md">{description}</Text>
-          </Box>
-        </Group>
+      <Group>
+        {!disableAvatar && (
+          <Avatar
+            // style={{ cursor: 'pointer', marginRight: '1rem' }}
+            size={100}
+            radius={80}
+            src={cover?.url}
+            alt={`${avatar?.originalFileName} avatar`}
+          />
+        )}
+        <Box>
+          <Text fw={700} size="xl">
+            {name}
+          </Text>
+          <Text size="md">{description}</Text>
+        </Box>
       </Group>
     </Card>
   );

@@ -40,7 +40,7 @@ export function ProfilePopover() {
       <Menu.Dropdown>
         <Menu.Label style={{ textAlign: 'center' }}>Settings</Menu.Label>
         <Box px={8} py={16}>
-          {/* // todo: onhover change color */}
+          {/* // TODO: onhover change color */}
           {popoverList.map((list) => (
             <Menu.Item component={Link} key={list.title} className={classes.link} href={list.link}>
               {list.icon}

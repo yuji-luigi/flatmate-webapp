@@ -25,7 +25,7 @@ export const TextCell = ({
       {cellValue}
     </Text>
   );
-  // todo: create dedicated component for static select
+  // TODO: create dedicated component for static select
   if (cellConfig.type === 'static-select') {
     const Icon = cellConfig.options?.find(
       (option: StaticOption) => option.value === cellValue

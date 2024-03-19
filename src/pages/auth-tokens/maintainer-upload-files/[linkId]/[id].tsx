@@ -13,8 +13,8 @@ import { MaintainerCompleteRegisterCard } from '../../../../sections/nonce-check
 
 const MaintainerUploadFileAuthPage = () => {
   const { query } = useRouter();
-  const [pinOk, setPinOk] = useState<boolean>(false); // todo: need to check if pin is ok or not
-  const [checkType, setCheckType] = useState<CheckType | null>(null); // todo: need to check if pin is ok or not
+  const [pinOk, setPinOk] = useState<boolean>(false); // TODO: need to check if pin is ok or not
+  const [checkType, setCheckType] = useState<CheckType | null>(null); // TODO: need to check if pin is ok or not
   const { handleSetCurrentSpace } = useCookieContext();
   useEffect(() => {
     handleSetCurrentSpace();
@@ -33,20 +33,16 @@ const MaintainerUploadFileAuthPage = () => {
 };
 
 MaintainerUploadFileAuthPage.getLayout = function getLayout(page: ReactElement) {
-  return (
-    <Layout variant="auth-token" title="Upload maintenance invoice/receipt">
-      {page}
-    </Layout>
-  );
+  return <Layout variant="auth-token">{page}</Layout>;
 };
 
 export default MaintainerUploadFileAuthPage;
 
-// export async function getStaticProps({ locale }: { locale: string }) {
-//   return {
-//     props: {
-//       ...(await serverSideTranslations(locale, ['common', 'notification'], null, ['en', 'it'])),
-//       // Will be passed to the page component as props
-//     },
-//   };
-// }
+export async function getServerSideProps({ locale }: { locale: string }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['maintenance', 'common'], null, ['en', 'it'])),
+      // Will be passed to the page component as props
+    },
+  };
+}

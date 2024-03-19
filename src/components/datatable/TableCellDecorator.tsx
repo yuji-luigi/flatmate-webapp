@@ -18,7 +18,7 @@ function isArray(value: any): value is Array<any> {
   return Array.isArray(value);
 }
 
-//! todo: refactor this component to be more readable and rational.
+//! TODO: refactor this component to be more readable and rational.
 
 export function TableCellDecorator({
   rowData,

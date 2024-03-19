@@ -16,7 +16,7 @@ function RadioGroup(props: RadioGroupProps) {
     ...rest
   } = props;
 
-  // todo: fieldError of my own making
+  // TODO: fieldError of my own making
   // const error = fieldError ? (
   //   <ErrorMessage>{fieldError.message?.toString()}</ErrorMessage>
   // ) : undefined;

@@ -42,7 +42,7 @@ const TableCellController = ({
 
   const type: CellTypes = cellConfig.cellType || cellConfig.type;
 
-  // !todo: figure out how to correctly type formFieldTypes
+  // !TODO: figure out how to correctly type formFieldTypes
   // const cells: PartialCellTypes = {
   const cells: any = {
     avatar: AvatarCell,
