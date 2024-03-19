@@ -1,5 +1,5 @@
-import { Group, Avatar } from '@mantine/core';
-import React from 'react';
+import { Group, Avatar } from "@mantine/core";
+import React from "react";
 
 export const AvatarCell = ({ cellValue }: { cellValue: string }) => {
   return (

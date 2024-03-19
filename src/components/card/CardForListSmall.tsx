@@ -1,9 +1,9 @@
-import { Card, Image, Avatar, Text, Group, Box } from '@mantine/core';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { Url } from 'next/dist/shared/lib/router/router';
-import { IUser } from '../../types/context/auth/useAuth';
-import classes from './CardArticleSmall.module.css';
+import { Card, Image, Avatar, Text, Group, Box } from "@mantine/core";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { Url } from "next/dist/shared/lib/router/router";
+import { IUser } from "../../types/context/auth/useAuth";
+import classes from "./CardArticleSmall.module.css";
 
 interface CardArticleImageDescFooterVerticalProps {
   title: string;
@@ -24,7 +24,7 @@ export function CardForListSmall(props: CardArticleImageDescFooterVerticalProps)
         <Group wrap="nowrap" gap={0}>
           {image && <Image src={image} height={150} width={140} />}
           <div className={classes.body}>
-            <Box style={{ overflow: 'hidden' }}>
+            <Box style={{ overflow: "hidden" }}>
               <Text className={classes.title} mt="xs" mb="xs">
                 {title}
               </Text>

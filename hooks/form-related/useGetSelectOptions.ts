@@ -1,13 +1,13 @@
-import { useEffect } from 'react';
-import { useCrudSelectors, useCrudSliceStore } from '../../src/redux/features/crud/crudSlice';
-import { createLabelFromArrayStr } from '../../src/utils/helpers/helper-functions';
-import { Sections } from '../../src/types/general/data/sections-type';
+import { useEffect } from "react";
+import { useCrudSelectors, useCrudSliceStore } from "../../src/redux/features/crud/crudSlice";
+import { createLabelFromArrayStr } from "../../src/utils/helpers/helper-functions";
+import { Sections } from "../../src/types/general/data/sections-type";
 import {
   FormFieldTypes,
   SelectFormType,
   StaticSelectFormFieldType,
-} from '../../src/types/general/data/data-table/form-field-type/formField-types';
-import { MongooseBaseModel } from '../../src/types/models/mongoose-base-model';
+} from "../../src/types/general/data/data-table/form-field-type/formField-types";
+import { MongooseBaseModel } from "../../src/types/models/mongoose-base-model";
 // import { useCrudSlice } from '../redux-hooks/useCrudSlice';
 
 export const useGetSelectOptions = (
@@ -17,12 +17,12 @@ export const useGetSelectOptions = (
   // const [idleDocuments, setIdleDocuments] = useState<SelectOption[]>([]);
   /** fetch with query,  */
   const { fetchCrudDocuments } = useCrudSliceStore();
-  console.log(formField._entity, 'formField._entity');
+  console.log(formField._entity, "formField._entity");
   const { crudDocuments } = useCrudSelectors(formField._entity as Sections);
   // const { fetchCrudDocuments, crudDocuments } = useCrudSlice(formField._entity);
 
   useEffect(() => {
-    if (formField.type === 'select' && !formField.inputOptions?.useCachedData) {
+    if (formField.type === "select" && !formField.inputOptions?.useCachedData) {
       fetchCrudDocuments({
         entity: formField._entity!,
         queryObject: formField.query,
@@ -30,7 +30,7 @@ export const useGetSelectOptions = (
     }
   }, [formField]);
 
-  if (formField.type === 'select') {
+  if (formField.type === "select") {
     /** TODO: to include infinite scrolling? */
     const options = crudDocuments.map((document: MongooseBaseModel) => {
       const label = createLabelFromArrayStr(formField.selectValues!, document);
@@ -39,7 +39,7 @@ export const useGetSelectOptions = (
     return options;
   }
 
-  if (formField.type === 'static-select') {
+  if (formField.type === "static-select") {
     /** static-select type must have options Array<SelectOptions> */
     return formField.options;
   }

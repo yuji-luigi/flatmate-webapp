@@ -1,7 +1,7 @@
-import React from 'react';
-import { Box, Button, Modal, Stack } from '@mantine/core';
-import { useCustomModalContext } from './_ModalContext';
-import { CustomModalData } from '../../types/modal/modal-context-type';
+import React from "react";
+import { Box, Button, Modal, Stack } from "@mantine/core";
+import { useCustomModalContext } from "./_ModalContext";
+import { CustomModalData } from "../../types/modal/modal-context-type";
 
 type CustomModalProps = {
   modalData: CustomModalData;

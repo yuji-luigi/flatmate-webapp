@@ -1,11 +1,11 @@
 //useSWR allows the use of SWR inside function components
 
-import { Box } from '@mantine/core';
+import { Box } from "@mantine/core";
 //Write a fetcher function to wrap the native fetch function and return the result of a call to url in json format
-import MaintenanceList from './MaintenanceList';
-import { useCrudSelectors } from '../../../redux/features/crud/crudSlice';
-import { MaintenanceModel } from '../../../types/models/maintenance-model';
-import classes from './MaintenanceListPageSection.module.css';
+import MaintenanceList from "./MaintenanceList";
+import { useCrudSelectors } from "../../../redux/features/crud/crudSlice";
+import { MaintenanceModel } from "../../../types/models/maintenance-model";
+import classes from "./MaintenanceListPageSection.module.css";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
@@ -31,7 +31,7 @@ interface mock2 {
 }
 
 export default function MaintenanceListPageSection() {
-  const { crudDocuments: maintenances } = useCrudSelectors<MaintenanceModel>('maintenances');
+  const { crudDocuments: maintenances } = useCrudSelectors<MaintenanceModel>("maintenances");
   return (
     // <Container mx="auto" py="xl">
     <Box

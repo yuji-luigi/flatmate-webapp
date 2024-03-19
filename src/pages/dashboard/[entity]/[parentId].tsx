@@ -1,20 +1,20 @@
-import { useRouter } from 'next/router';
-import useSWR from 'swr';
-import React, { ReactElement, useEffect } from 'react';
-import axiosInstance from '../../../utils/axios-instance';
+import { useRouter } from "next/router";
+import useSWR from "swr";
+import React, { ReactElement, useEffect } from "react";
+import axiosInstance from "../../../utils/axios-instance";
 
-import { CrudDataTable } from '../../../components/datatable/CrudDataTable';
-import Layout from '../../../layouts';
-import { TableSectionHeader } from '../../../sections/dashboard/datatable_section/TableSectionHeader';
-import Page from '../../../components/Page';
-import useLayoutContext from '../../../../hooks/useLayoutContext';
-import { CrudDrawerDefault } from '../../../components/drawer/CrudDrawerDefault';
-import { /* useCrudSelectors, */ useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
-import { usePaginationContext } from '../../../context/PaginationContext';
-import { useCookieContext } from '../../../context/CookieContext';
-import { HeaderContainer } from '../../../components/datatable/header/HeaderContainer';
-import { MongooseBaseModel } from '../../../types/models/mongoose-base-model';
-import { ParsedQueryCustom } from '../../../types/nextjs-custom-types/useRouter-types';
+import { CrudDataTable } from "../../../components/datatable/CrudDataTable";
+import Layout from "../../../layouts";
+import { TableSectionHeader } from "../../../sections/dashboard/datatable_section/TableSectionHeader";
+import Page from "../../../components/Page";
+import useLayoutContext from "../../../../hooks/useLayoutContext";
+import { CrudDrawerDefault } from "../../../components/drawer/CrudDrawerDefault";
+import { /* useCrudSelectors, */ useCrudSliceStore } from "../../../redux/features/crud/crudSlice";
+import { usePaginationContext } from "../../../context/PaginationContext";
+import { useCookieContext } from "../../../context/CookieContext";
+import { HeaderContainer } from "../../../components/datatable/header/HeaderContainer";
+import { MongooseBaseModel } from "../../../types/models/mongoose-base-model";
+import { ParsedQueryCustom } from "../../../types/nextjs-custom-types/useRouter-types";
 
 const fetcher = (args: string) => axiosInstance.get(args).then((res) => res.data?.data);
 
@@ -64,7 +64,7 @@ const ChildrenTablePage = () => {
   //   return <p>loading</p>;
   // }
   if (parentError) {
-    return <p>{parentError.message || parentError || 'error occurred'}</p>;
+    return <p>{parentError.message || parentError || "error occurred"}</p>;
   }
 
   return (

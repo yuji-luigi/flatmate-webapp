@@ -1,6 +1,6 @@
-import { TextInput } from '@mantine/core';
-import React, { ChangeEvent } from 'react';
-import { useFilter } from '../../../../hooks/useFilter';
+import { TextInput } from "@mantine/core";
+import React, { ChangeEvent } from "react";
+import { useFilter } from "../../../../hooks/useFilter";
 
 export const TextFilterInput = () => {
   const { textFilter, setTextFilter } = useFilter();

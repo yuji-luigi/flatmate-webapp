@@ -1,7 +1,7 @@
-import React from 'react';
-import { useMantineTheme } from '@mantine/core';
-import { useMediaQuery } from '@mantine/hooks';
-import { useGetCSSVariableValues } from '../src/styles/getCSSVariableValues';
+import React from "react";
+import { useMantineTheme } from "@mantine/core";
+import { useMediaQuery } from "@mantine/hooks";
+import { useGetCSSVariableValues } from "../src/styles/getCSSVariableValues";
 
 export const useCustomMQuery = () => {
   // const theme = useMantineTheme();

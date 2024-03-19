@@ -1,8 +1,8 @@
-import React, { createContext, ReactNode, useContext, useState, useReducer } from 'react';
+import React, { createContext, ReactNode, useContext, useState, useReducer } from "react";
 
 // import { useCrudSlice } from '../../hooks/redux-hooks/useCrudSlice';
-import { useCrudSliceStore } from '../redux/features/crud/crudSlice';
-import { Sections } from '../types/general/data/sections-type';
+import { useCrudSliceStore } from "../redux/features/crud/crudSlice";
+import { Sections } from "../types/general/data/sections-type";
 
 // This custom hook is to control entity of the dashboard page: jsonFormField, sectionJson.
 // And CrudDrawer component state.
@@ -12,8 +12,8 @@ function drawerFormStateReducer(state: ReducerState, action: DrawerStateAction) 
   const { type /* ,payload */ } = action;
 
   const reducerStore = {
-    linkedChildren: { mode: 'linkedChildren' },
-    reset: { mode: '', age: 0 },
+    linkedChildren: { mode: "linkedChildren" },
+    reset: { mode: "", age: 0 },
   };
 
   const returnValue = reducerStore[type] || null;
@@ -21,7 +21,7 @@ function drawerFormStateReducer(state: ReducerState, action: DrawerStateAction) 
   if (returnValue) {
     return { ...state, ...returnValue } as ReducerState;
   }
-  throw Error('unknown action');
+  throw Error("unknown action");
   // return newState;
 }
 
@@ -33,7 +33,7 @@ const useStore = () => {
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
   // not using now 15/1/2023
   const [drawerFormState, drawerFormStateDispatch] = useReducer(drawerFormStateReducer, {
-    mode: '',
+    mode: "",
   });
 
   // const [isChildrenPage, setIsChildrenPage] = useState(false);
@@ -65,7 +65,7 @@ const DrawerContext = createContext<DrawerContextInterface>({
   openDrawer: () => {},
   closeDrawer: () => {},
   toggleOpenDrawer: () => {},
-  drawerFormState: { mode: '' },
+  drawerFormState: { mode: "" },
   drawerFormStateDispatch: () => {},
   // isChildrenPage: false,
   // setIsChildrenPage: () => {},

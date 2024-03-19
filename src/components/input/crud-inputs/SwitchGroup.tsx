@@ -1,14 +1,14 @@
-import { Group, Stack, Switch } from '@mantine/core';
+import { Group, Stack, Switch } from "@mantine/core";
 
-import { SwitchGroupProps } from '../../../types/general/data/data-table';
+import { SwitchGroupProps } from "../../../types/general/data/data-table";
 
 function SwitchGroup(props: SwitchGroupProps) {
   const {
     label,
     name,
     formField,
-    options = [{ label: 'placeholder', value: 'placeholder' }],
-    orientation = 'horizontal',
+    options = [{ label: "placeholder", value: "placeholder" }],
+    orientation = "horizontal",
     orientationProps,
     ...rest
   } = props;
@@ -19,7 +19,7 @@ function SwitchGroup(props: SwitchGroupProps) {
 
   // const { onChange, ...restField } = field;
 
-  const Orientation = orientation === 'horizontal' ? Group : Stack;
+  const Orientation = orientation === "horizontal" ? Group : Stack;
 
   return (
     <Switch.Group

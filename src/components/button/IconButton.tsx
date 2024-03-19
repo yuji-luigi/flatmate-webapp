@@ -1,5 +1,5 @@
-import { ActionIcon } from '@mantine/core';
-import React from 'react';
+import { ActionIcon } from "@mantine/core";
+import React from "react";
 
 type IconButtonProps = {
   children?: React.ReactNode;

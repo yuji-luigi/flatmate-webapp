@@ -1,7 +1,7 @@
-import React from 'react';
-import { DatePicker } from '@mantine/dates';
-import { UseFormReturnTypeCustom } from '../input_interfaces/useForm_interface';
-import { ColorFormFieldType } from '../../../types/general/data/data-table/form-field-type/formField-types';
+import React from "react";
+import { DatePicker } from "@mantine/dates";
+import { UseFormReturnTypeCustom } from "../input_interfaces/useForm_interface";
+import { ColorFormFieldType } from "../../../types/general/data/data-table/form-field-type/formField-types";
 
 interface Prop {
   formField: ColorFormFieldType;

@@ -1,11 +1,11 @@
-import { TextInput } from '@mantine/core';
-import React from 'react';
-import classes from '../input-style.module.css';
-import { UseFormReturnTypeCustom } from '../input_interfaces/useForm_interface';
+import { TextInput } from "@mantine/core";
+import React from "react";
+import classes from "../input-style.module.css";
+import { UseFormReturnTypeCustom } from "../input_interfaces/useForm_interface";
 import {
   LinkChildrenFormFieldType,
   TextFormType,
-} from '../../../types/general/data/data-table/form-field-type/formField-types';
+} from "../../../types/general/data/data-table/form-field-type/formField-types";
 
 interface Prop {
   formField: TextFormType | LinkChildrenFormFieldType;

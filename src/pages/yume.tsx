@@ -1,20 +1,20 @@
-import { Box, Button, Stack, Text } from '@mantine/core';
-import React, { useState } from 'react';
+import { Box, Button, Stack, Text } from "@mantine/core";
+import React, { useState } from "react";
 
 const nextColors: Record<string, string> = {
-  yellow: 'green',
-  green: 'pink',
-  pink: 'lightblue',
-  lightblue: 'red',
-  red: 'teal',
-  teal: 'black',
-  black: 'white',
-  white: 'gray',
-  gray: 'yellow',
+  yellow: "green",
+  green: "pink",
+  pink: "lightblue",
+  lightblue: "red",
+  red: "teal",
+  teal: "black",
+  black: "white",
+  white: "gray",
+  gray: "yellow",
 };
 
 const Yume = () => {
-  const [color, setColor] = useState<string>('yellow');
+  const [color, setColor] = useState<string>("yellow");
 
   const handleClick = () => {
     // alert('夢ボタンが押されました');
@@ -26,15 +26,15 @@ const Yume = () => {
       <Box
         className="yumePage"
         style={{
-          display: 'grid',
-          placeContent: 'center',
-          width: '100%',
-          height: '100vh',
+          display: "grid",
+          placeContent: "center",
+          width: "100%",
+          height: "100vh",
           // display: 'flex',
           backgroundColor: color,
-          transition: 'background-color 0.5s',
-          justifyContent: 'center',
-          alignItems: 'center',
+          transition: "background-color 0.5s",
+          justifyContent: "center",
+          alignItems: "center",
         }}
       >
         <div className="gridContainer">

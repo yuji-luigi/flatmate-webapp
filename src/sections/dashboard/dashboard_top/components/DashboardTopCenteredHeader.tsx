@@ -1,9 +1,9 @@
-import { Box, Group, Text } from '@mantine/core';
-import React, { ReactNode } from 'react';
-import { CookieValueTypes } from 'cookies-next';
-import { Icons } from '../../../../data/icons/icons';
-import classes from './DashboardTopHeader.module.css';
-import { useLocale } from '../../../../../hooks/useLocale';
+import { Box, Group, Text } from "@mantine/core";
+import React, { ReactNode } from "react";
+import { CookieValueTypes } from "cookies-next";
+import { Icons } from "../../../../data/icons/icons";
+import classes from "./DashboardTopHeader.module.css";
+import { useLocale } from "../../../../../hooks/useLocale";
 
 type DashboardTopHeaderProps = {
   header?: string;
@@ -11,9 +11,9 @@ type DashboardTopHeaderProps = {
   subHeader?: ReactNode;
 };
 export const DashboardTopCenteredHeader = (props: DashboardTopHeaderProps) => {
-  const { header = '', otherComponent, subHeader = '' } = props;
-  const { t } = useLocale('common');
-  const _subHeader = typeof subHeader === 'string' ? t(subHeader) : subHeader;
+  const { header = "", otherComponent, subHeader = "" } = props;
+  const { t } = useLocale("common");
+  const _subHeader = typeof subHeader === "string" ? t(subHeader) : subHeader;
   return (
     <Group justify="center" gap={8}>
       <Text component="h2" size="lg" tt="uppercase" fw={800}>

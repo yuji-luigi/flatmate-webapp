@@ -1,37 +1,37 @@
-import React, { useEffect } from 'react';
-import { Group, Stack, Text } from '@mantine/core';
-import { useLocalStorage } from '@mantine/hooks';
-import { useCrudSelectors } from '../../../../redux/features/crud/crudSlice';
+import React, { useEffect } from "react";
+import { Group, Stack, Text } from "@mantine/core";
+import { useLocalStorage } from "@mantine/hooks";
+import { useCrudSelectors } from "../../../../redux/features/crud/crudSlice";
 
-import PostFeedCard from '../../../../components/posts/feed/PostFeedCard';
-import { StaticDataTable } from '../../../../components/datatable/StaticDataTable';
-import { maintenancesTableData } from '../../../../../json/dataTable/formfields/maintenancesTableData';
-import { Icons } from '../../../../data/icons/icons';
-import { DashboardTopHeader } from '../components/DashboardTopHeader';
-import { FeedTableSwitch } from './compontents/FeedTableSwitch';
-import { useSegmentedControl } from '../../../../components/tab/useSegmentedControl';
-import { filterList } from '../../../../components/datatable/filter/logic/applyFilter';
-import { useFilter } from '../../../../../hooks/useFilter';
-import useTable, { getComparator } from '../../../../../hooks/useTable';
-import { MaintenanceModel } from '../../../../types/models/maintenance-check-type';
-import { FeedView } from '../../../../components/posts/FeedView';
-import { StackOverride } from '../../../../components/overrides/stack/StackOverride';
-import { DashboardTopCenteredHeader } from '../components/DashboardTopCenteredHeader';
+import PostFeedCard from "../../../../components/posts/feed/PostFeedCard";
+import { StaticDataTable } from "../../../../components/datatable/StaticDataTable";
+import { maintenancesTableData } from "../../../../../json/dataTable/formfields/maintenancesTableData";
+import { Icons } from "../../../../data/icons/icons";
+import { DashboardTopHeader } from "../components/DashboardTopHeader";
+import { FeedTableSwitch } from "./compontents/FeedTableSwitch";
+import { useSegmentedControl } from "../../../../components/tab/useSegmentedControl";
+import { filterList } from "../../../../components/datatable/filter/logic/applyFilter";
+import { useFilter } from "../../../../../hooks/useFilter";
+import useTable, { getComparator } from "../../../../../hooks/useTable";
+import { MaintenanceModel } from "../../../../types/models/maintenance-check-type";
+import { FeedView } from "../../../../components/posts/FeedView";
+import { StackOverride } from "../../../../components/overrides/stack/StackOverride";
+import { DashboardTopCenteredHeader } from "../components/DashboardTopCenteredHeader";
 
-const VIEW_KEY = 'feed-maintenance-view';
+const VIEW_KEY = "feed-maintenance-view";
 
 export const SpaceMaintenanceSection = () => {
-  const { crudDocuments } = useCrudSelectors<MaintenanceModel>('maintenances');
+  const { crudDocuments } = useCrudSelectors<MaintenanceModel>("maintenances");
   const [value, setValue] = useLocalStorage({
     key: VIEW_KEY,
-    defaultValue: 'table',
+    defaultValue: "table",
     getInitialValueInEffect: true,
   });
 
   const { currentValue, setCurrentValue } = useSegmentedControl();
   const { filters } = useFilter();
   const { order, orderBy } = useTable({
-    defaultOrderBy: 'createdAt',
+    defaultOrderBy: "createdAt",
     // defaultDense: true,
     // defaultRowsPerPage: 10,
   });
@@ -42,11 +42,11 @@ export const SpaceMaintenanceSection = () => {
     comparator: getComparator(order, orderBy),
   });
   useEffect(() => {
-    setCurrentValue(value || 'table');
+    setCurrentValue(value || "table");
   }, [value]);
   return (
     <>
-      {value === 'posts' && (
+      {value === "posts" && (
         <FeedView>
           <DashboardTopCenteredHeader
             header="Maintenances"
@@ -57,7 +57,7 @@ export const SpaceMaintenanceSection = () => {
           ))}
         </FeedView>
       )}
-      {value === 'table' && (
+      {value === "table" && (
         <StackOverride>
           <DashboardTopCenteredHeader
             header="Maintenances"

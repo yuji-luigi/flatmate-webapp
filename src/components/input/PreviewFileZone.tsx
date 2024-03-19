@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import Image from 'next/image';
-import { AspectRatio, Box, Group, Modal, Overlay, Stack, Text } from '@mantine/core';
-import { UseFormReturnType } from '@mantine/form';
-import { useDisclosure } from '@mantine/hooks';
-import OverlayCustom from '../OverlayCustom';
-import { Icons } from '../../data/icons/icons';
-import ImagesInArticle from '../carousel/ImagesInArticle';
-import CrudCarousel from '../carousel/CrudCarousel';
-import { Sections } from '../../types/general/data/sections-type';
-import { FormFieldTypes } from '../../types/general/data/data-table/form-field-type/formField-types';
+import React, { useState } from "react";
+import Image from "next/image";
+import { AspectRatio, Box, Group, Modal, Overlay, Stack, Text } from "@mantine/core";
+import { UseFormReturnType } from "@mantine/form";
+import { useDisclosure } from "@mantine/hooks";
+import OverlayCustom from "../OverlayCustom";
+import { Icons } from "../../data/icons/icons";
+import ImagesInArticle from "../carousel/ImagesInArticle";
+import CrudCarousel from "../carousel/CrudCarousel";
+import { Sections } from "../../types/general/data/sections-type";
+import { FormFieldTypes } from "../../types/general/data/data-table/form-field-type/formField-types";
 // import ImagesInArticle from '../carousel/ImagesInArticle';
 
 interface Prop {
@@ -20,7 +20,7 @@ interface Prop {
 const PreviewFileZone = ({ form, formField, entity }: Prop) => {
   const [opened, { open, close }] = useDisclosure(false);
   // const files = form.values.mediaPreview?.[formField?.name || ''] || [];
-  const files = form.values.media?.[formField?.name || ''] || [];
+  const files = form.values.media?.[formField?.name || ""] || [];
   if (!files.length) {
     return null;
   }
@@ -38,8 +38,8 @@ const PreviewFileZone = ({ form, formField, entity }: Prop) => {
               <Image
                 key={isFile ? upload.name : upload._id}
                 src={isFile ? URL.createObjectURL(upload) : upload.url}
-                alt={formField?.label || 'preview'}
-                style={{ objectFit: 'contain', marginInline: 20 }}
+                alt={formField?.label || "preview"}
+                style={{ objectFit: "contain", marginInline: 20 }}
                 width="150"
                 height="150"
               />

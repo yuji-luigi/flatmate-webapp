@@ -1,17 +1,17 @@
-import { Box, ComboboxItem, MantineStyleProp, Select } from '@mantine/core';
-import { useEffect, useState } from 'react';
-import { UseFormReturnType } from '@mantine/form';
-import { showNotification } from '@mantine/notifications';
-import axiosInstance from '../../../utils/axios-instance';
-import { PATH_API } from '../../../path/path-api';
-import { convertToSelectItems } from '../../../utils/helpers/helper-functions';
-import { useItemSlice } from '../../../redux/features/crud/selectedItemSlice';
-import { SpaceModel } from '../../../types/models/space-model';
-import { useCrudSelectors, useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
+import { Box, ComboboxItem, MantineStyleProp, Select } from "@mantine/core";
+import { useEffect, useState } from "react";
+import { UseFormReturnType } from "@mantine/form";
+import { showNotification } from "@mantine/notifications";
+import axiosInstance from "../../../utils/axios-instance";
+import { PATH_API } from "../../../path/path-api";
+import { convertToSelectItems } from "../../../utils/helpers/helper-functions";
+import { useItemSlice } from "../../../redux/features/crud/selectedItemSlice";
+import { SpaceModel } from "../../../types/models/space-model";
+import { useCrudSelectors, useCrudSliceStore } from "../../../redux/features/crud/crudSlice";
 
 interface SpaceSelectInputProps {
   style?: MantineStyleProp;
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+  size?: "xs" | "sm" | "md" | "lg" | "xl";
   labels?: { organization: string; space: string };
   form?: UseFormReturnType<Record<string, unknown>> | null;
   className?: string;
@@ -23,16 +23,16 @@ interface SpaceSelectInputProps {
 
 const SpaceSelectInput = ({
   style,
-  size = 'xs',
+  size = "xs",
   labels,
   form = null,
-  placeholder = '',
+  placeholder = "",
   className,
   onChangeCallback,
 }: SpaceSelectInputProps) => {
   const [spaces, setSpaces] = useState<ComboboxItem[]>([]);
   const { setCrudDocuments, setCrudDocument } = useCrudSliceStore();
-  const { crudDocuments } = useCrudSelectors<SpaceModel>('spaces');
+  const { crudDocuments } = useCrudSelectors<SpaceModel>("spaces");
   const { set, get } = useItemSlice<{ space: SpaceModel | null }>({
     space: null,
   });
@@ -42,12 +42,12 @@ const SpaceSelectInput = ({
       const response = await axiosInstance.get(`${PATH_API.getSpaceSelections}`);
       const selectOptions = convertToSelectItems(response.data.data);
       setSpaces(selectOptions);
-      setCrudDocuments({ entity: 'spaces', documents: response.data.data });
+      setCrudDocuments({ entity: "spaces", documents: response.data.data });
     } catch (error) {
       showNotification({
-        title: 'Error',
+        title: "Error",
         message: "Something went wrong while fetching spaces' data",
-        color: 'red',
+        color: "red",
       });
     }
   };

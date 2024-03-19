@@ -1,6 +1,6 @@
-import { MongooseBaseModel } from './mongoose-base-model';
+import { MongooseBaseModel } from "./mongoose-base-model";
 
-import { UploadModel } from './upload-model';
+import { UploadModel } from "./upload-model";
 
 export type IUser = UserModel;
 
@@ -51,7 +51,7 @@ export interface BillingProfileModel extends MongooseBaseModel {
   description?: string;
   address?: string;
 }
-export const ROLES = ['Administrator', 'Maintainer', 'Inhabitant', 'System Admin'] as const;
+export const ROLES = ["Administrator", "Maintainer", "Inhabitant", "System Admin"] as const;
 
 export type Role = (typeof ROLES)[number];
 export interface RoleModel extends MongooseBaseModel {
@@ -94,19 +94,19 @@ export interface ThreadModel extends MongooseBaseModel {
   attachments?: UploadModel[] | [];
   tags?: string[];
   rating?: number;
-  listViewType: 'default' | 'bigImage';
+  listViewType: "default" | "bigImage";
   articleType:
-    | 'default'
-    | 'blog'
-    | 'news'
-    | 'event'
-    | 'announcement'
-    | 'poll'
-    | 'survey'
-    | 'question'
-    | 'discussion';
+    | "default"
+    | "blog"
+    | "news"
+    | "event"
+    | "announcement"
+    | "poll"
+    | "survey"
+    | "question"
+    | "discussion";
   /** root space */
-  entity: 'threads';
+  entity: "threads";
   headSpace?: string | SpaceModel;
   createdBy: IUser;
   isImportant: boolean;
@@ -124,43 +124,43 @@ export interface FundModel extends MongooseBaseModel {
 }
 
 export const permissions = [
-  'canCreatePosts',
-  'canCreateMaintenances',
-  'canNotifyMaintainers',
-  'canDeletePosts',
-  'canDeleteMaintenances',
-  'canDeleteComments',
+  "canCreatePosts",
+  "canCreateMaintenances",
+  "canNotifyMaintainers",
+  "canDeletePosts",
+  "canDeleteMaintenances",
+  "canDeleteComments",
 ] as const;
 
 export const permissionsFormField = [
   {
-    name: 'canCreatePosts',
-    label: 'Create Post',
+    name: "canCreatePosts",
+    label: "Create Post",
     allowed: true,
   },
   {
-    name: 'canCreateMaintenances',
-    label: 'Create Maintenance',
+    name: "canCreateMaintenances",
+    label: "Create Maintenance",
     allowed: true,
   },
   {
-    name: 'canNotifyMaintainers',
-    label: 'Notify Maintainer',
+    name: "canNotifyMaintainers",
+    label: "Notify Maintainer",
     allowed: false,
   },
   {
-    name: 'canDeletePosts',
-    label: 'Delete Post',
+    name: "canDeletePosts",
+    label: "Delete Post",
     allowed: false,
   },
   {
-    name: 'canDeleteMaintenances',
-    label: 'Delete Maintenance',
+    name: "canDeleteMaintenances",
+    label: "Delete Maintenance",
     allowed: false,
   },
   {
-    name: 'canDeleteComments',
-    label: 'Delete Comment',
+    name: "canDeleteComments",
+    label: "Delete Comment",
     allowed: false,
   },
 ] as const;
@@ -170,7 +170,7 @@ export const permissionsDefaultValues = permissionsFormField.map((permission) =>
   allowed: permission.allowed,
 }));
 
-export type Permission = (typeof permissionsFormField)[number]['name'];
+export type Permission = (typeof permissionsFormField)[number]["name"];
 
 export interface PermissionInterface {
   name: Permission;

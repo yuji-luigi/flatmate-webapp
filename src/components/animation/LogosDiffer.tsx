@@ -1,11 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Box } from '@mantine/core';
-import Image from 'next/image';
-import classes from './LogosDiffer.module.css';
+import React, { useEffect, useRef, useState } from "react";
+import { Box } from "@mantine/core";
+import Image from "next/image";
+import classes from "./LogosDiffer.module.css";
 
 const options = {
   root: null,
-  rootMargin: '0px',
+  rootMargin: "0px",
   threshold: 0.5,
 };
 const LogosDiffer = ({ title }: { title: string }) => {
@@ -34,10 +34,10 @@ const LogosDiffer = ({ title }: { title: string }) => {
       <Box
         className={isVisible ? classes.show : classes.hide}
         style={{
-          display: 'grid',
-          placeItems: 'center',
-          alignContent: 'center',
-          minHeight: '100vh',
+          display: "grid",
+          placeItems: "center",
+          alignContent: "center",
+          minHeight: "100vh",
         }}
       >
         <h1>{title}</h1>

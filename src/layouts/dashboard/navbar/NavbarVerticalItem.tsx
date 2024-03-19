@@ -1,9 +1,9 @@
-import React from 'react';
-import Link from 'next/link';
-import { Box, Group } from '@mantine/core';
-import { useRouter } from 'next/router';
-import { Icons } from '../../../data/icons/icons';
-import classes from './NavbarVertical.module.css';
+import React from "react";
+import Link from "next/link";
+import { Box, Group } from "@mantine/core";
+import { useRouter } from "next/router";
+import { Icons } from "../../../data/icons/icons";
+import classes from "./NavbarVertical.module.css";
 
 type NavbarVerticalItemProp = {
   navbarContent: any;

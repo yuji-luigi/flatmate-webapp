@@ -1,9 +1,9 @@
-import { Box, Switch, SwitchGroup, TextInput } from '@mantine/core';
-import { ChangeEvent } from 'react';
-import { UseFormReturnType } from '@mantine/form';
-import { useItemSlice } from '../../../../../../redux/features/crud/selectedItemSlice';
-import classes from './PermissionsByRole.module.css';
-import { permissionsFormField } from '../../../../../types/models/access-controller-type';
+import { Box, Switch, SwitchGroup, TextInput } from "@mantine/core";
+import { ChangeEvent } from "react";
+import { UseFormReturnType } from "@mantine/form";
+import { useItemSlice } from "../../../../../../redux/features/crud/selectedItemSlice";
+import classes from "./PermissionsByRole.module.css";
+import { permissionsFormField } from "../../../../../types/models/access-controller-type";
 
 type PermissionsByRoleProps = {
   role: string;
@@ -13,7 +13,7 @@ type PermissionsByRoleProps = {
 export const PermissionsByRole = (props: PermissionsByRoleProps) => {
   const { form, role } = props;
   const { get } = useItemSlice<{ space: string }>();
-  const value = get?.space || '';
+  const value = get?.space || "";
   if (!form) return null;
   return (
     <Box className={classes.container}>
@@ -24,7 +24,7 @@ export const PermissionsByRole = (props: PermissionsByRoleProps) => {
             <Switch
               key={field.name}
               label={field.label}
-              {...form.getInputProps(`${field.name}`, { type: 'checkbox' })}
+              {...form.getInputProps(`${field.name}`, { type: "checkbox" })}
             />
           ))}
         </Box>

@@ -1,12 +1,12 @@
-import { Container, Transition } from '@mantine/core';
-import React, { useEffect, useState } from 'react';
-import { CheckInputTabCard } from '../../../../sections/nonce-check/m-file-upload/verified-m-file/invoice-receipt-input/CheckInputTabCard';
-import classes from '../../FileAuth.module.css';
-import { CheckType } from '../../../../types/models/maintenance-check-type';
+import { Container, Transition } from "@mantine/core";
+import React, { useEffect, useState } from "react";
+import { CheckInputTabCard } from "../../../../sections/nonce-check/m-file-upload/verified-m-file/invoice-receipt-input/CheckInputTabCard";
+import classes from "../../FileAuth.module.css";
+import { CheckType } from "../../../../types/models/maintenance-check-type";
 
-import { UserRegisterCard } from '../../../../sections/nonce-check/user-onboarding/UserRegisterCard';
-import { PinVerifCardController } from '../../../../components/card/auth/PinVerifCardController';
-import useAuth from '../../../../../hooks/useAuth';
+import { UserRegisterCard } from "../../../../sections/nonce-check/user-onboarding/UserRegisterCard";
+import { PinVerifCardController } from "../../../../components/card/auth/PinVerifCardController";
+import useAuth from "../../../../../hooks/useAuth";
 
 const UserRegisterByTokenPage = () => {
   const { logout } = useAuth();
@@ -27,8 +27,8 @@ const UserRegisterByTokenPage = () => {
         >
           {(styles) => (
             <div style={styles}>
-              {' '}
-              <UserRegisterCard setCheckType={() => {}} />{' '}
+              {" "}
+              <UserRegisterCard setCheckType={() => {}} />{" "}
             </div>
           )}
         </Transition>

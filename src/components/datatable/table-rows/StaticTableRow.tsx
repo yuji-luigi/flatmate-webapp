@@ -1,15 +1,15 @@
-import React from 'react';
+import React from "react";
 
-import { useRouter } from 'next/router';
-import { Table } from '@mantine/core';
-import { ActionCells } from './ActionCells';
+import { useRouter } from "next/router";
+import { Table } from "@mantine/core";
+import { ActionCells } from "./ActionCells";
 // import { useCrudSlice } from '../../../../hooks/redux-hooks/useCrudSlice';
-import { TableCellDecorator } from '../TableCellDecorator';
-import { Sections } from '../../../types/general/data/sections-type';
-import { FormFieldTypes } from '../../../types/general/data/data-table/form-field-type/formField-types';
-import classes from '../header/StaticTableHeader.module.css';
-import { useCustomMQuery } from '../../../../hooks/useCustomMQuery';
-import { AllModels } from '../../../types/models/allmodels';
+import { TableCellDecorator } from "../TableCellDecorator";
+import { Sections } from "../../../types/general/data/sections-type";
+import { FormFieldTypes } from "../../../types/general/data/data-table/form-field-type/formField-types";
+import classes from "../header/StaticTableHeader.module.css";
+import { useCustomMQuery } from "../../../../hooks/useCustomMQuery";
+import { AllModels } from "../../../types/models/allmodels";
 
 export function StaticTableRow({
   rowData,

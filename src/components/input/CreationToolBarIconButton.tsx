@@ -1,8 +1,8 @@
-import { ActionIcon } from '@mantine/core';
-import React from 'react';
-import { Icons } from '../../data/icons/icons';
-import { UseFormReturnTypeCustom } from './input_interfaces/useForm_interface';
-import { UploadFormFieldType } from '../../types/general/data/data-table/form-field-type/formField-types';
+import { ActionIcon } from "@mantine/core";
+import React from "react";
+import { Icons } from "../../data/icons/icons";
+import { UseFormReturnTypeCustom } from "./input_interfaces/useForm_interface";
+import { UploadFormFieldType } from "../../types/general/data/data-table/form-field-type/formField-types";
 
 const CreationToolBarIconButton = ({
   formField,
@@ -26,7 +26,7 @@ const CreationToolBarIconButton = ({
         accept={formField.accept}
         // capture="filesystem"
         // capture="environment"
-        style={{ display: 'none' }}
+        style={{ display: "none" }}
         ref={inputRef}
         onChange={(event) => {
           if (event.target.files) {
@@ -54,8 +54,8 @@ const CreationToolBarIconButton = ({
         }}
       />
       <ActionIcon onClick={handleSelectFile}>
-        {formField.type === 'image' && <Icons.photo />}
-        {formField.type === 'attachment' && <Icons.paperclip />}
+        {formField.type === "image" && <Icons.photo />}
+        {formField.type === "attachment" && <Icons.paperclip />}
       </ActionIcon>
     </>
   );

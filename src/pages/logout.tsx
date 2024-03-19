@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
-import useAuth from '../../hooks/useAuth';
-import LoadingScreen from '../components/screen/LoadingScreen';
+import { useEffect } from "react";
+import useAuth from "../../hooks/useAuth";
+import LoadingScreen from "../components/screen/LoadingScreen";
 
 const LogoutPage = () => {
   const { logout } = useAuth();

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Card,
   Avatar,
@@ -7,9 +7,9 @@ import {
   Group,
   MantineStyleProp,
   useMantineColorScheme,
-} from '@mantine/core';
-import { UploadModel } from '../../types/models/upload-model';
-import classes from './ProfileCoverGeneric.module.css';
+} from "@mantine/core";
+import { UploadModel } from "../../types/models/upload-model";
+import classes from "./ProfileCoverGeneric.module.css";
 
 export interface CoverDataProp {
   // _id?: string;
@@ -25,18 +25,18 @@ export interface CoverDataProp {
 
 const ProfileCoverStatic = (props: CoverDataProp) => {
   const { colorScheme } = useMantineColorScheme();
-  const isDark = colorScheme === 'dark';
+  const isDark = colorScheme === "dark";
   const { avatar, style, cover, name, description, disableAvatar } = props;
   const gradient = isDark
-    ? 'linear-gradient(rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 0.01))'
-    : 'linear-gradient(rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.01))';
+    ? "linear-gradient(rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 0.01))"
+    : "linear-gradient(rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.01))";
   return (
     <Card
       shadow="sm"
       padding="lg"
       className="profile-cover-static"
       style={{
-        backgroundImage: `${gradient}, url(${cover?.url || ''})`,
+        backgroundImage: `${gradient}, url(${cover?.url || ""})`,
       }}
     >
       <Group>

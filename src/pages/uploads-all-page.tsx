@@ -1,15 +1,15 @@
-import Image from 'next/image';
-import React, { useEffect, useState } from 'react';
-import useAuth from '../../hooks/useAuth';
-import axiosInstance, { AxiosResDataGeneric } from '../utils/axios-instance';
-import { _PATH_API } from '../path/path-api';
-import { UploadModel } from '../types/models/upload-model';
+import Image from "next/image";
+import React, { useEffect, useState } from "react";
+import useAuth from "../../hooks/useAuth";
+import axiosInstance, { AxiosResDataGeneric } from "../utils/axios-instance";
+import { _PATH_API } from "../path/path-api";
+import { UploadModel } from "../types/models/upload-model";
 
 const AllUploadPage = () => {
   const { user } = useAuth();
   const [src, setSrc] = useState<string[]>([]);
   useEffect(() => {
-    if (user?.role === 'super_admin') {
+    if (user?.role === "super_admin") {
       const fetchAllUploads = async () => {
         const res = await axiosInstance.get<AxiosResDataGeneric<UploadModel[]>>(
           _PATH_API.uploads.all
@@ -21,7 +21,7 @@ const AllUploadPage = () => {
       fetchAllUploads();
     }
   }, [user?._id]);
-  if (user?.role !== 'super_admin') return null;
+  if (user?.role !== "super_admin") return null;
   return (
     <>
       {src.map((img) => (
@@ -29,7 +29,7 @@ const AllUploadPage = () => {
           key={img}
           src={img}
           style={{
-            objectFit: 'cover',
+            objectFit: "cover",
           }}
           width={500}
           height={400}

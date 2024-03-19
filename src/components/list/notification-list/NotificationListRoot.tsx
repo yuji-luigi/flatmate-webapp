@@ -1,14 +1,14 @@
-import { Avatar, Box, Card, Group, Text } from '@mantine/core';
-import React, { ReactNode } from 'react';
-import Image from 'next/image';
-import classes from './NotificationList.module.css';
-import { IMAGES_ARRAY, PATH_IMAGE } from '../../../lib/image-paths';
+import { Avatar, Box, Card, Group, Text } from "@mantine/core";
+import React, { ReactNode } from "react";
+import Image from "next/image";
+import classes from "./NotificationList.module.css";
+import { IMAGES_ARRAY, PATH_IMAGE } from "../../../lib/image-paths";
 import {
   MaintenanceNotification,
   MaintenanceNotificationList,
-} from './MaintenanceNotificationList';
-import { MaintenanceModel } from '../../../types/models/maintenance-model';
-import { Category } from './categories';
+} from "./MaintenanceNotificationList";
+import { MaintenanceModel } from "../../../types/models/maintenance-model";
+import { Category } from "./categories";
 
 type NotificationListProps = {
   data: MaintenanceNotification;
@@ -22,7 +22,7 @@ export const NotificationListRoot = (props: NotificationListProps) => {
     Post: MaintenanceNotificationList,
     Other: null,
   };
-  const List = lists[category] || '';
+  const List = lists[category] || "";
   return List ? <List {...props} /> : null;
   return (
     <Box className={classes.cardContent}>

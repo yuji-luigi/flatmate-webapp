@@ -1,6 +1,6 @@
-import React, { ReactElement } from 'react';
-import Layout from '../../../layouts';
-import MaintainerPage from '.';
+import React, { ReactElement } from "react";
+import Layout from "../../../layouts";
+import MaintainerPage from ".";
 
 const MaintainerPageWithQuery = () => {
   return <MaintainerPage />;

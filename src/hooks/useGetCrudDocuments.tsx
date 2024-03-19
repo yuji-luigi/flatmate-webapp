@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
-import { entities } from '../data';
-import { useCrudSliceStore } from '../redux/features/crud/crudSlice';
-import { Sections } from '../types/general/data/sections-type';
-import { useCookieContext } from '../context/CookieContext';
+import React, { useEffect } from "react";
+import { entities } from "../data";
+import { useCrudSliceStore } from "../redux/features/crud/crudSlice";
+import { Sections } from "../types/general/data/sections-type";
+import { useCookieContext } from "../context/CookieContext";
 
 export const useGetCrudDocuments = ({
   entity,

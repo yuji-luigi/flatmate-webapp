@@ -1,7 +1,7 @@
-import React from 'react';
-import { ICON_SIZES, Icons } from '../../../data/icons/icons';
-import TextWithIcon from '../../text/TextWithIcon';
-import CardWithTitle from './CardWithTitle';
+import React from "react";
+import { ICON_SIZES, Icons } from "../../../data/icons/icons";
+import TextWithIcon from "../../text/TextWithIcon";
+import CardWithTitle from "./CardWithTitle";
 
 interface Props {
   title?: string;

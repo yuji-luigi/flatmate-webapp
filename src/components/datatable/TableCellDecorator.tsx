@@ -1,17 +1,17 @@
-import React, { Fragment } from 'react';
+import React, { Fragment } from "react";
 // import BadgeCell from './table-rows/tablecell/BadgeCell';
-import TableCellController from './table-rows/tablecell/crud-cells/TableCellController';
+import TableCellController from "./table-rows/tablecell/crud-cells/TableCellController";
 import {
   BadgeCellConfig,
   FormFieldTypes,
-} from '../../types/general/data/data-table/form-field-type/formField-types';
-import BadgeCellDecorator from './table-rows/tablecell/crud-cells/BadgeCellDecorator';
-import classes from './TableCellDecorator.module.css';
-import { AllModels } from '../../types/models/allmodels';
+} from "../../types/general/data/data-table/form-field-type/formField-types";
+import BadgeCellDecorator from "./table-rows/tablecell/crud-cells/BadgeCellDecorator";
+import classes from "./TableCellDecorator.module.css";
+import { AllModels } from "../../types/models/allmodels";
 
 function isObject(value: any): boolean {
   return (
-    (value && typeof value === 'object') || (!Array.isArray(value) && typeof value === 'object')
+    (value && typeof value === "object") || (!Array.isArray(value) && typeof value === "object")
   );
 }
 function isArray(value: any): value is Array<any> {
@@ -54,7 +54,7 @@ export function TableCellDecorator({
   }
   return (
     <div className={classes.cellContent}>
-      {' '}
+      {" "}
       <TableCellController cellValue={cellValue} cellConfig={cellConfig} rowData={rowData} />
     </div>
   );
@@ -62,7 +62,7 @@ export function TableCellDecorator({
 
 type ValueFunction = () => string;
 type ValueOrFunction = string | ValueFunction;
-const isFunction = (value: ValueOrFunction): value is ValueFunction => typeof value === 'function';
+const isFunction = (value: ValueOrFunction): value is ValueFunction => typeof value === "function";
 
 function getCellValue({ rowData, cellConfig }: { rowData: any; cellConfig: FormFieldTypes }) {
   // LIST OUT CASES.
@@ -74,8 +74,8 @@ function getCellValue({ rowData, cellConfig }: { rowData: any; cellConfig: FormF
   // 6. VALUE IS BOOLEAN
   // 7. VALUE IS DATE
   // case primitive toString and return
-  const value = rowData[cellConfig.name] ?? ''; // check for null or undefined
-  const valueType: typeof value & 'array' = typeof value;
+  const value = rowData[cellConfig.name] ?? ""; // check for null or undefined
+  const valueType: typeof value & "array" = typeof value;
   // valueType = Array.isArray(value) ? 'array' : valueType;
 
   const valueObject: Record<typeof value, string | ValueOrFunction> = {
@@ -102,11 +102,11 @@ function getCellValueRecursive({
   object: any;
 }) {
   if (selectValues?.length === 0) {
-    return value.join('');
+    return value.join("");
   }
 
-  if (selectValues[0].startsWith('_$')) {
-    const divider = selectValues[0].replaceAll('_$', '');
+  if (selectValues[0].startsWith("_$")) {
+    const divider = selectValues[0].replaceAll("_$", "");
     const clonedValue = structuredClone(value);
     clonedValue[clonedValue.length - 1] = `${clonedValue[clonedValue.length - 1]}${divider}`;
     return getCellValueRecursive({
@@ -132,12 +132,12 @@ function getCellValueRecursive({
 }
 
 function handleObjectType({ value, cellConfig }: { value: any; cellConfig: FormFieldTypes }) {
-  if (cellConfig.type !== 'select') return '';
+  if (cellConfig.type !== "select") return "";
   if (Array.isArray(value)) {
     if (value.length === 0) {
-      return '';
+      return "";
     }
-    if (typeof value[0] === 'object') {
+    if (typeof value[0] === "object") {
       // do not join if it is an array of objects. return the array. then handle array of objects create correct component/cell
       const result = value.map((singleValue) => {
         const resultInMap = getCellValueRecursive({
@@ -152,7 +152,7 @@ function handleObjectType({ value, cellConfig }: { value: any; cellConfig: FormF
     return value.map((item) => item.toString());
   }
   if (!cellConfig.selectValues?.length) {
-    return value.name || 'set the selectValues array';
+    return value.name || "set the selectValues array";
   }
   const result = getCellValueRecursive({
     value,

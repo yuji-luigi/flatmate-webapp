@@ -1,11 +1,11 @@
-import { MaintainerModel } from './maintainer-model';
+import { MaintainerModel } from "./maintainer-model";
 // import { MaintenanceModel } from './maintenance-model';
-import { MongooseBaseModel } from './mongoose-base-model';
-import { OrganizationModel } from './organization-model';
-import { IUser, SpaceModel } from './space-model';
-import { UploadModel } from './upload-model';
+import { MongooseBaseModel } from "./mongoose-base-model";
+import { OrganizationModel } from "./organization-model";
+import { IUser, SpaceModel } from "./space-model";
+import { UploadModel } from "./upload-model";
 
-export const checkTypes = ['invoices', 'receipts'] as const;
+export const checkTypes = ["invoices", "receipts"] as const;
 export type CheckType = (typeof checkTypes)[number];
 export interface CheckInterface extends MongooseBaseModel {
   //virtual field name get from maintenance.name
@@ -23,10 +23,10 @@ export interface CheckInterface extends MongooseBaseModel {
 }
 
 export const MAINTENANCE_STATUS = {
-  INCOMPLETE: 'incomplete',
+  INCOMPLETE: "incomplete",
   // INVOICED: 'invoiced',// ! to deprecate
-  COMPLETED: 'completed',
-  IN_PROGRESS: 'inProgress',
+  COMPLETED: "completed",
+  IN_PROGRESS: "inProgress",
 } as const;
 export type MAINTENANCE_STATUS_TYPE = (typeof MAINTENANCE_STATUS)[keyof typeof MAINTENANCE_STATUS];
 
@@ -39,19 +39,19 @@ export interface MaintenanceModel extends MongooseBaseModel {
 
   tags?: string[];
   rating?: number;
-  listViewType: 'default' | 'bigImage';
+  listViewType: "default" | "bigImage";
   articleType:
-    | 'default'
-    | 'blog'
-    | 'news'
-    | 'event'
-    | 'announcement'
-    | 'poll'
-    | 'survey'
-    | 'question'
-    | 'discussion';
+    | "default"
+    | "blog"
+    | "news"
+    | "event"
+    | "announcement"
+    | "poll"
+    | "survey"
+    | "question"
+    | "discussion";
   isImportant: boolean;
-  entity: 'maintenances';
+  entity: "maintenances";
   space: SpaceModel;
   receipts: CheckInterface[];
   invoices: CheckInterface[];

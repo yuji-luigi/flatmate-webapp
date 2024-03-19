@@ -1,22 +1,22 @@
-import { useDisclosure, useMediaQuery } from '@mantine/hooks';
-import { Modal, Group, Button, Stack, Box, useMantineTheme } from '@mantine/core';
-import { showNotification, notifications } from '@mantine/notifications';
-import { FormEvent, useMemo, useState } from 'react';
-import { useForm } from '@mantine/form';
-import { useRouter } from 'next/router';
-import { useCustomModalContext } from './_ModalContext';
-import { getDefaultValues } from '../../utils/getDefaultValues';
-import { hasMedia } from '../../redux/features/crudAsyncThunks';
-import { uploadFileAndGetModelId, extractUploadingMedia } from '../../utils/upload-helper';
-import CreationToolBar from '../../components/input/CreationToolBar';
-import FormFields from '../../components/input/FormFields';
-import { UseFormReturnTypeCustom } from '../../components/input/input_interfaces/useForm_interface';
-import { getEntityFromUrl, sleep } from '../../utils/helpers/helper-functions';
-import { Sections } from '../../types/general/data/sections-type';
-import { useCrudSliceStore } from '../../redux/features/crud/crudSlice';
-import { UploadModel } from '../../types/models/upload-model';
-import { BaseModalData, CrudModalData, ModalDataTypes } from '../../types/modal/modal-context-type';
-import classes from './CrudModal.module.css';
+import { useDisclosure, useMediaQuery } from "@mantine/hooks";
+import { Modal, Group, Button, Stack, Box, useMantineTheme } from "@mantine/core";
+import { showNotification, notifications } from "@mantine/notifications";
+import { FormEvent, useMemo, useState } from "react";
+import { useForm } from "@mantine/form";
+import { useRouter } from "next/router";
+import { useCustomModalContext } from "./_ModalContext";
+import { getDefaultValues } from "../../utils/getDefaultValues";
+import { hasMedia } from "../../redux/features/crudAsyncThunks";
+import { uploadFileAndGetModelId, extractUploadingMedia } from "../../utils/upload-helper";
+import CreationToolBar from "../../components/input/CreationToolBar";
+import FormFields from "../../components/input/FormFields";
+import { UseFormReturnTypeCustom } from "../../components/input/input_interfaces/useForm_interface";
+import { getEntityFromUrl, sleep } from "../../utils/helpers/helper-functions";
+import { Sections } from "../../types/general/data/sections-type";
+import { useCrudSliceStore } from "../../redux/features/crud/crudSlice";
+import { UploadModel } from "../../types/models/upload-model";
+import { BaseModalData, CrudModalData, ModalDataTypes } from "../../types/modal/modal-context-type";
+import classes from "./CrudModal.module.css";
 
 type CrudModalProps = {
   modalData: CrudModalData;
@@ -27,7 +27,7 @@ export function CrudModal(props: CrudModalProps) {
   const entity = getEntityFromUrl() as Sections;
   const { query } = useRouter();
 
-  const isMobile = useMediaQuery('(max-width: 600px)');
+  const isMobile = useMediaQuery("(max-width: 600px)");
   const { isOpenModal: opened, closeModal: close } = useCustomModalContext();
   const { updateCrudDocument } = useCrudSliceStore();
   const [submitting, setSubmitting] = useState(false);
@@ -46,8 +46,8 @@ export function CrudModal(props: CrudModalProps) {
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
     showNotification({
-      id: 'submit',
-      message: 'Sending data to the server.',
+      id: "submit",
+      message: "Sending data to the server.",
       autoClose: false,
     });
     setSubmitting(true);
@@ -71,7 +71,7 @@ export function CrudModal(props: CrudModalProps) {
         }
       } catch (error) {
         console.log(error);
-        notifications.hide('submit');
+        notifications.hide("submit");
         setSubmitting(false);
         return;
       }
@@ -89,14 +89,14 @@ export function CrudModal(props: CrudModalProps) {
 
     form.reset();
     await sleep(1000);
-    notifications.hide('submit');
+    notifications.hide("submit");
     notifications.show({
-      title: 'Success',
-      message: 'Data sent to the server.',
-      color: 'green',
+      title: "Success",
+      message: "Data sent to the server.",
+      color: "green",
       autoClose: 1500,
     });
-    console.log('form.values', form.values);
+    console.log("form.values", form.values);
     close();
   };
   if (!opened) return null;
@@ -118,7 +118,7 @@ export function CrudModal(props: CrudModalProps) {
           submitButton={
             <>
               <Button fullWidth type="submit" mt="xl" size="md">
-                Submit{' '}
+                Submit{" "}
               </Button>
               <Button
                 fullWidth
@@ -127,7 +127,7 @@ export function CrudModal(props: CrudModalProps) {
                 onClick={close}
                 size="md"
               >
-                Cancel{' '}
+                Cancel{" "}
               </Button>
             </>
           }

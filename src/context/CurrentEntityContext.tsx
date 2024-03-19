@@ -1,7 +1,7 @@
-import jwtDecode from 'jwt-decode';
-import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
-import { Sections } from '../types/general/data/sections-type';
+import jwtDecode from "jwt-decode";
+import { createContext, ReactNode, useContext, useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { Sections } from "../types/general/data/sections-type";
 
 export const CurrentEntityContext = createContext<{
   currentEntity: Sections | null;

@@ -1,12 +1,12 @@
-import { Select, Skeleton } from '@mantine/core';
-import React from 'react';
-import useSWR from 'swr';
-import { CustomFormFieldType } from '../../../types/general/data/data-table/form-field-type/formField-types';
-import { UseFormReturnTypeCustom } from '../input_interfaces/useForm_interface';
-import axiosInstance, { AxiosResDataGeneric } from '../../../utils/axios-instance';
-import { PATH_API } from '../../../path/path-api';
-import { useCookieContext } from '../../../context/CookieContext';
-import { MaintainerModel } from '../../../types/models/maintainer-model';
+import { Select, Skeleton } from "@mantine/core";
+import React from "react";
+import useSWR from "swr";
+import { CustomFormFieldType } from "../../../types/general/data/data-table/form-field-type/formField-types";
+import { UseFormReturnTypeCustom } from "../input_interfaces/useForm_interface";
+import axiosInstance, { AxiosResDataGeneric } from "../../../utils/axios-instance";
+import { PATH_API } from "../../../path/path-api";
+import { useCookieContext } from "../../../context/CookieContext";
+import { MaintainerModel } from "../../../types/models/maintainer-model";
 
 interface Props {
   formField: CustomFormFieldType;
@@ -18,14 +18,14 @@ const fetchMaintainersOfBuilding = async (/* buildingId: string */) => {
   );
   return res.data.data.map((maintainer) => ({
     value: maintainer._id,
-    label: `${`${maintainer.jobTitle?.toUpperCase()}: ` || ''}${maintainer.name} - ${
+    label: `${`${maintainer.jobTitle?.toUpperCase()}: ` || ""}${maintainer.name} - ${
       maintainer.email
     }`,
   }));
 };
 export const MaintainerSelect = ({ formField, form, ...others }: Props) => {
   const { currentSpace } = useCookieContext();
-  const { data, isLoading, error } = useSWR(['maintainers', currentSpace?._id], () =>
+  const { data, isLoading, error } = useSWR(["maintainers", currentSpace?._id], () =>
     fetchMaintainersOfBuilding()
   );
   if (error) console.log(error);

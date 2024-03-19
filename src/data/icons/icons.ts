@@ -62,7 +62,7 @@ import {
   IconWriting as writing,
   IconHome2 as home,
   IconStar as star,
-} from '@tabler/icons-react';
+} from "@tabler/icons-react";
 /**
  * use the key name same as the slice name
  */

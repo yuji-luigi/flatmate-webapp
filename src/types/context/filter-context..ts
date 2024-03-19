@@ -1,5 +1,5 @@
-import { Dispatch, SetStateAction } from 'react';
-import { Sections } from '../general/data/sections-type';
+import { Dispatch, SetStateAction } from "react";
+import { Sections } from "../general/data/sections-type";
 
 interface StateVariable<T> {
   dateFilers: T;

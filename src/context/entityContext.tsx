@@ -1,13 +1,13 @@
-import { createContext, ReactNode, useState } from 'react';
-import { Sections } from '../types/general/data/sections-type';
+import { createContext, ReactNode, useState } from "react";
+import { Sections } from "../types/general/data/sections-type";
 
 export const EntityContext = createContext<IEntityContext>({
-  overrideEntity: '',
+  overrideEntity: "",
   setOverrideEntity(entity: Sections) {},
 });
 
 const useStore = () => {
-  const [overrideEntity, setOverrideEntity] = useState<Sections | ''>('');
+  const [overrideEntity, setOverrideEntity] = useState<Sections | "">("");
   return {
     overrideEntity,
     setOverrideEntity,

@@ -1,12 +1,12 @@
-import { Box, Group, Text } from '@mantine/core';
-import React from 'react';
+import { Box, Group, Text } from "@mantine/core";
+import React from "react";
 import {
   StaticOption,
   StaticSelectFormFieldType,
   TextFormType,
-} from '../../../../../types/general/data/data-table/form-field-type/formField-types';
-import classes from './Cell.module.css';
-import { useLocale } from '../../../../../../hooks/useLocale';
+} from "../../../../../types/general/data/data-table/form-field-type/formField-types";
+import classes from "./Cell.module.css";
+import { useLocale } from "../../../../../../hooks/useLocale";
 
 export const TextCell = ({
   cellValue,
@@ -19,18 +19,18 @@ export const TextCell = ({
 }) => {
   // console.log(cellValue);
   // return cellValue;
-  const { t, locale } = useLocale('common');
+  const { t, locale } = useLocale("common");
   let displayValue = (
     <Text className={classes.text} size="sm">
       {cellValue}
     </Text>
   );
   // TODO: create dedicated component for static select
-  if (cellConfig.type === 'static-select') {
+  if (cellConfig.type === "static-select") {
     const Icon = cellConfig.options?.find(
       (option: StaticOption) => option.value === cellValue
     )?.icon;
-    const dataHidden = !!(cellConfig.type === 'static-select' && Icon);
+    const dataHidden = !!(cellConfig.type === "static-select" && Icon);
     const text = cellConfig.options?.find(
       (option: StaticOption) => option.value === cellValue
     )?.label;
@@ -38,7 +38,7 @@ export const TextCell = ({
       <Box className={classes.staticSelectBox}>
         {Icon && <Icon className={classes.icon} />}
         <Text className={classes.text} data-hidden={dataHidden}>
-          {t(text || '')}
+          {t(text || "")}
         </Text>
       </Box>
     );

@@ -90,4 +90,4 @@ interface UseCrudSliceReturnTypes {
   totalDocumentsCount: number;
 }
 
-type CrudStatus = 'idle' | 'loading' | 'succeed' | 'failed';
+type CrudStatus = "idle" | "loading" | "succeed" | "failed";

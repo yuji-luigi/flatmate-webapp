@@ -1,10 +1,10 @@
-import { Group, Text, useMantineTheme, rem, MantineStyleProp } from '@mantine/core';
-import { IconUpload, IconX, IconFile } from '@tabler/icons-react';
-import { Dropzone, DropzoneProps } from '@mantine/dropzone';
-import { useCallback, useState } from 'react';
-import { UseFormReturnType } from '@mantine/form';
-import { FileWithPreview } from '../../../../types/files/file-types';
-import { BaseFormType } from '../../../../types/general/data/data-table/form-field-type/base-form-type';
+import { Group, Text, useMantineTheme, rem, MantineStyleProp } from "@mantine/core";
+import { IconUpload, IconX, IconFile } from "@tabler/icons-react";
+import { Dropzone, DropzoneProps } from "@mantine/dropzone";
+import { useCallback, useState } from "react";
+import { UseFormReturnType } from "@mantine/form";
+import { FileWithPreview } from "../../../../types/files/file-types";
+import { BaseFormType } from "../../../../types/general/data/data-table/form-field-type/base-form-type";
 
 type Props = Partial<DropzoneProps> & {
   form: UseFormReturnType<any>;
@@ -18,7 +18,7 @@ export function DropzoneMantine(props: Props) {
   const [files, setFiles] = useState<FileWithPreview[]>([]);
   const handleDrop = useCallback((acceptedFiles: Array<File>) => {
     if (!formField.name) {
-      throw new Error('formField.name is required');
+      throw new Error("formField.name is required");
     }
     const _files = acceptedFiles;
 
@@ -42,7 +42,7 @@ export function DropzoneMantine(props: Props) {
     // Handle non-image _files (e.g., PDFs)
     const newFiles = _files.map<FileWithPreview>((file) =>
       Object.assign(file, {
-        preview: '', // No preview for non-image files
+        preview: "", // No preview for non-image files
         field: file.name,
       })
     );
@@ -59,7 +59,7 @@ export function DropzoneMantine(props: Props) {
       //   maxHeight: rem(22),
       // }}
       onDrop={handleDrop}
-      onReject={(filesArg) => console.log('rejected files', filesArg)}
+      onReject={(filesArg) => console.log("rejected files", filesArg)}
       maxSize={3 * 1024 ** 2}
       // accept={IMAGE_MIME_TYPE}
       {...props}
@@ -78,7 +78,7 @@ export function DropzoneMantine(props: Props) {
           </div>
         ))
       ) : (
-        <Group justify="center" gap="sm" style={{ minHeight: rem(220), pointerEvents: 'none' }}>
+        <Group justify="center" gap="sm" style={{ minHeight: rem(220), pointerEvents: "none" }}>
           <Dropzone.Accept>
             <IconUpload
               size="3.2rem"

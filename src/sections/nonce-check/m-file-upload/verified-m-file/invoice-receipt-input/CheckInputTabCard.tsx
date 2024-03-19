@@ -1,23 +1,23 @@
-import { useState } from 'react';
-import { Box, Button, LoadingOverlay, Tabs, Text } from '@mantine/core';
-import { useForm } from '@mantine/form';
-import { useRouter } from 'next/router';
-import { notifications, showNotification } from '@mantine/notifications';
-import { handleUploadWithoutLogin, isCustomFiles } from '../../../../../utils/upload-helper';
-import { useCrudSelectors } from '../../../../../redux/features/crud/crudSlice';
-import { PATH_API, _PATH_API } from '../../../../../path/path-api';
-import axiosInstance from '../../../../../utils/axios-instance';
-import { CheckType, MaintenanceModel } from '../../../../../types/models/maintenance-check-type';
-import { PATH_CLIENT } from '../../../../../path/path-frontend';
-import { sleep } from '../../../../../utils/helpers/helper-functions';
-import { UseRouterWithCustomQuery } from '../../../../../types/nextjs-custom-types/useRouter-types';
-import { FileInputMantine } from '../../../../../components/input/crud-inputs/crud-file-input/FileInputMantine';
-import { FileWithPreview } from '../../../../../types/files/file-types';
-import { CardStyled } from '../../../../../styles/card/CardStyled';
-import { checksTableData } from '../../../../../../json/dataTable/formfields/checksTableData';
-import FormFields from '../../../../../components/input/FormFields';
-import { NOTIFICATIONS } from '../../../../../data/showNofification/notificationObjects';
-import { useLocale } from '../../../../../../hooks/useLocale';
+import { useState } from "react";
+import { Box, Button, LoadingOverlay, Tabs, Text } from "@mantine/core";
+import { useForm } from "@mantine/form";
+import { useRouter } from "next/router";
+import { notifications, showNotification } from "@mantine/notifications";
+import { handleUploadWithoutLogin, isCustomFiles } from "../../../../../utils/upload-helper";
+import { useCrudSelectors } from "../../../../../redux/features/crud/crudSlice";
+import { PATH_API, _PATH_API } from "../../../../../path/path-api";
+import axiosInstance from "../../../../../utils/axios-instance";
+import { CheckType, MaintenanceModel } from "../../../../../types/models/maintenance-check-type";
+import { PATH_CLIENT } from "../../../../../path/path-frontend";
+import { sleep } from "../../../../../utils/helpers/helper-functions";
+import { UseRouterWithCustomQuery } from "../../../../../types/nextjs-custom-types/useRouter-types";
+import { FileInputMantine } from "../../../../../components/input/crud-inputs/crud-file-input/FileInputMantine";
+import { FileWithPreview } from "../../../../../types/files/file-types";
+import { CardStyled } from "../../../../../styles/card/CardStyled";
+import { checksTableData } from "../../../../../../json/dataTable/formfields/checksTableData";
+import FormFields from "../../../../../components/input/FormFields";
+import { NOTIFICATIONS } from "../../../../../data/showNofification/notificationObjects";
+import { useLocale } from "../../../../../../hooks/useLocale";
 
 type CheckForm = {
   type: CheckType;
@@ -27,14 +27,14 @@ type CheckForm = {
 
 export const CheckInputTabCard = () => {
   const router: UseRouterWithCustomQuery = useRouter();
-  const { t: mt } = useLocale('notification');
-  const { t } = useLocale('common');
+  const { t: mt } = useLocale("notification");
+  const { t } = useLocale("common");
   const { query } = router;
   const [submitting, setSubmitting] = useState<boolean>(false);
-  const { crudDocument: maintenance } = useCrudSelectors<MaintenanceModel>('maintenances');
+  const { crudDocument: maintenance } = useCrudSelectors<MaintenanceModel>("maintenances");
   const form = useForm<Record<string, unknown>>({
     initialValues: {
-      type: 'invoices',
+      type: "invoices",
     },
   });
   if (!maintenance) {
@@ -47,16 +47,16 @@ export const CheckInputTabCard = () => {
       e.preventDefault();
       setSubmitting(true);
       notifications.show({
-        id: 'loading',
+        id: "loading",
         loading: submitting,
-        title: mt('uploading'),
-        message: mt('Please wait'),
+        title: mt("uploading"),
+        message: mt("Please wait"),
       });
       const fileData = form.values.files;
       if (!fileData || form.values.total === undefined) {
         showNotification({
-          message: mt('Select file first'),
-          color: 'orange',
+          message: mt("Select file first"),
+          color: "orange",
         });
         return;
       }
@@ -94,7 +94,7 @@ export const CheckInputTabCard = () => {
       console.error(error);
     } finally {
       setSubmitting(false);
-      notifications.hide('loading');
+      notifications.hide("loading");
     }
   };
 
@@ -104,7 +104,7 @@ export const CheckInputTabCard = () => {
     <Box>
       <Box mb={16}>
         <Text fw={800} fz={32}>
-          {t('Invoice')}
+          {t("Invoice")}
         </Text>
       </Box>
       <form onSubmit={handleSubmit}>
@@ -113,10 +113,10 @@ export const CheckInputTabCard = () => {
           form={form}
           fileFolder="invoices"
           formField={{
-            id: 'files',
-            name: 'files',
-            label: t('Choose file'),
-            type: 'attachment',
+            id: "files",
+            name: "files",
+            label: t("Choose file"),
+            type: "attachment",
             multi: true,
             priority: 0,
           }}
@@ -126,7 +126,7 @@ export const CheckInputTabCard = () => {
           <FormFields formField={formField} key={formField.id} form={form} />
         ))}
         <Button mt={16} fullWidth type="submit" variant="filled" color="blue">
-          {t('Submit')}
+          {t("Submit")}
         </Button>
       </form>
     </Box>

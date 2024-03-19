@@ -1,8 +1,8 @@
-import { Box, Group, Text } from '@mantine/core';
-import React, { ReactNode } from 'react';
-import { CookieValueTypes } from 'cookies-next';
-import { Icons } from '../../../../data/icons/icons';
-import classes from './DashboardTopHeader.module.css';
+import { Box, Group, Text } from "@mantine/core";
+import React, { ReactNode } from "react";
+import { CookieValueTypes } from "cookies-next";
+import { Icons } from "../../../../data/icons/icons";
+import classes from "./DashboardTopHeader.module.css";
 
 type DashboardTopHeaderProps = {
   header?: string;

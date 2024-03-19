@@ -1,4 +1,4 @@
-import { Icons } from '../data/icons/icons';
+import { Icons } from "../data/icons/icons";
 
 export const FONT_SIZES = {
   menuItems: 16,
@@ -6,84 +6,84 @@ export const FONT_SIZES = {
 };
 
 export const UPLOAD_FOLDERS = {
-  threads: 'threads',
+  threads: "threads",
 };
 
 export const MAINTAINER_TYPES_ARRAY = [
-  'Electrician',
-  'Plumber',
-  'Carpenter',
-  'Painter',
-  'Gardener',
-  'Cleaner',
-  'Other',
+  "Electrician",
+  "Plumber",
+  "Carpenter",
+  "Painter",
+  "Gardener",
+  "Cleaner",
+  "Other",
 ] as const;
 export const MAINTAINER_TYPES_OPTIONS = [
   {
-    value: 'Electrician',
-    label: 'Electrician',
+    value: "Electrician",
+    label: "Electrician",
     // f
-    color: 'orange',
+    color: "orange",
   },
   {
-    value: 'Plumber',
-    label: 'Plumber',
+    value: "Plumber",
+    label: "Plumber",
     // f
-    color: 'orange',
+    color: "orange",
   },
   {
-    value: 'Carpenter',
-    label: 'Carpenter',
+    value: "Carpenter",
+    label: "Carpenter",
     // f
-    color: 'orange',
+    color: "orange",
   },
 
   {
-    value: 'Painter',
-    label: 'Painter',
+    value: "Painter",
+    label: "Painter",
     // f
-    color: 'orange',
+    color: "orange",
   },
   {
-    value: 'Gardener',
-    label: 'Gardener',
+    value: "Gardener",
+    label: "Gardener",
     // f
-    color: 'orange',
+    color: "orange",
   },
   {
-    value: 'Other',
-    label: 'Other',
+    value: "Other",
+    label: "Other",
     // f
-    color: 'orange',
+    color: "orange",
   },
 ] as const;
 
-export const MAINTENANCE_STATUS_ARRAY = ['incomplete', 'completed', 'inProgress'] as const;
+export const MAINTENANCE_STATUS_ARRAY = ["incomplete", "completed", "inProgress"] as const;
 
 export const MAINTENANCE_STATUS_OPTIONS = [
   {
-    value: 'incomplete',
-    label: 'In attesa',
+    value: "incomplete",
+    label: "In attesa",
     icon: Icons.clockStop,
-    color: 'orange',
+    color: "orange",
   },
   {
-    value: 'invoiced',
-    label: 'In fatturazione',
+    value: "invoiced",
+    label: "In fatturazione",
     icon: Icons.clockStop,
-    color: 'orange',
+    color: "orange",
   },
   {
-    value: 'inProgress',
-    label: 'In corso',
+    value: "inProgress",
+    label: "In corso",
     icon: Icons.progressCheck,
-    color: 'blue',
+    color: "blue",
   },
   {
-    value: 'completed',
-    label: 'Completato',
+    value: "completed",
+    label: "Completato",
     icon: Icons.check,
-    color: 'green',
+    color: "green",
   },
 ];
 export const MAINTAINER_TYPES = Object.keys(MAINTAINER_TYPES_ARRAY).reduce(
@@ -94,10 +94,10 @@ export const MAINTAINER_TYPES = Object.keys(MAINTAINER_TYPES_ARRAY).reduce(
   {} as Record<string, string>
 );
 
-export const USER_ROLES = ['Administrator', 'Inhabitant', 'Maintainer'] as const;
+export const USER_ROLES = ["Administrator", "Inhabitant", "Maintainer"] as const;
 
 export type UserRoles = (typeof USER_ROLES)[number];
 
 export const LOCAL_STORAGE_KEYS = {
-  LOCALE: 'i18nextLng',
+  LOCALE: "i18nextLng",
 } as const;

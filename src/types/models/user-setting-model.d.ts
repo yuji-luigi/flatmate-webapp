@@ -1,4 +1,4 @@
-import { MongooseBaseModel } from './mongoose-base-model';
+import { MongooseBaseModel } from "./mongoose-base-model";
 
 export interface UserSettingModel extends MongooseBaseModel {
   pushNotification: boolean;

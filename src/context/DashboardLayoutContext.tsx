@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useState } from 'react';
+import { createContext, ReactNode, useState } from "react";
 
 export const DashboardLayoutContext = createContext<DashboardLayoutContextStates>({
   isOpen: false,
@@ -11,7 +11,7 @@ export const DashboardLayoutContext = createContext<DashboardLayoutContextStates
   restorePrevBreadcrumbs() {},
   setPrevBreadcrumbs() {},
   setParentData() {},
-  parentData: { name: '' },
+  parentData: { name: "" },
   setChildrenBreadcrumbs() {},
 });
 
@@ -25,8 +25,8 @@ const useStore = () => {
       const baseUrl = prev[1]?.href;
 
       const allButLast = prev.slice(0, -1);
-      const idArray = prev.map((p) => p.href.split('/').pop());
-      const currentid = breadcrumb.href?.split('/').pop();
+      const idArray = prev.map((p) => p.href.split("/").pop());
+      const currentid = breadcrumb.href?.split("/").pop();
       const foundIndex = idArray.findIndex((id) => id === currentid);
       if (foundIndex !== -1) {
         //remove all breadcrumbs after foundIndex
@@ -44,7 +44,7 @@ const useStore = () => {
     openBar: () => setBarOpen(true),
     setBreadcrumbs: (breadcrumb: BreadcrumbInterface | null) => {
       if (breadcrumb === null) {
-        setBreadcrumbs([{ title: 'Feed', href: '/dashboard/posts' }]);
+        setBreadcrumbs([{ title: "Feed", href: "/dashboard/posts" }]);
         return;
       }
       setBreadcrumbs((prev) => [...prev, breadcrumb]);

@@ -1,4 +1,4 @@
-import { Role } from '../../types/models/space-model';
+import { Role } from "../../types/models/space-model";
 
 export interface IInitialValues {
   email: string;
@@ -6,7 +6,7 @@ export interface IInitialValues {
   password2: string;
   name: string;
   surname: string;
-  role?: Role | '';
+  role?: Role | "";
   space: {
     maxUsers: number;
     name: string;
@@ -16,15 +16,15 @@ export interface IInitialValues {
 }
 
 export const initialValues: IInitialValues = {
-  email: '',
-  password: '',
-  password2: '',
-  name: '',
-  surname: '',
+  email: "",
+  password: "",
+  password2: "",
+  name: "",
+  surname: "",
   space: {
     maxUsers: 0,
-    name: '',
-    address: '',
-    password: '',
+    name: "",
+    address: "",
+    password: "",
   },
 };

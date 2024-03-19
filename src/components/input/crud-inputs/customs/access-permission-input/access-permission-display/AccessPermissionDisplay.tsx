@@ -1,9 +1,9 @@
-import { Accordion, Box, Group, Text } from '@mantine/core';
-import { t } from 'i18next';
-import classes from './AccessPermissionDisplay.module.css';
-import { SpaceModel } from '../../../../../../types/models/space-model';
-import { useItemSlice } from '../../../../../../redux/features/crud/selectedItemSlice';
-import { Icons } from '../../../../../../data/icons/icons';
+import { Accordion, Box, Group, Text } from "@mantine/core";
+import { t } from "i18next";
+import classes from "./AccessPermissionDisplay.module.css";
+import { SpaceModel } from "../../../../../../types/models/space-model";
+import { useItemSlice } from "../../../../../../redux/features/crud/selectedItemSlice";
+import { Icons } from "../../../../../../data/icons/icons";
 
 type AccessPermissionDisplayProps = {
   aCtrlValues: Record<string, boolean>[] | null;
@@ -56,14 +56,14 @@ export const AccessPermissionDisplay: React.FC<AccessPermissionDisplayProps> = (
 function PermissionTile({ permission, allowed }: { permission: string; allowed: boolean }) {
   console.log(allowed);
   return (
-    <Group justify="space-between" style={{ width: '100%' }}>
+    <Group justify="space-between" style={{ width: "100%" }}>
       <Text>{permission}</Text>
       {allowed ? (
-        <Icons.check style={{ color: 'var(--mantine-color-green-6)' }} size={20} />
+        <Icons.check style={{ color: "var(--mantine-color-green-6)" }} size={20} />
       ) : (
         <Icons.close
           style={{
-            color: 'var(--mantine-color-red-6)',
+            color: "var(--mantine-color-red-6)",
           }}
           size={20}
         />

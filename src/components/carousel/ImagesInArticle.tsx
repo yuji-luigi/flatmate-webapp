@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Carousel } from '@mantine/carousel';
-import { Box, Grid } from '@mantine/core';
-import { useMediaQuery } from '@mantine/hooks';
-import Image from 'next/image';
-import { UploadModel } from '../../types/models/upload-model';
-import classes from './ImagesInArticle.module.css';
+import React, { useEffect, useRef, useState } from "react";
+import { Carousel } from "@mantine/carousel";
+import { Box, Grid } from "@mantine/core";
+import { useMediaQuery } from "@mantine/hooks";
+import Image from "next/image";
+import { UploadModel } from "../../types/models/upload-model";
+import classes from "./ImagesInArticle.module.css";
 
 function getImageSize({ length, index }: { length: number; index: number }) {
   let size = length === 1 ? 300 : 110;

@@ -1,8 +1,8 @@
-import { Text, Box, Group, MantineStyleProp } from '@mantine/core';
-import React from 'react';
-import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
-import { TEXT_SIZE } from './text-size';
-import classes from './TextWithIcon.module.css';
+import { Text, Box, Group, MantineStyleProp } from "@mantine/core";
+import React from "react";
+import { ReactJSXElement } from "@emotion/react/types/jsx-namespace";
+import { TEXT_SIZE } from "./text-size";
+import classes from "./TextWithIcon.module.css";
 
 const TextWithIcon = ({
   icon,

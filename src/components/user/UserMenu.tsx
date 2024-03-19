@@ -1,4 +1,4 @@
-import { Menu, Group, Text, Avatar, useMantineTheme, ActionIcon } from '@mantine/core';
+import { Menu, Group, Text, Avatar, useMantineTheme, ActionIcon } from "@mantine/core";
 import {
   IconLogout,
   IconHeart,
@@ -10,7 +10,7 @@ import {
   IconSwitchHorizontal,
   IconChevronRight,
   IconDots,
-} from '@tabler/icons-react';
+} from "@tabler/icons-react";
 
 export function UserMenu() {
   const theme = useMantineTheme();
@@ -20,7 +20,7 @@ export function UserMenu() {
         withArrow
         width={300}
         position="bottom"
-        transitionProps={{ transition: 'pop' }}
+        transitionProps={{ transition: "pop" }}
         withinPortal
       >
         <Menu.Target>

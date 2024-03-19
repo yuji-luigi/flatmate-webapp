@@ -1,4 +1,4 @@
-import { Avatar, Table, Group, Text, ActionIcon, Menu, ScrollArea } from '@mantine/core';
+import { Avatar, Table, Group, Text, ActionIcon, Menu, ScrollArea } from "@mantine/core";
 import {
   IconPencil,
   IconMessages,
@@ -6,7 +6,7 @@ import {
   IconReportAnalytics,
   IconTrash,
   IconDots,
-} from '@tabler/icons-react';
+} from "@tabler/icons-react";
 
 interface UsersStackProps {
   data: { avatar: string; name: string; job: string; email: string; rate: number }[];
@@ -46,7 +46,7 @@ export function UsersStack({ data }: UsersStackProps) {
             <IconPencil size={16} stroke={1.5} />
           </ActionIcon>
           <Menu
-            transitionProps={{ transition: 'pop' }}
+            transitionProps={{ transition: "pop" }}
             withArrow
             position="bottom-end"
             // withinPortal

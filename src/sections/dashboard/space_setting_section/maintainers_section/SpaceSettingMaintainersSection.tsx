@@ -1,11 +1,11 @@
-import { ActionIcon, Box, Group, Stack, Text } from '@mantine/core';
-import React from 'react';
-import { SpaceSettingMaintainerCard } from './SpaceSettingMaintainerCard';
-import { PaperWithTitle } from '../../../../components/paper/PaperWithTitle';
-import { MaintainerModel } from '../../../../types/models/maintainer-model';
-import { MAINTAINER_TYPES } from '../../../../lib/enums';
-import { NoMaintainerCard } from './NoMaintainerCard';
-import { Icons } from '../../../../data/icons/icons';
+import { ActionIcon, Box, Group, Stack, Text } from "@mantine/core";
+import React from "react";
+import { SpaceSettingMaintainerCard } from "./SpaceSettingMaintainerCard";
+import { PaperWithTitle } from "../../../../components/paper/PaperWithTitle";
+import { MaintainerModel } from "../../../../types/models/maintainer-model";
+import { MAINTAINER_TYPES } from "../../../../lib/enums";
+import { NoMaintainerCard } from "./NoMaintainerCard";
+import { Icons } from "../../../../data/icons/icons";
 
 export const SpaceSettingMaintainersSection = ({
   maintainers,

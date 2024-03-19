@@ -1,14 +1,14 @@
-import { Group } from '@mantine/core';
-import React from 'react';
-import { Sections } from '../../../types/general/data/sections-type';
-import { useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
+import { Group } from "@mantine/core";
+import React from "react";
+import { Sections } from "../../../types/general/data/sections-type";
+import { useCrudSliceStore } from "../../../redux/features/crud/crudSlice";
 import {
   FormFieldTypes,
   StaticSelectFormFieldType,
-} from '../../../types/general/data/data-table/form-field-type/formField-types';
-import { TextFilterInput } from './TextFilterInput';
-import { SelectFilterInput } from './SelectFilterInput';
-import classes from './QueryFilterWeb.module.css';
+} from "../../../types/general/data/data-table/form-field-type/formField-types";
+import { TextFilterInput } from "./TextFilterInput";
+import { SelectFilterInput } from "./SelectFilterInput";
+import classes from "./QueryFilterWeb.module.css";
 
 export const QueryFilterWeb = ({
   formFields,
@@ -26,7 +26,7 @@ export const QueryFilterWeb = ({
   const initQuery = (text: string) => {};
 
   const selectFilter = formFields.filter(
-    (field) => field.type === 'select' || field.type === 'static-select'
+    (field) => field.type === "select" || field.type === "static-select"
   );
 
   return (

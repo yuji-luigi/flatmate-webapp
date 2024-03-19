@@ -1,9 +1,9 @@
-import { SegmentedControl, SegmentedControlItem } from '@mantine/core';
-import { useEffect, useState } from 'react';
-import { useLocalStorage } from '@mantine/hooks';
-import classes from './GradientSegmentedControl.module.css';
-import { useSegmentedControl } from './useSegmentedControl';
-import { useLocale } from '../../../hooks/useLocale';
+import { SegmentedControl, SegmentedControlItem } from "@mantine/core";
+import { useEffect, useState } from "react";
+import { useLocalStorage } from "@mantine/hooks";
+import classes from "./GradientSegmentedControl.module.css";
+import { useSegmentedControl } from "./useSegmentedControl";
+import { useLocale } from "../../../hooks/useLocale";
 
 type Props = {
   switchDataList: SegmentedControlItem[];
@@ -11,16 +11,16 @@ type Props = {
 };
 export function GradientSegmentedControl(props: Props) {
   const { switchDataList, localStorageKey } = props;
-  const { t } = useLocale('common');
+  const { t } = useLocale("common");
   const _switchDataList = switchDataList.map((item) => ({
     ...item,
-    label: typeof item.label === 'string' ? t(item.label) : item.label,
+    label: typeof item.label === "string" ? t(item.label) : item.label,
   }));
   const { setCurrentValue, currentValue } = useSegmentedControl();
-  const [storageValue, setStorageValue] = useLocalStorage({ key: localStorageKey || '' });
+  const [storageValue, setStorageValue] = useLocalStorage({ key: localStorageKey || "" });
   const handleChange = (value: string) => {
     setCurrentValue(value);
-    console.log('value', value);
+    console.log("value", value);
     if (localStorageKey) {
       setStorageValue(value);
     }

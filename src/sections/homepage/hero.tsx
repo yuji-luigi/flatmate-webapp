@@ -1,12 +1,12 @@
-import { Overlay, Container, Title, Button, Text, Box } from '@mantine/core';
-import { useTranslation } from 'next-i18next';
-import Link from 'next/link';
-import classes from './hero.module.css';
-import { PATH_CLIENT } from '../../path/path-frontend';
-import { useLocale } from '../../../hooks/useLocale';
+import { Overlay, Container, Title, Button, Text, Box } from "@mantine/core";
+import { useTranslation } from "next-i18next";
+import Link from "next/link";
+import classes from "./hero.module.css";
+import { PATH_CLIENT } from "../../path/path-frontend";
+import { useLocale } from "../../../hooks/useLocale";
 
 export function HeroSection() {
-  const { t } = useLocale('common');
+  const { t } = useLocale("common");
   return (
     <div className={classes.hero}>
       <Overlay
@@ -15,11 +15,11 @@ export function HeroSection() {
         zIndex={0}
       />
       <Container className={classes.container} size="md">
-        <Title className={classes.title}>{t('Flatmates condominium manager')}</Title>
+        <Title className={classes.title}>{t("Flatmates condominium manager")}</Title>
         <Box className={classes.descriptionSection}>
           <Text className={classes.description} size="xl" mt="xl">
             {t(
-              'Where everyone can manage spending of condominiums and enables all kinds of communications within condominium.'
+              "Where everyone can manage spending of condominiums and enables all kinds of communications within condominium."
             )}
           </Text>
 

@@ -1,11 +1,11 @@
-import { ReactNode, useEffect } from 'react';
+import { ReactNode, useEffect } from "react";
 // next
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 // hooks
-import useAuth from '../../hooks/useAuth';
+import useAuth from "../../hooks/useAuth";
 // routes
-import { PATH_CLIENT } from '../path/path-frontend';
-import { useCookieContext } from '../context/CookieContext';
+import { PATH_CLIENT } from "../path/path-frontend";
+import { useCookieContext } from "../context/CookieContext";
 
 // ----------------------------------------------------------------------
 

@@ -1,15 +1,15 @@
-import React from 'react';
-import { Box } from '@mantine/core';
-import { CardMaintainer } from '../../../components/card/CardMaintainer';
-import { Sections } from '../../../types/general/data/sections-type';
-import { useCrudSelectors } from '../../../redux/features/crud/crudSlice';
-import useAuth from '../../../../hooks/useAuth';
-import { maintainersTableData } from '../../../../json/dataTable/formfields/maintainersTableData';
-import { filterList } from '../../../components/datatable/filter/logic/applyFilter';
-import useTable, { getComparator } from '../../../../hooks/useTable';
-import { useFilter } from '../../../../hooks/useFilter';
-import { SpaceModel } from '../../../types/models/space-model';
-import classes from './MaintainerList.module.css';
+import React from "react";
+import { Box } from "@mantine/core";
+import { CardMaintainer } from "../../../components/card/CardMaintainer";
+import { Sections } from "../../../types/general/data/sections-type";
+import { useCrudSelectors } from "../../../redux/features/crud/crudSlice";
+import useAuth from "../../../../hooks/useAuth";
+import { maintainersTableData } from "../../../../json/dataTable/formfields/maintainersTableData";
+import { filterList } from "../../../components/datatable/filter/logic/applyFilter";
+import useTable, { getComparator } from "../../../../hooks/useTable";
+import { useFilter } from "../../../../hooks/useFilter";
+import { SpaceModel } from "../../../types/models/space-model";
+import classes from "./MaintainerList.module.css";
 /**
  * 1. fetch all the maintainers from database with redux.
  * 2. display all the maintainers in a card grid.
@@ -33,7 +33,7 @@ const MaintainerList = ({ entity }: { entity: Sections }) => {
   const { crudDocuments } = useCrudSelectors(entity);
   const { filters } = useFilter();
   const { order, orderBy } = useTable({
-    defaultOrderBy: 'createDate',
+    defaultOrderBy: "createDate",
     // defaultDense: true,
     // defaultRowsPerPage: 10,
   });

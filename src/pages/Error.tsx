@@ -1,9 +1,9 @@
-import { Image, Container, Title, Text, Button, SimpleGrid } from '@mantine/core';
-import Link from 'next/link';
+import { Image, Container, Title, Text, Button, SimpleGrid } from "@mantine/core";
+import Link from "next/link";
 // eslint-disable-next-line import/no-absolute-path
-import image from '/public/images/404-mantine.svg';
-import Head from 'next/head';
-import classes from './Error.module.css';
+import image from "/public/images/404-mantine.svg";
+import Head from "next/head";
+import classes from "./Error.module.css";
 
 export default function NotFoundImage() {
   return (

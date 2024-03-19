@@ -1,14 +1,14 @@
-import { Card, Text, Badge, Group, Stack, Avatar, MantineStyleProp } from '@mantine/core';
-import Link from 'next/link';
-import { Icons } from '../../data/icons/icons';
-import { IMAGES_ARRAY, PATH_IMAGE } from '../../lib/image-paths';
-import { getRandomItemFromArray } from '../../utils/mock-data-functions';
-import { Sections } from '../../types/general/data/sections-type';
-import TextWithIcon from '../text/TextWithIcon';
-import BadgeWithToolTip from '../text/BadgeWithToolTip';
-import { UploadModel } from '../../types/models/upload-model';
-import classes from './CardMaintainer.module.css';
-import { truncateString } from '../../utils/helpers/truncateString';
+import { Card, Text, Badge, Group, Stack, Avatar, MantineStyleProp } from "@mantine/core";
+import Link from "next/link";
+import { Icons } from "../../data/icons/icons";
+import { IMAGES_ARRAY, PATH_IMAGE } from "../../lib/image-paths";
+import { getRandomItemFromArray } from "../../utils/mock-data-functions";
+import { Sections } from "../../types/general/data/sections-type";
+import TextWithIcon from "../text/TextWithIcon";
+import BadgeWithToolTip from "../text/BadgeWithToolTip";
+import { UploadModel } from "../../types/models/upload-model";
+import classes from "./CardMaintainer.module.css";
+import { truncateString } from "../../utils/helpers/truncateString";
 
 const ICON_SIZE = 16;
 
@@ -43,9 +43,9 @@ export function CardMaintainer({ data, entity }: { data: UserCardData; entity: S
         style={{
           backgroundImage: `url(${data.cover?.url || PATH_IMAGE.flatmateLogo1})`,
           height: 140,
-          backgroundPosition: 'center',
-          backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat',
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
         }}
       />
       {/* <Image src={data.avatar.url} height={160} alt="Norway" /> */}
@@ -62,7 +62,7 @@ export function CardMaintainer({ data, entity }: { data: UserCardData; entity: S
         <Badge
           color="pink"
           variant="light"
-          style={{ position: 'absolute', transform: 'translate(0, -24px)' }}
+          style={{ position: "absolute", transform: "translate(0, -24px)" }}
         >
           {data.type}
         </Badge>
@@ -99,7 +99,7 @@ export function CardMaintainer({ data, entity }: { data: UserCardData; entity: S
             <BadgeWithToolTip
               key={text}
               icon={data.badgeIcon}
-              text={text || 'add address'}
+              text={text || "add address"}
               disabled={!text}
               textLength={30}
               style={{ ...data.badgestyle }}

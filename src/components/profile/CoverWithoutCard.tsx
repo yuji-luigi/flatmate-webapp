@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Card,
   Avatar,
@@ -7,10 +7,10 @@ import {
   Group,
   MantineStyleProp,
   useMantineColorScheme,
-} from '@mantine/core';
-import { UploadModel } from '../../types/models/upload-model';
-import classes from './ProfileCoverGeneric.module.css';
-import { useLocale } from '../../../hooks/useLocale';
+} from "@mantine/core";
+import { UploadModel } from "../../types/models/upload-model";
+import classes from "./ProfileCoverGeneric.module.css";
+import { useLocale } from "../../../hooks/useLocale";
 
 export interface CoverDataProp {
   // _id?: string;

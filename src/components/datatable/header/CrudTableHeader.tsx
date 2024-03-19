@@ -1,11 +1,11 @@
-import React, { Fragment } from 'react';
-import { useRouter } from 'next/router';
-import { Table } from '@mantine/core';
-import formFields from '../../../../json/dataTable/formfields';
-import { Sections } from '../../../types/general/data/sections-type';
-import { FormFieldTypes } from '../../../types/general/data/data-table/form-field-type/formField-types';
-import { getAlignmentDataAttribute } from '../../../utils/data-table/getAlignmentDataAttribute';
-import classes from './StaticTableHeader.module.css';
+import React, { Fragment } from "react";
+import { useRouter } from "next/router";
+import { Table } from "@mantine/core";
+import formFields from "../../../../json/dataTable/formfields";
+import { Sections } from "../../../types/general/data/sections-type";
+import { FormFieldTypes } from "../../../types/general/data/data-table/form-field-type/formField-types";
+import { getAlignmentDataAttribute } from "../../../utils/data-table/getAlignmentDataAttribute";
+import classes from "./StaticTableHeader.module.css";
 
 const CrudTableHeader = ({ overridingEntity }: { overridingEntity: Sections }) => {
   const { query } = useRouter();

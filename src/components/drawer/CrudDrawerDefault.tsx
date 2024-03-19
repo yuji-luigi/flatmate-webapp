@@ -1,36 +1,36 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable react/jsx-pascal-case */
-import { Button, Drawer, Text } from '@mantine/core';
-import { createFormContext, useForm } from '@mantine/form';
+import { Button, Drawer, Text } from "@mantine/core";
+import { createFormContext, useForm } from "@mantine/form";
 import {
   cleanNotifications,
   hideNotification,
   notifications,
   showNotification,
-} from '@mantine/notifications';
-import { useRouter } from 'next/router';
-import { FormEvent, useEffect, useState, useMemo } from 'react';
-import allFormFields from '../../../json/dataTable/formfields';
-import { constructErrorNotificationData } from '../../data/showNofification/notificationObjects';
+} from "@mantine/notifications";
+import { useRouter } from "next/router";
+import { FormEvent, useEffect, useState, useMemo } from "react";
+import allFormFields from "../../../json/dataTable/formfields";
+import { constructErrorNotificationData } from "../../data/showNofification/notificationObjects";
 // import { useCrudSlice } from '../../../hooks/redux-hooks/useCrudSlice';
-import { capitalize, sleep } from '../../utils/helpers/helper-functions';
-import { getDefaultValues } from '../../utils/getDefaultValues';
+import { capitalize, sleep } from "../../utils/helpers/helper-functions";
+import { getDefaultValues } from "../../utils/getDefaultValues";
 // import classes from "./CrudDrawerDefault.module.css";
-import FormFields from '../input/FormFields';
-import { useDrawerContext } from '../../context/DataTableDrawerContext';
-import { useCrudSelectors, useCrudSliceStore } from '../../redux/features/crud/crudSlice';
-import { usePaginationQuery } from '../../context/PaginationContext';
-import { hasMedia } from '../../redux/features/crudAsyncThunks';
-import CreationToolBar from '../input/CreationToolBar';
-import { UseFormReturnTypeCustom } from '../input/input_interfaces/useForm_interface';
-import { flattenSectionData } from '../../data';
+import FormFields from "../input/FormFields";
+import { useDrawerContext } from "../../context/DataTableDrawerContext";
+import { useCrudSelectors, useCrudSliceStore } from "../../redux/features/crud/crudSlice";
+import { usePaginationQuery } from "../../context/PaginationContext";
+import { hasMedia } from "../../redux/features/crudAsyncThunks";
+import CreationToolBar from "../input/CreationToolBar";
+import { UseFormReturnTypeCustom } from "../input/input_interfaces/useForm_interface";
+import { flattenSectionData } from "../../data";
 
-import { extractUploadingMedia, uploadFileAndGetModelId } from '../../utils/upload-helper';
-import { Sections } from '../../types/general/data/sections-type';
-import { FormFieldTypes } from '../../types/general/data/data-table/form-field-type/formField-types';
-import classes from './CrudDrawerDefault.module.css';
+import { extractUploadingMedia, uploadFileAndGetModelId } from "../../utils/upload-helper";
+import { Sections } from "../../types/general/data/sections-type";
+import { FormFieldTypes } from "../../types/general/data/data-table/form-field-type/formField-types";
+import classes from "./CrudDrawerDefault.module.css";
 
-export function CrudDrawerDefault({ overridingEntity = '' }: { overridingEntity?: Sections }) {
+export function CrudDrawerDefault({ overridingEntity = "" }: { overridingEntity?: Sections }) {
   const [submitting, setSubmitting] = useState(false);
 
   const { query } = useRouter();
@@ -59,7 +59,7 @@ export function CrudDrawerDefault({ overridingEntity = '' }: { overridingEntity?
   );
 
   const form = useForm({
-    name: 'crud-form',
+    name: "crud-form",
     initialValues,
   }) as UseFormReturnTypeCustom;
 
@@ -72,8 +72,8 @@ export function CrudDrawerDefault({ overridingEntity = '' }: { overridingEntity?
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
     showNotification({
-      id: 'submit',
-      message: 'Sending data to the server.',
+      id: "submit",
+      message: "Sending data to the server.",
       autoClose: false,
     });
     setSubmitting(true);
@@ -96,7 +96,7 @@ export function CrudDrawerDefault({ overridingEntity = '' }: { overridingEntity?
         }
       } catch (error) {
         console.log(error);
-        notifications.hide('submit');
+        notifications.hide("submit");
         setSubmitting(false);
         return;
       }
@@ -135,14 +135,14 @@ export function CrudDrawerDefault({ overridingEntity = '' }: { overridingEntity?
     await sleep(800);
     closeDrawer();
     await sleep(200);
-    hideNotification('submit');
+    hideNotification("submit");
     await sleep(100);
 
     /** show success notification */
     showNotification({
-      message: 'Operation success!!',
-      title: 'Success',
-      color: 'green',
+      message: "Operation success!!",
+      title: "Success",
+      color: "green",
       autoClose: 1000,
     });
     setSubmitting(false);
@@ -151,26 +151,26 @@ export function CrudDrawerDefault({ overridingEntity = '' }: { overridingEntity?
   /** runs every time crudStatus changed */
   useEffect(() => {
     if (submitting) {
-      if (crudStatus === 'loading') {
+      if (crudStatus === "loading") {
         null;
       }
       /** define case for succeed */
-      if (crudStatus === 'succeed') {
+      if (crudStatus === "succeed") {
         handleSubmitSucceed();
       }
-      if (crudError && crudStatus === 'failed') {
-        hideNotification('submit');
+      if (crudError && crudStatus === "failed") {
+        hideNotification("submit");
         notifications.show(constructErrorNotificationData(crudError, 5000));
         setSubmitting(false);
         sleep(5000).then(() => {
-          notifications.hide('error');
+          notifications.hide("error");
           cleanNotifications();
         });
       }
     }
     () => {
-      hideNotification('submit');
-      hideNotification('error');
+      hideNotification("submit");
+      hideNotification("error");
     };
   }, [crudStatus]);
 

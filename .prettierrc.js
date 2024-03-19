@@ -1,4 +1,5 @@
-module.exports = require('eslint-config-mantine/.prettierrc.js');
-
-this.jsxSingleQuote = false;
-this.singleQuote = false;
+module.exports = {
+  ...require("eslint-config-mantine/.prettierrc.js"),
+  jsxSingleQuote: false,
+  singleQuote: false,
+};

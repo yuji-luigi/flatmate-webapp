@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
+import React, { ChangeEvent, useEffect, useRef, useState } from "react";
 import {
   Card,
   Avatar,
@@ -9,26 +9,26 @@ import {
   Button,
   MantineStyleProp,
   useMantineColorScheme,
-} from '@mantine/core';
-import { hideNotification, showNotification } from '@mantine/notifications';
-import { useRouter } from 'next/router';
-import { Icons } from '../../data/icons/icons';
+} from "@mantine/core";
+import { hideNotification, showNotification } from "@mantine/notifications";
+import { useRouter } from "next/router";
+import { Icons } from "../../data/icons/icons";
 import {
   setSubmitting,
   useCrudSelectors,
   useCrudSliceStore,
-} from '../../redux/features/crud/crudSlice';
-import { getEntityFromUrl, sleep } from '../../utils/helpers/helper-functions';
-import { uploadFileAndGetModelId } from '../../utils/upload-helper';
-import { useCustomModalContext } from '../../context/modal-context/_ModalContext';
-import { Sections } from '../../types/general/data/sections-type';
-import { FormFieldTypes } from '../../types/general/data/data-table/form-field-type/formField-types';
-import { MAX_FILE_SIZE } from '../../lib/files/file-sizes';
-import { formatSize } from '../../lib/formatters';
-import { SpaceModel } from '../../types/models/space-model';
-import { MaintainerModel } from '../../types/models/maintainer-model';
-import classes from './ProfileCoverGeneric.module.css';
-import { NOTIFICATIONS } from '../../data/showNofification/notificationObjects';
+} from "../../redux/features/crud/crudSlice";
+import { getEntityFromUrl, sleep } from "../../utils/helpers/helper-functions";
+import { uploadFileAndGetModelId } from "../../utils/upload-helper";
+import { useCustomModalContext } from "../../context/modal-context/_ModalContext";
+import { Sections } from "../../types/general/data/sections-type";
+import { FormFieldTypes } from "../../types/general/data/data-table/form-field-type/formField-types";
+import { MAX_FILE_SIZE } from "../../lib/files/file-sizes";
+import { formatSize } from "../../lib/formatters";
+import { SpaceModel } from "../../types/models/space-model";
+import { MaintainerModel } from "../../types/models/maintainer-model";
+import classes from "./ProfileCoverGeneric.module.css";
+import { NOTIFICATIONS } from "../../data/showNofification/notificationObjects";
 
 export interface CoverDataProp {
   _id?: string;
@@ -58,10 +58,10 @@ const ProfileCoverGeneric = ({
   const _entity = entity || (getEntityFromUrl() as Sections);
   const { updateCrudDocument } = useCrudSliceStore();
   const { colorScheme } = useMantineColorScheme();
-  const isDark = colorScheme === 'dark';
+  const isDark = colorScheme === "dark";
   const gradient = isDark
-    ? 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))'
-    : 'linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5))';
+    ? "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))"
+    : "linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5))";
 
   const { crudDocument } = useCrudSelectors<SpaceModel | MaintainerModel>(_entity);
   const coverInputRef = useRef<HTMLInputElement>(null);
@@ -78,29 +78,29 @@ const ProfileCoverGeneric = ({
   };
 
   const handleLightBoxClicked = () => {
-    console.log('lightbox');
+    console.log("lightbox");
   };
   useCrudSelectors;
 
   const handleImageChange = async (
     event: ChangeEvent<HTMLInputElement>,
-    field: 'avatar' | 'cover' = 'avatar'
+    field: "avatar" | "cover" = "avatar"
   ) => {
     const file = event.target.files?.[0];
     if (!file || !_entity) return;
     if (file && file.size > MAX_FILE_SIZE) {
       window.alert(`File size exceeds the allowed limit of ${formatSize(MAX_FILE_SIZE)}.`);
       // eslint-disable-next-line no-param-reassign
-      event.target.value = ''; // Reset the input
+      event.target.value = ""; // Reset the input
       return;
     }
     showNotification(NOTIFICATIONS.LOADING.uploading);
     const reader = new FileReader();
     reader.onloadend = () => {
-      if (field === 'avatar') {
+      if (field === "avatar") {
         setSelectedImage(reader.result as string);
       }
-      if (field === 'cover') {
+      if (field === "cover") {
         setSelectedCover(reader.result as string);
       }
     };
@@ -124,11 +124,11 @@ const ProfileCoverGeneric = ({
   const handleEditClicked = () => {
     if (!crudDocument) return;
     if (!formFields) {
-      console.log('formFields not defined');
+      console.log("formFields not defined");
       return;
     }
     openConfirmModal({
-      type: 'crud',
+      type: "crud",
       crudDocument,
       formFields,
       title: `Edit ${_entity}`,
@@ -146,9 +146,9 @@ const ProfileCoverGeneric = ({
       padding="lg"
       className={classes.card}
       style={{
-        backgroundSize: 'object-fit',
-        backgroundRepeat: 'no-repeat',
-        backgroundImage: `${gradient}, url(${selectedCover || crudDocument?.avatar?.url || ''})`,
+        backgroundSize: "object-fit",
+        backgroundRepeat: "no-repeat",
+        backgroundImage: `${gradient}, url(${selectedCover || crudDocument?.avatar?.url || ""})`,
       }}
     >
       <Box className={classes.coverContent}>
@@ -160,8 +160,8 @@ const ProfileCoverGeneric = ({
                 type="file"
                 ref={coverInputRef}
                 accept="image/*"
-                style={{ display: 'none' }}
-                onChange={(e) => handleImageChange(e, 'cover')}
+                style={{ display: "none" }}
+                onChange={(e) => handleImageChange(e, "cover")}
               />
               <Button m={8} color="dark" onClick={onChangeCoverClicked}>
                 Change cover
@@ -169,13 +169,13 @@ const ProfileCoverGeneric = ({
             </Group>
           </Box>
         )}
-        <Group style={{ justifyContent: 'space-between', width: '100%' }}>
+        <Group style={{ justifyContent: "space-between", width: "100%" }}>
           <Group>
             {!noAvatar && (
               <Box className={classes.avatarWrapper}>
                 <label htmlFor="avatar-input">
                   <Avatar
-                    style={{ cursor: 'pointer', marginRight: '1rem' }}
+                    style={{ cursor: "pointer", marginRight: "1rem" }}
                     size={100}
                     radius={80}
                     src={selectedImage}
@@ -185,7 +185,7 @@ const ProfileCoverGeneric = ({
                     id="avatar-input"
                     type="file"
                     accept="image/*"
-                    style={{ display: 'none' }}
+                    style={{ display: "none" }}
                     onChange={handleImageChange}
                   />
                   {formFields && (
@@ -198,7 +198,7 @@ const ProfileCoverGeneric = ({
                 </label>
               </Box>
             )}
-            <Box style={{ alignSelf: 'center' }}>
+            <Box style={{ alignSelf: "center" }}>
               <Text fw={700} size="xl">
                 {data.title}
               </Text>

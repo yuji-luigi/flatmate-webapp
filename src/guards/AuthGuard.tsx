@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 // Next js
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 
 // hooks
-import { LoadingOverlay } from '@mantine/core';
-import useAuth from '../../hooks/useAuth';
-import { _PATH_FRONTEND } from '../path/path-frontend';
+import { LoadingOverlay } from "@mantine/core";
+import useAuth from "../../hooks/useAuth";
+import { _PATH_FRONTEND } from "../path/path-frontend";
 
 export default function AuthGuard({ children }: { children: JSX.Element | JSX.Element[] }) {
   const { isAuthenticated, isInitialized, user } = useAuth();

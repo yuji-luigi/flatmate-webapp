@@ -1,7 +1,7 @@
-import { Button } from '@mantine/core';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { PATH_CLIENT } from '../../../../path/path-frontend';
+import { Button } from "@mantine/core";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { PATH_CLIENT } from "../../../../path/path-frontend";
 
 const isChoosePage = (path: string) =>
   path === PATH_CLIENT.chooseRootSpace || path === PATH_CLIENT.chooseOrganization;

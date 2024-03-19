@@ -1,26 +1,26 @@
-import { Menu, ActionIcon } from '@mantine/core';
+import { Menu, ActionIcon } from "@mantine/core";
 
-import { useState } from 'react';
-import { notifications } from '@mantine/notifications';
-import { Icons } from '../../../data/icons/icons';
-import { allSectionArrayWithRoles } from '../../../data';
+import { useState } from "react";
+import { notifications } from "@mantine/notifications";
+import { Icons } from "../../../data/icons/icons";
+import { allSectionArrayWithRoles } from "../../../data";
 
-import { FONT_SIZES } from '../../../lib/enums';
-import { useCrudSelectors, useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
-import { SectionDataJsonWithRoles } from '../../../types/general/data/data-table/sectionsJson-type';
-import { useSimpleDisclosureCtx } from '../../../../hooks/useSimpleDisclosureCtx';
-import { HeaderCreationModal } from './HeaderCreationModal';
-import classes from './HeaderCreationButton.module.css';
+import { FONT_SIZES } from "../../../lib/enums";
+import { useCrudSelectors, useCrudSliceStore } from "../../../redux/features/crud/crudSlice";
+import { SectionDataJsonWithRoles } from "../../../types/general/data/data-table/sectionsJson-type";
+import { useSimpleDisclosureCtx } from "../../../../hooks/useSimpleDisclosureCtx";
+import { HeaderCreationModal } from "./HeaderCreationModal";
+import classes from "./HeaderCreationButton.module.css";
 
 export function HeaderCreationButton() {
   // const [opened, { open, close }] = useDisclosure(false);
   const { close, open, opened } = useSimpleDisclosureCtx();
-  const [modalType, setModalType] = useState<'threads' | 'maintenances' | null>(null);
+  const [modalType, setModalType] = useState<"threads" | "maintenances" | null>(null);
   const [section, setSection] = useState<SectionDataJsonWithRoles | null>(null);
 
   const { setSubmitting } = useCrudSliceStore();
   const { submitting } = useCrudSelectors();
-  const handleOpenModal = (type: 'threads' | 'maintenances') => {
+  const handleOpenModal = (type: "threads" | "maintenances") => {
     setSection(allSectionArrayWithRoles.find((_section) => _section.entity === type) || null);
     setModalType(type);
     open();
@@ -28,10 +28,10 @@ export function HeaderCreationButton() {
   const handleClose = () => {
     close();
     if (submitting) {
-      notifications.hide('submit');
+      notifications.hide("submit");
       notifications.show({
-        title: 'Upload is cancelled',
-        message: 'Upload cancelled because you closed a popup',
+        title: "Upload is cancelled",
+        message: "Upload cancelled because you closed a popup",
       });
     }
     setSubmitting(false);
@@ -46,9 +46,9 @@ export function HeaderCreationButton() {
           </ActionIcon>
         </Menu.Target>
         <Menu.Dropdown>
-          <Menu.Label style={{ textAlign: 'center' }}>Create something</Menu.Label>
+          <Menu.Label style={{ textAlign: "center" }}>Create something</Menu.Label>
           <Menu.Item
-            onClick={() => handleOpenModal('threads')}
+            onClick={() => handleOpenModal("threads")}
             style={{ fontSize: FONT_SIZES.menuItems }}
             leftSection={<Icons.article size={FONT_SIZES.menuItems} />}
           >
@@ -56,7 +56,7 @@ export function HeaderCreationButton() {
           </Menu.Item>
           <Menu.Item
             style={{ fontSize: FONT_SIZES.menuItems }}
-            onClick={() => handleOpenModal('maintenances')}
+            onClick={() => handleOpenModal("maintenances")}
             leftSection={<Icons.maintenance size={FONT_SIZES.menuItems} />}
           >
             Add maintenance

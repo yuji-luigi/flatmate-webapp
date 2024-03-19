@@ -1,22 +1,22 @@
-import { Box } from '@mantine/core';
-import { useRouter } from 'next/router';
-import React, { ReactElement, useEffect } from 'react';
-import Page from '../../../components/Page';
-import { CrudDrawerDefault } from '../../../components/drawer/CrudDrawerDefault';
-import { usePaginationContext } from '../../../context/PaginationContext';
-import { sections } from '../../../data';
-import { useCrudSliceStore, useCrudSelectors } from '../../../redux/features/crud/crudSlice';
-import { TableSectionHeader } from '../../../sections/dashboard/datatable_section/TableSectionHeader';
-import { Sections } from '../../../types/general/data/sections-type';
-import formFields from '../../../../json/dataTable/formfields';
-import Layout from '../../../layouts';
-import { FormFieldTypes } from '../../../types/general/data/data-table/form-field-type/formField-types';
-import { CrudDataTable } from '../../../components/datatable/CrudDataTable';
+import { Box } from "@mantine/core";
+import { useRouter } from "next/router";
+import React, { ReactElement, useEffect } from "react";
+import Page from "../../../components/Page";
+import { CrudDrawerDefault } from "../../../components/drawer/CrudDrawerDefault";
+import { usePaginationContext } from "../../../context/PaginationContext";
+import { sections } from "../../../data";
+import { useCrudSliceStore, useCrudSelectors } from "../../../redux/features/crud/crudSlice";
+import { TableSectionHeader } from "../../../sections/dashboard/datatable_section/TableSectionHeader";
+import { Sections } from "../../../types/general/data/sections-type";
+import formFields from "../../../../json/dataTable/formfields";
+import Layout from "../../../layouts";
+import { FormFieldTypes } from "../../../types/general/data/data-table/form-field-type/formField-types";
+import { CrudDataTable } from "../../../components/datatable/CrudDataTable";
 
 const MaintainerSearchPage = () => {
   const { query, push } = useRouter();
 
-  const entity = 'maintainers';
+  const entity = "maintainers";
   const { setPagination, paginationQuery } = usePaginationContext();
 
   const { fetchCrudDocumentsWithPagination } = useCrudSliceStore();
@@ -24,7 +24,7 @@ const MaintainerSearchPage = () => {
   formFields;
   useEffect(() => {
     if (!sections.includes(entity)) {
-      push('/dashboard/home');
+      push("/dashboard/home");
     }
   }, [entity]); // include parentId: string | undefined to update on change page
 

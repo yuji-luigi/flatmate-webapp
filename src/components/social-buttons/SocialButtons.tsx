@@ -1,6 +1,6 @@
-import { Button, ButtonProps, Group } from '@mantine/core';
-import { GithubIcon, DiscordIcon, TwitterIcon } from '@mantine/ds';
-import { GoogleIcon } from './GoogleIcon';
+import { Button, ButtonProps, Group } from "@mantine/core";
+import { GithubIcon, DiscordIcon, TwitterIcon } from "@mantine/ds";
+import { GoogleIcon } from "./GoogleIcon";
 // import { FacebookIcon } from './FacebookIcon';
 
 export function GoogleButton(props: ButtonProps) {

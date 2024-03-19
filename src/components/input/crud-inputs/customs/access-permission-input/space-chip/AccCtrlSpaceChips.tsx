@@ -1,17 +1,17 @@
-import { Box, Chip, Text } from '@mantine/core';
-import { useItemSlice } from '../../../../../../redux/features/crud/selectedItemSlice';
-import { AccessPermissionModel, SpaceModel } from '../../../../../../types/models/space-model';
-import { useCrudSelectors } from '../../../../../../redux/features/crud/crudSlice';
-import classes from './AccCtrlSpaceChips.module.css';
+import { Box, Chip, Text } from "@mantine/core";
+import { useItemSlice } from "../../../../../../redux/features/crud/selectedItemSlice";
+import { AccessPermissionModel, SpaceModel } from "../../../../../../types/models/space-model";
+import { useCrudSelectors } from "../../../../../../redux/features/crud/crudSlice";
+import classes from "./AccCtrlSpaceChips.module.css";
 
 export const AccCtrlSpaceChips: React.FC = () => {
-  const { crudDocuments: spaces } = useCrudSelectors<SpaceModel>('spaces');
+  const { crudDocuments: spaces } = useCrudSelectors<SpaceModel>("spaces");
   const { crudDocuments: accessPermissions } =
-    useCrudSelectors<AccessPermissionModel>('accessPermissions');
+    useCrudSelectors<AccessPermissionModel>("accessPermissions");
   const actlSpaceId = [
     ...new Set(
       accessPermissions.map((actl) =>
-        typeof actl.space === 'string' ? actl.space : actl.space._id
+        typeof actl.space === "string" ? actl.space : actl.space._id
       )
     ),
   ];
@@ -41,7 +41,7 @@ function SpaceChip({ spaceId, spaces }: { spaceId: string; spaces: SpaceModel[] 
         value={spaceId}
         fw="bold"
       >
-        {spaceName || 'Error: Space not found'}
+        {spaceName || "Error: Space not found"}
       </Chip>
     </>
   );

@@ -1,29 +1,29 @@
-import { TextInput, Select, Switch, Text, Tooltip, Transition } from '@mantine/core';
-import { UseFormReturnType } from '@mantine/form';
-import { IInitialValues } from './defaultValues';
-import { useLocale } from '../../../hooks/useLocale';
+import { TextInput, Select, Switch, Text, Tooltip, Transition } from "@mantine/core";
+import { UseFormReturnType } from "@mantine/form";
+import { IInitialValues } from "./defaultValues";
+import { useLocale } from "../../../hooks/useLocale";
 
 const Roles = [
-  { label: 'User/Inhabitant', value: 'Inhabitant' },
-  { label: 'Maintainer', value: 'Maintainer' },
-  { label: 'Administrator', value: 'Administrator' },
+  { label: "User/Inhabitant", value: "Inhabitant" },
+  { label: "Maintainer", value: "Maintainer" },
+  { label: "Administrator", value: "Administrator" },
 ];
 const SignUpStepTwo = ({ form }: { form: UseFormReturnType<IInitialValues> }) => {
-  const { t } = useLocale('sign-up');
+  const { t } = useLocale("sign-up");
   return (
     <>
       <Select
         data={Roles}
         name="role"
-        label={t('step2.label1')}
+        label={t("step2.label1")}
         size="md"
         mt={10}
         required
-        {...form.getInputProps('role')}
+        {...form.getInputProps("role")}
       />
 
       <Transition
-        mounted={!!(form.values.role && form.values.role !== 'Maintainer')}
+        mounted={!!(form.values.role && form.values.role !== "Maintainer")}
         duration={800}
         transition="slide-up"
         timingFunction="ease-in-out"
@@ -33,24 +33,24 @@ const SignUpStepTwo = ({ form }: { form: UseFormReturnType<IInitialValues> }) =>
             <>
               <TextInput
                 required
-                label={t('step2.label2')}
+                label={t("step2.label2")}
                 name="space.name"
                 placeholder="<La Perla> Condominio: Roma 2"
-                {...form.getInputProps('space.name')}
+                {...form.getInputProps("space.name")}
               />
               <TextInput
                 required
-                label={t('spaceLabel2')}
+                label={t("spaceLabel2")}
                 name="space.address"
                 placeholder="gold street 3, 20888"
-                {...form.getInputProps('space.address')}
+                {...form.getInputProps("space.address")}
               />
               <TextInput
                 required
-                label={t('passLabel')}
+                label={t("passLabel")}
                 name="space.password"
                 placeholder="secret777"
-                {...form.getInputProps('space.password')}
+                {...form.getInputProps("space.password")}
               />
             </>
           </div>
@@ -64,7 +64,7 @@ const SignUpStepTwo = ({ form }: { form: UseFormReturnType<IInitialValues> }) =>
       >
         {(styles) => (
           <div style={styles} className="fieldset">
-            <Switch name="isPublic" label={<SwitchLabel />} {...form.getInputProps('isPublic')} />
+            <Switch name="isPublic" label={<SwitchLabel />} {...form.getInputProps("isPublic")} />
           </div>
         )}
       </Transition>
@@ -75,11 +75,11 @@ const SignUpStepTwo = ({ form }: { form: UseFormReturnType<IInitialValues> }) =>
 export default SignUpStepTwo;
 
 function SwitchLabel() {
-  const { t } = useLocale('sign-up');
+  const { t } = useLocale("sign-up");
   return (
     <Text>
-      {t('switchLabel')}{' '}
-      <Tooltip label={t('Not share any details. only name surname email')}>
+      {t("switchLabel")}{" "}
+      <Tooltip label={t("Not share any details. only name surname email")}>
         <span className="detail-helper-text">detail</span>
       </Tooltip>
     </Text>

@@ -1,6 +1,6 @@
-import { Card, Group, Box } from '@mantine/core';
-import React from 'react';
-import classes from './RelatedArticleArea.module.css';
+import { Card, Group, Box } from "@mantine/core";
+import React from "react";
+import classes from "./RelatedArticleArea.module.css";
 
 const RelatedArticlesArea = () => {
   const relatedArticles = false;

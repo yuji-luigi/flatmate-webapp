@@ -1,7 +1,7 @@
-import { ActionIcon } from '@mantine/core';
-import { IconShare } from '@tabler/icons-react';
-import React from 'react';
-import classes from './ActionIconStyle.module.css';
+import { ActionIcon } from "@mantine/core";
+import { IconShare } from "@tabler/icons-react";
+import React from "react";
+import classes from "./ActionIconStyle.module.css";
 
 export const ShareIconButton = () => {
   return (

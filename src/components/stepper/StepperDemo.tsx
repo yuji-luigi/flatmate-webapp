@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Stepper, Button, Group } from '@mantine/core';
+import { useState } from "react";
+import { Stepper, Button, Group } from "@mantine/core";
 
 export function StepperDemo() {
   const [active, setActive] = useState(1);

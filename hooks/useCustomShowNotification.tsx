@@ -1,11 +1,11 @@
-import { showNotification } from '@mantine/notifications';
-import { Icons } from '../src/data/icons/icons';
+import { showNotification } from "@mantine/notifications";
+import { Icons } from "../src/data/icons/icons";
 
 interface Error {
   message: string;
 }
 
-type NotificationTypes = 'error' | null;
+type NotificationTypes = "error" | null;
 
 const useCustomShowNotification = ({
   message,
@@ -17,12 +17,12 @@ const useCustomShowNotification = ({
   ms: number;
 }) => {
   /** define case error for showing notification */
-  if (type === 'error') {
+  if (type === "error") {
     return showNotification({
-      title: 'Error',
-      color: 'red',
+      title: "Error",
+      color: "red",
       icon: <Icons.alert />,
-      message: /*  data.message || */ message || 'connection error',
+      message: /*  data.message || */ message || "connection error",
       autoClose: 2000,
     });
   }

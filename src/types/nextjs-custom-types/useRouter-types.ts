@@ -1,6 +1,6 @@
-import { NextRouter } from 'next/router';
-import { Sections } from '../general/data/sections-type';
-import { ParsedUrlQuery } from 'querystring';
+import { NextRouter } from "next/router";
+import { Sections } from "../general/data/sections-type";
+import { ParsedUrlQuery } from "querystring";
 
 export interface ParsedQueryCustom extends ParsedUrlQuery {
   entity?: Sections;

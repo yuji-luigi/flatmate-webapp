@@ -1,74 +1,74 @@
-import React from 'react';
-import { Box, Card, Divider, Text } from '@mantine/core';
-import { StaticDataTable } from '../../../../components/datatable/StaticDataTable';
-import { maintenanceStatTableData } from '../../../../../json/dataTable/stat-formfields/maintenanceStatTableData';
-import { DividerStyled } from '../../../../styles/divider/DividerStyled';
-import { StatGridSchema, StatsGrid } from '../../../../components/stats/StatsGrid';
-import { StaticOption } from '../../../../types/general/data/data-table/form-field-type/formField-types';
-import { DataTableDateSwitch } from '../../../../components/datatable/filter/date/DataTableDateSwitch';
-import { useCrudSelectors } from '../../../../redux/features/crud/crudSlice';
-import { Icons } from '../../../../data/icons/icons';
-import { MaintenanceModel } from '../../../../types/models/maintenance-check-type';
+import React from "react";
+import { Box, Card, Divider, Text } from "@mantine/core";
+import { StaticDataTable } from "../../../../components/datatable/StaticDataTable";
+import { maintenanceStatTableData } from "../../../../../json/dataTable/stat-formfields/maintenanceStatTableData";
+import { DividerStyled } from "../../../../styles/divider/DividerStyled";
+import { StatGridSchema, StatsGrid } from "../../../../components/stats/StatsGrid";
+import { StaticOption } from "../../../../types/general/data/data-table/form-field-type/formField-types";
+import { DataTableDateSwitch } from "../../../../components/datatable/filter/date/DataTableDateSwitch";
+import { useCrudSelectors } from "../../../../redux/features/crud/crudSlice";
+import { Icons } from "../../../../data/icons/icons";
+import { MaintenanceModel } from "../../../../types/models/maintenance-check-type";
 
 const mockData = [
   {
-    _id: 'Guasto porta',
-    title: 'Guasto porta',
-    cost: '300',
-    status: 'completed',
-    completedAt: '2021-09-01',
-    completedBy: 'Mario Rossi',
-    createdAt: '2021-08-21',
+    _id: "Guasto porta",
+    title: "Guasto porta",
+    cost: "300",
+    status: "completed",
+    completedAt: "2021-09-01",
+    completedBy: "Mario Rossi",
+    createdAt: "2021-08-21",
   },
   {
-    _id: 'Electrical Repair',
-    title: 'Electrical Repair',
-    cost: '450',
-    status: 'completed',
+    _id: "Electrical Repair",
+    title: "Electrical Repair",
+    cost: "450",
+    status: "completed",
 
-    completedAt: '2021-09-05',
-    completedBy: 'Luca Bianchi',
-    createdAt: '2021-08-25',
+    completedAt: "2021-09-05",
+    completedBy: "Luca Bianchi",
+    createdAt: "2021-08-25",
   },
   {
-    _id: 'Plumbing Issue',
-    title: 'Plumbing Issue',
-    cost: '200',
-    status: 'completed',
+    _id: "Plumbing Issue",
+    title: "Plumbing Issue",
+    cost: "200",
+    status: "completed",
 
-    completedAt: '2021-08-31',
-    completedBy: 'Giulia Verdi',
-    createdAt: '2021-08-19',
+    completedAt: "2021-08-31",
+    completedBy: "Giulia Verdi",
+    createdAt: "2021-08-19",
   },
   {
-    _id: 'Roof Maintenance',
-    title: 'Roof Maintenance',
-    cost: '600',
-    status: 'completed',
+    _id: "Roof Maintenance",
+    title: "Roof Maintenance",
+    cost: "600",
+    status: "completed",
 
-    completedAt: '2021-09-03',
-    completedBy: 'Alessio Giallo',
-    createdAt: '2021-08-17',
+    completedAt: "2021-09-03",
+    completedBy: "Alessio Giallo",
+    createdAt: "2021-08-17",
   },
   {
-    _id: 'Painting Walls',
-    title: 'Painting Walls',
-    cost: '350',
-    status: 'in progress',
+    _id: "Painting Walls",
+    title: "Painting Walls",
+    cost: "350",
+    status: "in progress",
 
     completedAt: null,
     completedBy: null,
-    createdAt: '2021-08-14',
+    createdAt: "2021-08-14",
   },
   {
-    _id: 'HVAC Repair',
-    title: 'HVAC Repair',
-    cost: '550',
-    status: 'pending',
+    _id: "HVAC Repair",
+    title: "HVAC Repair",
+    cost: "550",
+    status: "pending",
     completedAt: null,
     completedBy: null,
 
-    createdAt: '2021-08-10',
+    createdAt: "2021-08-10",
   },
   // {
   //   _id: 'Window Replacement',
@@ -177,42 +177,42 @@ const mockData = [
 //   return acc;
 // }, []);
 function calculateStatsGridData(maintenances: MaintenanceModel[]): StatGridSchema[] {
-  const incomplete = maintenances.filter((item) => item.status === 'incomplete');
-  const completed = maintenances.filter((item) => item.status === 'completed');
-  const inProgress = maintenances.filter((item) => item.status === 'inProgress');
+  const incomplete = maintenances.filter((item) => item.status === "incomplete");
+  const completed = maintenances.filter((item) => item.status === "completed");
+  const inProgress = maintenances.filter((item) => item.status === "inProgress");
   // const invoiced = maintenances.filter((item) => item.status === 'invoiced');
   const statGridData: StatGridSchema[] = [
     {
-      title: 'Completed',
+      title: "Completed",
       value: completed.length,
-      unit: '',
+      unit: "",
       icon: Icons.check,
-      iconColor: 'success',
-      description: 'Done for this month',
+      iconColor: "success",
+      description: "Done for this month",
     },
     {
-      title: 'In Progress',
+      title: "In Progress",
       value: inProgress.length,
-      unit: '',
+      unit: "",
       icon: Icons.progressCheck,
-      iconColor: 'info',
-      description: 'Started but not completed(this month)',
+      iconColor: "info",
+      description: "Started but not completed(this month)",
     },
     {
-      title: 'Incomplete',
+      title: "Incomplete",
       value: incomplete.length,
-      unit: '',
+      unit: "",
       icon: Icons.clockStop,
-      iconColor: 'error',
-      description: 'Not done for this month',
+      iconColor: "error",
+      description: "Not done for this month",
     },
     {
-      title: 'Total spent',
+      title: "Total spent",
       value: maintenances.reduce((acc, item) => acc + +item.invoicesTotal, 0),
-      unit: '€',
+      unit: "€",
       icon: Icons.receipt,
-      iconColor: 'warning',
-      description: 'Total spent for this month',
+      iconColor: "warning",
+      description: "Total spent for this month",
     },
     // {
     //   title: 'Invoiced',
@@ -225,7 +225,7 @@ function calculateStatsGridData(maintenances: MaintenanceModel[]): StatGridSchem
 }
 
 export const DashboardMaintenanceDatatable = () => {
-  const { crudDocuments: maintenances } = useCrudSelectors<MaintenanceModel>('maintenances');
+  const { crudDocuments: maintenances } = useCrudSelectors<MaintenanceModel>("maintenances");
 
   const statGridData = calculateStatsGridData(maintenances);
   return (

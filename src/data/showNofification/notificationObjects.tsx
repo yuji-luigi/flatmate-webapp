@@ -1,4 +1,4 @@
-import { Icons } from '../icons/icons';
+import { Icons } from "../icons/icons";
 
 type ErrorArgs = {
   data?: any;
@@ -8,14 +8,14 @@ type ErrorArgs = {
 export const constructErrorNotificationData = (
   data?: any,
   ms: number = 1000,
-  id: string = 'error'
+  id: string = "error"
 ) => {
   return {
     id,
-    title: 'Error',
-    color: 'red',
+    title: "Error",
+    color: "red",
     icon: <Icons.alert />,
-    message: data || data?.message || 'connection error',
+    message: data || data?.message || "connection error",
     autoClose: ms,
   };
 };
@@ -23,50 +23,50 @@ export const constructErrorNotificationData = (
 export const NOTIFICATIONS = {
   LOADING: {
     email: {
-      id: 'email-submit',
-      title: 'Loading',
-      message: 'Email sending...',
-      color: 'blue',
+      id: "email-submit",
+      title: "Loading",
+      message: "Email sending...",
+      color: "blue",
       // autoClose: 700,
       loading: true,
     },
     uploading: {
-      id: 'uploading',
-      title: 'Loading',
-      message: 'Uploading...',
-      color: 'blue',
+      id: "uploading",
+      title: "Loading",
+      message: "Uploading...",
+      color: "blue",
       // autoClose: 700,
       loading: true,
     },
     general: {
-      id: 'loading-general',
-      title: 'Loading',
-      message: 'Finishing operation...',
-      color: 'blue',
+      id: "loading-general",
+      title: "Loading",
+      message: "Finishing operation...",
+      color: "blue",
       // autoClose: 700,
       loading: true,
     },
   },
   SUCCESS: {
     generic: {
-      title: 'Success',
-      message: 'operation Success',
-      color: 'green',
+      title: "Success",
+      message: "operation Success",
+      color: "green",
       icon: <Icons.check stroke="green" />,
     },
     email: {
-      title: 'Success',
-      message: 'Email sent',
-      color: 'green',
+      title: "Success",
+      message: "Email sent",
+      color: "green",
     },
   },
   ERROR: {
-    general: ({ data, ms = 2000, id = 'error' }: ErrorArgs) => ({
+    general: ({ data, ms = 2000, id = "error" }: ErrorArgs) => ({
       id,
-      title: 'Error',
-      color: 'red',
+      title: "Error",
+      color: "red",
       icon: <Icons.alert />,
-      message: data?.message || data || 'Something went wrong',
+      message: data?.message || data || "Something went wrong",
       autoClose: ms,
     }),
   },

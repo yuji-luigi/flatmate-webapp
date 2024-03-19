@@ -1,9 +1,9 @@
-import { useRef, useState } from 'react';
-import { Box, Button, Group, Text } from '@mantine/core';
-import { Dropzone } from '@mantine/dropzone';
-import { UseFormReturnType } from '@mantine/form';
-import Image from 'next/image';
-import { FormFieldTypes } from '../../types/general/data/data-table/form-field-type/formField-types';
+import { useRef, useState } from "react";
+import { Box, Button, Group, Text } from "@mantine/core";
+import { Dropzone } from "@mantine/dropzone";
+import { UseFormReturnType } from "@mantine/form";
+import Image from "next/image";
+import { FormFieldTypes } from "../../types/general/data/data-table/form-field-type/formField-types";
 
 interface Props {
   form: UseFormReturnType<Record<string, unknown>>;
@@ -28,7 +28,7 @@ export function DropzoneCustomButton({ form, formField }: Props) {
         openRef={openRef}
         onDrop={handleDropFile}
         activateOnClick={false}
-        styles={{ inner: { pointerEvents: 'all' } }}
+        styles={{ inner: { pointerEvents: "all" } }}
       >
         {!!files.length &&
           files.map((file) => (

@@ -1,5 +1,5 @@
-import React from 'react';
-import { ContactUs } from '../../components/general/contact-us/ContactUs';
+import React from "react";
+import { ContactUs } from "../../components/general/contact-us/ContactUs";
 
 const ContactUsSection = () => <ContactUs />;
 

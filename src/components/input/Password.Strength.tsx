@@ -1,10 +1,10 @@
-import { Box, Progress, PasswordInput, Group, Text, Center } from '@mantine/core';
-import { useInputState } from '@mantine/hooks';
-import { IconCheck, IconX } from '@tabler/icons-react';
+import { Box, Progress, PasswordInput, Group, Text, Center } from "@mantine/core";
+import { useInputState } from "@mantine/hooks";
+import { IconCheck, IconX } from "@tabler/icons-react";
 
 function PasswordRequirement({ meets, label }: { meets: boolean; label: string }) {
   return (
-    <Text component="div" c={meets ? 'teal' : 'red'} mt={5} size="sm">
+    <Text component="div" c={meets ? "teal" : "red"} mt={5} size="sm">
       <Center inline>
         {meets ? <IconCheck size="0.9rem" stroke={1.5} /> : <IconX size="0.9rem" stroke={1.5} />}
         <Box ml={7}>{label}</Box>
@@ -14,10 +14,10 @@ function PasswordRequirement({ meets, label }: { meets: boolean; label: string }
 }
 
 const requirements = [
-  { re: /[0-9]/, label: 'Includes number' },
-  { re: /[a-z]/, label: 'Includes lowercase letter' },
-  { re: /[A-Z]/, label: 'Includes uppercase letter' },
-  { re: /[$&+,:;=?@#|'<>.^*()%!-]/, label: 'Includes special symbol' },
+  { re: /[0-9]/, label: "Includes number" },
+  { re: /[a-z]/, label: "Includes lowercase letter" },
+  { re: /[A-Z]/, label: "Includes uppercase letter" },
+  { re: /[$&+,:;=?@#|'<>.^*()%!-]/, label: "Includes special symbol" },
 ];
 
 function getStrength(password: string) {
@@ -33,7 +33,7 @@ function getStrength(password: string) {
 }
 
 export function PasswordStrength({ formControl }: { formControl: any }) {
-  const [value, setValue] = useInputState('');
+  const [value, setValue] = useInputState("");
   const strength = getStrength(value);
   const checks = requirements.map((requirement, index) => (
     <PasswordRequirement key={index} label={requirement.label} meets={requirement.re.test(value)} />
@@ -42,11 +42,11 @@ export function PasswordStrength({ formControl }: { formControl: any }) {
     .fill(0)
     .map((_, index) => (
       <Progress
-        styles={{ section: { transitionDuration: '0ms' } }}
+        styles={{ section: { transitionDuration: "0ms" } }}
         value={
           value.length > 0 && index === 0 ? 100 : strength >= ((index + 1) / 4) * 100 ? 100 : 0
         }
-        color={strength > 80 ? 'teal' : strength > 50 ? 'yellow' : 'red'}
+        color={strength > 80 ? "teal" : strength > 50 ? "yellow" : "red"}
         key={index}
         size={4}
       />

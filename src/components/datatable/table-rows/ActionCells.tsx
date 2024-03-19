@@ -1,13 +1,13 @@
-import { Group, ActionIcon, Text } from '@mantine/core';
-import { IconPencil, IconTrash } from '@tabler/icons-react';
-import { useRouter } from 'next/router';
-import { useDrawerContext } from '../../../context/DataTableDrawerContext';
-import { usePaginationContext } from '../../../context/PaginationContext';
-import { useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
-import { useCustomModalContext } from '../../../context/modal-context/_ModalContext';
-import { Sections } from '../../../types/general/data/sections-type';
-import { QrCodeButton } from './tablecell/action-cells/QrCodeButton';
-import { MongooseBaseModel } from '../../../types/models/mongoose-base-model';
+import { Group, ActionIcon, Text } from "@mantine/core";
+import { IconPencil, IconTrash } from "@tabler/icons-react";
+import { useRouter } from "next/router";
+import { useDrawerContext } from "../../../context/DataTableDrawerContext";
+import { usePaginationContext } from "../../../context/PaginationContext";
+import { useCrudSliceStore } from "../../../redux/features/crud/crudSlice";
+import { useCustomModalContext } from "../../../context/modal-context/_ModalContext";
+import { Sections } from "../../../types/general/data/sections-type";
+import { QrCodeButton } from "./tablecell/action-cells/QrCodeButton";
+import { MongooseBaseModel } from "../../../types/models/mongoose-base-model";
 
 export function ActionCells({
   rowData,
@@ -40,12 +40,12 @@ export function ActionCells({
 
   const onDelete = (): void => {
     openConfirmModal({
-      title: 'Delete',
-      type: 'alert',
+      title: "Delete",
+      type: "alert",
       centered: true,
       labels: {
-        cancel: 'Cancel',
-        confirm: 'Delete',
+        cancel: "Cancel",
+        confirm: "Delete",
       },
       children: <Text>Are you sure delete the data??</Text>,
       onCancel: closeModal,

@@ -1,6 +1,6 @@
-import { forwardRef, ReactNode } from 'react';
+import { forwardRef, ReactNode } from "react";
 // next
-import Head from 'next/head';
+import Head from "next/head";
 
 // ----------------------------------------------------------------------
 interface props {
@@ -10,7 +10,7 @@ interface props {
   other?: any;
 }
 
-const Page = forwardRef<void, props>(({ children, title = '', meta, ...other }, ref) => (
+const Page = forwardRef<void, props>(({ children, title = "", meta, ...other }, ref) => (
   <>
     <Head>
       <title>{` Flatmates | ${title} `}</title>

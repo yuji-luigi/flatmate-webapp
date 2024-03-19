@@ -1,7 +1,7 @@
-import { Drawer, Divider } from '@mantine/core';
-import React, { Fragment } from 'react';
-import { NotificationListRoot } from '../../../../components/list/notification-list/NotificationListRoot';
-import classes from './HeaderNotificationButton.module.css';
+import { Drawer, Divider } from "@mantine/core";
+import React, { Fragment } from "react";
+import { NotificationListRoot } from "../../../../components/list/notification-list/NotificationListRoot";
+import classes from "./HeaderNotificationButton.module.css";
 
 type NotificationDrawerProps = {
   opened: boolean;

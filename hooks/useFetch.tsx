@@ -1,8 +1,8 @@
-import { Axios, AxiosRequestConfig } from 'axios';
-import useSWR, { SWRConfiguration } from 'swr';
-import axiosInstance, { AxiosResDataGeneric } from '../src/utils/axios-instance';
+import { Axios, AxiosRequestConfig } from "axios";
+import useSWR, { SWRConfiguration } from "swr";
+import axiosInstance, { AxiosResDataGeneric } from "../src/utils/axios-instance";
 
-export type FetchMethods = 'POST' | 'GET' | 'PUT' | 'PATCH';
+export type FetchMethods = "POST" | "GET" | "PUT" | "PATCH";
 const useFetch = async ({ path, method }: { path: string; method: FetchMethods }) => {
   const res = await fetch(path, {
     method,
@@ -12,7 +12,7 @@ const useFetch = async ({ path, method }: { path: string; method: FetchMethods }
 };
 
 export default useFetch;
-type AxiosMethods = 'post' | 'get' | 'delete' | 'put' | 'patch';
+type AxiosMethods = "post" | "get" | "delete" | "put" | "patch";
 
 export function useFetchSwr<Data = any, Payload = any>({
   path,
@@ -39,7 +39,7 @@ async function fetcher<Data, Payload>(
   args: [AxiosMethods, URL, Payload, AxiosRequestConfig]
 ): Promise<Data> {
   const [method, path, payload, axiosConfig] = args;
-  if (method === 'post' || method === 'put' || method === 'patch') {
+  if (method === "post" || method === "put" || method === "patch") {
     const rawRes = await axiosInstance.post(path, payload, axiosConfig);
     return rawRes.data;
   }

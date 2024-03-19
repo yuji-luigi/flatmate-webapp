@@ -1,8 +1,8 @@
-import { IUser } from '../context/auth/useAuth';
-import { MongooseBaseModel } from './mongoose-base-model';
-import { OrganizationModel } from './organization-model';
-import { SpaceModel } from './space-model';
-import { UploadModel } from './upload-model';
+import { IUser } from "../context/auth/useAuth";
+import { MongooseBaseModel } from "./mongoose-base-model";
+import { OrganizationModel } from "./organization-model";
+import { SpaceModel } from "./space-model";
+import { UploadModel } from "./upload-model";
 // import { CheckInterface } from './maintenance-check-type';
 
 // export const MAINTENANCE_STATUS = {

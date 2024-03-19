@@ -1,16 +1,16 @@
-import React, { ReactNode, useEffect, useRef, useState } from 'react';
-import { Box, Tabs } from '@mantine/core';
-import { useRouter } from 'next/router';
-import { set } from 'nprogress';
-import { DashboardHeaderSearch } from './header/DashboardHeaderSearch';
-import { NavbarVertical } from './navbar/NavbarVertical';
-import useLayoutContext from '../../../hooks/useLayoutContext';
-import { useCookieContext } from '../../context/CookieContext';
-import { useTabContext } from '../../context/tab-context/TabContextProvider';
-import { TAB_LIST_CONFIG } from '../../sections/dashboard/dashboard_top/sections-in-tabs/tabList';
-import classes from './DashboardLayout.module.css';
-import { PATH_CLIENT, _PATH_FRONTEND } from '../../path/path-frontend';
-import useAuth from '../../../hooks/useAuth';
+import React, { ReactNode, useEffect, useRef, useState } from "react";
+import { Box, Tabs } from "@mantine/core";
+import { useRouter } from "next/router";
+import { set } from "nprogress";
+import { DashboardHeaderSearch } from "./header/DashboardHeaderSearch";
+import { NavbarVertical } from "./navbar/NavbarVertical";
+import useLayoutContext from "../../../hooks/useLayoutContext";
+import { useCookieContext } from "../../context/CookieContext";
+import { useTabContext } from "../../context/tab-context/TabContextProvider";
+import { TAB_LIST_CONFIG } from "../../sections/dashboard/dashboard_top/sections-in-tabs/tabList";
+import classes from "./DashboardLayout.module.css";
+import { PATH_CLIENT, _PATH_FRONTEND } from "../../path/path-frontend";
+import useAuth from "../../../hooks/useAuth";
 
 const DashboardLayout = ({ children }: { children: ReactNode }) => {
   // const { setCurrentTab, currentTab } = useTabContext();
@@ -18,7 +18,7 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
   const { user } = useAuth();
   const router = useRouter();
   const [currentTab, setCurrentTab] = useState<string | null>(
-    (router.query.tab as string) || 'dashboard'
+    (router.query.tab as string) || "dashboard"
   );
   const { currentSpace } = useCookieContext();
   const containerRef = useRef<HTMLDivElement>(null);
@@ -34,9 +34,9 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
         containerRef.current.style.backgroundPosition = `center ${-offset}px`;
       }
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
   useEffect(() => {

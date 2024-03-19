@@ -1,15 +1,15 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { useEffect } from 'react';
-import { showNotification } from '@mantine/notifications';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { useEffect } from "react";
+import { showNotification } from "@mantine/notifications";
 import {
   FetchSpaceSelectionPayload,
   fetchSpaceSelections,
   selectSpaceSelection,
-} from '../spaceSelectionAsyncthunks';
+} from "../spaceSelectionAsyncthunks";
 // import { sectionData } from '../../../data';
-import { useAppDispatch, useAppSelector } from '../../../../hooks/redux-hooks/useRedux';
-import { NOTIFICATIONS } from '../../../data/showNofification/notificationObjects';
-import { SpaceModel } from '../../../types/models/space-model';
+import { useAppDispatch, useAppSelector } from "../../../../hooks/redux-hooks/useRedux";
+import { NOTIFICATIONS } from "../../../data/showNofification/notificationObjects";
+import { SpaceModel } from "../../../types/models/space-model";
 
 const initialState: {
   data: {
@@ -25,7 +25,7 @@ const initialState: {
     // selectedSpace: null,
     spaceSelections: [],
   },
-  status: 'idle',
+  status: "idle",
   submitting: false,
   error: null,
   message: null,
@@ -34,11 +34,11 @@ const initialState: {
 //TODO: ONDELETE GET REQUEST/ SOME UPDATE REDUX STORE LOGIC IN BACKEND OR IN FRONTEND
 
 export const spaceSelectionSlice = createSlice({
-  name: 'spaceSelection',
+  name: "spaceSelection",
   initialState,
   reducers: {
     resetStatus: (state) => {
-      state.status = 'idle';
+      state.status = "idle";
       state.error = null;
       state.message = null;
     },
@@ -49,27 +49,27 @@ export const spaceSelectionSlice = createSlice({
   extraReducers(builder) {
     builder
       .addCase(fetchSpaceSelections.pending, (state) => {
-        state.status = 'loading';
+        state.status = "loading";
       })
       .addCase(fetchSpaceSelections.fulfilled, (state, action) => {
         const { documents } = action.payload;
-        state.status = 'succeed';
+        state.status = "succeed";
         state.data.spaceSelections = documents;
       })
       .addCase(fetchSpaceSelections.rejected, (state, action) => {
-        state.status = 'failed';
+        state.status = "failed";
         state.error = action.error.message;
       })
       .addCase(selectSpaceSelection.pending, (state) => {
-        state.status = 'loading';
+        state.status = "loading";
       })
       .addCase(selectSpaceSelection.fulfilled, (state, action) => {
         const { documents } = action.payload;
-        state.status = 'succeed';
+        state.status = "succeed";
         state.data.spaceSelections = documents;
       })
       .addCase(selectSpaceSelection.rejected, (state, action) => {
-        state.status = 'failed';
+        state.status = "failed";
         state.error = action.error.message;
       });
   },

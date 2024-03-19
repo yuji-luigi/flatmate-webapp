@@ -1,14 +1,14 @@
-import { ActionIcon, Indicator } from '@mantine/core';
-import React from 'react';
-import { useDisclosure } from '@mantine/hooks';
-import useSWR from 'swr';
-import { Icons } from '../../../../data/icons/icons';
+import { ActionIcon, Indicator } from "@mantine/core";
+import React from "react";
+import { useDisclosure } from "@mantine/hooks";
+import useSWR from "swr";
+import { Icons } from "../../../../data/icons/icons";
 
-import { NotificationDrawer } from './NotificationDrawer';
-import axiosInstance, { AxiosResDataGeneric } from '../../../../utils/axios-instance';
-import { _PATH_API } from '../../../../path/path-api';
-import { NotificationModel } from '../../../../types/models/notification-model';
-import { useCookieContext } from '../../../../context/CookieContext';
+import { NotificationDrawer } from "./NotificationDrawer";
+import axiosInstance, { AxiosResDataGeneric } from "../../../../utils/axios-instance";
+import { _PATH_API } from "../../../../path/path-api";
+import { NotificationModel } from "../../../../types/models/notification-model";
+import { useCookieContext } from "../../../../context/CookieContext";
 
 const fetchNotifications = async () => {
   const res = await axiosInstance.get<AxiosResDataGeneric<NotificationModel[]>>(

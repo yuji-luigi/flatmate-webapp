@@ -1,9 +1,9 @@
-import { Table, ScrollArea, Divider, Box, Card } from '@mantine/core';
+import { Table, ScrollArea, Divider, Box, Card } from "@mantine/core";
 
-import StaticTableHeader from './header/StaticTableHeader';
-import { StaticTableRow } from './table-rows/StaticTableRow';
-import classes from './DataTable.module.css';
-import { QueryFilterWeb } from './filter/QueryFilterWeb';
+import StaticTableHeader from "./header/StaticTableHeader";
+import { StaticTableRow } from "./table-rows/StaticTableRow";
+import classes from "./DataTable.module.css";
+import { QueryFilterWeb } from "./filter/QueryFilterWeb";
 
 export function StaticDataTable({
   json,

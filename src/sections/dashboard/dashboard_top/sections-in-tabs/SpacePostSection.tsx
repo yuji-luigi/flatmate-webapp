@@ -1,20 +1,20 @@
-import { Stack } from '@mantine/core';
-import { useEffect } from 'react';
-import { useCrudSelectors, useCrudSliceStore } from '../../../../redux/features/crud/crudSlice';
-import PostFeedCard from '../../../../components/posts/feed/PostFeedCard';
-import { NewPostInFeed } from '../../../../components/posts/feed/NewPostInFeed';
-import { SimpleDisclosureContextProvider } from '../../../../context/SimpleDisclosureContext';
-import classes from './SpacePostSection.module.css';
-import { ThreadModel } from '../../../../types/models/space-model';
-import { useGetCrudDocuments } from '../../../../hooks/useGetCrudDocuments';
+import { Stack } from "@mantine/core";
+import { useEffect } from "react";
+import { useCrudSelectors, useCrudSliceStore } from "../../../../redux/features/crud/crudSlice";
+import PostFeedCard from "../../../../components/posts/feed/PostFeedCard";
+import { NewPostInFeed } from "../../../../components/posts/feed/NewPostInFeed";
+import { SimpleDisclosureContextProvider } from "../../../../context/SimpleDisclosureContext";
+import classes from "./SpacePostSection.module.css";
+import { ThreadModel } from "../../../../types/models/space-model";
+import { useGetCrudDocuments } from "../../../../hooks/useGetCrudDocuments";
 
 export const SpacePostSection = () => {
   const { fetchCrudDocuments } = useCrudSliceStore();
-  const { crudDocuments } = useCrudSelectors('threads') as { crudDocuments: ThreadModel[] };
-  useGetCrudDocuments({ entity: 'threads', withPagination: false });
+  const { crudDocuments } = useCrudSelectors("threads") as { crudDocuments: ThreadModel[] };
+  useGetCrudDocuments({ entity: "threads", withPagination: false });
   useEffect(() => {
     if (!crudDocuments.length) {
-      fetchCrudDocuments({ entity: 'threads' });
+      fetchCrudDocuments({ entity: "threads" });
     }
   }, []);
   return (

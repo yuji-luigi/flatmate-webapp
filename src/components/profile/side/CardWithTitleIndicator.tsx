@@ -1,7 +1,7 @@
-import { Card, Title, Box, MantineStyleProp } from '@mantine/core';
-import React from 'react';
-import { TEXT_SIZE } from '../../text/text-size';
-import classes from './sideCardStyles.module.css';
+import { Card, Title, Box, MantineStyleProp } from "@mantine/core";
+import React from "react";
+import { TEXT_SIZE } from "../../text/text-size";
+import classes from "./sideCardStyles.module.css";
 
 interface Prop {
   title?: string | React.ReactNode;

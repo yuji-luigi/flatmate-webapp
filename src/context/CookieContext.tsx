@@ -1,13 +1,13 @@
-import { getCookie } from 'cookies-next';
-import { useRouter } from 'next/router';
-import { createContext, ReactNode, use, useContext, useEffect, useRef, useState } from 'react';
-import { useCrudSliceStore } from '../redux/features/crud/crudSlice';
-import { entities, sections } from '../data';
-import { CurrentSpace } from '../types/context/auth/useAuth';
-import { CookieContextState } from '../types/context/cookie-context';
-import { SpaceModel } from '../types/models/space-model';
-import { ParsedQueryCustom } from '../types/nextjs-custom-types/useRouter-types';
-import { isString } from '../utils/type-guard/isString';
+import { getCookie } from "cookies-next";
+import { useRouter } from "next/router";
+import { createContext, ReactNode, use, useContext, useEffect, useRef, useState } from "react";
+import { useCrudSliceStore } from "../redux/features/crud/crudSlice";
+import { entities, sections } from "../data";
+import { CurrentSpace } from "../types/context/auth/useAuth";
+import { CookieContextState } from "../types/context/cookie-context";
+import { SpaceModel } from "../types/models/space-model";
+import { ParsedQueryCustom } from "../types/nextjs-custom-types/useRouter-types";
+import { isString } from "../utils/type-guard/isString";
 
 // const exEntities = ['top/threads', 'top/maintenances', 'top/checks'];
 // const ENTITIES = [...entities, ...exEntities];
@@ -36,8 +36,8 @@ const useStore = () => {
 
   useEffect(() => {
     if (!currentOrganization) {
-      const organizationId = getCookie('organizationId');
-      if (typeof organizationId === 'boolean' || !organizationId) return;
+      const organizationId = getCookie("organizationId");
+      if (typeof organizationId === "boolean" || !organizationId) return;
       setCurrentOrganization(organizationId);
     }
   }, []);
@@ -45,11 +45,11 @@ const useStore = () => {
     if (!currentSpace) handleSetSpace();
   }, []);
   const handleSetSpace = () => {
-    const spaceName = getCookie('spaceName');
-    const spaceAddress = getCookie('spaceAddress');
-    const spaceId = getCookie('spaceId');
-    const spaceSlug = getCookie('spaceSlug');
-    const spaceImage = getCookie('spaceImage');
+    const spaceName = getCookie("spaceName");
+    const spaceAddress = getCookie("spaceAddress");
+    const spaceId = getCookie("spaceId");
+    const spaceSlug = getCookie("spaceSlug");
+    const spaceImage = getCookie("spaceImage");
     if (isString(spaceId) && isString(spaceName) && isString(spaceSlug)) {
       setCurrentSpace({
         _id: spaceId,
@@ -87,6 +87,6 @@ type UseCookieCtxParams = {
   url?: string;
 };
 export const useCookieContext = (/* args?: UseCookieCtxParams */) => {
-  if (!CookieContext) console.log('CookieContext is not defined');
+  if (!CookieContext) console.log("CookieContext is not defined");
   return useContext(CookieContext);
 };

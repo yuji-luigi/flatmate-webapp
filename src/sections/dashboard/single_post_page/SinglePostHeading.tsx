@@ -1,7 +1,7 @@
-import { Stack, Group, Text, Avatar } from '@mantine/core';
-import React from 'react';
-import { ThreadModel } from '../../../types/models/thread-model';
-import classes from './SingleMaintenanceHeading.module.css';
+import { Stack, Group, Text, Avatar } from "@mantine/core";
+import React from "react";
+import { ThreadModel } from "../../../types/models/thread-model";
+import classes from "./SingleMaintenanceHeading.module.css";
 
 const SingleMaintenanceHeading = ({ thread }: { thread: ThreadModel }) => {
   return (

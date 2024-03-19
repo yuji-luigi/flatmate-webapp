@@ -1,5 +1,5 @@
-import { useDisclosure } from '@mantine/hooks';
-import { Dialog, Group, Button, TextInput, Text } from '@mantine/core';
+import { useDisclosure } from "@mantine/hooks";
+import { Dialog, Group, Button, TextInput, Text } from "@mantine/core";
 
 export function DialogDefault() {
   const [opened, { toggle, close }] = useDisclosure(false);

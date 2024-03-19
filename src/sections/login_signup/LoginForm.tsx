@@ -1,16 +1,16 @@
-import { TextInput, PasswordInput, Checkbox, Button } from '@mantine/core';
-import { notifications } from '@mantine/notifications';
+import { TextInput, PasswordInput, Checkbox, Button } from "@mantine/core";
+import { notifications } from "@mantine/notifications";
 
-import { useForm } from '@mantine/form';
+import { useForm } from "@mantine/form";
 
-import { useRouter } from 'next/router';
-import useAuth from '../../../hooks/useAuth';
-import { LoginFormValues } from '../../types/context/auth/formData';
+import { useRouter } from "next/router";
+import useAuth from "../../../hooks/useAuth";
+import { LoginFormValues } from "../../types/context/auth/formData";
 
-import { Icons } from '../../data/icons/icons';
-import { PATH_CLIENT, _PATH_FRONTEND } from '../../path/path-frontend';
-import { useCookieContext } from '../../context/CookieContext';
-import { Role } from '../../types/models/space-model';
+import { Icons } from "../../data/icons/icons";
+import { PATH_CLIENT, _PATH_FRONTEND } from "../../path/path-frontend";
+import { useCookieContext } from "../../context/CookieContext";
+import { Role } from "../../types/models/space-model";
 
 function LoginForm({ role }: { role: Role }) {
   const { resetCurrentSpace, setCurrentOrganization } = useCookieContext();
@@ -19,12 +19,12 @@ function LoginForm({ role }: { role: Role }) {
 
   const form = useForm<LoginFormValues>({
     initialValues: {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
       termsOfService: false,
     },
     validate: {
-      email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
+      email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
     },
   });
 
@@ -36,10 +36,10 @@ function LoginForm({ role }: { role: Role }) {
       await login(values.email, values.password, role);
     } catch (error: any) {
       notifications.show({
-        title: 'Error',
-        color: 'red',
+        title: "Error",
+        color: "red",
         icon: <Icons.alert />,
-        message: error.message || error || 'connection error',
+        message: error.message || error || "connection error",
         autoClose: 2000,
       });
       console.error(error.message || error);
@@ -52,7 +52,7 @@ function LoginForm({ role }: { role: Role }) {
         label="Email address"
         placeholder="hello@gmail.com"
         size="md"
-        {...form.getInputProps('email')}
+        {...form.getInputProps("email")}
       />
       <PasswordInput
         label="Password"
@@ -60,7 +60,7 @@ function LoginForm({ role }: { role: Role }) {
         placeholder="Your password"
         mt="md"
         size="md"
-        {...form.getInputProps('password')}
+        {...form.getInputProps("password")}
       />
       <Checkbox label="Keep me logged in" mt="xl" size="md" />
       <Button fullWidth type="submit" mt="xl" size="md">

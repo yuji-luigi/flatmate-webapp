@@ -1,16 +1,16 @@
-import { Group, ActionIcon, Menu } from '@mantine/core';
-import React from 'react';
-import { IconDots } from '@tabler/icons-react';
-import { useRouter } from 'next/router';
-import useAuth from '../../../hooks/useAuth';
-import { Icons } from '../../data/icons/icons';
-import { FONT_SIZES } from '../../lib/enums';
-import { useCrudSliceStore } from '../../redux/features/crud/crudSlice';
-import { useDrawerContext } from '../../context/DataTableDrawerContext';
-import { Sections } from '../../types/general/data/sections-type';
-import { PATH_CLIENT } from '../../path/path-frontend';
-import { MaintenanceModel } from '../../types/models/maintenance-check-type';
-import { ThreadModel } from '../../types/models/space-model';
+import { Group, ActionIcon, Menu } from "@mantine/core";
+import React from "react";
+import { IconDots } from "@tabler/icons-react";
+import { useRouter } from "next/router";
+import useAuth from "../../../hooks/useAuth";
+import { Icons } from "../../data/icons/icons";
+import { FONT_SIZES } from "../../lib/enums";
+import { useCrudSliceStore } from "../../redux/features/crud/crudSlice";
+import { useDrawerContext } from "../../context/DataTableDrawerContext";
+import { Sections } from "../../types/general/data/sections-type";
+import { PATH_CLIENT } from "../../path/path-frontend";
+import { MaintenanceModel } from "../../types/models/maintenance-check-type";
+import { ThreadModel } from "../../types/models/space-model";
 
 const PostEditButton = ({
   data,
@@ -33,7 +33,7 @@ const PostEditButton = ({
   //   return () => selectCrudDocument({ document: null, entity });
   // }, []);
   const handleDeleteClicked = () => {
-    if (window.confirm('Are you sure you want to delete this post?')) {
+    if (window.confirm("Are you sure you want to delete this post?")) {
       deleteCrudDocumentWithPagination({ documentId: data._id, entity });
       router.push(PATH_CLIENT.posts);
     }
@@ -66,7 +66,7 @@ const PostEditButton = ({
                 onClick={handleDeleteClicked}
                 style={{
                   fontSize: FONT_SIZES.menuItemsS,
-                  color: 'red',
+                  color: "red",
                   // '&:hover': {
                   //   background:
                   //     light-dark(var(--mantine-color-gray-5), var(--mantine-color-dark-1)),

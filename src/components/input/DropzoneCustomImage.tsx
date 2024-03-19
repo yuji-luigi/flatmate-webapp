@@ -1,11 +1,11 @@
-import { Group, Text, useMantineTheme, rem, Button, Box } from '@mantine/core';
-import { IconUpload, IconPhoto, IconX } from '@tabler/icons-react';
-import { Dropzone, DropzoneProps, IMAGE_MIME_TYPE } from '@mantine/dropzone';
-import { UseFormReturnType } from '@mantine/form';
-import { useRef, useState } from 'react';
-import { Carousel } from '@mantine/carousel';
-import Image from 'next/image';
-import { FormFieldTypes } from '../../types/general/data/data-table/form-field-type/formField-types';
+import { Group, Text, useMantineTheme, rem, Button, Box } from "@mantine/core";
+import { IconUpload, IconPhoto, IconX } from "@tabler/icons-react";
+import { Dropzone, DropzoneProps, IMAGE_MIME_TYPE } from "@mantine/dropzone";
+import { UseFormReturnType } from "@mantine/form";
+import { useRef, useState } from "react";
+import { Carousel } from "@mantine/carousel";
+import Image from "next/image";
+import { FormFieldTypes } from "../../types/general/data/data-table/form-field-type/formField-types";
 
 interface Props extends Partial<DropzoneProps> {
   form: UseFormReturnType<Record<string, unknown>>;
@@ -34,7 +34,7 @@ export function DropzoneCustomImage(props: Props) {
         activateOnClick={!files.length}
         onDrop={handleDropFile}
         multiple={formField?.multi}
-        onReject={(_files) => console.log('rejected files', files)}
+        onReject={(_files) => console.log("rejected files", files)}
         maxSize={3 * 1024 ** 2}
         accept={IMAGE_MIME_TYPE}
         {...props}
@@ -49,7 +49,7 @@ export function DropzoneCustomImage(props: Props) {
               height="150"
             />
           ))}
-        <Group justify="center" gap="xl" style={{ maxHeight: rem(220), pointerEvents: 'none' }}>
+        <Group justify="center" gap="xl" style={{ maxHeight: rem(220), pointerEvents: "none" }}>
           <Dropzone.Accept>
             <IconUpload
               size="3.2rem"

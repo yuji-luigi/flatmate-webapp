@@ -1,64 +1,64 @@
-import React from 'react';
-import { Box, Card, Divider } from '@mantine/core';
-import { StaticDataTable } from '../../../../components/datatable/StaticDataTable';
-import { maintenanceStatTableData } from '../../../../../json/dataTable/stat-formfields/maintenanceStatTableData';
-import { DividerStyled } from '../../../../styles/divider/DividerStyled';
-import { eventsStatTableData } from '../../../../../json/dataTable/stat-formfields/eventsStatTableData';
+import React from "react";
+import { Box, Card, Divider } from "@mantine/core";
+import { StaticDataTable } from "../../../../components/datatable/StaticDataTable";
+import { maintenanceStatTableData } from "../../../../../json/dataTable/stat-formfields/maintenanceStatTableData";
+import { DividerStyled } from "../../../../styles/divider/DividerStyled";
+import { eventsStatTableData } from "../../../../../json/dataTable/stat-formfields/eventsStatTableData";
 
 const mockData = [
   {
-    _id: 'Ristrutturazione impianto elettrico',
-    title: 'Ristrutturazione impianto elettrico',
-    description: 'Ristrutturazione impianto elettrico.....',
-    isMaintenance: 'manutenzione',
-    status: 'ongoing',
-    fromDate: '2021-08-01',
-    toDate: '2021-08-21',
+    _id: "Ristrutturazione impianto elettrico",
+    title: "Ristrutturazione impianto elettrico",
+    description: "Ristrutturazione impianto elettrico.....",
+    isMaintenance: "manutenzione",
+    status: "ongoing",
+    fromDate: "2021-08-01",
+    toDate: "2021-08-21",
   },
   {
-    _id: 'BBQ Party',
-    title: 'BBQ Party',
-    description: 'Facciamo una bella grigliata tutti insieme...',
-    isMaintenance: '',
-    status: 'confirmed',
-    fromDate: '2021-10-01',
-    toDate: '2021-10-01',
+    _id: "BBQ Party",
+    title: "BBQ Party",
+    description: "Facciamo una bella grigliata tutti insieme...",
+    isMaintenance: "",
+    status: "confirmed",
+    fromDate: "2021-10-01",
+    toDate: "2021-10-01",
   },
   {
-    _id: 'Plumbing Repair',
-    title: 'Plumbing Repair',
-    description: 'Riparazione impianto idraulico...',
-    isMaintenance: 'manutenzione',
-    status: 'scheduled',
-    fromDate: '2021-09-15',
-    toDate: '2021-09-16',
+    _id: "Plumbing Repair",
+    title: "Plumbing Repair",
+    description: "Riparazione impianto idraulico...",
+    isMaintenance: "manutenzione",
+    status: "scheduled",
+    fromDate: "2021-09-15",
+    toDate: "2021-09-16",
   },
   {
-    _id: 'Community Meeting',
-    title: 'Community Meeting',
-    description: 'Incontro della comunità...',
-    isMaintenance: '',
-    status: 'confirmed',
-    fromDate: '2021-09-10',
-    toDate: '2021-09-10',
+    _id: "Community Meeting",
+    title: "Community Meeting",
+    description: "Incontro della comunità...",
+    isMaintenance: "",
+    status: "confirmed",
+    fromDate: "2021-09-10",
+    toDate: "2021-09-10",
   },
   {
-    _id: 'Roof Inspection',
-    title: 'Roof Inspection',
-    description: 'Ispezione del tetto...',
-    isMaintenance: 'manutenzione',
-    status: 'scheduled',
-    fromDate: '2021-09-25',
-    toDate: '2021-09-25',
+    _id: "Roof Inspection",
+    title: "Roof Inspection",
+    description: "Ispezione del tetto...",
+    isMaintenance: "manutenzione",
+    status: "scheduled",
+    fromDate: "2021-09-25",
+    toDate: "2021-09-25",
   },
   {
-    _id: 'Gardening Workshop',
-    title: 'Gardening Workshop',
-    description: 'Workshop di giardinaggio...',
-    isMaintenance: '',
-    status: 'confirmed',
-    fromDate: '2021-10-05',
-    toDate: '2021-10-05',
+    _id: "Gardening Workshop",
+    title: "Gardening Workshop",
+    description: "Workshop di giardinaggio...",
+    isMaintenance: "",
+    status: "confirmed",
+    fromDate: "2021-10-05",
+    toDate: "2021-10-05",
   },
   // {
   //_id title: 'Elevator Maintenance',

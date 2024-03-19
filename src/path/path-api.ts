@@ -1,4 +1,4 @@
-import { Role } from '../types/models/space-model';
+import { Role } from "../types/models/space-model";
 
 export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 export type GetPathFunc = (path: string) => string;
@@ -6,10 +6,10 @@ export type GetPathFunc = (path: string) => string;
  *  define auth string for api
  * tried to avoid repetition but was not necessary?
  */
-export const ROOT_AUTH = 'auth';
+export const ROOT_AUTH = "auth";
 const getAuthPath: GetPathFunc = (path) => `${ROOT_AUTH}/${path}`;
-export const ROOT_ORGANIZATION_AUTH = 'auth';
-export const ROOT_SPACE_AUTH = 'auth';
+export const ROOT_ORGANIZATION_AUTH = "auth";
+export const ROOT_SPACE_AUTH = "auth";
 
 type TAuthPath = {
   // [key: string]: string;
@@ -20,10 +20,10 @@ type TAuthPath = {
 };
 
 export const PATH_AUTH: TAuthPath = {
-  login: getAuthPath('login'), // deprecate this to _PATH_API
-  register: getAuthPath('register'),
-  logout: getAuthPath('logout'),
-  me: getAuthPath('me'),
+  login: getAuthPath("login"), // deprecate this to _PATH_API
+  register: getAuthPath("register"),
+  logout: getAuthPath("logout"),
+  me: getAuthPath("me"),
 };
 
 export enum PATH_API {
@@ -31,31 +31,31 @@ export enum PATH_API {
    * creation: /linkedChildren/${entity}/...
    * update: /linkedChildren/${entity}/${}
    * */
-  auth = 'auth',
-  accessPermissions = 'accessPermissions',
-  linkedChildren = 'linkedChildren',
-  uploads = 'upload-files',
-  importExcel = 'import-excel',
-  uploadsMaintenance = 'upload-files/maintenance-file',
-  spaces = 'spaces',
-  getSpaceSelections = 'auth/space-selections',
-  organization = 'organizations',
-  maintainers = 'maintainers',
-  maintainersSlug = 'maintainers/slug',
-  maintainersSpace = 'maintainers/spaces',
-  maintenanceFileUpload = 'auth-tokens/maintenances/file-upload',
-  maintenanceAuthFileUpload = 'auth-tokens/maintenances/file-upload',
-  organizationAll = 'organizations/all',
-  organizationCookie = 'organizations/cookie',
-  checks = 'checks',
-  getOrganizationsAndSpaces = 'organizations/spaces',
-  getOrganizationsForAdmin = 'organizations/selections/super-admin',
-  authTokens = 'auth-tokens',
-  users = 'users',
-  onBoarding = 'on-boarding',
-  threads = 'threads',
-  maintenances = 'maintenances',
-  statistics = 'statistics',
+  auth = "auth",
+  accessPermissions = "accessPermissions",
+  linkedChildren = "linkedChildren",
+  uploads = "upload-files",
+  importExcel = "import-excel",
+  uploadsMaintenance = "upload-files/maintenance-file",
+  spaces = "spaces",
+  getSpaceSelections = "auth/space-selections",
+  organization = "organizations",
+  maintainers = "maintainers",
+  maintainersSlug = "maintainers/slug",
+  maintainersSpace = "maintainers/spaces",
+  maintenanceFileUpload = "auth-tokens/maintenances/file-upload",
+  maintenanceAuthFileUpload = "auth-tokens/maintenances/file-upload",
+  organizationAll = "organizations/all",
+  organizationCookie = "organizations/cookie",
+  checks = "checks",
+  getOrganizationsAndSpaces = "organizations/spaces",
+  getOrganizationsForAdmin = "organizations/selections/super-admin",
+  authTokens = "auth-tokens",
+  users = "users",
+  onBoarding = "on-boarding",
+  threads = "threads",
+  maintenances = "maintenances",
+  statistics = "statistics",
 }
 
 const all = (entity: string) => `${entity}`;
@@ -116,7 +116,7 @@ export const _PATH_API = {
   },
   importExcel: {
     root: PATH_API.importExcel,
-    users: getExcelEndpoint(PATH_API.importExcel, 'users'),
+    users: getExcelEndpoint(PATH_API.importExcel, "users"),
   },
   authTokens: {
     root: PATH_API.authTokens,
@@ -142,7 +142,7 @@ export const _PATH_API = {
   },
 
   notifications: {
-    root: 'notifications',
+    root: "notifications",
   },
   statistics: {
     root: PATH_API.statistics,
@@ -168,7 +168,7 @@ export const _PATH_API = {
   },
 } as const;
 
-export const PATH_API_DATA_TABLE_ROOT = 'with-pagination';
+export const PATH_API_DATA_TABLE_ROOT = "with-pagination";
 
 export const PATH_API_DATA_TABLE = {
   linkedChildren: `${PATH_API_DATA_TABLE_ROOT}/linkedChildren`,

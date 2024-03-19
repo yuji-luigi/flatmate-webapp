@@ -1,12 +1,12 @@
-import { Card, Image, Avatar, Text, Group, Box, Stack } from '@mantine/core';
-import Link from 'next/link';
-import { threadId } from 'worker_threads';
-import { useRouter } from 'next/router';
-import { CARD_LINK_PATH, PATH_CLIENT } from '../../path/path-frontend';
-import { MaintenanceModel } from '../../types/models/maintenance-model';
-import { ThreadModel } from '../../types/models/thread-model';
-import { IUser } from '../../types/context/auth/useAuth';
-import classes from './CardArticleImageBig.module.css';
+import { Card, Image, Avatar, Text, Group, Box, Stack } from "@mantine/core";
+import Link from "next/link";
+import { threadId } from "worker_threads";
+import { useRouter } from "next/router";
+import { CARD_LINK_PATH, PATH_CLIENT } from "../../path/path-frontend";
+import { MaintenanceModel } from "../../types/models/maintenance-model";
+import { ThreadModel } from "../../types/models/thread-model";
+import { IUser } from "../../types/context/auth/useAuth";
+import classes from "./CardArticleImageBig.module.css";
 
 interface CardArticleImageDescFooterVerticalProps {
   image?: string;
@@ -29,9 +29,9 @@ export function CardArticleSmall({
   date,
   data,
   hrefRoot,
-  author = { name: 'not registered user', avatar: '' },
+  author = { name: "not registered user", avatar: "" },
 }: CardArticleImageDescFooterVerticalProps) {
-  const _description = data.description || '';
+  const _description = data.description || "";
   const description =
     _description.length > 50 ? `${_description?.substring(0, 50)}...` : _description;
   const router = useRouter();
@@ -41,7 +41,7 @@ export function CardArticleSmall({
         <Group wrap="nowrap" style={{ height: 150 }} gap={0}>
           {image && <Image src={image} height={150} width={140} />}
           <div className={classes.body}>
-            <Box style={{ height: 100, overflow: 'hidden' }}>
+            <Box style={{ height: 100, overflow: "hidden" }}>
               <Text className={classes.title} mt="xs" mb="xs">
                 {title}
               </Text>
@@ -52,7 +52,7 @@ export function CardArticleSmall({
             <Group wrap="nowrap" gap="xs">
               <Group gap="xs" wrap="nowrap">
                 <Avatar size={20} src="" />
-                <Text size="xs">{author?.name || 'hh'}</Text>
+                <Text size="xs">{author?.name || "hh"}</Text>
               </Group>
               <Text size="xs" color="dimmed">
                 •

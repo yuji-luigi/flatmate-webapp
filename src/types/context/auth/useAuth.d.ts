@@ -1,5 +1,5 @@
-import { CookieValueTypes } from 'cookies-next';
-import { MeUser } from '../../models/space-model';
+import { CookieValueTypes } from "cookies-next";
+import { MeUser } from "../../models/space-model";
 
 interface CurrentSpace {
   _id: string;
@@ -20,7 +20,7 @@ export type JwtReturnType = {
   organizationId?: string;
 };
 
-type ActionEnum = 'LOGIN' | 'REGISTER' | 'LOGOUT' | 'INITIALIZE';
+type ActionEnum = "LOGIN" | "REGISTER" | "LOGOUT" | "INITIALIZE";
 
 export interface JWTContextState {
   isAuthenticated?: boolean | null;
@@ -38,7 +38,7 @@ export interface JWTContextReducerAction {
 }
 
 export interface JWTContextReducerLogoutAction {
-  type: 'LOGOUT';
+  type: "LOGOUT";
 }
 
 export type JWTContextReducer = (

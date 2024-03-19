@@ -1,7 +1,7 @@
-import { configureStore } from '@reduxjs/toolkit';
-import crudReducer from './features/crud/crudSlice';
-import selectedItemReducer from './features/crud/selectedItemSlice';
-import spaceSelectionSlice from './features/crud/spaceSelectionSlice';
+import { configureStore } from "@reduxjs/toolkit";
+import crudReducer from "./features/crud/crudSlice";
+import selectedItemReducer from "./features/crud/selectedItemSlice";
+import spaceSelectionSlice from "./features/crud/spaceSelectionSlice";
 // import { rootReducer } from './rootReducer';
 // import { useDispatch, useSelector } from 'react-redux';
 

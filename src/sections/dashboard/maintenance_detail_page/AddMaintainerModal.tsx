@@ -1,21 +1,21 @@
-import { Button, ComboboxData, Group, LoadingOverlay, MultiSelect, Stack } from '@mantine/core';
-import React, { useState } from 'react';
-import useSWR from 'swr';
-import { AxiosError } from 'axios';
-import { useForm } from '@mantine/form';
-import { useRouter } from 'next/router';
-import { hideNotification, notifications } from '@mantine/notifications';
-import { PATH_API, _PATH_API } from '../../../path/path-api';
-import axiosInstance from '../../../utils/axios-instance';
-import { useCookieContext } from '../../../context/CookieContext';
-import LoadingScreen from '../../../components/screen/LoadingScreen';
-import useAuth from '../../../../hooks/useAuth';
-import { useCrudSelectors, useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
-import { getEntityFromUrl, sleep } from '../../../utils/helpers/helper-functions';
-import { useCustomModalContext } from '../../../context/modal-context/_ModalContext';
-import { SpaceModel } from '../../../types/models/space-model';
-import { SelectOption } from '../../../types/general/data/data-table/form-field-type/formField-types';
-import { useFetchSwr } from '../../../../hooks/useFetch';
+import { Button, ComboboxData, Group, LoadingOverlay, MultiSelect, Stack } from "@mantine/core";
+import React, { useState } from "react";
+import useSWR from "swr";
+import { AxiosError } from "axios";
+import { useForm } from "@mantine/form";
+import { useRouter } from "next/router";
+import { hideNotification, notifications } from "@mantine/notifications";
+import { PATH_API, _PATH_API } from "../../../path/path-api";
+import axiosInstance from "../../../utils/axios-instance";
+import { useCookieContext } from "../../../context/CookieContext";
+import LoadingScreen from "../../../components/screen/LoadingScreen";
+import useAuth from "../../../../hooks/useAuth";
+import { useCrudSelectors, useCrudSliceStore } from "../../../redux/features/crud/crudSlice";
+import { getEntityFromUrl, sleep } from "../../../utils/helpers/helper-functions";
+import { useCustomModalContext } from "../../../context/modal-context/_ModalContext";
+import { SpaceModel } from "../../../types/models/space-model";
+import { SelectOption } from "../../../types/general/data/data-table/form-field-type/formField-types";
+import { useFetchSwr } from "../../../../hooks/useFetch";
 
 const fetchMainSpaces = async () => {
   const res = await axiosInstance.get(`${PATH_API.getSpaceSelections}`);
@@ -45,7 +45,7 @@ const AddMaintainerModal = () => {
     data,
     error: errorSwr,
     isLoading,
-  } = useFetchSwr<SpaceModel[]>({ path: PATH_API.getSpaceSelections, method: 'get' });
+  } = useFetchSwr<SpaceModel[]>({ path: PATH_API.getSpaceSelections, method: "get" });
 
   if (!data || isLoading) return <LoadingScreen />;
   const spaces = data.data;
@@ -58,10 +58,10 @@ const AddMaintainerModal = () => {
     e.preventDefault();
     setSubmitting(true);
     notifications.show({
-      id: 'submit',
-      message: 'Sending data to the server. Please wait...',
+      id: "submit",
+      message: "Sending data to the server. Please wait...",
       autoClose: false,
-      color: 'blue',
+      color: "blue",
       loading: true,
     });
     if (form.values.spaces.length === 0) return;
@@ -74,14 +74,14 @@ const AddMaintainerModal = () => {
       // update crud document
       // setCrudDocument({ entity: _entity, document: rawMaintainer.data.data });
       await sleep(500);
-      notifications.show({ id: '1', message: 'Maintainer added to building' });
+      notifications.show({ id: "1", message: "Maintainer added to building" });
       closeModal();
     } catch (error: any) {
       await sleep(500);
-      notifications.show({ id: '1', message: error.message, color: 'red' });
+      notifications.show({ id: "1", message: error.message, color: "red" });
     } finally {
       setSubmitting(false);
-      hideNotification('submit');
+      hideNotification("submit");
     }
   };
 
@@ -93,7 +93,7 @@ const AddMaintainerModal = () => {
           placeholder="Choose spaces"
           label="select building/space to add a maintainer"
           data={options}
-          {...form.getInputProps('spaces')}
+          {...form.getInputProps("spaces")}
         />
         <Group justify="right">
           <Button variant="outline">Cancel</Button>

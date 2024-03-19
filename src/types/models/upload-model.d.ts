@@ -3,7 +3,7 @@ import {
   DocumentExtension,
   ImageExtension,
   VideoExtension,
-} from '../files/extensions-types';
+} from "../files/extensions-types";
 
 export interface UploadModel {
   _id: string;

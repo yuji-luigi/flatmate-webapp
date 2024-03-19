@@ -1,6 +1,6 @@
-import { Group, Radio, Stack } from '@mantine/core';
+import { Group, Radio, Stack } from "@mantine/core";
 
-import { RadioGroupProps } from '../../../types/general/data/data-table';
+import { RadioGroupProps } from "../../../types/general/data/data-table";
 
 function RadioGroup(props: RadioGroupProps) {
   const {
@@ -8,10 +8,10 @@ function RadioGroup(props: RadioGroupProps) {
     label,
     name,
     options = [
-      { label: 'placeholder', value: 'placeholder' },
-      { label: 'placeholder', value: 'placeholder' },
+      { label: "placeholder", value: "placeholder" },
+      { label: "placeholder", value: "placeholder" },
     ],
-    orientation = 'horizontal',
+    orientation = "horizontal",
     orientationProps,
     ...rest
   } = props;
@@ -23,7 +23,7 @@ function RadioGroup(props: RadioGroupProps) {
 
   // const { onChange, ...restField } = field;
 
-  const Orientation = orientation === 'horizontal' ? Group : Stack;
+  const Orientation = orientation === "horizontal" ? Group : Stack;
 
   return (
     <Radio.Group

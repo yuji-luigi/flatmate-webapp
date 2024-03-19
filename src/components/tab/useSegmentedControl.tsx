@@ -1,5 +1,5 @@
-import { type } from 'os';
-import { createContext, ReactNode, useContext, useState } from 'react';
+import { type } from "os";
+import { createContext, ReactNode, useContext, useState } from "react";
 
 type SegmentedControlContext = {
   currentValue: string;
@@ -7,12 +7,12 @@ type SegmentedControlContext = {
 };
 
 export const SegmentedControlContext = createContext<SegmentedControlContext>({
-  currentValue: '',
+  currentValue: "",
   setCurrentValue() {},
 });
 
 const useStore = () => {
-  const [currentValue, setCurrentValue] = useState('');
+  const [currentValue, setCurrentValue] = useState("");
 
   return {
     currentValue,

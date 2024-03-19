@@ -1,14 +1,14 @@
-import { Badge, Group, useMantineColorScheme, useMantineTheme } from '@mantine/core';
-import React from 'react';
-import { useColorScheme } from '@mantine/hooks';
+import { Badge, Group, useMantineColorScheme, useMantineTheme } from "@mantine/core";
+import React from "react";
+import { useColorScheme } from "@mantine/hooks";
 import {
   BadgeCellConfig,
   StaticOption,
   StaticSelectFormFieldType,
-} from '../../../../../types/general/data/data-table/form-field-type/formField-types';
-import { Icons } from '../../../../../data/icons/icons';
+} from "../../../../../types/general/data/data-table/form-field-type/formField-types";
+import { Icons } from "../../../../../data/icons/icons";
 
-import classes from './Cell.module.css';
+import classes from "./Cell.module.css";
 
 const BadgeCellDecorator = ({
   children,
@@ -21,7 +21,7 @@ const BadgeCellDecorator = ({
 }) => {
   const { colorScheme } = useMantineColorScheme();
   let { color } = cellConfig.badge;
-  if (cellConfig.type === 'static-select') {
+  if (cellConfig.type === "static-select") {
     color =
       cellConfig.options?.find((option: StaticSelectFormFieldType) => option.value === value)
         ?.color || color;
@@ -30,7 +30,7 @@ const BadgeCellDecorator = ({
     <Badge
       className={classes.badge}
       color={color}
-      variant={colorScheme === 'dark' ? 'light' : 'filled'}
+      variant={colorScheme === "dark" ? "light" : "filled"}
     >
       {children}
     </Badge>

@@ -1,8 +1,8 @@
-import { createContext, ReactNode, useCallback, useContext, useState } from 'react';
-import { _ModalContextStates, ModalDataTypes } from '../../types/modal/modal-context-type';
+import { createContext, ReactNode, useCallback, useContext, useState } from "react";
+import { _ModalContextStates, ModalDataTypes } from "../../types/modal/modal-context-type";
 
 const defaultModalValues: ModalDataTypes = {
-  title: '',
+  title: "",
   opened: false,
   centered: true,
   children: <></>,
@@ -12,8 +12,8 @@ const defaultModalValues: ModalDataTypes = {
   },
   onCancel() {},
   onConfirm() {},
-  labels: { confirm: '', cancel: '' },
-  type: 'confirm',
+  labels: { confirm: "", cancel: "" },
+  type: "confirm",
 };
 
 export const _ModalContext = createContext<_ModalContextStates>({

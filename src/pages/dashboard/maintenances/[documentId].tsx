@@ -1,13 +1,13 @@
-import React, { ReactElement } from 'react';
-import { Container, Divider } from '@mantine/core';
-import { GetServerSidePropsContext } from 'next';
-import axiosInstance from '../../../utils/axios-instance';
-import Layout from '../../../layouts';
-import RelatedArticlesArea from '../../../sections/dashboard/maintenance_detail_page/RelatedArticleArea';
-import { SingleArticleCard } from '../../../components/posts/SingleArticleCard';
-import { SingleArticleHeading } from '../../../components/posts/SingleArticleHeading';
-import classes from './MaintenancePage.module.css';
-import { MaintenanceModel } from '../../../types/models/maintenance-check-type';
+import React, { ReactElement } from "react";
+import { Container, Divider } from "@mantine/core";
+import { GetServerSidePropsContext } from "next";
+import axiosInstance from "../../../utils/axios-instance";
+import Layout from "../../../layouts";
+import RelatedArticlesArea from "../../../sections/dashboard/maintenance_detail_page/RelatedArticleArea";
+import { SingleArticleCard } from "../../../components/posts/SingleArticleCard";
+import { SingleArticleHeading } from "../../../components/posts/SingleArticleHeading";
+import classes from "./MaintenancePage.module.css";
+import { MaintenanceModel } from "../../../types/models/maintenance-check-type";
 
 const MaintenancePage = ({ maintenance }: { maintenance: MaintenanceModel }) => {
   // return 'rendered';
@@ -33,8 +33,8 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
       {
         headers: {
           Authorization: `Bearer ${jwtToken}`,
-          space: context.req.cookies.space || '',
-          organization: context.req.cookies.organization || '',
+          space: context.req.cookies.space || "",
+          organization: context.req.cookies.organization || "",
         },
       }
     );
@@ -44,7 +44,7 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
     if (!maintenance) {
       return {
         redirect: {
-          destination: '/dashboard/posts',
+          destination: "/dashboard/posts",
         },
       };
     }
@@ -60,7 +60,7 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
     console.error(error);
     return {
       redirect: {
-        destination: '/dashboard/posts',
+        destination: "/dashboard/posts",
       },
     };
   }

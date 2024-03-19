@@ -1,24 +1,24 @@
-import { ReactElement } from 'react';
-import useSWR from 'swr';
-import { AxiosError } from 'axios';
-import { useRouter } from 'next/router';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { GetServerSidePropsContext } from 'next';
-import { PATH_CLIENT, _PATH_FRONTEND } from '../path/path-frontend';
-import axiosInstance, { AxiosMeResponse, AxiosResDataGeneric } from '../utils/axios-instance';
-import { PATH_API, PATH_AUTH, _PATH_API } from '../path/path-api';
+import { ReactElement } from "react";
+import useSWR from "swr";
+import { AxiosError } from "axios";
+import { useRouter } from "next/router";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { GetServerSidePropsContext } from "next";
+import { PATH_CLIENT, _PATH_FRONTEND } from "../path/path-frontend";
+import axiosInstance, { AxiosMeResponse, AxiosResDataGeneric } from "../utils/axios-instance";
+import { PATH_API, PATH_AUTH, _PATH_API } from "../path/path-api";
 
-import Layout from '../layouts';
-import { SpaceModel, UserModel } from '../types/models/space-model';
-import { ChooseSpaceSection } from '../sections/login_signup/choose-space/ChooseSpaceSection';
-import LoadingScreen from '../components/screen/LoadingScreen';
-import useAuth from '../../hooks/useAuth';
-import { NoSpacesFound } from '../sections/login_signup/choose-space/NoSpacesFound';
+import Layout from "../layouts";
+import { SpaceModel, UserModel } from "../types/models/space-model";
+import { ChooseSpaceSection } from "../sections/login_signup/choose-space/ChooseSpaceSection";
+import LoadingScreen from "../components/screen/LoadingScreen";
+import useAuth from "../../hooks/useAuth";
+import { NoSpacesFound } from "../sections/login_signup/choose-space/NoSpacesFound";
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const translationObj = await serverSideTranslations(context.locale || 'it', ['common'], null, [
-    'it',
-    'en',
+  const translationObj = await serverSideTranslations(context.locale || "it", ["common"], null, [
+    "it",
+    "en",
   ]);
   try {
     const { locale } = context;
@@ -50,7 +50,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
         },
       };
     }
-    if (!user.isSuperAdmin && loggedAs === 'Inhabitant') {
+    if (!user.isSuperAdmin && loggedAs === "Inhabitant") {
       return {
         props: {
           ...translationObj,
@@ -67,7 +67,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   } catch (error) {
     return {
       redirect: {
-        destination: '/500',
+        destination: "/500",
       },
     };
   }

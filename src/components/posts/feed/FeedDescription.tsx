@@ -1,9 +1,9 @@
-import { Box, Button, Text } from '@mantine/core';
-import Link from 'next/link';
-import { PATH_CLIENT } from '../../../path/path-frontend';
-import { FeedCardData } from '../../../types/components-types/feed/post-feed-card-type';
-import { truncateString } from '../../../utils/helpers/truncateString';
-import classes from './FeedDescription.module.css';
+import { Box, Button, Text } from "@mantine/core";
+import Link from "next/link";
+import { PATH_CLIENT } from "../../../path/path-frontend";
+import { FeedCardData } from "../../../types/components-types/feed/post-feed-card-type";
+import { truncateString } from "../../../utils/helpers/truncateString";
+import classes from "./FeedDescription.module.css";
 
 type FeedDescriptionProps = {
   data: FeedCardData;
@@ -15,13 +15,13 @@ type FeedDescriptionProps = {
 
 export const FeedDescription = (props: FeedDescriptionProps) => {
   const { className, popupFn, textLength = 500, showFullText } = props;
-  const { description = '', entity, _id } = props.data;
+  const { description = "", entity, _id } = props.data;
   const fullText = description;
 
   const _description = showFullText ? fullText : truncateString(description, textLength);
   // const _description = showFullText ? fullText : description.slice(0, textLength);
 
-  const readMore = '...Read more';
+  const readMore = "...Read more";
   // const readMore = description.length > textLength ? '...Read more' : 'Read more';
 
   const link = popupFn ? (
