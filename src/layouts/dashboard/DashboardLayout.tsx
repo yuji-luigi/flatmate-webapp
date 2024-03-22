@@ -7,7 +7,7 @@ import { NavbarVertical } from "./navbar/NavbarVertical";
 import useLayoutContext from "../../../hooks/useLayoutContext";
 import { useCookieContext } from "../../context/CookieContext";
 import { useTabContext } from "../../context/tab-context/TabContextProvider";
-import { TAB_LIST_CONFIG } from "../../sections/dashboard/dashboard_top/sections-in-tabs/tabList";
+import { TAB_LIST_CONFIG } from "./sections-in-tabs/tabList";
 import classes from "./DashboardLayout.module.css";
 import { PATH_CLIENT, _PATH_FRONTEND } from "../../path/path-frontend";
 import useAuth from "../../../hooks/useAuth";

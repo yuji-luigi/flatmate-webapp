@@ -1,22 +1,22 @@
 import React, { useEffect } from "react";
 import { Group, Stack, Text } from "@mantine/core";
 import { useLocalStorage } from "@mantine/hooks";
-import { useCrudSelectors } from "../../../../redux/features/crud/crudSlice";
+import { useCrudSelectors } from "../../../redux/features/crud/crudSlice";
 
-import PostFeedCard from "../../../../components/posts/feed/PostFeedCard";
-import { StaticDataTable } from "../../../../components/datatable/StaticDataTable";
-import { maintenancesTableData } from "../../../../../json/dataTable/formfields/maintenancesTableData";
-import { Icons } from "../../../../data/icons/icons";
-import { DashboardTopHeader } from "../components/DashboardTopHeader";
+import PostFeedCard from "../../../components/posts/feed/PostFeedCard";
+import { StaticDataTable } from "../../../components/datatable/StaticDataTable";
+import { maintenancesTableData } from "../../../../json/dataTable/formfields/maintenancesTableData";
+import { Icons } from "../../../data/icons/icons";
+import { DashboardTopHeader } from "../../../sections/dashboard/dashboard_top/components/DashboardTopHeader";
 import { FeedTableSwitch } from "./compontents/FeedTableSwitch";
-import { useSegmentedControl } from "../../../../components/tab/useSegmentedControl";
-import { filterList } from "../../../../components/datatable/filter/logic/applyFilter";
-import { useFilter } from "../../../../../hooks/useFilter";
-import useTable, { getComparator } from "../../../../../hooks/useTable";
-import { MaintenanceModel } from "../../../../types/models/maintenance-check-type";
-import { FeedView } from "../../../../components/posts/FeedView";
-import { StackOverride } from "../../../../components/overrides/stack/StackOverride";
-import { DashboardTopCenteredHeader } from "../components/DashboardTopCenteredHeader";
+import { useSegmentedControl } from "../../../components/tab/useSegmentedControl";
+import { filterList } from "../../../components/datatable/filter/logic/applyFilter";
+import { useFilter } from "../../../../hooks/useFilter";
+import useTable, { getComparator } from "../../../../hooks/useTable";
+import { MaintenanceModel } from "../../../types/models/maintenance-check-type";
+import { FeedView } from "../../../components/posts/FeedView";
+import { StackOverride } from "../../../components/overrides/stack/StackOverride";
+import { DashboardTopCenteredHeader } from "../../../sections/dashboard/dashboard_top/components/DashboardTopCenteredHeader";
 
 const VIEW_KEY = "feed-maintenance-view";
 

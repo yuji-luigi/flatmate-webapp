@@ -1,0 +1,17 @@
+.box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 30;
+  padding: var(--padding-sm);
+
+  /* align-items: center; */
+
+  /* width: 100%; */
+  gap: var(--flex-gap);
+}
+
+.summary {
+  z-index: 1;
+  /* width: 100%; */
+}

@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import useLayoutContext from "../../../hooks/useLayoutContext";
 import { useCookieContext } from "../../context/CookieContext";
 import { useTabContext } from "../../context/tab-context/TabContextProvider";
-import { TAB_LIST_CONFIG } from "../../sections/dashboard/dashboard_top/sections-in-tabs/tabList";
+import { TAB_LIST_CONFIG } from "../dashboard/sections-in-tabs/tabList";
 import classes from "./AuthTokenRouteLayout.module.css";
 import { AuthTokenLayoutHeader } from "./AuthTokenLayoutHeader";
 

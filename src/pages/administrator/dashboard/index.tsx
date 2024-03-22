@@ -5,13 +5,12 @@ import Layout from "../../../layouts";
 import axiosInstance, { AxiosMeResponse } from "../../../utils/axios-instance";
 import { useCookieContext } from "../../../context/CookieContext";
 import { useCrudSliceStore } from "../../../redux/features/crud/crudSlice";
-import { DashboardRootTabPanels } from "../../../sections/dashboard/dashboard_top/sections-in-tabs/dashboard/DashboardRootTabPanels";
+import { DashboardRootTabPanels } from "../../../layouts/dashboard/sections-in-tabs/admin-tabs/DashboardRootTabPanels";
 import { PATH_AUTH } from "../../../path/path-api";
-import { useGetCrudDocuments } from "../../../hooks/useGetCrudDocuments";
 import { _PATH_FRONTEND } from "../../../path/path-frontend";
+import AdministratorLayout from "../../../layouts/administrator/AdministratorLayout";
 
 const DashboardPage = () => {
-  const { currentOrganization, currentSpace } = useCookieContext();
   const { setCrudDocument, setCrudDocuments } = useCrudSliceStore();
 
   useEffect(() => {
@@ -20,17 +19,15 @@ const DashboardPage = () => {
 
   const handleSectionData = async () => {
     const rawRes = await axiosInstance.get(`${process.env.NEXT_PUBLIC_API_URL}/home`);
-    const { space, maintainers, maintenances, threads, statistics } = rawRes.data.data || [];
+    const { space, maintenances, statistics } = rawRes.data.data || [];
     setCrudDocument({ entity: "statistics", document: statistics });
     setCrudDocument({ entity: "spaces", document: space });
-    // setCrudDocuments({ entity: 'maintainers', documents: maintainers });
     setCrudDocuments({ entity: "maintenances", documents: maintenances });
-    // setCrudDocuments({ entity: 'threads', documents: threads });
   };
   return <DashboardRootTabPanels />;
 };
 DashboardPage.getLayout = function getLayout(page: ReactElement) {
-  return <Layout variant="dashboard">{page}</Layout>;
+  return <AdministratorLayout>{page}</AdministratorLayout>;
 };
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {

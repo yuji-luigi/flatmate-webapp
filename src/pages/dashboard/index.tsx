@@ -5,7 +5,7 @@ import Layout from "../../layouts";
 import axiosInstance, { AxiosMeResponse } from "../../utils/axios-instance";
 import { useCookieContext } from "../../context/CookieContext";
 import { useCrudSliceStore } from "../../redux/features/crud/crudSlice";
-import { DashboardRootTabPanels } from "../../sections/dashboard/dashboard_top/sections-in-tabs/dashboard/DashboardRootTabPanels";
+import { DashboardRootTabPanels } from "../../layouts/dashboard/sections-in-tabs/admin-tabs/DashboardRootTabPanels";
 import { PATH_AUTH } from "../../path/path-api";
 import { useGetCrudDocuments } from "../../hooks/useGetCrudDocuments";
 import { _PATH_FRONTEND } from "../../path/path-frontend";

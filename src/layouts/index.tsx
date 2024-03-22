@@ -5,7 +5,7 @@ import DashboardLayout from "./dashboard/DashboardLayout";
 import { HomepageLayout } from "./homepage";
 import { CookieContextProvider } from "../context/CookieContext";
 import { TabContextProvider } from "../context/tab-context/TabContextProvider";
-import classes from "./index.module.css";
+// import classes from "./index.module.css";
 import { AuthTokenRouteLayout } from "./auth-token/AuthTokenRouteLayout";
 import { ClientProvider } from "./ClientProvider";
 
@@ -52,7 +52,7 @@ const Layout = ({
       <CookieContextProvider>
         <TabContextProvider>
           <DashboardLayout>
-            <Box className={classes.dashboardContainer}>{children}</Box>
+            <Box className="dashboardContainer">{children}</Box>
           </DashboardLayout>
         </TabContextProvider>
       </CookieContextProvider>

@@ -9,17 +9,17 @@ import { LogoBanner } from "../../../components/banner/LogoBanner";
 
 import OrganizationSpaceSelect from "../../../components/input/custom-inputs/OrganizationSpaceSelect";
 import { HeaderCreationModalWrapper } from "../../../components/modal/header-creation-modal/HeaderCreationModalWrapper";
-import { TAB_LIST_CONFIG } from "../../../sections/dashboard/dashboard_top/sections-in-tabs/tabList";
+import { TAB_LIST_CONFIG } from "../sections-in-tabs/adm-tabList";
 import { useCustomMQuery } from "../../../../hooks/useCustomMQuery";
 import { TabList } from "../../../components/tab/TabList";
-import classesM from "./DashboardHeaderSearch.module.css";
+import classesM from "./AdministratorHeader.module.css";
 import { HeaderNotificationButton } from "./notifications/HeaderNotificationButton";
 import SpaceSelectInput from "../../../components/input/custom-inputs/SpaceSelectInput";
 import HeaderSpaceSelect from "../../../components/input/custom-inputs/HeaderSpaceSelect";
 
 export type JSONType = typeof links;
 
-export function DashboardHeaderSearch() {
+export function AdministratorHeader() {
   const { isOpen, toggleBarOpen } = useLayoutContext();
   const { isMobile } = useCustomMQuery();
 
