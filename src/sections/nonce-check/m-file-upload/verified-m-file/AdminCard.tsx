@@ -12,6 +12,7 @@ type Props = {
 // TODO: admin card to show all admins/system admins
 export const AdminCard = (props: Props) => {
   const { admins, style } = props;
+  return null;
   // return <div>adminCard</div>;
   return (
     <CardWithTitle title="Contacts" style={{ background: "transparent" }}>

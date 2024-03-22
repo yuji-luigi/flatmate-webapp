@@ -10,7 +10,6 @@ const LogoutPage = () => {
   const handleLogout = async () => {
     logout();
   };
-  return <div>jfioa</div>;
   return <LoadingScreen />;
 };
 

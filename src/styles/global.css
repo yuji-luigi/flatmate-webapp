@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bangers&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap");
 
 :root {
   --break-point-xs: 576px;
@@ -240,7 +240,7 @@ ul {
   &:hover {
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
   }
-  &[aria-disabled='true'] {
+  &[aria-disabled="true"] {
     opacity: 0.5;
     pointer-events: none;
   }
@@ -277,16 +277,16 @@ ul {
   grid-column: span 2;
   place-self: end center;
   width: 100%;
-  &[data-column='1'] {
+  &[data-column="1"] {
     grid-column: span 1;
   }
-  &[data-column='2'] {
+  &[data-column="2"] {
     grid-column: span 2;
   }
-  &[data-column='3'] {
+  &[data-column="3"] {
     grid-column: span;
   }
-  &[data-column='4'] {
+  &[data-column="4"] {
     grid-column: span 4;
   }
   @container (max-width: $mantine-breakpoint-xs) {
@@ -397,7 +397,7 @@ ul {
   &:hover {
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
   }
-  &[aria-disabled='true'] {
+  &[aria-disabled="true"] {
     opacity: 0.5;
     pointer-events: none;
   }
@@ -407,4 +407,57 @@ ul {
   display: flex;
   flex-direction: column;
   gap: var(--flex-gap);
+}
+.flex-box-column-sm {
+  display: flex;
+  flex-direction: column;
+  gap: var(--flex-gap-sm);
+}
+
+.flex-box-row {
+  display: flex;
+  flex-direction: row;
+  gap: var(--flex-gap);
+}
+
+.maintenance-single-page-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  .full {
+    grid-column: span 2;
+  }
+  .contacts {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: end;
+  }
+  .contact {
+    display: flex;
+    flex-direction: row;
+    gap: var(--flex-gap);
+  }
+  .page-header-info {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.building-info-container {
+  display: grid;
+  grid-template-columns: minmax(200px, 300px) 1fr;
+  gap: var(--flex-gap);
+  .image {
+    width: 100%;
+    height: 100%;
+  }
+  .info-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--flex-gap);
+  }
+  .info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
 }

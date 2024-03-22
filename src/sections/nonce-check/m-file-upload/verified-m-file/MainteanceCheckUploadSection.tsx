@@ -9,8 +9,9 @@ import { useCustomModalContext } from "../../../../context/modal-context/_ModalC
 import { CardStyled } from "../../../../styles/card/CardStyled";
 import { AdminCard } from "./AdminCard";
 import { useLocale } from "../../../../../hooks/useLocale";
-import { PageHeader } from "../../../../components/profile/CoverWithoutCard";
 import ProfileCoverStatic from "../../../../components/profile/ProfileCoverStatic copy";
+import { PageHeader } from "../PageHeader";
+import { MaintenanceTab } from "./maintenance-tab/MaintenanceTab";
 
 type Props = {
   pinOk: boolean;
@@ -43,7 +44,7 @@ export const MaintenanceCheckUploadSection = (props: Props) => {
       {pinOk && (
         <Grid align="stretch" gutter="md">
           <Grid.Col style={{ display: "flex", flexDirection: "column", gap: 16 }} span={12}>
-            <PageHeader {...maintenance.space} description={maintenance.space.address} />
+            <PageHeader space={maintenance.space} maintenance={maintenance} />
             <Tabs
               classNames={{
                 tab: "default-tab",
@@ -63,7 +64,7 @@ export const MaintenanceCheckUploadSection = (props: Props) => {
               </Tabs.List>
               <Tabs.Panel value="maintenance">
                 <div>
-                  <PostFeedCardContent data={maintenance} popupFn={handleOpenModal} showFullText />
+                  <MaintenanceTab maintenance={maintenance} />
                 </div>
               </Tabs.Panel>
               <Tabs.Panel value="invoice">
@@ -146,17 +147,27 @@ function Overview() {
 }
 
 function BuildingInfo() {
+  const { t } = useLocale();
   const { crudDocument: maintenance } = useCrudSelectors<MaintenanceModel>("maintenances");
   return (
-    <div>
-      <Text>Building: {maintenance.space.name}</Text>
-      <Text>address: {maintenance.space.address}</Text>
-      <Image
-        width={500}
-        height={500}
-        src={maintenance.space.cover?.url || ""}
-        alt={maintenance.space.name}
-      />
+    <div className="building-info-container">
+      <div className="info-container">
+        <div className="info">
+          <Text>{t("Condominium")}:</Text>
+          <Text>{maintenance.space.name}</Text>
+          <Text>{t("address")}:</Text>
+          <Text>{maintenance.space.address}</Text>
+        </div>
+      </div>
+      <div>
+        <Image
+          width={300}
+          height={300}
+          className="image"
+          src={maintenance.space.cover?.url || ""}
+          alt={maintenance.space.name}
+        />
+      </div>
     </div>
   );
 }
