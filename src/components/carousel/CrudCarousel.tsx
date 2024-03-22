@@ -1,15 +1,15 @@
-import { Carousel } from '@mantine/carousel';
-import { ActionIcon, Box, Button, Group, Overlay } from '@mantine/core';
-import Image from 'next/image';
-import { Fragment, useRef, useState } from 'react';
-import { Icons } from '../../data/icons/icons';
-import { PATH_API } from '../../path/path-api';
-import { useCrudSelectors } from '../../redux/features/crud/crudSlice';
-import axiosInstance from '../../utils/axios-instance';
-import ImageSlide from './ImageSlide';
-import { Sections } from '../../types/general/data/sections-type';
-import { FormFieldTypes } from '../../types/general/data/data-table/form-field-type/formField-types';
-import { UploadModel } from '../../types/models/upload-model';
+import { Carousel } from "@mantine/carousel";
+import { ActionIcon, Box, Button, Group, Overlay } from "@mantine/core";
+import Image from "next/image";
+import { Fragment, useRef, useState } from "react";
+import { Icons } from "../../data/icons/icons";
+import { PATH_API } from "../../path/path-api";
+import { useCrudSelectors } from "../../redux/features/crud/crudSlice";
+import axiosInstance from "../../utils/axios-instance";
+import ImageSlide from "./ImageSlide";
+import { Sections } from "../../types/general/data/sections-type";
+import { FormFieldTypes } from "../../types/general/data/data-table/form-field-type/formField-types";
+import { UploadModel } from "../../types/models/upload-model";
 // import { Image } from '@mantine/core';
 
 type ImageType = File | UploadModel;
@@ -34,7 +34,7 @@ function CrudCarousel({
     if (isFile) {
       return;
     }
-    if (window.confirm('Are you sure you want to delete this image?') && crudDocument) {
+    if (window.confirm("Are you sure you want to delete this image?") && crudDocument) {
       const res = await axiosInstance.delete(
         `${PATH_API.uploads}/${entity}/${crudDocument._id}/${formField.name}/${image._id}`
       );
@@ -42,7 +42,7 @@ function CrudCarousel({
     }
   };
 
-  const colors = ['red', 'green', 'blue', 'yellow', 'orange', 'purple', 'pink', 'gray'];
+  const colors = ["red", "green", "blue", "yellow", "orange", "purple", "pink", "gray"];
 
   if (true) {
     return (

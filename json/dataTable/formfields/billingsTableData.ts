@@ -1,4 +1,4 @@
-import { FormFieldTypes } from '../../../src/types/general/data/data-table/form-field-type/formField-types';
+import { FormFieldTypes } from "../../../src/types/general/data/data-table/form-field-type/formField-types";
 
 export const billingsTableData: Array<FormFieldTypes> = [
   // {
@@ -19,13 +19,13 @@ export const billingsTableData: Array<FormFieldTypes> = [
   //   priority: 5,
   // },
   {
-    id: 'organization',
-    name: 'organization',
-    label: 'Organizations',
-    type: 'select',
-    _entity: 'organizations',
-    selectValues: ['ragioneSociale'],
-    grantTo: ['super_admin'],
+    id: "organization",
+    name: "organization",
+    label: "Organizations",
+    type: "select",
+    _entity: "organizations",
+    selectValues: ["ragioneSociale"],
+    grantTo: ["super_admin"],
     required: false,
     priority: 100,
   },

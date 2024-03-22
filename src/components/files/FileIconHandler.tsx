@@ -1,10 +1,10 @@
-import Image from 'next/image';
-import { PATH_IMAGE } from '../../lib/image-paths';
+import Image from "next/image";
+import { PATH_IMAGE } from "../../lib/image-paths";
 
 type Props = {
   style?: React.CSSProperties;
   fileName: string;
-  size?: number | 'sm' | 'md' | 'lg';
+  size?: number | "sm" | "md" | "lg";
 };
 
 const src: Record<string, string> = {
@@ -26,9 +26,9 @@ const SIZE = {
 
 export const FileIconHandler = (props: Props) => {
   const { fileName, size, style } = props;
-  const extension = fileName?.split('.').pop();
-  const imagePath = src[extension || ''] || src.doc;
-  const _size = typeof size === 'number' ? size : SIZE[size || 'md'];
+  const extension = fileName?.split(".").pop();
+  const imagePath = src[extension || ""] || src.doc;
+  const _size = typeof size === "number" ? size : SIZE[size || "md"];
 
   return <Image style={style} src={imagePath} width={_size} height={_size} alt={fileName} />;
 };

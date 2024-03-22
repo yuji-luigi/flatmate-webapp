@@ -1,19 +1,19 @@
-import { Box, Button, Text } from '@mantine/core';
-import Link from 'next/link';
-import React, { useEffect } from 'react';
-import { NextRouter, useRouter } from 'next/router';
+import { Box, Button, Text } from "@mantine/core";
+import Link from "next/link";
+import React, { useEffect } from "react";
+import { NextRouter, useRouter } from "next/router";
 import {
   CardArticleVerticalTextBottom,
   CardData,
-} from '../../../components/card/CardVerticalTextBottom';
-import { PATH_CLIENT, _PATH_FRONTEND } from '../../../path/path-frontend';
-import classes2 from '../../../styles/global-useStyles.module.css';
-import { SpaceModel } from '../../../types/models/space-model';
-import axiosInstance from '../../../utils/axios-instance';
-import { PATH_API } from '../../../path/path-api';
-import { ParsedQueryCustom } from '../../../types/nextjs-custom-types/useRouter-types';
-import useAuth from '../../../../hooks/useAuth';
-import classes from './ChooseSpaceSection.module.css';
+} from "../../../components/card/CardVerticalTextBottom";
+import { PATH_CLIENT, _PATH_FRONTEND } from "../../../path/path-frontend";
+import classes2 from "../../../styles/global-useStyles.module.css";
+import { SpaceModel } from "../../../types/models/space-model";
+import axiosInstance from "../../../utils/axios-instance";
+import { PATH_API } from "../../../path/path-api";
+import { ParsedQueryCustom } from "../../../types/nextjs-custom-types/useRouter-types";
+import useAuth from "../../../../hooks/useAuth";
+import classes from "./ChooseSpaceSection.module.css";
 
 export const ChooseSpaceSection = ({ spaces }: { spaces: SpaceModel[] }) => {
   const { user } = useAuth();
@@ -28,7 +28,7 @@ export const ChooseSpaceSection = ({ spaces }: { spaces: SpaceModel[] }) => {
   if (!user) return null;
   return (
     <Box className={classes2.container}>
-      {user.role === 'super_admin' && (
+      {user.role === "super_admin" && (
         <Box>
           <Button component={Link} href={PATH_CLIENT.chooseOrganization} variant="outline">
             Back

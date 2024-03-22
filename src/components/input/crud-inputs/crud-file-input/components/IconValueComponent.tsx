@@ -1,7 +1,7 @@
-import { FileInputProps } from '@mantine/core';
-import React from 'react';
+import { FileInputProps } from "@mantine/core";
+import React from "react";
 
-export const IconValueComponent: FileInputProps['valueComponent'] = (props) => {
+export const IconValueComponent: FileInputProps["valueComponent"] = (props) => {
   const { value } = props;
   if (!value) return null;
   if (Array.isArray(value)) {

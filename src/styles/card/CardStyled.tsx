@@ -1,6 +1,6 @@
-import React from 'react';
-import { Card, CardProps } from '@mantine/core';
-import classes from './CardStyled.module.css';
+import React from "react";
+import { Card, CardProps } from "@mantine/core";
+import classes from "./CardStyled.module.css";
 
 type Props = {
   children: React.ReactNode;

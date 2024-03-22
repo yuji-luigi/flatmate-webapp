@@ -1,10 +1,10 @@
-import { Badge, Box, Group, Stack, Text } from '@mantine/core';
-import { IconPhoneCall } from '@tabler/icons-react';
-import React from 'react';
-import { Icons } from '../../../../data/icons/icons';
-import TextWithIcon from '../../../../components/text/TextWithIcon';
-import { MaintainerModel } from '../../../../types/models/maintainer-model';
-import classes from './MaintainerCardRightSection.module.css';
+import { Badge, Box, Group, Stack, Text } from "@mantine/core";
+import { IconPhoneCall } from "@tabler/icons-react";
+import React from "react";
+import { Icons } from "../../../../data/icons/icons";
+import TextWithIcon from "../../../../components/text/TextWithIcon";
+import { MaintainerModel } from "../../../../types/models/maintainer-model";
+import classes from "./MaintainerCardRightSection.module.css";
 
 export const MaintainerCardRightSection = ({ maintainer }: { maintainer: MaintainerModel }) => {
   return (

@@ -1,4 +1,4 @@
-import { FormFieldTypes } from './form-field-type/formField-types';
+import { FormFieldTypes } from "./form-field-type/formField-types";
 
 interface SectionDataJson {
   entity: string;
@@ -71,7 +71,7 @@ interface ISectionDataObject {
 //   | "attachment"
 //   | "color-picker";
 
-type CellStyles = 'badge' | '';
+type CellStyles = "badge" | "";
 // type FieldType = FieldTypes[FieldTypes[keyof typeof FieldTypes]];
 
 type FormFieldsType = {

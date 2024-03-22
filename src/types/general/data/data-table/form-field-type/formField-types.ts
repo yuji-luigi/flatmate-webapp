@@ -4,119 +4,119 @@ import {
   ComboboxItem,
   TextInputProps,
   TextareaProps,
-} from '@mantine/core';
-import { TablerIconsProps } from '@tabler/icons-react';
-import React from 'react';
-import { Sections } from '../../sections-type';
+} from "@mantine/core";
+import { TablerIconsProps } from "@tabler/icons-react";
+import React from "react";
+import { Sections } from "../../sections-type";
 
-import { BaseFormType } from './base-form-type';
+import { BaseFormType } from "./base-form-type";
 
 export type StaticOption = ComboboxItem & {
   icon?: (props?: TablerIconsProps) => JSX.Element;
 };
 
 export type TextFormType = {
-  type: 'text' | 'number' | 'boolean';
-  cellType?: 'text-on-hover' | 'text-on-dialog';
+  type: "text" | "number" | "boolean";
+  cellType?: "text-on-hover" | "text-on-dialog";
 } & BaseFormType &
   TextInputProps;
 
-export type PasswordFormType = { type: 'password' } & BaseFormType & PasswordInputProps;
+export type PasswordFormType = { type: "password" } & BaseFormType & PasswordInputProps;
 
 type BaseSelectFormType = {
   filterSearch?: boolean;
   inputOptions?: {
     useCachedData?: boolean;
   };
-} & Omit<SelectProps, 'data'>; // omit data property from SelectProps
+} & Omit<SelectProps, "data">; // omit data property from SelectProps
 
 export type SelectFormType = {
-  type: 'select';
+  type: "select";
   _entity: Sections;
   selectValues: Array<string>;
   /** query when fetch select options from server   */
   query?: Record<string, string | number | boolean>;
 } & BaseFormType &
   BaseSelectFormType &
-  Omit<SelectProps, 'data'>;
+  Omit<SelectProps, "data">;
 
 export type StaticSelectFormFieldType = {
-  type: 'static-select';
-  _entity?: '';
+  type: "static-select";
+  _entity?: "";
   options: StaticOption[];
 } & BaseFormType &
   BaseSelectFormType;
 
 export type CheckBoxFormFieldType = {
-  type: 'checkbox';
+  type: "checkbox";
   filterSearch?: boolean;
 } & BaseFormType;
 
 export type CheckBoxGroupBooleanFormFieldType = {
-  type: 'checkbox-group-boolean';
+  type: "checkbox-group-boolean";
   options: { label: string; name: string; placeholder?: string }[];
   filterSearch?: boolean;
 } & BaseFormType;
 
 export type CheckBoxGroupSelectFormFieldType = {
-  type: 'checkbox-group-select';
+  type: "checkbox-group-select";
   options: Array<ComboboxItem>;
   filterSearch?: boolean;
 } & BaseFormType;
 
 export type LinkChildrenFormFieldType = {
-  type: 'link-children';
-  cellType: 'link-children';
+  type: "link-children";
+  cellType: "link-children";
   linkRoot: string;
   linkKey: string;
 } & BaseFormType;
 
 export type TextAreaFormFieldType = {
-  type: 'text-area';
+  type: "text-area";
 } & BaseFormType &
   TextareaProps;
 
 export type UploadFormFieldType = {
-  type: 'image' | 'attachment';
-  accept?: 'image/*' | 'application/pdf' | string;
+  type: "image" | "attachment";
+  accept?: "image/*" | "application/pdf" | string;
 } & BaseFormType;
 
 export type UserRoleInput = {
-  type: 'user-role';
+  type: "user-role";
 } & BaseFormType;
 
 export type RadioGroupFormFieldType = {
-  type: 'radio-group';
+  type: "radio-group";
 } & BaseFormType;
 
 export type AvatarFormFieldType = {
-  type: 'avatar';
+  type: "avatar";
 } & BaseFormType;
 export type ColorFormFieldType = {
-  type: 'color';
+  type: "color";
 } & BaseFormType;
 
 export type CustomFormFieldType = {
-  type: 'custom';
+  type: "custom";
   component: React.FC<any>;
 } & BaseFormType;
 export type DateFormFieldType = {
-  type: 'date';
+  type: "date";
 } & BaseFormType;
 export type UserNameEmailCellType = {
-  type: 'user-name-email-head';
+  type: "user-name-email-head";
 } & BaseFormType;
 
 export type AccessPermissionFormFieldType = {
-  type: 'access-controller';
+  type: "access-controller";
 } & BaseFormType;
 
 export type SpaceSelectAuto = {
-  type: 'space-auto-select';
+  type: "space-auto-select";
   multi?: boolean;
 } & BaseFormType;
 export type GeoApiInput = {
-  type: 'geo-api';
+  type: "geo-api";
 } & BaseFormType;
 
 export type FormFieldTypes =

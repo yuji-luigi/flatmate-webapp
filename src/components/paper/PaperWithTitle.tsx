@@ -1,6 +1,6 @@
-import { Box, MantineStyleProp, Paper, PaperProps } from '@mantine/core';
-import React, { ReactNode } from 'react';
-import classes from './PaperWithTitle.module.css';
+import { Box, MantineStyleProp, Paper, PaperProps } from "@mantine/core";
+import React, { ReactNode } from "react";
+import classes from "./PaperWithTitle.module.css";
 
 type PaperWithTitleProps = {
   title: ReactNode;

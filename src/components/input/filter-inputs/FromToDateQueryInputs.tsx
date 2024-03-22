@@ -1,9 +1,9 @@
-import { Group } from '@mantine/core';
-import { MonthPickerInput } from '@mantine/dates';
-import React, { useEffect } from 'react';
-import { useForm } from '@mantine/form';
-import { Icons } from '../../../data/icons/icons';
-import { useLocale } from '../../../../hooks/useLocale';
+import { Group } from "@mantine/core";
+import { MonthPickerInput } from "@mantine/dates";
+import React, { useEffect } from "react";
+import { useForm } from "@mantine/form";
+import { Icons } from "../../../data/icons/icons";
+import { useLocale } from "../../../../hooks/useLocale";
 
 type FromToDateQueryInputsProps = {
   endpoint: string;
@@ -16,7 +16,7 @@ type FromToDateQueryInputsProps = {
   };
 };
 export const FromToDateQueryInputs = (props: FromToDateQueryInputsProps) => {
-  const { t } = useLocale('common');
+  const { t } = useLocale("common");
   const { endpoint, fromName, toName, onChangeCallback, defaultValues } = props;
   const form = useForm<{
     [key: string]: null | Date;
@@ -40,21 +40,21 @@ export const FromToDateQueryInputs = (props: FromToDateQueryInputsProps) => {
   return (
     <form>
       <Group justify="end">
-        {t('from')}
+        {t("from")}
         <MonthPickerInput
           value={values[fromName]}
           placeholder="from"
           onChange={(value) => setValues({ ...values, [fromName]: value })}
-          style={{ width: '30%' }}
+          style={{ width: "30%" }}
           rightSectionPointerEvents="none"
           rightSection={<Icons.calendar />}
         />
-        {t('to')}
+        {t("to")}
         <MonthPickerInput
           value={values[toName]}
           placeholder="to"
           onChange={(value) => setValues({ ...values, [toName]: value })}
-          style={{ width: '30%' }}
+          style={{ width: "30%" }}
           rightSectionPointerEvents="none"
           rightSection={<Icons.calendar />}
         />

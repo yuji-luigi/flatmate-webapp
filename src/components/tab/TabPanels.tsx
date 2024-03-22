@@ -1,7 +1,7 @@
-import { Tabs } from '@mantine/core';
-import React from 'react';
-import { UseFormReturnType } from '@mantine/form';
-import { TabList } from './TabList';
+import { Tabs } from "@mantine/core";
+import React from "react";
+import { UseFormReturnType } from "@mantine/form";
+import { TabList } from "./TabList";
 
 export const TabPanels = ({
   list,

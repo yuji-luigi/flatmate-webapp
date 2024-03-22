@@ -1,7 +1,7 @@
-import { ActionIcon, useMantineTheme } from '@mantine/core';
-import { IconBook } from '@tabler/icons-react';
-import React from 'react';
-import classes from './ActionIconStyle.module.css';
+import { ActionIcon, useMantineTheme } from "@mantine/core";
+import { IconBook } from "@tabler/icons-react";
+import React from "react";
+import classes from "./ActionIconStyle.module.css";
 
 export const BookmarkIconButton = () => {
   const theme = useMantineTheme();

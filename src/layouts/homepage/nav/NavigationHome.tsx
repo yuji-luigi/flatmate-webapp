@@ -1,19 +1,19 @@
-import React from 'react';
-import { Button } from '@mantine/core';
-import Link from 'next/link';
-import useAuth from '../../../../hooks/useAuth';
-import { ColorSchemeToggle } from '../../../components/color-schemeToggle/ColorSchemeToggle';
-import { PATH_CLIENT } from '../../../path/path-frontend';
-import { EnterButton } from './header/EnterButton';
-import { LoginButton } from './header/LoginButton';
-import { SignUpButton } from './header/SignUpButton';
-import { LoginLink } from './drawer/LoginLink';
-import { SignUpLink } from './drawer/SignUpLink';
+import React from "react";
+import { Button } from "@mantine/core";
+import Link from "next/link";
+import useAuth from "../../../../hooks/useAuth";
+import { ColorSchemeToggle } from "../../../components/color-schemeToggle/ColorSchemeToggle";
+import { PATH_CLIENT } from "../../../path/path-frontend";
+import { EnterButton } from "./header/EnterButton";
+import { LoginButton } from "./header/LoginButton";
+import { SignUpButton } from "./header/SignUpButton";
+import { LoginLink } from "./drawer/LoginLink";
+import { SignUpLink } from "./drawer/SignUpLink";
 
-export const NavigationHome = ({ place }: { place: 'header' | 'drawer' }) => {
+export const NavigationHome = ({ place }: { place: "header" | "drawer" }) => {
   const { user } = useAuth();
-  const isHeader = place === 'header';
-  const isDrawer = place === 'drawer';
+  const isHeader = place === "header";
+  const isDrawer = place === "drawer";
   const nav = isHeader ? (
     <>
       <LoginButton />

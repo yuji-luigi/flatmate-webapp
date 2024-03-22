@@ -1,9 +1,9 @@
-import { Modal, Box, LoadingOverlay } from '@mantine/core';
+import { Modal, Box, LoadingOverlay } from "@mantine/core";
 
-import { CrudModal } from '../../context/modal-context/CrudModal';
-import CustomModal from '../../context/modal-context/CustomModal';
-import { useCustomModalContext } from '../../context/modal-context/_ModalContext';
-import { RegularModal } from '../../context/modal-context/RegularModal';
+import { CrudModal } from "../../context/modal-context/CrudModal";
+import CustomModal from "../../context/modal-context/CustomModal";
+import { useCustomModalContext } from "../../context/modal-context/_ModalContext";
+import { RegularModal } from "../../context/modal-context/RegularModal";
 
 export function ModalRootCustom() {
   const { isOpenModal: opened, closeModal: close, modalData } = useCustomModalContext();
@@ -12,13 +12,13 @@ export function ModalRootCustom() {
   let modalContent;
 
   switch (modalData.type) {
-    case 'custom':
+    case "custom":
       modalContent = <CustomModal modalData={modalData} />;
       break;
-    case 'crud':
+    case "crud":
       modalContent = <CrudModal modalData={modalData} />;
       break;
-    case 'loading':
+    case "loading":
       return <LoadingModal />;
     default:
       modalContent = <RegularModal modalData={modalData} />;
@@ -33,9 +33,9 @@ export function ModalRootCustom() {
       onClose={close}
       title={modalData.title}
       classNames={{
-        title: 'modalTitle',
-        header: 'modalHeader',
-        body: 'modalBody',
+        title: "modalTitle",
+        header: "modalHeader",
+        body: "modalBody",
       }}
     >
       <Box>{modalContent}</Box>
@@ -54,15 +54,15 @@ function LoadingModal() {
       onClose={close}
       onClick={close}
       styles={{
-        root: { background: 'transparent' },
-        body: { background: 'transparent' },
-        content: { background: 'transparent' },
-        header: { background: 'transparent' },
+        root: { background: "transparent" },
+        body: { background: "transparent" },
+        content: { background: "transparent" },
+        header: { background: "transparent" },
       }}
     >
       <LoadingOverlay
         styles={{
-          overlay: { background: 'transparent' },
+          overlay: { background: "transparent" },
         }}
         visible
       />

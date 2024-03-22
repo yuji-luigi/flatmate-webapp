@@ -1,9 +1,9 @@
-import { createContext, ReactNode, useEffect, useReducer } from 'react';
-import { deleteCookie } from 'cookies-next';
-import { useRouter } from 'next/router';
-import { showNotification } from '@mantine/notifications';
-import axiosInstance, { AxiosMeResponse } from '../utils/axios-instance';
-import { _PATH_API, PATH_AUTH } from '../path/path-api';
+import { createContext, ReactNode, useEffect, useReducer } from "react";
+import { deleteCookie } from "cookies-next";
+import { useRouter } from "next/router";
+import { showNotification } from "@mantine/notifications";
+import axiosInstance, { AxiosMeResponse } from "../utils/axios-instance";
+import { _PATH_API, PATH_AUTH } from "../path/path-api";
 import {
   JWTContextReducerAction,
   JWTContextState,
@@ -13,10 +13,10 @@ import {
   Logout,
   AuthContextInterface,
   RegisterData,
-} from '../types/context/auth/useAuth';
-import { _PATH_FRONTEND } from '../path/path-frontend';
-import { MeUser, Role, UserModel } from '../types/models/space-model';
-import { NOTIFICATIONS } from '../data/showNofification/notificationObjects';
+} from "../types/context/auth/useAuth";
+import { _PATH_FRONTEND } from "../path/path-frontend";
+import { MeUser, Role, UserModel } from "../types/models/space-model";
+import { NOTIFICATIONS } from "../data/showNofification/notificationObjects";
 
 const initialState: JWTContextState = {
   isAuthenticated: false,
@@ -67,7 +67,7 @@ const reducer = (state: JWTContextState, action: JWTContextReducerAction) =>
 
 const AuthContext = createContext<AuthContextInterface>({
   ...initialState,
-  method: 'jwt',
+  method: "jwt",
   logout: () => Promise.resolve(),
   login: () => Promise.resolve(),
   register: () => Promise.resolve(),
@@ -99,7 +99,7 @@ function AuthProvider({
         });
         const { user } = response.data;
         dispatch({
-          type: 'INITIALIZE',
+          type: "INITIALIZE",
           payload: {
             isAuthenticated: true,
             user,
@@ -107,7 +107,7 @@ function AuthProvider({
         });
       } catch (error) {
         dispatch({
-          type: 'INITIALIZE',
+          type: "INITIALIZE",
           payload: {
             isAuthenticated: false,
             user: null,
@@ -125,13 +125,13 @@ function AuthProvider({
       const { user } = rawMe.data;
 
       dispatch({
-        type: 'LOGIN',
+        type: "LOGIN",
         payload: {
           user,
         },
       });
 
-      if (role === 'Inhabitant') {
+      if (role === "Inhabitant") {
         push(_PATH_FRONTEND.pathAfterLoginInhabitant);
         return;
       }
@@ -145,11 +145,11 @@ function AuthProvider({
     try {
       const response = await axiosInstance.post(PATH_AUTH.register, formData);
       const { accessToken, user } = response.data;
-      localStorage.setItem('accessToken', accessToken);
+      localStorage.setItem("accessToken", accessToken);
       // setSession(accessToken);
 
       dispatch({
-        type: 'REGISTER',
+        type: "REGISTER",
         payload: {
           user,
         },
@@ -161,15 +161,15 @@ function AuthProvider({
   };
 
   const logout: Logout = async () => {
-    deleteCookie('jwt');
-    deleteCookie('space');
+    deleteCookie("jwt");
+    deleteCookie("space");
     await axiosInstance.get(PATH_AUTH.logout, { withCredentials: true });
     push(_PATH_FRONTEND.auth.login);
     // localStorage.removeItem('accessToken');
     // localStorage.removeItem('spaceToken');
     // setSession(null);
     dispatch({
-      type: 'LOGOUT',
+      type: "LOGOUT",
     });
   };
 
@@ -177,7 +177,7 @@ function AuthProvider({
     <AuthContext.Provider
       value={{
         ...state,
-        method: 'jwt',
+        method: "jwt",
         login,
         logout,
         register,

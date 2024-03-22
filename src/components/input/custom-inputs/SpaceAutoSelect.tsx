@@ -1,12 +1,12 @@
-import { UseFormReturnType } from '@mantine/form';
-import React, { useEffect } from 'react';
-import { MultiSelect } from '@mantine/core';
-import { SpaceSelectAuto } from '../../../types/general/data/data-table/form-field-type/formField-types';
-import useAuth from '../../../../hooks/useAuth';
-import { useCrudSelectors } from '../../../redux/features/crud/crudSlice';
-import { SpaceModel } from '../../../types/models/space-model';
-import { useCookieContext } from '../../../context/CookieContext';
-import { useSpaceSelectionSelectors } from '../../../redux/features/crud/spaceSelectionSlice';
+import { UseFormReturnType } from "@mantine/form";
+import React, { useEffect } from "react";
+import { MultiSelect } from "@mantine/core";
+import { SpaceSelectAuto } from "../../../types/general/data/data-table/form-field-type/formField-types";
+import useAuth from "../../../../hooks/useAuth";
+import { useCrudSelectors } from "../../../redux/features/crud/crudSlice";
+import { SpaceModel } from "../../../types/models/space-model";
+import { useCookieContext } from "../../../context/CookieContext";
+import { useSpaceSelectionSelectors } from "../../../redux/features/crud/spaceSelectionSlice";
 
 type Props = {
   form: UseFormReturnType<Record<string, unknown>>;

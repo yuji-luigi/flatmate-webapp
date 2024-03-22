@@ -1,5 +1,5 @@
-import { Filters } from '../../../../types/context/filter-context.';
-import { FormFieldTypes } from '../../../../types/general/data/data-table/form-field-type/formField-types';
+import { Filters } from "../../../../types/context/filter-context.";
+import { FormFieldTypes } from "../../../../types/general/data/data-table/form-field-type/formField-types";
 
 type FilterListArgs = {
   list: any[];
@@ -48,7 +48,7 @@ export function filterList({ list, filters, formFields, comparator }: FilterList
           (name) => {
             if (!item) return false;
             const targetValue =
-              typeof item[name] === 'object' ? item[name]?.name || '' : item[name] || '';
+              typeof item[name] === "object" ? item[name]?.name || "" : item[name] || "";
             return targetValue.toString().toLowerCase?.().includes(textFilter?.toLowerCase?.());
           }
           // flatWorksites?.join(", ").indexOf(textFilter.toLowerCase()) !== -1

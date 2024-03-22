@@ -1,9 +1,9 @@
-import { Box, Group, Tabs } from '@mantine/core';
-import React from 'react';
-import { UseFormReturnType } from '@mantine/form';
-import { useCustomMQuery } from '../../../hooks/useCustomMQuery';
-import { SettingButtonSpaceHome } from '../../sections/dashboard/dashboard_top/components/SettingButtonSpaceHome';
-import classes from './TabList.module.css';
+import { Box, Group, Tabs } from "@mantine/core";
+import React from "react";
+import { UseFormReturnType } from "@mantine/form";
+import { useCustomMQuery } from "../../../hooks/useCustomMQuery";
+import { SettingButtonSpaceHome } from "../../sections/dashboard/dashboard_top/components/SettingButtonSpaceHome";
+import classes from "./TabList.module.css";
 
 export interface TabList<ComponentProps = any> {
   icon: React.ReactNode;

@@ -1,12 +1,12 @@
 /* eslint-disable no-continue */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable guard-for-in */
-import { PATH_API } from '../path/path-api';
-import { MixedMediaType, UploadingMediaType } from '../types/data/media/media-types';
-import { FileWithPreview } from '../types/files/file-types';
-import { Sections } from '../types/general/data/sections-type';
-import { UploadModel } from '../types/models/upload-model';
-import axiosInstance, { uploadConfig } from './axios-instance';
+import { PATH_API } from "../path/path-api";
+import { MixedMediaType, UploadingMediaType } from "../types/data/media/media-types";
+import { FileWithPreview } from "../types/files/file-types";
+import { Sections } from "../types/general/data/sections-type";
+import { UploadModel } from "../types/models/upload-model";
+import axiosInstance, { uploadConfig } from "./axios-instance";
 
 interface MediaParam {
   [key: string]: Array<File | UploadModel> | [] | undefined;
@@ -160,7 +160,7 @@ export function isCustomFiles(value: any): value is CustomFile[] {
   if (Array.isArray(value)) {
     return value.every(
       (val) =>
-        typeof val.folder === 'string' && typeof val.preview === 'string' && val instanceof File
+        typeof val.folder === "string" && typeof val.preview === "string" && val instanceof File
     );
   }
   return false;
@@ -186,22 +186,22 @@ export async function handleUploadWithoutLogin({
     files.forEach((file) => {
       // You can set the key to be the file name or any other custom key
       // Todo: check if the file.field is used in api or other parts of the app
-      formData.append(file.field || '', file);
+      formData.append(file.field || "", file);
       // formData.append(file.field, file, file.name);
     });
   } else {
-    formData.append('0', files, files.name);
-    formData.append('space', space);
-    formData.append('organizationName', organizationName);
-    formData.append('entity', entity);
+    formData.append("0", files, files.name);
+    formData.append("space", space);
+    formData.append("organizationName", organizationName);
+    formData.append("entity", entity);
   }
   // formData.append('0', files, files.name);
-  formData.append('space', space);
-  formData.append('organizationName', organizationName);
-  formData.append('entity', entity);
+  formData.append("space", space);
+  formData.append("organizationName", organizationName);
+  formData.append("entity", entity);
   const response = await axiosInstance.post(endpoint, formData, {
     withCredentials: true,
-    headers: { 'Content-Type': 'multipart/form-data' },
+    headers: { "Content-Type": "multipart/form-data" },
   });
 
   return response.data.data;

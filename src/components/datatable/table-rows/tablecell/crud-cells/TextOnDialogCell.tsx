@@ -1,8 +1,8 @@
-import { Group, Avatar, Tooltip, Box, Chip, Badge, useMantineColorScheme } from '@mantine/core';
-import React from 'react';
-import { useCustomModalContext } from '../../../../../context/modal-context/_ModalContext';
-import classes from './TextOnDialogCell.module.css';
-import { TextFormType } from '../../../../../types/general/data/data-table/form-field-type/formField-types';
+import { Group, Avatar, Tooltip, Box, Chip, Badge, useMantineColorScheme } from "@mantine/core";
+import React from "react";
+import { useCustomModalContext } from "../../../../../context/modal-context/_ModalContext";
+import classes from "./TextOnDialogCell.module.css";
+import { TextFormType } from "../../../../../types/general/data/data-table/form-field-type/formField-types";
 
 export const TextOnDialogCell = ({
   cellValue,
@@ -20,7 +20,7 @@ export const TextOnDialogCell = ({
   const handleOpenModal = () => {
     openConfirmModal({
       title: cellConfig.label,
-      type: 'custom',
+      type: "custom",
       children: cellValue,
     });
   };

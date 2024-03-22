@@ -6,10 +6,10 @@ import {
   Dispatch,
   SetStateAction,
   useEffect,
-} from 'react';
-import { useRouter } from 'next/router';
-import { Sections } from '../types/general/data/sections-type';
-import { FilterContextType } from '../types/context/filter-context.';
+} from "react";
+import { useRouter } from "next/router";
+import { Sections } from "../types/general/data/sections-type";
+import { FilterContextType } from "../types/context/filter-context.";
 
 export const FilterContext = createContext<FilterContextType>({
   selectFilters: [],
@@ -17,7 +17,7 @@ export const FilterContext = createContext<FilterContextType>({
   // setSelectFilters: function (
   //   filters: { entity: string; value: string | number | boolean | null | undefined }[]
   // ): void {},
-  textFilter: '',
+  textFilter: "",
   setTextFilter(_text: string): void {},
   dateFilters: null,
   setDateFilters(_date: Date | null): void {},
@@ -25,7 +25,7 @@ export const FilterContext = createContext<FilterContextType>({
   setBooleanFilters(_filters: { field: string; value: boolean }[]): void {},
   filters: {
     selectFilters: [],
-    textFilter: '',
+    textFilter: "",
     dateFilters: null,
     booleanFilters: [],
   },
@@ -36,7 +36,7 @@ export const useFilterStore = (): FilterContextType => {
   const [selectFilters, setSelectFilters] = useState<
     { field: string; value: string | number | boolean | null | undefined }[]
   >([]);
-  const [textFilter, setTextFilter] = useState<string>('');
+  const [textFilter, setTextFilter] = useState<string>("");
   const [dateFilters, setDateFilters] = useState<Date | null>(null);
   const [booleanFilters, setBooleanFilters] = useState<{ field: string; value: boolean }[]>([]);
 
@@ -97,7 +97,7 @@ export const useFilterStore = (): FilterContextType => {
   };
   const resetFilters = () => {
     setSelectFilters([]);
-    setTextFilter('');
+    setTextFilter("");
     setDateFilters(null);
     setBooleanFilters([]);
   };

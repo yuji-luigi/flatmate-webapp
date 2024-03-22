@@ -1,32 +1,32 @@
-import { Box, Group } from '@mantine/core';
-import { ReactElement, useEffect } from 'react';
-import { useRouter } from 'next/router';
-import useSWR from 'swr';
-import { useMediaQuery } from '@mantine/hooks';
-import Layout from '../../../../layouts';
+import { Box, Group } from "@mantine/core";
+import { ReactElement, useEffect } from "react";
+import { useRouter } from "next/router";
+import useSWR from "swr";
+import { useMediaQuery } from "@mantine/hooks";
+import Layout from "../../../../layouts";
 import ProfileCoverGeneric, {
   CoverDataProp,
-} from '../../../../components/profile/ProfileCoverGeneric';
-import { useCrudSelectors, useCrudSliceStore } from '../../../../redux/features/crud/crudSlice';
-import { getEntityFromUrl } from '../../../../utils/helpers/helper-functions';
-import axiosInstance from '../../../../utils/axios-instance';
-import { PATH_API } from '../../../../path/path-api';
-import AboutCard from '../../../../components/profile/side/AboutCard';
-import ProfileSide from '../../../../components/profile/side/ProfileSide';
-import { RANDOM_UPLOAD_MODELS } from '../../../../lib/image-paths';
-import PostFeedCard from '../../../../components/posts/feed/PostFeedCard';
-import { lorem100 } from '../../../../_mock/strings';
-import { maintainersTableData } from '../../../../../json/dataTable/formfields/maintainersTableData';
-import { useCustomModalContext } from '../../../../context/modal-context/_ModalContext';
-import AddMaintainerModal from '../../../../sections/dashboard/maintenance_detail_page/AddMaintainerModal';
+} from "../../../../components/profile/ProfileCoverGeneric";
+import { useCrudSelectors, useCrudSliceStore } from "../../../../redux/features/crud/crudSlice";
+import { getEntityFromUrl } from "../../../../utils/helpers/helper-functions";
+import axiosInstance from "../../../../utils/axios-instance";
+import { PATH_API } from "../../../../path/path-api";
+import AboutCard from "../../../../components/profile/side/AboutCard";
+import ProfileSide from "../../../../components/profile/side/ProfileSide";
+import { RANDOM_UPLOAD_MODELS } from "../../../../lib/image-paths";
+import PostFeedCard from "../../../../components/posts/feed/PostFeedCard";
+import { lorem100 } from "../../../../_mock/strings";
+import { maintainersTableData } from "../../../../../json/dataTable/formfields/maintainersTableData";
+import { useCustomModalContext } from "../../../../context/modal-context/_ModalContext";
+import AddMaintainerModal from "../../../../sections/dashboard/maintenance_detail_page/AddMaintainerModal";
 
-import classes from '../../../../styles/global-useStyles.module.css';
+import classes from "../../../../styles/global-useStyles.module.css";
 
-import { BuildingCard } from '../../../../sections/dashboard/maintainer_detail_page/BuildingCard';
-import { FavoriteMaintainerButton } from '../../../../sections/dashboard/maintainer_detail_page/FavoritMaintainerButton';
-import { UserModel, ThreadModel } from '../../../../types/models/space-model';
-import TextWithIcon from '../../../../components/text/TextWithIcon';
-import { MaintainerModel } from '../../../../types/models/maintainer-model';
+import { BuildingCard } from "../../../../sections/dashboard/maintainer_detail_page/BuildingCard";
+import { FavoriteMaintainerButton } from "../../../../sections/dashboard/maintainer_detail_page/FavoritMaintainerButton";
+import { UserModel, ThreadModel } from "../../../../types/models/space-model";
+import TextWithIcon from "../../../../components/text/TextWithIcon";
+import { MaintainerModel } from "../../../../types/models/maintainer-model";
 
 const getMaintainer = async (slug?: string) => {
   if (!slug) return null;
@@ -40,18 +40,18 @@ const MaintainerDetailsPage = () => {
   const { openConfirmModal } = useCustomModalContext();
 
   const _entity = getEntityFromUrl();
-  //todo: use useCrudSelectors + combine useSWR and fetchCrudDocument hook
+  //TODO: use useCrudSelectors + combine useSWR and fetchCrudDocument hook
   const {
     data: fetchedData,
     // error,
     isLoading,
-  } = useSWR(['maintainer', router.query.slug], () => getMaintainer(router.query.slug as string));
+  } = useSWR(["maintainer", router.query.slug], () => getMaintainer(router.query.slug as string));
 
   const { setCrudDocument } = useCrudSliceStore();
-  const { crudDocument } = useCrudSelectors<MaintainerModel>('maintainers');
+  const { crudDocument } = useCrudSelectors<MaintainerModel>("maintainers");
   // const { crudDocument: document } = useCrudSelectors(_entity);
 
-  const isMobile = useMediaQuery('(max-width: 800px)');
+  const isMobile = useMediaQuery("(max-width: 800px)");
 
   useEffect(() => {
     if (fetchedData) {
@@ -59,7 +59,7 @@ const MaintainerDetailsPage = () => {
     }
   }, [fetchedData?._id]);
 
-  if (isLoading) return 'isLoading';
+  if (isLoading) return "isLoading";
 
   const data = crudDocument
     ? {
@@ -81,13 +81,13 @@ const MaintainerDetailsPage = () => {
     // setSpaces(data);
     // setIsOpened(true);
     openConfirmModal({
-      type: 'custom',
-      title: 'Add Maintainer to Building',
+      type: "custom",
+      title: "Add Maintainer to Building",
       centered: true,
       children: <AddMaintainerModal />,
       opened: false,
       onClose(): void {
-        throw new Error('Function not implemented.');
+        throw new Error("Function not implemented.");
       },
     });
   };
@@ -112,10 +112,10 @@ const MaintainerDetailsPage = () => {
             <PostFeedCard
               data={
                 {
-                  _id: 'd',
+                  _id: "d",
                   createdAt: new Date(),
-                  createdBy: { name: 'No name user' } as UserModel,
-                  title: 'The First Job! maintainers detail page!',
+                  createdBy: { name: "No name user" } as UserModel,
+                  title: "The First Job! maintainers detail page!",
                   description: lorem100,
                   images: RANDOM_UPLOAD_MODELS,
                   attachments: [],

@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { Stepper, Button, Group, StepperStepProps, Box, Stack } from '@mantine/core';
-import classes from './StepperGeneric.module.css';
+import { useState } from "react";
+import { Stepper, Button, Group, StepperStepProps, Box, Stack } from "@mantine/core";
+import classes from "./StepperGeneric.module.css";
 
 type StepperGenericProps = {
   steps: {

@@ -1,11 +1,11 @@
-import { Box, Group, Tooltip } from '@mantine/core';
-import React from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { FileImage } from './FileImage';
-import { PATH_IMAGE } from '../../lib/image-paths';
-import { LinkedImage } from '../image/LinkedImage';
-import { UploadModel } from '../../types/models/upload-model';
+import { Box, Group, Tooltip } from "@mantine/core";
+import React from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { FileImage } from "./FileImage";
+import { PATH_IMAGE } from "../../lib/image-paths";
+import { LinkedImage } from "../image/LinkedImage";
+import { UploadModel } from "../../types/models/upload-model";
 
 const AttachmentsRow = ({
   attachments,

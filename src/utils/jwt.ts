@@ -1,9 +1,9 @@
-import { setCookie } from 'cookies-next';
-import jwtDecode from 'jwt-decode';
+import { setCookie } from "cookies-next";
+import jwtDecode from "jwt-decode";
 // routes
-import { PATH_AUTH } from '../path/path-api';
+import { PATH_AUTH } from "../path/path-api";
 //
-import axiosInstance from './axios-instance';
+import axiosInstance from "./axios-instance";
 
 // ----------------------------------------------------------------------
 
@@ -31,9 +31,9 @@ const handleTokenExpired = (exp: number) => {
 
   expiredTimer = setTimeout(() => {
     // eslint-disable-next-line no-alert
-    alert('Token expired');
+    alert("Token expired");
 
-    localStorage.removeItem('accessToken');
+    localStorage.removeItem("accessToken");
 
     window.location.href = PATH_AUTH.login;
   }, timeLeft);
@@ -41,14 +41,14 @@ const handleTokenExpired = (exp: number) => {
 
 const setSession = (accessToken: string | null) => {
   if (accessToken) {
-    localStorage.setItem('accessToken', accessToken);
+    localStorage.setItem("accessToken", accessToken);
     // setCookie('jwt', accessToken);
     axiosInstance.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
     // This function below will handle when token is expired
     const { exp }: { exp: number } = jwtDecode(accessToken); // ~5 days by minimals server
     handleTokenExpired(exp);
   } else {
-    localStorage.removeItem('accessToken');
+    localStorage.removeItem("accessToken");
     delete axiosInstance.defaults.headers.common.Authorization;
   }
 };
@@ -57,14 +57,14 @@ const setSession = (accessToken: string | null) => {
 const setSpaceSession = (spaceJwt: string | null) => {
   return;
   if (spaceJwt) {
-    localStorage.setItem('spaceToken', spaceJwt);
+    localStorage.setItem("spaceToken", spaceJwt);
     // setCookie('space', spaceJwt);
     axiosInstance.defaults.headers.common.space = `${spaceJwt}`;
     // This function below will handle when token is expired
     const { exp }: { exp: number } = jwtDecode(spaceJwt); // ~5 days by minimals server
     handleTokenExpired(exp);
   } else {
-    localStorage.removeItem('accessToken');
+    localStorage.removeItem("accessToken");
     delete axiosInstance.defaults.headers.common.Authorization;
   }
 };

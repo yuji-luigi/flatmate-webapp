@@ -1,6 +1,6 @@
-import { Box, Grid } from '@mantine/core';
-import React, { useEffect, useRef, useState } from 'react';
-import classes from './SlideObserver.module.css';
+import { Box, Grid } from "@mantine/core";
+import React, { useEffect, useRef, useState } from "react";
+import classes from "./SlideObserver.module.css";
 
 interface SlideObserverProps {
   title: string;
@@ -22,7 +22,7 @@ const SlideObserver = ({ title, description }: SlideObserverProps) => {
 
   const options = {
     root: null,
-    rootMargin: '0px',
+    rootMargin: "0px",
     threshold: 0.5,
   };
 
@@ -41,10 +41,10 @@ const SlideObserver = ({ title, description }: SlideObserverProps) => {
         <Box
           className={isVisible ? classes.show : classes.hide}
           style={{
-            display: 'grid',
-            placeItems: 'center',
-            alignContent: 'center',
-            minHeight: '100vh',
+            display: "grid",
+            placeItems: "center",
+            alignContent: "center",
+            minHeight: "100vh",
           }}
         >
           <h1>{title}</h1>

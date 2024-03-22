@@ -4,10 +4,10 @@
  *  Copyright (c) 2023 Yuji Sato
  * */
 
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import axiosInstance, { AxiosResData, AxiosResDataGeneric } from '../../utils/axios-instance';
-import { _PATH_API } from '../../path/path-api';
-import { SpaceModel } from '../../types/models/space-model';
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import axiosInstance, { AxiosResData, AxiosResDataGeneric } from "../../utils/axios-instance";
+import { _PATH_API } from "../../path/path-api";
+import { SpaceModel } from "../../types/models/space-model";
 
 export type FetchSpaceSelectionPayload = {
   query?: string;
@@ -15,10 +15,10 @@ export type FetchSpaceSelectionPayload = {
 };
 
 export const fetchSpaceSelections = createAsyncThunk(
-  'spaceSelections/fetchSpaceSelections',
+  "spaceSelections/fetchSpaceSelections",
   async ({ query, queryObject = {} }: FetchSpaceSelectionPayload) => {
     const res = await axiosInstance.get<AxiosResDataGeneric<SpaceModel[]>>(
-      `${_PATH_API.spaceSelections.root}${query || ''}`,
+      `${_PATH_API.spaceSelections.root}${query || ""}`,
       queryObject
     );
     return {
@@ -28,7 +28,7 @@ export const fetchSpaceSelections = createAsyncThunk(
 );
 
 export const selectSpaceSelection = createAsyncThunk(
-  'spaceSelections/selectSpaceSelection',
+  "spaceSelections/selectSpaceSelection",
   async (id: string) => {
     const res = await axiosInstance.put<AxiosResDataGeneric<SpaceModel[]>>(
       _PATH_API.spaceSelections.byId(id)

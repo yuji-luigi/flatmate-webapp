@@ -1,6 +1,6 @@
-import { ActionIcon, Group, MantineStyleProp, useMantineColorScheme } from '@mantine/core';
-import { SunIcon, MoonIcon } from '@modulz/radix-icons';
-import classes from './ColorSchemeToggle.module.css';
+import { ActionIcon, Group, MantineStyleProp, useMantineColorScheme } from "@mantine/core";
+import { SunIcon, MoonIcon } from "@modulz/radix-icons";
+import classes from "./ColorSchemeToggle.module.css";
 
 type Props = {
   variant?: string;
@@ -17,8 +17,8 @@ export function ColorSchemeToggle(props: Props) {
     <Group className={className} justify="center" style={style} mt={props.mt}>
       <ActionIcon
         onClick={() => toggleColorScheme()}
-        size={props.size || 'lg'}
-        variant={props.variant || 'filled'}
+        size={props.size || "lg"}
+        variant={props.variant || "filled"}
         className={classes.icon}
         // style={(theme) => ({
         //   backgroundColor:
@@ -28,7 +28,7 @@ export function ColorSchemeToggle(props: Props) {
         //   borderColor: light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-5)),
         // })}
       >
-        {colorScheme === 'dark' ? (
+        {colorScheme === "dark" ? (
           <SunIcon width={20} height={20} />
         ) : (
           <MoonIcon width={20} height={20} />

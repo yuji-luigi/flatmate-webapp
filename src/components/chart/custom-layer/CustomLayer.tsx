@@ -1,7 +1,7 @@
-import { Point } from '@nivo/line';
-import { useCustomMQuery } from '../../../../hooks/useCustomMQuery';
-import { LabelLayerCustom } from './LabelLayerCustom';
-import { LabelLayerCustomMini } from './LabelLayerCustomMini';
+import { Point } from "@nivo/line";
+import { useCustomMQuery } from "../../../../hooks/useCustomMQuery";
+import { LabelLayerCustom } from "./LabelLayerCustom";
+import { LabelLayerCustomMini } from "./LabelLayerCustomMini";
 
 type CustomLayerProps = {
   points: PointCustom[];

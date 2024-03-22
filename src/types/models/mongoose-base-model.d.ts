@@ -1,4 +1,4 @@
-import { Sections } from '../general/data/sections-type';
+import { Sections } from "../general/data/sections-type";
 
 export interface MongooseBaseModel /* <ChildModel> */ {
   _id: string;

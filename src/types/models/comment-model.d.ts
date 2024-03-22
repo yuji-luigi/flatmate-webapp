@@ -1,6 +1,6 @@
-import { FundModel } from './fund-model';
-import { MongooseBaseModel } from './mongoose-base-model';
-import { UserModel } from './user-model';
+import { FundModel } from "./fund-model";
+import { MongooseBaseModel } from "./mongoose-base-model";
+import { UserModel } from "./user-model";
 
 export interface CommentModel extends MongooseBaseModel {
   title: string;

@@ -1,8 +1,8 @@
-import { MAINTAINER_TYPES } from '../../lib/enums';
-import { IUser } from '../context/auth/useAuth';
-import { MongooseBaseModel } from './mongoose-base-model';
-import { SpaceModel } from './space-model';
-import { UploadModel } from './upload-model';
+import { MAINTAINER_TYPES } from "../../lib/enums";
+import { IUser } from "../context/auth/useAuth";
+import { MongooseBaseModel } from "./mongoose-base-model";
+import { SpaceModel } from "./space-model";
+import { UploadModel } from "./upload-model";
 
 export interface MaintainerModel extends MongooseBaseModel {
   name: string;

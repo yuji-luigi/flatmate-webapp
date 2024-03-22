@@ -1,4 +1,4 @@
-import { UseFormReturnType } from '@mantine/form';
+import { UseFormReturnType } from "@mantine/form";
 
 export type UseFormReturnTypeCustom = UseFormReturnTypeWithMedia &
   UseFormReturnType<Record<string, unknown>>;

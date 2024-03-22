@@ -1,6 +1,6 @@
-import { Box, MantineStyleProp, Stack } from '@mantine/core';
-import React, { CSSProperties } from 'react';
-import { Icons } from '../data/icons/icons';
+import { Box, MantineStyleProp, Stack } from "@mantine/core";
+import React, { CSSProperties } from "react";
+import { Icons } from "../data/icons/icons";
 
 interface OverlayProps {
   children: React.ReactNode;

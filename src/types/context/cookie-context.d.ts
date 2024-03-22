@@ -1,4 +1,4 @@
-import { CurrentSpace } from './auth/useAuth';
+import { CurrentSpace } from "./auth/useAuth";
 
 interface CookieContextState {
   currentSpace?: CurrentSpace | null;

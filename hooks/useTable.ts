@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { FormFieldTypes } from '../src/types/general/data/data-table/form-field-type/formField-types';
+import { useState } from "react";
+import { FormFieldTypes } from "../src/types/general/data/data-table/form-field-type/formField-types";
 
 // ----------------------------------------------------------------------
 
@@ -7,7 +7,7 @@ type useTableProps = {
   // defaultDense?: boolean;
   /** default is name */
   defaultOrderBy?: string;
-  defaultOrder?: 'asc' | 'desc';
+  defaultOrder?: "asc" | "desc";
   // defaultCurrentPage?: number;
   // defaultRowsPerPage?: number;
   // defaultSelected?: any[];
@@ -16,9 +16,9 @@ type useTableProps = {
 export default function useTable(props: useTableProps) {
   // const [dense, setDense] = useState(props?.defaultDense || false);
 
-  const [orderBy, setOrderBy] = useState(props?.defaultOrderBy || 'name');
+  const [orderBy, setOrderBy] = useState(props?.defaultOrderBy || "name");
 
-  const [order, setOrder] = useState(props?.defaultOrder || 'asc');
+  const [order, setOrder] = useState(props?.defaultOrder || "asc");
 
   // const [page, setPage] = useState(props?.defaultCurrentPage || 0);
 
@@ -27,9 +27,9 @@ export default function useTable(props: useTableProps) {
   // const [selected, setSelected] = useState(props?.defaultSelected || []);
 
   const onSort = (id: string) => {
-    const isAsc = orderBy === id && order === 'asc';
-    if (id !== '') {
-      setOrder(isAsc ? 'desc' : 'asc');
+    const isAsc = orderBy === id && order === "asc";
+    if (id !== "") {
+      setOrder(isAsc ? "desc" : "asc");
       setOrderBy(id);
     }
   };
@@ -113,8 +113,8 @@ export function descendingComparator(
   return 0;
 }
 
-export function getComparator(order: 'asc' | 'desc', orderBy: string) {
-  return order === 'desc'
+export function getComparator(order: "asc" | "desc", orderBy: string) {
+  return order === "desc"
     ? (a: Record<string, string>, b: Record<string, string>) => descendingComparator(a, b, orderBy)
     : (a: Record<string, string>, b: Record<string, string>) =>
         -descendingComparator(a, b, orderBy);

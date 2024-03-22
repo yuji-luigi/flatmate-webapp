@@ -1,5 +1,5 @@
-import { MaintainerModel } from '../models/maintainer-model';
-import { SpaceModel } from '../models/space-model';
+import { MaintainerModel } from "../models/maintainer-model";
+import { SpaceModel } from "../models/space-model";
 
 export type SpaceSlugResponse = {
   space: SpaceModel;

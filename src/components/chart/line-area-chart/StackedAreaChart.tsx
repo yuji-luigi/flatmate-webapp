@@ -1,6 +1,6 @@
-import { Box } from '@mantine/core';
-import { CustomLayer, ResponsiveLine } from '@nivo/line';
-import { useCustomMQuery } from '../../../../hooks/useCustomMQuery';
+import { Box } from "@mantine/core";
+import { CustomLayer, ResponsiveLine } from "@nivo/line";
+import { useCustomMQuery } from "../../../../hooks/useCustomMQuery";
 
 type StackedAreaChartProps = {
   customLayer: CustomLayer;
@@ -21,12 +21,12 @@ function StackedAreaChart(props: StackedAreaChartProps) {
   const mx = isMobile ? 30 : 50;
 
   return (
-    <Box style={{ height: 400, width: '100%', overflow: 'visible' }}>
+    <Box style={{ height: 400, width: "100%", overflow: "visible" }}>
       <ResponsiveLine
         data={statistics}
         margin={{ top: 70, right: mx, bottom: 50, left: mx }}
-        xScale={{ type: 'point' }}
-        yScale={{ type: 'linear', min: 0, max: 'auto' }}
+        xScale={{ type: "point" }}
+        yScale={{ type: "linear", min: 0, max: "auto" }}
         curve="monotoneX"
         tooltip={({ point }) => {
           const _data = point.data as typeof point.data & { change: number };
@@ -34,8 +34,8 @@ function StackedAreaChart(props: StackedAreaChartProps) {
           return (
             <div
               style={{
-                backgroundColor: '#fff',
-                boxShadow: '0 3px 6px rgba(0, 0, 0, 0.1)',
+                backgroundColor: "#fff",
+                boxShadow: "0 3px 6px rgba(0, 0, 0, 0.1)",
               }}
             >
               <strong>{point.serieId}</strong>
@@ -48,7 +48,7 @@ function StackedAreaChart(props: StackedAreaChartProps) {
             </div>
           );
         }}
-        colors={{ scheme: 'nivo' }}
+        colors={{ scheme: "nivo" }}
         enableArea
         areaBaselineValue={0}
         areaOpacity={0.6}
@@ -56,36 +56,36 @@ function StackedAreaChart(props: StackedAreaChartProps) {
         enableGridY={false}
         enablePoints
         pointSize={10}
-        pointColor={{ theme: 'background' }}
+        pointColor={{ theme: "background" }}
         pointBorderWidth={2}
-        pointBorderColor={{ from: 'serieColor' }}
+        pointBorderColor={{ from: "serieColor" }}
         pointLabel="y"
         pointLabelYOffset={-12}
         useMesh
         theme={{
-          background: 'transparent',
+          background: "transparent",
           axis: {
             ticks: {
               text: {
-                fill: '#555',
+                fill: "#555",
               },
             },
           },
           grid: {
             line: {
-              stroke: '#ddd',
+              stroke: "#ddd",
             },
           },
         }}
         layers={[
-          'grid',
-          'axes',
-          'areas',
-          'crosshair',
-          'lines',
-          'points',
-          'slices',
-          'mesh',
+          "grid",
+          "axes",
+          "areas",
+          "crosshair",
+          "lines",
+          "points",
+          "slices",
+          "mesh",
           customLayer,
         ]}
       />

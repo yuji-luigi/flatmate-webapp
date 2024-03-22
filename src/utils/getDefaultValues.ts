@@ -1,7 +1,7 @@
-import { FormFieldTypes } from '../types/general/data/data-table/form-field-type/formField-types';
-import { AllModels } from '../types/models/allmodels';
-import { MongooseBaseModel } from '../types/models/mongoose-base-model';
-import { _get, _set } from './helpers/helper-functions';
+import { FormFieldTypes } from "../types/general/data/data-table/form-field-type/formField-types";
+import { AllModels } from "../types/models/allmodels";
+import { MongooseBaseModel } from "../types/models/mongoose-base-model";
+import { _get, _set } from "./helpers/helper-functions";
 
 export function getDefaultValues(
   formFields: FormFieldTypes[],
@@ -21,7 +21,7 @@ export function getDefaultValues(
     if (_get(crudDocument, path)) {
       console.log(path, crudDocument[path]);
       /** check if is a object  (field.type === select then fall into here.) */
-      if (typeof crudDocument[path] === 'object') {
+      if (typeof crudDocument[path] === "object") {
         const newObj = _set(
           obj,
           path,
@@ -29,12 +29,12 @@ export function getDefaultValues(
            * set array of ids as a default values.
            */
           Array.isArray(crudDocument[path])
-            ? crudDocument[path].map((list: MongooseBaseModel) => list._id || list) || ''
+            ? crudDocument[path].map((list: MongooseBaseModel) => list._id || list) || ""
             : /** otherwise set only id as defaultValue */
-              crudDocument[path]?._id || ''
+              crudDocument[path]?._id || ""
         );
 
-        if (field.type === 'attachment' || field.type === 'image') {
+        if (field.type === "attachment" || field.type === "image") {
           // newObj.mediaPreview = {
           //   ...newObj.mediaPreview,
           //   [path]: crudDocument[path].map((file: UploadModel) => file.url),
@@ -57,23 +57,23 @@ export function getDefaultValues(
       //  example: I want date values are extracted from headerInputContext. avoid unnecessary looping over array in api.
       obj[path] = crudDocument?.[path] || null;
       // password is always empty
-      if (path === 'password') {
-        obj[path] = '';
+      if (path === "password") {
+        obj[path] = "";
       }
       return obj;
     }
 
     // fallbackValues
-    if (field.type === 'attachment' || field.type === 'image') {
+    if (field.type === "attachment" || field.type === "image") {
       if (field.multi) {
         obj.media = { ...obj.media, [path]: crudDocument[path] || [] };
         return obj;
       }
       // set id of the file
-      obj.media = { ...obj.media, [path]: crudDocument[path] || '' };
+      obj.media = { ...obj.media, [path]: crudDocument[path] || "" };
       return obj;
     }
-    if (field.type === 'checkbox-group-boolean') {
+    if (field.type === "checkbox-group-boolean") {
       return obj;
     }
     if (field.multi) {
@@ -88,20 +88,20 @@ export function getDefaultValues(
 }
 
 const fallbackValues: Record<string, string | number | Date | boolean | null | []> = {
-  text: '',
-  password: '',
-  'text-area': '',
+  text: "",
+  password: "",
+  "text-area": "",
   boolean: false,
   checkbox: false,
   select: null,
-  'static-select': null,
+  "static-select": null,
   number: 0,
   currency: 0,
   avatar: null,
-  date: new Date(Date.now()),
-  'date-range': new Date(Date.now()),
+  date: "",
+  "date-range": "",
   attachment: null,
   image: null,
-  color: '',
-  'access-controller': [],
+  color: "",
+  "access-controller": [],
 };

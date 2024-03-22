@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { Box, Button, Stack, Tooltip } from '@mantine/core';
-import Link from 'next/link';
-import Image from 'next/image';
-import { UploadModel } from '../../../types/models/upload-model';
-import { intlDateFormat } from '../../../utils/helpers/date-formatters';
-import { PATH_IMAGE } from '../../../lib/image-paths';
-import { PDFPreview } from './PDFPrevieww';
+import React, { useState } from "react";
+import { Box, Button, Stack, Tooltip } from "@mantine/core";
+import Link from "next/link";
+import Image from "next/image";
+import { UploadModel } from "../../../types/models/upload-model";
+import { intlDateFormat } from "../../../utils/helpers/date-formatters";
+import { PATH_IMAGE } from "../../../lib/image-paths";
+import { PDFPreview } from "./PDFPrevieww";
 
 type Props = {
   file: UploadModel;
@@ -26,14 +26,14 @@ export const PreviewHandler = (props: Props) => {
   const tooltip = (
     <>
       <Box>{file.originalFileName}</Box>
-      <Box style={{ textAlign: 'right' }}>{intlDateFormat(file.createdAt)}</Box>
+      <Box style={{ textAlign: "right" }}>{intlDateFormat(file.createdAt)}</Box>
     </>
   );
   switch (fileExt) {
-    case 'jpg':
-    case 'jpeg':
-    case 'png':
-    case 'gif':
+    case "jpg":
+    case "jpeg":
+    case "png":
+    case "gif":
       preview = hasError ? (
         <Image
           src={PATH_IMAGE.notFound}
@@ -51,12 +51,12 @@ export const PreviewHandler = (props: Props) => {
         />
       );
       break;
-    case 'pdf':
+    case "pdf":
       preview = <PDFPreview file={file} />;
 
       break;
 
-    case 'mp3':
+    case "mp3":
       preview = (
         <audio controls src={file.url}>
           <track src="" kind="captions" label="english_captions" />
@@ -64,7 +64,7 @@ export const PreviewHandler = (props: Props) => {
       );
       break;
 
-    case 'mp4':
+    case "mp4":
       preview = (
         <video controls width="100" height="100">
           <source src={file.url} type="video/mp4" />

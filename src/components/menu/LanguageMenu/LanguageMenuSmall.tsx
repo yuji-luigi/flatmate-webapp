@@ -1,15 +1,15 @@
-import { useState } from 'react';
-import { UnstyledButton, Menu, Image, Group } from '@mantine/core';
-import { IconChevronDown } from '@tabler/icons-react';
-import classes from './LanguageMenu.module.css';
-import { PATH_IMAGE } from '../../../lib/image-paths';
-import { useLocale } from '../../../../hooks/useLocale';
+import { useState } from "react";
+import { UnstyledButton, Menu, Image, Group } from "@mantine/core";
+import { IconChevronDown } from "@tabler/icons-react";
+import classes from "./LanguageMenu.module.css";
+import { PATH_IMAGE } from "../../../lib/image-paths";
+import { useLocale } from "../../../../hooks/useLocale";
 
 const { LOCALE_IMAGES } = PATH_IMAGE;
 const data = [
-  { label: 'English', image: LOCALE_IMAGES.english, value: 'en' },
+  { label: "English", image: LOCALE_IMAGES.english, value: "en" },
   // { label: 'German', image: LOCALE_IMAGES.german },
-  { label: 'Italian', image: LOCALE_IMAGES.italian, value: 'it' },
+  { label: "Italian", image: LOCALE_IMAGES.italian, value: "it" },
   // { label: 'French', image: LOCALE_IMAGES.french },
   // { label: 'Polish', image: LOCALE_IMAGES.polish },
 ] as const;
@@ -28,7 +28,7 @@ export function LanguageMenuSmall() {
   //   };
   // }
   const [opened, setOpened] = useState(false);
-  const { changeLanguage } = useLocale('common');
+  const { changeLanguage } = useLocale("common");
   const [selected, setSelected] = useState<Language>(data[0]);
   const handleSelected = (item: Language) => {
     setSelected(item);

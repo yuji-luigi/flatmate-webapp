@@ -1,33 +1,33 @@
-import { Box, Tooltip } from '@mantine/core';
-import React from 'react';
+import { Box, Tooltip } from "@mantine/core";
+import React from "react";
 
-import { PATH_IMAGE } from '../../lib/image-paths';
-import { UploadModel } from '../../types/models/upload-model';
-import { LinkedImage } from '../image/LinkedImage';
+import { PATH_IMAGE } from "../../lib/image-paths";
+import { UploadModel } from "../../types/models/upload-model";
+import { LinkedImage } from "../image/LinkedImage";
 
 const ICON_INDEXES = {
   // Image extensions
-  png: 'image',
-  jpg: 'image',
-  jpeg: 'image',
-  gif: 'image',
-  bmp: 'image',
-  webp: 'image',
+  png: "image",
+  jpg: "image",
+  jpeg: "image",
+  gif: "image",
+  bmp: "image",
+  webp: "image",
   // Document extensions
-  pdf: 'pdf',
-  doc: 'doc',
-  docx: 'doc',
-  xls: 'xls',
-  xlsx: 'xls',
-  ppt: 'doc',
-  pptx: 'doc',
+  pdf: "pdf",
+  doc: "doc",
+  docx: "doc",
+  xls: "xls",
+  xlsx: "xls",
+  ppt: "doc",
+  pptx: "doc",
   // Video extensions
-  mp4: 'doc',
-  mov: 'doc',
-  avi: 'doc',
+  mp4: "doc",
+  mov: "doc",
+  avi: "doc",
   // Audio extensions
-  mp3: 'doc',
-  wav: 'doc',
+  mp3: "doc",
+  wav: "doc",
 } as const;
 
 export function getFileIcon(uploadModel: UploadModel) {

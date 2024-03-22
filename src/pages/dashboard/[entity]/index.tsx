@@ -1,21 +1,21 @@
-import { ReactElement, useEffect } from 'react';
-import { useRouter } from 'next/router';
-import { Box } from '@mantine/core';
-import { GetServerSidePropsContext } from 'next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { TableSectionHeader } from '../../../sections/dashboard/datatable_section/TableSectionHeader';
+import { ReactElement, useEffect } from "react";
+import { useRouter } from "next/router";
+import { Box } from "@mantine/core";
+import { GetServerSidePropsContext } from "next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { TableSectionHeader } from "../../../sections/dashboard/datatable_section/TableSectionHeader";
 
-import Layout from '../../../layouts';
-import { sections } from '../../../data';
-import Page from '../../../components/Page';
-import { CrudDrawerDefault } from '../../../components/drawer/CrudDrawerDefault';
-import { useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
-import { usePaginationContext } from '../../../context/PaginationContext';
-import { Sections } from '../../../types/general/data/sections-type';
-import { HeaderContainer } from '../../../components/datatable/header/HeaderContainer';
-import { CrudDataTable } from '../../../components/datatable/CrudDataTable';
-import { useGetCrudDocuments } from '../../../hooks/useGetCrudDocuments';
-import { useCurrentEntityContext } from '../../../context/CurrentEntityContext';
+import Layout from "../../../layouts";
+import { sections } from "../../../data";
+import Page from "../../../components/Page";
+import { CrudDrawerDefault } from "../../../components/drawer/CrudDrawerDefault";
+import { useCrudSliceStore } from "../../../redux/features/crud/crudSlice";
+import { usePaginationContext } from "../../../context/PaginationContext";
+import { Sections } from "../../../types/general/data/sections-type";
+import { HeaderContainer } from "../../../components/datatable/header/HeaderContainer";
+import { CrudDataTable } from "../../../components/datatable/CrudDataTable";
+import { useGetCrudDocuments } from "../../../hooks/useGetCrudDocuments";
+import { useCurrentEntityContext } from "../../../context/CurrentEntityContext";
 
 const CrudPage = () => {
   const { query, push } = useRouter();
@@ -26,7 +26,7 @@ const CrudPage = () => {
   const { fetchCrudDocumentsWithPagination } = useCrudSliceStore();
   useEffect(() => {
     if (entity && !sections.includes(entity)) {
-      push('/dashboard/home');
+      push("/dashboard/home");
     }
   }, [entity]); // include parentId: string | undefined to update on change page
 
@@ -42,7 +42,7 @@ const CrudPage = () => {
 
   return (
     <Page title={`Flatmates | ${entity}`}>
-      <Box style={{ display: 'flex', flexDirection: 'column', gap: 'var(--flex-gap)' }}>
+      <Box style={{ display: "flex", flexDirection: "column", gap: "var(--flex-gap)" }}>
         <TableSectionHeader />
         <CrudDataTable />
         <CrudDrawerDefault />
@@ -56,9 +56,9 @@ CrudPage.getLayout = function getLayout(page: ReactElement) {
 };
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const translationObj = await serverSideTranslations(context.locale || 'it', ['common'], null, [
-    'it',
-    'en',
+  const translationObj = await serverSideTranslations(context.locale || "it", ["common"], null, [
+    "it",
+    "en",
   ]);
   return {
     props: {

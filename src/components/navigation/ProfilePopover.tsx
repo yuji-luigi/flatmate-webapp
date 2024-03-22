@@ -1,19 +1,19 @@
-import { Popover, Text, Button, Group, Avatar, Box, Divider, Menu } from '@mantine/core';
-import Link from 'next/link';
-import useAuth from '../../../hooks/useAuth';
-import { Icons } from '../../data/icons/icons';
-import { PATH_CLIENT } from '../../path/path-frontend';
-import classes from './ProfilePopover.module.css';
-import { LanguageMenu } from '../menu/LanguageMenu/LanguageMenu';
+import { Popover, Text, Button, Group, Avatar, Box, Divider, Menu } from "@mantine/core";
+import Link from "next/link";
+import useAuth from "../../../hooks/useAuth";
+import { Icons } from "../../data/icons/icons";
+import { PATH_CLIENT } from "../../path/path-frontend";
+import classes from "./ProfilePopover.module.css";
+import { LanguageMenu } from "../menu/LanguageMenu/LanguageMenu";
 
 const popoverList = [
   {
-    title: 'Edit profile',
+    title: "Edit profile",
     icon: <Icons.user />,
-    link: '/profile',
+    link: "/profile",
   },
   {
-    title: 'Setting condominium',
+    title: "Setting condominium",
     icon: <Icons.userSettings />,
     link: PATH_CLIENT.spaceSettings,
   },
@@ -38,9 +38,9 @@ export function ProfilePopover() {
         </div>
       </Group>
       <Menu.Dropdown>
-        <Menu.Label style={{ textAlign: 'center' }}>Settings</Menu.Label>
+        <Menu.Label style={{ textAlign: "center" }}>Settings</Menu.Label>
         <Box px={8} py={16}>
-          {/* // todo: onhover change color */}
+          {/* // TODO: onhover change color */}
           {popoverList.map((list) => (
             <Menu.Item component={Link} key={list.title} className={classes.link} href={list.link}>
               {list.icon}

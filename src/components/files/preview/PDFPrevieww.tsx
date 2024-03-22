@@ -1,6 +1,6 @@
-import React from 'react';
-import { Document, PDFViewer, Page, usePDF } from '@react-pdf/renderer';
-import ErrorBoundary from '../../util-components/ErrorBoundary';
+import React from "react";
+import { Document, PDFViewer, Page, usePDF } from "@react-pdf/renderer";
+import ErrorBoundary from "../../util-components/ErrorBoundary";
 
 export function PDFPreview(props: { file: any }) {
   const { file } = props;
@@ -9,7 +9,7 @@ export function PDFPreview(props: { file: any }) {
       <Page>
         <PDFViewer
           style={{
-            width: '100%',
+            width: "100%",
           }}
           height="300"
           showToolbar // @ts-ignore
@@ -20,12 +20,12 @@ export function PDFPreview(props: { file: any }) {
   );
   const [instance, update] = usePDF({ document: MyDoc });
 
-  if (instance.error) return 'error';
+  if (instance.error) return "error";
   return (
     <ErrorBoundary>
       <PDFViewer
         style={{
-          width: '100%',
+          width: "100%",
         }}
         height="300"
         showToolbar // @ts-ignore

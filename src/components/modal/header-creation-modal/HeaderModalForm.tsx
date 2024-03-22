@@ -1,30 +1,30 @@
 /* eslint-disable react/jsx-pascal-case */
-import { Box, Button, LoadingOverlay, Text } from '@mantine/core';
+import { Box, Button, LoadingOverlay, Text } from "@mantine/core";
 
-import { FormEvent, useMemo, useEffect } from 'react';
-import { useForm } from '@mantine/form';
-import { notifications } from '@mantine/notifications';
-import FormFields from '../../input/FormFields';
-import formFields from '../../../../json/dataTable/formfields';
-import { useCrudSelectors, useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
-import { getDefaultValues } from '../../../utils/getDefaultValues';
-import CreationToolBar from '../../input/CreationToolBar';
-import { UseFormReturnTypeCustom } from '../../input/input_interfaces/useForm_interface';
-import { hasMedia } from '../../../redux/features/crudAsyncThunks';
-import { uploadFileAndGetModelId, extractUploadingMedia } from '../../../utils/upload-helper';
-import { sleep } from '../../../utils/helpers/helper-functions';
-import { FormFieldTypes } from '../../../types/general/data/data-table/form-field-type/formField-types';
-import { useSimpleDisclosureContext } from '../../../context/SimpleDisclosureContext';
-import classes from './HeaderModalForm.module.css';
+import { FormEvent, useMemo, useEffect } from "react";
+import { useForm } from "@mantine/form";
+import { notifications } from "@mantine/notifications";
+import FormFields from "../../input/FormFields";
+import formFields from "../../../../json/dataTable/formfields";
+import { useCrudSelectors, useCrudSliceStore } from "../../../redux/features/crud/crudSlice";
+import { getDefaultValues } from "../../../utils/getDefaultValues";
+import CreationToolBar from "../../input/CreationToolBar";
+import { UseFormReturnTypeCustom } from "../../input/input_interfaces/useForm_interface";
+import { hasMedia } from "../../../redux/features/crudAsyncThunks";
+import { uploadFileAndGetModelId, extractUploadingMedia } from "../../../utils/upload-helper";
+import { sleep } from "../../../utils/helpers/helper-functions";
+import { FormFieldTypes } from "../../../types/general/data/data-table/form-field-type/formField-types";
+import { useSimpleDisclosureContext } from "../../../context/SimpleDisclosureContext";
+import classes from "./HeaderModalForm.module.css";
 
 const config = {
   headers: {
-    'Content-Type': 'multipart/form-data',
+    "Content-Type": "multipart/form-data",
   },
   // withCredentials: true,
 };
 
-const HeaderModalForm = ({ entity }: { entity: 'threads' | 'maintenances' }) => {
+const HeaderModalForm = ({ entity }: { entity: "threads" | "maintenances" }) => {
   const { close } = useSimpleDisclosureContext();
   // const [submitting, setSubmitting] = useState(false);
   const { submitting } = useCrudSelectors(entity);
@@ -42,8 +42,8 @@ const HeaderModalForm = ({ entity }: { entity: 'threads' | 'maintenances' }) => 
 
     setSubmitting(true);
     notifications.show({
-      id: 'submit',
-      message: 'Sending data to the server. Please wait...',
+      id: "submit",
+      message: "Sending data to the server. Please wait...",
       autoClose: false,
       loading: true,
     });
@@ -58,7 +58,7 @@ const HeaderModalForm = ({ entity }: { entity: 'threads' | 'maintenances' }) => 
 
     if (media && hasMedia(media)) {
       try {
-        const uploadIdData = await uploadFileAndGetModelId(extractUploadingMedia(media), 'threads');
+        const uploadIdData = await uploadFileAndGetModelId(extractUploadingMedia(media), "threads");
         // eslint-disable-next-line no-restricted-syntax, guard-for-in
         for (const key in uploadIdData) {
           if (!reqBody[key]) reqBody[key] = [];
@@ -66,7 +66,7 @@ const HeaderModalForm = ({ entity }: { entity: 'threads' | 'maintenances' }) => 
         }
       } catch (error) {
         console.error(error);
-        notifications.hide('submit');
+        notifications.hide("submit");
         setSubmitting(false);
         return;
       }
@@ -79,13 +79,13 @@ const HeaderModalForm = ({ entity }: { entity: 'threads' | 'maintenances' }) => 
   }, [crudStatus]);
   const handleLoadingStatus = async () => {
     await sleep(1000);
-    if (crudStatus === 'succeed' && submitting) {
-      notifications.hide('submit');
+    if (crudStatus === "succeed" && submitting) {
+      notifications.hide("submit");
       notifications.show({
-        color: 'teal',
+        color: "teal",
         loading: false,
-        id: 'success',
-        message: 'Successfully created a new thread.',
+        id: "success",
+        message: "Successfully created a new thread.",
         autoClose: 5000,
       });
       setSubmitting(false);
@@ -93,12 +93,12 @@ const HeaderModalForm = ({ entity }: { entity: 'threads' | 'maintenances' }) => 
       close();
       // router.reload();
     }
-    if (crudStatus === 'failed') {
-      notifications.hide('submit');
+    if (crudStatus === "failed") {
+      notifications.hide("submit");
       notifications.show({
-        color: 'red',
+        color: "red",
         loading: false,
-        id: 'failed',
+        id: "failed",
         message: crudError,
         autoClose: 5000,
       });

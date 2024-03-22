@@ -1,5 +1,5 @@
-import React, { ReactNode } from 'react';
-import LoadingScreen from '../components/screen/LoadingScreen';
+import React, { ReactNode } from "react";
+import LoadingScreen from "../components/screen/LoadingScreen";
 
 export const ClientProvider = ({ children }: { children: ReactNode }) => {
   const [isClient, setIsClient] = React.useState(false);

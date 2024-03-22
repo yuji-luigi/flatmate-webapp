@@ -1,7 +1,7 @@
-import { Breadcrumbs } from '@mantine/core';
-import Link from 'next/link';
-import useLayoutContext from '../../../../hooks/useLayoutContext';
-import classes from './BreadcrumbsCustom.module.css';
+import { Breadcrumbs } from "@mantine/core";
+import Link from "next/link";
+import useLayoutContext from "../../../../hooks/useLayoutContext";
+import classes from "./BreadcrumbsCustom.module.css";
 
 export function BreadcrumbsCustom() {
   const { breadcrumbs } = useLayoutContext();

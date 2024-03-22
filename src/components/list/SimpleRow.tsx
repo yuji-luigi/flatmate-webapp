@@ -1,9 +1,9 @@
-import { Divider, Group, Stack, Text } from '@mantine/core';
-import React from 'react';
+import { Divider, Group, Stack, Text } from "@mantine/core";
+import React from "react";
 
 const SimpleRow = ({
   title,
-  content = '',
+  content = "",
   top = false,
 }: {
   title: string;
@@ -13,7 +13,7 @@ const SimpleRow = ({
   return (
     <>
       {top && <Divider />}
-      <Group mt={8} style={{ justifyContent: 'space-between' }}>
+      <Group mt={8} style={{ justifyContent: "space-between" }}>
         <Text fw={600}>{title}:</Text>
         <Text fw={600}>{content}</Text>
       </Group>

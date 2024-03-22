@@ -1,7 +1,7 @@
-import { ModalProps } from '@mantine/core';
-import React from 'react';
-import { FormFieldTypes } from '../general/data/data-table/form-field-type/formField-types';
-import { AllModels } from '../models/allmodels';
+import { ModalProps } from "@mantine/core";
+import React from "react";
+import { FormFieldTypes } from "../general/data/data-table/form-field-type/formField-types";
+import { AllModels } from "../models/allmodels";
 
 export type _ModalContextStates = {
   isOpenModal: boolean;
@@ -11,7 +11,7 @@ export type _ModalContextStates = {
   toggleOpenModal: (isOpenModal: boolean) => void;
   openConfirmModal: (confirmModalProps: ModalDataTypes) => void;
 };
-export type ModalType = 'confirm' | 'alert' | 'crud' | 'custom' | 'loading';
+export type ModalType = "confirm" | "alert" | "crud" | "custom" | "loading";
 
 export type BaseModalData = {
   // id?: string;
@@ -20,12 +20,13 @@ export type BaseModalData = {
   centered?: boolean;
   fullScreen?: boolean;
   withinPortal?: boolean;
-} & ModalProps;
+};
 
 export interface RegularModalParams extends BaseModalData {
-  type: 'confirm' | 'alert' | 'loading';
+  type: "confirm" | "alert" | "loading";
   // formFields?: FormFieldTypes[];
   children?: React.ReactNode;
+  opened: boolean;
   labels?: {
     confirm?: string;
     cancel?: string;
@@ -39,14 +40,14 @@ export interface RegularModalParams extends BaseModalData {
 }
 
 export interface CrudModalData extends BaseModalData {
-  type: 'crud';
+  type: "crud";
   formFields: FormFieldTypes[];
   crudDocument: AllModels;
   // onCancel: () => void;
   // onConfirm: (data: any) => void | Promise<void>;
 }
 export interface CustomModalData extends BaseModalData {
-  type: 'custom';
+  type: "custom";
   // withinPortal?: boolean;
   children: React.ReactNode;
 }

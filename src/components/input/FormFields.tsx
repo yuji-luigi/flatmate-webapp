@@ -1,19 +1,19 @@
-import { UseFormReturnType } from '@mantine/form';
-import React, { useEffect } from 'react';
+import { UseFormReturnType } from "@mantine/form";
+import React, { useEffect } from "react";
 
-import CrudTextInput from './crud-inputs/CrudTextInput';
-import CrudTextArea from './crud-inputs/CrudTextArea';
-import CrudSelectMulti from './crud-inputs/CrudSelectMulti';
-import CrudSelect from './crud-inputs/CrudSelect';
+import CrudTextInput from "./crud-inputs/CrudTextInput";
+import CrudTextArea from "./crud-inputs/CrudTextArea";
+import CrudSelectMulti from "./crud-inputs/CrudSelectMulti";
+import CrudSelect from "./crud-inputs/CrudSelect";
 
-import { FormFieldTypes } from '../../types/general/data/data-table/form-field-type/formField-types';
-import CrudPasswordInput from './crud-inputs/CrudTextInput copy';
-import CrudCheckbox from './crud-inputs/CrudCheckbox';
-import { CrudSelectCheckboxGroup } from './crud-inputs/CrudSelectCheckboxGroup';
-import { CrudBooleanCheckboxGroup } from './crud-inputs/CrudBooleanCheckboxGroup';
-import UserRoleInput from './custom-inputs/user-role-input/UserRoleInput';
-import { AccessPermissionFormButton } from './crud-inputs/customs/access-permission-input/AccessPermissionInput';
-import { SpaceAutoSelect } from './custom-inputs/SpaceAutoSelect';
+import { FormFieldTypes } from "../../types/general/data/data-table/form-field-type/formField-types";
+import CrudPasswordInput from "./crud-inputs/CrudTextInput copy";
+import CrudCheckbox from "./crud-inputs/CrudCheckbox";
+import { CrudSelectCheckboxGroup } from "./crud-inputs/CrudSelectCheckboxGroup";
+import { CrudBooleanCheckboxGroup } from "./crud-inputs/CrudBooleanCheckboxGroup";
+import UserRoleInput from "./custom-inputs/user-role-input/UserRoleInput";
+import { AccessPermissionFormButton } from "./crud-inputs/customs/access-permission-input/AccessPermissionInput";
+import { SpaceAutoSelect } from "./custom-inputs/SpaceAutoSelect";
 
 interface Props {
   formField: FormFieldTypes;
@@ -27,37 +27,37 @@ const FormFields = ({ formField, form, ...others }: Props) => {
   const formType = formField.type;
 
   switch (formType) {
-    case 'number':
-    case 'text':
+    case "number":
+    case "text":
       return <CrudTextInput form={form} formField={formField} {...others} />;
-    case 'link-children':
+    case "link-children":
       return <CrudTextInput form={form} formField={formField} {...others} />;
-    case 'password':
+    case "password":
       return <CrudPasswordInput form={form} formField={formField} {...others} />;
-    case 'text-area':
+    case "text-area":
       return <CrudTextArea form={form} formField={formField} {...others} />;
-    case 'select':
+    case "select":
       return formField.multi ? (
         <CrudSelectMulti form={form} formField={formField} {...others} />
       ) : (
         <CrudSelect form={form} formField={formField} {...others} />
       );
-    case 'static-select':
+    case "static-select":
       return <CrudSelect form={form} formField={formField} {...others} />;
-    case 'checkbox':
+    case "checkbox":
       return <CrudCheckbox form={form} formField={formField} {...others} />;
-    case 'checkbox-group-select':
+    case "checkbox-group-select":
       return <CrudSelectCheckboxGroup form={form} formField={formField} {...others} />;
-    case 'checkbox-group-boolean':
+    case "checkbox-group-boolean":
       return <CrudBooleanCheckboxGroup form={form} formField={formField} {...others} />;
-    case 'user-role':
+    case "user-role":
       return <UserRoleInput form={form} formField={formField} {...others} />;
-    case 'access-controller':
+    case "access-controller":
       return <AccessPermissionFormButton form={form} formField={formField} {...others} />;
-    case 'space-auto-select':
+    case "space-auto-select":
       return <SpaceAutoSelect form={form} formField={formField} {...others} />;
 
-    case 'custom':
+    case "custom":
       // eslint-disable-next-line no-case-declarations
       const CustomComponent = formField.component;
       return (

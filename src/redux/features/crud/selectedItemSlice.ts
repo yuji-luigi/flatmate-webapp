@@ -1,5 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { useAppDispatch, useAppSelector } from '../../../../hooks/redux-hooks/useRedux';
+import { createSlice } from "@reduxjs/toolkit";
+import { useAppDispatch, useAppSelector } from "../../../../hooks/redux-hooks/useRedux";
 /* eslint-disable no-param-reassign */
 
 type ItemSliceState = {
@@ -13,11 +13,11 @@ const initialState: ItemSliceState = {
 //TODO: ONDELETE GET REQUEST/ SOME UPDATE REDUX STORE LOGIC IN BACKEND OR IN FRONTEND
 
 export const itemSlice = createSlice({
-  name: 'item',
+  name: "item",
   initialState,
   reducers: {
     set: (state, action) => {
-      if (typeof action.payload === 'function') {
+      if (typeof action.payload === "function") {
         // Explicitly cast the payload as a function that takes the current state and returns the new state
         const updateFn = action.payload as (prevState: typeof state.item) => typeof state.item;
         const newState = updateFn(state.item);
@@ -42,7 +42,7 @@ export const useItemSlice = <ItemType>(initialValues?: ItemType) => {
 
   const setItem = (item: ItemType | ((prevState: ItemType) => ItemType)) => {
     // Check if item is a function and handle accordingly
-    if (typeof item === 'function') {
+    if (typeof item === "function") {
       // First, retrieve the current state
       const currentState = get;
       // Then, dispatch the action with the new state calculated by the provided function

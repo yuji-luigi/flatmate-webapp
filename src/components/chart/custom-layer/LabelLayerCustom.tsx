@@ -1,5 +1,5 @@
-import { Point } from '@nivo/line';
-import React from 'react';
+import { Point } from "@nivo/line";
+import React from "react";
 
 type PointCustom = Point & {
   data: { change: number };

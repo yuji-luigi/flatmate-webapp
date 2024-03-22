@@ -1,10 +1,10 @@
-import { current } from '@reduxjs/toolkit';
-import { getCookie } from 'cookies-next';
-import jwtDecode from 'jwt-decode';
-import { useRouter } from 'next/router';
-import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
-import { useDisclosure } from '@mantine/hooks';
-import { useCrudSliceStore } from '../redux/features/crud/crudSlice';
+import { current } from "@reduxjs/toolkit";
+import { getCookie } from "cookies-next";
+import jwtDecode from "jwt-decode";
+import { useRouter } from "next/router";
+import { createContext, ReactNode, useContext, useEffect, useState } from "react";
+import { useDisclosure } from "@mantine/hooks";
+import { useCrudSliceStore } from "../redux/features/crud/crudSlice";
 
 export type SimpleDisclosureContextState = {
   opened: boolean;

@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
-import useAuth from '../../hooks/useAuth';
-import LoadingScreen from '../components/screen/LoadingScreen';
+import { useEffect } from "react";
+import useAuth from "../../hooks/useAuth";
+import LoadingScreen from "../components/screen/LoadingScreen";
 
 const LogoutPage = () => {
   const { logout } = useAuth();
@@ -10,7 +10,6 @@ const LogoutPage = () => {
   const handleLogout = async () => {
     logout();
   };
-  return <div>jfioa</div>;
   return <LoadingScreen />;
 };
 

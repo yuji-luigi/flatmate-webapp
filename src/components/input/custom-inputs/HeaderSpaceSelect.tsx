@@ -1,22 +1,22 @@
-import { Box, ComboboxItem, MantineStyleProp, Select } from '@mantine/core';
-import { useEffect, useState } from 'react';
-import { UseFormReturnType } from '@mantine/form';
-import { showNotification } from '@mantine/notifications';
-import { get } from 'http';
-import axiosInstance from '../../../utils/axios-instance';
-import { PATH_API } from '../../../path/path-api';
-import { useCookieContext } from '../../../context/CookieContext';
-import { convertToSelectItems } from '../../../utils/helpers/helper-functions';
-import { useCrudSelectors, useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
-import { SpaceModel } from '../../../types/models/space-model';
+import { Box, ComboboxItem, MantineStyleProp, Select } from "@mantine/core";
+import { useEffect, useState } from "react";
+import { UseFormReturnType } from "@mantine/form";
+import { showNotification } from "@mantine/notifications";
+import { get } from "http";
+import axiosInstance from "../../../utils/axios-instance";
+import { PATH_API } from "../../../path/path-api";
+import { useCookieContext } from "../../../context/CookieContext";
+import { convertToSelectItems } from "../../../utils/helpers/helper-functions";
+import { useCrudSelectors, useCrudSliceStore } from "../../../redux/features/crud/crudSlice";
+import { SpaceModel } from "../../../types/models/space-model";
 import {
   useSpaceSelectionSelectors,
   useSpaceSelectionSliceStore,
-} from '../../../redux/features/crud/spaceSelectionSlice';
+} from "../../../redux/features/crud/spaceSelectionSlice";
 
 interface OrganizationSpaceSelectProps {
   style?: MantineStyleProp;
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+  size?: "xs" | "sm" | "md" | "lg" | "xl";
   labels?: { organization: string; space: string };
   form?: UseFormReturnType<Record<string, unknown>> | null;
   className?: string;
@@ -26,7 +26,7 @@ interface OrganizationSpaceSelectProps {
 
 const HeaderSpaceSelect = ({
   style,
-  size = 'xs',
+  size = "xs",
   labels,
   form = null,
   className,
@@ -45,7 +45,7 @@ const HeaderSpaceSelect = ({
 
   const getSpaceCookieFromApi = async (spaceId: string) => {
     // case select is cleared
-    if (spaceId === '') {
+    if (spaceId === "") {
       await axiosInstance.delete(PATH_API.getSpaceSelections);
       resetCurrentSpace();
       return;
@@ -71,9 +71,9 @@ const HeaderSpaceSelect = ({
             handleDeleteSpaceCookie();
             return;
           }
-          getSpaceCookieFromApi(value || '');
+          getSpaceCookieFromApi(value || "");
           if (form) {
-            form.setFieldValue('space', value || '');
+            form.setFieldValue("space", value || "");
           }
         }}
         value={currentSpace?._id || null}

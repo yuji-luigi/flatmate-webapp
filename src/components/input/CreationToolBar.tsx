@@ -1,14 +1,14 @@
-import { Group, Stack } from '@mantine/core';
-import React, { ReactNode } from 'react';
+import { Group, Stack } from "@mantine/core";
+import React, { ReactNode } from "react";
 
-import CreationToolBarIconButton from './CreationToolBarIconButton';
-import PreviewFileZone from './PreviewFileZone';
-import { UseFormReturnTypeCustom } from './input_interfaces/useForm_interface';
-import { Sections } from '../../types/general/data/sections-type';
+import CreationToolBarIconButton from "./CreationToolBarIconButton";
+import PreviewFileZone from "./PreviewFileZone";
+import { UseFormReturnTypeCustom } from "./input_interfaces/useForm_interface";
+import { Sections } from "../../types/general/data/sections-type";
 import {
   FormFieldTypes,
   UploadFormFieldType,
-} from '../../types/general/data/data-table/form-field-type/formField-types';
+} from "../../types/general/data/data-table/form-field-type/formField-types";
 
 interface Props {
   form: UseFormReturnTypeCustom;
@@ -22,11 +22,11 @@ interface Props {
 }
 function CreationToolBar({ form, formFields, submitButton, entity }: Props) {
   const uploadFormFields = formFields.filter(
-    (field) => field.type === 'image' || field.type === 'attachment'
+    (field) => field.type === "image" || field.type === "attachment"
   ) as UploadFormFieldType[];
-  //todo: need to iterate over the formFields and create a upload icon for each one
+  //TODO: need to iterate over the formFields and create a upload icon for each one
   return (
-    <Stack style={{ width: '100%' }}>
+    <Stack style={{ width: "100%" }}>
       {uploadFormFields?.map((uploadField) => (
         <PreviewFileZone entity={entity} key={uploadField.id} formField={uploadField} form={form} />
       ))}

@@ -1,17 +1,17 @@
-import { Box, ComboboxItem, MantineStyleProp, Select, TextInput } from '@mantine/core';
-import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
-import { UseFormReturnType } from '@mantine/form';
-import { showNotification } from '@mantine/notifications';
-import axiosInstance from '../../../utils/axios-instance';
-import { PATH_API, _PATH_API } from '../../../path/path-api';
-import { useCookieContext } from '../../../context/CookieContext';
-import { convertToSelectItems } from '../../../utils/helpers/helper-functions';
-import useAuth from '../../../../hooks/useAuth';
+import { Box, ComboboxItem, MantineStyleProp, Select, TextInput } from "@mantine/core";
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { UseFormReturnType } from "@mantine/form";
+import { showNotification } from "@mantine/notifications";
+import axiosInstance from "../../../utils/axios-instance";
+import { PATH_API, _PATH_API } from "../../../path/path-api";
+import { useCookieContext } from "../../../context/CookieContext";
+import { convertToSelectItems } from "../../../utils/helpers/helper-functions";
+import useAuth from "../../../../hooks/useAuth";
 
 interface OrganizationSpaceSelectProps {
   style?: MantineStyleProp;
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+  size?: "xs" | "sm" | "md" | "lg" | "xl";
   labels?: { organization: string; space: string };
   form?: UseFormReturnType<Record<string, unknown>> | null;
   className?: string;
@@ -21,7 +21,7 @@ interface OrganizationSpaceSelectProps {
 
 const OrganizationSpaceSelect = ({
   style,
-  size = 'xs',
+  size = "xs",
   labels,
   form = null,
   className,
@@ -51,7 +51,7 @@ const OrganizationSpaceSelect = ({
   };
 
   const getSpaceCookieFromApi = async (spaceId: string) => {
-    if (spaceId === '') {
+    if (spaceId === "") {
       await axiosInstance.delete(PATH_API.getSpaceSelections);
       resetCurrentSpace();
       return;
@@ -67,9 +67,9 @@ const OrganizationSpaceSelect = ({
       setSpaces(selectOptions);
     } catch (error) {
       showNotification({
-        title: 'Error',
+        title: "Error",
         message: "Something went wrong while fetching spaces' data",
-        color: 'red',
+        color: "red",
       });
     }
   };
@@ -87,17 +87,17 @@ const OrganizationSpaceSelect = ({
         disabled={!spaces.length}
         label={labels?.space}
         onClick={handleGetSpaces}
-        key={currentOrganization || ''}
+        key={currentOrganization || ""}
         data={spaces}
-        value={currentSpace?._id?.toString() || ''}
+        value={currentSpace?._id?.toString() || ""}
         onChange={(value) => {
           if (value === null) {
             handleDeleteSpaceCookie();
             return;
           }
-          getSpaceCookieFromApi(value || '');
+          getSpaceCookieFromApi(value || "");
           if (form) {
-            form.setFieldValue('space', value || '');
+            form.setFieldValue("space", value || "");
           }
         }}
         style={style}

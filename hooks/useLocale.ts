@@ -1,10 +1,10 @@
-import { set } from 'date-fns';
-import { useEffect, useState } from 'react';
-import { useTranslation } from 'next-i18next';
-import { LOCAL_STORAGE_KEYS } from '../src/lib/enums';
+import { set } from "date-fns";
+import { useEffect, useState } from "react";
+import { useTranslation } from "next-i18next";
+import { LOCAL_STORAGE_KEYS } from "../src/lib/enums";
 
 const { LOCALE } = LOCAL_STORAGE_KEYS;
-export const useLocale = (jsonPath: string | string[] = 'common') => {
+export const useLocale = (jsonPath: string | string[] = "common") => {
   const { t, i18n } = useTranslation(jsonPath);
   const [currentLocale, setCurrentLocale] = useState<string | null>(i18n.language);
 
@@ -18,10 +18,10 @@ export const useLocale = (jsonPath: string | string[] = 'common') => {
   useEffect(() => {
     let initialLocale = localStorage.getItem(LOCALE); // potentially null
     if (!initialLocale) {
-      initialLocale = 'it'; // if null set to default 'it'
+      initialLocale = "it"; // if null set to default 'it'
       localStorage.setItem(LOCALE, initialLocale); // and save it in localStorage
     }
-    if (initialLocale !== 'en') {
+    if (initialLocale !== "en") {
       i18n.changeLanguage(initialLocale);
     }
     setCurrentLocale(initialLocale); // set whatever is in localStorage or default 'it'

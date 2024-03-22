@@ -1,4 +1,4 @@
-import React, { createContext, ReactNode, useContext, useState } from 'react';
+import React, { createContext, ReactNode, useContext, useState } from "react";
 
 // This custom hook is to control entity of the dashboard page: jsonFormField, sectionJson.
 // And CrudPagenNumber component state.
@@ -28,7 +28,7 @@ const PaginationContext = createContext<PaginationContextInterface>({
   resetPagination: () => {},
   setPagination: () => {},
   /** @return {string} */
-  paginationQuery: '',
+  paginationQuery: "",
   rowsPerPage: 10,
   setRowsPerPage: () => {},
 });

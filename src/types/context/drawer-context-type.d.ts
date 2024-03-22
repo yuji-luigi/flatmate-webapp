@@ -15,10 +15,10 @@ interface ReducerStore {
 }
 
 interface ReducerState {
-  mode: 'linkedChildren' | '';
+  mode: "linkedChildren" | "";
 }
 
-type DrawerStateActionType = 'linkedChildren' | 'reset';
+type DrawerStateActionType = "linkedChildren" | "reset";
 interface DrawerStateAction {
   type: DrawerStateActionType;
   payload?: string;

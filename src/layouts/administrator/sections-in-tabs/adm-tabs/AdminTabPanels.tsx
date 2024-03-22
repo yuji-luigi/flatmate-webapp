@@ -1,0 +1,15 @@
+import React from "react";
+import { Tabs } from "@mantine/core";
+import { TAB_LIST_CONFIG } from "./adm-tabList";
+
+export const AdminTabPanels = () => {
+  return (
+    <>
+      {TAB_LIST_CONFIG.map((tabItem) => (
+        <Tabs.Panel key={tabItem.value} value={tabItem.value}>
+          {tabItem.component !== null && <tabItem.component />}
+        </Tabs.Panel>
+      ))}
+    </>
+  );
+};

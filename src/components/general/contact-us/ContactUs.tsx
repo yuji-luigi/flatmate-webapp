@@ -8,10 +8,10 @@ import {
   Group,
   ActionIcon,
   rem,
-} from '@mantine/core';
-import { IconBrandTwitter, IconBrandYoutube, IconBrandInstagram } from '@tabler/icons-react';
-import { ContactIconsList } from './ContactIcons';
-import classes from './ContactUs.module.css';
+} from "@mantine/core";
+import { IconBrandTwitter, IconBrandYoutube, IconBrandInstagram } from "@tabler/icons-react";
+import { ContactIconsList } from "./ContactIcons";
+import classes from "./ContactUs.module.css";
 
 const social = [IconBrandTwitter, IconBrandYoutube, IconBrandInstagram];
 
@@ -40,13 +40,13 @@ export function ContactUs() {
             label="Email"
             placeholder="your@email.com"
             required
-            classNames={{ input: 'crud-input', label: classes.inputLabel }}
+            classNames={{ input: "crud-input", label: classes.inputLabel }}
           />
           <TextInput
             label="Name"
             placeholder="John Doe"
             mt="md"
-            classNames={{ input: 'crud-input', label: classes.inputLabel }}
+            classNames={{ input: "crud-input", label: classes.inputLabel }}
           />
           <Textarea
             required
@@ -54,7 +54,7 @@ export function ContactUs() {
             placeholder="I want to order your goods"
             minRows={4}
             mt="md"
-            classNames={{ input: 'crud-input', label: classes.inputLabel }}
+            classNames={{ input: "crud-input", label: classes.inputLabel }}
           />
 
           <Group justify="right" mt="md">

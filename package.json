@@ -1,5 +1,5 @@
 {
-  "name": "next_typescript_mantine",
+  "name": "flatmates-webapp",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -8,6 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "prettier": "prettier --write \"**/*.{ts,tsx,md,json}\"",
     "test": "jest --watch",
     "styleLint": "stylelint \"./src/**/*.scss\" --fix"
   },
@@ -93,6 +94,7 @@
     "postcss-reporter": "^7.1.0",
     "postcss-scss": "^4.0.9",
     "postcss-simple-vars": "^7.0.1",
+    "prettier": "^3.2.5",
     "style-loader": "^3.3.4",
     "stylelint": "^16.2.1",
     "stylelint-config-recommended": "^14.0.0",

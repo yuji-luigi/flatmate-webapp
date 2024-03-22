@@ -1,10 +1,10 @@
-import Lightbox from 'yet-another-react-lightbox';
-import Zoom from 'yet-another-react-lightbox/plugins/zoom';
-import 'yet-another-react-lightbox/styles.css';
+import Lightbox from "yet-another-react-lightbox";
+import Zoom from "yet-another-react-lightbox/plugins/zoom";
+import "yet-another-react-lightbox/styles.css";
 
-import image1 from '../public/images/image01.jpeg';
-import image2 from '../public/images/image02.jpeg';
-import image3 from '../public/images/image03.jpeg';
+import image1 from "../public/images/image01.jpeg";
+import image2 from "../public/images/image02.jpeg";
+import image3 from "../public/images/image03.jpeg";
 // ...
 
 const images = [

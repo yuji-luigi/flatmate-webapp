@@ -1,11 +1,11 @@
-import React, { Fragment } from 'react';
-import { Stack, Text } from '@mantine/core';
-import Link from 'next/link';
-import { Icons } from '../../../../../data/icons/icons';
-import TextWithIcon from '../../../../../components/text/TextWithIcon';
-import { MaintainerModel } from '../../../../../types/models/maintainer-model';
-import { PATH_CLIENT } from '../../../../../path/path-frontend';
-import classes from '../../../../../styles/global-useStyles.module.css';
+import React, { Fragment } from "react";
+import { Stack, Text } from "@mantine/core";
+import Link from "next/link";
+import { Icons } from "../../../../../data/icons/icons";
+import TextWithIcon from "../../../../../components/text/TextWithIcon";
+import { MaintainerModel } from "../../../../../types/models/maintainer-model";
+import { PATH_CLIENT } from "../../../../../path/path-frontend";
+import classes from "../../../../../styles/global-useStyles.module.css";
 
 export const MaintainerList = ({ maintainers }: { maintainers: MaintainerModel[] }) => {
   if (!maintainers.length) return <Text>No maintainer to the space</Text>;

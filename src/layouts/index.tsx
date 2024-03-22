@@ -1,23 +1,23 @@
-import React, { ReactElement, ReactNode } from 'react';
-import { Box } from '@mantine/core';
-import AuthGuard from '../guards/AuthGuard';
-import DashboardLayout from './dashboard/DashboardLayout';
-import { HomepageLayout } from './homepage';
-import { CookieContextProvider } from '../context/CookieContext';
-import { TabContextProvider } from '../context/tab-context/TabContextProvider';
-import classes from './index.module.css';
-import { AuthTokenRouteLayout } from './auth-token/AuthTokenRouteLayout';
-import { ClientProvider } from './ClientProvider';
+import React, { ReactElement, ReactNode } from "react";
+import { Box } from "@mantine/core";
+import AuthGuard from "../guards/AuthGuard";
+import DashboardLayout from "./dashboard/DashboardLayout";
+import { HomepageLayout } from "./homepage";
+import { CookieContextProvider } from "../context/CookieContext";
+import { TabContextProvider } from "../context/tab-context/TabContextProvider";
+// import classes from "./index.module.css";
+import { AuthTokenRouteLayout } from "./auth-token/AuthTokenRouteLayout";
+import { ClientProvider } from "./ClientProvider";
 
 export type LayoutVariants =
-  | 'main'
-  | 'logoOnly'
-  | 'dashboard'
-  | 'auth-token'
-  | 'administrator-dashboard';
+  | "main"
+  | "logoOnly"
+  | "dashboard"
+  | "auth-token"
+  | "administrator-dashboard";
 
 const Layout = ({
-  variant = 'dashboard',
+  variant = "dashboard",
   title,
   children,
 }: {
@@ -25,7 +25,7 @@ const Layout = ({
   title?: ReactNode;
   children: ReactElement;
 }) => {
-  if (variant === 'logoOnly') {
+  if (variant === "logoOnly") {
     return (
       <>
         <p>logo only layout</p>
@@ -34,10 +34,10 @@ const Layout = ({
     );
   }
   // homepage
-  if (variant === 'main') {
+  if (variant === "main") {
     return <HomepageLayout>{children}</HomepageLayout>;
   }
-  if (variant === 'auth-token') {
+  if (variant === "auth-token") {
     return (
       <ClientProvider>
         <CookieContextProvider>
@@ -52,7 +52,7 @@ const Layout = ({
       <CookieContextProvider>
         <TabContextProvider>
           <DashboardLayout>
-            <Box className={classes.dashboardContainer}>{children}</Box>
+            <Box className="dashboardContainer">{children}</Box>
           </DashboardLayout>
         </TabContextProvider>
       </CookieContextProvider>

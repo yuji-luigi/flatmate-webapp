@@ -1,6 +1,6 @@
-import { createFormContext } from '@mantine/form';
-import { TextInput } from '@mantine/core';
-import { ReactNode } from 'react';
+import { createFormContext } from "@mantine/form";
+import { TextInput } from "@mantine/core";
+import { ReactNode } from "react";
 
 // Definition of form values is required
 interface FormValues {

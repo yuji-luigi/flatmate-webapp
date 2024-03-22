@@ -1,9 +1,9 @@
-import { Card, Title, Text, Box, Indicator } from '@mantine/core';
-import { Icon123 } from '@tabler/icons-react';
-import React from 'react';
-import { Icons } from '../../../data/icons/icons';
-import { TEXT_SIZE } from '../../text/text-size';
-import classes from './sideCardStyles.module.css';
+import { Card, Title, Text, Box, Indicator } from "@mantine/core";
+import { Icon123 } from "@tabler/icons-react";
+import React from "react";
+import { Icons } from "../../../data/icons/icons";
+import { TEXT_SIZE } from "../../text/text-size";
+import classes from "./sideCardStyles.module.css";
 
 interface Prop {
   title?: string | React.ReactNode;
@@ -21,7 +21,7 @@ const CardWithTitle = ({ title, children, titleSx, style, indicator }: Prop) => 
     title
   );
   const _title = title && (
-    <Text style={{ display: 'flex', fontSize: TEXT_SIZE.titleCard, ...titleSx }} mb={8}>
+    <Text style={{ display: "flex", fontSize: TEXT_SIZE.titleCard, ...titleSx }} mb={8}>
       {indicatorTitle}
     </Text>
   );

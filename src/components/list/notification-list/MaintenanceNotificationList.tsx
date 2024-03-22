@@ -1,18 +1,18 @@
-import { Box, Group, Avatar, Text } from '@mantine/core';
-import React from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { PATH_IMAGE } from '../../../lib/image-paths';
-import classes from './NotificationList.module.css';
-import { intlDateFormat } from '../../../utils/helpers/date-formatters';
-import { _PATH_FRONTEND } from '../../../path/path-frontend';
-import { MaintenanceModel } from '../../../types/models/maintenance-model';
-import { CATEGORIES } from './categories';
-import { ThreadModel } from '../../../types/models/thread-model';
+import { Box, Group, Avatar, Text } from "@mantine/core";
+import React from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { PATH_IMAGE } from "../../../lib/image-paths";
+import classes from "./NotificationList.module.css";
+import { intlDateFormat } from "../../../utils/helpers/date-formatters";
+import { _PATH_FRONTEND } from "../../../path/path-frontend";
+import { MaintenanceModel } from "../../../types/models/maintenance-model";
+import { CATEGORIES } from "./categories";
+import { ThreadModel } from "../../../types/models/thread-model";
 
 export type MaintenanceNotification = (MaintenanceModel | ThreadModel) & {
   category: typeof CATEGORIES.maintenances;
-  entity: 'maintenances';
+  entity: "maintenances";
 };
 type MaintenanceNorificationListProps = {
   data: MaintenanceNotification;
@@ -21,7 +21,7 @@ type MaintenanceNorificationListProps = {
 
 export const MaintenanceNotificationList = (props: MaintenanceNorificationListProps) => {
   const { data, closeDrawer } = props;
-  const { title, description = '', createdBy, createdAt, category, entity, _id } = data;
+  const { title, description = "", createdBy, createdAt, category, entity, _id } = data;
 
   const _description =
     description.length > 55 ? `${description?.substring(0, 55)}...` : description;

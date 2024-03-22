@@ -1,9 +1,9 @@
-import { Card, Text, Group, Box, BackgroundImage, MantineStyleProp } from '@mantine/core';
-import Link from 'next/link';
-import { PATH_IMAGE } from '../../lib/image-paths';
-import { UploadModel } from '../../types/models/upload-model';
-import classes from './CardVerticalTextBottom.module.css';
-import { UserModel } from '../../types/models/space-model';
+import { Card, Text, Group, Box, BackgroundImage, MantineStyleProp } from "@mantine/core";
+import Link from "next/link";
+import { PATH_IMAGE } from "../../lib/image-paths";
+import { UploadModel } from "../../types/models/upload-model";
+import classes from "./CardVerticalTextBottom.module.css";
+import { UserModel } from "../../types/models/space-model";
 
 export interface CardData {
   _id: string;

@@ -2,11 +2,11 @@
 // export const getFormFieldsJson = async (str: string): Promise<Array<any>> =>{
 //   const import(`../../data/datatable/formFields/index${str}`);}
 
-import { PATH_API } from '../../path/path-api';
-import { MixedMediaType, UploadingMediaType } from '../../types/data/media/media-types';
-import { Sections, isSection, sectionsArray } from '../../types/general/data/sections-type';
-import { AllModels } from '../../types/models/mongoose-models';
-import axiosInstance from '../axios-instance';
+import { PATH_API } from "../../path/path-api";
+import { MixedMediaType, UploadingMediaType } from "../../types/data/media/media-types";
+import { Sections, isSection, sectionsArray } from "../../types/general/data/sections-type";
+import { AllModels } from "../../types/models/mongoose-models";
+import axiosInstance from "../axios-instance";
 
 type ALotOfNumbers = number;
 export const getRandomNumber = (): ALotOfNumbers => Math.ceil(10 ** 10 * Math.random());
@@ -18,7 +18,7 @@ export const getRandomNumberOne = (): OnlyNumber => Math.ceil(10 * Math.random()
 export const createLabelFromArrayStr = (
   arr: string[],
   document: any,
-  label: string = ''
+  label: string = ""
 ): string => {
   const clonedArr = [...arr];
 
@@ -40,18 +40,18 @@ export const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve
 
 export function isObjectEmpty(value: Record<any, any> | any) {
   return (
-    Object.prototype.toString.call(value) === '[object Object]' && JSON.stringify(value) === '{}'
+    Object.prototype.toString.call(value) === "[object Object]" && JSON.stringify(value) === "{}"
   );
 }
 
 export function getCookie(name: string) {
-  return document.cookie.split(';').some((c) => c.trim().startsWith(`${name}=`));
+  return document.cookie.split(";").some((c) => c.trim().startsWith(`${name}=`));
 }
 
 export function deleteCookie(name: string, path: string, domain: string) {
   if (getCookie(name)) {
-    document.cookie = `${name}=${path ? `;path=${path}` : ''}${
-      domain ? `;domain=${domain}` : ''
+    document.cookie = `${name}=${path ? `;path=${path}` : ""}${
+      domain ? `;domain=${domain}` : ""
     };expires=Thu, 01 Jan 1970 00:00:01 GMT`;
   }
 }
@@ -65,19 +65,19 @@ export function createQuery(data: Record<string, string>) {
     if (!value) {
       return acc;
     }
-    if (acc === '?') {
+    if (acc === "?") {
       acc += `${key}=${value}`;
       return acc;
     }
     acc += `&${key}=${value}`;
     return acc;
-  }, '?');
-  return createdQuery === '?' ? undefined : createdQuery;
+  }, "?");
+  return createdQuery === "?" ? undefined : createdQuery;
 }
 
 /** Piece of useful function from StackOverflow
  * https://stackoverflow.com/questions/6491463/accessing-nested-javascript-objects-and-arrays-by-string-path */
-export function _get(obj: Record<string, any>, path: string[] | string, separator: string = '.') {
+export function _get(obj: Record<string, any>, path: string[] | string, separator: string = ".") {
   const properties = Array.isArray(path) ? path : path.split(separator);
   return properties.reduce((prev, curr) => prev?.[curr], obj);
 }
@@ -86,7 +86,7 @@ export function _set(
   obj: Record<string, any>,
   path: string[] | string,
   newValue: any,
-  separator: string = '.'
+  separator: string = "."
 ) {
   const properties = Array.isArray(path) ? path : path.split(separator);
   return properties.reduce((prev, curr, index) => {
@@ -116,9 +116,9 @@ export function _set(
 //   return getCsvPrimitive({ array, obj: newData || '' });
 // };
 
-export const capitalize = (str?: string) => (str ? str.charAt(0).toUpperCase() + str.slice(1) : '');
+export const capitalize = (str?: string) => (str ? str.charAt(0).toUpperCase() + str.slice(1) : "");
 
-export const convertToSelectItems = (mongooseDocuments: Array<any>, label: string = 'name') => {
+export const convertToSelectItems = (mongooseDocuments: Array<any>, label: string = "name") => {
   return mongooseDocuments.map((doc) => {
     return {
       value: doc._id,
@@ -129,7 +129,7 @@ export const convertToSelectItems = (mongooseDocuments: Array<any>, label: strin
 
 export function getEntityFromUrl(
   url: string = window.location.pathname,
-  keyword: string = 'dashboard'
+  keyword: string = "dashboard"
 ): Sections {
   const regex = new RegExp(`${keyword}\\/(\\w+)`);
   const str = regex.exec(url);
@@ -138,18 +138,18 @@ export function getEntityFromUrl(
   if (match && isSection(match)) {
     return match;
   }
-  throw new Error('entity is not valid. getEntityFromUrl');
+  throw new Error("entity is not valid. getEntityFromUrl");
 }
 
-export function getWordNextFromUrl(url = window.location.pathname, keyword = 'dashboard') {
+export function getWordNextFromUrl(url = window.location.pathname, keyword = "dashboard") {
   const regex = new RegExp(`${keyword}\\/(\\w+)`);
   const match = regex.exec(url);
   return match ? match[1] : null;
 }
 
 function transformMatchForExceptions(match: string | undefined) {
-  if (match === 'space') {
-    return 'spaces';
+  if (match === "space") {
+    return "spaces";
   }
   return match;
 }

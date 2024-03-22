@@ -1,4 +1,4 @@
-export function FacebookIcon(props: React.ComponentProps<'svg'>) {
+export function FacebookIcon(props: React.ComponentProps<"svg">) {
   return (
     <svg
       aria-hidden="true"

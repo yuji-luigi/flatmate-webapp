@@ -1,15 +1,15 @@
-import { Button, Group, LoadingOverlay } from '@mantine/core';
-import React, { ChangeEvent, useCallback, useRef, useState } from 'react';
-import { showNotification } from '@mantine/notifications';
-import { FlattenSectionData } from '../../../../data';
-import { useCrudSliceStore } from '../../../../redux/features/crud/crudSlice';
-import { Sections } from '../../../../types/general/data/sections-type';
-import { useDrawerContext } from '../../../../context/DataTableDrawerContext';
-import classes from '../../../../styles/global-useStyles.module.css';
-import { useCustomModalContext } from '../../../../context/modal-context/_ModalContext';
-import axiosInstance from '../../../../utils/axios-instance';
-import { PATH_API } from '../../../../path/path-api';
-import { sleep } from '../../../../utils/helpers/helper-functions';
+import { Button, Group, LoadingOverlay } from "@mantine/core";
+import React, { ChangeEvent, useCallback, useRef, useState } from "react";
+import { showNotification } from "@mantine/notifications";
+import { FlattenSectionData } from "../../../../data";
+import { useCrudSliceStore } from "../../../../redux/features/crud/crudSlice";
+import { Sections } from "../../../../types/general/data/sections-type";
+import { useDrawerContext } from "../../../../context/DataTableDrawerContext";
+import classes from "../../../../styles/global-useStyles.module.css";
+import { useCustomModalContext } from "../../../../context/modal-context/_ModalContext";
+import axiosInstance from "../../../../utils/axios-instance";
+import { PATH_API } from "../../../../path/path-api";
+import { sleep } from "../../../../utils/helpers/helper-functions";
 
 export const CrudTableButtons = ({
   section,
@@ -32,12 +32,12 @@ export const CrudTableButtons = ({
     const file = e.target?.files?.[0]; // get the file
     if (file) {
       handleOpenModal(file);
-      e.target.value = ''; // reset the input
+      e.target.value = ""; // reset the input
     }
   }, []);
 
   function handleOpenDrawer() {
-    if (typeof entity !== 'undefined') {
+    if (typeof entity !== "undefined") {
       selectCrudDocument({ entity, document: null });
     }
     openDrawer();
@@ -45,10 +45,10 @@ export const CrudTableButtons = ({
 
   function handleOpenModal(file: File) {
     openConfirmModal({
-      type: 'confirm',
+      type: "confirm",
       labels: {
-        confirm: 'Import',
-        cancel: 'Cancel',
+        confirm: "Import",
+        cancel: "Cancel",
       },
       title: `Import excel file: ${file?.name}`,
       async onConfirm() {
@@ -61,18 +61,18 @@ export const CrudTableButtons = ({
   }
   const confirmEvent = async (file: File) => {
     const formData = new FormData();
-    formData.append('file', file);
+    formData.append("file", file);
     const rawRes = await axiosInstance.post(`${entity}/${PATH_API.importExcel}`, formData, {
       headers: {
-        'Content-Type': 'multipart/form-data',
+        "Content-Type": "multipart/form-data",
       },
     });
     await sleep(1000);
     console.log(rawRes.data.data);
     showNotification({
-      title: 'Action Success',
-      message: 'Import success!!',
-      color: 'green',
+      title: "Action Success",
+      message: "Import success!!",
+      color: "green",
     });
     setCrudDocuments({
       entity,

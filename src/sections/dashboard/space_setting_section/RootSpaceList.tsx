@@ -1,13 +1,13 @@
-import { AxiosError } from 'axios';
-import React from 'react';
-import useSWR from 'swr';
-import { Box } from '@mantine/core';
-import useAuth from '../../../../hooks/useAuth';
-import { CardArticleVerticalTextBottom } from '../../../components/card/CardVerticalTextBottom';
-import { fetchSpaceSelections } from '../../../pages/choose-root-space';
-import { PATH_CLIENT } from '../../../path/path-frontend';
-import { SpaceModel } from '../../../types/models/space-model';
-import classes from './RootSpaceList.module.css';
+import { AxiosError } from "axios";
+import React from "react";
+import useSWR from "swr";
+import { Box } from "@mantine/core";
+import useAuth from "../../../../hooks/useAuth";
+import { CardArticleVerticalTextBottom } from "../../../components/card/CardVerticalTextBottom";
+import { fetchSpaceSelections } from "../../../pages/choose-root-space";
+import { PATH_CLIENT } from "../../../path/path-frontend";
+import { SpaceModel } from "../../../types/models/space-model";
+import classes from "./RootSpaceList.module.css";
 
 const RootSpaceList = () => {
   const { user } = useAuth();
@@ -27,7 +27,7 @@ const RootSpaceList = () => {
             _id: space._id,
             name: space.name,
             address: space.address,
-            createdAt: '',
+            createdAt: "",
             cover: space.cover,
           }}
           href={`${PATH_CLIENT.spaceSettings}/${space.slug}`}

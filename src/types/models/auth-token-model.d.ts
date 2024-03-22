@@ -1,5 +1,5 @@
-import { UserRoles } from '../../lib/enums';
-import { MongooseBaseModel } from './mongoose-base-model';
+import { UserRoles } from "../../lib/enums";
+import { MongooseBaseModel } from "./mongoose-base-model";
 
 export interface AuthTokenModel extends MongooseBaseModel {
   nonce?: number;
@@ -7,4 +7,4 @@ export interface AuthTokenModel extends MongooseBaseModel {
   active: boolean;
 }
 
-export type HiddenAuthTokenInterface = Omit<AuthTokenModel, 'nonce'>;
+export type HiddenAuthTokenInterface = Omit<AuthTokenModel, "nonce">;

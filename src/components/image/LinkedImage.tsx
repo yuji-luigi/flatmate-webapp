@@ -1,11 +1,11 @@
-import Link from 'next/link';
-import Image from 'next/image';
+import Link from "next/link";
+import Image from "next/image";
 
 // Create a new component that wraps an Image in a Link
 export const LinkedImage = ({
-  src = '',
-  href = '',
-  alt = '',
+  src = "",
+  href = "",
+  alt = "",
   width = 0,
   height = 0,
   size,

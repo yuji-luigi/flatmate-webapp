@@ -1,5 +1,5 @@
-import { Divider, Text } from '@mantine/core';
-import React from 'react';
+import { Divider, Text } from "@mantine/core";
+import React from "react";
 
 export const DividerStyled = ({ label }: { label: string | React.ReactNode }) => (
   <Divider
@@ -9,7 +9,7 @@ export const DividerStyled = ({ label }: { label: string | React.ReactNode }) =>
         style={{
           fontSize: 16,
           fontWeight: 600,
-          textTransform: 'uppercase',
+          textTransform: "uppercase",
         }}
       >
         {label}

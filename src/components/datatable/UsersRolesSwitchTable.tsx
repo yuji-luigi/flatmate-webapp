@@ -1,10 +1,10 @@
-import { Avatar, Badge, Table, Group, Text, Select, ScrollArea } from '@mantine/core';
+import { Avatar, Badge, Table, Group, Text, Select, ScrollArea } from "@mantine/core";
 
 interface UsersTableProps {
   data: { avatar: string; name: string; job: string; email: string; role: string }[];
 }
 
-const rolesData = ['Manager', 'Collaborator', 'Contractor'];
+const rolesData = ["Manager", "Collaborator", "Contractor"];
 
 export function UsersRolesTable({ data }: UsersTableProps) {
   const rows = data.map((item) => (

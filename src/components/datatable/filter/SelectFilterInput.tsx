@@ -1,16 +1,16 @@
-import { Select } from '@mantine/core';
-import React, { useEffect } from 'react';
-import { useRouter } from 'next/router';
-import { useFilter } from '../../../../hooks/useFilter';
-import { StaticSelectFormFieldType } from '../../../types/general/data/data-table/form-field-type/formField-types';
-import classes from './SelectFilterInput.module.css';
+import { Select } from "@mantine/core";
+import React, { useEffect } from "react";
+import { useRouter } from "next/router";
+import { useFilter } from "../../../../hooks/useFilter";
+import { StaticSelectFormFieldType } from "../../../types/general/data/data-table/form-field-type/formField-types";
+import classes from "./SelectFilterInput.module.css";
 
 export const SelectFilterInput = ({ formField }: { formField: StaticSelectFormFieldType }) => {
   const { query } = useRouter();
 
   const { setSelectFilters } = useFilter();
   const handleSelectFilter = (value?: string | null) => {
-    const _value = value || '';
+    const _value = value || "";
     // if (!value) return;
     setSelectFilters({ field: formField.name, value: _value });
   };
@@ -29,7 +29,7 @@ export const SelectFilterInput = ({ formField }: { formField: StaticSelectFormFi
         root: classes.inputRoot,
         wrapper: classes.inputWrapper,
         label: classes.inputLabel,
-        input: 'crud-input',
+        input: "crud-input",
       }}
       value={query[formField.name] as string}
       key={formField.id}

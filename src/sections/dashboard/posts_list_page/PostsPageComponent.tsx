@@ -1,14 +1,14 @@
 //useSWR allows the use of SWR inside function components
 
-import { Container, Box } from '@mantine/core';
+import { Container, Box } from "@mantine/core";
 //Write a fetcher function to wrap the native fetch function and return the result of a call to url in json format
-import { useMediaQuery } from '@mantine/hooks';
-import PostList from './PostList';
-import { useCrudSelectors } from '../../../redux/features/crud/crudSlice';
+import { useMediaQuery } from "@mantine/hooks";
+import PostList from "./PostList";
+import { useCrudSelectors } from "../../../redux/features/crud/crudSlice";
 // import { useCurrentSpaceContext } from '../../context/CurrentSpaceContext';
-import { useCookieContext } from '../../../context/CookieContext';
-import { ThreadModel } from '../../../types/models/thread-model';
-import classes from './PostsPageComponent.module.css';
+import { useCookieContext } from "../../../context/CookieContext";
+import { ThreadModel } from "../../../types/models/thread-model";
+import classes from "./PostsPageComponent.module.css";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
@@ -34,9 +34,9 @@ interface mock2 {
 }
 
 export default function PostListPageComponent() {
-  const { crudDocuments: threads } = useCrudSelectors<ThreadModel>('threads');
+  const { crudDocuments: threads } = useCrudSelectors<ThreadModel>("threads");
   const { currentSpace } = useCookieContext();
-  const isMobile = useMediaQuery('(max-width: 600px)');
+  const isMobile = useMediaQuery("(max-width: 600px)");
   const contents = (
     <Box
       className={classes.pinContainer}

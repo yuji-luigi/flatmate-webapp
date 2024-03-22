@@ -1,8 +1,8 @@
-import { IUser } from '../context/auth/useAuth';
-import { MongooseBaseModel } from './mongoose-base-model';
-import { OrganizationModel } from './organization-model';
-import { SpaceModel } from './space-model';
-import { UploadModel } from './upload-model';
+import { IUser } from "../context/auth/useAuth";
+import { MongooseBaseModel } from "./mongoose-base-model";
+import { OrganizationModel } from "./organization-model";
+import { SpaceModel } from "./space-model";
+import { UploadModel } from "./upload-model";
 
 export interface NotificationModel extends MongooseBaseModel {
   title?: string;
@@ -18,5 +18,5 @@ export interface NotificationModel extends MongooseBaseModel {
   /** formatted in some way. from api schema level */
   _createdAt: string;
   category?: string;
-  entity: 'threads' | 'maintenances';
+  entity: "threads" | "maintenances";
 }

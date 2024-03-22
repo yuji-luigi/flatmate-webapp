@@ -1,8 +1,8 @@
-import axios, { AxiosInstance, AxiosResponse } from 'axios';
-import { Sections } from '../types/general/data/sections-type';
-import { API_BASE_URL } from '../path/path-api';
-import { AllModels } from '../types/models/allmodels';
-import { UserModel, Role, MeUser } from '../types/models/space-model';
+import axios, { AxiosInstance, AxiosResponse } from "axios";
+import { Sections } from "../types/general/data/sections-type";
+import { API_BASE_URL } from "../path/path-api";
+import { AllModels } from "../types/models/allmodels";
+import { UserModel, Role, MeUser } from "../types/models/space-model";
 
 // ----------------------------------------------------------------------
 
@@ -43,12 +43,12 @@ axiosInstance.interceptors.response.use(
     // response.headers.Authorization = token as string;
     response,
   (error) =>
-    Promise.reject((error.response && error.response.data) || 'Error connecting to server.')
+    Promise.reject((error.response && error.response.data) || "Error connecting to server.")
 );
 
 export const uploadConfig = {
   headers: {
-    'Content-Type': 'multipart/form-data',
+    "Content-Type": "multipart/form-data",
   },
   // withCredentials: true,
 };

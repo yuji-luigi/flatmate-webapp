@@ -1,15 +1,15 @@
-import { Group, Paper, SimpleGrid, Text, Box } from '@mantine/core';
+import { Group, Paper, SimpleGrid, Text, Box } from "@mantine/core";
 import {
   IconDiscount2,
   IconCoin,
   IconArrowUpRight,
   IconArrowDownRight,
   TablerIconsProps,
-} from '@tabler/icons-react';
-import { useTranslation } from 'next-i18next';
-import { Icons } from '../../data/icons/icons';
-import classesM from './StatsGrid.module.css';
-import { useLocale } from '../../../hooks/useLocale';
+} from "@tabler/icons-react";
+import { useTranslation } from "next-i18next";
+import { Icons } from "../../data/icons/icons";
+import classesM from "./StatsGrid.module.css";
+import { useLocale } from "../../../hooks/useLocale";
 
 const _icons = {
   // user: IconUserPlus,
@@ -32,10 +32,10 @@ export type StatGridSchema = {
 };
 
 export function StatsGrid({ data }: { data: StatGridSchema[] }) {
-  const { t } = useLocale('common');
+  const { t } = useLocale("common");
   const A = data as unknown;
   const stats = (A as Array<StatGridSchema>).map((stat) => {
-    const Icon = typeof stat.icon === 'string' ? _icons[stat.icon] : stat.icon;
+    const Icon = typeof stat.icon === "string" ? _icons[stat.icon] : stat.icon;
     const DiffIcon = stat.diff && stat.diff > 0 ? IconArrowUpRight : IconArrowDownRight;
     return (
       <Box key={stat.title} className={classesM.card}>
@@ -51,12 +51,12 @@ export function StatsGrid({ data }: { data: StatGridSchema[] }) {
 
           <Group align="flex-end" gap="xs" mt={0}>
             <Text className={classesM.value}>
-              {t(stat.unit || '')}
+              {t(stat.unit || "")}
               {stat.value}
             </Text>
             {stat.diff && (
               <Text
-                color={stat.diff > 0 ? 'teal' : 'red'}
+                color={stat.diff > 0 ? "teal" : "red"}
                 size="sm"
                 fw={500}
                 className={classesM.diff}
@@ -68,7 +68,7 @@ export function StatsGrid({ data }: { data: StatGridSchema[] }) {
           </Group>
 
           <Text size="xs" color="dimmed" mt={7}>
-            {t(stat.description || '')}
+            {t(stat.description || "")}
           </Text>
         </Paper>
       </Box>
@@ -80,7 +80,7 @@ export function StatsGrid({ data }: { data: StatGridSchema[] }) {
         sm: 1,
         md: 2,
       }}
-      style={{ width: '100%' }}
+      style={{ width: "100%" }}
       className={classesM.container}
       //   breakpoints={[
       //     { maxWidth: 'md', cols: 2 },

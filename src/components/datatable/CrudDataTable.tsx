@@ -1,23 +1,23 @@
-import { Table, ScrollArea, Pagination, Divider, Box, Card } from '@mantine/core';
-import { useState, useEffect } from 'react';
+import { Table, ScrollArea, Pagination, Divider, Box, Card } from "@mantine/core";
+import { useState, useEffect } from "react";
 
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 
-import { CrudTableRow } from './table-rows/CrudTableRow';
+import { CrudTableRow } from "./table-rows/CrudTableRow";
 
-import CrudTableHeader from './header/CrudTableHeader';
+import CrudTableHeader from "./header/CrudTableHeader";
 // import TableCellController from './table-rows/tablecell/TableCellController';
-import formFields from '../../../json/dataTable/formfields';
+import formFields from "../../../json/dataTable/formfields";
 // import { useCrudSlice } from '../../../hooks/redux-hooks/useCrudSlice';
-import { usePaginationContext } from '../../context/PaginationContext';
-import { useCrudSelectors } from '../../redux/features/crud/crudSlice';
-import { Sections } from '../../types/general/data/sections-type';
-import { FormFieldTypes } from '../../types/general/data/data-table/form-field-type/formField-types';
-import classes from '../../styles/global-useStyles.module.css';
-import { ParsedQueryCustom } from '../../types/nextjs-custom-types/useRouter-types';
-import { useCurrentEntityContext } from '../../context/CurrentEntityContext';
+import { usePaginationContext } from "../../context/PaginationContext";
+import { useCrudSelectors } from "../../redux/features/crud/crudSlice";
+import { Sections } from "../../types/general/data/sections-type";
+import { FormFieldTypes } from "../../types/general/data/data-table/form-field-type/formField-types";
+import classes from "../../styles/global-useStyles.module.css";
+import { ParsedQueryCustom } from "../../types/nextjs-custom-types/useRouter-types";
+import { useCurrentEntityContext } from "../../context/CurrentEntityContext";
 
-export function CrudDataTable({ overridingEntity = '' }: { overridingEntity?: Sections }) {
+export function CrudDataTable({ overridingEntity = "" }: { overridingEntity?: Sections }) {
   const ROWS_PER_PAGE = 10;
   // const TOTAL = Math.ceil(users.length / ROWS_PER_PAGE);
   // const { classes } = dashboardStyle();
@@ -51,7 +51,7 @@ export function CrudDataTable({ overridingEntity = '' }: { overridingEntity?: Se
   return (
     <Card className={classes.dataTableContainer}>
       <Table.ScrollContainer minWidth={800}>
-        {!crudDocuments?.length && crudStatus === 'loading' ? (
+        {!crudDocuments?.length && crudStatus === "loading" ? (
           <p>loading</p>
         ) : (
           <Table style={{}} highlightOnHover>

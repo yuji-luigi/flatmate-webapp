@@ -17,12 +17,12 @@ import {
   StackProps,
   PinInputProps as MantinePinInputProps,
   InputWrapperBaseProps,
-} from '@mantine/core';
-import { DateInputProps as MantineDateInputProps } from '@mantine/dates';
-import { ReactNode } from 'react';
+} from "@mantine/core";
+import { DateInputProps as MantineDateInputProps } from "@mantine/dates";
+import { ReactNode } from "react";
 // import { FieldValues, UseFormReturn } from 'react-hook-form';
-import { UseFormReturnTypeCustom } from '../../../../components/input/input_interfaces/useForm_interface';
-import { FormFieldTypes } from './form-field-type/formField-types';
+import { UseFormReturnTypeCustom } from "../../../../components/input/input_interfaces/useForm_interface";
+import { FormFieldTypes } from "./form-field-type/formField-types";
 
 export type Option<OtherProps = {}> = {
   label: ReactNode;
@@ -40,8 +40,8 @@ export type Controlled<T> = {
   formField: FormFieldTypes;
 } & T;
 export type Orientation =
-  | { orientation?: 'horizontal'; orientationProps?: GroupProps }
-  | { orientation?: 'vertical'; orientationProps?: StackProps };
+  | { orientation?: "horizontal"; orientationProps?: GroupProps }
+  | { orientation?: "vertical"; orientationProps?: StackProps };
 export type TextInputProps = Controlled<MantineTextInputProps>;
 export type PasswordInputCustomProps = Controlled<MantinePasswordInputProps>;
 export type TextareaProps = Controlled<MantineTextareaProps>;
@@ -50,38 +50,38 @@ export type DateInputProps = Controlled<MantineDateInputProps>;
 export type PinInputProps = Controlled<MantinePinInputProps> & InputWrapperBaseProps;
 export type FileInputProps<T extends boolean> = Controlled<MantineFileInputProps<T>>;
 export type SelectProps = Controlled<
-  Omit<MantineSelectProps, 'data'> & {
-    options: MantineSelectProps['data'];
+  Omit<MantineSelectProps, "data"> & {
+    options: MantineSelectProps["data"];
   }
 >;
 export type MultiSelectProps = Controlled<
-  Omit<MantineMultiSelectProps, 'data'> & {
-    options: MantineMultiSelectProps['data'];
+  Omit<MantineMultiSelectProps, "data"> & {
+    options: MantineMultiSelectProps["data"];
   }
 >;
 export type CheckboxGroupProps = Controlled<
-  Omit<MantineCheckboxGroupProps, 'children'> & Options<CheckboxProps> & Orientation
+  Omit<MantineCheckboxGroupProps, "children"> & Options<CheckboxProps> & Orientation
 >;
 export type RadioGroupProps = Controlled<
-  Omit<MantineRadioGroupProps, 'children' & 'form'> & Options<RadioProps> & Orientation
+  Omit<MantineRadioGroupProps, "children" & "form"> & Options<RadioProps> & Orientation
 >;
 export type SwitchGroupProps = Controlled<
-  Omit<MantineSwitchGroupProps, 'children'> & Options<SwitchProps> & Orientation
+  Omit<MantineSwitchGroupProps, "children"> & Options<SwitchProps> & Orientation
 >;
 
 export type ControllerProps =
-  | ({ control: 'checkbox-group' } & CheckboxGroupProps)
-  | ({ control: 'date-input' } & DateInputProps)
-  | ({ control: 'file-input' } & FileInputProps<boolean>)
-  | ({ control: 'multi-select' } & MultiSelectProps)
-  | ({ control: 'number-input' } & NumberInputProps)
-  | ({ control: 'password-input' } & PasswordInputCustomProps)
-  | ({ control: 'pin-input' } & PinInputProps)
-  | ({ control: 'radio-group' } & RadioGroupProps)
-  | ({ control: 'select' } & SelectProps)
-  | ({ control: 'switch-group' } & SwitchGroupProps)
-  | ({ control: 'text-area' } & TextareaProps)
-  | ({ control: 'text-input' } & TextInputProps);
+  | ({ control: "checkbox-group" } & CheckboxGroupProps)
+  | ({ control: "date-input" } & DateInputProps)
+  | ({ control: "file-input" } & FileInputProps<boolean>)
+  | ({ control: "multi-select" } & MultiSelectProps)
+  | ({ control: "number-input" } & NumberInputProps)
+  | ({ control: "password-input" } & PasswordInputCustomProps)
+  | ({ control: "pin-input" } & PinInputProps)
+  | ({ control: "radio-group" } & RadioGroupProps)
+  | ({ control: "select" } & SelectProps)
+  | ({ control: "switch-group" } & SwitchGroupProps)
+  | ({ control: "text-area" } & TextareaProps)
+  | ({ control: "text-input" } & TextInputProps);
 
 // export type Controllers<TFieldValues extends FieldValues, TContext> = {
 //   [key in keyof TFieldValues]: ControllerProps & { name: key } & {

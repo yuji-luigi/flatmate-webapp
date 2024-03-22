@@ -1,17 +1,17 @@
-import React from 'react';
-import { CardArticleSmall } from '../../../components/card/CardArticleSmall';
-import { CARD_LINK_PATH } from '../../../path/path-frontend';
-import { ThreadModel } from '../../../types/models/thread-model';
+import React from "react";
+import { CardArticleSmall } from "../../../components/card/CardArticleSmall";
+import { CARD_LINK_PATH } from "../../../path/path-frontend";
+import { ThreadModel } from "../../../types/models/thread-model";
 
 const PostList = ({ thread }: { thread: ThreadModel }) => {
   return (
     <>
-      {thread.listViewType === 'default' && (
+      {thread.listViewType === "default" && (
         <CardArticleSmall
           key={thread.title}
           data={thread}
           author={thread.createdBy}
-          category={thread.tags?.toString() || 'tech'}
+          category={thread.tags?.toString() || "tech"}
           date={thread.createdAt}
           image={thread.images[0]?.url}
           title={thread.title}

@@ -2,9 +2,9 @@ import {
   FormFieldTypes,
   FormTypes,
   LinkChildrenFormFieldType,
-} from './form-field-type/formField-types';
+} from "./form-field-type/formField-types";
 
-export type CellTypes = 'link-children' | 'avatar' | FormTypes;
+export type CellTypes = "link-children" | "avatar" | FormTypes;
 
 export type PartialCellTypes = Partial<Record<CellTypes, LinkChildrenCellFunc | RegularCellFunc>>;
 

@@ -1,4 +1,4 @@
-import beta from '../../json/dataTable/section/sectionData.json';
+import beta from "../../json/dataTable/section/sectionData.json";
 
 const en: string[][] = beta.map((data) => data.contents.map((content) => content.entity));
 
@@ -11,10 +11,10 @@ export const sections: string[] = en.reduce((arr, cur) => arr.concat(cur), []);
 export const flattenSectionData = beta.flatMap((sectionData) => sectionData.contents);
 
 export const superAdminEntities = beta
-  .filter((sectionData) => sectionData.roles.includes('super_admin'))
+  .filter((sectionData) => sectionData.roles.includes("super_admin"))
   .flatMap((sectionData) => sectionData.contents.map((content) => content.entity));
 export const adminEntities = beta
-  .filter((sectionData) => sectionData.roles.includes('admin'))
+  .filter((sectionData) => sectionData.roles.includes("admin"))
   .flatMap((sectionData) => sectionData.contents.map((content) => content.entity));
 
 // set programmatically the roles for every sections

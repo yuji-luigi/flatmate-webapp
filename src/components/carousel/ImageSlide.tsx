@@ -1,9 +1,9 @@
-import { Carousel } from '@mantine/carousel';
-import { Box, ActionIcon, Overlay, Button } from '@mantine/core';
-import React from 'react';
-import Image from 'next/image';
-import { Icons } from '../../data/icons/icons';
-import { UploadModel } from '../../types/models/upload-model';
+import { Carousel } from "@mantine/carousel";
+import { Box, ActionIcon, Overlay, Button } from "@mantine/core";
+import React from "react";
+import Image from "next/image";
+import { Icons } from "../../data/icons/icons";
+import { UploadModel } from "../../types/models/upload-model";
 
 type ImageType = File | UploadModel;
 
@@ -18,14 +18,14 @@ const ImageSlide = ({
 
   return (
     <Carousel.Slide key={isFile ? image.name : image._id}>
-      <Box style={{ position: 'relative' }}>
+      <Box style={{ position: "relative" }}>
         <ActionIcon
           onClick={() => handleDelete(image)}
           style={{
-            position: 'absolute',
+            position: "absolute",
             right: 10,
             top: 10,
-            background: 'white',
+            background: "white",
             opacity: 0.8,
             borderRadius: 999,
             zIndex: 2,
@@ -35,14 +35,14 @@ const ImageSlide = ({
         </ActionIcon>
         <Overlay
           style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
             zIndex: 1,
-            cursor: 'pointer',
-            transition: 'opacity 0.3s ease-in-out',
+            cursor: "pointer",
+            transition: "opacity 0.3s ease-in-out",
             opacity: 0,
-            '&:hover': { opacity: 1, transition: 'opacity 0.3s ease-in-out' },
+            "&:hover": { opacity: 1, transition: "opacity 0.3s ease-in-out" },
           }}
           onClick={() => {
             console.log(image);
@@ -58,7 +58,7 @@ const ImageSlide = ({
           width={600}
           height={500}
           alt={isFile ? image.name : image.originalFileName}
-          style={{ objectFit: 'cover' }}
+          style={{ objectFit: "cover" }}
         />
       </Box>
     </Carousel.Slide>

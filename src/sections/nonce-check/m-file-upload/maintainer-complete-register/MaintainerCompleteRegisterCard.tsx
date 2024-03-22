@@ -1,38 +1,38 @@
-import { Box, Button, Card, Grid, Group, Text, Title, Transition } from '@mantine/core';
-import React, { useEffect, useMemo } from 'react';
-import { useForm } from '@mantine/form';
-import FormFields from '../../../../components/input/FormFields';
-import classes from './MaintainerCompleteRegisterCard.module.css';
-import { maintainersTableData } from '../../../../../json/dataTable/formfields/maintainersTableData';
-import { getDefaultValues } from '../../../../utils/getDefaultValues';
-import { useCrudSelectors } from '../../../../redux/features/crud/crudSlice';
-import { MaintainerModel } from '../../../../types/models/maintainer-model';
-import { StepperDemo } from '../../../../components/stepper/StepperDemo';
-import { StepperGeneric } from '../../../../components/stepper/StepperGeneric';
-import { PasswordFormType } from '../../../../types/general/data/data-table/form-field-type/formField-types';
-import { _PATH_API } from '../../../../path/path-api';
-import axiosInstance from '../../../../utils/axios-instance';
-import { MaintenanceModel } from '../../../../types/models/maintenance-check-type';
+import { Box, Button, Card, Grid, Group, Text, Title, Transition } from "@mantine/core";
+import React, { useEffect, useMemo } from "react";
+import { useForm } from "@mantine/form";
+import FormFields from "../../../../components/input/FormFields";
+import classes from "./MaintainerCompleteRegisterCard.module.css";
+import { maintainersTableData } from "../../../../../json/dataTable/formfields/maintainersTableData";
+import { getDefaultValues } from "../../../../utils/getDefaultValues";
+import { useCrudSelectors } from "../../../../redux/features/crud/crudSlice";
+import { MaintainerModel } from "../../../../types/models/maintainer-model";
+import { StepperDemo } from "../../../../components/stepper/StepperDemo";
+import { StepperGeneric } from "../../../../components/stepper/StepperGeneric";
+import { PasswordFormType } from "../../../../types/general/data/data-table/form-field-type/formField-types";
+import { _PATH_API } from "../../../../path/path-api";
+import axiosInstance from "../../../../utils/axios-instance";
+import { MaintenanceModel } from "../../../../types/models/maintenance-check-type";
 
 maintainersTableData.push({
-  id: 'password2',
-  name: 'password2',
-  label: 'Confirm Password',
-  type: 'password',
-  registerStep: 'complete',
+  id: "password2",
+  name: "password2",
+  label: "Confirm Password",
+  type: "password",
+  registerStep: "complete",
   priority: 10,
   col: {
     xs: 12,
   },
 });
 const companyStepJson = maintainersTableData.filter(
-  (formField) => formField.registerStep === 'company'
+  (formField) => formField.registerStep === "company"
 );
 const contactStepJson = maintainersTableData.filter(
-  (formField) => formField.registerStep === 'contact'
+  (formField) => formField.registerStep === "contact"
 );
 const completeStepJson = maintainersTableData
-  .filter((formField) => formField.registerStep === 'complete')
+  .filter((formField) => formField.registerStep === "complete")
   .sort((a, b) => (a.priority || 0) - (b.priority || 0));
 
 export const MaintainerCompleteRegisterCard = (props: {
@@ -41,8 +41,8 @@ export const MaintainerCompleteRegisterCard = (props: {
   pinOk: boolean;
 }) => {
   const { isCompleteRegister, setPinOk, pinOk } = props;
-  const { crudDocument: maintainer } = useCrudSelectors<MaintainerModel>('maintainers');
-  const { crudDocument: maintenance } = useCrudSelectors<MaintenanceModel>('maintenances');
+  const { crudDocument: maintainer } = useCrudSelectors<MaintainerModel>("maintainers");
+  const { crudDocument: maintenance } = useCrudSelectors<MaintenanceModel>("maintenances");
   const defaultValues = getDefaultValues(maintainersTableData, maintainer);
   // const defaultValues = useMemo(
   //   () => getDefaultValues(maintainersTableData, maintainer),
@@ -60,7 +60,7 @@ export const MaintainerCompleteRegisterCard = (props: {
     return _formField;
   });
   _maintainersTableData = _maintainersTableData.filter(
-    (formField) => formField.name !== 'password'
+    (formField) => formField.name !== "password"
   );
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -100,14 +100,14 @@ export const MaintainerCompleteRegisterCard = (props: {
               }}
               steps={[
                 {
-                  key: '1',
-                  props: { label: 'Company info' },
+                  key: "1",
+                  props: { label: "Company info" },
                   content: (
                     <Grid className={classes.formContainer}>
                       {companyStepJson.map(
                         (formField) =>
-                          formField.name !== 'role' &&
-                          formField.name !== 'rootSpaces' && (
+                          formField.name !== "role" &&
+                          formField.name !== "rootSpaces" && (
                             <Grid.Col
                               // style={{ height: '100%' }}
                               span={{
@@ -125,14 +125,14 @@ export const MaintainerCompleteRegisterCard = (props: {
                   ),
                 },
                 {
-                  key: '2',
-                  props: { label: 'Contact' },
+                  key: "2",
+                  props: { label: "Contact" },
                   content: (
                     <Grid className={classes.formContainer}>
                       {contactStepJson.map(
                         (formField) =>
-                          formField.name !== 'role' &&
-                          formField.name !== 'rootSpaces' && (
+                          formField.name !== "role" &&
+                          formField.name !== "rootSpaces" && (
                             <Grid.Col
                               // style={{ height: '100%' }}
                               span={{
@@ -148,14 +148,14 @@ export const MaintainerCompleteRegisterCard = (props: {
                   ),
                 },
                 {
-                  key: '3',
-                  props: { label: 'Login/Complete' },
+                  key: "3",
+                  props: { label: "Login/Complete" },
                   content: (
                     <Grid className={classes.formContainer}>
                       {completeStepJson.map(
                         (formField) =>
-                          formField.name !== 'role' &&
-                          formField.name !== 'rootSpaces' && (
+                          formField.name !== "role" &&
+                          formField.name !== "rootSpaces" && (
                             <Grid.Col
                               span={{
                                 xs: 12,

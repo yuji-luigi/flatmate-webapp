@@ -1,16 +1,16 @@
-import React, { ReactElement, useEffect } from 'react';
-import { Box, Text } from '@mantine/core';
-import { useRouter } from 'next/router';
-import { GetServerSidePropsContext } from 'next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import Link from 'next/link';
-import { _PATH_FRONTEND } from '../../path/path-frontend';
-import axiosInstance, { AxiosMeResponse } from '../../utils/axios-instance';
-import { PATH_AUTH, _PATH_API } from '../../path/path-api';
-import Layout from '../../layouts';
-import { OrganizationModel, Role, SpaceModel, UserModel } from '../../types/models/space-model';
-import { CardForListSmall } from '../../components/card/CardForListSmall';
-import classes from './chooose-organization-page.module.css';
+import React, { ReactElement, useEffect } from "react";
+import { Box, Text } from "@mantine/core";
+import { useRouter } from "next/router";
+import { GetServerSidePropsContext } from "next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import Link from "next/link";
+import { _PATH_FRONTEND } from "../../path/path-frontend";
+import axiosInstance, { AxiosMeResponse } from "../../utils/axios-instance";
+import { PATH_AUTH, _PATH_API } from "../../path/path-api";
+import Layout from "../../layouts";
+import { OrganizationModel, Role, SpaceModel, UserModel } from "../../types/models/space-model";
+import { CardForListSmall } from "../../components/card/CardForListSmall";
+import classes from "./chooose-organization-page.module.css";
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   try {
@@ -19,7 +19,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     if (!jwtToken) {
       return {
         redirect: {
-          destination: '/500',
+          destination: "/500",
           permanent: true,
         },
       };
@@ -36,7 +36,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     const { data } = rawRes;
     const { user, loggedAs } = data;
     if (!user) {
-      throw new Error('Invalid access');
+      throw new Error("Invalid access");
     }
     // if (loggedAs === 'inhabitant' || loggedAs === 'maintainer') {
     //   return {
@@ -48,7 +48,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     // }
     return {
       props: {
-        ...(await serverSideTranslations(locale || 'it', ['common'])),
+        ...(await serverSideTranslations(locale || "it", ["common"])),
         initialUser: user,
         initialLoggedAs: loggedAs,
         // other props you may need to pass to the page
@@ -74,7 +74,7 @@ const ChooseOrganizationPage = (props: { initialUser: UserModel; initialLoggedAs
     });
   }, [initialUser?.role]);
 
-  const title = initialUser?.isSuperAdmin ? 'Choose organization' : 'Choose space';
+  const title = initialUser?.isSuperAdmin ? "Choose organization" : "Choose space";
   return (
     <div className={classes.container}>
       <div className={classes.header}>
@@ -89,7 +89,7 @@ const ChooseOrganizationPage = (props: { initialUser: UserModel; initialLoggedAs
           href={{
             pathname: _PATH_FRONTEND[initialLoggedAs].dashboard.root,
             query: {
-              tab: 'dashboard',
+              tab: "dashboard",
             },
           }}
           image=""

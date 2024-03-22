@@ -1,7 +1,7 @@
-import { Card, Title, Button, Group } from '@mantine/core';
-import React from 'react';
-import { CheckType } from '../../../../types/models/maintenance-check-type';
-import classes from './ChooseTypeCard.module.css';
+import { Card, Title, Button, Group } from "@mantine/core";
+import React from "react";
+import { CheckType } from "../../../../types/models/maintenance-check-type";
+import classes from "./ChooseTypeCard.module.css";
 
 export const ChooseTypeCard = ({
   setCheckType,
@@ -14,7 +14,7 @@ export const ChooseTypeCard = ({
 
       <Group className={classes.buttonContainer}>
         <Button
-          onClick={() => setCheckType('invoices')}
+          onClick={() => setCheckType("invoices")}
           className={classes.button}
           variant="light"
           color="blue"
@@ -22,7 +22,7 @@ export const ChooseTypeCard = ({
           Invoice
         </Button>
         <Button
-          onClick={() => setCheckType('receipts')}
+          onClick={() => setCheckType("receipts")}
           className={classes.button}
           variant="light"
           color="blue"

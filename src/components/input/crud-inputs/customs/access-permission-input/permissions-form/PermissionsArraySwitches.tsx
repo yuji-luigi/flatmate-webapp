@@ -1,33 +1,33 @@
-import { Box, Switch } from '@mantine/core';
-import { ChangeEvent } from 'react';
-import { UseFormReturnType } from '@mantine/form';
-import { useItemSlice } from '../../../../../../redux/features/crud/selectedItemSlice';
-import classes from './PermissionsByRole.module.css';
+import { Box, Switch } from "@mantine/core";
+import { ChangeEvent } from "react";
+import { UseFormReturnType } from "@mantine/form";
+import { useItemSlice } from "../../../../../../redux/features/crud/selectedItemSlice";
+import classes from "./PermissionsByRole.module.css";
 
 import {
   AccessPermissionModel,
   RoleModel,
   permissionsFormField,
-} from '../../../../../../types/models/space-model';
-import { useCrudSelectors } from '../../../../../../redux/features/crud/crudSlice';
+} from "../../../../../../types/models/space-model";
+import { useCrudSelectors } from "../../../../../../redux/features/crud/crudSlice";
 
 type PermissionsByRoleSelectProps = {
   form: UseFormReturnType<Record<string, unknown>>;
-  actrl: Omit<AccessPermissionModel, '_id'>;
+  actrl: Omit<AccessPermissionModel, "_id">;
 };
 
 export const PermissionsArraySwitches = (props: PermissionsByRoleSelectProps) => {
-  const { crudDocument: currentRole, crudDocuments: roles } = useCrudSelectors<RoleModel>('roles');
+  const { crudDocument: currentRole, crudDocuments: roles } = useCrudSelectors<RoleModel>("roles");
   const { get } = useItemSlice<{ space: string | null; role: RoleModel }>();
 
   const { form, actrl } = props;
   const role = get?.role;
-  if (!(form.values.accessPermissions as AccessPermissionModel[]).length) return '...loading';
+  if (!(form.values.accessPermissions as AccessPermissionModel[]).length) return "...loading";
   return (
     <Box className={classes.container}>
       {role?.name && (
         <div className={classes.pl}>{roles?.find((_role) => actrl.role === _role._id)?.name}</div>
-      )}{' '}
+      )}{" "}
       <fieldset className={classes.fieldset}>
         <Box className={classes.inputs}>
           {permissionsFormField.map((permission) => (
@@ -44,7 +44,7 @@ export const PermissionsArraySwitches = (props: PermissionsByRoleSelectProps) =>
 type SwitchForArrayProps = {
   form: UseFormReturnType<Record<string, any>>;
   switchFormField: any;
-  actrl: Omit<AccessPermissionModel, '_id'>;
+  actrl: Omit<AccessPermissionModel, "_id">;
   // localForm: any;
 };
 
@@ -76,7 +76,7 @@ function SwitchForArray(props: SwitchForArrayProps) {
       return prevActrl;
     });
 
-    form.setFieldValue('accessPermissions', updatedAccessPermissions);
+    form.setFieldValue("accessPermissions", updatedAccessPermissions);
   };
   return (
     <Switch

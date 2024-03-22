@@ -1,6 +1,6 @@
-import { AspectRatio, Box, Card, Text, Image } from '@mantine/core';
-import React from 'react';
-import classes from './CardArticleImageBig.module.css';
+import { AspectRatio, Box, Card, Text, Image } from "@mantine/core";
+import React from "react";
+import classes from "./CardArticleImageBig.module.css";
 
 export interface CardArticleImageBigData {
   title?: string;
@@ -21,7 +21,7 @@ const CardArticleImageBig = ({ article }: { article: CardArticleImageBigData }) 
       href="#"
       className={classes.card}
     >
-      <Box style={{ height: 300, overflow: 'hidden' }}>
+      <Box style={{ height: 300, overflow: "hidden" }}>
         <Text className={classes.title} ta="center" my={5} mb={10}>
           {article.title}
         </Text>

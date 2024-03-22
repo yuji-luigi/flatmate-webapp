@@ -1,3 +1,3 @@
-import { createFormActions } from '@mantine/form';
+import { createFormActions } from "@mantine/form";
 
-export const crudFormActions = createFormActions<any>('crud-form');
+export const crudFormActions = createFormActions<any>("crud-form");

@@ -1,4 +1,4 @@
-import { UserRoles } from '../../../../../lib/enums';
+import { UserRoles } from "../../../../../lib/enums";
 
 export type BaseFormType = {
   id: string;
@@ -18,12 +18,12 @@ export type BaseFormType = {
   grantTo?: UserRoles[];
   noTable?: boolean;
   disabled?: boolean;
-  align?: 'left' | 'center' | 'right';
+  align?: "left" | "center" | "right";
   badge?: boolean;
   icon?: React.ReactNode;
 };
 
-type CellTypes = 'text-on-hover' | 'text-on-dialog' | 'link-children';
+type CellTypes = "text-on-hover" | "text-on-dialog" | "link-children";
 
 type CellConfig = { style: React.CSSProperties };
 
@@ -35,33 +35,33 @@ type Col = {
 };
 
 type FormTypes =
-  | 'text'
-  | 'text-area'
-  | 'text-on-hover'
-  | 'link-children'
-  | 'text-on-dialog'
-  | 'password'
-  | 'checkbox'
-  | 'checkbox-group-boolean'
-  | 'checkbox-group-select'
-  | 'boolean'
-  | 'radio-group'
-  | 'switch-group'
-  | 'select'
-  | 'static-select'
-  | 'number'
-  | 'currency'
-  | 'avatar'
-  | 'date'
-  | 'date-range'
-  | 'attachment'
-  | 'image'
-  | 'color'
-  | 'custom'
-  | 'boolean'
-  | 'user-role'
-  | 'user-name-email-head'
-  | 'access-controller'
-  | 'space-auto-select'
-  | 'geo-api'
-  | 'pin-input';
+  | "text"
+  | "text-area"
+  | "text-on-hover"
+  | "link-children"
+  | "text-on-dialog"
+  | "password"
+  | "checkbox"
+  | "checkbox-group-boolean"
+  | "checkbox-group-select"
+  | "boolean"
+  | "radio-group"
+  | "switch-group"
+  | "select"
+  | "static-select"
+  | "number"
+  | "currency"
+  | "avatar"
+  | "date"
+  | "date-range"
+  | "attachment"
+  | "image"
+  | "color"
+  | "custom"
+  | "boolean"
+  | "user-role"
+  | "user-name-email-head"
+  | "access-controller"
+  | "space-auto-select"
+  | "geo-api"
+  | "pin-input";

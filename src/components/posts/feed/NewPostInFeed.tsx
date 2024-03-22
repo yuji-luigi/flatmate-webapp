@@ -1,16 +1,16 @@
-import { Avatar, Text, Group, Card, Box, Stack, List } from '@mantine/core';
-import { IconPhoneCall, IconAt } from '@tabler/icons-react';
-import { useTranslation } from 'next-i18next';
-import classes from './NewPostInFeed.module.css';
-import { useCustomModalContext } from '../../../context/modal-context/_ModalContext';
-import { useSimpleDisclosureContext } from '../../../context/SimpleDisclosureContext';
-import { HeaderCreationModal } from '../../modal/header-creation-modal/HeaderCreationModal';
-import { allSectionArrayWithRoles } from '../../../data';
+import { Avatar, Text, Group, Card, Box, Stack, List } from "@mantine/core";
+import { IconPhoneCall, IconAt } from "@tabler/icons-react";
+import { useTranslation } from "next-i18next";
+import classes from "./NewPostInFeed.module.css";
+import { useCustomModalContext } from "../../../context/modal-context/_ModalContext";
+import { useSimpleDisclosureContext } from "../../../context/SimpleDisclosureContext";
+import { HeaderCreationModal } from "../../modal/header-creation-modal/HeaderCreationModal";
+import { allSectionArrayWithRoles } from "../../../data";
 
-const threadTableData = allSectionArrayWithRoles.find((section) => section.entity === 'threads');
+const threadTableData = allSectionArrayWithRoles.find((section) => section.entity === "threads");
 
 export function NewPostInFeed() {
-  const { t } = useTranslation('common');
+  const { t } = useTranslation("common");
   const { open } = useSimpleDisclosureContext();
   const handleOpenModal = () => {
     // setModalType();
@@ -48,7 +48,7 @@ export function NewPostInFeed() {
           />
           <Box className={classes.inputBox} onClick={handleOpenModal}>
             <Text fz="xs" tt="uppercase" fw={700} c="dark">
-              {t('Post something')}
+              {t("Post something")}
             </Text>
           </Box>
         </Group>

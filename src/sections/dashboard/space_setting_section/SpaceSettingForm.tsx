@@ -1,19 +1,19 @@
-import { useForm } from '@mantine/form';
-import { Text, Paper, Group, PaperProps, Button, Grid, Sx } from '@mantine/core';
+import { useForm } from "@mantine/form";
+import { Text, Paper, Group, PaperProps, Button, Grid, Sx } from "@mantine/core";
 // import { GoogleButton, TwitterButton } from '../SocialButtons/SocialButtons';
 
-import { useEffect, useMemo } from 'react';
-import { SpaceSlugResponse } from '../../../types/api-response/space-response';
+import { useEffect, useMemo } from "react";
+import { SpaceSlugResponse } from "../../../types/api-response/space-response";
 
-import { UseFormReturnTypeCustom } from '../../../components/input/input_interfaces/useForm_interface';
-import { getDefaultValues } from '../../../utils/getDefaultValues';
-import { spacesTableData } from '../../../../json/dataTable/formfields/spacesTableData';
-import FormFields from '../../../components/input/FormFields';
-import { useCrudSelectors, useCrudSliceStore } from '../../../redux/features/crud/crudSlice';
-import { SpaceModel } from '../../../types/models/space-model';
+import { UseFormReturnTypeCustom } from "../../../components/input/input_interfaces/useForm_interface";
+import { getDefaultValues } from "../../../utils/getDefaultValues";
+import { spacesTableData } from "../../../../json/dataTable/formfields/spacesTableData";
+import FormFields from "../../../components/input/FormFields";
+import { useCrudSelectors, useCrudSliceStore } from "../../../redux/features/crud/crudSlice";
+import { SpaceModel } from "../../../types/models/space-model";
 
 const filteredTableData = spacesTableData.filter(
-  (item) => item.id !== 'organization' && item.id !== 'isTail' && item.id !== 'isMain'
+  (item) => item.id !== "organization" && item.id !== "isTail" && item.id !== "isMain"
 );
 interface SpaceSettingFormProps {
   paperProp?: PaperProps;
@@ -21,11 +21,11 @@ interface SpaceSettingFormProps {
   style?: Sx;
   isSpaceAdmin?: boolean;
 }
-const entity = 'spaces';
+const entity = "spaces";
 export function SpaceSettingForm(props: SpaceSettingFormProps) {
   const { isSpaceAdmin } = props;
 
-  const { crudDocument: space } = useCrudSelectors('spaces');
+  const { crudDocument: space } = useCrudSelectors("spaces");
   const { updateCrudDocument } = useCrudSliceStore();
 
   const initialValues = useMemo(() => {
