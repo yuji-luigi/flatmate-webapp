@@ -5,10 +5,10 @@ import Layout from "../../layouts";
 import axiosInstance, { AxiosMeResponse } from "../../utils/axios-instance";
 import { useCookieContext } from "../../context/CookieContext";
 import { useCrudSliceStore } from "../../redux/features/crud/crudSlice";
-import { DashboardRootTabPanels } from "../../layouts/dashboard/sections-in-tabs/admin-tabs/DashboardRootTabPanels";
 import { PATH_AUTH } from "../../path/path-api";
 import { useGetCrudDocuments } from "../../hooks/useGetCrudDocuments";
 import { _PATH_FRONTEND } from "../../path/path-frontend";
+import { DashboardTabPanels } from "../../layouts/dashboard/sections-in-tabs/tabs/DashboardRootTabPanels";
 
 const DashboardPage = () => {
   const { currentOrganization, currentSpace } = useCookieContext();
@@ -27,7 +27,7 @@ const DashboardPage = () => {
     setCrudDocuments({ entity: "maintenances", documents: maintenances });
     // setCrudDocuments({ entity: 'threads', documents: threads });
   };
-  return <DashboardRootTabPanels />;
+  return <DashboardTabPanels />;
 };
 DashboardPage.getLayout = function getLayout(page: ReactElement) {
   return <Layout variant="dashboard">{page}</Layout>;
@@ -55,6 +55,14 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     return {
       redirect: {
         destination: "/",
+        permanent: true,
+      },
+    };
+  }
+  if (user.loggedAs === "Administrator") {
+    return {
+      redirect: {
+        destination: _PATH_FRONTEND.administrator.dashboard.root,
         permanent: true,
       },
     };

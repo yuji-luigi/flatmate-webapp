@@ -1,8 +1,8 @@
-import { TabList } from "../../../components/tab/TabList";
-import { Icons } from "../../../data/icons/icons";
-import DashboardSection from "./tabs/DashboardSection";
-import { SpaceMaintenanceSection } from "./SpaceMaintenanceSection";
-import { SpacePostSection } from "./SpacePostSection";
+import { TabList } from "../../../../components/tab/TabList";
+import { Icons } from "../../../../data/icons/icons";
+import DashboardSection from "./AdmDashboardSection";
+import { SpaceMaintenanceSection } from "../SpaceMaintenanceSection";
+import { SpacePostSection } from "../SpacePostSection";
 
 export const TAB_LIST_CONFIG: TabList[] = [
   {

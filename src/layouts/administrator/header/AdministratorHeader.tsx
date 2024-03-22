@@ -1,20 +1,17 @@
 import { Group, Burger, Box } from "@mantine/core";
 // import { useDisclosure } from '@mantine/hooks';
-import { useRouter } from "next/router";
 import links from "../../../../json/navbar/headerLinks.json";
 import useLayoutContext from "../../../../hooks/useLayoutContext";
 import { ColorSchemeToggle } from "../../../components/color-schemeToggle/ColorSchemeToggle";
 import { LogoBanner } from "../../../components/banner/LogoBanner";
 // import { useCurrentSpaceContext } from '../../context/CurrentSpaceContext';
 
-import OrganizationSpaceSelect from "../../../components/input/custom-inputs/OrganizationSpaceSelect";
 import { HeaderCreationModalWrapper } from "../../../components/modal/header-creation-modal/HeaderCreationModalWrapper";
-import { TAB_LIST_CONFIG } from "../sections-in-tabs/adm-tabList";
+import { TAB_LIST_CONFIG } from "../sections-in-tabs/adm-tabs/adm-tabList";
 import { useCustomMQuery } from "../../../../hooks/useCustomMQuery";
 import { TabList } from "../../../components/tab/TabList";
 import classesM from "./AdministratorHeader.module.css";
 import { HeaderNotificationButton } from "./notifications/HeaderNotificationButton";
-import SpaceSelectInput from "../../../components/input/custom-inputs/SpaceSelectInput";
 import HeaderSpaceSelect from "../../../components/input/custom-inputs/HeaderSpaceSelect";
 
 export type JSONType = typeof links;

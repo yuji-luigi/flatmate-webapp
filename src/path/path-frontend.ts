@@ -47,10 +47,16 @@ export enum CARD_LINK_PATH {
 }
 const CHOOSE_ORGANIZATION = "/choose-organization";
 const CHOOSE_ROOT_SPACE = "/choose-root-space";
+
 export const _PATH_FRONTEND = {
   pathAfterLogin: PATH_AFTER_LOGIN,
   maintainerDashboard: {
     root: "/maintainer/dashboard",
+  },
+  administrator: {
+    dashboard: {
+      root: "/administrator/dashboard",
+    },
   },
   dashboard: {
     root: "/dashboard",

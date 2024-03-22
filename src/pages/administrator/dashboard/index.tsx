@@ -3,14 +3,15 @@ import { GetServerSidePropsContext } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Layout from "../../../layouts";
 import axiosInstance, { AxiosMeResponse } from "../../../utils/axios-instance";
-import { useCookieContext } from "../../../context/CookieContext";
+import { CookieContextProvider, useCookieContext } from "../../../context/CookieContext";
 import { useCrudSliceStore } from "../../../redux/features/crud/crudSlice";
-import { DashboardRootTabPanels } from "../../../layouts/dashboard/sections-in-tabs/admin-tabs/DashboardRootTabPanels";
+
 import { PATH_AUTH } from "../../../path/path-api";
 import { _PATH_FRONTEND } from "../../../path/path-frontend";
 import AdministratorLayout from "../../../layouts/administrator/AdministratorLayout";
+import { AdminTabPanels } from "../../../layouts/administrator/sections-in-tabs/adm-tabs/AdminTabPanels";
 
-const DashboardPage = () => {
+const AdministratorDashboardPage = () => {
   const { setCrudDocument, setCrudDocuments } = useCrudSliceStore();
 
   useEffect(() => {
@@ -24,9 +25,9 @@ const DashboardPage = () => {
     setCrudDocument({ entity: "spaces", document: space });
     setCrudDocuments({ entity: "maintenances", documents: maintenances });
   };
-  return <DashboardRootTabPanels />;
+  return <AdminTabPanels />;
 };
-DashboardPage.getLayout = function getLayout(page: ReactElement) {
+AdministratorDashboardPage.getLayout = function getLayout(page: ReactElement) {
   return <AdministratorLayout>{page}</AdministratorLayout>;
 };
 
@@ -64,6 +65,14 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       },
     };
   }
+  if (user.loggedAs === "Inhabitant") {
+    return {
+      redirect: {
+        destination: _PATH_FRONTEND.dashboard.root,
+        permanent: true,
+      },
+    };
+  }
   return {
     props: {
       initialUser: user,
@@ -73,4 +82,4 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   };
 }
 
-export default DashboardPage;
+export default AdministratorDashboardPage;

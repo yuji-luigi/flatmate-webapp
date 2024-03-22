@@ -10,8 +10,8 @@ import { Icons } from "../../../../../data/icons/icons";
 import { _PATH_API } from "../../../../../path/path-api";
 import axiosInstance, { AxiosResDataGeneric } from "../../../../../utils/axios-instance";
 import { NotificationModel } from "../../../../../types/models/notification-model";
-import { NotificationDrawer } from "../../../../../layouts/dashboard/header/notifications/NotificationDrawer";
 import { _PATH_FRONTEND } from "../../../../../path/path-frontend";
+import { NotificationDrawer } from "../../../../../layouts/administrator/header/notifications/NotificationDrawer";
 
 const fetchNotifications = async () => {
   const res = await axiosInstance.get<AxiosResDataGeneric<NotificationModel[]>>(

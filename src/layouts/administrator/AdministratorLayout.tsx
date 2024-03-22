@@ -10,7 +10,7 @@ import classes from "./AdministratorLayout.module.css";
 import { _PATH_FRONTEND } from "../../path/path-frontend";
 import AuthGuard from "../../guards/AuthGuard";
 
-const AdministratorLayout = ({ children }: { children: ReactNode }) => {
+const AdministratorLayoutContent = ({ children }: { children: ReactNode }) => {
   // const { setCurrentTab, currentTab } = useTabContext();
   const { isOpen } = useLayoutContext();
   const router = useRouter();
@@ -19,7 +19,6 @@ const AdministratorLayout = ({ children }: { children: ReactNode }) => {
   );
   const { currentSpace } = useCookieContext();
   const containerRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     const handleScroll = () => {
       if (containerRef.current) {
@@ -34,6 +33,7 @@ const AdministratorLayout = ({ children }: { children: ReactNode }) => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
   useEffect(() => {
     setCurrentTab(router.query.tab as string);
   }, [router.query.tab]);
@@ -43,39 +43,39 @@ const AdministratorLayout = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <LayoutContainer>
-      <Tabs
-        onChange={handleChangeTab}
-        keepMounted={false}
-        defaultValue="dashboard"
-        value={currentTab}
+    <Tabs
+      onChange={handleChangeTab}
+      keepMounted={false}
+      defaultValue="dashboard"
+      value={currentTab}
+    >
+      <AdministratorHeader />
+      <Box
+        ref={containerRef}
+        className={`${classes.pageContent} ${classes.bg}`}
+        style={{
+          paddingTop: 55,
+          backgroundImage: `url(${currentSpace?.image})`,
+        }}
       >
-        <AdministratorHeader />
-        <Box
-          ref={containerRef}
-          className={`${classes.pageContent} ${classes.bg}`}
-          style={{
-            paddingTop: 55,
-            backgroundImage: `url(${currentSpace?.image})`,
-          }}
-        >
-          <NavbarVertical />
-          <Box data-is-pen={isOpen} className={`${classes.contentWrapper} dashboardContainer`}>
-            {children}
-          </Box>
+        <NavbarVertical />
+        <Box data-is-pen={isOpen} className={`${classes.contentWrapper} dashboardContainer`}>
+          {children}
         </Box>
-      </Tabs>
-    </LayoutContainer>
+      </Box>
+    </Tabs>
   );
 };
 
 export default AdministratorLayout;
 
-function LayoutContainer({ children }: { children: ReactNode }) {
+function AdministratorLayout({ children }: { children: ReactNode }) {
   return (
     <AuthGuard>
       <CookieContextProvider>
-        <TabContextProvider>{children}</TabContextProvider>
+        <TabContextProvider>
+          <AdministratorLayoutContent>{children}</AdministratorLayoutContent>
+        </TabContextProvider>
       </CookieContextProvider>
     </AuthGuard>
   );

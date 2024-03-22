@@ -13,7 +13,7 @@ import { PATH_CLIENT, _PATH_FRONTEND } from "../../path/path-frontend";
 import useAuth from "../../../hooks/useAuth";
 
 const DashboardLayout = ({ children }: { children: ReactNode }) => {
-  // const { setCurrentTab, currentTab } = useTabContext();
+  // const { setCurrentTab, currentTab } = useTabContext()
   const { isOpen } = useLayoutContext();
   const { user } = useAuth();
   const router = useRouter();
@@ -39,6 +39,14 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  // // in case user is admin, redirect to admin dashboard. logic is
+  // useEffect(() => {
+  //   if (user && user.loggedAs === "Administrator") {
+  //     router.replace(_PATH_FRONTEND.administrator.dashboard.root);
+  //   }
+  // }, [user]);
+
   useEffect(() => {
     setCurrentTab(router.query.tab as string);
   }, [router.query.tab]);

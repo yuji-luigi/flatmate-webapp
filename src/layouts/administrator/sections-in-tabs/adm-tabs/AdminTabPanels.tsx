@@ -1,8 +1,8 @@
 import React from "react";
 import { Tabs } from "@mantine/core";
-import { TAB_LIST_CONFIG } from "../adm-tabList";
+import { TAB_LIST_CONFIG } from "./adm-tabList";
 
-export const DashboardRootTabPanels = () => {
+export const AdminTabPanels = () => {
   return (
     <>
       {TAB_LIST_CONFIG.map((tabItem) => (
