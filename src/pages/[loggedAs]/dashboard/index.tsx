@@ -8,8 +8,8 @@ import { useCrudSliceStore } from "../../../redux/features/crud/crudSlice";
 
 import { PATH_AUTH } from "../../../path/path-api";
 import { _PATH_FRONTEND } from "../../../path/path-frontend";
-import AdministratorLayout from "../../../layouts/administrator/AdministratorLayout";
-import { AdminTabPanels } from "../../../layouts/administrator/sections-in-tabs/adm-tabs/AdminTabPanels";
+import AdministratorLayout from "../../../layouts/loggedAs/AdministratorLayout";
+import { AdminTabPanels } from "../../../layouts/loggedAs/sections-in-tabs/adm-tabs/AdminTabPanels";
 
 const AdministratorDashboardPage = () => {
   const { setCrudDocument, setCrudDocuments } = useCrudSliceStore();
