@@ -17,17 +17,17 @@ const tabs: {
 }[] = [
   {
     value: "Users",
-    role: "Inhabitant",
+    role: "inhabitant",
     component: "Administrators",
   },
   {
     value: "Administrators",
-    role: "Administrator",
+    role: "administrator",
     component: "Administrators",
   },
   {
     value: "Maintainers",
-    role: "Maintainer",
+    role: "maintainer",
     component: "Administrators",
   },
 ];

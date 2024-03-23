@@ -58,6 +58,7 @@ export const _PATH_FRONTEND = {
       root: "/administrator/dashboard",
     },
   },
+
   dashboard: {
     root: "/dashboard",
     home: PATH_AFTER_LOGIN,
@@ -88,4 +89,4 @@ export const _PATH_FRONTEND = {
     root: PATH_CLIENT.posts,
     byId: (threadId: string) => `${PATH_CLIENT.posts}/${threadId}`,
   },
-};
+} as const;

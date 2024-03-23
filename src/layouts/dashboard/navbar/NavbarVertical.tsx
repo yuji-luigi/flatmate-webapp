@@ -40,7 +40,7 @@ export function NavbarVertical() {
   const { user } = useAuth();
   const { isOpen, closeBar } = useLayoutContext();
   const isMediaScreen = useMediaQuery("(max-width: 750px)");
-  const isSuperAdmin = user?.role === "super_admin";
+  const isSuperAdmin = user?.isSuperAdmin;
   const chooseText = isSuperAdmin ? "Organization" : "Space";
   // const isMobile = useMediaQuery('(max-width: 600px)');
 
@@ -50,7 +50,11 @@ export function NavbarVertical() {
 
   return (
     <>
-      <nav className={classes.navbar} data-show={isOpen} data-hidden={!isOpen}>
+      <nav
+        className={`${classes.navbar} nav-bar-vertical`}
+        data-show={isOpen}
+        data-hidden={!isOpen}
+      >
         <ScrollArea>
           <div className={classes.navbarMain}>
             <ProfilePopover />

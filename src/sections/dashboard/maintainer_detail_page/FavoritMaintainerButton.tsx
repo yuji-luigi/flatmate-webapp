@@ -124,7 +124,7 @@ export const FavoriteMaintainerButton = ({ onClick }: { onClick: () => void }) =
   //     setCrudDocument({ entity: _entity, maintainer: res.data.data });
   //     notifications.show({
   //       title: 'Success',
-  //       message: 'Maintainer removed from building',
+  //       message: 'maintainer removed from building',
   //       autoClose: 5000,
   //       // color: 'blue',
   //     });
@@ -156,11 +156,11 @@ export const FavoriteMaintainerButton = ({ onClick }: { onClick: () => void }) =
   //   <>
   //     {assignedToCurrentSpace ? (
   //       <Button onClick={handleRemove} variant="outline" color="red">
-  //         Remove Maintainer From Building
+  //         Remove maintainer From Building
   //       </Button>
   //     ) : (
   //       <Button onClick={onClick} variant="outline" color="yellow">
-  //         Add Maintainer to Building
+  //         Add maintainer to Building
   //       </Button>
   //     )}
   //   </>

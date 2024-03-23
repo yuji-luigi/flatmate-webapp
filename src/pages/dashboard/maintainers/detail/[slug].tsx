@@ -82,7 +82,7 @@ const MaintainerDetailsPage = () => {
     // setIsOpened(true);
     openConfirmModal({
       type: "custom",
-      title: "Add Maintainer to Building",
+      title: "Add maintainer to Building",
       centered: true,
       children: <AddMaintainerModal />,
       opened: false,

@@ -12,7 +12,7 @@ const SignUpStepTwo = ({ form }: { form: UseFormReturnType<IInitialValues> }) =>
       <SimpleRow title={t("email")} content={form.values.email} />
       <SimpleRow title={t("role")} content={form.values.role} />
       <SimpleRow title={t("password")} content="****" />
-      {form.values.role !== "Maintainer" && (
+      {form.values.role !== "maintainer" && (
         <>
           <SimpleRow title={t("Name of the place")} content={form.values.space.name} />
           <SimpleRow title={t("Address of the place")} content={form.values.space.address} />

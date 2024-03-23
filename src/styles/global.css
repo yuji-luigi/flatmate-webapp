@@ -60,12 +60,15 @@
 
   --text-color-link: #45adfe;
   /* TODO: delete and use something works --font-size-article: 24px; */
-  :root.light {
+  /* :root.light {
     display: none;
     --bg-color: rgba(255, 255, 255, 0.85);
     --fg-color: rgba(255, 255, 255, 0.85);
     --text-color: #123;
     --text-color-link: #45adfe;
+    &:has([data-loggedAs="maintainer"]) {
+      background-color: red;
+    }
   }
 
   :root.dark {
@@ -74,7 +77,10 @@
     --fg-color: rgba(0, 0, 0, 0.85);
     --text-color: #45adfe;
     --text-color-link: #45adfe;
-  }
+    &:has([data-loggedAs="maintainer"]) {
+      background-color: red;
+    }
+  } */
 }
 
 @media (max-width: $mantine-breakpoint-sm) {
@@ -91,6 +97,47 @@
     --heading-font-size: 20px; */
   }
 }
+
+/* body:has([data-loggedAs="maintainer"]) {
+  .nav-bar-vertical::before {
+    content: "";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(23, 100, 100, 0.3);
+  }
+  .app-bar::before {
+    content: "";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(23, 100, 100, 0.3);
+  }
+}
+body:has([data-loggedAs="administrator"]) {
+  .nav-bar-vertical::before {
+    content: "";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(93, 80, 150, 0.3);
+  }
+  .app-bar::before {
+    content: "";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(93, 80, 150, 0.3);
+  }
+} */
 
 a {
   text-decoration: none;

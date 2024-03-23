@@ -50,7 +50,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
         },
       };
     }
-    if (!user.isSuperAdmin && loggedAs === "Inhabitant") {
+    if (!user.isSuperAdmin && user.loggedAs === "inhabitant") {
       return {
         props: {
           ...translationObj,

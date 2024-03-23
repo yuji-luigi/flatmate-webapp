@@ -70,7 +70,7 @@ export const maintenancesTableData: Array<FormFieldTypes> = [
   {
     id: "maintainer",
     name: "maintainer",
-    label: "Maintainer",
+    label: "maintainer",
     type: "custom",
     // textSearch: true,
     required: true,

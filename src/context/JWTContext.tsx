@@ -73,15 +73,7 @@ const AuthContext = createContext<AuthContextInterface>({
   register: () => Promise.resolve(),
 });
 
-function AuthProvider({
-  children,
-  initialUser,
-  initialLoggedAs,
-}: {
-  children: ReactNode;
-  initialUser?: MeUser;
-  initialLoggedAs?: Role;
-}) {
+function AuthProvider({ children, initialUser }: { children: ReactNode; initialUser?: MeUser }) {
   const [state, dispatch] = useReducer(reducer, {
     ...initialState,
     user: initialUser,
@@ -131,7 +123,7 @@ function AuthProvider({
         },
       });
 
-      if (role === "Inhabitant") {
+      if (role === "inhabitant") {
         push(_PATH_FRONTEND.pathAfterLoginInhabitant);
         return;
       }

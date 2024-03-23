@@ -74,7 +74,7 @@ const AddMaintainerModal = () => {
       // update crud document
       // setCrudDocument({ entity: _entity, document: rawMaintainer.data.data });
       await sleep(500);
-      notifications.show({ id: "1", message: "Maintainer added to building" });
+      notifications.show({ id: "1", message: "maintainer added to building" });
       closeModal();
     } catch (error: any) {
       await sleep(500);

@@ -39,16 +39,21 @@ export function LogoBanner({
       width={width || 200}
       height={height || 50}
       priority
+      style={{ zIndex: 200 }}
     />
   );
   // if there is a link, return the image wrapped in a link
   if (link) {
     return (
-      <Link className={className} href={link}>
+      <Link style={{ zIndex: 200 }} className={className} href={link}>
         {image}
       </Link>
     );
   }
   // otherwise, return the image
-  return <Box className={className}>{image}</Box>;
+  return (
+    <Box style={{ zIndex: 200 }} className={className}>
+      {image}
+    </Box>
+  );
 }

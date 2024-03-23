@@ -29,7 +29,7 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
     const handleScroll = () => {
       if (containerRef.current) {
         const { scrollY } = window;
-        const speed = 0.3; // Adjust this value to change the speed. Values between 0.1 to 1 work best.
+        const speed = 0.2; // Adjust this value to change the speed. Values between 0.1 to 1 work best.
         const offset = scrollY * speed;
         containerRef.current.style.backgroundPosition = `center ${-offset}px`;
       }
@@ -42,7 +42,7 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
 
   // // in case user is admin, redirect to admin dashboard. logic is
   // useEffect(() => {
-  //   if (user && user.loggedAs === "Administrator") {
+  //   if (user && user.loggedAs === "administrator") {
   //     router.replace(_PATH_FRONTEND.administrator.dashboard.root);
   //   }
   // }, [user]);
@@ -64,6 +64,7 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
     >
       <DashboardHeaderSearch />
       <Box
+        data-loggedAs={user?.loggedAs}
         ref={containerRef}
         className={`${classes.pageContent} ${classes.bg}`}
         style={{

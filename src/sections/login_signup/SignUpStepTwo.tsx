@@ -4,9 +4,9 @@ import { IInitialValues } from "./defaultValues";
 import { useLocale } from "../../../hooks/useLocale";
 
 const Roles = [
-  { label: "User/Inhabitant", value: "Inhabitant" },
-  { label: "Maintainer", value: "Maintainer" },
-  { label: "Administrator", value: "Administrator" },
+  { label: "User/inhabitant", value: "inhabitant" },
+  { label: "maintainer", value: "maintainer" },
+  { label: "administrator", value: "administrator" },
 ];
 const SignUpStepTwo = ({ form }: { form: UseFormReturnType<IInitialValues> }) => {
   const { t } = useLocale("sign-up");
@@ -23,7 +23,7 @@ const SignUpStepTwo = ({ form }: { form: UseFormReturnType<IInitialValues> }) =>
       />
 
       <Transition
-        mounted={!!(form.values.role && form.values.role !== "Maintainer")}
+        mounted={!!(form.values.role && form.values.role !== "maintainer")}
         duration={800}
         transition="slide-up"
         timingFunction="ease-in-out"

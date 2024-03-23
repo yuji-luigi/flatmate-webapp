@@ -1,4 +1,5 @@
 import { Icons } from "../data/icons/icons";
+import { Role } from "../types/models/space-model";
 
 export const FONT_SIZES = {
   menuItems: 16,
@@ -94,9 +95,7 @@ export const MAINTAINER_TYPES = Object.keys(MAINTAINER_TYPES_ARRAY).reduce(
   {} as Record<string, string>
 );
 
-export const USER_ROLES = ["Administrator", "Inhabitant", "Maintainer"] as const;
-
-export type UserRoles = (typeof USER_ROLES)[number];
+export type UserRoles = Role;
 
 export const LOCAL_STORAGE_KEYS = {
   LOCALE: "i18nextLng",

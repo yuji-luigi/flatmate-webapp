@@ -11,7 +11,7 @@ import { _PATH_API } from "../../../../../path/path-api";
 import axiosInstance, { AxiosResDataGeneric } from "../../../../../utils/axios-instance";
 import { NotificationModel } from "../../../../../types/models/notification-model";
 import { _PATH_FRONTEND } from "../../../../../path/path-frontend";
-import { NotificationDrawer } from "../../../../../layouts/loggedAs/header/notifications/NotificationDrawer";
+import { NotificationDrawer } from "../../../../../layouts/dashboard/header/notifications/NotificationDrawer";
 
 const fetchNotifications = async () => {
   const res = await axiosInstance.get<AxiosResDataGeneric<NotificationModel[]>>(

@@ -7,11 +7,10 @@
 }
 .bg {
   min-height: 100vh;
-  background-color: light-dark(rgba(240, 240, 240, 0.85), rgba(30, 30, 30, 30.85));
+  background-color: light-dark(rgba(240, 240, 240, 0.85), rgba(30, 30, 30, 0.7));
   background-blend-mode: overlay;
   background-size: cover;
   background-position: center;
-
   background-attachment: fixed;
 }
 
@@ -20,7 +19,7 @@
   container-type: inline-size;
   @media (max-width: $mantine-breakpoint-md) {
     padding-left: 0;
-    &[data-is-pen='true'] {
+    &[data-is-pen="true"] {
       /* padding-left: 300px; */
     }
   }

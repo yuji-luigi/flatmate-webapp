@@ -1,288 +1,305 @@
 [
-  {
-    "name": "Board",
-    "roles": ["admin", "user", "super_admin"],
-    "hide": true,
-    "contents": [
-      {
-        "entity": "home",
-        "entitySingle": "home",
-        "title": "",
-        "subtitle": "",
-        "navbarTitle": "TOP",
-        "link": "/dashboard/home",
-        "importButton": "",
-        "createButton": "",
-        "icon": "Dashboard",
-        "hide": true
-      },
-      {
-        "entity": "posts",
-        "entitySingle": "post",
-        "title": "Posts",
-        "subtitle": "subtitle",
-        "navbarTitle": "posts",
-        "link": "/dashboard",
-        "importButton": "",
-        "createButton": "",
-        "icon": "posts",
-        "hide": true
-      },
-      {
-        "entity": "maintenances",
-        "title": "maintenances",
-        "subtitle": "subtitle",
-        "navbarTitle": "maintenances",
-        "link": "/dashboard/maintenances",
-        "importButton": "",
-        "createButton": "Assign Maintenance",
-        "hide": true,
-        "icon": "posts"
-      }
-    ]
-  },
-  {
-    "name": "main",
-    "roles": ["super_admin", "admin", "user"],
-    "hide": true,
-    "contents": [
-      {
-        "entity": "statistics",
-        "entitySingle": "statistic",
-        "title": "Statistics",
-        "subtitle": "subtitle",
-        "navbarTitle": "Statistics",
-        "link": "/dashboard/statistics",
-        "importButton": "",
-        "createButton": "",
-        "hide": true,
-        "icon": "Statistic"
-      },
-      {
-        "entity": "notifications",
-        "entitySingle": "notification",
-        "title": "Notifications",
-        "subtitle": "subtitle",
-        "navbarTitle": "Notifications",
-        "link": "/dashboard/notifications",
-        "importButton": "",
-        "createButton": "New Notification",
-        "hide": true,
-        "icon": "Notification"
-      },
-      {
-        "entity": "bookmarks",
-        "entitySingle": "bookmark",
-        "title": "Bookmarks",
-        "subtitle": "subtitle",
-        "navbarTitle": "Bookmark",
-        "link": "/dashboard/bookmarks",
-        "importButton": "",
-        "createButton": "New Bookmark",
-        "hide": true,
-        "icon": "Dashboard"
-      },
-      {
-        "entity": "comments",
-        "entitySingle": "comment",
-        "title": "Comments",
-        "subtitle": "subtitle",
-        "navbarTitle": "Comment",
-        "link": "/dashboard/comments",
-        "importButton": "",
-        "createButton": "New Comment",
-        "icon": "Dashboard",
-        "hide": true
-      }
-    ]
-  },
-  {
-    "name": "setups",
-    "roles": ["super_admin", "admin", "user"],
-    "hide": false,
-    "contents": [
-      {
-        "entity": "fundRules",
-        "entitySingle": "fundRule",
-        "title": "FundRules",
-        "subtitle": "subtitle",
-        "navbarTitle": "Fund rule",
-        "link": "/dashboard/fundRules",
-        "importButton": "",
-        "createButton": "New Fund Rule",
-        "hide": true,
-        "icon": "Dashboard"
-      },
-      {
-        "entity": "proposals",
-        "entitySingle": "proposal",
-        "title": "Proposals",
-        "subtitle": "subtitle",
-        "navbarTitle": "Proposal",
-        "link": "/dashboard/proposals",
-        "importButton": "",
-        "createButton": "New Proposal",
-        "hide": true,
-        "icon": "Dashboard"
-      },
-      {
-        "entity": "funds",
-        "entitySingle": "fund",
-        "title": "Funds",
-        "subtitle": "subtitle",
-        "navbarTitle": "Fund",
-        "link": "/dashboard/funds",
-        "importButton": "",
-        "createButton": "New Fund",
-        "hide": true,
-        "icon": "Dashboard"
-      },
-      {
-        "entity": "maintainers",
-        "entitySingle": "maintainer",
-        "title": "Maintainers",
-        "subtitle": "subtitle",
-        "navbarTitle": "Maintainer",
-        "link": "/dashboard/maintainers",
-        "importButton": "",
-        "createButton": "New Maintainer",
-        "icon": "Dashboard",
-        "hide": false
-      }
-    ]
-  },
-  {
-    "name": "admin",
-    "roles": ["super_admin", "admin"],
-    "hide": false,
-    "contents": [
-      {
-        "entity": "tags",
-        "entitySingle": "tag",
-        "title": "Tags",
-        "subtitle": "subtitle",
-        "navbarTitle": "Tag",
-        "link": "/dashboard/tags",
-        "importButton": "",
-        "createButton": "New Tag",
-        "hide": true,
-        "icon": "Dashboard"
-      },
-      {
-        "entity": "threads",
-        "entitySingle": "thread",
-        "title": "Threads",
-        "subtitle": "subtitle",
-        "navbarTitle": "Thread",
-        "link": "/dashboard/threads",
-        "importButton": "",
-        "createButton": "New Thread",
-        "hide": true,
-        "icon": "Dashboard"
-      },
-      {
-        "entity": "spaces",
-        "entitySingle": "space",
-        "title": "spaces",
-        "subtitle": "subtitle",
-        "navbarTitle": "spaces",
-        "link": "/dashboard/spaces",
-        "importButton": "",
-        "createButton": "New Space",
-        "icon": "Dashboard",
-        "hide": false
-      },
-      {
-        "entity": "users",
-        "entitySingle": "user",
-        "title": "Users",
-        "subtitle": "subtitle",
-        "navbarTitle": "User",
-        "link": "/dashboard/users",
-        "importButton": "import Excel",
-        "createButton": "New User",
-        "icon": "Dashboard",
-        "hide": false
-      }
-    ]
-  },
-  {
-    "name": "Sensitive",
-    "roles": ["super_admin"],
-    "hide": false,
-    "contents": [
-      {
-        "entity": "roles",
-        "entitySingle": "upload",
-        "title": "roles",
-        "subtitle": "subtitle",
-        "navbarTitle": "roles",
-        "link": "/dashboard/roles",
-        "importButton": "",
-        "createButton": "New Wallet",
-        "hide": false,
-        "icon": "Dashboard"
-      },
-      {
-        "entity": "accessPermissions",
-        "entitySingle": "accessController",
-        "title": "AccessPermissions",
-        "subtitle": "subtitle",
-        "navbarTitle": "Access controller",
-        "link": "/dashboard/accessPermissions",
-        "importButton": "",
-        "createButton": "New AccessPermission",
-        "hide": true,
-        "icon": "Dashboard"
-      },
-      {
-        "entity": "uploads",
-        "entitySingle": "upload",
-        "title": "uploads",
-        "subtitle": "subtitle",
-        "navbarTitle": "uploads",
-        "link": "/dashboard/uploads",
-        "importButton": "",
-        "createButton": "New Wallet",
-        "hide": true,
-        "icon": "Dashboard"
-      },
-      {
-        "entity": "wallets",
-        "entitySingle": "wallet",
-        "title": "Wallets",
-        "subtitle": "subtitle",
-        "navbarTitle": "Wallets",
-        "link": "/dashboard/wallets",
-        "importButton": "",
-        "createButton": "New Wallet",
-        "hide": true,
-        "icon": "Dashboard"
-      },
-      {
-        "entity": "userSettings",
-        "entitySingle": "userSetting",
-        "title": "UserSettings",
-        "subtitle": "subtitle",
-        "navbarTitle": "User setting",
-        "link": "/dashboard/userSettings",
-        "importButton": "",
-        "createButton": "",
-        "hide": true,
-        "icon": "Dashboard"
-      },
-      {
-        "entity": "organizations",
-        "entitySingle": "organization",
-        "title": "organizations",
-        "subtitle": "subtitle",
-        "navbarTitle": "organizations",
-        "link": "/dashboard/organizations",
-        "importButton": "",
-        "createButton": "New Owner",
-        "icon": "Dashboard",
-        "hide": false
-      }
-    ]
-  }
+	{
+		"name": "Board",
+		"roles": [
+			"admin",
+			"user",
+			"super_admin"
+		],
+		"hide": true,
+		"contents": [
+			{
+				"entity": "home",
+				"entitySingle": "home",
+				"title": "",
+				"subtitle": "",
+				"navbarTitle": "TOP",
+				"link": "/dashboard/home",
+				"importButton": "",
+				"createButton": "",
+				"icon": "Dashboard",
+				"hide": true
+			},
+			{
+				"entity": "posts",
+				"entitySingle": "post",
+				"title": "Posts",
+				"subtitle": "subtitle",
+				"navbarTitle": "posts",
+				"link": "/dashboard",
+				"importButton": "",
+				"createButton": "",
+				"icon": "posts",
+				"hide": true
+			},
+			{
+				"entity": "maintenances",
+				"title": "maintenances",
+				"subtitle": "subtitle",
+				"navbarTitle": "maintenances",
+				"link": "/dashboard/maintenances",
+				"importButton": "",
+				"createButton": "Assign Maintenance",
+				"hide": true,
+				"icon": "posts"
+			}
+		]
+	},
+	{
+		"name": "main",
+		"roles": [
+			"super_admin",
+			"admin",
+			"user"
+		],
+		"hide": true,
+		"contents": [
+			{
+				"entity": "statistics",
+				"entitySingle": "statistic",
+				"title": "Statistics",
+				"subtitle": "subtitle",
+				"navbarTitle": "Statistics",
+				"link": "/dashboard/statistics",
+				"importButton": "",
+				"createButton": "",
+				"hide": true,
+				"icon": "Statistic"
+			},
+			{
+				"entity": "notifications",
+				"entitySingle": "notification",
+				"title": "Notifications",
+				"subtitle": "subtitle",
+				"navbarTitle": "Notifications",
+				"link": "/dashboard/notifications",
+				"importButton": "",
+				"createButton": "New Notification",
+				"hide": true,
+				"icon": "Notification"
+			},
+			{
+				"entity": "bookmarks",
+				"entitySingle": "bookmark",
+				"title": "Bookmarks",
+				"subtitle": "subtitle",
+				"navbarTitle": "Bookmark",
+				"link": "/dashboard/bookmarks",
+				"importButton": "",
+				"createButton": "New Bookmark",
+				"hide": true,
+				"icon": "Dashboard"
+			},
+			{
+				"entity": "comments",
+				"entitySingle": "comment",
+				"title": "Comments",
+				"subtitle": "subtitle",
+				"navbarTitle": "Comment",
+				"link": "/dashboard/comments",
+				"importButton": "",
+				"createButton": "New Comment",
+				"icon": "Dashboard",
+				"hide": true
+			}
+		]
+	},
+	{
+		"name": "setups",
+		"roles": [
+			"super_admin",
+			"admin",
+			"user"
+		],
+		"hide": false,
+		"contents": [
+			{
+				"entity": "fundRules",
+				"entitySingle": "fundRule",
+				"title": "FundRules",
+				"subtitle": "subtitle",
+				"navbarTitle": "Fund rule",
+				"link": "/dashboard/fundRules",
+				"importButton": "",
+				"createButton": "New Fund Rule",
+				"hide": true,
+				"icon": "Dashboard"
+			},
+			{
+				"entity": "proposals",
+				"entitySingle": "proposal",
+				"title": "Proposals",
+				"subtitle": "subtitle",
+				"navbarTitle": "Proposal",
+				"link": "/dashboard/proposals",
+				"importButton": "",
+				"createButton": "New Proposal",
+				"hide": true,
+				"icon": "Dashboard"
+			},
+			{
+				"entity": "funds",
+				"entitySingle": "fund",
+				"title": "Funds",
+				"subtitle": "subtitle",
+				"navbarTitle": "Fund",
+				"link": "/dashboard/funds",
+				"importButton": "",
+				"createButton": "New Fund",
+				"hide": true,
+				"icon": "Dashboard"
+			},
+			{
+				"entity": "maintainers",
+				"entitySingle": "maintainer",
+				"title": "Maintainers",
+				"subtitle": "subtitle",
+				"navbarTitle": "maintainer",
+				"link": "/dashboard/maintainers",
+				"importButton": "",
+				"createButton": "New maintainer",
+				"icon": "Dashboard",
+				"hide": false
+			}
+		]
+	},
+	{
+		"name": "admin",
+		"roles": [
+			"super_admin",
+			"admin"
+		],
+		"hide": false,
+		"contents": [
+			{
+				"entity": "tags",
+				"entitySingle": "tag",
+				"title": "Tags",
+				"subtitle": "subtitle",
+				"navbarTitle": "Tag",
+				"link": "/dashboard/tags",
+				"importButton": "",
+				"createButton": "New Tag",
+				"hide": true,
+				"icon": "Dashboard"
+			},
+			{
+				"entity": "threads",
+				"entitySingle": "thread",
+				"title": "Threads",
+				"subtitle": "subtitle",
+				"navbarTitle": "Thread",
+				"link": "/dashboard/threads",
+				"importButton": "",
+				"createButton": "New Thread",
+				"hide": true,
+				"icon": "Dashboard"
+			},
+			{
+				"entity": "spaces",
+				"entitySingle": "space",
+				"title": "spaces",
+				"subtitle": "subtitle",
+				"navbarTitle": "spaces",
+				"link": "/dashboard/spaces",
+				"importButton": "",
+				"createButton": "New Space",
+				"icon": "Dashboard",
+				"hide": false
+			},
+			{
+				"entity": "users",
+				"entitySingle": "user",
+				"title": "Users",
+				"subtitle": "subtitle",
+				"navbarTitle": "User",
+				"link": "/dashboard/users",
+				"importButton": "import Excel",
+				"createButton": "New User",
+				"icon": "Dashboard",
+				"hide": false
+			}
+		]
+	},
+	{
+		"name": "Sensitive",
+		"roles": [
+			"super_admin"
+		],
+		"hide": false,
+		"contents": [
+			{
+				"entity": "roles",
+				"entitySingle": "upload",
+				"title": "roles",
+				"subtitle": "subtitle",
+				"navbarTitle": "roles",
+				"link": "/dashboard/roles",
+				"importButton": "",
+				"createButton": "New Wallet",
+				"hide": false,
+				"icon": "Dashboard"
+			},
+			{
+				"entity": "accessPermissions",
+				"entitySingle": "accessController",
+				"title": "AccessPermissions",
+				"subtitle": "subtitle",
+				"navbarTitle": "Access controller",
+				"link": "/dashboard/accessPermissions",
+				"importButton": "",
+				"createButton": "New AccessPermission",
+				"hide": true,
+				"icon": "Dashboard"
+			},
+			{
+				"entity": "uploads",
+				"entitySingle": "upload",
+				"title": "uploads",
+				"subtitle": "subtitle",
+				"navbarTitle": "uploads",
+				"link": "/dashboard/uploads",
+				"importButton": "",
+				"createButton": "New Wallet",
+				"hide": true,
+				"icon": "Dashboard"
+			},
+			{
+				"entity": "wallets",
+				"entitySingle": "wallet",
+				"title": "Wallets",
+				"subtitle": "subtitle",
+				"navbarTitle": "Wallets",
+				"link": "/dashboard/wallets",
+				"importButton": "",
+				"createButton": "New Wallet",
+				"hide": true,
+				"icon": "Dashboard"
+			},
+			{
+				"entity": "userSettings",
+				"entitySingle": "userSetting",
+				"title": "UserSettings",
+				"subtitle": "subtitle",
+				"navbarTitle": "User setting",
+				"link": "/dashboard/userSettings",
+				"importButton": "",
+				"createButton": "",
+				"hide": true,
+				"icon": "Dashboard"
+			},
+			{
+				"entity": "organizations",
+				"entitySingle": "organization",
+				"title": "organizations",
+				"subtitle": "subtitle",
+				"navbarTitle": "organizations",
+				"link": "/dashboard/organizations",
+				"importButton": "",
+				"createButton": "New Owner",
+				"icon": "Dashboard",
+				"hide": false
+			}
+		]
+	}
 ]

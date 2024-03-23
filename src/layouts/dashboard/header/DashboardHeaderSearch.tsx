@@ -16,15 +16,16 @@ import classesM from "./DashboardHeaderSearch.module.css";
 import { HeaderNotificationButton } from "./notifications/HeaderNotificationButton";
 import SpaceSelectInput from "../../../components/input/custom-inputs/SpaceSelectInput";
 import HeaderSpaceSelect from "../../../components/input/custom-inputs/HeaderSpaceSelect";
+import useAuth from "../../../../hooks/useAuth";
 
 export type JSONType = typeof links;
 
 export function DashboardHeaderSearch() {
   const { isOpen, toggleBarOpen } = useLayoutContext();
   const { isMobile } = useCustomMQuery();
-
+  const { user } = useAuth();
   return (
-    <header className={classesM.header}>
+    <header className={`${classesM.header} app-bar`}>
       {isMobile && (
         <Group className={classesM.links}>
           <Burger className={classesM.burger} opened={isOpen} onClick={toggleBarOpen} size="sm" />
@@ -39,7 +40,7 @@ export function DashboardHeaderSearch() {
           </Group>
         </>
       )}
-      <TabList list={TAB_LIST_CONFIG} />
+      <TabList list={TAB_LIST_CONFIG[user?.loggedAs || "inhabitant"]} />
       {isMobile && (
         <Box className={classesM.deskTopExNav}>
           <HeaderNotificationButton />

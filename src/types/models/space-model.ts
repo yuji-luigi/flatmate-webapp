@@ -51,7 +51,7 @@ export interface BillingProfileModel extends MongooseBaseModel {
   description?: string;
   address?: string;
 }
-export const ROLES = ["Administrator", "Maintainer", "Inhabitant", "System Admin"] as const;
+export const ROLES = ["administrator", "maintainer", "inhabitant", "system_admin"] as const;
 
 export type Role = (typeof ROLES)[number];
 export interface RoleModel extends MongooseBaseModel {
@@ -145,7 +145,7 @@ export const permissionsFormField = [
   },
   {
     name: "canNotifyMaintainers",
-    label: "Notify Maintainer",
+    label: "Notify maintainer",
     allowed: false,
   },
   {

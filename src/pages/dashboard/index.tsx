@@ -1,16 +1,17 @@
 import { ReactElement, useEffect } from "react";
 import { GetServerSidePropsContext } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import Head from "next/head";
 import Layout from "../../layouts";
 import axiosInstance, { AxiosMeResponse } from "../../utils/axios-instance";
 import { useCookieContext } from "../../context/CookieContext";
 import { useCrudSliceStore } from "../../redux/features/crud/crudSlice";
 import { PATH_AUTH } from "../../path/path-api";
-import { useGetCrudDocuments } from "../../hooks/useGetCrudDocuments";
-import { _PATH_FRONTEND } from "../../path/path-frontend";
 import { DashboardTabPanels } from "../../layouts/dashboard/sections-in-tabs/tabs/DashboardRootTabPanels";
+import { toTitleCase } from "../../lib/toTitleCase";
+import { MeUser } from "../../types/models/space-model";
 
-const DashboardPage = () => {
+const DashboardPage = ({ initialUser }: { initialUser: MeUser }) => {
   const { currentOrganization, currentSpace } = useCookieContext();
   const { setCrudDocument, setCrudDocuments } = useCrudSliceStore();
 
@@ -27,7 +28,16 @@ const DashboardPage = () => {
     setCrudDocuments({ entity: "maintenances", documents: maintenances });
     // setCrudDocuments({ entity: 'threads', documents: threads });
   };
-  return <DashboardTabPanels />;
+  const role = initialUser.loggedAs;
+  const title = `Flatmates© | ${toTitleCase(role)}`;
+  return (
+    <>
+      <Head>
+        <title>{title}</title>
+      </Head>
+      <DashboardTabPanels />
+    </>
+  );
 };
 DashboardPage.getLayout = function getLayout(page: ReactElement) {
   return <Layout variant="dashboard">{page}</Layout>;
@@ -38,7 +48,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     "it",
     "en",
   ]);
-  const { jwt: jwtToken, loggedAs } = context.req.cookies;
+  const { jwt: jwtToken } = context.req.cookies;
   if (!jwtToken) {
     return { props: { user: null, ...translationObj } };
   }
@@ -59,26 +69,25 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       },
     };
   }
-  if (user.loggedAs === "Administrator") {
-    return {
-      redirect: {
-        destination: _PATH_FRONTEND.administrator.dashboard.root,
-        permanent: true,
-      },
-    };
-  }
-  if (user.loggedAs === "Maintainer") {
-    return {
-      redirect: {
-        destination: _PATH_FRONTEND.maintainerDashboard.root,
-        permanent: true,
-      },
-    };
-  }
+  // if (user.loggedAs === "administrator") {
+  //   return {
+  //     redirect: {
+  //       destination: _PATH_FRONTEND.administrator.dashboard.root,
+  //       permanent: true,
+  //     },
+  //   };
+  // }
+  // if (user.loggedAs === "maintainer") {
+  //   return {
+  //     redirect: {
+  //       destination: _PATH_FRONTEND.maintainerDashboard.root,
+  //       permanent: true,
+  //     },
+  //   };
+  // }
   return {
     props: {
       initialUser: user,
-      initialLoggedAs: loggedAs,
       ...translationObj,
     },
   };

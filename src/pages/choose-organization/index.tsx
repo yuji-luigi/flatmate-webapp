@@ -8,7 +8,13 @@ import { _PATH_FRONTEND } from "../../path/path-frontend";
 import axiosInstance, { AxiosMeResponse } from "../../utils/axios-instance";
 import { PATH_AUTH, _PATH_API } from "../../path/path-api";
 import Layout from "../../layouts";
-import { OrganizationModel, Role, SpaceModel, UserModel } from "../../types/models/space-model";
+import {
+  MeUser,
+  OrganizationModel,
+  Role,
+  SpaceModel,
+  UserModel,
+} from "../../types/models/space-model";
 import { CardForListSmall } from "../../components/card/CardForListSmall";
 import classes from "./chooose-organization-page.module.css";
 
@@ -34,7 +40,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       }
     );
     const { data } = rawRes;
-    const { user, loggedAs } = data;
+    const { user } = data;
     if (!user) {
       throw new Error("Invalid access");
     }
@@ -50,8 +56,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       props: {
         ...(await serverSideTranslations(locale || "it", ["common"])),
         initialUser: user,
-        initialLoggedAs: loggedAs,
-        // other props you may need to pass to the page
       },
     };
   } catch (error) {
@@ -62,8 +66,8 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     };
   }
 }
-const ChooseOrganizationPage = (props: { initialUser: UserModel; initialLoggedAs: Role }) => {
-  const { initialUser, initialLoggedAs } = props;
+const ChooseOrganizationPage = (props: { initialUser: MeUser }) => {
+  const { initialUser } = props;
   const [organizations, setOrganizations] = React.useState<OrganizationModel[] | SpaceModel[]>([]);
   const router = useRouter();
 
@@ -72,7 +76,7 @@ const ChooseOrganizationPage = (props: { initialUser: UserModel; initialLoggedAs
     axiosInstance.get(`${_PATH_API.organizations.selections}`).then((res) => {
       setOrganizations(res.data.data);
     });
-  }, [initialUser?.role]);
+  }, [initialUser?.loggedAs]);
 
   const title = initialUser?.isSuperAdmin ? "Choose organization" : "Choose space";
   return (
@@ -87,7 +91,7 @@ const ChooseOrganizationPage = (props: { initialUser: UserModel; initialLoggedAs
         <CardForListSmall
           title="All organizations"
           href={{
-            pathname: _PATH_FRONTEND[initialLoggedAs].dashboard.root,
+            pathname: _PATH_FRONTEND.dashboard.root,
             query: {
               tab: "dashboard",
             },
@@ -102,7 +106,7 @@ const ChooseOrganizationPage = (props: { initialUser: UserModel; initialLoggedAs
             description={organization.address}
             // subtitle={organization.admins[0]?.name || ''}
             href={{
-              pathname: _PATH_FRONTEND.auth.chooseSpace,
+              pathname: _PATH_FRONTEND.auth.chooseRootSpace,
               query: { organizationId: organization._id },
             }}
             image=""
