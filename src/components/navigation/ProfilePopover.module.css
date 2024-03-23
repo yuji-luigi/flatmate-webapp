@@ -1,6 +1,12 @@
+.grid {
+  display: grid;
+  place-items: center;
+  grid-template-columns: 50px 1fr;
+}
 .flexVertical {
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 .avatar {
   cursor: pointer;
@@ -26,7 +32,11 @@
   margin-right: var(--mantine-spacing-sm);
 }
 .profileText {
+  display: flex;
   padding-left: var(--padding-x);
+  text-overflow: ellipsis;
+  /* overflow: hidden; */
+  word-wrap: break-word;
 }
 /* .linkActive {
       &; &:.hover {

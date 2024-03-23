@@ -23,7 +23,7 @@ export function ProfilePopover() {
 
   return (
     <Menu position="bottom" withArrow shadow="md">
-      <Group justify="left">
+      <div className={classes.grid}>
         <Menu.Target>
           <Avatar className={classes.avatar} size={50} />
         </Menu.Target>
@@ -36,7 +36,7 @@ export function ProfilePopover() {
           </Text>
           <LanguageMenu />
         </div>
-      </Group>
+      </div>
       <Menu.Dropdown>
         <Menu.Label style={{ textAlign: "center" }}>Settings</Menu.Label>
         <Box px={8} py={16}>
