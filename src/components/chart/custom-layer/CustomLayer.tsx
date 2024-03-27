@@ -17,6 +17,7 @@ export const LabelLayer = (props: CustomLayerProps) => {
   const { isMobile } = useCustomMQuery();
   // const LabelComponent = isMobile ? LabelLayerCustomMini : LabelLayerCustom;
   const LabelComponent = LabelLayerCustomMini;
+  // return null;
   return (
     <>
       {points.map((point) => (

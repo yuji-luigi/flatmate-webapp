@@ -22,6 +22,7 @@ export const PATH_IMAGE = {
   // flatmateLogo1: '/images/flatmate_circle_logo_yellow.png',
   flatmateLogo1: "/images/logos/logo2.png",
   faviconsvg: "/favicon.svg",
+  noData: "/images/no-data.png",
   FILES: {
     pdf: "/file_images/pdf.png",
     pdf1: "/file_images/pdf_1.png",

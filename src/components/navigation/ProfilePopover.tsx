@@ -1,5 +1,6 @@
 import { Popover, Text, Button, Group, Avatar, Box, Divider, Menu } from "@mantine/core";
 import Link from "next/link";
+import { t } from "i18next";
 import useAuth from "../../../hooks/useAuth";
 import { Icons } from "../../data/icons/icons";
 import { PATH_CLIENT } from "../../path/path-frontend";
@@ -14,12 +15,12 @@ const popoverList = [
   },
   {
     title: "Setting condominium",
-    icon: <Icons.userSettings />,
+    icon: <Icons.buildings />,
     link: PATH_CLIENT.spaceSettings,
   },
 ];
 export function ProfilePopover() {
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
 
   return (
     <Menu position="bottom" withArrow shadow="md">
@@ -42,11 +43,26 @@ export function ProfilePopover() {
         <Box px={8} py={16}>
           {/* // TODO: onhover change color */}
           {popoverList.map((list) => (
-            <Menu.Item component={Link} key={list.title} className={classes.link} href={list.link}>
-              {list.icon}
+            <Menu.Item
+              component={Link}
+              key={list.title}
+              className={classes.link}
+              href={list.link}
+              leftSection={list.icon}
+            >
               {list.title}
             </Menu.Item>
           ))}
+          {(user?.isSystemAdmin || user?.isSuperAdmin) && (
+            <Menu.Item
+              component={Link}
+              href="/admin"
+              className={classes.link}
+              leftSection={<Icons.userSettings />}
+            >
+              {t("Admin menu")}
+            </Menu.Item>
+          )}
         </Box>
       </Menu.Dropdown>
     </Menu>

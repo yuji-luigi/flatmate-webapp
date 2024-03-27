@@ -42,8 +42,8 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
 
   // // in case user is admin, redirect to admin dashboard. logic is
   // useEffect(() => {
-  //   if (user && user.loggedAs === "administrator") {
-  //     router.replace(_PATH_FRONTEND.administrator.dashboard.root);
+  //   if (user && user.loggedAs === "property_manager") {
+  //     router.replace(_PATH_FRONTEND.property_manager.dashboard.root);
   //   }
   // }, [user]);
 
@@ -64,7 +64,7 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
     >
       <DashboardHeaderSearch />
       <Box
-        data-loggedAs={user?.loggedAs}
+        data-loggedas={user?.loggedAs}
         ref={containerRef}
         className={`${classes.pageContent} ${classes.bg}`}
         style={{

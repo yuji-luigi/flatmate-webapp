@@ -70,7 +70,7 @@ export type Login = (email?: string, password?: string, role: Role) => Promise<v
 export interface AuthContextInterface extends JWTContextState {
   method: string;
   login: Login;
-
+  reInitialize: () => Promise<void>;
   logout: () => void;
   register: Register;
 }

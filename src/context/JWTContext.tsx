@@ -71,6 +71,7 @@ const AuthContext = createContext<AuthContextInterface>({
   logout: () => Promise.resolve(),
   login: () => Promise.resolve(),
   register: () => Promise.resolve(),
+  reInitialize: () => Promise.resolve(),
 });
 
 function AuthProvider({ children, initialUser }: { children: ReactNode; initialUser?: MeUser }) {
@@ -83,33 +84,40 @@ function AuthProvider({ children, initialUser }: { children: ReactNode; initialU
   const router = useRouter();
   const { push } = router;
   useEffect(() => {
-    const initialize = async () => {
-      try {
-        if (state.isInitialized) return;
-        const response = await axiosInstance.get<AxiosMeResponse>(PATH_AUTH.me, {
-          withCredentials: true,
-        });
-        const { user } = response.data;
-        dispatch({
-          type: "INITIALIZE",
-          payload: {
-            isAuthenticated: true,
-            user,
-          },
-        });
-      } catch (error) {
-        dispatch({
-          type: "INITIALIZE",
-          payload: {
-            isAuthenticated: false,
-            user: null,
-          },
-        });
-      }
-    };
     initialize();
   }, [router]);
 
+  const initialize = async () => {
+    if (state.isInitialized) return;
+    await initializeFunc();
+  };
+
+  const initializeFunc = async () => {
+    try {
+      const response = await axiosInstance.get<AxiosMeResponse>(PATH_AUTH.me, {
+        withCredentials: true,
+      });
+      const { user } = response.data;
+      dispatch({
+        type: "INITIALIZE",
+        payload: {
+          isAuthenticated: true,
+          user,
+        },
+      });
+    } catch (error) {
+      dispatch({
+        type: "INITIALIZE",
+        payload: {
+          isAuthenticated: false,
+          user: null,
+        },
+      });
+    }
+  };
+  const reInitialize = async () => {
+    await initializeFunc();
+  };
   const login: Login = async (email, password, role) => {
     try {
       await axiosInstance.post(_PATH_API.auth.login(role), { email, password });
@@ -173,6 +181,7 @@ function AuthProvider({ children, initialUser }: { children: ReactNode; initialU
         login,
         logout,
         register,
+        reInitialize,
       }}
     >
       {children}

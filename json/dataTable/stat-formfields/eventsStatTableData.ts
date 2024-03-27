@@ -16,7 +16,7 @@ export const eventsStatTableData: Array<FormFieldTypes> = [
   {
     id: "isMaintenance",
     name: "isMaintenance",
-    label: "isMaintenance",
+    label: "Is Maintenance",
     type: "text",
   },
   {
@@ -28,13 +28,13 @@ export const eventsStatTableData: Array<FormFieldTypes> = [
   {
     id: "fromDate",
     name: "fromDate",
-    label: "Dal",
+    label: "From",
     type: "text",
   },
   {
     id: "toDate",
     name: "toDate",
-    label: "Al",
+    label: "To",
     type: "text",
   },
 ];

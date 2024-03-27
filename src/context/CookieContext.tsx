@@ -41,34 +41,39 @@ const useStore = () => {
       setCurrentOrganization(organizationId);
     }
   }, []);
+
   useEffect(() => {
-    if (!currentSpace) handleSetSpace();
+    if (!currentSpace) initializeCurrentSpaceFromMemory();
   }, []);
-  const handleSetSpace = () => {
-    const spaceName = getCookie("spaceName");
-    const spaceAddress = getCookie("spaceAddress");
+
+  const initializeCurrentSpaceFromMemory = () => {
     const spaceId = getCookie("spaceId");
-    const spaceSlug = getCookie("spaceSlug");
-    const spaceImage = getCookie("spaceImage");
+    const spaceName = localStorage.getItem("spaceName");
+    const spaceAddress = localStorage.getItem("spaceAddress");
+    const spaceSlug = localStorage.getItem("spaceSlug");
+    const spaceImage = localStorage.getItem("spaceImage");
     if (isString(spaceId) && isString(spaceName) && isString(spaceSlug)) {
       setCurrentSpace({
         _id: spaceId,
         name: spaceName,
         slug: spaceSlug,
-        image: spaceImage,
-        address: spaceAddress,
+        image: spaceImage || "",
+        address: spaceAddress || "",
       });
     }
   };
 
+  const handleSetCurrentSpace = (space: CurrentSpace | null) => {
+    localStorage.setItem("spaceSlug", space?.slug || "");
+    localStorage.setItem("spaceName", space?.name || "");
+    localStorage.setItem("spaceImage", space?.image || "");
+    localStorage.setItem("spaceAddress", space?.address || "");
+    setCurrentSpace(space);
+  };
   return {
     currentSpace,
-    setCurrentSpace: (space: CurrentSpace | null) => {
-      setCurrentSpace(space);
-    },
-
-    handleSetCurrentSpace: handleSetSpace,
-
+    setCurrentSpace: handleSetCurrentSpace,
+    handleSetCurrentSpace: initializeCurrentSpaceFromMemory,
     resetCurrentSpace: () => {
       setCurrentSpace(null);
     },

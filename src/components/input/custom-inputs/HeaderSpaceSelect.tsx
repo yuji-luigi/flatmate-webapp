@@ -13,6 +13,7 @@ import {
   useSpaceSelectionSelectors,
   useSpaceSelectionSliceStore,
 } from "../../../redux/features/crud/spaceSelectionSlice";
+import useAuth from "../../../../hooks/useAuth";
 
 interface OrganizationSpaceSelectProps {
   style?: MantineStyleProp;
@@ -32,7 +33,7 @@ const HeaderSpaceSelect = ({
   className,
 }: OrganizationSpaceSelectProps) => {
   // const [opened, { toggle }] = useDisclosure(false);
-
+  const { reInitialize } = useAuth();
   const { setCurrentSpace, resetCurrentSpace, currentSpace } = useCookieContext();
   const { fetchSpaceSelections: fetchCrudDocuments } = useSpaceSelectionSliceStore();
   const { spaceSelections: spaces } = useSpaceSelectionSelectors();
@@ -41,17 +42,14 @@ const HeaderSpaceSelect = ({
   const handleDeleteSpaceCookie = async () => {
     await axiosInstance.delete(PATH_API.getSpaceSelections);
     setCurrentSpace(null);
+    await reInitialize();
   };
 
   const getSpaceCookieFromApi = async (spaceId: string) => {
     // case select is cleared
-    if (spaceId === "") {
-      await axiosInstance.delete(PATH_API.getSpaceSelections);
-      resetCurrentSpace();
-      return;
-    }
     const response = await axiosInstance.get(`${PATH_API.getSpaceSelections}/${spaceId}`);
     setCurrentSpace(response.data.data.space);
+    await reInitialize();
   };
 
   useEffect(() => {

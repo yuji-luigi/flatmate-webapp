@@ -22,7 +22,7 @@ const tabs: {
   },
   {
     value: "Administrators",
-    role: "administrator",
+    role: "property_manager",
     component: "Administrators",
   },
   {

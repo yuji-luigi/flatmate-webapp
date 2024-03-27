@@ -14,7 +14,7 @@ export type LayoutVariants =
   | "logoOnly"
   | "dashboard"
   | "auth-token"
-  | "administrator-dashboard";
+  | "property_manager-dashboard";
 
 const Layout = ({
   variant = "dashboard",
@@ -40,22 +40,22 @@ const Layout = ({
   if (variant === "auth-token") {
     return (
       <ClientProvider>
-        <CookieContextProvider>
-          <AuthTokenRouteLayout title={title}>{children}</AuthTokenRouteLayout>
-        </CookieContextProvider>
+        {/* <CookieContextProvider> */}
+        <AuthTokenRouteLayout title={title}>{children}</AuthTokenRouteLayout>
+        {/* </CookieContextProvider> */}
       </ClientProvider>
     );
   }
 
   return (
     <AuthGuard>
-      <CookieContextProvider>
-        <TabContextProvider>
-          <DashboardLayout>
-            <Box className="dashboardContainer">{children}</Box>
-          </DashboardLayout>
-        </TabContextProvider>
-      </CookieContextProvider>
+      {/* <CookieContextProvider> */}
+      <TabContextProvider>
+        <DashboardLayout>
+          <Box className="dashboardContainer">{children}</Box>
+        </DashboardLayout>
+      </TabContextProvider>
+      {/* </CookieContextProvider> */}
     </AuthGuard>
   );
 };

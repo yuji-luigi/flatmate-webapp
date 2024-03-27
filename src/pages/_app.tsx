@@ -34,6 +34,7 @@ import "../styles/nprogress.css";
 import { useLocale } from "../../hooks/useLocale";
 import { NprogressBar } from "../components/progress-bar/NprogressBar";
 import { CurrentEntityContextProvider } from "../context/CurrentEntityContext";
+import { CookieContextProvider } from "../context/CookieContext";
 
 const resolver: CSSVariablesResolver = (theme) => ({
   variables: {
@@ -106,8 +107,10 @@ function App(props: AppProps) {
                           }}
                         >
                           <NprogressBar>
-                            {getLayout(<Component {...pageProps} />)}
-                            <ModalRootCustom />
+                            <CookieContextProvider>
+                              {getLayout(<Component {...pageProps} />)}
+                              <ModalRootCustom />
+                            </CookieContextProvider>
                           </NprogressBar>
                         </DatesProvider>
                       </FilterContextProvider>

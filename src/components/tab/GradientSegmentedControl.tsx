@@ -20,7 +20,6 @@ export function GradientSegmentedControl(props: Props) {
   const [storageValue, setStorageValue] = useLocalStorage({ key: localStorageKey || "" });
   const handleChange = (value: string) => {
     setCurrentValue(value);
-    console.log("value", value);
     if (localStorageKey) {
       setStorageValue(value);
     }
@@ -29,6 +28,12 @@ export function GradientSegmentedControl(props: Props) {
     if (!storageValue) {
       // the default value is the first item
       setCurrentValue(switchDataList[0].value);
+      return;
+    }
+    const v = localStorage.getItem(localStorageKey || "") || "";
+    if (v) {
+      console.log(JSON.parse(v));
+      setCurrentValue(JSON.parse(v));
     }
   }, [storageValue]);
   return (

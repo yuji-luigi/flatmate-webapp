@@ -1,8 +1,9 @@
-import { Box, Card, Group } from "@mantine/core";
+import { Box, Card, Group, Text } from "@mantine/core";
 import React from "react";
 import dynamic from "next/dynamic";
 import { MonthPickerInput } from "@mantine/dates";
 import { CustomLayer } from "@nivo/line";
+import Image from "next/image";
 import { useCrudSelectors, useCrudSliceStore } from "../../../../../redux/features/crud/crudSlice";
 import { intlDateFormatMonth } from "../../../../../utils/helpers/date-formatters";
 import { Icons } from "../../../../../data/icons/icons";
@@ -11,6 +12,8 @@ import { LabelLayer } from "../../../../../components/chart/custom-layer/CustomL
 import { FromToDateQueryInputs } from "../../../../../components/input/filter-inputs/FromToDateQueryInputs";
 import axiosInstance from "../../../../../utils/axios-instance";
 import { _PATH_API } from "../../../../../path/path-api";
+import { PATH_IMAGE } from "../../../../../lib/image-paths";
+import { NothingFoundBackground } from "../../../../../components/errors/nothing-found/NothingFoundBackground";
 
 const StackedAreaChart = dynamic(
   () => import("../../../../../components/chart/line-area-chart/StackedAreaChart"),
@@ -28,6 +31,7 @@ export const ChecksByMonthChart = () => {
       x: intlDateFormatMonth(statistic.month),
       y: statistic.total || 0,
       change: statistic.total || 0,
+      path: "pathpath",
     };
   });
   const handleQueryByDate = async (values: { [key: string]: null | Date }) => {
@@ -51,7 +55,7 @@ export const ChecksByMonthChart = () => {
   const defFrom = fromDate;
   // defTo is the first day of the current month, at 00:00
   const defTo = toDate;
-
+  const noData = !mData.length;
   return (
     <Card>
       <FromToDateQueryInputs
@@ -64,15 +68,20 @@ export const ChecksByMonthChart = () => {
         endpoint=""
         onChangeCallback={handleQueryByDate}
       />
-      <Box style={{ overflowX: "scroll", overflowY: "hidden" }}>
-        <Box style={{ minWidth: "100%", width: mData.length * 50 }}>
-          <StackedAreaChart
-            //@ts-ignore
-            customLayer={LabelLayer}
-            statistics={[{ id: new Date().toISOString(), data: mData }]}
-          />
+      {noData ? (
+        <NothingFoundBackground text="No data available" />
+      ) : (
+        <Box style={{ overflowX: "scroll", overflowY: "hidden" }}>
+          <Box style={{ minWidth: "100%", width: mData.length * 50 }}>
+            <StackedAreaChart
+              //@ts-ignore
+              customLayer={LabelLayer}
+              noData={noData}
+              statistics={[{ id: new Date().toISOString(), data: mData }]}
+            />
+          </Box>
         </Box>
-      </Box>
+      )}
     </Card>
   );
 };

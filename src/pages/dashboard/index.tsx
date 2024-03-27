@@ -22,6 +22,7 @@ const DashboardPage = ({ initialUser }: { initialUser: MeUser }) => {
   const handleSectionData = async () => {
     const rawRes = await axiosInstance.get(`${process.env.NEXT_PUBLIC_API_URL}/home`);
     const { space, maintainers, maintenances, threads, statistics } = rawRes.data.data || [];
+
     setCrudDocument({ entity: "statistics", document: statistics });
     setCrudDocument({ entity: "spaces", document: space });
     // setCrudDocuments({ entity: 'maintainers', documents: maintainers });
@@ -69,10 +70,10 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       },
     };
   }
-  // if (user.loggedAs === "administrator") {
+  // if (user.loggedAs === "property_manager") {
   //   return {
   //     redirect: {
-  //       destination: _PATH_FRONTEND.administrator.dashboard.root,
+  //       destination: _PATH_FRONTEND.property_manager.dashboard.root,
   //       permanent: true,
   //     },
   //   };

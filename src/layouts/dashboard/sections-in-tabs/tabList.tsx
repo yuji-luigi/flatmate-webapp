@@ -5,7 +5,7 @@ import { SpaceMaintenanceSection } from "./SpaceMaintenanceSection";
 import { SpacePostSection } from "./SpacePostSection";
 import { UserRoles } from "../../../lib/enums";
 
-const administrator: TabList[] = [
+const property_manager: TabList[] = [
   {
     label: "Dashboard",
     value: "dashboard",
@@ -103,7 +103,7 @@ const maintainer: TabList[] = [
 ];
 
 export const TAB_LIST_CONFIG: Record<UserRoles, TabList[]> = {
-  administrator,
+  property_manager,
   maintainer,
   inhabitant,
   system_admin,

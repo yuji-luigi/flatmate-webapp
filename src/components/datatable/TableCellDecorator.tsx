@@ -1,11 +1,5 @@
-import React, { Fragment } from "react";
-// import BadgeCell from './table-rows/tablecell/BadgeCell';
 import TableCellController from "./table-rows/tablecell/crud-cells/TableCellController";
-import {
-  BadgeCellConfig,
-  FormFieldTypes,
-} from "../../types/general/data/data-table/form-field-type/formField-types";
-import BadgeCellDecorator from "./table-rows/tablecell/crud-cells/BadgeCellDecorator";
+import { FormFieldTypes } from "../../types/general/data/data-table/form-field-type/formField-types";
 import classes from "./TableCellDecorator.module.css";
 import { AllModels } from "../../types/models/allmodels";
 
@@ -18,8 +12,6 @@ function isArray(value: any): value is Array<any> {
   return Array.isArray(value);
 }
 
-//! TODO: refactor this component to be more readable and rational.
-
 export function TableCellDecorator({
   rowData,
   cellConfig,
@@ -29,14 +21,6 @@ export function TableCellDecorator({
 }) {
   /** get value of the cell (from object/array/primitive) */
   const cellValue = getCellValue({ rowData, cellConfig });
-
-  // if (cellConfig.badge) {
-  //   return (
-  //     <BadgeCellDecorator cellConfig={cellConfig as BadgeCellConfig} value={cellValue}>
-  //       {tableCell}
-  //     </BadgeCellDecorator>
-  //   );
-  // }
 
   if (cellConfig.noTable) return null;
 
@@ -65,14 +49,6 @@ type ValueOrFunction = string | ValueFunction;
 const isFunction = (value: ValueOrFunction): value is ValueFunction => typeof value === "function";
 
 function getCellValue({ rowData, cellConfig }: { rowData: any; cellConfig: FormFieldTypes }) {
-  // LIST OUT CASES.
-  // 1. VALUE IS OBJECT AND NOT ARRAY
-  // 2. VALUE IS ARRAY OF OBJECTS
-  // 3. VALUE IS ARRAY OF PRIMITIVES
-  // 4. VALUE IS PRIMITIVE
-  // 5. VALUE IS NULL OR UNDEFINED
-  // 6. VALUE IS BOOLEAN
-  // 7. VALUE IS DATE
   // case primitive toString and return
   const value = rowData[cellConfig.name] ?? ""; // check for null or undefined
   const valueType: typeof value & "array" = typeof value;
@@ -90,8 +66,6 @@ function getCellValue({ rowData, cellConfig }: { rowData: any; cellConfig: FormF
 }
 
 // recursively get the value of the cell indexed by the selectValues array.
-//ignore ts error
-// @ts-ignore
 function getCellValueRecursive({
   value,
   selectValues,

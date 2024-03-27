@@ -9,26 +9,31 @@ import {
 import { PATH_CLIENT, _PATH_FRONTEND } from "../../../path/path-frontend";
 import classes2 from "../../../styles/global-useStyles.module.css";
 import { SpaceModel } from "../../../types/models/space-model";
-import axiosInstance from "../../../utils/axios-instance";
+import axiosInstance, { AxiosResData, AxiosResDataGeneric } from "../../../utils/axios-instance";
 import { PATH_API } from "../../../path/path-api";
 import { ParsedQueryCustom } from "../../../types/nextjs-custom-types/useRouter-types";
 import useAuth from "../../../../hooks/useAuth";
 import classes from "./ChooseSpaceSection.module.css";
+import { useCookieContext } from "../../../context/CookieContext";
+import { CurrentSpace } from "../../../types/context/auth/useAuth";
 
 export const ChooseSpaceSection = ({ spaces }: { spaces: SpaceModel[] }) => {
   const { user } = useAuth();
-
+  const { setCurrentSpace } = useCookieContext();
   const router: NextRouter & { query: ParsedQueryCustom; pathname: string } = useRouter();
 
   const handleSpaceSelected = async (spaceId: string) => {
-    await axiosInstance.get(`${PATH_API.getSpaceSelections}/${spaceId}`);
+    const rawSpace = await axiosInstance.get<AxiosResDataGeneric<{ space: CurrentSpace }>>(
+      `${PATH_API.getSpaceSelections}/${spaceId}`
+    );
+    setCurrentSpace(rawSpace.data.data.space);
     router.push(_PATH_FRONTEND.dashboard.root);
   };
 
   if (!user) return null;
   return (
     <Box className={classes2.container}>
-      {user.role === "super_admin" && (
+      {user.isSuperAdmin && (
         <Box>
           <Button component={Link} href={PATH_CLIENT.chooseOrganization} variant="outline">
             Back

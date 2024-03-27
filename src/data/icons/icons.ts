@@ -62,6 +62,7 @@ import {
   IconWriting as writing,
   IconHome2 as home,
   IconStar as star,
+  IconMoodEmptyFilled as empty,
 } from "@tabler/icons-react";
 /**
  * use the key name same as the slice name
@@ -128,6 +129,7 @@ export const Icons = {
   login2,
   signup: writing,
   star,
+  empty,
 } as const;
 export const ICON_SIZES = {
   textTile: 16,

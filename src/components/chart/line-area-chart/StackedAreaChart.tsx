@@ -4,6 +4,7 @@ import { useCustomMQuery } from "../../../../hooks/useCustomMQuery";
 
 type StackedAreaChartProps = {
   customLayer: CustomLayer;
+  noData: boolean;
   statistics: {
     data: {
       x: string;
@@ -16,10 +17,10 @@ type StackedAreaChartProps = {
 
 function StackedAreaChart(props: StackedAreaChartProps) {
   const { isMobile } = useCustomMQuery();
-  const { statistics, customLayer } = props;
+  const { statistics, customLayer, noData } = props;
 
   const mx = isMobile ? 30 : 50;
-
+  if (noData) return <div>nodata!!</div>;
   return (
     <Box style={{ height: 400, width: "100%", overflow: "visible" }}>
       <ResponsiveLine

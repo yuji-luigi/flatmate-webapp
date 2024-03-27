@@ -1,8 +1,5 @@
-import {
-  FormFieldTypes,
-  FormTypes,
-  LinkChildrenFormFieldType,
-} from "./form-field-type/formField-types";
+import { FormTypes } from "./form-field-type/base-form-type";
+import { FormFieldTypes, LinkChildrenFormFieldType } from "./form-field-type/formField-types";
 
 export type CellTypes = "link-children" | "avatar" | FormTypes;
 

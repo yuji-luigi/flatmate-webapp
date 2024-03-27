@@ -6,7 +6,7 @@ import { useLocale } from "../../../hooks/useLocale";
 const Roles = [
   { label: "User/inhabitant", value: "inhabitant" },
   { label: "maintainer", value: "maintainer" },
-  { label: "administrator", value: "administrator" },
+  { label: "property_manager", value: "property_manager" },
 ];
 const SignUpStepTwo = ({ form }: { form: UseFormReturnType<IInitialValues> }) => {
   const { t } = useLocale("sign-up");

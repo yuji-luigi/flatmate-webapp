@@ -34,7 +34,7 @@ type Col = {
   lg: number;
 };
 
-type FormTypes =
+export type FormTypes =
   | "text"
   | "text-area"
   | "text-on-hover"

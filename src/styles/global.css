@@ -66,7 +66,7 @@
     --fg-color: rgba(255, 255, 255, 0.85);
     --text-color: #123;
     --text-color-link: #45adfe;
-    &:has([data-loggedAs="maintainer"]) {
+    &:has([data-loggedas="maintainer"]) {
       background-color: red;
     }
   }
@@ -77,7 +77,7 @@
     --fg-color: rgba(0, 0, 0, 0.85);
     --text-color: #45adfe;
     --text-color-link: #45adfe;
-    &:has([data-loggedAs="maintainer"]) {
+    &:has([data-loggedas="maintainer"]) {
       background-color: red;
     }
   } */
@@ -98,7 +98,7 @@
   }
 }
 
-/* body:has([data-loggedAs="maintainer"]) {
+/* body:has([data-loggedas="maintainer"]) {
   .nav-bar-vertical::before {
     content: "";
     height: 100%;
@@ -118,7 +118,7 @@
     background-color: rgba(23, 100, 100, 0.3);
   }
 }
-body:has([data-loggedAs="administrator"]) {
+body:has([data-loggedas="property_manager"]) {
   .nav-bar-vertical::before {
     content: "";
     height: 100%;

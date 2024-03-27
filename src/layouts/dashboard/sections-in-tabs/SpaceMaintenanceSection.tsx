@@ -20,6 +20,8 @@ import { MaintenanceModel } from "../../../types/models/maintenance-check-type";
 import { FeedView } from "../../../components/posts/FeedView";
 import { StackOverride } from "../../../components/overrides/stack/StackOverride";
 import { DashboardTopCenteredHeader } from "../../../sections/dashboard/dashboard_top/components/DashboardTopCenteredHeader";
+import { ClientProvider } from "../../ClientProvider";
+import LoadingScreen from "../../../components/screen/LoadingScreen";
 
 const VIEW_KEY = "feed-maintenance-view";
 
@@ -44,18 +46,14 @@ export const SectionContent = () => {
     formFields: maintenancesTableData,
     comparator: getComparator(order, orderBy),
   });
-  useEffect(() => {
-    setCurrentValue(value || "table");
-  }, [value]);
-  console.log(value);
   return (
-    <>
-      {value === "posts" && (
+    <Stack>
+      <DashboardTopCenteredHeader
+        header="Maintenances"
+        otherComponent={<FeedTableSwitch localStorageKey={VIEW_KEY} />}
+      />{" "}
+      {(value === "posts" || !value) && (
         <FeedView>
-          <DashboardTopCenteredHeader
-            header="Maintenances"
-            otherComponent={<FeedTableSwitch localStorageKey={VIEW_KEY} />}
-          />
           {filteredList.map((maintenance) => (
             <PostFeedCard key={maintenance._id} data={maintenance} />
           ))}
@@ -63,18 +61,10 @@ export const SectionContent = () => {
       )}
       {value === "table" && (
         <StackOverride>
-          <DashboardTopCenteredHeader
-            header="Maintenances"
-            otherComponent={<FeedTableSwitch localStorageKey={VIEW_KEY} />}
-          />
-          {/* <DashboardTopHeader
-            // header="Maintenances"
-            rightSection={<FeedTableSwitch localStorageKey={VIEW_KEY} />}
-          /> */}
           <StaticDataTable json={maintenancesTableData} data={filteredList} withFilter />
         </StackOverride>
       )}
-    </>
+    </Stack>
   );
 };
 
