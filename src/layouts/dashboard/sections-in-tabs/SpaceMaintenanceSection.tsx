@@ -9,7 +9,10 @@ import { maintenancesTableData } from "../../../../json/dataTable/formfields/mai
 import { Icons } from "../../../data/icons/icons";
 import { DashboardTopHeader } from "../../../sections/dashboard/dashboard_top/components/DashboardTopHeader";
 import { FeedTableSwitch } from "./compontents/FeedTableSwitch";
-import { useSegmentedControl } from "../../../components/tab/useSegmentedControl";
+import {
+  SegmentedControlContextProvider,
+  useSegmentedControl,
+} from "../../../components/tab/useSegmentedControl";
 import { filterList } from "../../../components/datatable/filter/logic/applyFilter";
 import { useFilter } from "../../../../hooks/useFilter";
 import useTable, { getComparator } from "../../../../hooks/useTable";
@@ -20,7 +23,7 @@ import { DashboardTopCenteredHeader } from "../../../sections/dashboard/dashboar
 
 const VIEW_KEY = "feed-maintenance-view";
 
-export const SpaceMaintenanceSection = () => {
+export const SectionContent = () => {
   const { crudDocuments } = useCrudSelectors<MaintenanceModel>("maintenances");
   const [value, setValue] = useLocalStorage({
     key: VIEW_KEY,
@@ -44,6 +47,7 @@ export const SpaceMaintenanceSection = () => {
   useEffect(() => {
     setCurrentValue(value || "table");
   }, [value]);
+  console.log(value);
   return (
     <>
       {value === "posts" && (
@@ -71,5 +75,13 @@ export const SpaceMaintenanceSection = () => {
         </StackOverride>
       )}
     </>
+  );
+};
+
+export const SpaceMaintenanceSection = () => {
+  return (
+    <SegmentedControlContextProvider>
+      <SectionContent />
+    </SegmentedControlContextProvider>
   );
 };
