@@ -12,7 +12,6 @@ import { toTitleCase } from "../../lib/toTitleCase";
 import { MeUser } from "../../types/models/space-model";
 
 const DashboardPage = ({ initialUser }: { initialUser: MeUser }) => {
-  const { currentOrganization, currentSpace } = useCookieContext();
   const { setCrudDocument, setCrudDocuments } = useCrudSliceStore();
 
   useEffect(() => {

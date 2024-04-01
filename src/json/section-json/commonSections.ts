@@ -6,7 +6,7 @@ export const commonSections: SectionsJson[] = [
     hide: true,
     contents: [
       {
-        entity: "home",
+        sectionKey: "home",
         title: "",
         subtitle: "",
         navbarTitle: "TOP",
@@ -17,7 +17,7 @@ export const commonSections: SectionsJson[] = [
         hide: true,
       },
       {
-        entity: "threads",
+        sectionKey: "threads",
         title: "Posts",
         subtitle: "subtitle",
         navbarTitle: "posts",
@@ -28,7 +28,7 @@ export const commonSections: SectionsJson[] = [
         hide: true,
       },
       {
-        entity: "maintenances",
+        sectionKey: "maintenances",
         title: "maintenances",
         subtitle: "subtitle",
         navbarTitle: "maintenances",

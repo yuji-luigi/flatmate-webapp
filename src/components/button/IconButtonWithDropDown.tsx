@@ -21,7 +21,7 @@ export function HeaderCreationButton() {
   const { setSubmitting } = useCrudSliceStore();
   const { submitting } = useCrudSelectors();
   const handleOpenModal = (type: "threads" | "maintenances") => {
-    setSection(allSectionArrayWithRoles.find((_section) => _section.entity === type) || null);
+    setSection(allSectionArrayWithRoles.find((_section) => _section.sectionKey === type) || null);
     setModalType(type);
     open();
   };

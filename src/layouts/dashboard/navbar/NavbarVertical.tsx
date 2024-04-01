@@ -1,4 +1,4 @@
-import { ScrollArea, Button, Stack, Box, Divider } from "@mantine/core";
+import { ScrollArea, Button, Stack, Box, Divider, Group } from "@mantine/core";
 import Link from "next/link";
 import { useMediaQuery } from "@mantine/hooks";
 import useLayoutContext from "../../../../hooks/useLayoutContext";
@@ -11,6 +11,7 @@ import { ColorSchemeToggle } from "../../../components/color-schemeToggle/ColorS
 import LogoutButton from "./LogoutButton";
 import classes from "./NavbarVertical.module.css";
 import { NavList } from "./NavList";
+import { Icons } from "../../../data/icons/icons";
 
 export function NavbarVertical() {
   const { user } = useAuth();
@@ -38,6 +39,18 @@ export function NavbarVertical() {
           {sectionData[user.loggedAs].map((section, i) => (
             <NavList key={section.name} section={section} />
           ))}
+          {user.isSystemAdmin && (
+            <Link
+              className={classes.link}
+              // data-active={isActive || undefined}
+              href="#"
+            >
+              <Group align="center">
+                <Icons.alert className={classes.linkIcon} stroke={1.5} />
+                System Admin menu
+              </Group>
+            </Link>
+          )}
           <div className={classes.footer}>
             <Stack>
               <LogoutButton />

@@ -184,7 +184,7 @@ export function CrudDrawerDefault({ overridingEntity }: { overridingEntity?: Ent
 
   const sectionJson = getSectionData({ loggedAs: user.loggedAs, entity });
 
-  const entityText = capitalize(sectionJson.entity);
+  const entityText = capitalize(sectionJson.sectionKey);
   const submitText = singleCrudId ? `Update ${entityText}!` : `Add ${entityText}!`;
   if (!drawerIsOpen) return null;
   return (

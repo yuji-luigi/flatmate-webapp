@@ -16,7 +16,7 @@ export const entities = [
   "events",
 ] as const;
 
-const sections = ["statistics", "posts"] as const;
+const sections = ["statistics", "posts", "home"] as const;
 
 export const frontendEntities = [...entities, ...sections] as const;
 export type Entity = FrontendEntity;

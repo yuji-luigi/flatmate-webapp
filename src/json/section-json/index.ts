@@ -17,7 +17,7 @@ export const getFlattenSectionJson = (loggedAs: Role) =>
 
 export function getSectionData({ loggedAs, entity }: { loggedAs: Role; entity?: Entity }) {
   const [data] = sectionData[loggedAs].flatMap((json) =>
-    json.contents.find((section) => section.entity === entity)
+    json.contents.find((section) => section.sectionKey === entity)
   );
   return data!;
 }

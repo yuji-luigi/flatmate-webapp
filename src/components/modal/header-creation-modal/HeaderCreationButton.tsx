@@ -24,7 +24,7 @@ export function HeaderCreationButton() {
   if (!user) return null;
   const handleOpenModal = (type: "threads" | "maintenances") => {
     const found = sectionData[user.loggedAs].flatMap((json) =>
-      json.contents.find((content) => content.entity === type)
+      json.contents.find((content) => content.sectionKey === type)
     );
     setSection();
     setModalType(type);

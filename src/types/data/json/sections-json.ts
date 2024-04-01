@@ -1,10 +1,10 @@
-import { Sections } from "../../general/data/sections-type";
+import { Entity } from "../../redux/CrudSliceInterfaces";
 
 export type SectionsJson = {
   name: string;
   hide: boolean;
   contents: {
-    entity: Sections;
+    sectionKey: Entity | string;
     title: string;
     subtitle: string;
     navbarTitle: string;

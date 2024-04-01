@@ -6,7 +6,7 @@ export const propertyManagerSectionsJson: SectionsJson[] = [
     hide: true,
     contents: [
       {
-        entity: "home",
+        sectionKey: "home",
         title: "",
         subtitle: "",
         navbarTitle: "TOP",
@@ -17,7 +17,7 @@ export const propertyManagerSectionsJson: SectionsJson[] = [
         hide: true,
       },
       {
-        entity: "threads",
+        sectionKey: "threads",
         title: "Posts",
         subtitle: "subtitle",
         navbarTitle: "posts",
@@ -28,7 +28,7 @@ export const propertyManagerSectionsJson: SectionsJson[] = [
         hide: true,
       },
       {
-        entity: "maintenances",
+        sectionKey: "maintenances",
         title: "maintenances",
         subtitle: "subtitle",
         navbarTitle: "maintenances",
@@ -45,7 +45,7 @@ export const propertyManagerSectionsJson: SectionsJson[] = [
     hide: true,
     contents: [
       {
-        entity: "statistics",
+        sectionKey: "statistics",
         title: "Statistics",
         subtitle: "subtitle",
         navbarTitle: "Statistics",
@@ -57,7 +57,7 @@ export const propertyManagerSectionsJson: SectionsJson[] = [
       },
 
       {
-        entity: "bookmarks",
+        sectionKey: "bookmarks",
         title: "Bookmarks",
         subtitle: "subtitle",
         navbarTitle: "Bookmark",
@@ -68,7 +68,7 @@ export const propertyManagerSectionsJson: SectionsJson[] = [
         icon: "Dashboard",
       },
       {
-        entity: "comments",
+        sectionKey: "comments",
         title: "Comments",
         subtitle: "subtitle",
         navbarTitle: "Comment",
@@ -85,7 +85,7 @@ export const propertyManagerSectionsJson: SectionsJson[] = [
     hide: false,
     contents: [
       {
-        entity: "maintainers",
+        sectionKey: "maintainers",
         title: "Maintainers",
         subtitle: "subtitle",
         navbarTitle: "maintainer",
@@ -102,7 +102,7 @@ export const propertyManagerSectionsJson: SectionsJson[] = [
     hide: false,
     contents: [
       {
-        entity: "tags",
+        sectionKey: "tags",
         title: "Tags",
         subtitle: "subtitle",
         navbarTitle: "Tag",
@@ -113,7 +113,7 @@ export const propertyManagerSectionsJson: SectionsJson[] = [
         icon: "Dashboard",
       },
       {
-        entity: "threads",
+        sectionKey: "threads",
         title: "Threads",
         subtitle: "subtitle",
         navbarTitle: "Thread",
@@ -124,7 +124,7 @@ export const propertyManagerSectionsJson: SectionsJson[] = [
         icon: "Dashboard",
       },
       {
-        entity: "spaces",
+        sectionKey: "spaces",
         title: "spaces",
         subtitle: "subtitle",
         navbarTitle: "spaces",
@@ -135,7 +135,7 @@ export const propertyManagerSectionsJson: SectionsJson[] = [
         hide: false,
       },
       {
-        entity: "users",
+        sectionKey: "users",
         title: "Users",
         subtitle: "subtitle",
         navbarTitle: "User",

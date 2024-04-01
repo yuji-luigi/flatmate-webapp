@@ -6,7 +6,7 @@ export const maintainerSectionsJson: SectionsJson[] = [
     hide: false,
     contents: [
       {
-        entity: "statistics",
+        sectionKey: "statistics",
         title: "Statistics",
         subtitle: "subtitle",
         navbarTitle: "Statistics",
@@ -18,7 +18,7 @@ export const maintainerSectionsJson: SectionsJson[] = [
       },
 
       {
-        entity: "bookmarks",
+        sectionKey: "bookmarks",
         title: "Bookmarks",
         subtitle: "subtitle",
         navbarTitle: "Bookmark",

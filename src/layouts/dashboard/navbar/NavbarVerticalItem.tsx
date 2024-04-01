@@ -14,9 +14,9 @@ type NavbarVerticalItemProp = {
 export const NavbarVerticalItem = (props: NavbarVerticalItemProp) => {
   const { navbarContent } = props;
   // return null;
-  const Icon = Icons[navbarContent.entity as IconIndexTypes] || Icons.home;
+  const Icon = Icons[navbarContent.sectionKey as IconIndexTypes] || Icons.home;
   const { asPath } = useRouter();
-  const pattern = new RegExp(`/dashboard/${navbarContent.entity}$`);
+  const pattern = new RegExp(`/dashboard/${navbarContent.sectionKey}$`);
   const isActive = pattern.test(asPath);
   if (navbarContent.hide) return null;
   return (
