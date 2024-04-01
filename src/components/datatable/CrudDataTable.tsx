@@ -1,34 +1,30 @@
-import { Table, ScrollArea, Pagination, Divider, Box, Card } from "@mantine/core";
+import { Table, Pagination, Divider, Card } from "@mantine/core";
 import { useState, useEffect } from "react";
-
-import { useRouter } from "next/router";
 
 import { CrudTableRow } from "./table-rows/CrudTableRow";
 
 import CrudTableHeader from "./header/CrudTableHeader";
 // import TableCellController from './table-rows/tablecell/TableCellController';
-import formFields from "../../../json/dataTable/formfields";
+import formFields from "../../json/dataTable/formfields";
 // import { useCrudSlice } from '../../../hooks/redux-hooks/useCrudSlice';
 import { usePaginationContext } from "../../context/PaginationContext";
 import { useCrudSelectors } from "../../redux/features/crud/crudSlice";
-import { Sections } from "../../types/general/data/sections-type";
+import { Entity } from "../../types/redux/CrudSliceInterfaces";
 import { FormFieldTypes } from "../../types/general/data/data-table/form-field-type/formField-types";
 import classes from "../../styles/global-useStyles.module.css";
-import { ParsedQueryCustom } from "../../types/nextjs-custom-types/useRouter-types";
 import { useCurrentEntityContext } from "../../context/CurrentEntityContext";
 
-export function CrudDataTable({ overridingEntity = "" }: { overridingEntity?: Sections }) {
+export function CrudDataTable({ overridingEntity }: { overridingEntity?: Entity }) {
   const ROWS_PER_PAGE = 10;
   // const TOTAL = Math.ceil(users.length / ROWS_PER_PAGE);
   // const { classes } = dashboardStyle();
 
   const [page, setPage] = useState(1);
   const { setPagination } = usePaginationContext();
-  const { query }: { query: ParsedQueryCustom } = useRouter();
   const { currentEntity: entity } = useCurrentEntityContext();
   const { crudDocuments, totalDocumentsCount, crudStatus } = useCrudSelectors(entity);
 
-  const sectionFormFields = formFields[entity as Sections];
+  const sectionFormFields = formFields[entity as Entity];
   useEffect(() => {
     setPage(1);
     setPagination(1);

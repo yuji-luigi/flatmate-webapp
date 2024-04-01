@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import { DashboardMaintenanceDatatable } from "../../../../sections/dashboard/dashboard_top/statistics/DashboardMaintenanceDatatable";
 import { EventDataTable } from "../../../../sections/dashboard/dashboard_top/statistics/DashboardEventDataTable";
 import { StatGridSchema, StatsGrid } from "../../../../components/stats/StatsGrid";
-import statsGridData from "../../../../../json/mock/statsGrid.json";
+import statsGridData from "../../../../json/mock/statsGrid.json";
 import classes from "./DashboardTopSection.module.css";
 import { StatsSummary } from "./StatsSummary";
 import { DashboardTopHeader } from "../../../../sections/dashboard/dashboard_top/components/DashboardTopHeader";

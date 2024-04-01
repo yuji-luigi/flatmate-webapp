@@ -1,13 +1,13 @@
 import { createContext, ReactNode, useState } from "react";
-import { Sections } from "../types/general/data/sections-type";
+import { Entity } from "../types/redux/CrudSliceInterfaces";
 
 export const EntityContext = createContext<IEntityContext>({
   overrideEntity: "",
-  setOverrideEntity(entity: Sections) {},
+  setOverrideEntity(entity: Entity) {},
 });
 
 const useStore = () => {
-  const [overrideEntity, setOverrideEntity] = useState<Sections | "">("");
+  const [overrideEntity, setOverrideEntity] = useState<Entity | "">("");
   return {
     overrideEntity,
     setOverrideEntity,

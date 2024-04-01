@@ -2,7 +2,7 @@ import { Box, Button, Text } from "@mantine/core";
 import { useState } from "react";
 import { UseFormReturnTypeCustom } from "../../input_interfaces/useForm_interface";
 import { UserRoleInput } from "../../../../types/general/data/data-table/form-field-type/formField-types";
-import { rolesTableData } from "../../../../../json/dataTable/formfields/roleTableData";
+import { rolesTableData } from "../../../../json/dataTable/formfields/roleTableData";
 import { useLocale } from "../../../../../hooks/useLocale";
 import FormFieldsWithoutRefInputs from "../../FormFieldsWithoutRefInputs";
 import classes from "./UserRoleInput.module.css";

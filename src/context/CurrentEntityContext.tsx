@@ -1,18 +1,18 @@
 import jwtDecode from "jwt-decode";
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { Sections } from "../types/general/data/sections-type";
+import { Entity } from "../types/redux/CrudSliceInterfaces";
 
 export const CurrentEntityContext = createContext<{
-  currentEntity: Sections | null;
-  setCurrentEntity: (entity: Sections | null) => void;
+  currentEntity: Entity | null;
+  setCurrentEntity: (entity: Entity | null) => void;
 }>({
   currentEntity: null,
-  setCurrentEntity: (entity: Sections | null) => {},
+  setCurrentEntity: (entity: Entity | null) => {},
 });
 
 const useStore = () => {
-  const [currentEntity, setCurrentEntity] = useState<Sections | null>(null);
+  const [currentEntity, setCurrentEntity] = useState<Entity | null>(null);
 
   return {
     currentEntity,
@@ -24,10 +24,10 @@ export const CurrentEntityContextProvider = ({ children }: { children: ReactNode
   <CurrentEntityContext.Provider value={useStore()}>{children}</CurrentEntityContext.Provider>
 );
 
-export const useCurrentEntityContext = (initialEntity?: Sections) => {
+export const useCurrentEntityContext = (initialEntity?: Entity) => {
   const { currentEntity, setCurrentEntity } = useContext(CurrentEntityContext);
   const { query } = useRouter();
-  const urlEntity = query.entity as Sections;
+  const urlEntity = query.entity as Entity;
   useEffect(() => {
     if (urlEntity) {
       setCurrentEntity(urlEntity);

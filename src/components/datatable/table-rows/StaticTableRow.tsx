@@ -5,11 +5,11 @@ import { Table } from "@mantine/core";
 import { ActionCells } from "./ActionCells";
 // import { useCrudSlice } from '../../../../hooks/redux-hooks/useCrudSlice';
 import { TableCellDecorator } from "../TableCellDecorator";
-import { Sections } from "../../../types/general/data/sections-type";
 import { FormFieldTypes } from "../../../types/general/data/data-table/form-field-type/formField-types";
 import classes from "../header/StaticTableHeader.module.css";
 import { useCustomMQuery } from "../../../../hooks/useCustomMQuery";
 import { AllModels } from "../../../types/models/allmodels";
+import { Entity } from "../../../types/redux/CrudSliceInterfaces";
 
 export function StaticTableRow({
   rowData,
@@ -18,7 +18,7 @@ export function StaticTableRow({
   actions,
 }: {
   actions?: any;
-  overridingEntity?: Sections;
+  overridingEntity?: Entity;
   rowData: AllModels;
   sectionFormFields: Array<FormFieldTypes>;
 }) {
@@ -28,7 +28,7 @@ export function StaticTableRow({
   /** use hook useCrudSlice */
   const { isMobile } = useCustomMQuery();
   /** get runtime value of the entity */
-  const entity = overridingEntity || (query.entity as Sections);
+  const entity = overridingEntity || (query.entity as Entity);
 
   // if (isMobile) {
   //   return (

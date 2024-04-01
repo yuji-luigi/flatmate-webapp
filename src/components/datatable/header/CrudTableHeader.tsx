@@ -1,22 +1,20 @@
 import React, { Fragment } from "react";
 import { useRouter } from "next/router";
 import { Table } from "@mantine/core";
-import formFields from "../../../../json/dataTable/formfields";
-import { Sections } from "../../../types/general/data/sections-type";
+import formFields from "../../../json/dataTable/formfields";
 import { FormFieldTypes } from "../../../types/general/data/data-table/form-field-type/formField-types";
-import { getAlignmentDataAttribute } from "../../../utils/data-table/getAlignmentDataAttribute";
 import classes from "./StaticTableHeader.module.css";
+import { Entity } from "../../../types/redux/CrudSliceInterfaces";
 
-const CrudTableHeader = ({ overridingEntity }: { overridingEntity: Sections }) => {
+const CrudTableHeader = ({ overridingEntity }: { overridingEntity: Entity }) => {
   const { query } = useRouter();
 
-  const json = formFields[overridingEntity || (query.entity as Sections)];
+  const json = formFields[overridingEntity || (query.entity as Entity)];
   json?.sort((a: FormFieldTypes, b: FormFieldTypes) => a.priority || 0 - (b.priority || 0));
   return (
     <Table.Thead>
       <Table.Tr>
         {json?.map((cellData: FormFieldTypes) => {
-          const dataAlign = getAlignmentDataAttribute(cellData.align);
           const cellStyle = cellData.cellConfig?.style || {};
           return (
             <Fragment key={cellData.id}>

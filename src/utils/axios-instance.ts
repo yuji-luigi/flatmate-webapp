@@ -3,6 +3,7 @@ import { Sections } from "../types/general/data/sections-type";
 import { API_BASE_URL } from "../path/path-api";
 import { AllModels } from "../types/models/allmodels";
 import { UserModel, Role, MeUser } from "../types/models/space-model";
+import { TODO_MODEL } from "../types/redux/CrudSliceInterfaces";
 
 // ----------------------------------------------------------------------
 
@@ -13,7 +14,7 @@ const axiosInstance: AxiosInstance = axios.create({
 export interface AxiosResData {
   success: boolean;
   collection: Sections;
-  data: Array<AllModels>;
+  data: Array<TODO_MODEL>;
   totalDocuments: number;
 }
 export interface AxiosResDataGeneric<DataType> {

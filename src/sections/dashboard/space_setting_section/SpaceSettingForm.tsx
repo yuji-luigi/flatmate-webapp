@@ -7,7 +7,7 @@ import { SpaceSlugResponse } from "../../../types/api-response/space-response";
 
 import { UseFormReturnTypeCustom } from "../../../components/input/input_interfaces/useForm_interface";
 import { getDefaultValues } from "../../../utils/getDefaultValues";
-import { spacesTableData } from "../../../../json/dataTable/formfields/spacesTableData";
+import { spacesTableData } from "../../../json/dataTable/formfields/spacesTableData";
 import FormFields from "../../../components/input/FormFields";
 import { useCrudSelectors, useCrudSliceStore } from "../../../redux/features/crud/crudSlice";
 import { SpaceModel } from "../../../types/models/space-model";

@@ -4,7 +4,7 @@ import { CardMaintainer } from "../../../components/card/CardMaintainer";
 import { Sections } from "../../../types/general/data/sections-type";
 import { useCrudSelectors } from "../../../redux/features/crud/crudSlice";
 import useAuth from "../../../../hooks/useAuth";
-import { maintainersTableData } from "../../../../json/dataTable/formfields/maintainersTableData";
+import { maintainersTableData } from "../../../json/dataTable/formfields/maintainersTableData";
 import { filterList } from "../../../components/datatable/filter/logic/applyFilter";
 import useTable, { getComparator } from "../../../../hooks/useTable";
 import { useFilter } from "../../../../hooks/useFilter";

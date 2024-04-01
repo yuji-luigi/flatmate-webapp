@@ -2,15 +2,11 @@ import { getCookie } from "cookies-next";
 import { useRouter } from "next/router";
 import { createContext, ReactNode, use, useContext, useEffect, useRef, useState } from "react";
 import { useCrudSliceStore } from "../redux/features/crud/crudSlice";
-import { entities, sections } from "../data";
 import { CurrentSpace } from "../types/context/auth/useAuth";
 import { CookieContextState } from "../types/context/cookie-context";
-import { SpaceModel } from "../types/models/space-model";
 import { ParsedQueryCustom } from "../types/nextjs-custom-types/useRouter-types";
 import { isString } from "../utils/type-guard/isString";
 
-// const exEntities = ['top/threads', 'top/maintenances', 'top/checks'];
-// const ENTITIES = [...entities, ...exEntities];
 export const CookieContext = createContext<CookieContextState>({
   currentSpace: null,
   setCurrentSpace: () => {},
@@ -31,8 +27,6 @@ const useStore = () => {
   const hasSpaceChanged = prevSpaceRef.current !== currentSpace;
   const hasOrgChanged = prevOrgRef.current !== currentOrganization;
   const hasSelectChanged = hasSpaceChanged || hasOrgChanged;
-
-  const { fetchCrudDocumentsWithPagination } = useCrudSliceStore();
 
   useEffect(() => {
     if (!currentOrganization) {

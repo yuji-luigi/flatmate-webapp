@@ -1,9 +1,9 @@
 import React from "react";
 import { Box, Card, Divider } from "@mantine/core";
 import { StaticDataTable } from "../../../../components/datatable/StaticDataTable";
-import { maintenanceStatTableData } from "../../../../../json/dataTable/stat-formfields/maintenanceStatTableData";
+import { maintenanceStatTableData } from "../../../../json/dataTable/stat-formfields/maintenanceStatTableData";
 import { DividerStyled } from "../../../../styles/divider/DividerStyled";
-import { eventsStatTableData } from "../../../../../json/dataTable/stat-formfields/eventsStatTableData";
+import { eventsStatTableData } from "../../../../json/dataTable/stat-formfields/eventsStatTableData";
 
 const mockData = [
   {

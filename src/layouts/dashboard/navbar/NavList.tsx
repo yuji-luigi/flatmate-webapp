@@ -1,6 +1,6 @@
 import { Stack } from "@mantine/core";
 import { NavbarVerticalItem } from "./NavbarVerticalItem";
-import { SectionData } from "../../../data";
+import { SectionData } from "../../../json/section-json";
 import useAuth from "../../../../hooks/useAuth";
 
 type NavListProps = {

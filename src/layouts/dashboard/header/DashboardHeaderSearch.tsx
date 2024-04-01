@@ -1,7 +1,7 @@
 import { Group, Burger, Box } from "@mantine/core";
 // import { useDisclosure } from '@mantine/hooks';
 import { useRouter } from "next/router";
-import links from "../../../../json/navbar/headerLinks.json";
+import links from "../../../json/navbar/headerLinks.json";
 import useLayoutContext from "../../../../hooks/useLayoutContext";
 import { ColorSchemeToggle } from "../../../components/color-schemeToggle/ColorSchemeToggle";
 import { LogoBanner } from "../../../components/banner/LogoBanner";

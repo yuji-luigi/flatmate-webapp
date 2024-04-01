@@ -3,12 +3,13 @@ import Link from "next/link";
 import { Icons } from "../../data/icons/icons";
 import { IMAGES_ARRAY, PATH_IMAGE } from "../../lib/image-paths";
 import { getRandomItemFromArray } from "../../utils/mock-data-functions";
-import { Sections } from "../../types/general/data/sections-type";
+
 import TextWithIcon from "../text/TextWithIcon";
 import BadgeWithToolTip from "../text/BadgeWithToolTip";
 import { UploadModel } from "../../types/models/upload-model";
 import classes from "./CardMaintainer.module.css";
 import { truncateString } from "../../utils/helpers/truncateString";
+import { Entity } from "../../types/redux/CrudSliceInterfaces";
 
 const ICON_SIZE = 16;
 
@@ -28,7 +29,7 @@ export interface UserCardData {
   badgestyle?: MantineStyleProp;
 }
 
-export function CardMaintainer({ data, entity }: { data: UserCardData; entity: Sections }) {
+export function CardMaintainer({ data, entity }: { data: UserCardData; entity: Entity }) {
   return (
     <Card
       className={classes.card}

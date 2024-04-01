@@ -1,5 +1,5 @@
-import { Sections } from "../types/general/data/sections-type";
 import { HiddenAuthTokenInterface } from "../types/models/auth-token-model";
+import { Entity } from "../types/redux/CrudSliceInterfaces";
 
 export const ROOT = "/";
 
@@ -77,7 +77,7 @@ export const _PATH_FRONTEND = {
   },
   authTokens: {
     dashboard: PATH_CLIENT.authTokens,
-    qrCode: ({ entity, authToken }: { entity: Sections; authToken: HiddenAuthTokenInterface }) =>
+    qrCode: ({ entity, authToken }: { entity: Entity; authToken: HiddenAuthTokenInterface }) =>
       `${FRONTEND_ROOT}/auth-tokens/${entity}/${authToken.linkId}/${authToken._id}`,
   },
   maintenances: {

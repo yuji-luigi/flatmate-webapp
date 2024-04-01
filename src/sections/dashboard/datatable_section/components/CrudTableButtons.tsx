@@ -1,22 +1,22 @@
 import { Button, Group, LoadingOverlay } from "@mantine/core";
 import React, { ChangeEvent, useCallback, useRef, useState } from "react";
 import { showNotification } from "@mantine/notifications";
-import { FlattenSectionData } from "../../../../data";
+import { FlattenSectionData } from "../../../../json/section-json";
 import { useCrudSliceStore } from "../../../../redux/features/crud/crudSlice";
-import { Sections } from "../../../../types/general/data/sections-type";
 import { useDrawerContext } from "../../../../context/DataTableDrawerContext";
 import classes from "../../../../styles/global-useStyles.module.css";
 import { useCustomModalContext } from "../../../../context/modal-context/_ModalContext";
 import axiosInstance from "../../../../utils/axios-instance";
 import { PATH_API } from "../../../../path/path-api";
 import { sleep } from "../../../../utils/helpers/helper-functions";
+import { Entity } from "../../../../types/redux/CrudSliceInterfaces";
 
 export const CrudTableButtons = ({
   section,
   entity,
 }: {
   section: FlattenSectionData;
-  entity: Sections;
+  entity: Entity;
 }) => {
   const { selectCrudDocument, setCrudDocuments } = useCrudSliceStore();
   const { openDrawer } = useDrawerContext();

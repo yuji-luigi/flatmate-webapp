@@ -6,16 +6,10 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { TableSectionHeader } from "../../sections/dashboard/datatable_section/TableSectionHeader";
 
 import Layout from "../../layouts";
-import { sections } from "../../data";
 import Page from "../../components/Page";
 import { CrudDrawerDefault } from "../../components/drawer/CrudDrawerDefault";
-import { useCrudSliceStore } from "../../redux/features/crud/crudSlice";
-import { usePaginationContext } from "../../context/PaginationContext";
-import { Sections } from "../../types/general/data/sections-type";
-import { HeaderContainer } from "../../components/datatable/header/HeaderContainer";
 import { CrudDataTable } from "../../components/datatable/CrudDataTable";
 import { useGetCrudDocuments } from "../../hooks/useGetCrudDocuments";
-import useAuth from "../../../hooks/useAuth";
 import { useCurrentEntityContext } from "../../context/CurrentEntityContext";
 
 const CrudPage = () => {
@@ -24,11 +18,7 @@ const CrudPage = () => {
   const entity = "roles";
   useCurrentEntityContext(entity);
   useGetCrudDocuments({ entity, withPagination: true });
-  useEffect(() => {
-    if (!sections.includes(entity)) {
-      push("/dashboard/home");
-    }
-  }, [entity]); // include parentId: string | undefined to update on change page
+  useEffect(() => {}, [entity]); // include parentId: string | undefined to update on change page
 
   return (
     <Page title={`Flatmates | ${entity}`}>

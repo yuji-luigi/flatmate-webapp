@@ -7,17 +7,17 @@ import { Icons } from "../../data/icons/icons";
 import { FONT_SIZES } from "../../lib/enums";
 import { useCrudSliceStore } from "../../redux/features/crud/crudSlice";
 import { useDrawerContext } from "../../context/DataTableDrawerContext";
-import { Sections } from "../../types/general/data/sections-type";
 import { PATH_CLIENT } from "../../path/path-frontend";
 import { MaintenanceModel } from "../../types/models/maintenance-check-type";
 import { ThreadModel } from "../../types/models/space-model";
+import { Entity } from "../../types/redux/CrudSliceInterfaces";
 
 const PostEditButton = ({
   data,
   entity,
 }: {
   data: ThreadModel | MaintenanceModel;
-  entity: Sections;
+  entity: Entity;
 }) => {
   const { user } = useAuth();
 

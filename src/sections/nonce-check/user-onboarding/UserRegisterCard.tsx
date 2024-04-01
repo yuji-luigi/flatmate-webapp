@@ -7,7 +7,7 @@ import { CheckType } from "../../../types/models/maintenance-check-type";
 import { useCrudSelectors } from "../../../redux/features/crud/crudSlice";
 import FormFields from "../../../components/input/FormFields";
 import { UseFormReturnTypeCustom } from "../../../components/input/input_interfaces/useForm_interface";
-import allFormFields from "../../../../json/dataTable/formfields";
+import allFormFields from "../../../json/dataTable/formfields";
 import { getDefaultValues } from "../../../utils/getDefaultValues";
 import axiosInstance from "../../../utils/axios-instance";
 import { _PATH_API } from "../../../path/path-api";

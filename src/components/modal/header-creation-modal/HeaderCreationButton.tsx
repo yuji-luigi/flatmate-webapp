@@ -3,7 +3,7 @@ import { Menu, ActionIcon } from "@mantine/core";
 import { useState } from "react";
 import { notifications } from "@mantine/notifications";
 import { Icons } from "../../../data/icons/icons";
-import { allSectionArrayWithRoles } from "../../../data";
+import { allSectionArrayWithRoles, sectionData } from "../../../json/section-json";
 
 import { FONT_SIZES } from "../../../lib/enums";
 import { useCrudSelectors, useCrudSliceStore } from "../../../redux/features/crud/crudSlice";
@@ -11,17 +11,22 @@ import { SectionDataJsonWithRoles } from "../../../types/general/data/data-table
 import { useSimpleDisclosureCtx } from "../../../../hooks/useSimpleDisclosureCtx";
 import { HeaderCreationModal } from "./HeaderCreationModal";
 import classes from "./HeaderCreationButton.module.css";
+import useAuth from "../../../../hooks/useAuth";
 
 export function HeaderCreationButton() {
-  // const [opened, { open, close }] = useDisclosure(false);
+  const { user } = useAuth();
   const { close, open, opened } = useSimpleDisclosureCtx();
   const [modalType, setModalType] = useState<"threads" | "maintenances" | null>(null);
   const [section, setSection] = useState<SectionDataJsonWithRoles | null>(null);
 
   const { setSubmitting } = useCrudSliceStore();
   const { submitting } = useCrudSelectors();
+  if (!user) return null;
   const handleOpenModal = (type: "threads" | "maintenances") => {
-    setSection(allSectionArrayWithRoles.find((_section) => _section.entity === type) || null);
+    const found = sectionData[user.loggedAs].flatMap((json) =>
+      json.contents.find((content) => content.entity === type)
+    );
+    setSection();
     setModalType(type);
     open();
   };

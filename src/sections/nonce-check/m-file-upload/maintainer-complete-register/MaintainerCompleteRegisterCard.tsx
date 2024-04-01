@@ -3,7 +3,7 @@ import React, { useEffect, useMemo } from "react";
 import { useForm } from "@mantine/form";
 import FormFields from "../../../../components/input/FormFields";
 import classes from "./MaintainerCompleteRegisterCard.module.css";
-import { maintainersTableData } from "../../../../../json/dataTable/formfields/maintainersTableData";
+import { maintainersTableData } from "../../../../json/dataTable/formfields/maintainersTableData";
 import { getDefaultValues } from "../../../../utils/getDefaultValues";
 import { useCrudSelectors } from "../../../../redux/features/crud/crudSlice";
 import { MaintainerModel } from "../../../../types/models/maintainer-model";

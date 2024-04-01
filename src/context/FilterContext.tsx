@@ -1,14 +1,5 @@
-import {
-  ChangeEvent,
-  createContext,
-  ReactNode,
-  useState,
-  Dispatch,
-  SetStateAction,
-  useEffect,
-} from "react";
+import { ChangeEvent, createContext, ReactNode, useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import { Sections } from "../types/general/data/sections-type";
 import { FilterContextType } from "../types/context/filter-context.";
 
 export const FilterContext = createContext<FilterContextType>({

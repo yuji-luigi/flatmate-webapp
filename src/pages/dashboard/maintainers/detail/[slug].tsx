@@ -16,7 +16,7 @@ import ProfileSide from "../../../../components/profile/side/ProfileSide";
 import { RANDOM_UPLOAD_MODELS } from "../../../../lib/image-paths";
 import PostFeedCard from "../../../../components/posts/feed/PostFeedCard";
 import { lorem100 } from "../../../../_mock/strings";
-import { maintainersTableData } from "../../../../../json/dataTable/formfields/maintainersTableData";
+import { maintainersTableData } from "../../../../json/dataTable/formfields/maintainersTableData";
 import { useCustomModalContext } from "../../../../context/modal-context/_ModalContext";
 import AddMaintainerModal from "../../../../sections/dashboard/maintenance_detail_page/AddMaintainerModal";
 

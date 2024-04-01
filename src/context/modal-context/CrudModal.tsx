@@ -1,5 +1,5 @@
-import { useDisclosure, useMediaQuery } from "@mantine/hooks";
-import { Modal, Group, Button, Stack, Box, useMantineTheme } from "@mantine/core";
+import { useMediaQuery } from "@mantine/hooks";
+import { Button, Stack } from "@mantine/core";
 import { showNotification, notifications } from "@mantine/notifications";
 import { FormEvent, useMemo, useState } from "react";
 import { useForm } from "@mantine/form";
@@ -12,11 +12,10 @@ import CreationToolBar from "../../components/input/CreationToolBar";
 import FormFields from "../../components/input/FormFields";
 import { UseFormReturnTypeCustom } from "../../components/input/input_interfaces/useForm_interface";
 import { getEntityFromUrl, sleep } from "../../utils/helpers/helper-functions";
-import { Sections } from "../../types/general/data/sections-type";
 import { useCrudSliceStore } from "../../redux/features/crud/crudSlice";
-import { UploadModel } from "../../types/models/upload-model";
-import { BaseModalData, CrudModalData, ModalDataTypes } from "../../types/modal/modal-context-type";
+import { CrudModalData } from "../../types/modal/modal-context-type";
 import classes from "./CrudModal.module.css";
+import { Entity } from "../../types/redux/CrudSliceInterfaces";
 
 type CrudModalProps = {
   modalData: CrudModalData;
@@ -24,7 +23,7 @@ type CrudModalProps = {
 
 export function CrudModal(props: CrudModalProps) {
   const { modalData } = props;
-  const entity = getEntityFromUrl() as Sections;
+  const entity = getEntityFromUrl() as Entity;
   const { query } = useRouter();
 
   const isMobile = useMediaQuery("(max-width: 600px)");

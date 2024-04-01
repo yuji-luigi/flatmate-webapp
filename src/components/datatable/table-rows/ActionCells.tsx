@@ -5,16 +5,16 @@ import { useDrawerContext } from "../../../context/DataTableDrawerContext";
 import { usePaginationContext } from "../../../context/PaginationContext";
 import { useCrudSliceStore } from "../../../redux/features/crud/crudSlice";
 import { useCustomModalContext } from "../../../context/modal-context/_ModalContext";
-import { Sections } from "../../../types/general/data/sections-type";
 import { QrCodeButton } from "./tablecell/action-cells/QrCodeButton";
 import { MongooseBaseModel } from "../../../types/models/mongoose-base-model";
+import { Entity } from "../../../types/redux/CrudSliceInterfaces";
 
 export function ActionCells({
   rowData,
   overridingEntity,
 }: {
   rowData: MongooseBaseModel;
-  overridingEntity?: Sections | null;
+  overridingEntity?: Entity | null;
 }) {
   const { paginationQuery } = usePaginationContext();
   const { openModal, openConfirmModal, closeModal } = useCustomModalContext();
@@ -24,7 +24,7 @@ export function ActionCells({
   /** use hook router hook */
   const router = useRouter();
   const parentId = router.query.parentId as string;
-  const entity = overridingEntity || (router.query.entity as Sections);
+  const entity = overridingEntity || (router.query.entity as Entity);
 
   /** use hook useCrudSlice */
   const {
@@ -65,9 +65,6 @@ export function ActionCells({
         closeModal();
       },
       opened: false,
-      onClose(): void {
-        closeModal();
-      },
     });
   };
 

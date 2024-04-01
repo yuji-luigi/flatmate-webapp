@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Card, Divider, Text } from "@mantine/core";
 import { StaticDataTable } from "../../../../components/datatable/StaticDataTable";
-import { maintenanceStatTableData } from "../../../../../json/dataTable/stat-formfields/maintenanceStatTableData";
+import { maintenanceStatTableData } from "../../../../json/dataTable/stat-formfields/maintenanceStatTableData";
 import { DividerStyled } from "../../../../styles/divider/DividerStyled";
 import { StatGridSchema, StatsGrid } from "../../../../components/stats/StatsGrid";
 import { StaticOption } from "../../../../types/general/data/data-table/form-field-type/formField-types";
@@ -70,112 +70,7 @@ const mockData = [
 
     createdAt: "2021-08-10",
   },
-  // {
-  //   _id: 'Window Replacement',
-  //   title: 'Window Replacement',
-  //   cost: '700',
-  //   status: 'completato',
-  //   completedAt: '2021-09-02',
-  //   completedBy: 'Laura Neri',
-  //   createdAt: '2021-08-08',
-  // },
-  // {
-  //   _id: 'Flooring Upgrade',
-  //   title: 'Flooring Upgrade',
-  //   cost: '400',
-  //   status: 'completato',
-  //   completedAt: '2021-09-04',
-  //   completedBy: 'Marco Blu',
-  //   createdAt: '2021-08-05',
-  // },
-  // {
-  //   _id: 'Appliance Repair',
-  //   title: 'Appliance Repair',
-  //   cost: '250',
-  //   status: 'in corso',
-  //   completedAt: null,
-  //   completedBy: null,
-  //   createdAt: '2021-08-02',
-  // },
-  // {
-  //   _id: 'Garden Maintenance',
-  //   title: 'Garden Maintenance',
-  //   cost: '300',
-  //   status: 'in corso',
-  //   completedAt: null,
-  //   completedBy: null,
-  //   createdAt: '2021-07-30',
-  // },
-  // {
-  //   _id: 'Security System Installation',
-  //   title: 'Security System Installation',
-  //   cost: '800',
-  //   status: 'completato',
-  //   completedAt: '2021-08-28',
-  //   completedBy: 'Elena Rosa',
-  //   createdAt: '2021-07-27',
-  // },
-  // {
-  //   _id: 'Carpentry Work',
-  //   title: 'Carpentry Work',
-  //   cost: '350',
-  //   status: 'in corso',
-  //   completedAt: null,
-  //   completedBy: null,
-  //   createdAt: '2021-07-24',
-  // },
-  // {
-  //   _id: 'Bathroom Remodeling',
-  //   title: 'Bathroom Remodeling',
-  //   cost: '600',
-  //   status: 'completato',
-  //   completedAt: '2021-08-30',
-  //   completedBy: 'Francesco Verde',
-  //   createdAt: '2021-07-21',
-  // },
-  // {
-  //   _id: 'Pest Control',
-  //   title: 'Pest Control',
-  //   cost: '200',
-  //   status: 'completato',
-  //   completedAt: '2021-08-27',
-  //   completedBy: 'Giovanni Giallo',
-  //   createdAt: '2021-07-18',
-  // },
-  // {
-  //   _id: 'Exterior Painting',
-  //   title: 'Exterior Painting',
-  //   cost: '450',
-  //   status: 'in corso',
-  //   completedAt: null,
-  //   completedBy: null,
-  //   createdAt: '2021-07-15',
-  // },
 ];
-// const options: StaticOption[] = maintenanceStatTableData.find(
-//   (item) => item.name === 'status'
-// )?.options;
-
-// const calculatedStatsGridData = mockData.reduce<StatGridSchema[]>((acc, stat) => {
-//   const option = options?.find((item) => item.value === stat.status);
-//   const status = option?.value;
-//   const icon = option?.icon;
-//   if (stat.status === status) {
-//     const existingField = acc.find((item: any) => item.title === status);
-//     if (existingField) {
-//       existingField.value += +stat.cost;
-//       return acc;
-//     }
-//     acc.push({
-//       title: status,
-//       value: +stat.cost,
-//       unit: '€',
-//       icon,
-//     });
-//     return acc;
-//   }
-//   return acc;
-// }, []);
 function calculateStatsGridData(maintenances: MaintenanceModel[]): StatGridSchema[] {
   const incomplete = maintenances.filter((item) => item.status === "incomplete");
   const completed = maintenances.filter((item) => item.status === "completed");

@@ -8,7 +8,7 @@ import { IconCheck, IconX } from "@tabler/icons-react";
 import { exampleFormFields } from "./exampleFormFields";
 import FormFields from "../../../../components/input/FormFields";
 import { useForm } from "@mantine/form";
-import { spacesTableData } from "../../../../../json/dataTable/formfields/spacesTableData";
+import { spacesTableData } from "../../../../json/dataTable/formfields/spacesTableData";
 import { FormFieldTypes } from "../../../../types/general/data/data-table/form-field-type/formField-types";
 
 const ExampleForm = () => {

@@ -21,7 +21,6 @@ import {
 import { getEntityFromUrl, sleep } from "../../utils/helpers/helper-functions";
 import { uploadFileAndGetModelId } from "../../utils/upload-helper";
 import { useCustomModalContext } from "../../context/modal-context/_ModalContext";
-import { Sections } from "../../types/general/data/sections-type";
 import { FormFieldTypes } from "../../types/general/data/data-table/form-field-type/formField-types";
 import { MAX_FILE_SIZE } from "../../lib/files/file-sizes";
 import { formatSize } from "../../lib/formatters";
@@ -29,6 +28,7 @@ import { SpaceModel } from "../../types/models/space-model";
 import { MaintainerModel } from "../../types/models/maintainer-model";
 import classes from "./ProfileCoverGeneric.module.css";
 import { NOTIFICATIONS } from "../../data/showNofification/notificationObjects";
+import { Entity } from "../../types/redux/CrudSliceInterfaces";
 
 export interface CoverDataProp {
   _id?: string;
@@ -49,13 +49,13 @@ const ProfileCoverGeneric = ({
 }: {
   data: CoverDataProp;
   enableCover?: boolean;
-  entity?: Sections;
+  entity?: Entity;
   noAvatar?: boolean;
   formFields?: FormFieldTypes[];
   style?: MantineStyleProp;
 }) => {
   const { documentId } = useRouter().query;
-  const _entity = entity || (getEntityFromUrl() as Sections);
+  const _entity = entity || (getEntityFromUrl() as Entity);
   const { updateCrudDocument } = useCrudSliceStore();
   const { colorScheme } = useMantineColorScheme();
   const isDark = colorScheme === "dark";

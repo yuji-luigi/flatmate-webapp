@@ -4,11 +4,11 @@ import React, { ReactNode } from "react";
 import CreationToolBarIconButton from "./CreationToolBarIconButton";
 import PreviewFileZone from "./PreviewFileZone";
 import { UseFormReturnTypeCustom } from "./input_interfaces/useForm_interface";
-import { Sections } from "../../types/general/data/sections-type";
 import {
   FormFieldTypes,
   UploadFormFieldType,
 } from "../../types/general/data/data-table/form-field-type/formField-types";
+import { Entity } from "../../types/redux/CrudSliceInterfaces";
 
 interface Props {
   form: UseFormReturnTypeCustom;
@@ -18,7 +18,7 @@ interface Props {
    *  need to pass down from drawer.
    * because there is a case that I am using override entity
    */
-  entity: Sections;
+  entity: Entity;
 }
 function CreationToolBar({ form, formFields, submitButton, entity }: Props) {
   const uploadFormFields = formFields.filter(

@@ -1,14 +1,13 @@
 import React, { useEffect } from "react";
-import { entities } from "../data";
 import { useCrudSliceStore } from "../redux/features/crud/crudSlice";
-import { Sections } from "../types/general/data/sections-type";
 import { useCookieContext } from "../context/CookieContext";
+import { Entity } from "../types/redux/CrudSliceInterfaces";
 
 export const useGetCrudDocuments = ({
   entity,
   withPagination = true,
 }: {
-  entity: Sections | null;
+  entity: Entity | null;
   withPagination: boolean;
 }) => {
   const { fetchCrudDocumentsWithPagination } = useCrudSliceStore();
@@ -18,9 +17,4 @@ export const useGetCrudDocuments = ({
     if (!entity) return;
     fetchCrudDocumentsWithPagination({ entity });
   }, [currentSpace?._id]);
-
-  useEffect(() => {
-    if (!entity || !entities.includes(entity)) return;
-    fetchCrudDocumentsWithPagination({ entity });
-  }, [currentOrganization]);
 };

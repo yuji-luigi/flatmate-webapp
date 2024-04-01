@@ -5,7 +5,7 @@ import { useCrudSelectors } from "../../../redux/features/crud/crudSlice";
 
 import PostFeedCard from "../../../components/posts/feed/PostFeedCard";
 import { StaticDataTable } from "../../../components/datatable/StaticDataTable";
-import { maintenancesTableData } from "../../../../json/dataTable/formfields/maintenancesTableData";
+import { maintenancesTableData } from "../../../json/dataTable/formfields/maintenancesTableData";
 import { Icons } from "../../../data/icons/icons";
 import { DashboardTopHeader } from "../../../sections/dashboard/dashboard_top/components/DashboardTopHeader";
 import { FeedTableSwitch } from "./compontents/FeedTableSwitch";

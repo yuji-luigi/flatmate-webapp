@@ -13,22 +13,23 @@ import {
   fetchCrudDocumentsInfiniteScroll,
   fetchCrudDocuments,
 } from "../crudAsyncThunks";
-// import { sectionData } from '../../../data';
-import { flattenSectionData } from "../../../data";
 import { useAppDispatch, useAppSelector } from "../../../../hooks/redux-hooks/useRedux";
-import { Sections } from "../../../types/general/data/sections-type";
 import { MongooseBaseModel } from "../../../types/models/mongoose-base-model";
 import { NOTIFICATIONS } from "../../../data/showNofification/notificationObjects";
-import { AllModels } from "../../../types/models/allmodels";
-// import { appDispatch } from '../../store';
-/* eslint-disable no-param-reassign */
+import {
+  CrudState,
+  entities,
+  Entity,
+  Reduxdb,
+  frontendEntities,
+  TODO_MODEL,
+} from "../../../types/redux/CrudSliceInterfaces";
 
-// flat section data since it is nested. export for testing
-export const reduxdb: Reduxdb = flattenSectionData.reduce<Reduxdb>((totalData, currentData) => {
+export const reduxdb: Reduxdb = frontendEntities.reduce<Reduxdb>((totalData, entity) => {
   totalData = {
     ...totalData,
-    [currentData.entity as Sections]: {
-      entity: currentData.entity as Sections,
+    [entity]: {
+      entity,
       documentsArray: [],
       totalDocuments: 0,
       singleCrudDocument: null,
@@ -80,8 +81,7 @@ export const crudSlice = createSlice({
       } else {
         /** if id is present then find from existing documents array */
         state.reduxdb[entity].singleCrudDocument =
-          // state.reduxdb[entity].singleCrudDocument.find((doc: AllModels) => doc._id === documentId) ||
-          state.reduxdb[entity].documentsArray.find((doc: AllModels) => doc._id === documentId) ||
+          state.reduxdb[entity].documentsArray.find((doc: TODO_MODEL) => doc._id === documentId) ||
           null;
       }
     },
@@ -92,6 +92,7 @@ export const crudSlice = createSlice({
     },
     setCrudDocument: (state, action) => {
       const { document, entity } = action.payload;
+      console.log(entity);
       state.reduxdb[entity].singleCrudDocument = document;
     },
     setCrudDocuments: (state, action) => {
@@ -214,7 +215,6 @@ export const crudSlice = createSlice({
         const { entity, updatedDocument } = action.payload;
         state.status = "succeed";
         const updatedDocuments = state.reduxdb[entity].documentsArray.map((document) => {
-          // TODO: FIX ERROR
           if (document._id === updatedDocument._id) {
             // update
             return updatedDocument;
@@ -284,10 +284,18 @@ export const useCrudSliceStore = () => {
     },
     /** get documents from api and set in documentsArray in redux */
     fetchCrudDocuments(data: FetchCrudPayload) {
+      if (!data.entity) {
+        console.error("entity is required to fetch documents");
+        return;
+      }
       appDispatch(fetchCrudDocuments(data));
     },
     /** get documents with pagination from api and set in documentsArray in redux */
     fetchCrudDocumentsWithPagination(data: FetchCrudPayload) {
+      if (!data.entity) {
+        console.error("entity is required to fetch documents");
+        return;
+      }
       appDispatch(fetchCrudDocumentsWithPagination(data));
     },
     // TODO: add infinite scroll
@@ -296,6 +304,10 @@ export const useCrudSliceStore = () => {
     },
     /** get children documents from api and set in documentsArray in redux */
     fetchLinkedChildrenWithPagination(data: FetchLinkedChildrenPayload) {
+      if (!data.entity) {
+        console.error("entity is required to fetch documents");
+        return;
+      }
       appDispatch(fetchLinkedChildrenWithPagination(data));
     },
     createCrudDocument(data: AddCrudPayload) {
@@ -340,11 +352,11 @@ export const useCrudSliceStore = () => {
   };
 };
 // TODO: implement swr
-function useGetCrudWithSwr(entity: Sections) {}
+function useGetCrudWithSwr(entity: Entity) {}
 /** Returns Array of Documents of the entity: whole array of entity */
-const useCrudDocuments = <ModelType>(entity?: Sections): ModelType[] | [] =>
+const useCrudDocuments = <ModelType>(entity?: Entity): ModelType[] | [] =>
   useAppSelector((state) => state.crud.reduxdb?.[entity || ""]?.documentsArray);
-// const useCrudDocuments = <ModelType>(entity?: Sections): ModelType[] =>
+// const useCrudDocuments = <ModelType>(entity?: Entity): ModelType[] =>
 //   useAppSelector((state) => state.crud.reduxdb?.[entity || '']?.documentsArray);
 
 /** returns string if api sent message */
@@ -357,18 +369,18 @@ const useCrudStatus = () => useAppSelector((state) => state.crud.status);
 const useCrudError = () => useAppSelector((state) => state.crud.error);
 
 /** total document selector for entity */
-const useTotalDocumentsCount = (entity?: Sections): number =>
+const useTotalDocumentsCount = (entity?: Entity): number =>
   useAppSelector((state) => state.crud.reduxdb?.[entity || ""]?.totalDocuments || 0);
 
 /** if it has a parent returns true. ex- space instances can be either a parent or a child */
-const useIsChildrenTree = (entity?: Sections): boolean =>
+const useIsChildrenTree = (entity?: Entity): boolean =>
   useAppSelector((state) => state.crud.reduxdb?.[entity || ""]?.isChildrenTree);
 
 /** Returns selected Document of the entity or if not selected returns null  */
-const useCrudDocument = <ModelType>(entity?: Sections): ModelType =>
+const useCrudDocument = <ModelType>(entity?: Entity): ModelType =>
   useAppSelector((state) => state.crud.reduxdb?.[entity || ""]?.singleCrudDocument) || {};
 /** Hook for selector. this time need do pass entity when initialize the hook. */
-export const useCrudSelectors = <ModelType = MongooseBaseModel>(entity?: Sections | null) => {
+export const useCrudSelectors = <ModelType = MongooseBaseModel>(entity?: Entity | null) => {
   const crudDocuments = useCrudDocuments<ModelType>(entity);
   const crudMessage = useCrudMessage();
   const crudStatus = useCrudStatus();

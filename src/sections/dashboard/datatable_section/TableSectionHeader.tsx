@@ -1,14 +1,15 @@
 import { useRouter } from "next/router";
 import { Group, Stack, Text, LoadingOverlay, MantineStyleProp } from "@mantine/core";
 import { useEffect } from "react";
-import { flattenSectionData } from "../../../data";
+import { getFlattenSectionJson } from "../../../json/section-json";
 import { BreadcrumbsCustom } from "./BreadcrumbsCustom";
 import useLayoutContext from "../../../../hooks/useLayoutContext";
-import { Sections } from "../../../types/general/data/sections-type";
 import classes from "../../../styles/global-useStyles.module.css";
 import { CrudTableButtons } from "./components/CrudTableButtons";
 import { ParsedQueryCustom } from "../../../types/nextjs-custom-types/useRouter-types";
 import { useCurrentEntityContext } from "../../../context/CurrentEntityContext";
+import { Entity } from "../../../types/redux/CrudSliceInterfaces";
+import useAuth from "../../../../hooks/useAuth";
 
 function instanceOfParentDataInterface(object: any): object is ParentDataInterface {
   return "name" in object;
@@ -19,17 +20,15 @@ export function TableSectionHeader({
   children,
 }: {
   style?: MantineStyleProp;
-  overridingEntity?: Sections | "";
+  overridingEntity?: Entity | "";
   children?: React.ReactNode;
 }) {
   /** define open state for crudDrawer component */
-
+  const { user } = useAuth();
   const { setBreadcrumbs, breadcrumbs, setPrevBreadcrumbs, parentData } = useLayoutContext();
 
   const { query }: { query: ParsedQueryCustom } = useRouter();
   const { currentEntity: entity } = useCurrentEntityContext();
-
-  const section = flattenSectionData.find((data) => data.entity === entity);
 
   useEffect(() => {
     /** entity is possibly null */
@@ -42,6 +41,10 @@ export function TableSectionHeader({
     }
     return () => setBreadcrumbs(null);
   }, [entity]);
+
+  if (!user) return <LoadingOverlay visible />;
+
+  const section = getFlattenSectionJson(user.loggedAs).find((data) => data.entity === entity);
 
   if (!section) {
     return <p>loading...</p>;

@@ -1,7 +1,5 @@
-/* eslint-disable no-restricted-syntax */
-/* eslint-disable react/jsx-pascal-case */
 import { Button, Drawer, Text } from "@mantine/core";
-import { createFormContext, useForm } from "@mantine/form";
+import { useForm } from "@mantine/form";
 import {
   cleanNotifications,
   hideNotification,
@@ -10,12 +8,10 @@ import {
 } from "@mantine/notifications";
 import { useRouter } from "next/router";
 import { FormEvent, useEffect, useState, useMemo } from "react";
-import allFormFields from "../../../json/dataTable/formfields";
+import allFormFields from "../../json/dataTable/formfields";
 import { constructErrorNotificationData } from "../../data/showNofification/notificationObjects";
-// import { useCrudSlice } from '../../../hooks/redux-hooks/useCrudSlice';
 import { capitalize, sleep } from "../../utils/helpers/helper-functions";
 import { getDefaultValues } from "../../utils/getDefaultValues";
-// import classes from "./CrudDrawerDefault.module.css";
 import FormFields from "../input/FormFields";
 import { useDrawerContext } from "../../context/DataTableDrawerContext";
 import { useCrudSelectors, useCrudSliceStore } from "../../redux/features/crud/crudSlice";
@@ -23,19 +19,20 @@ import { usePaginationQuery } from "../../context/PaginationContext";
 import { hasMedia } from "../../redux/features/crudAsyncThunks";
 import CreationToolBar from "../input/CreationToolBar";
 import { UseFormReturnTypeCustom } from "../input/input_interfaces/useForm_interface";
-import { flattenSectionData } from "../../data";
+import { getSectionData } from "../../json/section-json";
 
 import { extractUploadingMedia, uploadFileAndGetModelId } from "../../utils/upload-helper";
-import { Sections } from "../../types/general/data/sections-type";
 import { FormFieldTypes } from "../../types/general/data/data-table/form-field-type/formField-types";
 import classes from "./CrudDrawerDefault.module.css";
+import useAuth from "../../../hooks/useAuth";
+import { Entity } from "../../types/redux/CrudSliceInterfaces";
 
-export function CrudDrawerDefault({ overridingEntity = "" }: { overridingEntity?: Sections }) {
+export function CrudDrawerDefault({ overridingEntity }: { overridingEntity?: Entity }) {
   const [submitting, setSubmitting] = useState(false);
-
+  const { user } = useAuth();
   const { query } = useRouter();
-  const entity = overridingEntity || (query.entity as Sections);
-  const sectionJson = flattenSectionData.find((section) => section.entity === entity);
+  const entity = overridingEntity || (query.entity as Entity);
+
   const parentId = query.parentId as string;
   const paginationQuery = usePaginationQuery();
   const sectionFormFields: FormFieldTypes[] = allFormFields[entity];
@@ -43,7 +40,6 @@ export function CrudDrawerDefault({ overridingEntity = "" }: { overridingEntity?
 
   const {
     createCrudDocumentWithPagination: addCrud,
-    selectCrudDocument,
     updateCrudDocument,
     createLinkedChildDocumentWithPagination,
   } = useCrudSliceStore();
@@ -182,9 +178,14 @@ export function CrudDrawerDefault({ overridingEntity = "" }: { overridingEntity?
     form.setValues(initialValues);
   }, [drawerIsOpen]);
 
-  const entityText = capitalize(sectionJson?.entitySingle);
-  const submitText = singleCrudId ? `Update ${entityText}!` : `Add ${entityText}!`;
+  if (!user) {
+    return null;
+  }
 
+  const sectionJson = getSectionData({ loggedAs: user.loggedAs, entity });
+
+  const entityText = capitalize(sectionJson.entity);
+  const submitText = singleCrudId ? `Update ${entityText}!` : `Add ${entityText}!`;
   if (!drawerIsOpen) return null;
   return (
     <Drawer

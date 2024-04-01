@@ -14,7 +14,7 @@ import { UseRouterWithCustomQuery } from "../../../../../types/nextjs-custom-typ
 import { FileInputMantine } from "../../../../../components/input/crud-inputs/crud-file-input/FileInputMantine";
 import { FileWithPreview } from "../../../../../types/files/file-types";
 import { CardStyled } from "../../../../../styles/card/CardStyled";
-import { checksTableData } from "../../../../../../json/dataTable/formfields/checksTableData";
+import { checksTableData } from "../../../../../json/dataTable/formfields/checksTableData";
 import FormFields from "../../../../../components/input/FormFields";
 import { NOTIFICATIONS } from "../../../../../data/showNofification/notificationObjects";
 import { useLocale } from "../../../../../../hooks/useLocale";

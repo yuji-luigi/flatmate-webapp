@@ -7,9 +7,11 @@ import { SectionDataJsonWithRoles } from "../../../types/general/data/data-table
 export const HeaderCreationModal = ({
   modalType,
   section,
+  title,
 }: {
   section?: SectionDataJsonWithRoles | null;
   modalType?: "threads" | "maintenances" | null;
+  title?: string;
 }) => {
   const { close, opened } = useSimpleDisclosureCtx();
 
@@ -20,7 +22,7 @@ export const HeaderCreationModal = ({
       opened={opened}
       onClose={close}
       size="lg"
-      title={section?.createButton}
+      title={section?.createButton || title || "Create"}
       classNames={{
         title: "modalTitle",
         header: "modalHeader",

@@ -6,14 +6,12 @@ import {
   fetchSpaceSelections,
   selectSpaceSelection,
 } from "../spaceSelectionAsyncthunks";
-// import { sectionData } from '../../../data';
 import { useAppDispatch, useAppSelector } from "../../../../hooks/redux-hooks/useRedux";
 import { NOTIFICATIONS } from "../../../data/showNofification/notificationObjects";
 import { SpaceModel } from "../../../types/models/space-model";
 
 const initialState: {
   data: {
-    // selectedSpace: SpaceModel | null;
     spaceSelections: SpaceModel[];
   };
   status: string;
@@ -22,7 +20,6 @@ const initialState: {
   message?: string | null;
 } = {
   data: {
-    // selectedSpace: null,
     spaceSelections: [],
   },
   status: "idle",

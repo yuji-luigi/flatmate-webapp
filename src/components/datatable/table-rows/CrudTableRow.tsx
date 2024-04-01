@@ -1,23 +1,18 @@
-import React, { useEffect } from "react";
-import { useRouter } from "next/router";
+import { useEffect } from "react";
 import { Table } from "@mantine/core";
 import { ActionCells } from "./ActionCells";
-// import { useCrudSlice } from '../../../../hooks/redux-hooks/useCrudSlice';
 import { TableCellDecorator } from "../TableCellDecorator";
-import { useDrawerContext } from "../../../context/DataTableDrawerContext";
-import { usePaginationContext } from "../../../context/PaginationContext";
 import { useCrudSliceStore } from "../../../redux/features/crud/crudSlice";
-import { Sections } from "../../../types/general/data/sections-type";
 import { FormFieldTypes } from "../../../types/general/data/data-table/form-field-type/formField-types";
 import { useCurrentEntityContext } from "../../../context/CurrentEntityContext";
 import { MongooseBaseModel } from "../../../types/models/mongoose-base-model";
+import { Entity } from "../../../types/redux/CrudSliceInterfaces";
 
 export function CrudTableRow({
   rowData,
   sectionFormFields,
-  overridingEntity,
 }: {
-  overridingEntity?: Sections;
+  overridingEntity?: Entity;
   rowData: MongooseBaseModel;
   sectionFormFields: Array<FormFieldTypes>;
 }) {

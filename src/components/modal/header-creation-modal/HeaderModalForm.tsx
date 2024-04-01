@@ -5,7 +5,7 @@ import { FormEvent, useMemo, useEffect } from "react";
 import { useForm } from "@mantine/form";
 import { notifications } from "@mantine/notifications";
 import FormFields from "../../input/FormFields";
-import formFields from "../../../../json/dataTable/formfields";
+import formFields from "../../../json/dataTable/formfields";
 import { useCrudSelectors, useCrudSliceStore } from "../../../redux/features/crud/crudSlice";
 import { getDefaultValues } from "../../../utils/getDefaultValues";
 import CreationToolBar from "../../input/CreationToolBar";

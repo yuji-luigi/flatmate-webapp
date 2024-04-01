@@ -1,41 +1,14 @@
-import { Avatar, Text, Group, Card, Box, Stack, List } from "@mantine/core";
-import { IconPhoneCall, IconAt } from "@tabler/icons-react";
+import { Avatar, Text, Group, Card, Box } from "@mantine/core";
 import { useTranslation } from "next-i18next";
 import classes from "./NewPostInFeed.module.css";
-import { useCustomModalContext } from "../../../context/modal-context/_ModalContext";
 import { useSimpleDisclosureContext } from "../../../context/SimpleDisclosureContext";
 import { HeaderCreationModal } from "../../modal/header-creation-modal/HeaderCreationModal";
-import { allSectionArrayWithRoles } from "../../../data";
-
-const threadTableData = allSectionArrayWithRoles.find((section) => section.entity === "threads");
 
 export function NewPostInFeed() {
   const { t } = useTranslation("common");
   const { open } = useSimpleDisclosureContext();
   const handleOpenModal = () => {
-    // setModalType();
     open();
-    // openConfirmModal({
-    //   type: 'custom',
-    //   children: (
-    //     <Stack p={16}>
-    //       <List className={classes.list}>
-    //         <List.Item>
-    //           <Text>Maintenance</Text>
-    //         </List.Item>
-    //         <List.Item>
-    //           <Text>Maintenance</Text>
-    //         </List.Item>
-    //         <List.Item>
-    //           <Text>Maintenance</Text>
-    //         </List.Item>
-    //         <List.Item>
-    //           <Text>Maintenance</Text>
-    //         </List.Item>
-    //       </List>
-    //     </Stack>
-    //   ),
-    // });
   };
   return (
     <>
@@ -53,7 +26,7 @@ export function NewPostInFeed() {
           </Box>
         </Group>
       </Card>
-      <HeaderCreationModal section={threadTableData} modalType="threads" />
+      <HeaderCreationModal modalType="threads" title="create post" />
     </>
   );
 }

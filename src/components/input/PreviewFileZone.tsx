@@ -7,15 +7,15 @@ import OverlayCustom from "../OverlayCustom";
 import { Icons } from "../../data/icons/icons";
 import ImagesInArticle from "../carousel/ImagesInArticle";
 import CrudCarousel from "../carousel/CrudCarousel";
-import { Sections } from "../../types/general/data/sections-type";
 import { FormFieldTypes } from "../../types/general/data/data-table/form-field-type/formField-types";
+import { Entity } from "../../types/redux/CrudSliceInterfaces";
 // import ImagesInArticle from '../carousel/ImagesInArticle';
 
 interface Prop {
   form: UseFormReturnTypeWithMedia;
   formField: FormFieldTypes;
   /** @Link ./CreationToolBar.tsx */
-  entity: Sections;
+  entity: Entity;
 }
 const PreviewFileZone = ({ form, formField, entity }: Prop) => {
   const [opened, { open, close }] = useDisclosure(false);
