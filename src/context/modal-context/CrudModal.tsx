@@ -23,7 +23,8 @@ type CrudModalProps = {
 
 export function CrudModal(props: CrudModalProps) {
   const { modalData } = props;
-  const entity = getEntityFromUrl() as Entity;
+  // TODO: see if query.entity works. or pass as a prop
+  const entity = "undefined";
   const { query } = useRouter();
 
   const isMobile = useMediaQuery("(max-width: 600px)");
@@ -63,6 +64,9 @@ export function CrudModal(props: CrudModalProps) {
 
     if (media && hasMedia(media)) {
       try {
+        throw new Error(
+          "Not implemented. entity string has been set to undefined. new logic required."
+        );
         const uploadIdData = await uploadFileAndGetModelId(extractUploadingMedia(media), entity);
         // eslint-disable-next-line guard-for-in, no-restricted-syntax
         for (const key in uploadIdData) {

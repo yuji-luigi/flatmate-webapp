@@ -138,6 +138,10 @@ export function getEntityFromUrl(
   if (match && isSection(match)) {
     return match;
   }
+  // return "maintenances";
+  console.log({ url });
+  console.log({ keyword });
+  console.log({ match });
   throw new Error("entity is not valid. getEntityFromUrl");
 }
 

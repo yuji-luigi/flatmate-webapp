@@ -15,12 +15,6 @@ import { _PATH_FRONTEND } from "../../../../../path/path-frontend";
 import { QrCodeModalContent } from "./QrCodeModalContent";
 import { MongooseBaseModel } from "../../../../../types/models/mongoose-base-model";
 
-const getQrCodeUrl = (authToken: AuthTokenModel) => {
-  return `${API_BASE_URL}/${authToken._id}`;
-};
-
-const showQrCode = () => ["users"].includes(getEntityFromUrl());
-
 export const QrCodeButton = ({ rowData }: { rowData: MongooseBaseModel }) => {
   const { openConfirmModal } = useCustomModalContext();
   const { _id } = rowData;
@@ -48,9 +42,7 @@ export const QrCodeButton = ({ rowData }: { rowData: MongooseBaseModel }) => {
       });
     }
   };
-  if (!showQrCode()) {
-    return null;
-  }
+  return <div>QrcodeButton component to setup</div>;
   return (
     <ActionIcon color="white" onClick={generateQrCode}>
       <IconQrcode />

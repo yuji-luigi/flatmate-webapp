@@ -17,6 +17,7 @@ import {
 import { _PATH_FRONTEND } from "../path/path-frontend";
 import { MeUser, Role, UserModel } from "../types/models/space-model";
 import { NOTIFICATIONS } from "../data/showNofification/notificationObjects";
+import { sleep } from "../utils/helpers/helper-functions";
 
 const initialState: JWTContextState = {
   isAuthenticated: false,
@@ -62,8 +63,9 @@ const handlers: JWTContextHandlers = {
   },
 };
 
-const reducer = (state: JWTContextState, action: JWTContextReducerAction) =>
-  handlers[action.type] ? handlers[action.type](state, action) : state;
+const reducer = (state: JWTContextState, action: JWTContextReducerAction) => {
+  return handlers[action.type] ? handlers[action.type](state, action) : state;
+};
 
 const AuthContext = createContext<AuthContextInterface>({
   ...initialState,
@@ -72,6 +74,7 @@ const AuthContext = createContext<AuthContextInterface>({
   login: () => Promise.resolve(),
   register: () => Promise.resolve(),
   reInitialize: () => Promise.resolve(),
+  updateUser: () => {},
 });
 
 function AuthProvider({ children, initialUser }: { children: ReactNode; initialUser?: MeUser }) {
@@ -89,6 +92,7 @@ function AuthProvider({ children, initialUser }: { children: ReactNode; initialU
 
   const initialize = async () => {
     if (state.isInitialized) return;
+    await sleep(1000);
     await initializeFunc();
   };
 
@@ -173,6 +177,16 @@ function AuthProvider({ children, initialUser }: { children: ReactNode; initialU
     });
   };
 
+  const updateUser = (user: MeUser) => {
+    dispatch({
+      type: "INITIALIZE",
+      payload: {
+        isAuthenticated: true,
+        user,
+      },
+    });
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -182,6 +196,7 @@ function AuthProvider({ children, initialUser }: { children: ReactNode; initialU
         logout,
         register,
         reInitialize,
+        updateUser,
       }}
     >
       {children}

@@ -1,41 +1,30 @@
 import { SectionsJson } from "../../types/data/json/sections-json";
+import { TABLE } from "./nav-path";
 
-export const inhabitantSectionsJson: SectionsJson[] = [
+export const inhabitantNavConfig: SectionsJson[] = [
   {
     name: "Board",
     hide: false,
     contents: [
       {
         sectionKey: "settings",
-        title: "Settings",
-        subtitle: "",
         navbarTitle: "Settings",
         link: "/dashboard/settings",
-        importButton: "",
-        createButton: "",
         icon: "settings",
         hide: false,
       },
       {
         sectionKey: "threads",
-        title: "Your threads",
-        subtitle: "subtitle",
         navbarTitle: "posts",
-        link: "/",
-        importButton: "",
-        createButton: "",
+        link: TABLE("threads"),
         icon: "posts",
         hide: false,
       },
       {
         sectionKey: "maintenances",
-        title: "maintenances",
-        subtitle: "subtitle",
         navbarTitle: "maintenances",
-        link: "/dashboard/maintenances",
-        importButton: "",
-        createButton: "Assign Maintenance",
-        hide: true,
+        link: TABLE("maintenances"),
+        hide: false,
         icon: "posts",
       },
     ],

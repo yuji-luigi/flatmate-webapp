@@ -2,7 +2,6 @@ import { MongooseBaseModel } from "../models/mongoose-base-model";
 
 export const entities = [
   "users",
-  "buildings",
   "spaces",
   "maintenances",
   "checks",
@@ -15,6 +14,21 @@ export const entities = [
   "wallets",
   "events",
 ] as const;
+
+export const singleEntities = {
+  users: "user",
+  spaces: "space",
+  maintenances: "maintenance",
+  checks: "check",
+  comments: "comment",
+  bookmarks: "bookmark",
+  tags: "tag",
+  threads: "thread",
+  userSettings: "userSetting",
+  uploads: "upload",
+  wallets: "wallet",
+  events: "event",
+} as const;
 
 const sections = ["statistics", "posts", "home"] as const;
 

@@ -3,17 +3,17 @@ import { useRouter } from "next/router";
 import { Box } from "@mantine/core";
 import { GetServerSidePropsContext } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { TableSectionHeader } from "../../../sections/dashboard/datatable_section/TableSectionHeader";
+import { TableSectionHeader } from "../../../../sections/dashboard/datatable_section/TableSectionHeader";
 
-import Layout from "../../../layouts";
-import Page from "../../../components/Page";
-import { CrudDrawerDefault } from "../../../components/drawer/CrudDrawerDefault";
-import { useCrudSliceStore } from "../../../redux/features/crud/crudSlice";
-import { usePaginationContext } from "../../../context/PaginationContext";
-import { CrudDataTable } from "../../../components/datatable/CrudDataTable";
-import { useGetCrudDocuments } from "../../../hooks/useGetCrudDocuments";
-import { useCurrentEntityContext } from "../../../context/CurrentEntityContext";
-import { Entity } from "../../../types/redux/CrudSliceInterfaces";
+import Layout from "../../../../layouts";
+import Page from "../../../../components/Page";
+import { CrudDrawerDefault } from "../../../../components/drawer/CrudDrawerDefault";
+import { useCrudSliceStore } from "../../../../redux/features/crud/crudSlice";
+import { usePaginationContext } from "../../../../context/PaginationContext";
+import { CrudDataTable } from "../../../../components/datatable/CrudDataTable";
+import { useGetCrudDocuments } from "../../../../hooks/useGetCrudDocuments";
+import { useCurrentEntityContext } from "../../../../context/CurrentEntityContext";
+import { Entity } from "../../../../types/redux/CrudSliceInterfaces";
 
 const CrudPage = () => {
   const { query, push } = useRouter();
@@ -21,7 +21,6 @@ const CrudPage = () => {
   const { paginationQuery } = usePaginationContext();
   useGetCrudDocuments({ entity, withPagination: true });
   const { fetchCrudDocumentsWithPagination } = useCrudSliceStore();
-
   useEffect(() => {
     /** type guard */
     if (!entity) {

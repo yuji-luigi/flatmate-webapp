@@ -40,13 +40,6 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
     };
   }, []);
 
-  // // in case user is admin, redirect to admin dashboard. logic is
-  // useEffect(() => {
-  //   if (user && user.loggedAs === "property_manager") {
-  //     router.replace(_PATH_FRONTEND.property_manager.dashboard.root);
-  //   }
-  // }, [user]);
-
   useEffect(() => {
     setCurrentTab(router.query.tab as string);
   }, [router.query.tab]);

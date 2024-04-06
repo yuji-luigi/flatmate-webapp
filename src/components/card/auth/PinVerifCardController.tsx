@@ -1,11 +1,7 @@
-import React, { FC, JSXElementConstructor, ReactElement } from "react";
-import { getEntityFromUrl, getWordNextFromUrl } from "../../../utils/helpers/helper-functions";
 import { useRouter } from "next/router";
+import { getWordNextFromUrl } from "../../../utils/helpers/helper-functions";
 import { UserRegisterPinVerifCard, PinVerifCardProps } from "./UserRegisterPinVerifCard";
-// interface ComponentPropsMap {
-//   users: PinVerifCardProps;
-//   maintenainers: {str: string}
-// }
+
 type PinVerifCardControllerProps = PinVerifCardProps;
 
 export const PinVerifCardController = ({ setPinOk }: PinVerifCardControllerProps) => {
@@ -15,6 +11,6 @@ export const PinVerifCardController = ({ setPinOk }: PinVerifCardControllerProps
     case "users":
       return <UserRegisterPinVerifCard setPinOk={setPinOk} />;
     default:
-      return <>'Pin verif card controller';</>;
+      return <>Pin verif card controller</>;
   }
 };

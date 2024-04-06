@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useMediaQuery } from "@mantine/hooks";
 import useLayoutContext from "../../../../hooks/useLayoutContext";
 import useAuth from "../../../../hooks/useAuth";
-import { sectionData } from "../../../json/section-json";
+import { navConfigs } from "../../../json/nav-config";
 
 import { PATH_CLIENT } from "../../../path/path-frontend";
 import { ProfilePopover } from "../../../components/navigation/ProfilePopover";
@@ -12,6 +12,7 @@ import LogoutButton from "./LogoutButton";
 import classes from "./NavbarVertical.module.css";
 import { NavList } from "./NavList";
 import { Icons } from "../../../data/icons/icons";
+import { SystemAdminSwitch } from "./SystemAdminSwitch";
 
 export function NavbarVertical() {
   const { user } = useAuth();
@@ -36,21 +37,12 @@ export function NavbarVertical() {
             <ProfilePopover />
             <Divider className={classes.divider} />
           </div>
-          {sectionData[user.loggedAs].map((section, i) => (
-            <NavList key={section.name} section={section} />
-          ))}
-          {user.isSystemAdmin && (
-            <Link
-              className={classes.link}
-              // data-active={isActive || undefined}
-              href="#"
-            >
-              <Group align="center">
-                <Icons.alert className={classes.linkIcon} stroke={1.5} />
-                System Admin menu
-              </Group>
-            </Link>
-          )}
+          <Stack>
+            {navConfigs[user.loggedAs].map((section, i) => (
+              <NavList key={section.name} section={section} />
+            ))}
+            {user.isSystemAdmin && <SystemAdminSwitch />}
+          </Stack>
           <div className={classes.footer}>
             <Stack>
               <LogoutButton />

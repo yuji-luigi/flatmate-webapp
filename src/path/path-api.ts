@@ -74,6 +74,7 @@ export const _PATH_API = {
     login: (role: Role) => `${PATH_API.auth}/login/${role}`,
     register: (role: Role) => `${PATH_API.auth}/register/${role}`,
     checkRoles: `${PATH_API.auth}/check-roles`,
+    systemAdmin: `${PATH_API.auth}/system-admin`,
   },
   checks: {
     root: PATH_API.checks,

@@ -73,4 +73,6 @@ export interface AuthContextInterface extends JWTContextState {
   reInitialize: () => Promise<void>;
   logout: () => void;
   register: Register;
+  /** update User in authContext not in DB */
+  updateUser: (user: MeUser) => void;
 }

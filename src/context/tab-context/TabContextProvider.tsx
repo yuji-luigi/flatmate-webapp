@@ -1,7 +1,7 @@
 import { getCookie } from "cookies-next";
 import { useRouter } from "next/router";
 import { ReactNode, createContext, useContext, useEffect, useState } from "react";
-import { sections } from "../../json/section-json";
+import { sections } from "../../json/nav-config";
 import { useCrudSliceStore } from "../../redux/features/crud/crudSlice";
 import { CurrentSpace } from "../../types/context/auth/useAuth";
 import { SpaceModel } from "../../types/models/space-model";

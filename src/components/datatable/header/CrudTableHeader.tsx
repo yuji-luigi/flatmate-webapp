@@ -6,7 +6,7 @@ import { FormFieldTypes } from "../../../types/general/data/data-table/form-fiel
 import classes from "./StaticTableHeader.module.css";
 import { Entity } from "../../../types/redux/CrudSliceInterfaces";
 
-const CrudTableHeader = ({ overridingEntity }: { overridingEntity: Entity }) => {
+const CrudTableHeader = ({ overridingEntity }: { overridingEntity?: Entity }) => {
   const { query } = useRouter();
 
   const json = formFields[overridingEntity || (query.entity as Entity)];

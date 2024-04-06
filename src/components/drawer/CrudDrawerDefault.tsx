@@ -19,7 +19,7 @@ import { usePaginationQuery } from "../../context/PaginationContext";
 import { hasMedia } from "../../redux/features/crudAsyncThunks";
 import CreationToolBar from "../input/CreationToolBar";
 import { UseFormReturnTypeCustom } from "../input/input_interfaces/useForm_interface";
-import { getSectionData } from "../../json/section-json";
+import { getNavConfig } from "../../json/nav-config";
 
 import { extractUploadingMedia, uploadFileAndGetModelId } from "../../utils/upload-helper";
 import { FormFieldTypes } from "../../types/general/data/data-table/form-field-type/formField-types";
@@ -182,8 +182,7 @@ export function CrudDrawerDefault({ overridingEntity }: { overridingEntity?: Ent
     return null;
   }
 
-  const sectionJson = getSectionData({ loggedAs: user.loggedAs, entity });
-
+  const sectionJson = getNavConfig({ loggedAs: user.loggedAs, entity });
   const entityText = capitalize(sectionJson.sectionKey);
   const submitText = singleCrudId ? `Update ${entityText}!` : `Add ${entityText}!`;
   if (!drawerIsOpen) return null;

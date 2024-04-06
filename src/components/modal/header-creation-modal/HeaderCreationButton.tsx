@@ -3,7 +3,7 @@ import { Menu, ActionIcon } from "@mantine/core";
 import { useState } from "react";
 import { notifications } from "@mantine/notifications";
 import { Icons } from "../../../data/icons/icons";
-import { allSectionArrayWithRoles, sectionData } from "../../../json/section-json";
+import { allSectionArrayWithRoles, navConfigs } from "../../../json/nav-config";
 
 import { FONT_SIZES } from "../../../lib/enums";
 import { useCrudSelectors, useCrudSliceStore } from "../../../redux/features/crud/crudSlice";
@@ -23,7 +23,7 @@ export function HeaderCreationButton() {
   const { submitting } = useCrudSelectors();
   if (!user) return null;
   const handleOpenModal = (type: "threads" | "maintenances") => {
-    const found = sectionData[user.loggedAs].flatMap((json) =>
+    const found = navConfigs[user.loggedAs].flatMap((json) =>
       json.contents.find((content) => content.sectionKey === type)
     );
     setSection();

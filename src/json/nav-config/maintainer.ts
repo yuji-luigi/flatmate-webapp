@@ -1,6 +1,6 @@
 import { SectionsJson } from "../../types/data/json/sections-json";
 
-export const maintainerSectionsJson: SectionsJson[] = [
+export const maintainerNavConfig: SectionsJson[] = [
   {
     name: "main",
     hide: false,

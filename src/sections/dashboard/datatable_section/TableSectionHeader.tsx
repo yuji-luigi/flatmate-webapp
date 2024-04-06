@@ -1,21 +1,19 @@
 import { useRouter } from "next/router";
 import { Group, Stack, Text, LoadingOverlay, MantineStyleProp } from "@mantine/core";
 import { useEffect } from "react";
-import { getFlattenSectionJson } from "../../../json/section-json";
 import { BreadcrumbsCustom } from "./BreadcrumbsCustom";
 import useLayoutContext from "../../../../hooks/useLayoutContext";
 import classes from "../../../styles/global-useStyles.module.css";
 import { CrudTableButtons } from "./components/CrudTableButtons";
 import { ParsedQueryCustom } from "../../../types/nextjs-custom-types/useRouter-types";
-import { useCurrentEntityContext } from "../../../context/CurrentEntityContext";
 import { Entity } from "../../../types/redux/CrudSliceInterfaces";
 import useAuth from "../../../../hooks/useAuth";
+import { sectionsJson } from "../../../json/sectionsConfig";
 
 function instanceOfParentDataInterface(object: any): object is ParentDataInterface {
   return "name" in object;
 }
 export function TableSectionHeader({
-  overridingEntity = "",
   style = {},
   children,
 }: {
@@ -28,8 +26,7 @@ export function TableSectionHeader({
   const { setBreadcrumbs, breadcrumbs, setPrevBreadcrumbs, parentData } = useLayoutContext();
 
   const { query }: { query: ParsedQueryCustom } = useRouter();
-  const { currentEntity: entity } = useCurrentEntityContext();
-
+  const { entity } = query;
   useEffect(() => {
     /** entity is possibly null */
     if (entity) {
@@ -44,12 +41,11 @@ export function TableSectionHeader({
 
   if (!user) return <LoadingOverlay visible />;
 
-  const section = getFlattenSectionJson(user.loggedAs).find((data) => data.entity === entity);
+  const section = sectionsJson.dataTable[entity];
 
   if (!section) {
     return <p>loading...</p>;
   }
-
   let { title } = section;
   if (query.parentId && instanceOfParentDataInterface(parentData)) {
     title = parentData.name;

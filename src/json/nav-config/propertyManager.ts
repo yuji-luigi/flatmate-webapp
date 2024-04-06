@@ -1,6 +1,6 @@
 import { SectionsJson } from "../../types/data/json/sections-json";
 
-export const propertyManagerSectionsJson: SectionsJson[] = [
+export const propertyManagerNavConfig: SectionsJson[] = [
   {
     name: "Board",
     hide: true,

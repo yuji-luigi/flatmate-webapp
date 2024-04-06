@@ -61,13 +61,19 @@ export const NOTIFICATIONS = {
     },
   },
   ERROR: {
-    general: ({ data, ms = 2000, id = "error" }: ErrorArgs) => ({
-      id,
+    general: (
+      args: ErrorArgs = {
+        data: { message: "Something went wrong" },
+        ms: 2000,
+        id: "error",
+      }
+    ) => ({
+      id: args.id,
       title: "Error",
       color: "red",
       icon: <Icons.alert />,
-      message: data?.message || data || "Something went wrong",
-      autoClose: ms,
+      message: args?.data?.message || args.data || "Something went wrong",
+      autoClose: args.ms,
     }),
   },
 };

@@ -50,15 +50,9 @@ const CHOOSE_ROOT_SPACE = "/choose-root-space";
 
 export const _PATH_FRONTEND = {
   pathAfterLogin: PATH_AFTER_LOGIN,
-  maintainerDashboard: {
-    root: "/maintainer/dashboard",
+  systemAdmin: {
+    root: "/system",
   },
-  property_manager: {
-    dashboard: {
-      root: "/property_manager/dashboard",
-    },
-  },
-
   dashboard: {
     root: "/dashboard",
     home: PATH_AFTER_LOGIN,

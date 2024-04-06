@@ -1,4 +1,3 @@
-import { maintenancesTableData } from "./maintenancesTableData";
 import { maintainersTableData } from "./maintainersTableData";
 import { billingsTableData as billing } from "./billingsTableData";
 import { buildingTableData as buildings } from "./buildingsTableData";

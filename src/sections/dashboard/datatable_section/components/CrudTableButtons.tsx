@@ -1,7 +1,7 @@
 import { Button, Group, LoadingOverlay } from "@mantine/core";
 import React, { ChangeEvent, useCallback, useRef, useState } from "react";
 import { showNotification } from "@mantine/notifications";
-import { FlattenSectionData } from "../../../../json/section-json";
+import { FlattenSectionData } from "../../../../json/nav-config";
 import { useCrudSliceStore } from "../../../../redux/features/crud/crudSlice";
 import { useDrawerContext } from "../../../../context/DataTableDrawerContext";
 import classes from "../../../../styles/global-useStyles.module.css";

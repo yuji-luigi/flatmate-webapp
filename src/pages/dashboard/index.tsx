@@ -10,12 +10,17 @@ import { PATH_AUTH } from "../../path/path-api";
 import { DashboardTabPanels } from "../../layouts/dashboard/sections-in-tabs/tabs/DashboardRootTabPanels";
 import { toTitleCase } from "../../lib/toTitleCase";
 import { MeUser } from "../../types/models/space-model";
+import useAuth from "../../../hooks/useAuth";
 
 const DashboardPage = ({ initialUser }: { initialUser: MeUser }) => {
   const { setCrudDocument, setCrudDocuments } = useCrudSliceStore();
+  const { updateUser } = useAuth();
 
   useEffect(() => {
     handleSectionData();
+    if (initialUser) {
+      updateUser(initialUser);
+    }
   }, []);
 
   const handleSectionData = async () => {
@@ -69,22 +74,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       },
     };
   }
-  // if (user.loggedAs === "property_manager") {
-  //   return {
-  //     redirect: {
-  //       destination: _PATH_FRONTEND.property_manager.dashboard.root,
-  //       permanent: true,
-  //     },
-  //   };
-  // }
-  // if (user.loggedAs === "maintainer") {
-  //   return {
-  //     redirect: {
-  //       destination: _PATH_FRONTEND.maintainerDashboard.root,
-  //       permanent: true,
-  //     },
-  //   };
-  // }
+
   return {
     props: {
       initialUser: user,
