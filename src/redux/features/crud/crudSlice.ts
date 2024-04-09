@@ -92,7 +92,6 @@ export const crudSlice = createSlice({
     },
     setCrudDocument: (state, action) => {
       const { document, entity } = action.payload;
-      console.log(entity);
       state.reduxdb[entity].singleCrudDocument = document;
     },
     setCrudDocuments: (state, action) => {

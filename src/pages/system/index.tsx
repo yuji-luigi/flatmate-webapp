@@ -29,7 +29,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     }
     if (cookies?.spaceId) {
       const { cookie } = context.req.headers;
-      const res = await axiosInstance.get(`${_PATH_API.auth.systemAdmin}/${cookies.spaceId}`, {
+      const res = await axiosInstance.get(_PATH_API.auth.systemAdminCheck(cookies.spaceId), {
         headers: {
           cookie,
         },

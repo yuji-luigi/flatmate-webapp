@@ -32,7 +32,6 @@ export function GradientSegmentedControl(props: Props) {
     }
     const v = localStorage.getItem(localStorageKey || "") || "";
     if (v) {
-      console.log(JSON.parse(v));
       setCurrentValue(JSON.parse(v));
     }
   }, [storageValue]);

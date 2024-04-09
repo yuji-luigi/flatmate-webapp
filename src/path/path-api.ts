@@ -74,7 +74,9 @@ export const _PATH_API = {
     login: (role: Role) => `${PATH_API.auth}/login/${role}`,
     register: (role: Role) => `${PATH_API.auth}/register/${role}`,
     checkRoles: `${PATH_API.auth}/check-roles`,
-    systemAdmin: `${PATH_API.auth}/system-admin`,
+    systemAdminCheck: (spaceId: string) =>
+      `${PATH_API.auth}/system-admin/check-by-space/${spaceId}`,
+    systemAdminExit: `${PATH_API.auth}/system-admin/exit`,
   },
   checks: {
     root: PATH_API.checks,

@@ -10,10 +10,10 @@
   min-height: 100vh;
   z-index: 100;
   @media (max-width: $mantine-breakpoint-md) {
-    &[data-hidden='true'] {
+    &[data-hidden="true"] {
       display: none;
     }
-    &[data-show='true'] {
+    &[data-show="true"] {
       display: flex;
     }
   }
@@ -46,6 +46,11 @@
   padding: var(--mantine-spacing-xs) var(--mantine-spacing-sm);
   border-radius: var(--mantine-radius-sm);
   font-weight: 500;
+  cursor: pointer;
+  &[data-disabled="true"] {
+    pointer-events: none;
+    opacity: 0.5;
+  }
 
   @mixin hover {
     background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-5));
@@ -88,7 +93,7 @@
   opacity: 0;
   /* Add transition */
   transition: opacity 0.3s ease-in-out;
-  &[data-fadein='true'] {
+  &[data-fadein="true"] {
     visibility: visible;
     display: flex;
     position: fixed;
