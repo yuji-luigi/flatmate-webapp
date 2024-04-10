@@ -4,9 +4,10 @@ import { Box, Group } from "@mantine/core";
 import { useRouter } from "next/router";
 import { Icons } from "../../../data/icons/icons";
 import classes from "./NavbarVertical.module.css";
+import { NavConfigContent } from "../../../types/data/json/sections-json";
 
 type NavbarVerticalItemProp = {
-  navbarContent: any;
+  navbarContent: NavConfigContent;
   // active: string;
   // setActive: (active: string) => void;
 };
@@ -14,16 +15,16 @@ type NavbarVerticalItemProp = {
 export const NavbarVerticalItem = (props: NavbarVerticalItemProp) => {
   const { navbarContent } = props;
   // return null;
-  const Icon = Icons[navbarContent.sectionKey as IconIndexTypes] || Icons.home;
+  const Icon = Icons[navbarContent.icon] || Icons.home;
   const { asPath } = useRouter();
-  const pattern = new RegExp(`/dashboard/${navbarContent.sectionKey}$`);
+  const pattern = new RegExp(navbarContent.link);
   const isActive = pattern.test(asPath);
   if (navbarContent.hide) return null;
   return (
     <Link className={classes.link} data-active={isActive || undefined} href={navbarContent.link}>
       <Group align="center">
         <Icon className={classes.linkIcon} stroke={1.5} />
-        {navbarContent.navbarTitle}
+        {navbarContent.title}
       </Group>
     </Link>
   );

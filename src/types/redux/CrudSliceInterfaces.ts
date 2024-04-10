@@ -15,7 +15,7 @@ export const entities = [
   "events",
 ] as const;
 
-export const pseudoEntities = ["inhabitants", "property"];
+export const pseudoEntities = ["inhabitants", "property_managers", "maintainers"] as const;
 
 export const singleEntities = {
   users: "user",

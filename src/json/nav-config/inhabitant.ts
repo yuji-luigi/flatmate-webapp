@@ -8,21 +8,21 @@ export const inhabitantNavConfig: NavConfig[] = [
     contents: [
       {
         sectionKey: "settings",
-        navbarTitle: "Settings",
+        title: "Settings",
         link: "/dashboard/settings",
         icon: "settings",
         hide: false,
       },
       {
         sectionKey: "threads",
-        navbarTitle: "posts",
+        title: "posts",
         link: TABLE("threads"),
         icon: "posts",
         hide: false,
       },
       {
         sectionKey: "maintenances",
-        navbarTitle: "maintenances",
+        title: "maintenances",
         link: TABLE("maintenances"),
         hide: false,
         icon: "posts",

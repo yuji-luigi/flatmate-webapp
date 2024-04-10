@@ -18,7 +18,7 @@ export const NavList: React.FC<NavListProps> = (props: NavListProps) => {
         <Stack align="start">
           <p>{section.name}</p>
           {section.contents.map((navbarContent) => (
-            <NavbarVerticalItem key={navbarContent.navbarTitle} navbarContent={navbarContent} />
+            <NavbarVerticalItem key={navbarContent.title} navbarContent={navbarContent} />
           ))}
         </Stack>
       )}

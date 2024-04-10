@@ -4,7 +4,7 @@ interface SectionDataJson {
   entity: string;
   title: string;
   subtitle: string;
-  navbarTitle: string;
+  title: string;
   link: string;
   createButton: string;
   icon: string;
@@ -21,7 +21,7 @@ interface a {
   entity: string;
   title: string;
   subtitle: string;
-  navbarTitle: string;
+  title: string;
   link: string;
   createButton: string;
   icon: string;
