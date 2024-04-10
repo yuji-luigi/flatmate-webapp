@@ -54,7 +54,7 @@ type EntityPath = Record<Entity | (typeof pseudoEntities)[number], RegularPath>;
 const SYSTEM_ADMIN = "/system";
 const entityPath = [...entities, ...pseudoEntities].reduce((acc, entity) => {
   acc[entity] = {
-    root: `${SYSTEM_ADMIN}/dashboard/${entity}`,
+    root: `${SYSTEM_ADMIN}/dataTable/${entity}`,
     byId: (id: string) => `${SYSTEM_ADMIN}/${entity}/${id}`,
   };
   return acc;
