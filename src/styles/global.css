@@ -139,6 +139,34 @@ body:has([data-loggedas="property_manager"]) {
   }
 } */
 
+body:has([data-disable-all="true"]) {
+  pointer-events: none;
+  &::before {
+    content: "";
+    background: rgba(0, 0, 0, 0.5);
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 500;
+  }
+  &::after {
+    content: "";
+    background-image: url("/images/loading.svg");
+    height: 300px;
+    width: 300px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 40px;
+    color: red;
+    z-index: 1000;
+  }
+}
+
 a {
   text-decoration: none;
   color: inherit;

@@ -31,12 +31,13 @@ export const SystemAdminSwitch = (props: SystemAdminNavProps) => {
     if (!currentSpace) return;
     try {
       setIsLoading(true);
+      await sleep(300);
       if (!isSystemAdmin) {
         const rawRes = await axiosInstance.get<AxiosResDataGeneric<MeUser>>(
           _PATH_API.auth.systemAdminCheck(currentSpace._id)
         );
         updateUser(rawRes.data.data);
-        await sleep(500);
+        await sleep(800);
         push(_PATH_FRONTEND.systemAdmin.root);
         return;
       }
@@ -45,7 +46,7 @@ export const SystemAdminSwitch = (props: SystemAdminNavProps) => {
           _PATH_API.auth.systemAdminExit
         );
         updateUser(rawRes.data.data);
-        await sleep(500);
+        await sleep(800);
         push(_PATH_FRONTEND.dashboard.root);
       }
     } catch (error) {
@@ -63,7 +64,7 @@ export const SystemAdminSwitch = (props: SystemAdminNavProps) => {
       <p>{t("Management")}</p>
       <Group
         className={classes.link}
-        data-disabled={isLoading}
+        data-disable-all={isLoading}
         onClick={handleCheckSystemAdmin}
         align="center"
       >
