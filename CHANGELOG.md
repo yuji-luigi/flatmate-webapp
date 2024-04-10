@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/yuji-luigi/flatmate-webapp/compare/flatmates-webapp-v1.0.1...flatmates-webapp-v1.0.2) (2024-04-10)
+
+
+### Bug Fixes
+
+* refactor entityPath root in path-frontend.ts to use dataTable instead of dashboard ([a2fa107](https://github.com/yuji-luigi/flatmate-webapp/commit/a2fa107462c85c1eec6f19b7e81a148df84b50b8))
+
 ## [1.0.1](https://github.com/yuji-luigi/flatmate-webapp/compare/flatmates-webapp-v1.0.0...flatmates-webapp-v1.0.1) (2024-04-10)
 
 
