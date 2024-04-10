@@ -1,10 +1,10 @@
 import { Stack } from "@mantine/core";
 import { NavbarVerticalItem } from "./NavbarVerticalItem";
-import { SectionData } from "../../../json/nav-config";
+import { RootNavConfig } from "../../../json/nav-config";
 import useAuth from "../../../../hooks/useAuth";
 
 type NavListProps = {
-  section: SectionData[number];
+  section: RootNavConfig[number];
 };
 
 export const NavList: React.FC<NavListProps> = (props: NavListProps) => {

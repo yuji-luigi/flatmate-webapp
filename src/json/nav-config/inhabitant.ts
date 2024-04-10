@@ -1,7 +1,7 @@
-import { SectionsJson } from "../../types/data/json/sections-json";
+import { NavConfig } from "../../types/data/json/sections-json";
 import { TABLE } from "./nav-path";
 
-export const inhabitantNavConfig: SectionsJson[] = [
+export const inhabitantNavConfig: NavConfig[] = [
   {
     name: "Board",
     hide: false,

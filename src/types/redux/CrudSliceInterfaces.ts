@@ -15,6 +15,8 @@ export const entities = [
   "events",
 ] as const;
 
+export const pseudoEntities = ["inhabitants", "property"];
+
 export const singleEntities = {
   users: "user",
   spaces: "space",
@@ -33,7 +35,7 @@ export const singleEntities = {
 const sections = ["statistics", "posts", "home"] as const;
 
 export const frontendEntities = [...entities, ...sections] as const;
-export type Entity = FrontendEntity;
+export type Entity = (typeof entities)[number];
 
 export type FrontendEntity = (typeof frontendEntities)[number];
 

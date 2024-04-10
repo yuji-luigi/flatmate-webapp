@@ -1,6 +1,6 @@
-import { SectionsJson } from "../../types/data/json/sections-json";
+import { NavConfig } from "../../types/data/json/sections-json";
 
-export const maintainerNavConfig: SectionsJson[] = [
+export const maintainerNavConfig: NavConfig[] = [
   {
     name: "main",
     hide: false,

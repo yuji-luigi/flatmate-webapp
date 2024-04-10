@@ -19,13 +19,13 @@ import { usePaginationQuery } from "../../context/PaginationContext";
 import { hasMedia } from "../../redux/features/crudAsyncThunks";
 import CreationToolBar from "../input/CreationToolBar";
 import { UseFormReturnTypeCustom } from "../input/input_interfaces/useForm_interface";
-import { getNavConfig } from "../../json/nav-config";
 
 import { extractUploadingMedia, uploadFileAndGetModelId } from "../../utils/upload-helper";
 import { FormFieldTypes } from "../../types/general/data/data-table/form-field-type/formField-types";
 import classes from "./CrudDrawerDefault.module.css";
 import useAuth from "../../../hooks/useAuth";
 import { Entity } from "../../types/redux/CrudSliceInterfaces";
+import { sectionsJson } from "../../json/sectionsConfig";
 
 export function CrudDrawerDefault({ overridingEntity }: { overridingEntity?: Entity }) {
   const [submitting, setSubmitting] = useState(false);
@@ -182,8 +182,8 @@ export function CrudDrawerDefault({ overridingEntity }: { overridingEntity?: Ent
     return null;
   }
 
-  const sectionJson = getNavConfig({ loggedAs: user.loggedAs, entity });
-  const entityText = capitalize(sectionJson.sectionKey);
+  const sectionJson = sectionsJson.dataTable[entity];
+  const entityText = capitalize(sectionJson.title);
   const submitText = singleCrudId ? `Update ${entityText}!` : `Add ${entityText}!`;
   if (!drawerIsOpen) return null;
   return (

@@ -64,7 +64,7 @@ export const SystemAdminSwitch = (props: SystemAdminNavProps) => {
       <p>{t("Management")}</p>
       <Group
         className={classes.link}
-        data-disable-all={isLoading}
+        data-page-loading={isLoading}
         onClick={handleCheckSystemAdmin}
         align="center"
       >

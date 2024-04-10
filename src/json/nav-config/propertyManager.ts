@@ -1,6 +1,6 @@
-import { SectionsJson } from "../../types/data/json/sections-json";
+import { NavConfig } from "../../types/data/json/sections-json";
 
-export const propertyManagerNavConfig: SectionsJson[] = [
+export const propertyManagerNavConfig: NavConfig[] = [
   {
     name: "Board",
     hide: true,

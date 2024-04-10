@@ -1,5 +1,5 @@
 import { HiddenAuthTokenInterface } from "../types/models/auth-token-model";
-import { Entity } from "../types/redux/CrudSliceInterfaces";
+import { Entity, entities } from "../types/redux/CrudSliceInterfaces";
 
 export const ROOT = "/";
 
@@ -48,10 +48,23 @@ export enum CARD_LINK_PATH {
 const CHOOSE_ORGANIZATION = "/choose-organization";
 const CHOOSE_ROOT_SPACE = "/choose-root-space";
 
+type RegularPath = { root: string; byId: (id: string) => string };
+type EntityPath = Record<Entity, RegularPath>;
+
+const SYSTEM_ADMIN = "/system";
+const entityPath = entities.reduce((acc, entity) => {
+  acc[entity] = {
+    root: `${SYSTEM_ADMIN}/${entity}`,
+    byId: (id: string) => `${SYSTEM_ADMIN}/${entity}/${id}`,
+  };
+  return acc;
+}, {} as EntityPath);
+
 export const _PATH_FRONTEND = {
   pathAfterLogin: PATH_AFTER_LOGIN,
   systemAdmin: {
-    root: "/system",
+    root: SYSTEM_ADMIN,
+    dashboard: entityPath,
   },
   dashboard: {
     root: "/dashboard",

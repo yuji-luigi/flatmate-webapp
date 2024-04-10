@@ -139,7 +139,7 @@ body:has([data-loggedas="property_manager"]) {
   }
 } */
 
-body:has([data-disable-all="true"]) {
+body:has([data-page-loading="true"]) {
   pointer-events: none;
   &::before {
     content: "";
@@ -164,6 +164,10 @@ body:has([data-disable-all="true"]) {
     font-size: 40px;
     color: red;
     z-index: 1000;
+    @media (max-width: $mantine-breakpoint-sm) {
+      height: 150px;
+      width: 150px;
+    }
   }
 }
 
