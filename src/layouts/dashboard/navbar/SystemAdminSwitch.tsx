@@ -38,7 +38,7 @@ export const SystemAdminSwitch = (props: SystemAdminNavProps) => {
         );
         updateUser(rawRes.data.data);
         await sleep(800);
-        push(_PATH_FRONTEND.systemAdmin.root);
+        // NOTE: the layout will redirect the user by cookie
         return;
       }
       if (isSystemAdmin) {
@@ -47,7 +47,7 @@ export const SystemAdminSwitch = (props: SystemAdminNavProps) => {
         );
         updateUser(rawRes.data.data);
         await sleep(800);
-        push(_PATH_FRONTEND.dashboard.root);
+        // NOTE: the layout will redirect the user by cookie
       }
     } catch (error) {
       showNotification({

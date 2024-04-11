@@ -9,20 +9,17 @@ export const systemAdminNavConfig: NavConfig[] = [
       {
         title: "Property Manager",
         link: _PATH_FRONTEND.systemAdmin.dataTable.property_managers.root,
-        icon: "security",
-        // hide: true,
+        icon: "propertyManagerBuilding",
       },
       {
         title: "Maintainer",
         link: _PATH_FRONTEND.systemAdmin.dataTable.maintainers.root,
-        icon: "maintenances",
-        // hide: true,
+        icon: "IconShovel",
       },
       {
         title: "Inhabitant",
         link: _PATH_FRONTEND.systemAdmin.dataTable.inhabitants.root,
-        // hide: true,
-        icon: "users",
+        icon: "IconUsers",
       },
     ],
   },

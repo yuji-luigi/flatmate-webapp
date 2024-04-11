@@ -26,12 +26,14 @@ import {
   IconArticle as Article,
   IconMessageDots as MessageDots,
   IconPhoto as Photo,
+  IconUsers,
   IconPaperclip as Paperclip,
   IconTrash as Trash,
   IconArchive as Archive,
   IconPhoto as Image,
   IconEdit as Edit,
   IconHammer as maintenance,
+  IconShovel,
   IconCheck as check,
   IconMapPin as mapPin,
   IconMail as mail,
@@ -64,6 +66,7 @@ import {
   IconStar as star,
   IconMoodEmptyFilled as empty,
   IconCalendarBolt as events,
+  IconBuildingEstate as propertyManagerBuilding,
 } from "@tabler/icons-react";
 /**
  * use the key name same as the slice name
@@ -141,6 +144,9 @@ export const Icons = {
   signup: writing,
   star,
   empty,
+  propertyManagerBuilding,
+  IconShovel,
+  IconUsers,
 } as const;
 export const ICON_SIZES = {
   textTile: 16,

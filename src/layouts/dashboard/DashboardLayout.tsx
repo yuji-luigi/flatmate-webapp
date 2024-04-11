@@ -49,7 +49,7 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
   };
 
   if (user?.loggedAs === "system_admin") {
-    router.replace(_PATH_FRONTEND.systemAdmin.root);
+    router.push(_PATH_FRONTEND.systemAdmin.root);
   }
 
   return (
