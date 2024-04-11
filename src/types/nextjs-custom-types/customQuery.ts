@@ -1,10 +1,10 @@
 import { NextRouter } from "next/router";
 import { ParsedUrlQuery } from "querystring";
-import { Sections } from "../general/data/sections-type";
-import { Role } from "../models/space-model";
+
+import { Entity } from "../redux/CrudSliceInterfaces";
 
 export interface ParsedQueryCustom extends ParsedUrlQuery {
-  entity?: Sections;
+  entity?: Entity;
   id?: string;
   linkId?: string;
   parentId?: string;
@@ -12,9 +12,8 @@ export interface ParsedQueryCustom extends ParsedUrlQuery {
   organizationId?: string;
   slug?: string | string[];
   arrSlug?: string[];
-  loggedAs: Role;
 }
 
-export interface UseRouterWithCustomQuery extends NextRouter {
+export interface UseRouterWithCustomQuery extends Omit<NextRouter, "query"> {
   query: ParsedQueryCustom;
 }
