@@ -1,6 +1,15 @@
 import { FormFieldTypes } from "../../../types/general/data/data-table/form-field-type/formField-types";
 
-export const usersTableData: Array<FormFieldTypes> = [
+export const propertyManagerTableData: Array<FormFieldTypes> = [
+  {
+    id: "role",
+    name: "accessPermissions",
+    label: "Ruolo",
+    type: "access-controller",
+    noTable: true,
+    required: true,
+    priority: 0,
+  },
   {
     id: "user-name-email-head",
     name: "name",
@@ -43,15 +52,7 @@ export const usersTableData: Array<FormFieldTypes> = [
     required: false,
     priority: 2,
   },
-  {
-    id: "role",
-    name: "role",
-    label: "Ruolo",
-    type: "access-controller",
-    noTable: true,
-    required: true,
-    priority: 3,
-  },
+
   {
     id: "email",
     name: "email",
@@ -67,6 +68,14 @@ export const usersTableData: Array<FormFieldTypes> = [
     name: "phone",
     label: "Telefono",
     type: "text",
+    required: false,
+    priority: 5,
+  },
+  {
+    id: "geo",
+    name: "geo",
+    label: "Telefono",
+    type: "geo-api",
     required: false,
     priority: 5,
   },

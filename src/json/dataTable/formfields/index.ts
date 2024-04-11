@@ -19,6 +19,8 @@ import { uploadsTableData as uploads } from "./uploadsTableData";
 import { maintenancesTableData as maintenances } from "./maintenancesTableData";
 import { rolesTableData as roles } from "./roleTableData";
 import { FormFieldTypes } from "../../../types/general/data/data-table/form-field-type/formField-types";
+import { inhabitantTableData as inhabitants } from "./inhabitantTableData";
+import { propertyManagerTableData as property_managers } from "./propertyManagerTableData";
 
 // /**
 //  * typing support when making conditions in jsx (tabelcell component)
@@ -61,5 +63,7 @@ const allFormFields: Record<string, FormFieldTypes[]> = {
   maintenances,
   roles,
   maintainers: maintainersTableData,
+  inhabitants: users,
+  property_managers,
 };
 export default allFormFields;

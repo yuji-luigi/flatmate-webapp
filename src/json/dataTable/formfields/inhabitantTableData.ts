@@ -1,6 +1,20 @@
 import { FormFieldTypes } from "../../../types/general/data/data-table/form-field-type/formField-types";
 
-export const usersTableData: Array<FormFieldTypes> = [
+export const inhabitantTableData: Array<FormFieldTypes> = [
+  {
+    id: "user-name-email-head",
+    name: "name",
+    label: "User",
+    placeholder: "First name",
+    type: "user-name-email-head",
+    required: true,
+    cellConfig: {
+      style: {
+        width: "350px",
+      },
+    },
+    priority: 1,
+  },
   {
     id: "name",
     name: "name",
@@ -8,6 +22,7 @@ export const usersTableData: Array<FormFieldTypes> = [
     placeholder: "First name",
     type: "text",
     required: true,
+    noTable: true,
     priority: 1,
   },
   {
@@ -16,6 +31,8 @@ export const usersTableData: Array<FormFieldTypes> = [
     label: "Cognome",
     type: "text",
     required: false,
+    noTable: true,
+
     priority: 2,
   },
   {
@@ -30,10 +47,8 @@ export const usersTableData: Array<FormFieldTypes> = [
     id: "role",
     name: "role",
     label: "Ruolo",
-    // multi: true,
-    type: "user-role",
-    // options: [{ value: 'static-slect-value', label: 'static-label' }],
-    grantTo: ["super_admin", "admin"],
+    type: "access-controller",
+    noTable: true,
     required: true,
     priority: 3,
   },
@@ -43,6 +58,8 @@ export const usersTableData: Array<FormFieldTypes> = [
     label: "Email",
     type: "text",
     required: true,
+    noTable: true,
+
     priority: 4,
   },
   {
@@ -62,28 +79,4 @@ export const usersTableData: Array<FormFieldTypes> = [
     noTable: true,
     priority: 6,
   },
-  // {
-  //   id: 'rootSpaces',
-  //   name: 'rootSpaces',
-  //   label: 'Buildings',
-  //   type: 'select',
-  //   _entity: 'spaces',
-  //   query: { isMain: true },
-  //   selectValues: ['name'],
-  //   grantTo: ['super_admin', 'admin'],
-  //   multi: true,
-  //   required: true,
-  //   priority: 100,
-  // },
-  // {
-  //   id: 'organization',
-  //   name: 'organization',
-  //   label: 'Organizations',
-  //   type: 'select',
-  //   _entity: 'organizations',
-  //   selectValues: ['name'],
-  //   grantTo: ['super_admin'],
-  //   required: false,
-  //   priority: 100,
-  // },
 ];
