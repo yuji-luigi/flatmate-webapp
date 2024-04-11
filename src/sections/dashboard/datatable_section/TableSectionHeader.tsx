@@ -5,10 +5,10 @@ import { BreadcrumbsCustom } from "./BreadcrumbsCustom";
 import useLayoutContext from "../../../../hooks/useLayoutContext";
 import classes from "../../../styles/global-useStyles.module.css";
 import { CrudTableButtons } from "./components/CrudTableButtons";
-import { ParsedQueryCustom } from "../../../types/nextjs-custom-types/useRouter-types";
 import { Entity } from "../../../types/redux/CrudSliceInterfaces";
 import useAuth from "../../../../hooks/useAuth";
 import { sectionsJson } from "../../../json/sectionsConfig";
+import useRouterWithCustomQuery from "../../../hooks/useRouterWithCustomQuery";
 
 function instanceOfParentDataInterface(object: any): object is ParentDataInterface {
   return "name" in object;
@@ -25,7 +25,7 @@ export function TableSectionHeader({
   const { user } = useAuth();
   const { setBreadcrumbs, breadcrumbs, setPrevBreadcrumbs, parentData } = useLayoutContext();
 
-  const { query }: { query: ParsedQueryCustom } = useRouter();
+  const { query } = useRouterWithCustomQuery();
   const { entity } = query;
   useEffect(() => {
     /** entity is possibly null */

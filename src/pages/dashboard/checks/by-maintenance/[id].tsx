@@ -1,16 +1,15 @@
 import { ReactElement } from "react";
-import { useRouter } from "next/router";
 import useSWR from "swr";
 import { AxiosError } from "axios";
 import { Stack } from "@mantine/core";
 import { useTranslation } from "next-i18next";
 import { ChecksGrid } from "../../../../sections/dashboard/checks/ChecksGrid";
-import { UseRouterWithCustomQuery } from "../../../../types/nextjs-custom-types/useRouter-types";
 import Layout from "../../../../layouts";
 import axiosInstance, { AxiosResDataGeneric } from "../../../../utils/axios-instance";
 import { _PATH_API } from "../../../../path/path-api";
 import { CheckInterface, MaintenanceModel } from "../../../../types/models/maintenance-check-type";
 import { PageTitle } from "../../../../components/text/PageTitle";
+import useRouterWithCustomQuery from "../../../../hooks/useRouterWithCustomQuery";
 
 const fileFetcher = async (entity?: string, id?: string) => {
   if (!id) return null;
@@ -24,7 +23,7 @@ const fileFetcher = async (entity?: string, id?: string) => {
   }
 };
 const ChecksByEntityPage = () => {
-  const { query }: UseRouterWithCustomQuery = useRouter();
+  const { query } = useRouterWithCustomQuery();
   const { entity, id } = query;
   const { t } = useTranslation();
   const { data, error } = useSWR<

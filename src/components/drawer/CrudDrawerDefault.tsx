@@ -6,7 +6,6 @@ import {
   notifications,
   showNotification,
 } from "@mantine/notifications";
-import { useRouter } from "next/router";
 import { FormEvent, useEffect, useState, useMemo } from "react";
 import allFormFields from "../../json/dataTable/formfields";
 import { constructErrorNotificationData } from "../../data/showNofification/notificationObjects";
@@ -26,11 +25,12 @@ import classes from "./CrudDrawerDefault.module.css";
 import useAuth from "../../../hooks/useAuth";
 import { Entity } from "../../types/redux/CrudSliceInterfaces";
 import { sectionsJson } from "../../json/sectionsConfig";
+import useRouterWithCustomQuery from "../../hooks/useRouterWithCustomQuery";
 
 export function CrudDrawerDefault({ overridingEntity }: { overridingEntity?: Entity }) {
   const [submitting, setSubmitting] = useState(false);
   const { user } = useAuth();
-  const { query } = useRouter();
+  const { query } = useRouterWithCustomQuery();
   const entity = overridingEntity || (query.entity as Entity);
 
   const parentId = query.parentId as string;

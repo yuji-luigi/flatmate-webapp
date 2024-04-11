@@ -9,7 +9,7 @@ import { _PATH_API } from "../../../path/path-api";
 import axiosInstance, { AxiosResDataGeneric } from "../../../utils/axios-instance";
 import { Icons } from "../../../data/icons/icons";
 import { useCrudSliceStore } from "../../../redux/features/crud/crudSlice";
-import { ParsedQueryCustom } from "../../../types/nextjs-custom-types/useRouter-types";
+import useRouterWithCustomQuery from "../../../hooks/useRouterWithCustomQuery";
 
 export interface PinVerifCardProps {
   setPinOk: (bool: boolean) => void;
@@ -18,7 +18,7 @@ export interface PinVerifCardProps {
  * @description Send pin code get boolean from server
  */
 export const UserRegisterPinVerifCard = ({ setPinOk }: PinVerifCardProps) => {
-  const { query }: { query: ParsedQueryCustom } = useRouter();
+  const { query } = useRouterWithCustomQuery();
   const [submitting, setSubmitting] = useState<boolean>(false);
   const { setCrudDocument } = useCrudSliceStore();
   const handleChange = (value: string) => {

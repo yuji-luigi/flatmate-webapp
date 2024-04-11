@@ -4,10 +4,10 @@ import useSWR from "swr";
 import { PATH_API } from "../../path/path-api";
 import axiosInstance, { AxiosResDataGeneric } from "../../utils/axios-instance";
 import { CheckInterface } from "../../types/models/maintenance-check-type";
-import { ParsedQueryCustom } from "../../types/nextjs-custom-types/useRouter-types";
 import { MaintainerModel } from "../../types/models/maintainer-model";
 import { PreviewHandler } from "../../components/files/preview/PreviewHandler";
 import classes from "./upload-succes-page.module.css";
+import useRouterWithCustomQuery from "../../hooks/useRouterWithCustomQuery";
 
 const fileFetcher = async (arrSlug?: string[]) => {
   if (!arrSlug) return null;
@@ -24,7 +24,7 @@ const fileFetcher = async (arrSlug?: string[]) => {
 };
 
 export default function UploadSuccessPage() {
-  const { query }: { query: ParsedQueryCustom } = useRouter();
+  const { query } = useRouterWithCustomQuery();
   const fetchKey = query.arrSlug?.length ? `${query.arrSlug}` : null;
 
   const { data, error, isLoading } = useSWR(fetchKey, () => fileFetcher(query.arrSlug), {});

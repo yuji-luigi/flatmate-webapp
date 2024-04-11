@@ -16,12 +16,12 @@ import { usePaginationContext } from "../../../../context/PaginationContext";
 import { useCookieContext } from "../../../../context/CookieContext";
 import { HeaderContainer } from "../../../../components/datatable/header/HeaderContainer";
 import { MongooseBaseModel } from "../../../../types/models/mongoose-base-model";
-import { ParsedQueryCustom } from "../../../../types/nextjs-custom-types/useRouter-types";
+import useRouterWithCustomQuery from "../../../../hooks/useRouterWithCustomQuery";
 
 const fetcher = (args: string) => axiosInstance.get(args).then((res) => res.data?.data);
 
 const ChildrenTablePage = () => {
-  const { query }: { query: ParsedQueryCustom } = useRouter();
+  const { query } = useRouterWithCustomQuery();
   // get currentSpace from context
   const { currentSpace } = useCookieContext();
   const { fetchLinkedChildrenWithPagination } = useCrudSliceStore();

@@ -9,14 +9,14 @@ import PostEditButton from "../../../components/posts/PostEditButton";
 import RelatedArticlesArea from "../../../sections/dashboard/single_post_page/RelatedArticleArea";
 import { CrudDrawerDefault } from "../../../components/drawer/CrudDrawerDefault";
 import { useCrudSliceStore, useCrudSelectors } from "../../../redux/features/crud/crudSlice";
-import { ParsedQueryCustom } from "../../../types/nextjs-custom-types/useRouter-types";
 import { SingleArticleCard } from "../../../components/posts/SingleArticleCard";
 import { SingleArticleHeading } from "../../../components/posts/SingleArticleHeading";
 import classes from "./PostIdPage.module.css";
 import { ThreadModel } from "../../../types/models/space-model";
+import useRouterWithCustomQuery from "../../../hooks/useRouterWithCustomQuery";
 
 const PostIdPage = ({ thread }: { thread: ThreadModel }) => {
-  const { query }: { query: ParsedQueryCustom } = useRouter();
+  const { query } = useRouterWithCustomQuery();
   const { selectCrudDocument } = useCrudSliceStore();
   const { crudDocument: _thread } = useCrudSelectors<ThreadModel>("threads");
 

@@ -1,10 +1,7 @@
 import { getCookie } from "cookies-next";
-import { useRouter } from "next/router";
-import { createContext, ReactNode, use, useContext, useEffect, useRef, useState } from "react";
-import { useCrudSliceStore } from "../redux/features/crud/crudSlice";
+import { createContext, ReactNode, useContext, useEffect, useRef, useState } from "react";
 import { CurrentSpace } from "../types/context/auth/useAuth";
 import { CookieContextState } from "../types/context/cookie-context";
-import { ParsedQueryCustom } from "../types/nextjs-custom-types/useRouter-types";
 import { isString } from "../utils/type-guard/isString";
 
 export const CookieContext = createContext<CookieContextState>({
@@ -20,7 +17,6 @@ export const CookieContext = createContext<CookieContextState>({
 const useStore = () => {
   const [currentSpace, setCurrentSpace] = useState<CurrentSpace | null>(null);
   const [currentOrganization, setCurrentOrganization] = useState<string | null>(null);
-  const router: { query: ParsedQueryCustom; pathname: string } = useRouter();
   const prevSpaceRef = useRef(currentSpace);
   const prevOrgRef = useRef(currentOrganization);
 

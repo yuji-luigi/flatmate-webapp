@@ -1,23 +1,17 @@
 import { useState } from "react";
-import { Box, Button, LoadingOverlay, Tabs, Text } from "@mantine/core";
+import { Box, Button, Text } from "@mantine/core";
 import { useForm } from "@mantine/form";
-import { useRouter } from "next/router";
 import { notifications, showNotification } from "@mantine/notifications";
-import { handleUploadWithoutLogin, isCustomFiles } from "../../../../../utils/upload-helper";
+import { isCustomFiles } from "../../../../../utils/upload-helper";
 import { useCrudSelectors } from "../../../../../redux/features/crud/crudSlice";
-import { PATH_API, _PATH_API } from "../../../../../path/path-api";
-import axiosInstance from "../../../../../utils/axios-instance";
 import { CheckType, MaintenanceModel } from "../../../../../types/models/maintenance-check-type";
-import { PATH_CLIENT } from "../../../../../path/path-frontend";
-import { sleep } from "../../../../../utils/helpers/helper-functions";
-import { UseRouterWithCustomQuery } from "../../../../../types/nextjs-custom-types/useRouter-types";
 import { FileInputMantine } from "../../../../../components/input/crud-inputs/crud-file-input/FileInputMantine";
 import { FileWithPreview } from "../../../../../types/files/file-types";
-import { CardStyled } from "../../../../../styles/card/CardStyled";
 import { checksTableData } from "../../../../../json/dataTable/formfields/checksTableData";
 import FormFields from "../../../../../components/input/FormFields";
 import { NOTIFICATIONS } from "../../../../../data/showNofification/notificationObjects";
 import { useLocale } from "../../../../../../hooks/useLocale";
+import useRouterWithCustomQuery from "../../../../../hooks/useRouterWithCustomQuery";
 
 type CheckForm = {
   type: CheckType;
@@ -26,7 +20,7 @@ type CheckForm = {
 };
 
 export const CheckInputTabCard = () => {
-  const router: UseRouterWithCustomQuery = useRouter();
+  const router = useRouterWithCustomQuery();
   const { t: mt } = useLocale("notification");
   const { t } = useLocale("common");
   const { query } = router;
