@@ -1,10 +1,10 @@
 import { NextRouter } from "next/router";
 import { ParsedUrlQuery } from "querystring";
 
-import { Entity } from "../redux/CrudSliceInterfaces";
+import { Entity, FrontendEntity } from "../redux/CrudSliceInterfaces";
 
 export interface ParsedQueryCustom extends ParsedUrlQuery {
-  entity?: Entity;
+  entity?: FrontendEntity;
   id?: string;
   linkId?: string;
   parentId?: string;
