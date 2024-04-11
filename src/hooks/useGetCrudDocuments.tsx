@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import { useCrudSliceStore } from "../redux/features/crud/crudSlice";
 import { useCookieContext } from "../context/CookieContext";
-import { Entity } from "../types/redux/CrudSliceInterfaces";
+import { Entity, FrontendEntity } from "../types/redux/CrudSliceInterfaces";
 
 export const useGetCrudDocuments = ({
   entity,
   withPagination = true,
 }: {
-  entity: Entity | null;
+  entity?: FrontendEntity | null;
   withPagination: boolean;
 }) => {
   const { fetchCrudDocumentsWithPagination } = useCrudSliceStore();
