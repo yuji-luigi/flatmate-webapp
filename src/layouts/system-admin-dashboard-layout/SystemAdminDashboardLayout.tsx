@@ -1,17 +1,5 @@
 import { ReactNode, useEffect, useRef, useState } from "react";
-import {
-  Box,
-  Button,
-  Divider,
-  Group,
-  LoadingOverlay,
-  ScrollArea,
-  Skeleton,
-  Stack,
-  Tabs,
-} from "@mantine/core";
-import { useRouter } from "next/router";
-import Link from "next/link";
+import { Box, Divider, Group, ScrollArea, Skeleton, Stack, Tabs } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
 import { SystemAdminDashboardHeaderSearch } from "./header/SystemAdminDashboardHeaderSearch";
 import useLayoutContext from "../../../hooks/useLayoutContext";
@@ -21,15 +9,13 @@ import classesNav from "../dashboard/navbar/NavbarVertical.module.css";
 import { _PATH_FRONTEND } from "../../path/path-frontend";
 import useAuth from "../../../hooks/useAuth";
 import { NavbarVertical } from "../dashboard/navbar/NavbarVertical";
-import { ColorSchemeToggle } from "../../components/color-schemeToggle/ColorSchemeToggle";
-import { ProfilePopover } from "../../components/navigation/ProfilePopover";
-import LogoutButton from "../dashboard/navbar/LogoutButton";
+import useRouterWithCustomQuery from "../../hooks/useRouterWithCustomQuery";
 
 const SystemAdminDashboardLayout = ({ children }: { children: ReactNode }) => {
   // const { setCurrentTab, currentTab } = useTabContext()
   const { isOpen } = useLayoutContext();
   const { user, isInitialized } = useAuth();
-  const router = useRouter();
+  const router = useRouterWithCustomQuery();
   const [currentTab, setCurrentTab] = useState<string | null>(
     (router.query.tab as string) || "dashboard"
   );
@@ -62,6 +48,11 @@ const SystemAdminDashboardLayout = ({ children }: { children: ReactNode }) => {
   if (!user) {
     router.push(_PATH_FRONTEND.auth.login);
   }
+
+  if (user && user.loggedAs !== "system_admin") {
+    router.push(_PATH_FRONTEND.dashboard.root);
+  }
+
   return (
     <Tabs
       onChange={handleChangeTab}
