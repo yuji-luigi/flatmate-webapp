@@ -13,3 +13,7 @@ import { MongooseBaseModel } from "./mongoose-base-model";
 //   | WalletModel
 //   | Record<string, unknown>;
 export type AllModels = MongooseBaseModel;
+
+export function isAllModels(arg: any): arg is AllModels {
+  return arg && arg._id; /* && arg.createdAt && arg.updatedAt; */
+}

@@ -18,12 +18,27 @@ import { MongooseBaseModel } from "../../../types/models/mongoose-base-model";
 import { NOTIFICATIONS } from "../../../data/showNofification/notificationObjects";
 import {
   CrudState,
-  entities,
   Entity,
   Reduxdb,
   frontendEntities,
   TODO_MODEL,
+  CrudSliceAction,
+  FrontendEntity,
 } from "../../../types/redux/CrudSliceInterfaces";
+import {
+  UpdateCrudDocumentInStorePayload,
+  SelectCrudPayload,
+  FetchCrudPayload,
+  FetchLinkedChildrenPayload,
+  AddCrudPayload,
+  AddLinkedChildPayload,
+  UpdateCrudPayload,
+  DeleteCrudPayload,
+  DeleteLinkedChildrenPayload,
+  SetCrudDocumentsPayload,
+  SetCrudDocumentPayload,
+} from "../../../types/redux/dispatch-args";
+import { AllModels } from "../../../types/models/allmodels";
 
 export const reduxdb: Reduxdb = frontendEntities.reduce<Reduxdb>((totalData, entity) => {
   totalData = {
@@ -54,17 +69,17 @@ export const crudSlice = createSlice({
   name: "crudOperation",
   initialState,
   reducers: {
-    deleteCrud: (state, action: PayloadAction<Record<string, string>>) => {
+    deleteCrud: (state, action: PayloadAction<CrudSliceAction>) => {
       const { entity, documentId } = action.payload;
       state.reduxdb[entity].documentsArray.filter((data) => data._id !== documentId);
     },
     /** update by new document already fetched. */
     setOneInArrayInStore: (state, action: PayloadAction<UpdateCrudDocumentInStorePayload>) => {
-      const { document, entity } = action.payload;
+      const { updatedDocument, entity } = action.payload;
       const documentIndex = state.reduxdb[entity].documentsArray.findIndex(
-        (doc) => doc._id === document._id
+        (doc) => doc._id === updatedDocument._id
       );
-      state.reduxdb[entity].documentsArray[documentIndex] = document;
+      state.reduxdb[entity].documentsArray[documentIndex] = updatedDocument;
     },
     /** to reset singleCrudDocument, set document to null */
     selectCrudDocument: (state, action: PayloadAction<SelectCrudPayload>) => {
@@ -90,14 +105,14 @@ export const crudSlice = createSlice({
       state.error = null;
       state.message = null;
     },
-    setCrudDocument: (state, action) => {
-      const { document, entity } = action.payload;
-      state.reduxdb[entity].singleCrudDocument = document;
+    setCrudDocument: (state, action: PayloadAction<UpdateCrudDocumentInStorePayload>) => {
+      const { updatedDocument, entity } = action.payload;
+      state.reduxdb[entity].singleCrudDocument = updatedDocument;
     },
-    setCrudDocuments: (state, action) => {
+    setCrudDocuments: (state, action: PayloadAction<SetCrudDocumentsPayload>) => {
       const { entity, documents, totalDocuments, isChildrenTree } = action.payload;
       state.status = "succeed";
-      state.reduxdb[entity].isChildrenTree = isChildrenTree;
+      state.reduxdb[entity].isChildrenTree = !!isChildrenTree;
       state.reduxdb[entity].documentsArray = documents;
       state.reduxdb[entity].totalDocuments = totalDocuments;
     },
@@ -113,14 +128,16 @@ export const crudSlice = createSlice({
       .addCase(fetchCrudDocumentsWithPagination.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(fetchCrudDocumentsWithPagination.fulfilled, (state, action) => {
-        const { entity, documents, totalDocuments, isChildrenTree } = action.payload;
-        state.status = "succeed";
-
-        state.reduxdb[entity].isChildrenTree = isChildrenTree;
-        state.reduxdb[entity].documentsArray = documents;
-        state.reduxdb[entity].totalDocuments = totalDocuments;
-      })
+      .addCase(
+        fetchCrudDocumentsWithPagination.fulfilled,
+        (state, action: PayloadAction<SetCrudDocumentsPayload>) => {
+          const { entity, documents, totalDocuments, isChildrenTree = false } = action.payload;
+          state.status = "succeed";
+          state.reduxdb[entity].isChildrenTree = isChildrenTree;
+          state.reduxdb[entity].documentsArray = documents;
+          state.reduxdb[entity].totalDocuments = totalDocuments;
+        }
+      )
       .addCase(fetchCrudDocumentsWithPagination.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
@@ -128,13 +145,16 @@ export const crudSlice = createSlice({
       .addCase(fetchCrudDocuments.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(fetchCrudDocuments.fulfilled, (state, action) => {
-        const { entity, documents, totalDocuments, isChildrenTree } = action.payload;
-        state.status = "succeed";
-        state.reduxdb[entity].isChildrenTree = isChildrenTree;
-        state.reduxdb[entity].documentsArray = documents;
-        state.reduxdb[entity].totalDocuments = totalDocuments;
-      })
+      .addCase(
+        fetchCrudDocuments.fulfilled,
+        (state, action: PayloadAction<SetCrudDocumentsPayload>) => {
+          const { entity, documents, totalDocuments, isChildrenTree = false } = action.payload;
+          state.status = "succeed";
+          state.reduxdb[entity].isChildrenTree = isChildrenTree;
+          state.reduxdb[entity].documentsArray = documents;
+          state.reduxdb[entity].totalDocuments = totalDocuments;
+        }
+      )
       .addCase(fetchCrudDocuments.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
@@ -143,14 +163,17 @@ export const crudSlice = createSlice({
       .addCase(fetchCrudDocumentsInfiniteScroll.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(fetchCrudDocumentsInfiniteScroll.fulfilled, (state, action) => {
-        const { entity, documents, totalDocuments, isChildrenTree } = action.payload;
-        state.status = "succeed";
-        state.reduxdb[entity].isChildrenTree = isChildrenTree;
-        const prevDocuments = state.reduxdb[entity].documentsArray;
-        state.reduxdb[entity].documentsArray = [...prevDocuments, documents];
-        state.reduxdb[entity].totalDocuments = totalDocuments + prevDocuments.length;
-      })
+      .addCase(
+        fetchCrudDocumentsInfiniteScroll.fulfilled,
+        (state, action: PayloadAction<SetCrudDocumentsPayload>) => {
+          const { entity, documents, totalDocuments, isChildrenTree = false } = action.payload;
+          state.status = "succeed";
+          state.reduxdb[entity].isChildrenTree = isChildrenTree;
+          const prevDocuments = state.reduxdb[entity].documentsArray;
+          state.reduxdb[entity].documentsArray = [...prevDocuments, ...documents];
+          state.reduxdb[entity].totalDocuments = totalDocuments + prevDocuments.length;
+        }
+      )
       .addCase(fetchCrudDocumentsInfiniteScroll.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
@@ -165,20 +188,17 @@ export const crudSlice = createSlice({
         state.status = "failed";
         state.error = action.error.message;
       })
-      .addCase(addCrudDocumentDataTable.fulfilled, (state, action) => {
-        const { entity, /* documentId, */ totalDocuments, documents } = action.payload;
-        state.status = "succeed";
-        // const newDocumentArray = documents;
-        // const newDocumentArray = state.reduxdb[entity].documentsArray.filter(
-        //   (document) => document._id !== documentId
-        // );
-        const prevDocuments = state.reduxdb[entity].documentsArray;
-        state.reduxdb[entity].totalDocuments = totalDocuments;
-        state.reduxdb[entity].documentsArray = documents;
-        // const { collection, data }: AddedCrudResponse = action.payload;
-        // state.status = 'succeed';
-        // (state.reduxdb[collection].documentsArray as Array<AllModels>).push(data);
-      })
+      .addCase(
+        addCrudDocumentDataTable.fulfilled,
+        (state, action: PayloadAction<SetCrudDocumentsPayload>) => {
+          const { entity, /* documentId, */ totalDocuments, documents } = action.payload;
+          state.status = "succeed";
+
+          // const prevDocuments = state.reduxdb[entity].documentsArray;
+          state.reduxdb[entity].totalDocuments = totalDocuments;
+          state.reduxdb[entity].documentsArray = documents;
+        }
+      )
       .addCase(addLinkedChildrenDocumentDataTable.pending, (state) => {
         state.status = "loading";
       })
@@ -186,20 +206,16 @@ export const crudSlice = createSlice({
         state.status = "failed";
         state.error = action.error.message;
       })
-      .addCase(addLinkedChildrenDocumentDataTable.fulfilled, (state, action) => {
-        const { entity, /* documentId, */ totalDocuments, documents } = action.payload;
-        state.status = "succeed";
-        // const newDocumentArray = documents;
-        // const newDocumentArray = state.reduxdb[entity].documentsArray.filter(
-        //   (document) => document._id !== documentId
-        // );
-        const prevDocuments = state.reduxdb[entity].documentsArray;
-        state.reduxdb[entity].totalDocuments = totalDocuments;
-        state.reduxdb[entity].documentsArray = documents;
-        // const { collection, data }: AddedCrudResponse = action.payload;
-        // state.status = 'succeed';
-        // (state.reduxdb[collection].documentsArray as Array<AllModels>).push(data);
-      })
+      .addCase(
+        addLinkedChildrenDocumentDataTable.fulfilled,
+        (state, action: PayloadAction<SetCrudDocumentsPayload>) => {
+          const { entity, /* documentId, */ totalDocuments, documents } = action.payload;
+          state.status = "succeed";
+
+          state.reduxdb[entity].totalDocuments = totalDocuments;
+          state.reduxdb[entity].documentsArray = documents;
+        }
+      )
       /**
        * UPDATE/MODIFY A DOCUMENT
        */
@@ -210,22 +226,23 @@ export const crudSlice = createSlice({
         state.status = "failed";
         state.error = action.error.message;
       })
-      .addCase(updateCrudDocument.fulfilled, (state, action) => {
-        const { entity, updatedDocument } = action.payload;
-        state.status = "succeed";
-        const updatedDocuments = state.reduxdb[entity].documentsArray.map((document) => {
-          if (document._id === updatedDocument._id) {
-            // update
-            return updatedDocument;
-          }
-          // return same
-          return document;
-        });
-        state.reduxdb[entity].documentsArray = updatedDocuments;
-        // if (state.reduxdb[entity].singleCrudDocument) {
-        state.reduxdb[entity].singleCrudDocument = updatedDocument;
-        // }
-      })
+      .addCase(
+        updateCrudDocument.fulfilled,
+        (state, action: PayloadAction<{ entity: FrontendEntity; updatedDocument: AllModels }>) => {
+          const { entity, updatedDocument } = action.payload;
+          state.status = "succeed";
+          const updatedDocuments = state.reduxdb[entity].documentsArray.map((document) => {
+            if (document._id === updatedDocument._id) {
+              return updatedDocument;
+            }
+            return document;
+          });
+          state.reduxdb[entity].documentsArray = updatedDocuments;
+          // if (state.reduxdb[entity].singleCrudDocument) {
+          state.reduxdb[entity].singleCrudDocument = updatedDocument;
+          // }
+        }
+      )
       /**
        * DELETE A DOCUMENT
        */
@@ -351,12 +368,11 @@ export const useCrudSliceStore = () => {
   };
 };
 // TODO: implement swr
-function useGetCrudWithSwr(entity: Entity) {}
 /** Returns Array of Documents of the entity: whole array of entity */
-const useCrudDocuments = <ModelType>(entity?: Entity): ModelType[] | [] =>
-  useAppSelector((state) => state.crud.reduxdb?.[entity || ""]?.documentsArray);
-// const useCrudDocuments = <ModelType>(entity?: Entity): ModelType[] =>
-//   useAppSelector((state) => state.crud.reduxdb?.[entity || '']?.documentsArray);
+// const useCrudDocuments = <ModelType>(entity?: FrontendEntity): ModelType[] | [] =>
+//   useAppSelector((state) => state.crud.reduxdb[entity || ""]?.documentsArray);
+const useCrudDocuments = <ModelType = MongooseBaseModel>(entity: FrontendEntity): ModelType[] =>
+  useAppSelector((state) => state.crud.reduxdb[entity].documentsArray) as ModelType[];
 
 /** returns string if api sent message */
 const useCrudMessage = () => useAppSelector((state) => state.crud.message);
@@ -368,19 +384,22 @@ const useCrudStatus = () => useAppSelector((state) => state.crud.status);
 const useCrudError = () => useAppSelector((state) => state.crud.error);
 
 /** total document selector for entity */
-const useTotalDocumentsCount = (entity?: Entity): number =>
+const useTotalDocumentsCount = (entity: FrontendEntity): number =>
   useAppSelector((state) => state.crud.reduxdb?.[entity || ""]?.totalDocuments || 0);
 
 /** if it has a parent returns true. ex- space instances can be either a parent or a child */
-const useIsChildrenTree = (entity?: Entity): boolean =>
-  useAppSelector((state) => state.crud.reduxdb?.[entity || ""]?.isChildrenTree);
+const useIsChildrenTree = (entity: FrontendEntity): boolean =>
+  useAppSelector((state) => state.crud.reduxdb[entity].isChildrenTree);
 
 /** Returns selected Document of the entity or if not selected returns null  */
-const useCrudDocument = <ModelType>(entity?: Entity): ModelType =>
-  useAppSelector((state) => state.crud.reduxdb?.[entity || ""]?.singleCrudDocument) || {};
+const useCrudDocument = <ModelType>(entity: FrontendEntity): ModelType =>
+  useAppSelector((state) => state.crud.reduxdb[entity].singleCrudDocument) as ModelType;
 /** Hook for selector. this time need do pass entity when initialize the hook. */
-export const useCrudSelectors = <ModelType = MongooseBaseModel>(entity?: Entity | null) => {
+export const useCrudSelectors = <ModelType = MongooseBaseModel>(entity: FrontendEntity) => {
   const crudDocuments = useCrudDocuments<ModelType>(entity);
+  // const crudDocuments = useAppSelector(
+  //   (state) => state.crud.reduxdb[entity]?.documentsArray
+  // ) as ModelType[];
   const crudMessage = useCrudMessage();
   const crudStatus = useCrudStatus();
   const crudError = useCrudError();

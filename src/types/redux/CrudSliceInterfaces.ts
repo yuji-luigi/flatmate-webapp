@@ -1,3 +1,4 @@
+import { AllModels } from "../models/allmodels";
 import { MongooseBaseModel } from "../models/mongoose-base-model";
 
 export const entities = [
@@ -37,19 +38,19 @@ export const singleEntities = {
 
 const sections = ["statistics", "posts", "home"] as const;
 
-export const frontendEntities = [...entities, ...sections] as const;
+export const frontendEntities = [...entities, ...sections, ...pseudoEntities] as const;
 export type Entity = (typeof entities)[number];
 
 export type FrontendEntity = (typeof frontendEntities)[number];
 
-export type TODO_MODEL = Record<string, any> & MongooseBaseModel;
+export type TODO_MODEL = MongooseBaseModel;
 
 export interface ReduxDbEntity {
   entity: Entity;
-  documentsArray: TODO_MODEL[];
+  documentsArray: AllModels[];
   totalDocuments: number;
   /** document */
-  singleCrudDocument: TODO_MODEL | null;
+  singleCrudDocument: AllModels | null;
   /** now leave this */
   isChildrenTree: boolean;
   /** _id of singleCrudDocuments  */
@@ -75,7 +76,7 @@ export interface Statistics {
       }[]
     | [];
 }
-export type Reduxdb = Record<FrontendEntity | string, ReduxDbEntity>;
+export type Reduxdb = Record<FrontendEntity, ReduxDbEntity>;
 
 export interface CrudState {
   reduxdb: Reduxdb;
@@ -110,3 +111,8 @@ export interface UseCrudSliceReturnTypes {
 }
 
 type CrudStatus = "idle" | "loading" | "succeed" | "failed";
+
+export type CrudSliceAction = {
+  entity: FrontendEntity;
+  documentId?: string;
+};
