@@ -29,10 +29,16 @@ const CrudPage = () => {
     /** fetch all the entity if not childrenpage */
     fetchCrudDocumentsWithPagination({ entity, query: paginationQuery });
   }, [paginationQuery, entity, query.parentId]);
-
+  return <div>hey</div>;
   return (
     <Page title={`Flatmates | ${entity}`}>
-      <Box style={{ display: "flex", flexDirection: "column", gap: "var(--flex-gap)" }}>
+      <Box
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "var(--flex-gap)",
+        }}
+      >
         <TableSectionHeader />
         <CrudDataTable />
         <CrudDrawerDefault />

@@ -50,7 +50,6 @@ const allFormFields: Record<string, FormFieldTypes[]> = {
   comments,
   fundRules,
   funds,
-
   instances,
   proposals,
   tags,

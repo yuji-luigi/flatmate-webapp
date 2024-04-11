@@ -1,10 +1,15 @@
 import { Icons } from "../data/icons/icons";
 import { toTitleCase } from "../lib/toTitleCase";
 import { SectionConfig } from "../types/data/json/sections-json";
-import { Entity, entities, singleEntities } from "../types/redux/CrudSliceInterfaces";
+import {
+  Entity,
+  entities,
+  pseudoEntities,
+  singleEntities,
+} from "../types/redux/CrudSliceInterfaces";
 
 const _sections = {
-  dataTable: entities.reduce(
+  dataTable: [...entities, ...pseudoEntities].reduce(
     (acc, entity) => {
       acc[entity] = {
         // key: entity,
@@ -14,7 +19,7 @@ const _sections = {
       };
       return acc;
     },
-    {} as Record<Entity, SectionConfig>
+    {} as Record<Entity | (typeof pseudoEntities)[number], SectionConfig>
   ),
 };
 

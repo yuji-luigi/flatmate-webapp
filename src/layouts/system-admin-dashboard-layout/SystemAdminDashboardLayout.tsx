@@ -71,7 +71,7 @@ const SystemAdminDashboardLayout = ({ children }: { children: ReactNode }) => {
         }}
       >
         <NavbarVertical />
-        <Box data-is-pen={isOpen} className={classes.contentWrapper}>
+        <Box data-is-pen={isOpen} className={`${classes.contentWrapper} dashboardContainer`}>
           {children}
         </Box>
       </Box>

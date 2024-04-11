@@ -30,6 +30,9 @@ export const singleEntities = {
   uploads: "upload",
   wallets: "wallet",
   events: "event",
+  inhabitants: "inhabitant",
+  property_managers: "property_manager",
+  maintainers: "maintainer",
 } as const;
 
 const sections = ["statistics", "posts", "home"] as const;
