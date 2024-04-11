@@ -48,6 +48,10 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
     router.replace(`${_PATH_FRONTEND.dashboard.root}?tab=${value}`);
   };
 
+  if (user?.loggedAs === "system_admin") {
+    router.replace(_PATH_FRONTEND.systemAdmin.root);
+  }
+
   return (
     <Tabs
       onChange={handleChangeTab}

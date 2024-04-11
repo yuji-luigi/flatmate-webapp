@@ -4,13 +4,13 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Head from "next/head";
 import Layout from "../../layouts";
 import axiosInstance, { AxiosMeResponse } from "../../utils/axios-instance";
-import { useCookieContext } from "../../context/CookieContext";
 import { useCrudSliceStore } from "../../redux/features/crud/crudSlice";
 import { PATH_AUTH } from "../../path/path-api";
 import { DashboardTabPanels } from "../../layouts/dashboard/sections-in-tabs/tabs/DashboardRootTabPanels";
 import { toTitleCase } from "../../lib/toTitleCase";
 import { MeUser } from "../../types/models/space-model";
 import useAuth from "../../../hooks/useAuth";
+import { _PATH_FRONTEND } from "../../path/path-frontend";
 
 const DashboardPage = ({ initialUser }: { initialUser: MeUser }) => {
   const { setCrudDocument, setCrudDocuments } = useCrudSliceStore();
@@ -70,6 +70,15 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     return {
       redirect: {
         destination: "/",
+        permanent: true,
+      },
+    };
+  }
+
+  if (user.loggedAs === "system_admin") {
+    return {
+      redirect: {
+        destination: _PATH_FRONTEND.systemAdmin.root,
         permanent: true,
       },
     };
