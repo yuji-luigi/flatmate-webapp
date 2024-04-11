@@ -10,14 +10,19 @@ interface props {
   other?: any;
 }
 
-const Page = forwardRef<void, props>(({ children, title = "", meta, ...other }, ref) => (
-  <>
-    <Head>
-      <title>{` Flatmates | ${title} `}</title>
-      {meta}
-    </Head>
-    <div {...other}>{children}</div>
-  </>
-));
+const Page = forwardRef<void, props>(({ children, title = "", meta, ...other }, ref) => {
+  const _title = ` Flatmates | ${title} `;
+  return (
+    <>
+      <Head>
+        <title>{_title}</title>
+        {meta}
+      </Head>
+      <main {...other}>{children}</main>
+    </>
+  );
+});
+
+Page.displayName = "Page";
 
 export default Page;
