@@ -13,6 +13,7 @@ import { Entity } from "../../types/redux/CrudSliceInterfaces";
 import { FormFieldTypes } from "../../types/general/data/data-table/form-field-type/formField-types";
 import classes from "../../styles/global-useStyles.module.css";
 import { useCurrentEntityContext } from "../../context/CurrentEntityContext";
+import useRouterWithCustomQuery from "../../hooks/useRouterWithCustomQuery";
 
 export function CrudDataTable({ overridingEntity }: { overridingEntity?: Entity }) {
   const ROWS_PER_PAGE = 10;
@@ -21,7 +22,9 @@ export function CrudDataTable({ overridingEntity }: { overridingEntity?: Entity 
 
   const [page, setPage] = useState(1);
   const { setPagination } = usePaginationContext();
-  const { currentEntity: entity } = useCurrentEntityContext();
+  const {
+    query: { entity },
+  } = useRouterWithCustomQuery();
   const { crudDocuments, totalDocumentsCount, crudStatus } = useCrudSelectors(entity);
 
   const sectionFormFields = formFields[entity as Entity];

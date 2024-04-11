@@ -12,15 +12,18 @@ import { useSimpleDisclosureCtx } from "../../../../hooks/useSimpleDisclosureCtx
 import { HeaderCreationModal } from "./HeaderCreationModal";
 import classes from "./HeaderCreationButton.module.css";
 import useAuth from "../../../../hooks/useAuth";
+import useRouterWithCustomQuery from "../../../hooks/useRouterWithCustomQuery";
 
 export function HeaderCreationButton() {
   const { user } = useAuth();
   const { close, open, opened } = useSimpleDisclosureCtx();
   const [modalType, setModalType] = useState<"threads" | "maintenances" | null>(null);
   const [section, setSection] = useState<SectionDataJsonWithRoles | null>(null);
-
+  const {
+    query: { entity },
+  } = useRouterWithCustomQuery();
   const { setSubmitting } = useCrudSliceStore();
-  const { submitting } = useCrudSelectors();
+  const { submitting } = useCrudSelectors(entity!);
   if (!user) return null;
   const handleOpenModal = (type: "threads" | "maintenances") => {
     const found = navConfigs[user.loggedAs].flatMap((json) =>

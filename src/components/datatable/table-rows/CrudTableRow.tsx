@@ -7,6 +7,7 @@ import { FormFieldTypes } from "../../../types/general/data/data-table/form-fiel
 import { useCurrentEntityContext } from "../../../context/CurrentEntityContext";
 import { MongooseBaseModel } from "../../../types/models/mongoose-base-model";
 import { Entity } from "../../../types/redux/CrudSliceInterfaces";
+import useRouterWithCustomQuery from "../../../hooks/useRouterWithCustomQuery";
 
 export function CrudTableRow({
   rowData,
@@ -22,11 +23,13 @@ export function CrudTableRow({
   const { selectCrudDocument } = useCrudSliceStore();
 
   /** get runtime value of the entity */
-  const { currentEntity: entity } = useCurrentEntityContext();
+  const {
+    query: { entity },
+  } = useRouterWithCustomQuery();
 
   useEffect(
     () => () => {
-      selectCrudDocument({ entity, document: null });
+      selectCrudDocument({ entity });
     },
     []
   );
