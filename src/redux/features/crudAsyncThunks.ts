@@ -8,6 +8,15 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { PATH_API, PATH_API_DATA_TABLE, PATH_API_DATA_TABLE_ROOT } from "../../path/path-api";
 import axiosInstance, { AxiosResData, uploadConfig } from "../../utils/axios-instance";
 import { UploadModel } from "../../types/models/upload-model";
+import {
+  AddCrudPayload,
+  DeleteCrudPayload,
+  DeleteLinkedChildrenPayload,
+  FetchCrudPayload,
+  FetchLinkedChildrenPayload,
+  UpdateCrudPayload,
+} from "../../types/redux/dispatch-args";
+import { AllModels, isAllModels } from "../../types/models/allmodels";
 
 interface MediaField {
   [key: string]: File[] | UploadModel[] | [];
@@ -179,19 +188,17 @@ export const addLinkedChildrenDocumentDataTable = createAsyncThunk(
 export const updateCrudDocument = createAsyncThunk(
   "crud/updateDocument",
   async ({ entity, updateData, documentId }: UpdateCrudPayload) => {
-    /** parentId ? then linkedChildren endpoint. else case update normally */
+    if (!isAllModels(updateData)) {
+      throw new Error("updatingData is not mongoose model");
+    }
     const endpoint = `${entity}/${documentId}`;
-    // const config = hasMedia(updateData.media) ? uploadConfig : {};
-    // const endpoint = !parentId
-    //   ? `${entity}/${documentId}`
-    //   : `/linkedChildren/${entity}/${parentId}`;
-    // eslint-disable-next-line no-param-reassign
-    updateData.media = undefined;
     const res = await axiosInstance.put(endpoint, updateData /* config */);
+    if (!isAllModels(res.data.data)) {
+      throw new Error("Data is not AllModels");
+    }
     const payload = {
-      // entity: res.data.collection,
       entity,
-      updatedDocument: res.data.data as Record<string, any>,
+      updatedDocument: res.data.data,
     };
     return payload;
   }
