@@ -24,7 +24,8 @@ const _sections = {
     {} as Record<FrontendEntity, SectionConfig>
   ),
 };
-
+// here mutate the object and set custom values
+_sections.dataTable.property_managers.title = "Property Managers";
 _sections.dataTable.users.importButton = "Import Users";
 
 export const sectionsJson = _sections;
