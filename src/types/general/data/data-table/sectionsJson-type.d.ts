@@ -1,20 +1,16 @@
 import { FormFieldTypes } from "./form-field-type/formField-types";
 
-interface SectionDataJson {
-  entity: string;
-  title: string;
-  subtitle: string;
-  title: string;
-  link: string;
-  createButton: string;
-  icon: string;
-  hide?: boolean;
-}
-[];
-interface SectionDataJsonWithRoles extends SectionDataJson {
-  roles: string[];
-}
-[];
+// interface SectionDataJson {
+//   entity: string;
+//   title: string;
+//   subtitle: string;
+//   title: string;
+//   link: string;
+//   createButton: string;
+//   icon: string;
+//   hide?: boolean;
+// }
+// [];
 
 interface a {
   roles: string[];

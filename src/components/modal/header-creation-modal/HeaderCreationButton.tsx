@@ -1,49 +1,46 @@
 import { Menu, ActionIcon } from "@mantine/core";
 
 import { useState } from "react";
-import { notifications } from "@mantine/notifications";
 import { Icons } from "../../../data/icons/icons";
-import { allSectionArrayWithRoles, navConfigs } from "../../../json/nav-config";
 
 import { FONT_SIZES } from "../../../lib/enums";
-import { useCrudSelectors, useCrudSliceStore } from "../../../redux/features/crud/crudSlice";
-import { SectionDataJsonWithRoles } from "../../../types/general/data/data-table/sectionsJson-type";
+import { useCrudSliceStore } from "../../../redux/features/crud/crudSlice";
 import { useSimpleDisclosureCtx } from "../../../../hooks/useSimpleDisclosureCtx";
 import { HeaderCreationModal } from "./HeaderCreationModal";
 import classes from "./HeaderCreationButton.module.css";
 import useAuth from "../../../../hooks/useAuth";
 import useRouterWithCustomQuery from "../../../hooks/useRouterWithCustomQuery";
+import { sectionsJson } from "../../../json/sectionsConfig";
+import { SectionConfig } from "../../../types/data/json/sections-json";
 
 export function HeaderCreationButton() {
   const { user } = useAuth();
   const { close, open, opened } = useSimpleDisclosureCtx();
   const [modalType, setModalType] = useState<"threads" | "maintenances" | null>(null);
-  const [section, setSection] = useState<SectionDataJsonWithRoles | null>(null);
+  const [section, setSection] = useState<SectionConfig | null>(null);
   const {
     query: { entity },
   } = useRouterWithCustomQuery();
   const { setSubmitting } = useCrudSliceStore();
-  const { submitting } = useCrudSelectors(entity!);
+  // const { submitting } = useCrudSelectors(entity!);
   if (!user) return null;
   const handleOpenModal = (type: "threads" | "maintenances") => {
-    const found = navConfigs[user.loggedAs].flatMap((json) =>
-      json.contents.find((content) => content.sectionKey === type)
-    );
-    setSection();
+    const found = sectionsJson.dataTable[type];
+    setSection(found);
     setModalType(type);
     open();
   };
-  const handleClose = () => {
-    close();
-    if (submitting) {
-      notifications.hide("submit");
-      notifications.show({
-        title: "Upload is cancelled",
-        message: "Upload cancelled because you closed a popup",
-      });
-    }
-    setSubmitting(false);
-  };
+  // const handleClose = () => {
+  //   close();
+  //   if (submitting) {
+  //     notifications.hide("submit");
+  //     notifications.show({
+  //       title: "Upload is cancelled",
+  //       message: "Upload cancelled because you closed a popup",
+  //     });
+  //   }
+  //   setSubmitting(false);
+  // };
 
   return (
     <>

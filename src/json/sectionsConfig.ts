@@ -3,13 +3,15 @@ import { toTitleCase } from "../lib/toTitleCase";
 import { SectionConfig } from "../types/data/json/sections-json";
 import {
   Entity,
+  FrontendEntity,
   entities,
+  frontendEntities,
   pseudoEntities,
   singleEntities,
 } from "../types/redux/CrudSliceInterfaces";
 
 const _sections = {
-  dataTable: [...entities, ...pseudoEntities].reduce(
+  dataTable: frontendEntities.reduce(
     (acc, entity) => {
       acc[entity] = {
         // key: entity,
@@ -19,7 +21,7 @@ const _sections = {
       };
       return acc;
     },
-    {} as Record<Entity | (typeof pseudoEntities)[number], SectionConfig>
+    {} as Record<FrontendEntity, SectionConfig>
   ),
 };
 

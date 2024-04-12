@@ -4,7 +4,6 @@ import { ActionCells } from "./ActionCells";
 import { TableCellDecorator } from "../TableCellDecorator";
 import { useCrudSliceStore } from "../../../redux/features/crud/crudSlice";
 import { FormFieldTypes } from "../../../types/general/data/data-table/form-field-type/formField-types";
-import { useCurrentEntityContext } from "../../../context/CurrentEntityContext";
 import { MongooseBaseModel } from "../../../types/models/mongoose-base-model";
 import { Entity } from "../../../types/redux/CrudSliceInterfaces";
 import useRouterWithCustomQuery from "../../../hooks/useRouterWithCustomQuery";
@@ -29,7 +28,7 @@ export function CrudTableRow({
 
   useEffect(
     () => () => {
-      selectCrudDocument({ entity });
+      entity && selectCrudDocument({ entity });
     },
     []
   );

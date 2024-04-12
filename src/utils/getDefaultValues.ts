@@ -5,7 +5,7 @@ import { _get, _set } from "./helpers/helper-functions";
 
 export function getDefaultValues(
   formFields: FormFieldTypes[],
-  crudDocument: any = {},
+  crudDocument?: any | null,
   parentId?: string
 ) {
   /** define defauldValueObj by reduce */
@@ -18,7 +18,7 @@ export function getDefaultValues(
      *  specifically when passing the crudDocument.
      *  to populate formFields.
      */
-    if (_get(crudDocument, path)) {
+    if (crudDocument && _get(crudDocument, path)) {
       console.log(path, crudDocument[path]);
       /** check if is a object  (field.type === select then fall into here.) */
       if (typeof crudDocument[path] === "object") {
@@ -66,11 +66,11 @@ export function getDefaultValues(
     // fallbackValues
     if (field.type === "attachment" || field.type === "image") {
       if (field.multi) {
-        obj.media = { ...obj.media, [path]: crudDocument[path] || [] };
+        obj.media = { ...obj.media, [path]: crudDocument?.[path] || [] };
         return obj;
       }
       // set id of the file
-      obj.media = { ...obj.media, [path]: crudDocument[path] || "" };
+      obj.media = { ...obj.media, [path]: crudDocument?.[path] || "" };
       return obj;
     }
     if (field.type === "checkbox-group-boolean") {

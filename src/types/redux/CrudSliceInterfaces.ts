@@ -17,6 +17,7 @@ export const entities = [
 ] as const;
 
 export const pseudoEntities = ["inhabitants", "property_managers", "maintainers"] as const;
+const sections = ["statistics", "posts", "home"] as const;
 
 export const singleEntities = {
   users: "user",
@@ -34,9 +35,10 @@ export const singleEntities = {
   inhabitants: "inhabitant",
   property_managers: "property_manager",
   maintainers: "maintainer",
+  statistics: "statistic",
+  posts: "post",
+  home: "home",
 } as const;
-
-const sections = ["statistics", "posts", "home"] as const;
 
 export const frontendEntities = [...entities, ...sections, ...pseudoEntities] as const;
 export type Entity = (typeof entities)[number];
