@@ -22,12 +22,12 @@ const BadgeWithToolTip = ({
   return (
     <Tooltip disabled={disabled} label={text} withArrow multiline>
       <Badge style={{ cursor: "pointer", paddingBlock: 16, ...style }}>
-        <Text className={classes.text} fw={300}>
-          <Box style={{ display: "flex", alignItems: "center" }}>
+        <Box style={{ display: "flex", alignItems: "center" }}>
+          <Text className={classes.text} fw={300}>
             {icon && <Box mr={4}>{icon}</Box>}
             {truncateString(text, textLength)}
-          </Box>
-        </Text>
+          </Text>
+        </Box>
       </Badge>
     </Tooltip>
   );
