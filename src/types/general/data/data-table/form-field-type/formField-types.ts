@@ -10,6 +10,7 @@ import React from "react";
 import { Sections } from "../../sections-type";
 
 import { BaseFormType } from "./base-form-type";
+import { FrontendEntity } from "../../../../redux/CrudSliceInterfaces";
 
 export type StaticOption = ComboboxItem & {
   icon?: (props?: TablerIconsProps) => JSX.Element;
@@ -32,7 +33,7 @@ type BaseSelectFormType = {
 
 export type SelectFormType = {
   type: "select";
-  _entity: Sections;
+  _entity: FrontendEntity;
   selectValues: Array<string>;
   /** query when fetch select options from server   */
   query?: Record<string, string | number | boolean>;
@@ -42,7 +43,7 @@ export type SelectFormType = {
 
 export type StaticSelectFormFieldType = {
   type: "static-select";
-  _entity?: "";
+  // _entity:FrontendEntity;
   options: StaticOption[];
 } & BaseFormType &
   BaseSelectFormType;

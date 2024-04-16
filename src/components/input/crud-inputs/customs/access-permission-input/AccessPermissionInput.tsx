@@ -21,7 +21,9 @@ export const AccessPermissionFormButton = ({ form, ...others }: Prop) => {
 
   useEffect(() => {
     fetchCrudDocuments({ entity: "roles" });
-    fetchCrudDocuments({ entity: "accessPermissions", queryObject: { user: selectedUser._id } });
+    if (selectedUser?._id) {
+      fetchCrudDocuments({ entity: "accessPermissions", queryObject: { user: selectedUser._id } });
+    }
     return () => {};
   }, []);
 

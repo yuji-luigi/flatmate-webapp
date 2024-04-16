@@ -12,13 +12,14 @@ import MaintainerList from "../../../sections/dashboard/maintainers_page/Maintai
 import { maintainersTableData } from "../../../json/dataTable/formfields/maintainersTableData";
 import { QueryFilterWeb } from "../../../components/datatable/filter/QueryFilterWeb";
 import { useCurrentEntityContext } from "../../../context/CurrentEntityContext";
+import useRouterWithCustomQuery from "../../../hooks/useRouterWithCustomQuery";
 
 const MaintainerPage = () => {
   const { query } = useRouter();
 
   const entity = "maintainers";
+  useRouterWithCustomQuery({ entity: "maintainers" });
   const { paginationQuery } = usePaginationContext();
-  useCurrentEntityContext(entity);
   const { fetchCrudDocumentsWithPagination } = useCrudSliceStore();
   formFields;
 
@@ -38,10 +39,10 @@ const MaintainerPage = () => {
   return (
     <Page title="Maintainers">
       <Stack>
-        <TableSectionHeader overridingEntity="maintainers" />
-        <QueryFilterWeb formFields={maintainersTableData} />
+        {/* <TableSectionHeader overridingEntity="maintainers" /> */}
+        {/* <QueryFilterWeb formFields={maintainersTableData} /> */}
         <MaintainerList entity={entity} />
-        <CrudDrawerDefault overridingEntity="maintainers" />
+        {/* <CrudDrawerDefault overridingEntity="maintainers" /> */}
       </Stack>
     </Page>
   );

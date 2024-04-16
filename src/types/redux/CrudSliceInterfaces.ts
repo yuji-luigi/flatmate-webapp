@@ -1,3 +1,4 @@
+import { access } from "fs";
 import { AllModels } from "../models/allmodels";
 import { MongooseBaseModel } from "../models/mongoose-base-model";
 
@@ -14,6 +15,8 @@ export const entities = [
   "uploads",
   "wallets",
   "events",
+  "roles",
+  "accessPermissions",
 ] as const;
 
 export const pseudoEntities = ["inhabitants", "property_managers", "maintainers"] as const;
@@ -21,6 +24,8 @@ const sections = ["statistics", "posts", "home"] as const;
 
 export const singleEntities = {
   users: "user",
+  accessPermissions: "accessPermission",
+  roles: "role",
   spaces: "space",
   maintenances: "maintenance",
   checks: "check",

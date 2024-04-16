@@ -10,6 +10,7 @@ import useTable, { getComparator } from "../../../../hooks/useTable";
 import { useFilter } from "../../../../hooks/useFilter";
 import { SpaceModel } from "../../../types/models/space-model";
 import classes from "./MaintainerList.module.css";
+import { FrontendEntity } from "../../../types/redux/CrudSliceInterfaces";
 /**
  * 1. fetch all the maintainers from database with redux.
  * 2. display all the maintainers in a card grid.
@@ -28,7 +29,7 @@ import classes from "./MaintainerList.module.css";
  * @returns
  */
 
-const MaintainerList = ({ entity }: { entity: Sections }) => {
+const MaintainerList = ({ entity }: { entity: FrontendEntity }) => {
   const { user } = useAuth();
   const { crudDocuments } = useCrudSelectors(entity);
   const { filters } = useFilter();
