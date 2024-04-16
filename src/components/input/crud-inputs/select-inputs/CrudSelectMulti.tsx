@@ -1,8 +1,8 @@
 import { MultiSelect } from "@mantine/core";
 import React from "react";
-import { UseFormReturnTypeCustom } from "../input_interfaces/useForm_interface";
-import { SelectFormType } from "../../../types/general/data/data-table/form-field-type/formField-types";
-import { useGetSelectOptions } from "../../../../hooks/form-related/useGetSelectOptions";
+import { UseFormReturnTypeCustom } from "../../input_interfaces/useForm_interface";
+import { SelectFormType } from "../../../../types/general/data/data-table/form-field-type/formField-types";
+import { useGetSelectOptions } from "../../../../../hooks/form-related/useGetSelectOptions";
 import classes from "../input-style.module.css";
 
 interface Prop {

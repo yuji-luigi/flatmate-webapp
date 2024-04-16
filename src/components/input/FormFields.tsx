@@ -3,17 +3,19 @@ import React, { useEffect } from "react";
 
 import CrudTextInput from "./crud-inputs/CrudTextInput";
 import CrudTextArea from "./crud-inputs/CrudTextArea";
-import CrudSelectMulti from "./crud-inputs/CrudSelectMulti";
-import CrudSelect from "./crud-inputs/CrudSelect";
+import CrudSelectMulti from "./crud-inputs/select-inputs/CrudSelectMulti";
+import CrudSelect from "./crud-inputs/select-inputs/CrudSelect";
 
 import { FormFieldTypes } from "../../types/general/data/data-table/form-field-type/formField-types";
 import CrudPasswordInput from "./crud-inputs/CrudTextInput copy";
 import CrudCheckbox from "./crud-inputs/CrudCheckbox";
-import { CrudSelectCheckboxGroup } from "./crud-inputs/CrudSelectCheckboxGroup";
+import { CrudSelectCheckboxGroup } from "./crud-inputs/select-inputs/CrudSelectCheckboxGroup";
 import { CrudBooleanCheckboxGroup } from "./crud-inputs/CrudBooleanCheckboxGroup";
 import UserRoleInput from "./custom-inputs/user-role-input/UserRoleInput";
 import { AccessPermissionFormButton } from "./crud-inputs/customs/access-permission-input/AccessPermissionInput";
 import { SpaceAutoSelect } from "./custom-inputs/SpaceAutoSelect";
+import DynamicSelectOptionHandler from "./crud-inputs/select-inputs/handler/DynamicSelectOptionHandler";
+import StaticSelectOptionHandler from "./crud-inputs/select-inputs/handler/StaticSelectOptionHandler";
 
 interface Props {
   formField: FormFieldTypes;
@@ -37,13 +39,15 @@ const FormFields = ({ formField, form, ...others }: Props) => {
     case "text-area":
       return <CrudTextArea form={form} formField={formField} {...others} />;
     case "select":
-      return formField.multi ? (
-        <CrudSelectMulti form={form} formField={formField} {...others} />
-      ) : (
-        <CrudSelect form={form} formField={formField} {...others} />
-      );
+      return <DynamicSelectOptionHandler form={form} formField={formField} {...others} />;
+    // return formField.multi ? (
+    //   <CrudSelectMulti form={form} formField={formField} {...others} />
+    // ) : (
+    // <CrudSelect form={form} formField={formField} {...others} />
+    // );
     case "static-select":
-      return <CrudSelect form={form} formField={formField} {...others} />;
+      return <StaticSelectOptionHandler form={form} formField={formField} {...others} />;
+    // return <CrudSelect form={form} formField={formField} {...others} />;
     case "checkbox":
       return <CrudCheckbox form={form} formField={formField} {...others} />;
     case "checkbox-group-select":
