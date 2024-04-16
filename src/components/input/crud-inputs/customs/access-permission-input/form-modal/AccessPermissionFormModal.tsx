@@ -1,13 +1,9 @@
-import { Modal, Tabs, Box, Text, ModalHeader } from "@mantine/core";
+import { Modal, Box, Text } from "@mantine/core";
 import { UseFormReturnType } from "@mantine/form";
 import { Icons } from "../../../../../../data/icons/icons";
-import {
-  useCrudSelectors,
-  useCrudSliceStore,
-} from "../../../../../../redux/features/crud/crudSlice";
+import { useCrudSelectors } from "../../../../../../redux/features/crud/crudSlice";
 import {
   RoleModel,
-  Role,
   SpaceModel,
   AccessPermissionModel,
 } from "../../../../../../types/models/space-model";
@@ -15,9 +11,6 @@ import SpaceSelectInput from "../../../../custom-inputs/SpaceSelectInput";
 import { TabList } from "../../../../../tab/TabList";
 import AddRoleButton from "../add-role-button/AddRoleButton";
 import { PermissionsArraySwitches } from "../permissions-form/PermissionsArraySwitches";
-import { AccCtrlSpaceChips } from "../space-chip/AccCtrlSpaceChips";
-import { SubmitByRoleButton } from "../submit-buttons/SubmitByRoleButton";
-import classes from "../AccessPermissionInput.module.css";
 import { useItemSlice } from "../../../../../../redux/features/crud/selectedItemSlice";
 import { useLocale } from "../../../../../../../hooks/useLocale";
 

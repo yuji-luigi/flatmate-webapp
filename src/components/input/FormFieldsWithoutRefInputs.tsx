@@ -2,14 +2,15 @@ import { UseFormReturnType } from "@mantine/form";
 
 import CrudTextInput from "./crud-inputs/CrudTextInput";
 import CrudTextArea from "./crud-inputs/CrudTextArea";
-import CrudSelectMulti from "./crud-inputs/CrudSelectMulti";
-import CrudSelect from "./crud-inputs/CrudSelect";
+import CrudSelectMulti from "./crud-inputs/select-inputs/CrudSelectMulti";
+import CrudSelect from "./crud-inputs/select-inputs/CrudSelect";
 
 import { FormFieldTypes } from "../../types/general/data/data-table/form-field-type/formField-types";
 import CrudPasswordInput from "./crud-inputs/CrudTextInput copy";
 import CrudCheckbox from "./crud-inputs/CrudCheckbox";
-import { CrudSelectCheckboxGroup } from "./crud-inputs/CrudSelectCheckboxGroup";
+import { CrudSelectCheckboxGroup } from "./crud-inputs/select-inputs/CrudSelectCheckboxGroup";
 import { CrudBooleanCheckboxGroup } from "./crud-inputs/CrudBooleanCheckboxGroup";
+
 interface Props {
   formField: FormFieldTypes;
   // initialValues: Record<string, any>;
