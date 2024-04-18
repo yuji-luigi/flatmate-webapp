@@ -31,9 +31,12 @@
   --opacity-card: 0.85;
   --font-size-title: 32px;
   --font-size-subtitle: 26px;
+  --font-size-section-title: 28px;
+  --font-size-section-subtitle: 20px;
   --liner-gradient-light: linear-gradient(rgba(100, 100, 100, 0.5), rgba(100, 100, 100, 1));
   --liner-gradient-dark: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
   --font-weight-title: 900;
+  --font-weight-section-title: 700;
 
   --padding-main: 40px 0;
 
@@ -189,11 +192,6 @@ ul {
   margin: 0;
   padding: 0;
   list-style: none;
-}
-
-.title {
-  font-size: var(--font-size-title);
-  font-weight: var(--font-weight-title);
 }
 
 .columnFlex {
@@ -451,8 +449,16 @@ ul {
   font-size: var(--font-size-title);
   font-weight: var(--font-weight-title);
 }
+
 .page-subtitle {
   font-size: var(--font-size-subtitle);
+}
+
+.section-title {
+  font-size: var(--font-size-section-title);
+}
+.section-subtitle {
+  font-size: var(--font-size-section-subtitle);
 }
 
 .image-cover {

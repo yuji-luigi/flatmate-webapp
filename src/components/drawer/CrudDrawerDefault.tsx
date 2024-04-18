@@ -24,7 +24,7 @@ import { FormFieldTypes } from "../../types/general/data/data-table/form-field-t
 import classes from "./CrudDrawerDefault.module.css";
 import useAuth from "../../../hooks/useAuth";
 import { Entity } from "../../types/redux/CrudSliceInterfaces";
-import { sectionsJson } from "../../json/sectionsConfig";
+import { sectionsJson } from "../../json/section-config/sectionsConfig";
 import useRouterWithCustomQuery from "../../hooks/useRouterWithCustomQuery";
 
 export function CrudDrawerDefault({ overridingEntity }: { overridingEntity?: Entity }) {

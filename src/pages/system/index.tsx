@@ -5,13 +5,18 @@ import SystemAdminDashboardLayout from "../../layouts/system-admin-dashboard-lay
 import axiosInstance from "../../utils/axios-instance";
 import { _PATH_API } from "../../path/path-api";
 import useAuth from "../../../hooks/useAuth";
+import { SystemTop } from "../../sections/system";
+import { useCrudSliceStore } from "../../redux/features/crud/crudSlice";
 
 const SystemAdminHome = () => {
   const { user } = useAuth();
+  const { fetchCrudDocuments } = useCrudSliceStore();
   useEffect(() => {
-    console.log(user?.loggedAs);
+    fetchCrudDocuments({ entity: "property_managers" });
+    fetchCrudDocuments({ entity: "maintainers" });
+    fetchCrudDocuments({ entity: "inhabitants" });
   }, []);
-  return <div>index</div>;
+  return <SystemTop />;
 };
 
 SystemAdminHome.getLayout = function getLayout(page: ReactElement) {

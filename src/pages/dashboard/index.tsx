@@ -35,6 +35,7 @@ const DashboardPage = ({ initialUser }: { initialUser: MeUser }) => {
   };
   const role = initialUser.loggedAs;
   const title = `Flatmates© | ${toTitleCase(role)}`;
+
   return (
     <>
       <Head>
@@ -75,14 +76,14 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     };
   }
 
-  if (user.loggedAs === "system_admin") {
-    return {
-      redirect: {
-        destination: _PATH_FRONTEND.systemAdmin.root,
-        permanent: true,
-      },
-    };
-  }
+  // if (user.loggedAs === "system_admin") {
+  //   return {
+  //     redirect: {
+  //       destination: _PATH_FRONTEND.systemAdmin.root,
+  //       permanent: true,
+  //     },
+  //   };
+  // }
 
   return {
     props: {

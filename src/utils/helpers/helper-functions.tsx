@@ -6,6 +6,7 @@ import { PATH_API } from "../../path/path-api";
 import { MixedMediaType, UploadingMediaType } from "../../types/data/media/media-types";
 import { Sections, isSection, sectionsArray } from "../../types/general/data/sections-type";
 import { AllModels } from "../../types/models/mongoose-models";
+import { FrontendEntity } from "../../types/redux/CrudSliceInterfaces";
 import axiosInstance from "../axios-instance";
 
 type ALotOfNumbers = number;
@@ -130,7 +131,7 @@ export const convertToSelectItems = (mongooseDocuments: Array<any>, label: strin
 export function getEntityFromUrl(
   url: string = window.location.pathname,
   keyword: string = "dashboard"
-): Sections {
+): FrontendEntity {
   const regex = new RegExp(`${keyword}\\/(\\w+)`);
   const str = regex.exec(url);
   let match = regex.exec(url)?.[1];
@@ -139,10 +140,8 @@ export function getEntityFromUrl(
     return match;
   }
   // return "maintenances";
-  console.log({ url });
-  console.log({ keyword });
-  console.log({ match });
-  throw new Error("entity is not valid. getEntityFromUrl");
+  console.error("invalid Entity from url", url, keyword, match, str, regex, isSection(match));
+  return "maintainers";
 }
 
 export function getWordNextFromUrl(url = window.location.pathname, keyword = "dashboard") {

@@ -10,7 +10,7 @@ import { HeaderCreationModal } from "./HeaderCreationModal";
 import classes from "./HeaderCreationButton.module.css";
 import useAuth from "../../../../hooks/useAuth";
 import useRouterWithCustomQuery from "../../../hooks/useRouterWithCustomQuery";
-import { sectionsJson } from "../../../json/sectionsConfig";
+import { sectionsJson } from "../../../json/section-config/sectionsConfig";
 import { SectionConfig } from "../../../types/data/json/sections-json";
 
 export function HeaderCreationButton() {

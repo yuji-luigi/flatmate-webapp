@@ -15,6 +15,7 @@ const SystemAdminDashboardLayout = ({ children }: { children: ReactNode }) => {
   // const { setCurrentTab, currentTab } = useTabContext()
   const { isOpen } = useLayoutContext();
   const { user, isInitialized } = useAuth();
+  console.log(isInitialized);
   const router = useRouterWithCustomQuery();
   const [currentTab, setCurrentTab] = useState<string | null>(
     (router.query.tab as string) || "dashboard"
@@ -83,23 +84,18 @@ const SimpleLayout = () => {
   const { currentSpace } = useCookieContext();
   const { user } = useAuth();
   const { isOpen, closeBar } = useLayoutContext();
-  const isMediaScreen = useMediaQuery("(max-width: 750px)");
   const isSuperAdmin = user?.isSuperAdmin;
-  const chooseText = isSuperAdmin ? "Organization" : "Space";
 
-  const chooseHref = "";
   return (
     <Box
       className={`${classes.pageContent} ${classes.bg}`}
       style={{
-        // paddingTop: 55,
         backgroundImage: `url(${currentSpace?.image})`,
       }}
     >
       <nav className={`${classesNav.navbar} nav-bar-vertical`} data-show="true" data-hidden="false">
         <ScrollArea>
           <div className={classesNav.navbarMain}>
-            {/* <ProfilePopover /> */}
             <Divider className={classesNav.divider} />
           </div>
           <Stack>

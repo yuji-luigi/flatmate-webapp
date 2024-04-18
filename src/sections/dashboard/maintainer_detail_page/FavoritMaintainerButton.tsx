@@ -14,13 +14,13 @@ import { Icons } from "../../../data/icons/icons";
 import LoadingScreen from "../../../components/screen/LoadingScreen";
 
 export const FavoriteMaintainerButton = ({ onClick }: { onClick: () => void }) => {
-  const _entity = getEntityFromUrl();
+  const _entity = "maintainers";
   const { t } = useLocale();
   const [isLoading, setIsLoading] = useState(false);
   const { setCrudDocument: setMaintainer } = useCrudSliceStore();
   const { crudDocument: maintainer } = useCrudSelectors<MaintainerModel>(_entity);
   const { currentSpace } = useCookieContext();
-  const hasSpace = maintainer.spaces?.map((s) => s._id).includes(currentSpace?._id || "");
+  const hasSpace = maintainer?.spaces?.map((s) => s._id).includes(currentSpace?._id || "");
   const { openConfirmModal } = useCustomModalContext();
 
   const handleAddRemoveFromSpace = async () => {

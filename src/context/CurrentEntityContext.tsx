@@ -36,5 +36,6 @@ export const useCurrentEntityContext = (initialEntity?: FrontendEntity) => {
       setCurrentEntity(initialEntity);
     }
   }, [urlEntity, initialEntity]);
+  console.log({ currentEntityProvider: currentEntity });
   return { currentEntity, setCurrentEntity };
 };

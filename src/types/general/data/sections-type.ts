@@ -41,6 +41,7 @@ export type Sections = Entity;
 //   "",
 // ] as const;
 
-export function isSection(section: string): section is Entity {
+export function isSection(section?: string): section is Entity {
+  if (!section) return false;
   return entities.includes(section as Sections);
 }

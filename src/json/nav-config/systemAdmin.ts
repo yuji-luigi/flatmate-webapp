@@ -13,7 +13,7 @@ export const systemAdminNavConfig: NavConfig[] = [
       },
       {
         title: "Maintainer",
-        link: _PATH_FRONTEND.systemAdmin.dataTable.maintainers.root,
+        link: _PATH_FRONTEND.systemAdmin["card-list"].maintainers.root,
         icon: "IconShovel",
       },
       {

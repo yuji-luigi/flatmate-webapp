@@ -51,9 +51,11 @@ const Layout = ({
     <AuthGuard>
       {/* <CookieContextProvider> */}
       <TabContextProvider>
-        <DashboardLayout>
-          <Box className="dashboardContainer">{children}</Box>
-        </DashboardLayout>
+        <ClientProvider>
+          <DashboardLayout>
+            <Box className="dashboardContainer">{children}</Box>
+          </DashboardLayout>
+        </ClientProvider>
       </TabContextProvider>
       {/* </CookieContextProvider> */}
     </AuthGuard>

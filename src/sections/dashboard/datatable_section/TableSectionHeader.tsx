@@ -7,7 +7,7 @@ import classes from "../../../styles/global-useStyles.module.css";
 import { CrudTableButtons } from "./components/CrudTableButtons";
 import { Entity } from "../../../types/redux/CrudSliceInterfaces";
 import useAuth from "../../../../hooks/useAuth";
-import { sectionsJson } from "../../../json/sectionsConfig";
+import { sectionsJson } from "../../../json/section-config/sectionsConfig";
 import useRouterWithCustomQuery from "../../../hooks/useRouterWithCustomQuery";
 
 function instanceOfParentDataInterface(object: any): object is ParentDataInterface {

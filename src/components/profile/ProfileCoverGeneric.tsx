@@ -29,6 +29,7 @@ import { MaintainerModel } from "../../types/models/maintainer-model";
 import classes from "./ProfileCoverGeneric.module.css";
 import { NOTIFICATIONS } from "../../data/showNofification/notificationObjects";
 import { Entity } from "../../types/redux/CrudSliceInterfaces";
+import useRouterWithCustomQuery from "../../hooks/useRouterWithCustomQuery";
 
 export interface CoverDataProp {
   _id?: string;
@@ -54,7 +55,8 @@ const ProfileCoverGeneric = ({
   formFields?: FormFieldTypes[];
   style?: MantineStyleProp;
 }) => {
-  const { documentId } = useRouter().query;
+  const { query } = useRouterWithCustomQuery();
+  return <div>{query.entity}</div>;
   const _entity = entity || (getEntityFromUrl() as Entity);
   const { updateCrudDocument } = useCrudSliceStore();
   const { colorScheme } = useMantineColorScheme();

@@ -187,6 +187,8 @@ function AuthProvider({ children, initialUser }: { children: ReactNode; initialU
     });
   };
 
+  console.log(`JWTContext: isInitialized: ${state.isInitialized}`);
+
   return (
     <AuthContext.Provider
       value={{

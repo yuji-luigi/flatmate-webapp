@@ -17,7 +17,7 @@ export const DashboardTopHeader = (props: DashboardTopHeaderProps) => {
         <Text component="h2" size="lg" tt="uppercase" fw={800}>
           {header}
         </Text>
-        <Text component="p" size="xs">
+        <Text component="p" size="md">
           {subHeader}
         </Text>
       </Group>

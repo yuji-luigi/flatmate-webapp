@@ -12,7 +12,6 @@ import { useCrudSelectors } from "../../redux/features/crud/crudSlice";
 import { Entity } from "../../types/redux/CrudSliceInterfaces";
 import { FormFieldTypes } from "../../types/general/data/data-table/form-field-type/formField-types";
 import classes from "../../styles/global-useStyles.module.css";
-import { useCurrentEntityContext } from "../../context/CurrentEntityContext";
 import useRouterWithCustomQuery from "../../hooks/useRouterWithCustomQuery";
 
 export function CrudDataTable({ overridingEntity }: { overridingEntity?: Entity }) {

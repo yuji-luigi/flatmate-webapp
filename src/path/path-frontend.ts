@@ -52,19 +52,21 @@ type RegularPath = { root: string; byId: (id: string) => string };
 type EntityPath = Record<Entity | (typeof pseudoEntities)[number], RegularPath>;
 
 const SYSTEM_ADMIN = "/system";
-const entityPath = [...entities, ...pseudoEntities].reduce((acc, entity) => {
-  acc[entity] = {
-    root: `${SYSTEM_ADMIN}/dataTable/${entity}`,
-    byId: (id: string) => `${SYSTEM_ADMIN}/${entity}/${id}`,
-  };
-  return acc;
-}, {} as EntityPath);
+const entityPath = (path: string) =>
+  [...entities, ...pseudoEntities].reduce((acc, entity) => {
+    acc[entity] = {
+      root: `${SYSTEM_ADMIN}/${path}/${entity}`,
+      byId: (id: string) => `${SYSTEM_ADMIN}/${entity}/${id}`,
+    };
+    return acc;
+  }, {} as EntityPath);
 
 export const _PATH_FRONTEND = {
   pathAfterLogin: PATH_AFTER_LOGIN,
   systemAdmin: {
     root: SYSTEM_ADMIN,
-    dataTable: entityPath,
+    dataTable: entityPath("dataTable"),
+    "card-list": entityPath("card-list"),
   },
   dashboard: {
     root: "/dashboard",
