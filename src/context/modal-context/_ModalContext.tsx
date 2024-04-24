@@ -1,4 +1,5 @@
 import { createContext, ReactNode, useCallback, useContext, useState } from "react";
+import { set } from "nprogress";
 import { _ModalContextStates, ModalDataTypes } from "../../types/modal/modal-context-type";
 
 const defaultModalValues: ModalDataTypes = {
@@ -27,7 +28,7 @@ export const _ModalContext = createContext<_ModalContextStates>({
 
 const useStore = () => {
   const [isOpenModal, setIsModalOpen] = useState<boolean>(false);
-  const [modalData, setModals] = useState<ModalDataTypes>(defaultModalValues);
+  const [modalData, setModalData] = useState<ModalDataTypes>(defaultModalValues);
 
   // Function to open a confirm modal
   const openConfirmModal = useCallback(
@@ -35,34 +36,44 @@ const useStore = () => {
       params: // ...otherProps
       ModalDataTypes
     ) => {
+      const modalId = handleSetModalProps(params);
       setIsModalOpen(true);
-      // Generate a unique modal ID
-      const modalId = Math.random().toString(36).substr(2, 9);
-
-      const newModalValues: ModalDataTypes = {
-        // id: modalId,
-        centered: true,
-        // style: {},
-        // labels: {},
-        ...params,
-      };
-
-      // Add the modal to the modalData array
-      setModals(newModalValues);
-      // setModals(modal);
-
-      // Return the modal ID for future reference
       return modalId;
     },
     []
   );
+  const handleSetModalProps = useCallback(
+    (
+      params: // ...otherProps
+      ModalDataTypes
+    ) => {
+      const modalId = Math.random().toString(36).substr(2, 9);
+      const newModalValues: ModalDataTypes = {
+        centered: true,
+        ...params,
+      };
+
+      setModalData(newModalValues);
+
+      return modalId;
+    },
+    []
+  );
+
+  const handleOpenModal = (modalProps?: ModalDataTypes) => {
+    if (modalProps) {
+      setModalData(modalProps);
+    }
+    setIsModalOpen(true);
+  };
+
   return {
     modalData,
     openConfirmModal,
     isOpenModal,
     toggleOpenModal: () => setIsModalOpen(!isOpenModal),
     closeModal: () => setIsModalOpen(false),
-    openModal: () => setIsModalOpen(true),
+    openModal: handleOpenModal,
   };
 };
 

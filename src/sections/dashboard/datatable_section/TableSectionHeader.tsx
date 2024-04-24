@@ -9,6 +9,7 @@ import { Entity } from "../../../types/redux/CrudSliceInterfaces";
 import useAuth from "../../../../hooks/useAuth";
 import { sectionsJson } from "../../../json/section-config/sectionsConfig";
 import useRouterWithCustomQuery from "../../../hooks/useRouterWithCustomQuery";
+import { CrudTableButtonController } from "./components/CrudTableButtonController";
 
 function instanceOfParentDataInterface(object: any): object is ParentDataInterface {
   return "name" in object;
@@ -60,7 +61,8 @@ export function TableSectionHeader({
           </Text>
           <BreadcrumbsCustom />
         </Stack>
-        <CrudTableButtons entity={entity} section={section} />
+        <CrudTableButtonController entity={entity} section={section} />
+        {/* <CrudTableButtons entity={entity} section={section} /> */}
       </Group>
       {children}
     </>

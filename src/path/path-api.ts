@@ -1,4 +1,5 @@
 import { Role } from "../types/models/space-model";
+import { FrontendEntity } from "../types/redux/CrudSliceInterfaces";
 
 export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 export type GetPathFunc = (path: string) => string;
@@ -142,6 +143,7 @@ export const _PATH_API = {
     updateById: (_id: string) => byId(PATH_API.users, _id),
     onBoarding: (_id: string) => `${PATH_API.users}/${_id}/on-boarding`,
     getAuthToken: (_id: string) => `${PATH_API.users}/${_id}/${PATH_API.authTokens}`,
+    invite: (entity: FrontendEntity) => `${PATH_API.users}/invite/${entity}`,
   },
 
   notifications: {

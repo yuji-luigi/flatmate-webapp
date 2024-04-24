@@ -59,6 +59,9 @@ export const SystemAdminSwitch = (props: SystemAdminNavProps) => {
     }
   };
   // TODO: disable when isSubmitting/isLoading.
+  if (!currentSpace) {
+    return null;
+  }
   return (
     <Stack align="start">
       <p>{t("Management")}</p>

@@ -1,5 +1,4 @@
 import { ReactElement, useEffect } from "react";
-import { useRouter } from "next/router";
 import { Box } from "@mantine/core";
 import SystemAdminDashboardLayout from "../../../../layouts/system-admin-dashboard-layout/SystemAdminDashboardLayout";
 import Page from "../../../../components/Page";
@@ -7,11 +6,9 @@ import useRouterWithCustomQuery from "../../../../hooks/useRouterWithCustomQuery
 import { CrudDataTable } from "../../../../components/datatable/CrudDataTable";
 import { CrudDrawerDefault } from "../../../../components/drawer/CrudDrawerDefault";
 import { TableSectionHeader } from "../../../../sections/dashboard/datatable_section/TableSectionHeader";
-import { useCurrentEntityContext } from "../../../../context/CurrentEntityContext";
 import { usePaginationContext } from "../../../../context/PaginationContext";
 import { useGetCrudDocuments } from "../../../../hooks/useGetCrudDocuments";
 import { useCrudSliceStore } from "../../../../redux/features/crud/crudSlice";
-import Entity from "../../../dashboard/[entity]";
 
 type SystemDashboardPageProps = {
   getLayout: (page: ReactElement) => ReactElement;

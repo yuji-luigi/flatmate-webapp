@@ -25,6 +25,7 @@ export type SectionConfig = {
   title: string;
   subtitle: string;
   createButton: string;
+  createButtonType?: string;
   importButton?: string;
   hide?: boolean;
 };

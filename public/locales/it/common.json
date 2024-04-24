@@ -63,5 +63,6 @@
 	"Description": "Descrizione",
 	"Is Maintenance": "È Manutenzione",
 	"From": "Dal",
-	"To": "Al"
+	"To": "Al",
+	"Email is required": "Email è richiesta"
 }

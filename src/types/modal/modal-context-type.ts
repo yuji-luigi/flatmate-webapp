@@ -6,7 +6,7 @@ import { AllModels } from "../models/allmodels";
 export type _ModalContextStates = {
   isOpenModal: boolean;
   closeModal: () => void;
-  openModal: () => void;
+  openModal: (modalProps: ModalDataTypes) => void;
   modalData: ModalDataTypes;
   toggleOpenModal: (isOpenModal: boolean) => void;
   openConfirmModal: (confirmModalProps: ModalDataTypes) => void;

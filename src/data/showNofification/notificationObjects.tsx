@@ -5,6 +5,31 @@ type ErrorArgs = {
   ms?: number;
   id?: string;
 };
+
+export const ERROR_GENERAL = {
+  // id: args.id,
+  title: "Error",
+  color: "red",
+  icon: <Icons.alert />,
+  message: "Something went wrong",
+  autoClose: 2000,
+};
+
+export const LOADING_GENERAL = {
+  id: "loading-general",
+  title: "Loading",
+  message: "Finishing operation...",
+  color: "blue",
+  loading: true,
+};
+
+export const SUCCESS_GENERAL = {
+  title: "Success",
+  message: "operation Success",
+  color: "green",
+  icon: <Icons.check stroke="green" />,
+};
+
 export const constructErrorNotificationData = (
   data?: any,
   ms: number = 1000,
@@ -23,38 +48,22 @@ export const constructErrorNotificationData = (
 export const NOTIFICATIONS = {
   LOADING: {
     email: {
+      ...LOADING_GENERAL,
       id: "email-submit",
-      title: "Loading",
       message: "Email sending...",
-      color: "blue",
-      // autoClose: 700,
-      loading: true,
     },
     uploading: {
+      ...LOADING_GENERAL,
       id: "uploading",
       title: "Loading",
       message: "Uploading...",
-      color: "blue",
-      // autoClose: 700,
-      loading: true,
     },
-    general: {
-      id: "loading-general",
-      title: "Loading",
-      message: "Finishing operation...",
-      color: "blue",
-      // autoClose: 700,
-      loading: true,
-    },
+    general: LOADING_GENERAL,
   },
   SUCCESS: {
-    generic: {
-      title: "Success",
-      message: "operation Success",
-      color: "green",
-      icon: <Icons.check stroke="green" />,
-    },
+    generic: SUCCESS_GENERAL,
     email: {
+      ...SUCCESS_GENERAL,
       title: "Success",
       message: "Email sent",
       color: "green",
@@ -68,12 +77,8 @@ export const NOTIFICATIONS = {
         id: "error",
       }
     ) => ({
-      id: args.id,
-      title: "Error",
-      color: "red",
-      icon: <Icons.alert />,
-      message: args?.data?.message || args.data || "Something went wrong",
-      autoClose: args.ms,
+      ...ERROR_GENERAL,
+      ...args,
     }),
   },
 };
