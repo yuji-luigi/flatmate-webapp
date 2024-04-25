@@ -12,6 +12,8 @@ export function ModalRootCustom() {
   let modalContent;
 
   switch (modalData.type) {
+    case "headless":
+      return modalData.children;
     case "custom":
       modalContent = <CustomModal modalData={modalData} />;
       break;
@@ -31,8 +33,11 @@ export function ModalRootCustom() {
       withinPortal={withinPortal}
       centered={modalData.centered}
       onClose={close}
+      size={modalData.size || "lg"}
       title={modalData.title}
       classNames={{
+        // content: "modalContent",
+        // root: "modalRoot",
         title: "modalTitle",
         header: "modalHeader",
         body: "modalBody",
@@ -48,7 +53,7 @@ function LoadingModal() {
   return (
     <Modal
       fullScreen
-      opened={modalData.opened}
+      opened={opened}
       withinPortal={modalData.withinPortal}
       centered={modalData.centered}
       onClose={close}

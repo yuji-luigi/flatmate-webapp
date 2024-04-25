@@ -8,7 +8,7 @@ import {
   FormFieldTypes,
   UploadFormFieldType,
 } from "../../types/general/data/data-table/form-field-type/formField-types";
-import { Entity } from "../../types/redux/CrudSliceInterfaces";
+import { Entity, FrontendEntity } from "../../types/redux/CrudSliceInterfaces";
 
 interface Props {
   form: UseFormReturnTypeCustom;
@@ -18,7 +18,7 @@ interface Props {
    *  need to pass down from drawer.
    * because there is a case that I am using override entity
    */
-  entity: Entity;
+  entity: FrontendEntity;
 }
 function CreationToolBar({ form, formFields, submitButton, entity }: Props) {
   const uploadFormFields = formFields.filter(

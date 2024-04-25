@@ -7,8 +7,8 @@ import { UserByUserType } from "../../types/models/user-by-user-type";
 
 export const SystemTop = () => {
   const { crudDocuments: maintainers } = useCrudSelectors<UserByUserType>("maintainers");
-  const { crudDocuments: propertyManagers } = useCrudSelectors<UserByUserType>("property_managers");
-  const { crudDocuments: inhabitants } = useCrudSelectors<UserByUserType>("inhabitants");
+  const { crudDocuments: propertyManagers } = useCrudSelectors<UserByUserType>("property_manager");
+  const { crudDocuments: inhabitant } = useCrudSelectors<UserByUserType>("inhabitant");
   const { t } = useLocale();
   return (
     <div className="column-flex">
@@ -22,7 +22,7 @@ export const SystemTop = () => {
         {t("Property managers")}: {propertyManagers?.length}
       </Text>
       <Text>
-        {t("Inhabitants")}: {inhabitants?.length}
+        {t("Inhabitants")}: {inhabitant?.length}
       </Text>
       <Text>
         {t("Miantainers")}: {maintainers?.length}

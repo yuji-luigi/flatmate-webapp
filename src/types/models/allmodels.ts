@@ -12,7 +12,7 @@ import { MongooseBaseModel } from "./mongoose-base-model";
 //   | UserSettingModel
 //   | WalletModel
 //   | Record<string, unknown>;
-export type AllModels = MongooseBaseModel;
+export type AllModels = MongooseBaseModel | Record<string, any>;
 
 export function isAllModels(arg: any): arg is AllModels {
   return arg && arg._id; /* && arg.createdAt && arg.updatedAt; */

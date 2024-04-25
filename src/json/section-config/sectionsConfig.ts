@@ -9,7 +9,7 @@ import { OptionalRecord } from "../../types/utils/OptionalRecord";
 import { property_managersSection } from "./property_managersSection";
 
 const customSection: OptionalRecord<FrontendEntity, Partial<SectionConfig>> = {
-  property_managers: property_managersSection,
+  property_manager: property_managersSection,
 };
 
 const reducer = (acc: Record<FrontendEntity, SectionConfig>, entity: FrontendEntity) => {
@@ -27,8 +27,8 @@ const _sections = {
   "card-list": frontendEntities.reduce(reducer, {} as Record<FrontendEntity, SectionConfig>),
 };
 // here mutate the object and set custom values
-// _sections.dataTable.property_managers.title = "Property Managers";
-// _sections.dataTable.property_managers.createButton = "Invite Property Manager";
+// _sections.dataTable.property_manager.title = "Property Managers";
+// _sections.dataTable.property_manager.createButton = "Invite Property Manager";
 
 _sections.dataTable.users.importButton = "Import Users";
 

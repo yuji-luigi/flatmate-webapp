@@ -64,5 +64,7 @@
 	"From": "From",
 	"To": "To",
 	"€": "€",
-	"Email is required": "Email is required"
+	"Email is required": "Email is required",
+	"Invite Property Manager": "Invite Property Manager",
+	"Invite": "Invite"
 }

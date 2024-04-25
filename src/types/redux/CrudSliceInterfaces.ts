@@ -19,7 +19,7 @@ export const entities = [
   "accessPermissions",
 ] as const;
 
-export const pseudoEntities = ["inhabitants", "property_managers", "maintainers"] as const;
+export const pseudoEntities = ["inhabitant", "property_manager", "maintainers"] as const;
 const sections = ["statistics", "posts", "home"] as const;
 
 export const singleEntities = {
@@ -37,8 +37,8 @@ export const singleEntities = {
   uploads: "upload",
   wallets: "wallet",
   events: "event",
-  inhabitants: "inhabitant",
-  property_managers: "property_manager",
+  inhabitant: "inhabitant",
+  property_manager: "property_manager",
   maintainers: "maintainer",
   statistics: "statistic",
   posts: "post",

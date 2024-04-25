@@ -11,11 +11,12 @@ export type _ModalContextStates = {
   toggleOpenModal: (isOpenModal: boolean) => void;
   openConfirmModal: (confirmModalProps: ModalDataTypes) => void;
 };
-export type ModalType = "confirm" | "alert" | "crud" | "custom" | "loading";
+export type ModalType = "confirm" | "alert" | "crud" | "custom" | "loading" | "headless";
 
 export type BaseModalData = {
   // id?: string;
   title?: string | React.ReactNode;
+  size?: ModalProps["size"];
   type: ModalType;
   centered?: boolean;
   fullScreen?: boolean;
@@ -43,13 +44,18 @@ export interface CrudModalData extends BaseModalData {
   type: "crud";
   formFields: FormFieldTypes[];
   crudDocument: AllModels;
-  // onCancel: () => void;
-  // onConfirm: (data: any) => void | Promise<void>;
 }
 export interface CustomModalData extends BaseModalData {
   type: "custom";
-  // withinPortal?: boolean;
+  children: React.ReactNode;
+}
+export interface HeadlessModalData extends BaseModalData {
+  type: "headless";
   children: React.ReactNode;
 }
 
-export type ModalDataTypes = RegularModalParams | CrudModalData | CustomModalData;
+export type ModalDataTypes =
+  | RegularModalParams
+  | CrudModalData
+  | CustomModalData
+  | HeadlessModalData;

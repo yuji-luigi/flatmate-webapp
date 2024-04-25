@@ -16,6 +16,7 @@ import { useCrudSliceStore } from "../../redux/features/crud/crudSlice";
 import { CrudModalData } from "../../types/modal/modal-context-type";
 import classes from "./CrudModal.module.css";
 import { Entity } from "../../types/redux/CrudSliceInterfaces";
+import useRouterWithCustomQuery from "../../hooks/useRouterWithCustomQuery";
 
 type CrudModalProps = {
   modalData: CrudModalData;
@@ -24,8 +25,8 @@ type CrudModalProps = {
 export function CrudModal(props: CrudModalProps) {
   const { modalData } = props;
   // TODO: see if query.entity works. or pass as a prop
-  const entity = "undefined";
-  const { query } = useRouter();
+  const { query } = useRouterWithCustomQuery();
+  const { entity } = query;
 
   const isMobile = useMediaQuery("(max-width: 600px)");
   const { isOpenModal: opened, closeModal: close } = useCustomModalContext();
@@ -67,11 +68,11 @@ export function CrudModal(props: CrudModalProps) {
         throw new Error(
           "Not implemented. entity string has been set to undefined. new logic required."
         );
-        const uploadIdData = await uploadFileAndGetModelId(extractUploadingMedia(media), entity);
+        // const uploadIdData = await uploadFileAndGetModelId(extractUploadingMedia(media), entity);
         // eslint-disable-next-line guard-for-in, no-restricted-syntax
-        for (const key in uploadIdData) {
-          reqBody[key] = [...reqBody[key], ...uploadIdData[key]];
-        }
+        // for (const key in uploadIdData) {
+        //   reqBody[key] = [...reqBody[key], ...uploadIdData[key]];
+        // }
       } catch (error) {
         console.log(error);
         notifications.hide("submit");
@@ -82,6 +83,7 @@ export function CrudModal(props: CrudModalProps) {
 
     /** Modify selected document */
     if (modalData.crudDocument._id) {
+      if (!entity) return;
       updateCrudDocument({
         entity,
         updateData: reqBody,
@@ -102,7 +104,7 @@ export function CrudModal(props: CrudModalProps) {
     console.log("form.values", form.values);
     close();
   };
-  if (!opened) return null;
+  if (!opened || !entity) return null;
   return (
     <Stack className={classes.modalContent}>
       <form className={classes.form} onSubmit={onSubmit}>

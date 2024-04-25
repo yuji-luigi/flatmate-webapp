@@ -1,5 +1,7 @@
 import { ReactElement, useEffect } from "react";
 import { Box } from "@mantine/core";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { GetServerSidePropsContext } from "next";
 import SystemAdminDashboardLayout from "../../../../layouts/system-admin-dashboard-layout/SystemAdminDashboardLayout";
 import Page from "../../../../components/Page";
 import useRouterWithCustomQuery from "../../../../hooks/useRouterWithCustomQuery";
@@ -49,3 +51,15 @@ SystemTablePage.getLayout = function getLayout(page: ReactElement) {
   return <SystemAdminDashboardLayout>{page}</SystemAdminDashboardLayout>;
 };
 export default SystemTablePage;
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const translationObj = await serverSideTranslations(context.locale || "it", ["common"], null, [
+    "it",
+    "en",
+  ]);
+  return {
+    props: {
+      ...translationObj,
+    },
+  };
+}

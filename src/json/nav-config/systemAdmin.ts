@@ -8,7 +8,7 @@ export const systemAdminNavConfig: NavConfig[] = [
     contents: [
       {
         title: "Property Manager",
-        link: _PATH_FRONTEND.systemAdmin.dataTable.property_managers.root,
+        link: _PATH_FRONTEND.systemAdmin.dataTable.property_manager.root,
         icon: "propertyManagerBuilding",
       },
       {
@@ -18,7 +18,7 @@ export const systemAdminNavConfig: NavConfig[] = [
       },
       {
         title: "Inhabitant",
-        link: _PATH_FRONTEND.systemAdmin.dataTable.inhabitants.root,
+        link: _PATH_FRONTEND.systemAdmin.dataTable.inhabitant.root,
         icon: "IconUsers",
       },
     ],

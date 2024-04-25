@@ -200,19 +200,24 @@ ul {
   gap: var(--flex-gap);
 }
 
-.modalBody {
-  padding: var(--padding-card);
-  padding-top: 0;
+/* .modalRoot {
+}
+.modalContent {
+} */
+.modalHeader {
+  padding-inline: var(--padding-card-x);
+  padding-top: var(--padding-card-y);
+  padding-bottom: calc(var(--padding-card-y) / 1.25);
 }
 .modalTitle {
   font-size: var(--font-size-subtitle);
   font-weight: var(--font-weight-title);
   text-align: center;
 }
-.modalHeader {
-  padding-inline: var(--padding-card-x);
-  padding-top: var(--padding-card-y);
-  padding-bottom: calc(var(--padding-card-y) / 1.25);
+
+.modalBody {
+  padding: var(--padding-card);
+  padding-top: 0;
 }
 .listWrapper {
   padding: var(--padding-card);
@@ -255,6 +260,11 @@ ul {
   align-items: center;
   justify-content: center;
   gap: var(--flex-gap-xs);
+}
+
+.invite-modal {
+  padding-inline: 40px;
+  padding-block: 36px;
 }
 
 /* AccessPermissionInput component */

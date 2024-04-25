@@ -13,6 +13,8 @@ import {
   IconUser as User,
   IconBookmarks as Bookmark,
   IconMessage as Comment,
+  IconSend as Send,
+  IconSend2 as Send2,
   IconBuilding as Building,
   IconRuler as FundRule,
   IconReceipt as Proposal,
@@ -67,6 +69,7 @@ import {
   IconMoodEmptyFilled as empty,
   IconCalendarBolt as events,
   IconBuildingEstate as propertyManagerBuilding,
+  IconMailAi,
 } from "@tabler/icons-react";
 /**
  * use the key name same as the slice name
@@ -76,6 +79,7 @@ export const Icons = {
   authentication: Authentication,
   notifications: Notification,
   home,
+  IconMailAi,
   database: Database,
   security: Security,
   statistics: Statistic,
@@ -101,6 +105,8 @@ export const Icons = {
   hammer,
   tags: Tag,
   tag: Tag,
+  Send,
+  Send2,
   threads: Thread,
   userSettings: Cog,
   alert: Alert,
