@@ -1,3 +1,4 @@
+import { link } from "fs";
 import { Role } from "../types/models/space-model";
 import { FrontendEntity } from "../types/redux/CrudSliceInterfaces";
 
@@ -78,6 +79,7 @@ export const _PATH_API = {
     systemAdminCheck: (spaceId: string) =>
       `${PATH_API.auth}/system-admin/check-by-space/${spaceId}`,
     systemAdminExit: `${PATH_API.auth}/system-admin/exit`,
+    acceptInvitation: (linkId: string) => `${PATH_API.auth}/invitation/${linkId}/accept`,
   },
   checks: {
     root: PATH_API.checks,

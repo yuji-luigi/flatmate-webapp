@@ -1,38 +1,38 @@
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+  enabled: process.env.ANALYZE === "true",
 });
-const { PHASE_DEVELOPMENT_SERVER, PHASE_PRODUCTION_BUILD } = require('next/constants');
-const StyleLintPlugin = require('stylelint-webpack-plugin');
+const { PHASE_DEVELOPMENT_SERVER, PHASE_PRODUCTION_BUILD } = require("next/constants");
+const StyleLintPlugin = require("stylelint-webpack-plugin");
 
 /** @type {import('next').NextConfig} */
-const { i18n } = require('./next-i18next.config');
+const { i18n } = require("./next-i18next.config");
 
 const nextConfig = (phase) => {
   const isDev = phase === PHASE_DEVELOPMENT_SERVER;
   // when `next build` or `npm run build` is used
-  const isProd = phase === PHASE_PRODUCTION_BUILD && process.env.STAGING !== '1';
+  const isProd = phase === PHASE_PRODUCTION_BUILD && process.env.STAGING !== "1";
   // when `next build` or `npm run build` is used
-  const isStaging = phase === PHASE_PRODUCTION_BUILD && process.env.STAGING === '1';
+  const isStaging = phase === PHASE_PRODUCTION_BUILD && process.env.STAGING === "1";
 
   console.log(`isDev:${isDev}  isProd:${isProd}   isStaging:${isStaging}`);
 
   const env = {
     GEO_API_KEY: (() => {
-      return '1d01645972cc4761b58c286fab852716';
+      return "1d01645972cc4761b58c286fab852716";
     })(),
     NEXT_PUBLIC_API_URL: (() => {
-      if (isDev) return 'http://generic.host:5001/api/v1';
-      if (isProd) return 'https://flatmates-api.yuji-luigi.com/api/v1';
-      if (isStaging) return 'http://generic.host:5001/api/v1';
-      return 'RESTURL_SPEAKERS:not (isDev,isProd && !isStaging,isProd && isStaging)';
+      if (isDev) return "http://generic.host:5001/api/v1";
+      if (isProd) return "https://flatmates-api.yuji-luigi.com/api/v1";
+      if (isStaging) return "http://generic.host:5001/api/v1";
+      return "RESTURL_SPEAKERS:not (isDev,isProd && !isStaging,isProd && isStaging)";
     })(),
     NEXT_PUBLIC_FRONTEND_URL: (() => {
-      if (isDev) return 'http://generic.host:3000';
-      if (isProd) return 'https://flatmates.yuji-luigi.com';
-      if (isStaging) return 'http://generic.host:3000';
-      return 'RESTURL_SPEAKERS:not (isDev,isProd && !isStaging,isProd && isStaging)';
+      if (isDev) return "http://generic.host:3000";
+      if (isProd) return "https://flatmates.yuji-luigi.com";
+      if (isStaging) return "http://generic.host:3000";
+      return "RESTURL_SPEAKERS:not (isDev,isProd && !isStaging,isProd && isStaging)";
     })(),
-    NEXT_PUBLIC_SSG_SECRET: 'secretforssgishereman%^()_',
+    NEXT_PUBLIC_SSG_SECRET: "secretforssgishereman%^()_",
   };
 
   // function webpack(config, options) {
@@ -99,25 +99,30 @@ const nextConfig = (phase) => {
     images: {
       remotePatterns: [
         {
-          protocol: 'https',
-          hostname: 'flatmates-api.yuji-luigi.com',
-          pathname: '**',
+          protocol: "https",
+          hostname: "flatmates-api.yuji-luigi.com",
+          pathname: "**",
         },
         {
-          protocol: 'https',
-          hostname: 'flatmates.eu-central-1.linodeobjects.com',
-          pathname: '**',
+          protocol: "https",
+          hostname: "flatmates.eu-central-1.linodeobjects.com",
+          pathname: "**",
         },
         {
-          protocol: 'https',
-          hostname: 'fastly.picsum.photos',
-          pathname: '**',
+          protocol: "https",
+          hostname: "fastly.picsum.photos",
+          pathname: "**",
         },
 
         {
-          protocol: 'https',
-          hostname: 'picsum.photos',
-          pathname: '**',
+          protocol: "https",
+          hostname: "picsum.photos",
+          pathname: "**",
+        },
+        {
+          protocol: "https",
+          hostname: "source.unsplash.com",
+          pathname: "**",
         },
       ],
     },
