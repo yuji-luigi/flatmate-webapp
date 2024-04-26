@@ -24,7 +24,6 @@ function CrudCarousel({
   formField: FormFieldTypes;
 }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const {} = useCrudSelectors();
   // const currentImage= useRef<File | UploadModel>()
   const currentImage = images[currentImageIndex];
   const { crudDocument } = useCrudSelectors(entity);

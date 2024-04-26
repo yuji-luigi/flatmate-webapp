@@ -28,6 +28,7 @@ import "../../i18n";
 import "../styles/global.css";
 import "../styles/dashboard.css";
 import "../styles/tabs.css";
+import "../styles/components.css";
 import "../styles/test.css";
 import "../styles/nprogress.css";
 import { useLocale } from "../../hooks/useLocale";

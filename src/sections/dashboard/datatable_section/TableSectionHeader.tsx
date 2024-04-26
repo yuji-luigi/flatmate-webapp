@@ -10,6 +10,7 @@ import useAuth from "../../../../hooks/useAuth";
 import { sectionsJson } from "../../../json/section-config/sectionsConfig";
 import useRouterWithCustomQuery from "../../../hooks/useRouterWithCustomQuery";
 import { CrudTableButtonController } from "./components/CrudTableButtonController";
+import { useLocale } from "../../../../hooks/useLocale";
 
 function instanceOfParentDataInterface(object: any): object is ParentDataInterface {
   return "name" in object;
@@ -25,7 +26,7 @@ export function TableSectionHeader({
   /** define open state for crudDrawer component */
   const { user } = useAuth();
   const { setBreadcrumbs, breadcrumbs, setPrevBreadcrumbs, parentData } = useLayoutContext();
-
+  const { t } = useLocale();
   const { query } = useRouterWithCustomQuery();
   const { entity } = query;
   useEffect(() => {
@@ -57,12 +58,11 @@ export function TableSectionHeader({
       <Group className={classes.headerWrapper} style={style}>
         <Stack align="start" justify="flex-start">
           <Text fz={32} fw={700}>
-            {title}
+            {t(title)}
           </Text>
           <BreadcrumbsCustom />
         </Stack>
         <CrudTableButtonController entity={entity} section={section} />
-        {/* <CrudTableButtons entity={entity} section={section} /> */}
       </Group>
       {children}
     </>
