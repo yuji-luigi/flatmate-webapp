@@ -6,6 +6,7 @@ export const ROOT = "/";
 export const AUTH = {
   LOGIN: "/login",
   SIGNUP: "/sign-up",
+  SIGNUP_INVITATION: "/sign-up/invitation",
 };
 
 export const FRONTEND_ROOT = process.env.NEXT_PUBLIC_FRONTEND_URL;
@@ -83,6 +84,8 @@ export const _PATH_FRONTEND = {
     signup: PATH_CLIENT.signup,
     chooseOrganization: CHOOSE_ORGANIZATION,
     chooseRootSpace: CHOOSE_ROOT_SPACE,
+    invitationLogin: "/auth/invitation/login",
+    invitationRegister: "/auth/invitation/register",
   },
   authTokens: {
     dashboard: PATH_CLIENT.authTokens,

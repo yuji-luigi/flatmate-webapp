@@ -43,6 +43,7 @@ export enum PATH_API {
   getSpaceSelections = "auth/space-selections",
   organization = "organizations",
   maintainers = "maintainers",
+  invitations = "invitations",
   maintainersSlug = "maintainers/slug",
   maintainersSpace = "maintainers/spaces",
   maintenanceFileUpload = "auth-tokens/maintenances/file-upload",
@@ -74,12 +75,15 @@ export const _PATH_API = {
   auth: {
     registerMaintainer: `${PATH_API.auth}/complete-register/maintainer`,
     login: (role: Role) => `${PATH_API.auth}/login/${role}`,
+    me: `${PATH_API.auth}/me`,
     register: (role: Role) => `${PATH_API.auth}/register/${role}`,
     checkRoles: `${PATH_API.auth}/check-roles`,
     systemAdminCheck: (spaceId: string) =>
       `${PATH_API.auth}/system-admin/check-by-space/${spaceId}`,
     systemAdminExit: `${PATH_API.auth}/system-admin/exit`,
-    acceptInvitation: (linkId: string) => `${PATH_API.auth}/invitation/${linkId}/accept`,
+    acceptInvitation: (linkId: string) =>
+      `${PATH_API.auth}/${PATH_API.invitations}/${linkId}/accept`,
+    getInvitationByLinkId: (linkId: string) => `${PATH_API.auth}/${PATH_API.invitations}/${linkId}`,
   },
   checks: {
     root: PATH_API.checks,
@@ -172,6 +176,10 @@ export const _PATH_API = {
     bySlug: (slug: string) => `${PATH_API.maintainersSlug}/${slug}`,
     spaces: (idMaintainer: string) => `${PATH_API.maintainers}/${idMaintainer}/spaces`,
     space: (idMaintainer: string) => `${PATH_API.maintainers}/${idMaintainer}/space`,
+  },
+  invitations: {
+    root: PATH_API.invitations,
+    byId: (id: string) => `${PATH_API.invitations}/${id}`,
   },
 } as const;
 

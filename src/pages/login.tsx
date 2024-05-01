@@ -9,7 +9,7 @@ import Layout from "../layouts";
 import { PATH_AUTH } from "../path/path-api";
 import { PATH_CLIENT, _PATH_FRONTEND } from "../path/path-frontend";
 import { useLocale } from "../../hooks/useLocale";
-import { RoleTabsLogin } from "../sections/login-new/RoleTabsLogin";
+import { RoleTabsLogin } from "../sections/login-new/RoleTabsLogin.1";
 import { AxiosMeResponse } from "../utils/axios-instance";
 import { UserModel } from "../types/models/space-model";
 

@@ -127,14 +127,17 @@ function AuthProvider({ children, initialUser }: { children: ReactNode; initialU
       await axiosInstance.post(_PATH_API.auth.login(role), { email, password });
       const rawMe = await axiosInstance.get<AxiosMeResponse>(PATH_AUTH.me);
       const { user } = rawMe.data;
-
+      const { query } = router;
       dispatch({
         type: "LOGIN",
         payload: {
           user,
         },
       });
-
+      if (query.redirect && query.redirect !== "no") {
+        push(query.redirect as string);
+        return;
+      }
       if (role === "inhabitant") {
         push(_PATH_FRONTEND.pathAfterLoginInhabitant);
         return;
@@ -186,8 +189,6 @@ function AuthProvider({ children, initialUser }: { children: ReactNode; initialU
       },
     });
   };
-
-  console.log(`JWTContext: isInitialized: ${state.isInitialized}`);
 
   return (
     <AuthContext.Provider

@@ -12,6 +12,7 @@ export interface ParsedQueryCustom extends ParsedUrlQuery {
   organizationId?: string;
   slug?: string | string[];
   arrSlug?: string[];
+  redirect?: string;
 }
 
 export interface UseRouterWithCustomQuery extends Omit<NextRouter, "query"> {

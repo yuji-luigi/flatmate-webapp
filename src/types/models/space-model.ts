@@ -19,8 +19,8 @@ export interface MeUser extends MongooseBaseModel {
   _id: string;
   name: string;
   surname: string;
-  avatar: string;
-  email: string;
+  avatar?: string;
+  email?: string;
   cover: string;
   isSuperAdmin: boolean;
   isSystemAdmin: boolean;
