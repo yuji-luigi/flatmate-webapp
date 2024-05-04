@@ -1,29 +1,78 @@
-import React, { ReactElement } from "react";
-import { Box, Button, Card, Stack, Text, TextInput } from "@mantine/core";
+import { FormEvent, ReactElement, useEffect, useState } from "react";
+import { Alert, Button, Card, Stack, Text, TextInput } from "@mantine/core";
 import Link from "next/link";
-import { redirect } from "next/dist/server/api-utils";
+import { useForm } from "@mantine/form";
 import Layout from "../../../layouts";
 import { useLocale } from "../../../../hooks/useLocale";
 import { _PATH_FRONTEND } from "../../../path/path-frontend";
 import useRouterWithCustomQuery from "../../../hooks/useRouterWithCustomQuery";
+import { useFetchCrudDocument } from "../../../hooks/useGetCrudDocument";
+import { _PATH_API } from "../../../path/path-api";
+import { useCrudSelectors } from "../../../redux/features/crud/crudSlice";
+import { InvitationAuth } from "../../../types/models/invitation-model";
+import axiosInstance from "../../../utils/axios-instance";
 
 const InvitationLoginPage = () => {
   const { t } = useLocale();
-  const { query } = useRouterWithCustomQuery();
-  console.log(query);
+  const { query, push } = useRouterWithCustomQuery();
+  const [formError, setFormError] = useState("");
+  const form = useForm({
+    initialValues: { email: "", password: "" },
+  });
+  const linkId = query.redirect?.split("/").pop();
+  const { crudDocument, crudStatus } = useCrudSelectors<InvitationAuth>("invitations");
+  useFetchCrudDocument({
+    endpoint: _PATH_API.auth.getInvitationByLinkId(linkId || ""),
+    entity: linkId && "invitations",
+  });
+
+  useEffect(() => {
+    setFormError("");
+  }, [form.values]);
+
+  if (crudStatus === "loading" || !linkId) {
+    return <div>Loading...</div>;
+  }
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    if (!query.redirect) {
+      throw new Error("Something went wrong. (no redirect parameter)");
+    }
+    try {
+      await axiosInstance.post(_PATH_API.invitations.acceptByLogin(linkId), form.values);
+      push(query.redirect);
+    } catch (error: any) {
+      setFormError(error.message || error);
+    }
+  };
+
   return (
-    <main className="main-container">
-      <Stack>
-        <Text ta="center" fz={40} fw="bold" my={36}>
-          {t("you are invited")}
-        </Text>
+    <main className="main-container grid-center">
+      <form onSubmit={handleSubmit}>
         <Card className="login-card">
-          <Text ta="center" fz={24} fw="bold">
-            {t("Login if you have an account")}
+          {formError && (
+            <Alert title="Error" color="red">
+              {formError}
+            </Alert>
+          )}
+          <Text fz={32} fw="bold">
+            {t("You are invited")}
           </Text>
-          <TextInput label="email" />
-          <TextInput label="password" mb={32} />
-          <Button>{t("Login")}</Button>
+          <Text ta="left" fz={16} fw="bold">
+            {crudDocument?.createdBy.email} {t("is inviting you to join Flatmates.")}
+          </Text>
+          <Text ta="left" fz={16} fw="bold">
+            {t("Please login to continue.")}
+          </Text>
+
+          <Stack gap={8} mb={24}>
+            <TextInput {...form.getInputProps("email")} label="email" />
+            <TextInput {...form.getInputProps("password")} label="password" />
+          </Stack>
+          <Button ml="auto" type="submit">
+            {t("Login")}
+          </Button>
           <Text ta="end" fz={14} fw="bold">
             {t('If you don"t have an account.')}{" "}
             <Link
@@ -39,7 +88,7 @@ const InvitationLoginPage = () => {
             </Link>
           </Text>
         </Card>
-      </Stack>
+      </form>
     </main>
   );
 };

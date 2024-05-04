@@ -52,6 +52,8 @@
   --padding-card-xs: var(--padding-x) 8px;
   --padding-card-sm: var(--padding-x) 8px;
 
+  --header-appbar-height: 60px;
+
   --max-width: var(--break-point-lg);
 
   --spacing-md: 24px;

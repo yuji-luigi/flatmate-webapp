@@ -4,6 +4,7 @@ import { GetServerSidePropsContext } from "next";
 import Image from "next/image";
 import { Button } from "@mantine/core";
 import { request } from "http";
+import Link from "next/link";
 import useRouterWithCustomQuery from "../../../../hooks/useRouterWithCustomQuery";
 import Page from "../../../../components/Page";
 import { useLocale } from "../../../../../hooks/useLocale";
@@ -20,9 +21,9 @@ const AcceptInvitationPage = ({ initialUser }: { initialUser: MeUser }) => {
   useEffect(() => {
     if (!linkId) return;
     if (initialUser) {
-      axiosInstance.post(_PATH_API.auth.acceptInvitation(linkId)).then((res) => {
-        console.log(res);
-      });
+      // axiosInstance.post(_PATH_API.invitations(linkId)).then((res) => {
+      //   console.log(res);
+      // });
     }
   }, [linkId]);
   return (
@@ -48,7 +49,9 @@ const AcceptInvitationPage = ({ initialUser }: { initialUser: MeUser }) => {
         <h3>
           {t("Now you are")} {userType} {t("of")} {condo}{" "}
         </h3>
-        <Button>{t("Go to dashboard")}</Button>
+        <Button component={Link} href={_PATH_FRONTEND.dashboard.home}>
+          {t("Go to dashboard")}
+        </Button>
       </section>
     </Page>
   );

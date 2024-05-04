@@ -74,15 +74,14 @@ export const _PATH_API = {
   },
   auth: {
     registerMaintainer: `${PATH_API.auth}/complete-register/maintainer`,
-    login: (role: Role) => `${PATH_API.auth}/login/${role}`,
+    login: (role?: Role) => `${PATH_API.auth}/login/${role || ""}`,
     me: `${PATH_API.auth}/me`,
     register: (role: Role) => `${PATH_API.auth}/register/${role}`,
     checkRoles: `${PATH_API.auth}/check-roles`,
     systemAdminCheck: (spaceId: string) =>
       `${PATH_API.auth}/system-admin/check-by-space/${spaceId}`,
     systemAdminExit: `${PATH_API.auth}/system-admin/exit`,
-    acceptInvitation: (linkId: string) =>
-      `${PATH_API.auth}/${PATH_API.invitations}/${linkId}/accept`,
+
     getInvitationByLinkId: (linkId: string) => `${PATH_API.auth}/${PATH_API.invitations}/${linkId}`,
   },
   checks: {
@@ -180,6 +179,7 @@ export const _PATH_API = {
   invitations: {
     root: PATH_API.invitations,
     byId: (id: string) => `${PATH_API.invitations}/${id}`,
+    acceptByLogin: (linkId: string) => `${PATH_API.invitations}/accept-by-login/${linkId}`,
   },
 } as const;
 

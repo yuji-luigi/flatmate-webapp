@@ -122,27 +122,20 @@ function AuthProvider({ children, initialUser }: { children: ReactNode; initialU
   const reInitialize = async () => {
     await initializeFunc();
   };
+  /** redirect or navigation logic is in this function.
+   * TODO: commented to be removed */
   const login: Login = async (email, password, role) => {
     try {
       await axiosInstance.post(_PATH_API.auth.login(role), { email, password });
       const rawMe = await axiosInstance.get<AxiosMeResponse>(PATH_AUTH.me);
       const { user } = rawMe.data;
-      const { query } = router;
+      // const { query } = router;
       dispatch({
         type: "LOGIN",
         payload: {
           user,
         },
       });
-      if (query.redirect && query.redirect !== "no") {
-        push(query.redirect as string);
-        return;
-      }
-      if (role === "inhabitant") {
-        push(_PATH_FRONTEND.pathAfterLoginInhabitant);
-        return;
-      }
-      push(_PATH_FRONTEND.pathAfterLogin);
     } catch (error: any) {
       showNotification(NOTIFICATIONS.ERROR.general({ data: error.message || error }));
     }

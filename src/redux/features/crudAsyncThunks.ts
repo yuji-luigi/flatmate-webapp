@@ -60,6 +60,27 @@ export const fetchCrudDocuments = createAsyncThunk(
     };
   }
 );
+export const fetchCrudDocument = createAsyncThunk(
+  "cruds/dataTable/fetchCrudDocument",
+  async ({
+    entity,
+    query,
+    isChildrenTree = false,
+    queryObject = {},
+    owEndpoint,
+  }: FetchCrudPayload) => {
+    const _entity = entity === "posts" ? "threads" : entity;
+    const endpoint = owEndpoint || _entity;
+    const res = await axiosInstance.get<AxiosResData>(`${endpoint}${query || ""}`, {
+      params: queryObject,
+    });
+    return {
+      entity: _entity,
+      isChildrenTree,
+      document: res.data.data,
+    };
+  }
+);
 
 export const fetchCrudDocumentsWithPagination = createAsyncThunk(
   "cruds/dataTable/fetchCrudDocumentsWithPagination",

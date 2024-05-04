@@ -1,7 +1,8 @@
 .login-card {
+  display: flex;
   width: 600px;
   margin: auto;
-  padding-inline: calc(var(--padding-card-x) * 3);
+  padding-inline: calc(var(--padding-card-x) * 2);
   padding-block: calc(var(--padding-card-y) * 2);
   gap: var(--flex-gap);
 }

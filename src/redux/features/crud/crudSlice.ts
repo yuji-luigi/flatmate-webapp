@@ -12,6 +12,7 @@ import {
   addCrudDocument,
   fetchCrudDocumentsInfiniteScroll,
   fetchCrudDocuments,
+  fetchCrudDocument,
 } from "../crudAsyncThunks";
 import { useAppDispatch, useAppSelector } from "../../../../hooks/redux-hooks/useRedux";
 import { MongooseBaseModel } from "../../../types/models/mongoose-base-model";
@@ -96,8 +97,7 @@ export const crudSlice = createSlice({
       } else {
         /** if id is present then find from existing documents array */
         state.reduxdb[entity].singleCrudDocument =
-          state.reduxdb[entity].documentsArray.find((doc: TODO_MODEL) => doc._id === documentId) ||
-          null;
+          state.reduxdb[entity].documentsArray.find((doc) => doc._id === documentId) || null;
       }
     },
     resetStatus: (state) => {
@@ -156,6 +156,21 @@ export const crudSlice = createSlice({
         }
       )
       .addCase(fetchCrudDocuments.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      })
+      .addCase(fetchCrudDocument.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(
+        fetchCrudDocument.fulfilled,
+        (state, action: PayloadAction<{ entity: FrontendEntity; document: AllModels }>) => {
+          const { entity, document } = action.payload;
+          state.status = "succeed";
+          state.reduxdb[entity].singleCrudDocument = document || null;
+        }
+      )
+      .addCase(fetchCrudDocument.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
       })
@@ -306,6 +321,9 @@ export const useCrudSliceStore = () => {
       }
       appDispatch(fetchCrudDocuments(data));
     },
+    fetchCrudDocument(data: FetchCrudPayload) {
+      appDispatch(fetchCrudDocument(data));
+    },
     /** get documents with pagination from api and set in documentsArray in redux */
     fetchCrudDocumentsWithPagination(data: FetchCrudPayload) {
       if (!data.entity) {
@@ -392,7 +410,7 @@ const useIsChildrenTree = (entity: FrontendEntity): boolean =>
   useAppSelector((state) => state.crud.reduxdb[entity].isChildrenTree);
 
 /** Returns selected Document of the entity or if not selected returns null  */
-const useCrudDocument = <ModelType>(entity: FrontendEntity): ModelType =>
+const useCrudDocument = <ModelType>(entity: FrontendEntity): ModelType | undefined =>
   useAppSelector((state) => state.crud.reduxdb[entity].singleCrudDocument) as ModelType;
 /** Hook for selector. this time need do pass entity when initialize the hook. */
 export const useCrudSelectors = <ModelType = MongooseBaseModel>(entity: FrontendEntity) => {

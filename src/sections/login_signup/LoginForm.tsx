@@ -16,6 +16,7 @@ function LoginForm({ role }: { role: Role }) {
   const { resetCurrentSpace, setCurrentOrganization } = useCookieContext();
   const { login } = useAuth();
   const router = useRouter();
+  const { push, query } = router;
 
   const form = useForm<LoginFormValues>({
     initialValues: {
@@ -34,6 +35,15 @@ function LoginForm({ role }: { role: Role }) {
       setCurrentOrganization(null);
       // the hook handle the redirect see jwt-context.tsx
       await login(values.email, values.password, role);
+      if (query.redirect && query.redirect !== "no") {
+        push(query.redirect as string);
+        return;
+      }
+      if (role === "inhabitant") {
+        push(_PATH_FRONTEND.pathAfterLoginInhabitant);
+        return;
+      }
+      push(_PATH_FRONTEND.pathAfterLogin);
     } catch (error: any) {
       notifications.show({
         title: "Error",

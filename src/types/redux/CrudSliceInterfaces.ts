@@ -17,6 +17,7 @@ export const entities = [
   "events",
   "roles",
   "accessPermissions",
+  "invitations",
 ] as const;
 
 export const pseudoEntities = ["inhabitant", "property_manager", "maintainers"] as const;
@@ -43,6 +44,7 @@ export const singleEntities = {
   statistics: "statistic",
   posts: "post",
   home: "home",
+  invitations: "invitation",
 } as const;
 
 export const frontendEntities = [...entities, ...sections, ...pseudoEntities] as const;
