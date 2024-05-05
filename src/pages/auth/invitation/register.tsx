@@ -1,5 +1,5 @@
 import React, { FormEvent, ReactElement } from "react";
-import { Box, Button, Card, Stack, Text, TextInput } from "@mantine/core";
+import { Alert, Box, Button, Card, PasswordInput, Stack, Text, TextInput } from "@mantine/core";
 import Link from "next/link";
 import { redirect } from "next/dist/server/api-utils";
 import Image from "next/image";
@@ -9,36 +9,84 @@ import { useLocale } from "../../../../hooks/useLocale";
 import { _PATH_FRONTEND } from "../../../path/path-frontend";
 import useRouterWithCustomQuery from "../../../hooks/useRouterWithCustomQuery";
 import { PATH_IMAGE } from "../../../lib/image-paths";
+import Page from "../../../components/Page";
+import axiosInstance from "../../../utils/axios-instance";
+import { _PATH_API } from "../../../path/path-api";
+import { sleep } from "../../../utils/helpers/helper-functions";
 
 const InvitationLoginPage = () => {
   const { t } = useLocale();
   const { query } = useRouterWithCustomQuery();
   const form = useForm({
-    initialValues: { name: "", surname: "", email: "", password: "" },
+    validate: {
+      email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
+    },
+    initialValues: {
+      name: "",
+      surname: "",
+      email: "",
+      password: "",
+      status: "",
+      error: "",
+    },
   });
-  const handleSubmit = (e: FormEvent) => {
+  const linkId = query.redirect?.split("/").pop();
+
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    console.log(form.values);
+    if (typeof linkId !== "string") {
+      throw new Error("Something went wrong. (no redirect parameter)");
+    }
+    form.setValues({ ...form.values, status: undefined });
+    try {
+      throw new Error("Something went wrong. (no redirect parameter)");
+      await axiosInstance.post(_PATH_API.invitations.acceptByRegister(linkId), form.values);
+
+      form.setValues({ ...form.values, status: "loading" });
+      await sleep(1000);
+      form.setValues({ ...form.values, status: "" });
+    } catch (error: any) {
+      form.setValues({ ...form.values, error: error.message || error });
+    }
   };
   return (
-    <main className="main-container">
+    <Page title={t("Invited!")} className="main-container grid-center">
       <Stack>
-        <Text ta="center" fz={40} fw="bold" my={36}>
-          {t("Register")}
-        </Text>
         <form onSubmit={handleSubmit}>
-          <Card className="login-card">
+          <Card data-page-loading={form.values.status === "loading"} className="login-card">
             <Text ta="center" fz={24} fw="bold">
               {t("Register to Flatmates")}
               <Image src={PATH_IMAGE.flatmateLogo1} alt="Flatmates" height={80} width={80} />
             </Text>
             <Stack gap={8} mb={24}>
-              <TextInput {...form.getInputProps("name")} label="name" />
-              <TextInput {...form.getInputProps("surname")} label="surname" />
-              <TextInput {...form.getInputProps("email")} label="email" />
-              <TextInput {...form.getInputProps("password")} label="password" />
+              {form.values.error && (
+                <Alert title="Error" color="red">
+                  {form.values.error}
+                </Alert>
+              )}
+              <TextInput aria-required {...form.getInputProps("name")} label={t("Name")} />
+              <TextInput aria-required {...form.getInputProps("surname")} label={t("Surname")} />
+              <TextInput
+                aria-required
+                key={form.key("email")}
+                {...form.getInputProps("email")}
+                label={t("Email")}
+              />
+              <PasswordInput
+                aria-required
+                {...form.getInputProps("password")}
+                label={t("Password")}
+              />
+              <PasswordInput
+                type="password"
+                aria-required
+                {...form.getInputProps("password")}
+                label={t("Confirm password")}
+              />
             </Stack>
-            <Button>{t("Login")}</Button>
+            <Button type="submit" loading={form.values.status === "loading"}>
+              {t("Submit")}
+            </Button>
             <Text ta="end" fz={14} fw="bold">
               {t("If you have an account.")}{" "}
               <Link
@@ -58,7 +106,7 @@ const InvitationLoginPage = () => {
           </Card>
         </form>
       </Stack>
-    </main>
+    </Page>
   );
 };
 

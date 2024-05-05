@@ -1,16 +1,21 @@
 import { Alert, Box, Button, Modal, Stack, TextInput } from "@mantine/core";
 import { useRef, useState } from "react";
 import { showNotification } from "@mantine/notifications";
+import { set } from "nprogress";
 import axiosInstance from "../../../../../utils/axios-instance";
 import { _PATH_API } from "../../../../../path/path-api";
 import { FrontendEntity } from "../../../../../types/redux/CrudSliceInterfaces";
 import { useCookieContext } from "../../../../../context/CookieContext";
-import { ERROR_GENERAL } from "../../../../../data/showNofification/notificationObjects";
+import {
+  ERROR_GENERAL,
+  SUCCESS_GENERAL,
+} from "../../../../../data/showNofification/notificationObjects";
 import { useLocale } from "../../../../../../hooks/useLocale";
 import { Icons } from "../../../../../data/icons/icons";
 import { useCustomModalContext } from "../../../../../context/modal-context/_ModalContext";
 import { CurrentSpace } from "../../../../../types/context/auth/useAuth";
 import { AlertCustom } from "../../../../../components/alert/AlertCustom";
+import { sleep } from "../../../../../utils/helpers/helper-functions";
 
 type InviteModalProps = {
   entity: FrontendEntity;
@@ -18,6 +23,7 @@ type InviteModalProps = {
 
 export const InviteModal: React.FC<InviteModalProps> = (props: InviteModalProps) => {
   const { isOpenModal: opened, closeModal: close, modalData } = useCustomModalContext();
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const { entity } = props;
   const { currentSpace } = useCookieContext();
@@ -31,14 +37,24 @@ export const InviteModal: React.FC<InviteModalProps> = (props: InviteModalProps)
       showNotification({ ...ERROR_GENERAL, message: t("Email is required") });
       return;
     }
-    const rawResult = await axiosInstance
-      .post(_PATH_API.users.invite(entity), {
+    try {
+      setLoading(true);
+      const rawResult = await axiosInstance.post(_PATH_API.users.invite(entity), {
         email: emailRef.current?.value,
         space: currentSpace._id,
-      })
-      .catch((err) => {
-        setError(t(err));
       });
+      await sleep(750);
+      showNotification({
+        ...SUCCESS_GENERAL,
+        message: t("Invitation has been sent successfully!"),
+      });
+
+      close();
+    } catch (err: string | any) {
+      setError(t(err.message || err));
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (!currentSpace) {
@@ -47,7 +63,7 @@ export const InviteModal: React.FC<InviteModalProps> = (props: InviteModalProps)
 
   return (
     <Modal {...modalData} opened={opened} onClose={close} size="lg" withCloseButton={false}>
-      <div className=" invite-modal flex-box-column">
+      <div className="invite-modal flex-box-column" data-is-loading={loading}>
         <ModalTitle currentSpace={currentSpace} />
         {error && <AlertCustom type="error">{error}</AlertCustom>}
         <TextInput

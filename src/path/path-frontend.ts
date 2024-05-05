@@ -86,6 +86,7 @@ export const _PATH_FRONTEND = {
     chooseRootSpace: CHOOSE_ROOT_SPACE,
     invitationLogin: "/auth/invitation/login",
     invitationRegister: "/auth/invitation/register",
+    invitationAcceptSuccess: (linkId: string) => `/auth/invitation/${linkId}/accept-success`,
   },
   authTokens: {
     dashboard: PATH_CLIENT.authTokens,

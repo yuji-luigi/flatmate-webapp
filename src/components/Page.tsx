@@ -7,6 +7,7 @@ interface props {
   children?: ReactNode;
   title?: string;
   meta?: any;
+  className?: string;
   other?: any;
 }
 

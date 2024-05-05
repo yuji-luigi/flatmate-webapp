@@ -13,7 +13,8 @@ import { _PATH_API } from "../../../../path/path-api";
 import { MeUser } from "../../../../types/models/space-model";
 import { _PATH_FRONTEND } from "../../../../path/path-frontend";
 
-const AcceptInvitationPage = ({ initialUser }: { initialUser: MeUser }) => {
+// server side check
+const CheckAcceptInvitationPage = ({ initialUser }: { initialUser: MeUser }) => {
   const { linkId } = useRouterWithCustomQuery().query;
   const { t } = useLocale();
   const userType = "Property Manager";
@@ -57,7 +58,7 @@ const AcceptInvitationPage = ({ initialUser }: { initialUser: MeUser }) => {
   );
 };
 
-export default AcceptInvitationPage;
+export default CheckAcceptInvitationPage;
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const translationObj = await serverSideTranslations(context.locale || "it", ["common"], null, [
@@ -66,24 +67,40 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   ]);
   console.log(context.req.cookies);
   const { jwt } = context.req.cookies;
-  if (jwt) {
-    const rawRes = await axiosInstance.get<AxiosMeResponse>(_PATH_API.auth.me, {
-      headers: {
-        cookie: context.req.headers.cookie,
+  const redirectUrl = encodeURIComponent(context.req.url || "no");
+  const { linkId } = context.query;
+  if (typeof linkId !== "string") {
+    console.error("linkId is not a string");
+    return {
+      redirect: {
+        destination: "404",
       },
-    });
-    const { user } = rawRes.data;
-    if (user?.email) {
+    };
+  }
+
+  if (jwt && typeof context.query.linkId === "string") {
+    // call invitations/accept/:linkId with jwt without calling me.
+    try {
+      await axiosInstance.get<AxiosMeResponse>(
+        _PATH_API.invitations.acceptByLinkId(context.query.linkId),
+        {
+          headers: {
+            cookie: context.req.headers.cookie,
+          },
+        }
+      );
       return {
-        props: {
-          initialUser: user,
-          ...translationObj,
+        redirect: {
+          destination: _PATH_FRONTEND.auth.invitationAcceptSuccess(linkId),
+          permanent: false,
         },
       };
+    } catch (error) {
+      // can be a different user jwt so redirect to invitation login
+      console.error(error);
     }
   }
   //NOTE: if next does not provide correct url. this does not work. in dev it worked
-  const redirectUrl = encodeURIComponent(context.req.url || "no");
   return {
     redirect: {
       destination: `${_PATH_FRONTEND.auth.invitationLogin}?redirect=${redirectUrl}`,

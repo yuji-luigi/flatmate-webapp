@@ -180,6 +180,8 @@ export const _PATH_API = {
     root: PATH_API.invitations,
     byId: (id: string) => `${PATH_API.invitations}/${id}`,
     acceptByLogin: (linkId: string) => `${PATH_API.invitations}/accept-by-login/${linkId}`,
+    acceptByRegister: (linkId: string) => `${PATH_API.invitations}/register/${linkId}`,
+    acceptByLinkId: (linkId: string) => `${PATH_API.invitations}/accept/${linkId}`,
   },
 } as const;
 

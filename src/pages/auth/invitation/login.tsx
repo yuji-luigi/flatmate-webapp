@@ -11,6 +11,7 @@ import { _PATH_API } from "../../../path/path-api";
 import { useCrudSelectors } from "../../../redux/features/crud/crudSlice";
 import { InvitationAuth } from "../../../types/models/invitation-model";
 import axiosInstance from "../../../utils/axios-instance";
+import Page from "../../../components/Page";
 
 const InvitationLoginPage = () => {
   const { t } = useLocale();
@@ -48,7 +49,7 @@ const InvitationLoginPage = () => {
   };
 
   return (
-    <main className="main-container grid-center">
+    <Page title={t("Invited!")} className="main-container grid-center">
       <form onSubmit={handleSubmit}>
         <Card className="login-card">
           {formError && (
@@ -89,7 +90,7 @@ const InvitationLoginPage = () => {
           </Text>
         </Card>
       </form>
-    </main>
+    </Page>
   );
 };
 
