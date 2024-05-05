@@ -66,12 +66,7 @@ const InvitationLoginPage = () => {
               )}
               <TextInput aria-required {...form.getInputProps("name")} label={t("Name")} />
               <TextInput aria-required {...form.getInputProps("surname")} label={t("Surname")} />
-              <TextInput
-                aria-required
-                key={form.key("email")}
-                {...form.getInputProps("email")}
-                label={t("Email")}
-              />
+              <TextInput aria-required {...form.getInputProps("email")} label={t("Email")} />
               <PasswordInput
                 aria-required
                 {...form.getInputProps("password")}
