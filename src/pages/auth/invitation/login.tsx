@@ -1,43 +1,41 @@
 import { FormEvent, ReactElement, useEffect, useState } from "react";
-import { Alert, Button, Card, Stack, Text, TextInput } from "@mantine/core";
+import { Alert, Button, Card, Group, Stack, Text, TextInput } from "@mantine/core";
 import Link from "next/link";
 import { useForm } from "@mantine/form";
 import Layout from "../../../layouts";
 import { useLocale } from "../../../../hooks/useLocale";
 import { _PATH_FRONTEND } from "../../../path/path-frontend";
 import useRouterWithCustomQuery from "../../../hooks/useRouterWithCustomQuery";
-import { useFetchCrudDocument } from "../../../hooks/useGetCrudDocument";
 import { _PATH_API } from "../../../path/path-api";
-import { useCrudSelectors } from "../../../redux/features/crud/crudSlice";
-import { InvitationAuth } from "../../../types/models/invitation-model";
 import axiosInstance from "../../../utils/axios-instance";
 import Page from "../../../components/Page";
+import { PATH_IMAGE } from "../../../lib/image-paths";
+import Image from "next/image";
+import { GetServerSidePropsContext } from "next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 const InvitationLoginPage = () => {
-  const { t } = useLocale();
+  const { t, locale } = useLocale();
+  const { t: tn } = useLocale("notification");
+  console.log({ locale });
   const { query, push } = useRouterWithCustomQuery();
   const [formError, setFormError] = useState("");
   const form = useForm({
     initialValues: { email: "", password: "" },
+    validate: {
+      email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
+      password: (value) => (!value.trim() ? t("Password is required") : null),
+    },
   });
   const linkId = query.redirect?.split("/").pop();
-  const { crudDocument, crudStatus } = useCrudSelectors<InvitationAuth>("invitations");
-  useFetchCrudDocument({
-    endpoint: _PATH_API.auth.getInvitationByLinkId(linkId || ""),
-    entity: linkId && "invitations",
-  });
 
   useEffect(() => {
     setFormError("");
   }, [form.values]);
 
-  if (crudStatus === "loading" || !linkId) {
-    return <div>Loading...</div>;
-  }
-
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    if (!query.redirect) {
+    if (!query.redirect || !linkId) {
       throw new Error("Something went wrong. (no redirect parameter)");
     }
     try {
@@ -52,20 +50,23 @@ const InvitationLoginPage = () => {
     <Page title={t("Invited!")} className="main-container grid-center">
       <form onSubmit={handleSubmit}>
         <Card className="login-card">
+          <Group justify="space-between">
+            <Stack flex={1} gap={0}>
+              <Text fz={24} fw="bold">
+                {t("You are invited")}
+              </Text>
+              <Text fz={14} fw="bold">
+                {t("Please login to continue.")}
+              </Text>
+            </Stack>
+            <Image src={PATH_IMAGE.flatmateLogo1} alt="Flatmates" height={80} width={80} />
+          </Group>
+
           {formError && (
             <Alert title="Error" color="red">
-              {formError}
+              {tn(`${formError}`)}
             </Alert>
           )}
-          <Text fz={32} fw="bold">
-            {t("You are invited")}
-          </Text>
-          <Text ta="left" fz={16} fw="bold">
-            {crudDocument?.createdBy.email} {t("is inviting you to join Flatmates.")}
-          </Text>
-          <Text ta="left" fz={16} fw="bold">
-            {t("Please login to continue.")}
-          </Text>
 
           <Stack gap={8} mb={24}>
             <TextInput {...form.getInputProps("email")} label="email" />
@@ -75,7 +76,7 @@ const InvitationLoginPage = () => {
             {t("Login")}
           </Button>
           <Text ta="end" fz={14} fw="bold">
-            {t('If you don"t have an account.')}{" "}
+            {t(`If you don't have an account. Please`)}{" "}
             <Link
               style={{
                 color: "var(--mantine-color-primary)",
@@ -98,3 +99,17 @@ export default InvitationLoginPage;
 InvitationLoginPage.getLayout = function getLayout(page: ReactElement) {
   return <Layout variant="main">{page}</Layout>;
 };
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const translationObj = await serverSideTranslations(
+    context.locale || "it",
+    ["notification", "common"],
+    null,
+    ["it", "en"]
+  );
+  return {
+    props: {
+      ...translationObj,
+    },
+  };
+}

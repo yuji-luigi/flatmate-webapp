@@ -1,7 +1,16 @@
-import React, { FormEvent, ReactElement } from "react";
-import { Alert, Box, Button, Card, PasswordInput, Stack, Text, TextInput } from "@mantine/core";
+import React, { ReactElement } from "react";
+import {
+  Alert,
+  Box,
+  Button,
+  Card,
+  Group,
+  PasswordInput,
+  Stack,
+  Text,
+  TextInput,
+} from "@mantine/core";
 import Link from "next/link";
-import { redirect } from "next/dist/server/api-utils";
 import Image from "next/image";
 import { useForm } from "@mantine/form";
 import Layout from "../../../layouts";
@@ -13,60 +22,102 @@ import Page from "../../../components/Page";
 import axiosInstance from "../../../utils/axios-instance";
 import { _PATH_API } from "../../../path/path-api";
 import { sleep } from "../../../utils/helpers/helper-functions";
+import { GetServerSidePropsContext } from "next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 const InvitationLoginPage = () => {
+  const [apiError, setApiError] = React.useState("");
   const { t } = useLocale();
+  const { t: tn } = useLocale("notification");
+  const { t: ta } = useLocale("auth");
   const { query } = useRouterWithCustomQuery();
   const form = useForm({
-    validate: {
-      email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
-    },
     initialValues: {
       name: "",
       surname: "",
       email: "",
       password: "",
+      password2: "",
       status: "",
-      error: "",
+    },
+    validate: {
+      email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
+      surname: (value) => (!value.trim() ? t("Surname is required") : null),
+      name: (value) => (!value.trim() ? t("Name is required") : null),
+      password: (value) => (!value.trim() ? t("Password is required") : null),
+      password2: (value) => {
+        if (value !== form.values.password) {
+          return t("Passwords do not match");
+        }
+        return null;
+      },
+    },
+    clearInputErrorOnChange: true,
+    onValuesChange: (values) => {
+      setApiError("");
     },
   });
   const linkId = query.redirect?.split("/").pop();
 
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async (values: (typeof form)["values"]) => {
+    form.setValues({ ...values, status: "loading" });
     if (typeof linkId !== "string") {
       throw new Error("Something went wrong. (no redirect parameter)");
     }
-    form.setValues({ ...form.values, status: undefined });
-    try {
-      throw new Error("Something went wrong. (no redirect parameter)");
-      await axiosInstance.post(_PATH_API.invitations.acceptByRegister(linkId), form.values);
 
-      form.setValues({ ...form.values, status: "loading" });
+    try {
+      const { status, ...dto } = values;
+      await axiosInstance.post(_PATH_API.invitations.acceptByRegister(linkId), dto);
+
       await sleep(1000);
-      form.setValues({ ...form.values, status: "" });
+      form.setValues({ ...values, status: "" });
     } catch (error: any) {
-      form.setValues({ ...form.values, error: error.message || error });
+      await sleep(1000);
+      form.setValues({ ...values, status: "" });
+      setApiError(error.message || error);
     }
   };
   return (
     <Page title={t("Invited!")} className="main-container grid-center">
       <Stack>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
           <Card data-page-loading={form.values.status === "loading"} className="login-card">
-            <Text ta="center" fz={24} fw="bold">
-              {t("Register to Flatmates")}
+            <Group justify="space-between">
+              <Stack flex={1} gap={0}>
+                <Text fz={24} fw="bold">
+                  {t("Register to Flatmates")}
+                </Text>
+                <Text fz={14} fw="bold">
+                  {ta("registerToCompleteInvite")}
+                </Text>
+              </Stack>
               <Image src={PATH_IMAGE.flatmateLogo1} alt="Flatmates" height={80} width={80} />
-            </Text>
-            <Stack gap={8} mb={24}>
-              {form.values.error && (
-                <Alert title="Error" color="red">
-                  {form.values.error}
+            </Group>
+            <Box className="form-grid " mb={24}>
+              {apiError && (
+                <Alert title="Error" className="column-2" color="red">
+                  {tn(apiError)}
                 </Alert>
               )}
-              <TextInput aria-required {...form.getInputProps("name")} label={t("Name")} />
-              <TextInput aria-required {...form.getInputProps("surname")} label={t("Surname")} />
-              <TextInput aria-required {...form.getInputProps("email")} label={t("Email")} />
+              <TextInput
+                className="column-1"
+                aria-required
+                {...form.getInputProps("name")}
+                label={t("Name")}
+              />
+              <TextInput
+                className="column-1"
+                aria-required
+                {...form.getInputProps("surname")}
+                label={t("Surname")}
+              />
+              <TextInput
+                className="column-2"
+                aria-required
+                key={form.key("email")}
+                {...form.getInputProps("email")}
+                label={t("Email")}
+              />
               <PasswordInput
                 aria-required
                 {...form.getInputProps("password")}
@@ -75,10 +126,10 @@ const InvitationLoginPage = () => {
               <PasswordInput
                 type="password"
                 aria-required
-                {...form.getInputProps("password")}
+                {...form.getInputProps("password2")}
                 label={t("Confirm password")}
               />
-            </Stack>
+            </Box>
             <Button type="submit" loading={form.values.status === "loading"}>
               {t("Submit")}
             </Button>
@@ -109,3 +160,17 @@ export default InvitationLoginPage;
 InvitationLoginPage.getLayout = function getLayout(page: ReactElement) {
   return <Layout variant="main">{page}</Layout>;
 };
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const translationObj = await serverSideTranslations(
+    context.locale || "it",
+    ["notification", "common", "auth"],
+    null,
+    ["it", "en"]
+  );
+  return {
+    props: {
+      ...translationObj,
+    },
+  };
+}

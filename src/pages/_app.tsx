@@ -26,6 +26,7 @@ import { components } from "../overrides";
 import "../../next-i18next.config";
 import "../../i18n";
 import "../styles/global.css";
+import "../styles/form.css";
 import "../styles/dashboard.css";
 import "../styles/tabs.css";
 import "../styles/test.css";

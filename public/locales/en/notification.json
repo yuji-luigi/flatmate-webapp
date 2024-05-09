@@ -1,5 +1,7 @@
 {
-  "uploading": "...Uploading",
-  "Select file first": "Please select a file first",
-  "Please wait": "Please wait"
+	"uploading": "...Uploading",
+	"Select file first": "Please select a file first",
+	"Please wait": "Please wait",
+	"User not found. Please register first.": "User not found. Please register first.",
+	"We could not find your invitation. Please check your email.": "We could not find your invitation. Please check your email."
 }

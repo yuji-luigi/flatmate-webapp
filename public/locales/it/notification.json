@@ -1,5 +1,7 @@
 {
-  "uploading": "...Caricamento in corso",
-  "Select file first": "Si prega di selezionare prima un file",
-  "Please wait": "Attendere prego"
+	"uploading": "...Caricamento in corso",
+	"Select file first": "Si prega di selezionare prima un file",
+	"Please wait": "Attendere prego",
+	"User not found. Please register first.": "Utente non trovato. Si prega di registrarsi prima.",
+	"We could not find your invitation. Please check your email.": "Non siamo riusciti a trovare il tuo invito. Si prega di controllare la tua email."
 }

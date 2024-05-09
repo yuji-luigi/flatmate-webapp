@@ -81,9 +81,8 @@ export const _PATH_API = {
     systemAdminCheck: (spaceId: string) =>
       `${PATH_API.auth}/system-admin/check-by-space/${spaceId}`,
     systemAdminExit: `${PATH_API.auth}/system-admin/exit`,
-
-    getInvitationByLinkId: (linkId: string) => `${PATH_API.auth}/${PATH_API.invitations}/${linkId}`,
   },
+
   checks: {
     root: PATH_API.checks,
     home: `${PATH_API.checks}/home`,
@@ -178,7 +177,7 @@ export const _PATH_API = {
   },
   invitations: {
     root: PATH_API.invitations,
-    byId: (id: string) => `${PATH_API.invitations}/${id}`,
+    byLinkId: (id: string) => `${PATH_API.invitations}/${id}`,
     acceptByLogin: (linkId: string) => `${PATH_API.invitations}/accept-by-login/${linkId}`,
     acceptByRegister: (linkId: string) => `${PATH_API.invitations}/register/${linkId}`,
     acceptByLinkId: (linkId: string) => `${PATH_API.invitations}/accept/${linkId}`,

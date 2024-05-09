@@ -8,10 +8,14 @@ import Link from "next/link";
 import useRouterWithCustomQuery from "../../../../hooks/useRouterWithCustomQuery";
 import Page from "../../../../components/Page";
 import { useLocale } from "../../../../../hooks/useLocale";
-import axiosInstance, { AxiosMeResponse } from "../../../../utils/axios-instance";
+import axiosInstance, {
+  AxiosMeResponse,
+  AxiosResDataGeneric,
+} from "../../../../utils/axios-instance";
 import { _PATH_API } from "../../../../path/path-api";
 import { MeUser } from "../../../../types/models/space-model";
 import { _PATH_FRONTEND } from "../../../../path/path-frontend";
+import { InvitationAuth } from "../../../../types/models/invitation-model";
 
 const AcceptInvitationPage = ({ initialUser }: { initialUser: MeUser }) => {
   const { linkId } = useRouterWithCustomQuery().query;
@@ -51,3 +55,34 @@ const AcceptInvitationPage = ({ initialUser }: { initialUser: MeUser }) => {
 };
 
 export default AcceptInvitationPage;
+
+export const getServerSideProps = async (context: GetServerSidePropsContext) => {
+  const translations = await serverSideTranslations(context.locale || "en", ["common", "auth"]);
+  try {
+    const { linkId } = context.query;
+    if (typeof linkId !== "string") {
+      throw new Error("Invitation link is not valid");
+    }
+    const rawInvitation = await axiosInstance.get<AxiosResDataGeneric<InvitationAuth | null>>(
+      _PATH_API.invitations.byLinkId(linkId)
+    );
+    if (rawInvitation.data.data) {
+      return {
+        props: {
+          invitation: rawInvitation.data.data,
+          ...translations,
+        },
+      };
+    }
+    throw new Error("Invitation is not valid or expired");
+  } catch (error: any) {
+    console.error(error);
+    const msg = encodeURI(error.message || error);
+    return {
+      redirect: {
+        destination: `/error?message=${msg}`,
+        permanent: false,
+      },
+    };
+  }
+};

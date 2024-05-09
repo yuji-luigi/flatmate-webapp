@@ -65,7 +65,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     "it",
     "en",
   ]);
-  console.log(context.req.cookies);
   const { jwt } = context.req.cookies;
   const redirectUrl = encodeURIComponent(context.req.url || "no");
   const { linkId } = context.query;
