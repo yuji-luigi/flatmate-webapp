@@ -1,6 +1,6 @@
-import { Alert, Box, Button, Modal, Stack, TextInput } from "@mantine/core";
+import { Alert, Box, Button, LoadingOverlay, Modal, Stack, TextInput } from "@mantine/core";
 import { useRef, useState } from "react";
-import { showNotification } from "@mantine/notifications";
+import { hideNotification, showNotification } from "@mantine/notifications";
 import { set } from "nprogress";
 import axiosInstance from "../../../../../utils/axios-instance";
 import { _PATH_API } from "../../../../../path/path-api";
@@ -8,6 +8,7 @@ import { FrontendEntity } from "../../../../../types/redux/CrudSliceInterfaces";
 import { useCookieContext } from "../../../../../context/CookieContext";
 import {
   ERROR_GENERAL,
+  LOADING_GENERAL,
   SUCCESS_GENERAL,
 } from "../../../../../data/showNofification/notificationObjects";
 import { useLocale } from "../../../../../../hooks/useLocale";
@@ -29,16 +30,28 @@ export const InviteModal: React.FC<InviteModalProps> = (props: InviteModalProps)
   const { currentSpace } = useCookieContext();
   const emailRef = useRef<HTMLInputElement>(null);
   const { t } = useLocale();
+
   const handleSendInvite = async () => {
-    if (!currentSpace) {
+    const isEmailValid = emailRef.current?.value?.match(/^\S+@\S+$/);
+    email: if (!currentSpace) {
+      return;
+    }
+    if (!isEmailValid) {
+      showNotification({ ...ERROR_GENERAL, message: t("Invalid email") });
+      setError(t("Invalid email"));
       return;
     }
     if (!emailRef.current?.value) {
       showNotification({ ...ERROR_GENERAL, message: t("Email is required") });
       return;
     }
+    setLoading(true);
+
+    const loadingNotif = showNotification({
+      ...LOADING_GENERAL,
+      message: t("Sending invitation..."),
+    });
     try {
-      setLoading(true);
       const rawResult = await axiosInstance.post(_PATH_API.users.invite(entity), {
         email: emailRef.current?.value,
         space: currentSpace._id,
@@ -54,6 +67,7 @@ export const InviteModal: React.FC<InviteModalProps> = (props: InviteModalProps)
       setError(t(err.message || err));
     } finally {
       setLoading(false);
+      hideNotification(loadingNotif);
     }
   };
 
@@ -74,6 +88,7 @@ export const InviteModal: React.FC<InviteModalProps> = (props: InviteModalProps)
         />
         {/* {currentSpace?.name} */}
         <Button onClick={handleSendInvite}>{t("Invite")}</Button>
+        <LoadingOverlay visible={loading} />
       </div>
     </Modal>
   );
