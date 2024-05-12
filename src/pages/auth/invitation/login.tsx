@@ -1,5 +1,5 @@
 import { FormEvent, ReactElement, useEffect, useState } from "react";
-import { Alert, Button, Card, Group, Stack, Text, TextInput } from "@mantine/core";
+import { Alert, Button, Card, Group, PasswordInput, Stack, Text, TextInput } from "@mantine/core";
 import Link from "next/link";
 import { useForm } from "@mantine/form";
 import Layout from "../../../layouts";
@@ -70,7 +70,7 @@ const InvitationLoginPage = () => {
 
           <Stack gap={8} mb={24}>
             <TextInput {...form.getInputProps("email")} label="email" />
-            <TextInput {...form.getInputProps("password")} label="password" />
+            <PasswordInput {...form.getInputProps("password")} label="password" />
           </Stack>
           <Button ml="auto" type="submit">
             {t("Login")}

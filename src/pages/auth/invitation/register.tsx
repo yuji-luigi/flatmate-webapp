@@ -24,9 +24,11 @@ import { _PATH_API } from "../../../path/path-api";
 import { sleep } from "../../../utils/helpers/helper-functions";
 import { GetServerSidePropsContext } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useRouter } from "next/router";
 
 const InvitationLoginPage = () => {
   const [apiError, setApiError] = React.useState("");
+  const { push } = useRouter();
   const { t } = useLocale();
   const { t: tn } = useLocale("notification");
   const { t: ta } = useLocale("auth");
@@ -68,9 +70,9 @@ const InvitationLoginPage = () => {
     try {
       const { status, ...dto } = values;
       await axiosInstance.post(_PATH_API.invitations.acceptByRegister(linkId), dto);
-
       await sleep(1000);
       form.setValues({ ...values, status: "" });
+      push(_PATH_FRONTEND.auth.invitationAcceptSuccess(linkId));
     } catch (error: any) {
       await sleep(1000);
       form.setValues({ ...values, status: "" });

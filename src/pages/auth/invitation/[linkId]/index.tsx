@@ -8,10 +8,14 @@ import Link from "next/link";
 import useRouterWithCustomQuery from "../../../../hooks/useRouterWithCustomQuery";
 import Page from "../../../../components/Page";
 import { useLocale } from "../../../../../hooks/useLocale";
-import axiosInstance, { AxiosMeResponse } from "../../../../utils/axios-instance";
+import axiosInstance, {
+  AxiosMeResponse,
+  AxiosResDataGeneric,
+} from "../../../../utils/axios-instance";
 import { _PATH_API } from "../../../../path/path-api";
 import { MeUser } from "../../../../types/models/space-model";
 import { _PATH_FRONTEND } from "../../../../path/path-frontend";
+import { InvitationAuth } from "../../../../types/models/invitation-model";
 
 // server side check
 const CheckAcceptInvitationPage = ({ initialUser }: { initialUser: MeUser }) => {
@@ -99,6 +103,18 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       console.error(error);
     }
   }
+  const rawInvitation = await axiosInstance.get<AxiosResDataGeneric<InvitationAuth>>(
+    _PATH_API.invitations.byLinkId(linkId)
+  );
+  if (rawInvitation.data.data.status !== "pending") {
+    return {
+      redirect: {
+        destination: _PATH_FRONTEND.auth.invitationNonValid,
+        permanent: false,
+      },
+    };
+  }
+
   //NOTE: if next does not provide correct url. this does not work. in dev it worked
   return {
     redirect: {

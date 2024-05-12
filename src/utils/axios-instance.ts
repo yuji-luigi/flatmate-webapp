@@ -44,7 +44,9 @@ axiosInstance.interceptors.response.use(
     // response.headers.Authorization = token as string;
     response,
   (error) =>
-    Promise.reject((error.response && error.response.data) || "Error connecting to server.")
+    Promise.reject(
+      (error.response && error.response.data) || "Server error: connection not established."
+    )
 );
 
 export const uploadConfig = {

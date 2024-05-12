@@ -87,6 +87,7 @@ export const _PATH_FRONTEND = {
     invitationLogin: "/auth/invitation/login",
     invitationRegister: "/auth/invitation/register",
     invitationAcceptSuccess: (linkId: string) => `/auth/invitation/${linkId}/accept-success`,
+    invitationNonValid: "/auth/invitation/non-valid",
   },
   authTokens: {
     dashboard: PATH_CLIENT.authTokens,
