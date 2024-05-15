@@ -30,7 +30,6 @@ const CrudPage = () => {
     /** fetch all the entity if not childrenpage */
     fetchCrudDocumentsWithPagination({ entity, query: paginationQuery });
   }, [paginationQuery, entity, query.parentId]);
-  return <div> hey</div>;
   return (
     <Page title={`Flatmates | ${entity}`}>
       <Box
