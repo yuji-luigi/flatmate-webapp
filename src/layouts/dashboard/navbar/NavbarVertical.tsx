@@ -6,7 +6,7 @@ import useAuth from "../../../../hooks/useAuth";
 import { navConfigs } from "../../../json/nav-config";
 
 import { PATH_CLIENT } from "../../../path/path-frontend";
-import { ProfilePopover } from "../../../components/navigation/ProfilePopover";
+import { ProfilePopover } from "../../../components/navigation/profile-popover/ProfilePopover";
 import { ColorSchemeToggle } from "../../../components/color-schemeToggle/ColorSchemeToggle";
 import LogoutButton from "./LogoutButton";
 import classes from "./NavbarVertical.module.css";

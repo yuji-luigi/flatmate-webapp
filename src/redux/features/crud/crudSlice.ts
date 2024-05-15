@@ -75,6 +75,13 @@ export const crudSlice = createSlice({
       state.reduxdb[entity].documentsArray.filter((data) => data._id !== documentId);
     },
     /** update by new document already fetched. */
+    addOneInStore: (
+      state,
+      action: PayloadAction<{ entity: FrontendEntity; newDocument: MongooseBaseModel }>
+    ) => {
+      const { newDocument, entity } = action.payload;
+      state.reduxdb[entity].documentsArray = [...state.reduxdb[entity].documentsArray, newDocument];
+    },
     setOneInArrayInStore: (state, action: PayloadAction<UpdateCrudDocumentInStorePayload>) => {
       const { updatedDocument, entity } = action.payload;
       const documentIndex = state.reduxdb[entity].documentsArray.findIndex(
@@ -309,6 +316,10 @@ export const useCrudSliceStore = () => {
   const appDispatch = useAppDispatch();
 
   return {
+    /** update single document in array without calling api. with already new document fetched. or updated in some how */
+    addOneInStore(data: { entity: FrontendEntity; newDocument: MongooseBaseModel }) {
+      appDispatch(crudSlice.actions.addOneInStore(data));
+    },
     /** update single document in array without calling api. with already new document fetched. or updated in some how */
     setOneInArrayInStore(data: UpdateCrudDocumentInStorePayload) {
       appDispatch(crudSlice.actions.setOneInArrayInStore(data));

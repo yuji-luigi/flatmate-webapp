@@ -1,11 +1,12 @@
 import { Popover, Text, Button, Group, Avatar, Box, Divider, Menu } from "@mantine/core";
 import Link from "next/link";
 import { t } from "i18next";
-import useAuth from "../../../hooks/useAuth";
-import { Icons } from "../../data/icons/icons";
-import { PATH_CLIENT } from "../../path/path-frontend";
+import useAuth from "../../../../hooks/useAuth";
+import { Icons } from "../../../data/icons/icons";
+import { _PATH_FRONTEND, PATH_CLIENT } from "../../../path/path-frontend";
 import classes from "./ProfilePopover.module.css";
-import { LanguageMenu } from "../menu/LanguageMenu/LanguageMenu";
+import { LanguageMenu } from "../../menu/LanguageMenu/LanguageMenu";
+import { MenuSuperAdminSwitch } from "./MenuSuperAdminSwitch";
 
 const popoverList = [
   {
@@ -53,16 +54,7 @@ export function ProfilePopover() {
               {list.title}
             </Menu.Item>
           ))}
-          {(user?.isSystemAdmin || user?.isSuperAdmin) && (
-            <Menu.Item
-              component={Link}
-              href="/admin"
-              className={classes.link}
-              leftSection={<Icons.userSettings />}
-            >
-              {t("Admin menu")}
-            </Menu.Item>
-          )}
+          <MenuSuperAdminSwitch />
         </Box>
       </Menu.Dropdown>
     </Menu>

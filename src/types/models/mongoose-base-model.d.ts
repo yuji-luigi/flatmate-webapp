@@ -3,4 +3,5 @@ export interface MongooseBaseModel /* <ChildModel> */ {
   // children?: Array<ChildModel>;
   createdAt: string | Date;
   updatedAt: string | Date;
+  [key: string]: any;
 }

@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import { HiddenAuthTokenInterface } from "../types/models/auth-token-model";
 import { Entity, entities, pseudoEntities } from "../types/redux/CrudSliceInterfaces";
 
@@ -64,8 +65,17 @@ const entityPath = (path: string) =>
 
 export const _PATH_FRONTEND = {
   pathAfterLogin: PATH_AFTER_LOGIN,
+  error: {
+    notFound: "/404",
+    unauthorized: "/401",
+  },
   systemAdmin: {
     root: SYSTEM_ADMIN,
+    dataTable: entityPath("dataTable"),
+    "card-list": entityPath("card-list"),
+  },
+  superAdmin: {
+    root: "super-admin",
     dataTable: entityPath("dataTable"),
     "card-list": entityPath("card-list"),
   },

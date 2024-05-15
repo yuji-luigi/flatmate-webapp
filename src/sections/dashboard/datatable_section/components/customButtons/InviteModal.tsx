@@ -17,6 +17,7 @@ import { useCustomModalContext } from "../../../../../context/modal-context/_Mod
 import { CurrentSpace } from "../../../../../types/context/auth/useAuth";
 import { AlertCustom } from "../../../../../components/alert/AlertCustom";
 import { sleep } from "../../../../../utils/helpers/helper-functions";
+import { useCrudSliceStore } from "../../../../../redux/features/crud/crudSlice";
 
 type InviteModalProps = {
   entity: FrontendEntity;
@@ -27,6 +28,7 @@ export const InviteModal: React.FC<InviteModalProps> = (props: InviteModalProps)
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const { entity } = props;
+  const { addOneInStore } = useCrudSliceStore();
   const { currentSpace } = useCookieContext();
   const emailRef = useRef<HTMLInputElement>(null);
   const { t } = useLocale();
@@ -52,10 +54,13 @@ export const InviteModal: React.FC<InviteModalProps> = (props: InviteModalProps)
       message: t("Sending invitation..."),
     });
     try {
-      const rawResult = await axiosInstance.post(_PATH_API.users.invite(entity), {
+      const rawResult = await axiosInstance.post(`${_PATH_API.invitations.root}/${entity}`, {
         email: emailRef.current?.value,
         space: currentSpace._id,
       });
+      const invitation = rawResult.data.data;
+      addOneInStore({ entity, newDocument: invitation });
+
       await sleep(750);
       showNotification({
         ...SUCCESS_GENERAL,

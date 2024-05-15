@@ -51,7 +51,13 @@ export interface BillingProfileModel extends MongooseBaseModel {
   description?: string;
   address?: string;
 }
-export const ROLES = ["property_manager", "maintainer", "inhabitant", "system_admin"] as const;
+export const ROLES = [
+  "property_manager",
+  "maintainer",
+  "inhabitant",
+  "system_admin",
+  "super_admin",
+] as const;
 
 export type Role = (typeof ROLES)[number];
 export interface RoleModel extends MongooseBaseModel {

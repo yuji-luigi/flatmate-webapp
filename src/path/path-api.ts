@@ -81,6 +81,7 @@ export const _PATH_API = {
     systemAdminCheck: (spaceId: string) =>
       `${PATH_API.auth}/system-admin/check-by-space/${spaceId}`,
     systemAdminExit: `${PATH_API.auth}/system-admin/exit`,
+    toggleSuperAdmin: `${PATH_API.auth}/super-admin/toggle`,
   },
 
   checks: {

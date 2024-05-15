@@ -51,6 +51,7 @@ export interface AddCrudPayload {
   query?: string;
   queryObject?: Record<string, string | number | boolean>;
   config?: any;
+  endpoint?: string;
 }
 export interface AddLinkedChildPayload {
   entity: FrontendEntity;

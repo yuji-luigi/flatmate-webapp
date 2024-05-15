@@ -171,8 +171,15 @@ export const addCrudDocumentDataTable = createAsyncThunk(
  * */
 export const addCrudDocument = createAsyncThunk(
   "crud/addDocument",
-  async ({ entity, newDocument, query = "", config, queryObject }: AddCrudPayloadWithConfig) => {
-    const res = await axiosInstance.post(`${entity}`, newDocument, {
+  async ({
+    entity,
+    newDocument,
+    query = "",
+    config,
+    queryObject,
+    endpoint,
+  }: AddCrudPayloadWithConfig) => {
+    const res = await axiosInstance.post(`${endpoint || entity}`, newDocument, {
       params: queryObject,
       ...config,
     });

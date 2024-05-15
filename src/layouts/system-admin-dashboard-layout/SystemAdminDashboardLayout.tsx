@@ -11,11 +11,16 @@ import useAuth from "../../../hooks/useAuth";
 import { NavbarVertical } from "../dashboard/navbar/NavbarVertical";
 import useRouterWithCustomQuery from "../../hooks/useRouterWithCustomQuery";
 
-const SystemAdminDashboardLayout = ({ children }: { children: ReactNode }) => {
+const SystemAdminDashboardLayout = ({
+  children,
+  onlySuperAdmin = false,
+}: {
+  children: ReactNode;
+  onlySuperAdmin?: boolean;
+}) => {
   // const { setCurrentTab, currentTab } = useTabContext()
   const { isOpen } = useLayoutContext();
   const { user, isInitialized } = useAuth();
-  console.log(isInitialized);
   const router = useRouterWithCustomQuery();
   const [currentTab, setCurrentTab] = useState<string | null>(
     (router.query.tab as string) || "dashboard"
@@ -50,7 +55,11 @@ const SystemAdminDashboardLayout = ({ children }: { children: ReactNode }) => {
     router.push(_PATH_FRONTEND.auth.login);
   }
 
-  if (user && user.loggedAs !== "system_admin") {
+  if (onlySuperAdmin && !user?.isSuperAdmin) {
+    router.push(_PATH_FRONTEND.error.unauthorized);
+  }
+
+  if (user && !user.isSuperAdmin && user.loggedAs !== "system_admin") {
     router.push(_PATH_FRONTEND.dashboard.root);
   }
 
