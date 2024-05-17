@@ -216,9 +216,6 @@ export const addLinkedChildrenDocumentDataTable = createAsyncThunk(
 export const updateCrudDocument = createAsyncThunk(
   "crud/updateDocument",
   async ({ entity, updateData, documentId }: UpdateCrudPayload) => {
-    if (!isAllModels(updateData)) {
-      throw new Error("updatingData is not mongoose model");
-    }
     const endpoint = `${entity}/${documentId}`;
     const res = await axiosInstance.put(endpoint, updateData /* config */);
     if (!isAllModels(res.data.data)) {
