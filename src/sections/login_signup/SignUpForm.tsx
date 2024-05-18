@@ -1,4 +1,4 @@
-import { Checkbox, Paper, Title, Text, Container, Group, Button, Flex } from "@mantine/core";
+import { Paper, Title, Text, Container, Button, Flex } from "@mantine/core";
 
 import Link from "next/link";
 
@@ -6,7 +6,6 @@ import { useForm } from "@mantine/form";
 import { notifications, showNotification } from "@mantine/notifications";
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { set } from "nprogress";
 import useAuth from "../../../hooks/useAuth";
 
 import { RegisterData } from "../../types/context/auth/useAuth";
@@ -18,6 +17,7 @@ import { IInitialValues, initialValues } from "./defaultValues";
 import SignUpConfirm from "./SignUpConfirm";
 import { sleep } from "../../utils/helpers/helper-functions";
 import { useLocale } from "../../../hooks/useLocale";
+import { LinkStyled } from "../../components/link/LinkStyled";
 
 const MAX_STEP = 2;
 
@@ -82,7 +82,7 @@ export function SignUpForm() {
         {t("Register")}
       </Title>
       <Text color="dimmed" size="sm" ta="center" mt={5}>
-        {t("Already have an account?")} <Link href="/login">{t("Login")}</Link>
+        {t("Already have an account?")} <LinkStyled href="/login">{t("Login")}</LinkStyled>
       </Text>
       <Paper withBorder shadow="md" p={24} mt={10} radius="md">
         <form onSubmit={form.onSubmit((values) => onSubmit(values))}>
