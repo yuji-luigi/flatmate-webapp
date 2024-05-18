@@ -13,7 +13,7 @@ const SystemAdminHome = () => {
   const { fetchCrudDocuments } = useCrudSliceStore();
   useEffect(() => {
     fetchCrudDocuments({ entity: "property_manager" });
-    fetchCrudDocuments({ entity: "maintainers" });
+    fetchCrudDocuments({ entity: "maintainer" });
     fetchCrudDocuments({ entity: "inhabitant" });
   }, []);
   return <SystemTop />;

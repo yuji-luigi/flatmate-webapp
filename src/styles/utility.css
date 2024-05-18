@@ -1,0 +1,22 @@
+.flex-box-column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--flex-gap);
+}
+.flex-box-column-sm {
+  display: flex;
+  flex-direction: column;
+  gap: var(--flex-gap-sm);
+}
+
+.flex-box-row {
+  display: flex;
+  flex-direction: row;
+  gap: var(--flex-gap);
+}
+
+.grid-auto-fill {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--flex-gap);
+}

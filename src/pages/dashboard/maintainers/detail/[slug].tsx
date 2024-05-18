@@ -48,7 +48,7 @@ const MaintainerDetailsPage = () => {
   } = useSWR(["maintainer", router.query.slug], () => getMaintainer(router.query.slug as string));
 
   const { setCrudDocument } = useCrudSliceStore();
-  const { crudDocument } = useCrudSelectors<MaintainerModel>("maintainers");
+  const { crudDocument } = useCrudSelectors<MaintainerModel>("maintainer");
   // const { crudDocument: document } = useCrudSelectors(_entity);
 
   const isMobile = useMediaQuery("(max-width: 800px)");

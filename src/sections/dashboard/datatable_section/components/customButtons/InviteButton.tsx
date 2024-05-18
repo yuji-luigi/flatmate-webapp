@@ -5,9 +5,10 @@ import { SectionConfig } from "../../../../../types/data/json/sections-json";
 import { useCustomModalContext } from "../../../../../context/modal-context/_ModalContext";
 import { InviteModal } from "./InviteModal";
 import { useLocale } from "../../../../../../hooks/useLocale";
+import { UserType } from "../../../../../lib/enums";
 
-export const InviteButton = (props: { section: SectionConfig; entity: FrontendEntity }) => {
-  const { entity, section } = props;
+export const InviteButton = (props: { label: string; entity: UserType; className?: string }) => {
+  const { entity, label, className } = props;
   const { openModal } = useCustomModalContext();
   const { t } = useLocale();
   const handleOpenModal = () => {
@@ -19,5 +20,9 @@ export const InviteButton = (props: { section: SectionConfig; entity: FrontendEn
     });
   };
 
-  return <Button onClick={handleOpenModal}>{section.createButton}</Button>;
+  return (
+    <Button className={className} onClick={handleOpenModal}>
+      {label}
+    </Button>
+  );
 };

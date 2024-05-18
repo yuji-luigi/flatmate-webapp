@@ -31,7 +31,7 @@ const getMaintainer = async (slug?: string) => {
 };
 
 export const MaintainerDetailPage = () => {
-  const router = useRouterWithCustomQuery({ entity: "maintainers" });
+  const router = useRouterWithCustomQuery({ entity: "maintainer" });
 
   const { openConfirmModal } = useCustomModalContext();
 
@@ -45,7 +45,7 @@ export const MaintainerDetailPage = () => {
   } = useSWR(["maintainer", router.query.slug], () => getMaintainer(router.query.slug as string));
 
   const { setCrudDocument } = useCrudSliceStore();
-  const { crudDocument } = useCrudSelectors<MaintainerModel>("maintainers");
+  const { crudDocument } = useCrudSelectors<MaintainerModel>("maintainer");
   // const { crudDocument: document } = useCrudSelectors(_entity);
 
   const isMobile = useMediaQuery("(max-width: 800px)");

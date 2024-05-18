@@ -80,5 +80,11 @@
 	"If you don't have an account. Please": "Se non hai un account. Per favore",
 	"If you have an account.": "Se hai un account.",
 	"Submit": "Invia",
-	"Register to Flatmates": "Registrati a Flatmates"
+	"Register to Flatmates": "Registrati a Flatmates",
+	"$inhabitant": "Abitante",
+	"$maintainer": "Manutentore",
+	"$property_manager": "Amministratore.C",
+	"$system_admin": "Amministratore di Sistema",
+	"InviteGridNotRegistered": "non registrato per questo condominio",
+	"of": "di"
 }

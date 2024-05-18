@@ -12,9 +12,9 @@ const SystemAdminHome = () => {
   const { user } = useAuth();
   const { fetchCrudDocuments } = useCrudSliceStore();
   useEffect(() => {
-    fetchCrudDocuments({ entity: "property_manager" });
-    fetchCrudDocuments({ entity: "maintainers" });
-    fetchCrudDocuments({ entity: "inhabitant" });
+    // fetchCrudDocuments({ entity: "property_manager" });
+    // fetchCrudDocuments({ entity: "maintainer" });
+    // fetchCrudDocuments({ entity: "inhabitant" });
   }, []);
   return <SystemTop />;
 };

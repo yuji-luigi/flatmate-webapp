@@ -141,7 +141,7 @@ export function getEntityFromUrl(
   }
   // return "maintenances";
   console.error("invalid Entity from url", url, keyword, match, str, regex, isSection(match));
-  return "maintainers";
+  return "maintainer";
 }
 
 export function getWordNextFromUrl(url = window.location.pathname, keyword = "dashboard") {

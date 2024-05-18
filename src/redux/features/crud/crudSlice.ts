@@ -400,8 +400,10 @@ export const useCrudSliceStore = () => {
 /** Returns Array of Documents of the entity: whole array of entity */
 // const useCrudDocuments = <ModelType>(entity?: FrontendEntity): ModelType[] | [] =>
 //   useAppSelector((state) => state.crud.reduxdb[entity || ""]?.documentsArray);
-const useCrudDocuments = <ModelType = MongooseBaseModel>(entity: FrontendEntity): ModelType[] =>
-  useAppSelector((state) => state.crud.reduxdb[entity].documentsArray) as ModelType[];
+const useCrudDocuments = <ModelType = MongooseBaseModel>(entity: FrontendEntity): ModelType[] => {
+  console.log("entity useCrudDocuments", entity);
+  return useAppSelector((state) => state.crud.reduxdb[entity].documentsArray) as ModelType[];
+};
 
 /** returns string if api sent message */
 const useCrudMessage = () => useAppSelector((state) => state.crud.message);

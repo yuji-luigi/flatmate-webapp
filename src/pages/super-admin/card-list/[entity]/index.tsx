@@ -30,10 +30,10 @@ const SystemTablePage = (props: SystemDashboardPageProps) => {
   return (
     <Page title={entity}>
       <Stack>
-        {/* <TableSectionHeader overridingEntity="maintainers" /> */}
+        {/* <TableSectionHeader overridingEntity="maintainer" /> */}
         {/* <QueryFilterWeb formFields={maintainersTableData} /> */}
         <MaintainerList entity={entity} />
-        {/* <CrudDrawerDefault overridingEntity="maintainers" /> */}
+        {/* <CrudDrawerDefault overridingEntity="maintainer" /> */}
       </Stack>
     </Page>
   );

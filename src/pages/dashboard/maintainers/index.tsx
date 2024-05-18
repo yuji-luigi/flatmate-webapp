@@ -17,8 +17,8 @@ import useRouterWithCustomQuery from "../../../hooks/useRouterWithCustomQuery";
 const MaintainerPage = () => {
   const { query } = useRouter();
 
-  const entity = "maintainers";
-  useRouterWithCustomQuery({ entity: "maintainers" });
+  const entity = "maintainer";
+  useRouterWithCustomQuery({ entity: "maintainer" });
   const { paginationQuery } = usePaginationContext();
   const { fetchCrudDocumentsWithPagination } = useCrudSliceStore();
   formFields;
@@ -39,10 +39,10 @@ const MaintainerPage = () => {
   return (
     <Page title="Maintainers">
       <Stack>
-        {/* <TableSectionHeader overridingEntity="maintainers" /> */}
+        {/* <TableSectionHeader overridingEntity="maintainer" /> */}
         {/* <QueryFilterWeb formFields={maintainersTableData} /> */}
         <MaintainerList entity={entity} />
-        {/* <CrudDrawerDefault overridingEntity="maintainers" /> */}
+        {/* <CrudDrawerDefault overridingEntity="maintainer" /> */}
       </Stack>
     </Page>
   );

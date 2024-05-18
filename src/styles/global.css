@@ -7,39 +7,49 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap");
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 :root {
   --break-point-xs: 576px;
   --break-point-sm: 768px;
   --break-point-md: 992px;
   --break-point-lg: 1200px;
   --break-point-xl: 1408px;
+
   --flex-gap: 16px;
   --flex-gap-xs: calc(var(--flex-gap) / 2);
   --flex-gap-sm: var(--flex-gap);
   --flex-gap-md: calc(var(--flex-gap) * 1.5);
   --flex-gap-lg: calc(var(--flex-gap) * 2);
   --flex-gap-xl: calc(var(--flex-gap) * 3.5);
+
   --text-table-mobile: 12px;
   --table-cell-width-sm: 60px;
   --table-min-width: 800px;
   --table-min-width-sm: 300px;
+
   --bg-color-dark: rgba(0, 0, 0, 0.85);
   --bg-color-light: rgba(255, 255, 255, 0.85);
   --heading-font-size: 40px;
   --feed-card-spacing: 16px;
   --radius-card: 12px;
   --opacity-card: 0.85;
+
   --font-size-title: 32px;
   --font-size-subtitle: 26px;
   --font-size-section-title: 28px;
   --font-size-section-subtitle: 20px;
+
   --liner-gradient-light: linear-gradient(rgba(100, 100, 100, 0.5), rgba(100, 100, 100, 1));
   --liner-gradient-dark: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
   --font-weight-title: 900;
   --font-weight-section-title: 700;
 
   --padding-main: 40px 0;
-
   --padding-x: 16px;
   --padding-x-list: var(--padding-x);
   --padding-y-list: 24px;
@@ -66,6 +76,9 @@
   --list-height: 40px;
 
   --text-color-link: #45adfe;
+
+  --border-color: var(--text-color-link);
+
   /* TODO: delete and use something works --font-size-article: 24px; */
   /* :root.light {
     display: none;
@@ -391,6 +404,7 @@ ul {
   transition: 0.3s;
   flex-direction: row;
 }
+
 .gallery-overlay {
   display: flex;
   background: black;
@@ -500,23 +514,6 @@ ul {
     opacity: 0.5;
     pointer-events: none;
   }
-}
-
-.flex-box-column {
-  display: flex;
-  flex-direction: column;
-  gap: var(--flex-gap);
-}
-.flex-box-column-sm {
-  display: flex;
-  flex-direction: column;
-  gap: var(--flex-gap-sm);
-}
-
-.flex-box-row {
-  display: flex;
-  flex-direction: row;
-  gap: var(--flex-gap);
 }
 
 .maintenance-single-page-header {

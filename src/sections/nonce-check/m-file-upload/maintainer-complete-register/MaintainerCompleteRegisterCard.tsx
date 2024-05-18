@@ -41,7 +41,7 @@ export const MaintainerCompleteRegisterCard = (props: {
   pinOk: boolean;
 }) => {
   const { isCompleteRegister, setPinOk, pinOk } = props;
-  const { crudDocument: maintainer } = useCrudSelectors<MaintainerModel>("maintainers");
+  const { crudDocument: maintainer } = useCrudSelectors<MaintainerModel>("maintainer");
   const { crudDocument: maintenance } = useCrudSelectors<MaintenanceModel>("maintenances");
   const defaultValues = getDefaultValues(maintainersTableData, maintainer);
   // const defaultValues = useMemo(

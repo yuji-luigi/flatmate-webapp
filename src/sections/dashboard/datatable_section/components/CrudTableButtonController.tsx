@@ -18,5 +18,5 @@ export const CrudTableButtonController = (props: {
   const { section, entity } = props;
   const type = section.createButtonType || "default";
   const Button = buttons[type];
-  return <Button {...props} />;
+  return <Button {...props} label={props.section.createButton} />;
 };

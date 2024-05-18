@@ -83,10 +83,10 @@ export const InviteModal: React.FC<InviteModalProps> = (props: InviteModalProps)
   return (
     <Modal {...modalData} opened={opened} onClose={close} size="lg" withCloseButton={false}>
       <div className="invite-modal flex-box-column" data-is-loading={loading}>
-        <ModalTitle currentSpace={currentSpace} />
+        <ModalTitle currentSpace={currentSpace} entity={entity} />
         {error && <AlertCustom type="error">{error}</AlertCustom>}
         <TextInput
-          label="Email"
+          label={`Email ${t("of")} ${t(`$${entity}`)}`}
           placeholder="Enter email"
           ref={emailRef}
           onFocus={() => setError(null)}
@@ -99,15 +99,16 @@ export const InviteModal: React.FC<InviteModalProps> = (props: InviteModalProps)
   );
 };
 
-function ModalTitle({ currentSpace }: { currentSpace: CurrentSpace }) {
+function ModalTitle({ currentSpace, entity }: { currentSpace: CurrentSpace; entity: string }) {
   const { t } = useLocale();
 
   return (
     <Stack gap={4} justify="center" align="center">
       <Icons.propertyManagerBuilding size={60} />
       <h2>
-        {t("Invite Property Manager to")} {currentSpace.name}
+        {t("Invite")} {t(`$${entity}`)}
       </h2>
+      <h3>{currentSpace.name}</h3>
     </Stack>
   );
 }

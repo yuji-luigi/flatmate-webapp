@@ -39,4 +39,4 @@ const handleTokenExpired = (exp: number) => {
   }, timeLeft);
 };
 
-export { isValidToken, setSpaceSession };
+export { isValidToken };

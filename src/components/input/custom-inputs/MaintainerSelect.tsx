@@ -25,7 +25,7 @@ const fetchMaintainersOfBuilding = async (/* buildingId: string */) => {
 };
 export const MaintainerSelect = ({ formField, form, ...others }: Props) => {
   const { currentSpace } = useCookieContext();
-  const { data, isLoading, error } = useSWR(["maintainers", currentSpace?._id], () =>
+  const { data, isLoading, error } = useSWR(["maintainer", currentSpace?._id], () =>
     fetchMaintainersOfBuilding()
   );
   if (error) console.log(error);

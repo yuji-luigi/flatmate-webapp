@@ -11,6 +11,7 @@ import { toTitleCase } from "../../lib/toTitleCase";
 import { MeUser } from "../../types/models/space-model";
 import useAuth from "../../../hooks/useAuth";
 import { _PATH_FRONTEND } from "../../path/path-frontend";
+import { AllModels } from "../../types/models/allmodels";
 
 const DashboardPage = ({ initialUser }: { initialUser: MeUser }) => {
   const { setCrudDocument, setCrudDocuments } = useCrudSliceStore();
@@ -27,11 +28,13 @@ const DashboardPage = ({ initialUser }: { initialUser: MeUser }) => {
     const rawRes = await axiosInstance.get(`${process.env.NEXT_PUBLIC_API_URL}/home`);
     const { space, maintainers, maintenances, threads, statistics } = rawRes.data.data || [];
 
-    setCrudDocument({ entity: "statistics", document: statistics });
-    setCrudDocument({ entity: "spaces", document: space });
-    // setCrudDocuments({ entity: 'maintainers', documents: maintainers });
-    setCrudDocuments({ entity: "maintenances", documents: maintenances });
-    // setCrudDocuments({ entity: 'threads', documents: threads });
+    setCrudDocument({ entity: "statistics", updatedDocument: statistics });
+    setCrudDocument({ entity: "spaces", updatedDocument: space });
+    setCrudDocuments({
+      entity: "maintenances",
+      documents: maintenances as AllModels[],
+      totalDocuments: maintenances.length,
+    });
   };
   const role = initialUser.loggedAs;
   const title = `Flatmates© | ${toTitleCase(role)}`;
@@ -54,43 +57,43 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     "it",
     "en",
   ]);
-  const { jwt: jwtToken } = context.req.cookies;
-  if (!jwtToken) {
-    return { props: { user: null, ...translationObj } };
-  }
-  const rawRes = await axiosInstance.get<AxiosMeResponse>(
-    `${process.env.NEXT_PUBLIC_API_URL}/${PATH_AUTH.me}`,
-    {
-      headers: {
-        Authorization: `Bearer ${jwtToken}`,
-      },
+  try {
+    const { jwt: jwtToken } = context.req.cookies;
+    if (!jwtToken) {
+      return { props: { user: null, ...translationObj } };
     }
-  );
-  const { user } = rawRes.data;
-  if (!user) {
+    const rawRes = await axiosInstance.get<AxiosMeResponse>(
+      `${process.env.NEXT_PUBLIC_API_URL}/${PATH_AUTH.me}`,
+      {
+        headers: {
+          Authorization: `Bearer ${jwtToken}`,
+        },
+      }
+    );
+    const { user } = rawRes.data;
+    if (!user) {
+      return {
+        redirect: {
+          destination: "/",
+          permanent: true,
+        },
+      };
+    }
+    return {
+      props: {
+        initialUser: user,
+        ...translationObj,
+      },
+    };
+  } catch (error) {
+    console.error(error);
     return {
       redirect: {
         destination: "/",
-        permanent: true,
+        permanent: false,
       },
     };
   }
-
-  // if (user.loggedAs === "system_admin") {
-  //   return {
-  //     redirect: {
-  //       destination: _PATH_FRONTEND.systemAdmin.root,
-  //       permanent: true,
-  //     },
-  //   };
-  // }
-
-  return {
-    props: {
-      initialUser: user,
-      ...translationObj,
-    },
-  };
 }
 
 export default DashboardPage;

@@ -85,7 +85,7 @@ export const propertyManagerNavConfig: NavConfig[] = [
     hide: false,
     contents: [
       {
-        sectionKey: "maintainers",
+        sectionKey: "maintainer",
         title: "Maintainers",
         subtitle: "subtitle",
         title: "maintainer",

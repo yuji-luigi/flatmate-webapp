@@ -144,10 +144,12 @@ function AuthProvider({ children, initialUser }: { children: ReactNode; initialU
   const register: Register = async (formData: RegisterData) => {
     try {
       const response = await axiosInstance.post(PATH_AUTH.register, formData);
-      const { accessToken, user } = response.data;
-      localStorage.setItem("accessToken", accessToken);
+      const { accessToken } = response.data;
+      const rawMe = await axiosInstance.get<AxiosMeResponse>(PATH_AUTH.me);
+      const { user } = rawMe.data;
+      console.log("User!!");
+      console.log(user);
       // setSession(accessToken);
-
       dispatch({
         type: "REGISTER",
         payload: {
