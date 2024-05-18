@@ -9,6 +9,7 @@ export interface ParsedQueryCustom extends ParsedUrlQuery {
   linkId?: string;
   parentId?: string;
   postId?: string;
+  postIds?: string[];
   organizationId?: string;
   slug?: string | string[];
   arrSlug?: string[];
