@@ -33,6 +33,7 @@ import "../styles/test.css";
 import "../styles/nprogress.css";
 import "../styles/components.css";
 import "../styles/layout.css";
+import "../styles/base.css";
 import { useLocale } from "../../hooks/useLocale";
 import { NprogressBar } from "../components/progress-bar/NprogressBar";
 import { CurrentEntityContextProvider } from "../context/CurrentEntityContext";
