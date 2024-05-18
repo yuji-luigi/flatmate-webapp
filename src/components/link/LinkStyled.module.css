@@ -1,0 +1,7 @@
+.link {
+  color: var(--mantine-color-primary);
+  text-decoration: none;
+  &:hover {
+    cursor: pointer;
+  }
+}
