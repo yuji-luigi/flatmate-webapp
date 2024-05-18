@@ -167,7 +167,7 @@ function AuthProvider({ children, initialUser }: { children: ReactNode; initialU
     push(_PATH_FRONTEND.auth.login);
     // localStorage.removeItem('accessToken');
     // localStorage.removeItem('spaceToken');
-    // setSession(null);
+
     dispatch({
       type: "LOGOUT",
     });

@@ -39,20 +39,6 @@ const handleTokenExpired = (exp: number) => {
   }, timeLeft);
 };
 
-const setSession = (accessToken: string | null) => {
-  if (accessToken) {
-    localStorage.setItem("accessToken", accessToken);
-    // setCookie('jwt', accessToken);
-    axiosInstance.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
-    // This function below will handle when token is expired
-    const { exp }: { exp: number } = jwtDecode(accessToken); // ~5 days by minimals server
-    handleTokenExpired(exp);
-  } else {
-    localStorage.removeItem("accessToken");
-    delete axiosInstance.defaults.headers.common.Authorization;
-  }
-};
-
 // not used
 const setSpaceSession = (spaceJwt: string | null) => {
   return;
@@ -69,4 +55,4 @@ const setSpaceSession = (spaceJwt: string | null) => {
   }
 };
 
-export { isValidToken, setSession, setSpaceSession };
+export { isValidToken, setSpaceSession };
