@@ -14,6 +14,7 @@ export interface ParsedQueryCustom extends ParsedUrlQuery {
   slug?: string | string[];
   arrSlug?: string[];
   redirect?: string;
+  tab?: string;
 }
 
 export interface UseRouterWithCustomQuery extends Omit<NextRouter, "query"> {

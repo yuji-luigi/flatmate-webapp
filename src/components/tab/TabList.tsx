@@ -9,6 +9,7 @@ export interface TabList<ComponentProps = any> {
   icon: React.ReactNode;
   label: string;
   value: string;
+  htmlTitle?: string;
   component: ((props: any) => JSX.Element) | null;
   componentProps?: ComponentProps;
   form?: UseFormReturnType<Record<string, unknown>>;

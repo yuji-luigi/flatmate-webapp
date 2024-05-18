@@ -4,13 +4,14 @@ import StaticTableHeader from "./header/StaticTableHeader";
 import { StaticTableRow } from "./table-rows/StaticTableRow";
 import classes from "./DataTable.module.css";
 import { QueryFilterWeb } from "./filter/QueryFilterWeb";
+import { FormFieldTypes } from "../../types/general/data/data-table/form-field-type/formField-types";
 
 export function StaticDataTable({
   json,
   data,
   withFilter,
 }: {
-  json: any[];
+  json: FormFieldTypes[];
   data: any[];
   withFilter?: boolean;
 }) {

@@ -9,7 +9,7 @@ import { LogoBanner } from "../../../components/banner/LogoBanner";
 
 import OrganizationSpaceSelect from "../../../components/input/custom-inputs/OrganizationSpaceSelect";
 import { HeaderCreationModalWrapper } from "../../../components/modal/header-creation-modal/HeaderCreationModalWrapper";
-import { TAB_LIST_CONFIG } from "../sections-in-tabs/tabList";
+import { dashboardTabsByUserType } from "../sections-in-tabs/tabList";
 import { useCustomMQuery } from "../../../../hooks/useCustomMQuery";
 import { TabList } from "../../../components/tab/TabList";
 import classesM from "./DashboardHeaderSearch.module.css";
@@ -40,7 +40,7 @@ export function DashboardHeaderSearch() {
           </Group>
         </>
       )}
-      <TabList list={TAB_LIST_CONFIG[user?.loggedAs || "inhabitant"]} />
+      <TabList list={dashboardTabsByUserType[user?.loggedAs || "inhabitant"]} />
       {isMobile && (
         <Box className={classesM.deskTopExNav}>
           <HeaderNotificationButton />

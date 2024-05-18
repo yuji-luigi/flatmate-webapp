@@ -82,7 +82,7 @@ export const InviteModal: React.FC<InviteModalProps> = (props: InviteModalProps)
 
   return (
     <Modal {...modalData} opened={opened} onClose={close} size="lg" withCloseButton={false}>
-      <div className="invite-modal flex-box-column" data-is-loading={loading}>
+      <div className="invite-modal flex-column" data-is-loading={loading}>
         <ModalTitle currentSpace={currentSpace} entity={entity} />
         {error && <AlertCustom type="error">{error}</AlertCustom>}
         <TextInput

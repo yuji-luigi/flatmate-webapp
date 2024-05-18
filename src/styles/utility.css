@@ -1,9 +1,9 @@
-.flex-box-column {
+.flex-column {
   display: flex;
   flex-direction: column;
   gap: var(--flex-gap);
 }
-.flex-box-column-sm {
+.flex-column-sm {
   display: flex;
   flex-direction: column;
   gap: var(--flex-gap-sm);
@@ -19,4 +19,22 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: var(--flex-gap);
+}
+
+.grid-item-flex-border {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  padding: 1rem;
+  background-color: var(--color-white);
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  border-radius: var(--radius-card);
+  border: 1px solid var(--mantine-color-default-border);
+}
+
+.border {
+  border-radius: var(--radius-card);
+  border: 1px solid var(--mantine-color-default-border);
 }

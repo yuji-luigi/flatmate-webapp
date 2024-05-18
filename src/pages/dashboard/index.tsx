@@ -6,17 +6,22 @@ import Layout from "../../layouts";
 import axiosInstance, { AxiosMeResponse } from "../../utils/axios-instance";
 import { useCrudSliceStore } from "../../redux/features/crud/crudSlice";
 import { PATH_AUTH } from "../../path/path-api";
-import { DashboardTabPanels } from "../../layouts/dashboard/sections-in-tabs/tabs/DashboardRootTabPanels";
+import { DashboardTabPanels } from "../../layouts/dashboard/sections-in-tabs/default-tabs/DashboardRootTabPanels";
 import { toTitleCase } from "../../lib/toTitleCase";
 import { MeUser } from "../../types/models/space-model";
 import useAuth from "../../../hooks/useAuth";
 import { _PATH_FRONTEND } from "../../path/path-frontend";
 import { AllModels } from "../../types/models/allmodels";
+import { useLocale } from "../../../hooks/useLocale";
+import { dashboardTabsByUserType } from "../../layouts/dashboard/sections-in-tabs/tabList";
+import useRouterWithCustomQuery from "../../hooks/useRouterWithCustomQuery";
 
 const DashboardPage = ({ initialUser }: { initialUser: MeUser }) => {
   const { setCrudDocument, setCrudDocuments } = useCrudSliceStore();
   const { updateUser } = useAuth();
-
+  const { t } = useLocale();
+  const { query } = useRouterWithCustomQuery();
+  const tab = query.tab || "";
   useEffect(() => {
     handleSectionData();
     if (initialUser) {
@@ -37,14 +42,18 @@ const DashboardPage = ({ initialUser }: { initialUser: MeUser }) => {
     });
   };
   const role = initialUser.loggedAs;
-  const title = `Flatmates© | ${toTitleCase(role)}`;
+  const title =
+    dashboardTabsByUserType[role].find((tabConfig) => tabConfig.value === tab)?.htmlTitle ||
+    `Flatmates© | ${toTitleCase(t(`$${role}`))}`;
 
   return (
     <>
       <Head>
         <title>{title}</title>
       </Head>
-      <DashboardTabPanels />
+      <main>
+        <DashboardTabPanels />
+      </main>
     </>
   );
 };
