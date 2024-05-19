@@ -62,10 +62,12 @@ DashboardPage.getLayout = function getLayout(page: ReactElement) {
 };
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const translationObj = await serverSideTranslations(context.locale || "it", ["common"], null, [
-    "it",
-    "en",
-  ]);
+  const translationObj = await serverSideTranslations(
+    context.locale || "it",
+    ["common", "property-manager/top"],
+    null,
+    ["it", "en"]
+  );
   try {
     const { jwt: jwtToken } = context.req.cookies;
     if (!jwtToken) {

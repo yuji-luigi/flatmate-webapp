@@ -4,7 +4,7 @@ import DashboardSection from "./default-tabs/DashboardSection";
 import { SpaceMaintenanceSection } from "./SpaceMaintenanceSection";
 import { SpacePostSection } from "./SpacePostSection";
 import { UserRoles } from "../../../lib/enums";
-import { property_managerTabList } from "./property-manager/property-manager-tabs";
+import { property_managerTabList } from "./property-manager-tabs";
 
 const inhabitant: TabList[] = [
   {

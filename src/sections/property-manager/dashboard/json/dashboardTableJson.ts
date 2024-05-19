@@ -1,4 +1,4 @@
-import { FormFieldTypes } from "../../../../../types/general/data/data-table/form-field-type/formField-types";
+import { FormFieldTypes } from "../../../../types/general/data/data-table/form-field-type/formField-types";
 
 export const latestIssuesTableJson: FormFieldTypes[] = [
   {

@@ -1,5 +1,5 @@
 import { Box, Group, Tabs } from "@mantine/core";
-import React from "react";
+import React, { FC } from "react";
 import { UseFormReturnType } from "@mantine/form";
 import { useCustomMQuery } from "../../../hooks/useCustomMQuery";
 import { SettingButtonSpaceHome } from "../../sections/dashboard/dashboard_top/components/SettingButtonSpaceHome";
@@ -10,7 +10,7 @@ export interface TabList<ComponentProps = any> {
   label: string;
   value: string;
   htmlTitle?: string;
-  component: ((props: any) => JSX.Element) | null;
+  component: FC | null;
   componentProps?: ComponentProps;
   form?: UseFormReturnType<Record<string, unknown>>;
   // component: React.ReactNode;
