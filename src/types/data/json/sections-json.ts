@@ -2,19 +2,14 @@ import { Icons } from "../../../data/icons/icons";
 import { Entity } from "../../redux/CrudSliceInterfaces";
 
 export type NavConfigContent = {
-  // sectionKey: Entity | string;
-  // title: string;
-  // subtitle: string;
   title: string;
   link: string;
-  // importButton: string
-  // createButton: string;
   icon: keyof typeof Icons;
   hide?: boolean;
 };
 
 export type NavConfig = {
-  name: string;
+  name?: string;
   hide?: boolean;
   contents: NavConfigContent[];
 };

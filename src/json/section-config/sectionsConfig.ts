@@ -31,5 +31,6 @@ const _sections = {
 // _sections.dataTable.property_manager.createButton = "Invite Property Manager";
 
 _sections.dataTable.users.importButton = "Import Users";
+_sections.dataTable.inhabitant.importButton = "Import inhabitants";
 
 export const sectionsJson = _sections;

@@ -64,7 +64,7 @@ export function TableSectionHeader({
         </Stack>
         <CrudTableButtonController entity={entity} section={section} />
       </Group>
-      {children}
+      {/* {children} */}
     </>
   );
 }
