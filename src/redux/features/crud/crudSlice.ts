@@ -401,7 +401,10 @@ export const useCrudSliceStore = () => {
 // const useCrudDocuments = <ModelType>(entity?: FrontendEntity): ModelType[] | [] =>
 //   useAppSelector((state) => state.crud.reduxdb[entity || ""]?.documentsArray);
 const useCrudDocuments = <ModelType = MongooseBaseModel>(entity: FrontendEntity): ModelType[] => {
-  console.log("entity useCrudDocuments", entity);
+  if (!frontendEntities.includes(entity)) {
+    console.error("entity is not valid. please pass valid entity name");
+    return [];
+  }
   return useAppSelector((state) => state.crud.reduxdb[entity].documentsArray) as ModelType[];
 };
 
@@ -415,16 +418,31 @@ const useCrudStatus = () => useAppSelector((state) => state.crud.status);
 const useCrudError = () => useAppSelector((state) => state.crud.error);
 
 /** total document selector for entity */
-const useTotalDocumentsCount = (entity: FrontendEntity): number =>
-  useAppSelector((state) => state.crud.reduxdb?.[entity || ""]?.totalDocuments || 0);
+const useTotalDocumentsCount = (entity: FrontendEntity): number => {
+  if (!frontendEntities.includes(entity)) {
+    console.error("entity is not valid. please pass valid entity name");
+    return 0;
+  }
+  return useAppSelector((state) => state.crud.reduxdb?.[entity || ""]?.totalDocuments || 0);
+};
 
 /** if it has a parent returns true. ex- space instances can be either a parent or a child */
-const useIsChildrenTree = (entity: FrontendEntity): boolean =>
-  useAppSelector((state) => state.crud.reduxdb[entity].isChildrenTree);
+const useIsChildrenTree = (entity: FrontendEntity): boolean => {
+  if (!frontendEntities.includes(entity)) {
+    console.error("entity is not valid. please pass valid entity name");
+    return false;
+  }
+  return useAppSelector((state) => state.crud.reduxdb[entity].isChildrenTree);
+};
 
 /** Returns selected Document of the entity or if not selected returns null  */
-const useCrudDocument = <ModelType>(entity: FrontendEntity): ModelType | undefined =>
-  useAppSelector((state) => state.crud.reduxdb[entity].singleCrudDocument) as ModelType;
+const useCrudDocument = <ModelType>(entity: FrontendEntity): ModelType | undefined => {
+  if (!frontendEntities.includes(entity)) {
+    console.error("entity is not valid. please pass valid entity name");
+    return {} as ModelType;
+  }
+  return useAppSelector((state) => state.crud.reduxdb[entity].singleCrudDocument) as ModelType;
+};
 /** Hook for selector. this time need do pass entity when initialize the hook. */
 export const useCrudSelectors = <ModelType = MongooseBaseModel>(entity: FrontendEntity) => {
   const crudDocuments = useCrudDocuments<ModelType>(entity);
