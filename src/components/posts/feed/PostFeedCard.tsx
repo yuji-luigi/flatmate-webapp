@@ -30,7 +30,7 @@ export const PostFeedCardContent = (props: FeedCardProps) => {
   const { createdBy, title, description, attachments, images, createdAt, receipts, invoices, _id } =
     data;
   return (
-    <Box className="flex-box-column">
+    <Box className="flex-column">
       <FeedHeading {...data} />
       <Title size={TEXT_SIZE.titleCard}>{title}</Title>
       <FeedDescription {...others} className={classesM.description} data={data} />

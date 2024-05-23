@@ -28,8 +28,8 @@ export function CrudDataTable({ overridingEntity }: { overridingEntity?: Entity 
 
   const sectionFormFields = formFields[entity as Entity];
   useEffect(() => {
-    setPage(1);
-    setPagination(1);
+    // setPage(1);
+    // setPagination(1);
   }, [entity]);
 
   if (!sectionFormFields) {
@@ -39,7 +39,6 @@ export function CrudDataTable({ overridingEntity }: { overridingEntity?: Entity 
   sectionFormFields.sort(
     (a: FormFieldTypes, b: FormFieldTypes) => a.priority || 0 - (b.priority || 0)
   );
-
   const TOTAL = Math.floor((totalDocumentsCount - 1) / ROWS_PER_PAGE) + 1;
 
   function onPageChange(pageNumber: number) {

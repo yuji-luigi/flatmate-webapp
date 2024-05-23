@@ -33,7 +33,7 @@ export const useCreateAccessPermissionValue = ({
         return acc;
       },
       {
-        user: selectedUser._id,
+        user: selectedUser?._id,
         role: selectedRole?._id || "",
         space: get?.space?._id || "",
         permissions: permissionsDefaultValues,

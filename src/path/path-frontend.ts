@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { HiddenAuthTokenInterface } from "../types/models/auth-token-model";
-import { Entity, entities, pseudoEntities } from "../types/redux/CrudSliceInterfaces";
+import { Entity, entities, userTypes } from "../types/redux/CrudSliceInterfaces";
 
 export const ROOT = "/";
 
@@ -51,11 +51,11 @@ const CHOOSE_ORGANIZATION = "/choose-organization";
 const CHOOSE_ROOT_SPACE = "/choose-root-space";
 
 type RegularPath = { root: string; byId: (id: string) => string };
-type EntityPath = Record<Entity | (typeof pseudoEntities)[number], RegularPath>;
+type EntityPath = Record<Entity | (typeof userTypes)[number], RegularPath>;
 
 const SYSTEM_ADMIN = "/system";
 const entityPath = (path: string) =>
-  [...entities, ...pseudoEntities].reduce((acc, entity) => {
+  [...entities, ...userTypes].reduce((acc, entity) => {
     acc[entity] = {
       root: `${SYSTEM_ADMIN}/${path}/${entity}`,
       byId: (id: string) => `${SYSTEM_ADMIN}/${entity}/${id}`,

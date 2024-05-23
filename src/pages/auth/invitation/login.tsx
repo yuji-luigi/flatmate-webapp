@@ -45,7 +45,6 @@ const InvitationLoginPage = () => {
       setFormError(error.message || error);
     }
   };
-
   return (
     <Page title={t("Invited!")} className="main-container grid-center">
       <form onSubmit={handleSubmit}>

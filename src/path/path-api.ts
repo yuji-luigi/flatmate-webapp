@@ -42,7 +42,7 @@ export enum PATH_API {
   spaces = "spaces",
   getSpaceSelections = "auth/space-selections",
   organization = "organizations",
-  maintainers = "maintainers",
+  maintainers = "maintainer",
   invitations = "invitations",
   maintainersSlug = "maintainers/slug",
   maintainersSpace = "maintainers/spaces",

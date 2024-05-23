@@ -6,10 +6,10 @@ import {
   singleEntities,
 } from "../../types/redux/CrudSliceInterfaces";
 import { OptionalRecord } from "../../types/utils/OptionalRecord";
-import { property_managersSection } from "./property_managersSection";
+import { propertyManagerSectionConfigs } from "./property_managersSection";
 
 const customSection: OptionalRecord<FrontendEntity, Partial<SectionConfig>> = {
-  property_manager: property_managersSection,
+  property_manager: {},
 };
 
 const reducer = (acc: Record<FrontendEntity, SectionConfig>, entity: FrontendEntity) => {
@@ -26,10 +26,18 @@ const _sections = {
   dataTable: frontendEntities.reduce(reducer, {} as Record<FrontendEntity, SectionConfig>),
   "card-list": frontendEntities.reduce(reducer, {} as Record<FrontendEntity, SectionConfig>),
 };
+export const sectionConfigsByUserType = {
+  system_admin: [],
+  inhabitant: [],
+  property_manager: propertyManagerSectionConfigs,
+  maintainer: [],
+  super_admin: [],
+} as const;
 // here mutate the object and set custom values
 // _sections.dataTable.property_manager.title = "Property Managers";
 // _sections.dataTable.property_manager.createButton = "Invite Property Manager";
 
 _sections.dataTable.users.importButton = "Import Users";
+_sections.dataTable.inhabitant.importButton = "Import inhabitants";
 
 export const sectionsJson = _sections;

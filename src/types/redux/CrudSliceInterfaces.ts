@@ -20,7 +20,8 @@ export const entities = [
   "invitations",
 ] as const;
 
-export const pseudoEntities = ["inhabitant", "property_manager", "maintainers"] as const;
+export const userTypes = ["inhabitant", "property_manager", "maintainer"] as const;
+
 const sections = ["statistics", "posts", "home"] as const;
 
 export const singleEntities = {
@@ -45,12 +46,16 @@ export const singleEntities = {
   posts: "post",
   home: "home",
   invitations: "invitation",
+  maintainer: "maintainer",
 } as const;
 
-export const frontendEntities = [...entities, ...sections, ...pseudoEntities] as const;
+export const frontendEntities = [...entities, ...sections, ...userTypes] as const;
 export type Entity = (typeof entities)[number];
 
-export type FrontendEntity = (typeof frontendEntities)[number];
+export function isFrontendEntity(entity: any): entity is Entity {
+  return frontendEntities.includes(entity as Entity);
+}
+export type FrontendEntity = (typeof frontendEntities)[number] | "placeholder";
 
 export type TODO_MODEL = MongooseBaseModel;
 

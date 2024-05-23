@@ -1,5 +1,6 @@
 import { Icons } from "../data/icons/icons";
 import { Role } from "../types/models/space-model";
+import { userTypes } from "../types/redux/CrudSliceInterfaces";
 
 export const FONT_SIZES = {
   menuItems: 16,
@@ -96,6 +97,7 @@ export const MAINTAINER_TYPES = Object.keys(MAINTAINER_TYPES_ARRAY).reduce(
 );
 
 export type UserRoles = Role;
+export type UserType = (typeof userTypes)[number];
 
 export const LOCAL_STORAGE_KEYS = {
   LOCALE: "i18nextLng",

@@ -28,7 +28,7 @@ export type Sections = Entity;
 //   "proposals",
 //   "tags",
 //   "threads",
-//   "maintainers",
+//   "maintainer",
 //   "userSettings",
 //   "wallets",
 //   "organizations",

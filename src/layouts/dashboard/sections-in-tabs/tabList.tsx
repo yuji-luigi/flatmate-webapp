@@ -1,31 +1,10 @@
 import { TabList } from "../../../components/tab/TabList";
 import { Icons } from "../../../data/icons/icons";
-import DashboardSection from "./tabs/DashboardSection";
+import DashboardSection from "./default-tabs/DashboardSection";
 import { SpaceMaintenanceSection } from "./SpaceMaintenanceSection";
 import { SpacePostSection } from "./SpacePostSection";
 import { UserRoles } from "../../../lib/enums";
-
-const property_manager: TabList[] = [
-  {
-    label: "Dashboard",
-    value: "dashboard",
-    icon: <Icons.reportAnalytics size="1.5rem" />,
-    component: DashboardSection,
-  },
-
-  {
-    label: "Maintenance",
-    value: "maintenances",
-    icon: <Icons.maintenance size="1.5rem" />,
-    component: SpaceMaintenanceSection,
-  },
-  {
-    label: "Invoice",
-    value: "invoices",
-    icon: <Icons.invoice size="1.5rem" />,
-    component: () => <div>All the payments as list</div>,
-  },
-];
+import { property_managerTabList } from "./property-manager-tabs";
 
 const inhabitant: TabList[] = [
   {
@@ -128,8 +107,8 @@ const maintainer: TabList[] = [
   },
 ];
 
-export const TAB_LIST_CONFIG: Record<UserRoles, TabList[]> = {
-  property_manager,
+export const dashboardTabsByUserType: Record<UserRoles, TabList[]> = {
+  property_manager: property_managerTabList,
   maintainer,
   inhabitant,
   system_admin,

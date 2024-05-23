@@ -14,7 +14,7 @@ import { Icons } from "../../../data/icons/icons";
 import LoadingScreen from "../../../components/screen/LoadingScreen";
 
 export const FavoriteMaintainerButton = ({ onClick }: { onClick: () => void }) => {
-  const _entity = "maintainers";
+  const _entity = "maintainer";
   const { t } = useLocale();
   const [isLoading, setIsLoading] = useState(false);
   const { setCrudDocument: setMaintainer } = useCrudSliceStore();

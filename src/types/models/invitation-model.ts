@@ -1,6 +1,9 @@
+import { UserType } from "../../lib/enums";
+
 export interface InvitationAuth {
   _id: string;
   status: InvitationStatus;
+  userType: UserType;
   createdBy: {
     name: string;
     surname: string;

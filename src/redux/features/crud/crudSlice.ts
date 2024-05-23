@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { useEffect } from "react";
+import { use, useEffect } from "react";
 import { showNotification } from "@mantine/notifications";
 import {
   fetchCrudDocumentsWithPagination,
@@ -25,6 +25,7 @@ import {
   TODO_MODEL,
   CrudSliceAction,
   FrontendEntity,
+  isFrontendEntity,
 } from "../../../types/redux/CrudSliceInterfaces";
 import {
   UpdateCrudDocumentInStorePayload,
@@ -41,20 +42,23 @@ import {
 } from "../../../types/redux/dispatch-args";
 import { AllModels } from "../../../types/models/allmodels";
 
-export const reduxdb: Reduxdb = frontendEntities.reduce<Reduxdb>((totalData, entity) => {
-  totalData = {
-    ...totalData,
-    [entity]: {
-      entity,
-      documentsArray: [],
-      totalDocuments: 0,
-      singleCrudDocument: null,
-      singleCrudDocuments: [],
-      isChildrenTree: false,
-    },
-  };
-  return totalData;
-}, {} as Reduxdb);
+export const reduxdb: Reduxdb = [...frontendEntities, "placeholder"].reduce<Reduxdb>(
+  (totalData, entity) => {
+    totalData = {
+      ...totalData,
+      [entity]: {
+        entity,
+        documentsArray: [],
+        totalDocuments: 0,
+        singleCrudDocument: null,
+        singleCrudDocuments: [],
+        isChildrenTree: false,
+      },
+    };
+    return totalData;
+  },
+  {} as Reduxdb
+);
 
 const initialState: CrudState = {
   reduxdb,
@@ -400,8 +404,9 @@ export const useCrudSliceStore = () => {
 /** Returns Array of Documents of the entity: whole array of entity */
 // const useCrudDocuments = <ModelType>(entity?: FrontendEntity): ModelType[] | [] =>
 //   useAppSelector((state) => state.crud.reduxdb[entity || ""]?.documentsArray);
-const useCrudDocuments = <ModelType = MongooseBaseModel>(entity: FrontendEntity): ModelType[] =>
-  useAppSelector((state) => state.crud.reduxdb[entity].documentsArray) as ModelType[];
+const useCrudDocuments = <ModelType = MongooseBaseModel>(entity: FrontendEntity): ModelType[] => {
+  return useAppSelector((state) => state.crud.reduxdb[entity].documentsArray) as ModelType[];
+};
 
 /** returns string if api sent message */
 const useCrudMessage = () => useAppSelector((state) => state.crud.message);
@@ -413,28 +418,35 @@ const useCrudStatus = () => useAppSelector((state) => state.crud.status);
 const useCrudError = () => useAppSelector((state) => state.crud.error);
 
 /** total document selector for entity */
-const useTotalDocumentsCount = (entity: FrontendEntity): number =>
-  useAppSelector((state) => state.crud.reduxdb?.[entity || ""]?.totalDocuments || 0);
+const useTotalDocumentsCount = (entity: FrontendEntity): number => {
+  return useAppSelector((state) => state.crud.reduxdb?.[entity || ""]?.totalDocuments || 0);
+};
 
 /** if it has a parent returns true. ex- space instances can be either a parent or a child */
-const useIsChildrenTree = (entity: FrontendEntity): boolean =>
-  useAppSelector((state) => state.crud.reduxdb[entity].isChildrenTree);
+const useIsChildrenTree = (entity: FrontendEntity): boolean => {
+  console.log("entity", entity);
+  return useAppSelector((state) => state.crud.reduxdb[entity].isChildrenTree);
+};
 
 /** Returns selected Document of the entity or if not selected returns null  */
-const useCrudDocument = <ModelType>(entity: FrontendEntity): ModelType | undefined =>
-  useAppSelector((state) => state.crud.reduxdb[entity].singleCrudDocument) as ModelType;
+const useCrudDocument = <ModelType>(entity: FrontendEntity): ModelType | undefined => {
+  return useAppSelector((state) => state.crud.reduxdb[entity].singleCrudDocument) as ModelType;
+};
 /** Hook for selector. this time need do pass entity when initialize the hook. */
-export const useCrudSelectors = <ModelType = MongooseBaseModel>(entity: FrontendEntity) => {
-  const crudDocuments = useCrudDocuments<ModelType>(entity);
+export const useCrudSelectors = <ModelType = MongooseBaseModel>(
+  entity: FrontendEntity | "placeholder" = "placeholder"
+) => {
+  const _entity = useEntityFilter(entity);
+  const crudDocuments = useCrudDocuments<ModelType>(_entity);
   // const crudDocuments = useAppSelector(
-  //   (state) => state.crud.reduxdb[entity]?.documentsArray
+  //   (state) => state.crud.reduxdb[_entity]?.documentsArray
   // ) as ModelType[];
   const crudMessage = useCrudMessage();
   const crudStatus = useCrudStatus();
   const crudError = useCrudError();
-  const totalDocumentsCount = useTotalDocumentsCount(entity);
-  const isChildrenTree = useIsChildrenTree(entity);
-  const crudDocument = useCrudDocument<ModelType>(entity);
+  const totalDocumentsCount = useTotalDocumentsCount(_entity);
+  const isChildrenTree = useIsChildrenTree(_entity);
+  const crudDocument = useCrudDocument<ModelType>(_entity);
   const submitting = useAppSelector((state) => state.crud.submitting);
   const { resetCrudStatus } = useCrudSliceStore();
 
@@ -466,4 +478,12 @@ export const useCrudSelectors = <ModelType = MongooseBaseModel>(entity: Frontend
     totalDocumentsCount,
     submitting,
   };
+};
+
+/** Hook for selector. this time need do pass entity when initialize the hook. */
+export const useEntityFilter = (entity: string): FrontendEntity | "placeholder" => {
+  if (isFrontendEntity(entity)) {
+    return entity as FrontendEntity;
+  }
+  return "placeholder";
 };

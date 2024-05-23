@@ -18,10 +18,16 @@ import { _PATH_FRONTEND } from "../../../../path/path-frontend";
 import { InvitationAuth } from "../../../../types/models/invitation-model";
 import { SimpleOneSectionLayout } from "../../../../layouts/simple-one-section/SimpleOneSectionLayout";
 
-const AcceptInvitationPage = ({ initialUser }: { initialUser: MeUser }) => {
+const AcceptInvitationPage = ({
+  initialUser,
+  invitation,
+}: {
+  initialUser: MeUser;
+  invitation: InvitationAuth;
+}) => {
   const { t } = useLocale();
-  const userType = "Property Manager";
-  const condo = "Luigi mansion";
+  const userType = t(`$${invitation.userType}`);
+  const condo = invitation.space.name;
 
   return (
     <Page title={t("Invitation")}>

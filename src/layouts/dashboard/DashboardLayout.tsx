@@ -7,7 +7,7 @@ import { NavbarVertical } from "./navbar/NavbarVertical";
 import useLayoutContext from "../../../hooks/useLayoutContext";
 import { useCookieContext } from "../../context/CookieContext";
 import { useTabContext } from "../../context/tab-context/TabContextProvider";
-import { TAB_LIST_CONFIG } from "./sections-in-tabs/tabList";
+import { dashboardTabsByUserType } from "./sections-in-tabs/tabList";
 import classes from "./DashboardLayout.module.css";
 import { PATH_CLIENT, _PATH_FRONTEND } from "../../path/path-frontend";
 import useAuth from "../../../hooks/useAuth";
@@ -25,7 +25,7 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
   // const bgColor = theme.colorScheme === 'dark' ? 'rgba(0,0,0,0.85)' : 'rgba(255,255,255,0.85)';
   // const section = router.pathname.split('/').pop();
   useEffect(() => {
-    // setCurrentTab(TAB_LIST_CONFIG[0].value);
+    // setCurrentTab(dashboardTabsByUserType[0].value);
     const handleScroll = () => {
       if (containerRef.current) {
         const { scrollY } = window;
@@ -66,7 +66,7 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
         className={`${classes.pageContent} ${classes.bg}`}
         style={{
           paddingTop: 55,
-          backgroundImage: `url(${currentSpace?.image})`,
+          ...(currentSpace?.image && { backgroundImage: `url(${currentSpace?.image})` }),
         }}
       >
         <NavbarVertical />

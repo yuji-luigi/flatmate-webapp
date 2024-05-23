@@ -41,7 +41,7 @@ export function TableSectionHeader({
     return () => setBreadcrumbs(null);
   }, [entity]);
 
-  if (!user) return <LoadingOverlay visible />;
+  if (!user || !entity) return <LoadingOverlay visible />;
 
   const section = sectionsJson.dataTable[entity];
 
@@ -64,7 +64,7 @@ export function TableSectionHeader({
         </Stack>
         <CrudTableButtonController entity={entity} section={section} />
       </Group>
-      {children}
+      {/* {children} */}
     </>
   );
 }

@@ -51,7 +51,7 @@ export const SectionContent = () => {
       <DashboardTopCenteredHeader
         header="Maintenances"
         otherComponent={<FeedTableSwitch localStorageKey={VIEW_KEY} />}
-      />{" "}
+      />
       {(value === "posts" || !value) && (
         <FeedView>
           {filteredList.map((maintenance) => (

@@ -80,6 +80,7 @@ export interface SetCrudDocumentsPayload {
   isChildrenTree?: boolean;
   totalDocuments: number;
 }
+
 export interface SetCrudDocumentPayload {
   entity: FrontendEntity;
   updatedDocument: AllModels;

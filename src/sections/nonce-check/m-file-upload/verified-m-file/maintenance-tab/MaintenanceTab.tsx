@@ -12,7 +12,7 @@ export const MaintenanceTab = (props: { maintenance: MaintenanceModel }) => {
   const { title, description, attachments, images, createdAt, createdBy, space, ...others } =
     maintenance;
   return (
-    <Box className="flex-box-column">
+    <Box className="flex-column">
       <Title size={TEXT_SIZE.titleCard}>{title}</Title>
       <Box>
         <Text>{description}</Text>

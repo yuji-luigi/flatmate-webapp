@@ -80,5 +80,12 @@
 	"If you don't have an account. Please": "If you don't have an account. Please",
 	"If you have an account.": "If you have an account.",
 	"Submit": "Submit",
-	"Register to Flatmates": "Register to Flatmates"
+	"Register to Flatmates": "Register to Flatmates",
+	"$inhabitant": "Inhabitant",
+	"$maintainer": "Maintainers",
+	"$property_manager": "Property Manager",
+	"$system_admin": "System Admin",
+	"InviteGridNotRegistered": "is Not Registered for this Condominium.",
+	"of": "of",
+	"Issue": "Issue"
 }

@@ -1,0 +1,4 @@
+.card {
+  padding: var(--padding-md);
+  gap: 0;
+}

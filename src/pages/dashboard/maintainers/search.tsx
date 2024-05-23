@@ -14,7 +14,7 @@ import { CrudDataTable } from "../../../components/datatable/CrudDataTable";
 const MaintainerSearchPage = () => {
   const { query } = useRouter();
 
-  const entity = "maintainers";
+  const entity = "maintainer";
   const { paginationQuery } = usePaginationContext();
 
   const { fetchCrudDocumentsWithPagination } = useCrudSliceStore();
@@ -37,12 +37,12 @@ const MaintainerSearchPage = () => {
     <Page>
       {/* <Group align="end" justify="apart" pl={16} mb={32} style={{ width: '100%' }}> */}
       <Box px={32}>
-        <TableSectionHeader overridingEntity="maintainers" />
+        <TableSectionHeader overridingEntity="maintainer" />
       </Box>
       {/* </Group> */}
-      {/* <Tables overridingEntity="maintainers" /> */}
-      <CrudDataTable overridingEntity="maintainers" />
-      <CrudDrawerDefault overridingEntity="maintainers" />
+      {/* <Tables overridingEntity="maintainer" /> */}
+      <CrudDataTable overridingEntity="maintainer" />
+      <CrudDrawerDefault overridingEntity="maintainer" />
     </Page>
   );
 };

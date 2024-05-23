@@ -8,6 +8,7 @@ import { TabContextProvider } from "../context/tab-context/TabContextProvider";
 // import classes from "./index.module.css";
 import { AuthTokenRouteLayout } from "./auth-token/AuthTokenRouteLayout";
 import { ClientProvider } from "./ClientProvider";
+import useRouterWithCustomQuery from "../hooks/useRouterWithCustomQuery";
 
 export type LayoutVariants =
   | "main"

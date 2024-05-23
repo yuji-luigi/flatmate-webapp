@@ -30,7 +30,7 @@ const SpaceSettingSinglePage = () => {
   const { currentSpace } = useCookieContext();
   const { setCrudDocument, setCrudDocuments } = useCrudSliceStore();
   const { crudDocument: space } = useCrudSelectors<SpaceModel>("spaces");
-  const { crudDocuments: maintainers } = useCrudSelectors<MaintainerModel>("maintainers");
+  const { crudDocuments: maintainers } = useCrudSelectors<MaintainerModel>("maintainer");
   const [isSpaceAdmin, setIsSpaceAdmin] = useState(false);
 
   // const { data, error, isLoading } = useSWR<SpaceSlugResponse | null, AxiosError>(`${slug}}`, () =>
@@ -44,7 +44,7 @@ const SpaceSettingSinglePage = () => {
         const { data } = rawRes.data;
         setIsSpaceAdmin(data.isSpaceAdmin);
         setCrudDocument({ entity: "spaces", document: data.space });
-        setCrudDocuments({ entity: "maintainers", documents: data.maintainers });
+        setCrudDocuments({ entity: "maintainer", documents: data.maintainers });
       });
     }
   }, [currentSpace?.slug]);

@@ -6,8 +6,15 @@ import { useRouter } from "next/router";
 import { LoadingOverlay } from "@mantine/core";
 import useAuth from "../../hooks/useAuth";
 import { _PATH_FRONTEND } from "../path/path-frontend";
+import { Role, ROLES } from "../types/models/space-model";
 
-export default function AuthGuard({ children }: { children: JSX.Element | JSX.Element[] }) {
+export default function AuthGuard({
+  children,
+  canAccessBy = [...ROLES],
+}: {
+  children: JSX.Element | JSX.Element[];
+  canAccessBy?: Role[];
+}) {
   const { isAuthenticated, isInitialized, user } = useAuth();
   const { pathname, push } = useRouter();
   const [requestedLocation, setRequestedLocation] = useState<string | null>(null);
@@ -33,7 +40,13 @@ export default function AuthGuard({ children }: { children: JSX.Element | JSX.El
     push(_PATH_FRONTEND.auth.guardToLogin);
     return <LoadingOverlay visible />;
   }
+
   /** finally authenticated user enters here */
   // console.log('AuthGuard: finally authenticated user enters here');
+
+  if (user && !canAccessBy.includes(user.loggedAs)) {
+    push(_PATH_FRONTEND.error.unauthorized);
+  }
+
   return <>{children}</>;
 }

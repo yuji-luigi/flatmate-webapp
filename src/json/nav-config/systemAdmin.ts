@@ -3,6 +3,7 @@ import { NavConfig } from "../../types/data/json/sections-json";
 
 export const systemAdminNavConfig: NavConfig[] = [
   {
+    key: "setting",
     name: "Condominium Setting",
     hide: false,
     contents: [
@@ -13,7 +14,7 @@ export const systemAdminNavConfig: NavConfig[] = [
       },
       {
         title: "Maintainer",
-        link: _PATH_FRONTEND.systemAdmin["card-list"].maintainers.root,
+        link: _PATH_FRONTEND.systemAdmin["card-list"].maintainer.root,
         icon: "IconShovel",
       },
       {

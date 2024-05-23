@@ -1,6 +1,5 @@
-import { useRouter } from "next/router";
 import useSWR from "swr";
-import React, { ReactElement, useEffect } from "react";
+import { ReactElement, useEffect } from "react";
 import axiosInstance from "../../../utils/axios-instance";
 
 import { CrudDataTable } from "../../../components/datatable/CrudDataTable";
@@ -12,7 +11,6 @@ import { CrudDrawerDefault } from "../../../components/drawer/CrudDrawerDefault"
 import { /* useCrudSelectors, */ useCrudSliceStore } from "../../../redux/features/crud/crudSlice";
 import { usePaginationContext } from "../../../context/PaginationContext";
 import { useCookieContext } from "../../../context/CookieContext";
-import { HeaderContainer } from "../../../components/datatable/header/HeaderContainer";
 import { MongooseBaseModel } from "../../../types/models/mongoose-base-model";
 import useRouterWithCustomQuery from "../../../hooks/useRouterWithCustomQuery";
 
