@@ -66,7 +66,7 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
         className={`${classes.pageContent} ${classes.bg}`}
         style={{
           paddingTop: 55,
-          backgroundImage: `url(${currentSpace?.image})`,
+          ...(currentSpace?.image && { backgroundImage: `url(${currentSpace?.image})` }),
         }}
       >
         <NavbarVertical />

@@ -9,6 +9,7 @@ export type NavConfigContent = {
 };
 
 export type NavConfig = {
+  key: string;
   name?: string;
   hide?: boolean;
   contents: NavConfigContent[];
@@ -18,9 +19,9 @@ export type SectionConfig = {
   /** used to index the correct config object by find method */
   // key: string;
   title: string;
-  subtitle: string;
-  createButton: string;
-  createButtonType?: string;
+  subtitle?: string;
+  createButton?: string;
+  createButtonType?: string; // TODO: enum
   importButton?: string;
   hide?: boolean;
 };

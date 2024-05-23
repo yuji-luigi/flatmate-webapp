@@ -45,7 +45,6 @@ const DashboardPage = ({ initialUser }: { initialUser: MeUser }) => {
   const title =
     dashboardTabsByUserType[role].find((tabConfig) => tabConfig.value === tab)?.htmlTitle ||
     `Flatmates© | ${toTitleCase(t(`$${role}`))}`;
-
   return (
     <>
       <Head>

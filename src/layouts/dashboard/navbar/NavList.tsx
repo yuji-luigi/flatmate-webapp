@@ -2,16 +2,17 @@ import { Stack } from "@mantine/core";
 import { NavbarVerticalItem } from "./NavbarVerticalItem";
 import { RootNavConfig } from "../../../json/nav-config";
 import useAuth from "../../../../hooks/useAuth";
+import { NavConfig } from "../../../types/data/json/sections-json";
 
 type NavListProps = {
-  section: RootNavConfig[number];
+  section: NavConfig;
 };
 
 export const NavList: React.FC<NavListProps> = (props: NavListProps) => {
   const { section } = props;
   const { user } = useAuth();
   // const show = user?.isSuperAdmin;
-
+  console.log(section.name);
   return (
     <>
       {true && !section.hide && (

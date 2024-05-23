@@ -2,35 +2,35 @@ import { FormFieldTypes } from "../../../../types/general/data/data-table/form-f
 
 export const latestIssuesTableJson: FormFieldTypes[] = [
   {
-    id: "issue",
+    id: "issuea",
     type: "text",
     name: "issue",
     label: "Issue",
     required: true,
   },
   {
-    id: "issue",
+    id: "issuedsfa",
     type: "text",
     name: "issue",
     label: "Issue",
     required: true,
   },
   {
-    id: "issue",
+    id: "issdsfaue",
     type: "text",
     name: "issue",
     label: "Issue",
     required: true,
   },
   {
-    id: "issue",
+    id: "ishehetsue",
     type: "text",
     name: "issue",
     label: "Issue",
     required: true,
   },
   {
-    id: "issue",
+    id: "isshaerhaerue",
     type: "text",
     name: "issue",
     label: "Issue",

@@ -86,5 +86,6 @@
 	"$property_manager": "Property Manager",
 	"$system_admin": "System Admin",
 	"InviteGridNotRegistered": "is Not Registered for this Condominium.",
-	"of": "of"
+	"of": "of",
+	"Issue": "Issue"
 }

@@ -6,7 +6,7 @@ import {
   UseRouterWithCustomQuery,
 } from "../types/nextjs-custom-types/customQuery";
 import { useCurrentEntityContext } from "../context/CurrentEntityContext";
-import { FrontendEntity } from "../types/redux/CrudSliceInterfaces";
+import { FrontendEntity, isFrontendEntity } from "../types/redux/CrudSliceInterfaces";
 
 function useRouterWithCustomQuery({
   entity,
@@ -26,12 +26,13 @@ function useRouterWithCustomQuery({
   }, [entity, setCurrentEntity]);
 
   useEffect(() => {}, [currentEntity]);
-  const _entity = { entity: entity || currentEntity || router.query.entity };
+  let _entity = entity || currentEntity || router.query.entity;
+  _entity = isFrontendEntity(_entity) ? _entity : "placeholder";
   return {
     ...router,
     query: {
       ...router.query,
-      ...(_entity.entity && _entity),
+      entity: _entity,
     } as ParsedQueryCustom,
   };
 }

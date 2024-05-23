@@ -3,6 +3,7 @@ import { NavConfig } from "../../types/data/json/sections-json";
 
 export const systemAdminNavConfig: NavConfig[] = [
   {
+    key: "setting",
     name: "Condominium Setting",
     hide: false,
     contents: [

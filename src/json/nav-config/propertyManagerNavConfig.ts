@@ -1,7 +1,9 @@
 import { NavConfig } from "../../types/data/json/sections-json";
+import { spaces } from "../section-config/sectionBaseConfigs";
 
 export const propertyManagerNavConfig: NavConfig[] = [
   {
+    key: "dashboard",
     contents: [
       {
         title: "Dashboard",
@@ -11,6 +13,7 @@ export const propertyManagerNavConfig: NavConfig[] = [
     ],
   },
   {
+    key: "setups",
     name: "setups",
     hide: false,
     contents: [
@@ -23,6 +26,7 @@ export const propertyManagerNavConfig: NavConfig[] = [
     ],
   },
   {
+    key: "admin",
     name: "admin",
     hide: false,
     contents: [
@@ -41,3 +45,7 @@ export const propertyManagerNavConfig: NavConfig[] = [
     ],
   },
 ];
+
+export const flatPropertyManagerNavConfig = propertyManagerNavConfig.flatMap(
+  (item) => item.contents
+);

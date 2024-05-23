@@ -1,7 +1,25 @@
 import { SectionConfig } from "../../types/data/json/sections-json";
+import { FrontendEntity } from "../../types/redux/CrudSliceInterfaces";
+import { checks, inhabitant, maintainer, maintenances, spaces } from "./sectionBaseConfigs";
 
-export const property_managersSection: Partial<SectionConfig> = {
-  title: "Property Managers",
-  createButton: "Invite Property Manager",
-  createButtonType: "invite",
+const dataTableSections: FrontendEntity[] = [
+  "spaces",
+  "inhabitant",
+  "maintainer",
+  "checks",
+  "maintenances",
+];
+const cardListSections: FrontendEntity[] = [
+  "spaces",
+  "inhabitant",
+  "maintainer",
+  "checks",
+  "maintenances",
+];
+export const propertyManagerSectionConfigs: Record<FrontendEntity, SectionConfig> = {
+  spaces,
+  inhabitant,
+  maintainer,
+  checks,
+  maintenances,
 };

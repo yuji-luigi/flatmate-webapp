@@ -13,12 +13,24 @@ import { usePaginationContext } from "../../../context/PaginationContext";
 import { CrudDataTable } from "../../../components/datatable/CrudDataTable";
 import { useGetCrudDocuments } from "../../../hooks/useGetCrudDocuments";
 import { useCurrentEntityContext } from "../../../context/CurrentEntityContext";
-import { Entity } from "../../../types/redux/CrudSliceInterfaces";
+import {
+  Entity,
+  frontendEntities,
+  isFrontendEntity,
+} from "../../../types/redux/CrudSliceInterfaces";
+import { sectionConfigsByUserType } from "../../../json/section-config/sectionsConfig";
+import useAuth from "../../../../hooks/useAuth";
+import { flatNavConfigs, navConfigs } from "../../../json/nav-config";
+import { hasMatchedString, hasMatchedUrl } from "../../../lib/regexUrl";
+import LoadingScreen from "../../../components/screen/LoadingScreen";
+import { _PATH_FRONTEND, FRONTEND_ROOT } from "../../../path/path-frontend";
+import useRouterWithCustomQuery from "../../../hooks/useRouterWithCustomQuery";
 
 const CrudPage = () => {
-  const { query, push } = useRouter();
-  const { currentEntity: entity } = useCurrentEntityContext(query.entity as Entity);
+  const { query, push, asPath } = useRouterWithCustomQuery();
+  const { entity } = query;
   const { paginationQuery } = usePaginationContext();
+  const { user } = useAuth();
   useGetCrudDocuments({ entity, withPagination: true });
   const { fetchCrudDocumentsWithPagination } = useCrudSliceStore();
 
@@ -27,9 +39,24 @@ const CrudPage = () => {
     if (!entity) {
       return;
     }
+    if (!isFrontendEntity(entity)) {
+      return;
+    }
     /** fetch all the entity if not childrenpage */
     fetchCrudDocumentsWithPagination({ entity, query: paginationQuery });
   }, [paginationQuery, entity, query.parentId]);
+  if (!user?.loggedAs) {
+    push("/login");
+    return;
+  }
+
+  const foundSectionConfig = flatNavConfigs[user?.loggedAs].find((section) =>
+    hasMatchedUrl(asPath, section.link)
+  );
+  if (!foundSectionConfig) {
+    push(_PATH_FRONTEND.dashboard.home);
+    return <LoadingScreen />;
+  }
   return (
     <Page title={`Flatmates | ${entity}`}>
       <Box

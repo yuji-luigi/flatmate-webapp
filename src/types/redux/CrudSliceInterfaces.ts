@@ -52,7 +52,10 @@ export const singleEntities = {
 export const frontendEntities = [...entities, ...sections, ...userTypes] as const;
 export type Entity = (typeof entities)[number];
 
-export type FrontendEntity = (typeof frontendEntities)[number];
+export function isFrontendEntity(entity: any): entity is Entity {
+  return frontendEntities.includes(entity as Entity);
+}
+export type FrontendEntity = (typeof frontendEntities)[number] | "placeholder";
 
 export type TODO_MODEL = MongooseBaseModel;
 
