@@ -1,3 +1,4 @@
+import { ButtonVariant, MantineColor } from "@mantine/core";
 import { Icons } from "../../../data/icons/icons";
 import { Entity } from "../../redux/CrudSliceInterfaces";
 
@@ -20,8 +21,20 @@ export type SectionConfig = {
   // key: string;
   title: string;
   subtitle?: string;
+  sectionActions?: SectionActionData[];
   createButton?: string;
   createButtonType?: string; // TODO: enum
   importButton?: string;
   hide?: boolean;
 };
+
+export type SectionActionData = {
+  key: string;
+  label: string;
+  icon: string;
+  type: SectionAction;
+  color?: MantineColor;
+  variant?: ButtonVariant;
+};
+
+type SectionAction = "import" | "custom" | "default" | "invite" | "create";

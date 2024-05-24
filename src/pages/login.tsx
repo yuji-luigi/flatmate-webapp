@@ -49,10 +49,10 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     );
     const { data } = rawRes;
     const { user } = data;
-    if (user) {
+    if (user.loggedAs) {
       return {
         redirect: {
-          destination: _PATH_FRONTEND.pathAfterLogin,
+          destination: _PATH_FRONTEND.pathAfterLogin(user.loggedAs),
           permanent: false,
         },
       };

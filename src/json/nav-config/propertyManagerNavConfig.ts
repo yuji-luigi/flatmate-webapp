@@ -5,22 +5,22 @@ import { spaces } from "../section-config/sectionBaseConfigs";
 const concatPMRootPath = curryConcatString(`/property-manager`);
 
 export const propertyManagerNavConfig: NavConfig[] = [
-  // {
-  //   name: "Dashboard",
-  //   key: "dashboard",
-  //   contents: [
-  //     {
-  //       title: "Dashboard",
-  //       link: concatPMRootPath("/dashboard?tab=dashboard"),
-  //       icon: "home",
-  //     },
-  //     {
-  //       title: "Maintenance",
-  //       link: concatPMRootPath("/dashboard?tab=maintenances"),
-  //       icon: "home",
-  //     },
-  //   ],
-  // },
+  {
+    name: "Dashboard",
+    key: "dashboard",
+    contents: [
+      {
+        title: "Dashboard",
+        link: concatPMRootPath("/dashboard?tab=dashboard"),
+        icon: "home",
+      },
+      {
+        title: "Maintenance",
+        link: concatPMRootPath("/dashboard?tab=maintenances"),
+        icon: "home",
+      },
+    ],
+  },
 
   {
     key: "admin",

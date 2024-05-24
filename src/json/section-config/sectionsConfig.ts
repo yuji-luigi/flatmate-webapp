@@ -26,13 +26,13 @@ const _sections = {
   dataTable: frontendEntities.reduce(reducer, {} as Record<FrontendEntity, SectionConfig>),
   "card-list": frontendEntities.reduce(reducer, {} as Record<FrontendEntity, SectionConfig>),
 };
-export const sectionConfigsByUserType = {
-  system_admin: [],
-  inhabitant: [],
+export const sectionConfigsByUserType: Record<string, Record<string, SectionConfig>> = {
+  // system_admin: [],
+  // inhabitant: [],
   property_manager: propertyManagerSectionConfigs,
-  maintainer: [],
-  super_admin: [],
-} as const;
+  // maintainer: [],
+  // super_admin: [],
+};
 // here mutate the object and set custom values
 // _sections.dataTable.property_manager.title = "Property Managers";
 // _sections.dataTable.property_manager.createButton = "Invite Property Manager";

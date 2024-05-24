@@ -16,9 +16,28 @@ const cardListSections: FrontendEntity[] = [
   "checks",
   "maintenances",
 ];
-export const propertyManagerSectionConfigs: Record<FrontendEntity, SectionConfig> = {
+export const propertyManagerSectionConfigs: Record<string, SectionConfig> = {
   spaces,
-  inhabitant,
+  inhabitant: {
+    ...inhabitant,
+    createButtonType: "invite",
+    sectionActions: [
+      {
+        key: "create",
+        label: "Add Inhabitants",
+        icon: "plus",
+        type: "create",
+        color: "blue",
+      },
+      {
+        key: "import",
+        label: "Import Inhabitants",
+        icon: "plus",
+        type: "import",
+        color: "cyan",
+      },
+    ],
+  },
   maintainer,
   checks,
   maintenances,

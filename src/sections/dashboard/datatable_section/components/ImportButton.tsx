@@ -10,18 +10,16 @@ import axiosInstance from "../../../../utils/axios-instance";
 import { PATH_API } from "../../../../path/path-api";
 import { sleep } from "../../../../utils/helpers/helper-functions";
 import { FrontendEntity } from "../../../../types/redux/CrudSliceInterfaces";
+import { SectionConfig } from "../../../../types/data/json/sections-json";
+import useRouterWithCustomQuery from "../../../../hooks/useRouterWithCustomQuery";
 
-export const CrudTableButtons = ({
-  section,
-  entity,
-}: {
-  section: FlattenSectionData;
-  entity: FrontendEntity;
-}) => {
-  const { selectCrudDocument, setCrudDocuments } = useCrudSliceStore();
-  const { openDrawer } = useDrawerContext();
+export const ImportButton = ({ label, ...props }: { label: string }) => {
+  const { setCrudDocuments } = useCrudSliceStore();
   const { openConfirmModal } = useCustomModalContext();
   const fileInput = useRef<HTMLInputElement>(null);
+  const {
+    query: { entity },
+  } = useRouterWithCustomQuery();
 
   const handleImportClicked = useCallback(() => {
     fileInput.current?.click();
@@ -36,13 +34,6 @@ export const CrudTableButtons = ({
     }
   }, []);
 
-  function handleOpenDrawer() {
-    if (typeof entity !== "undefined") {
-      selectCrudDocument({ entity, document: null });
-    }
-    openDrawer();
-  }
-
   function handleOpenModal(file: File) {
     openConfirmModal({
       type: "confirm",
@@ -56,10 +47,10 @@ export const CrudTableButtons = ({
       },
       children: undefined,
       opened: false,
-      onClose(): void {},
     });
   }
   const confirmEvent = async (file: File) => {
+    if (!entity) return;
     const formData = new FormData();
     formData.append("file", file);
     const rawRes = await axiosInstance.post(`${entity}/${PATH_API.importExcel}`, formData, {
@@ -81,31 +72,17 @@ export const CrudTableButtons = ({
     });
   };
   return (
-    <Group>
-      {section.createButton && (
-        <Button onClick={handleOpenDrawer} className={classes.button}>
-          <h3>{section.createButton}</h3>
-        </Button>
-      )}
-      {section.importButton && (
-        <>
-          <Button
-            variant="outline"
-            color="orange"
-            onClick={handleImportClicked}
-            className={classes.button}
-          >
-            <h3>{section.importButton}</h3>
-          </Button>
-          <input
-            type="file"
-            accept=".xlsx"
-            ref={fileInput}
-            className={classes.displayNone}
-            onChange={handleFileChange}
-          />
-        </>
-      )}
-    </Group>
+    <>
+      <Button {...props} variant="outline" onClick={handleImportClicked} className={classes.button}>
+        <h3>{label}</h3>
+      </Button>
+      <input
+        type="file"
+        accept=".xlsx"
+        ref={fileInput}
+        className={classes.displayNone}
+        onChange={handleFileChange}
+      />
+    </>
   );
 };

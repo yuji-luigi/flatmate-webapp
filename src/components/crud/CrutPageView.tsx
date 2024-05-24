@@ -18,7 +18,7 @@ import Page from "../Page";
 import LoadingScreen from "../screen/LoadingScreen";
 import { _PATH_FRONTEND } from "../../path/path-frontend";
 
-const CrudDataTablePageView = () => {
+const CrudPageView = () => {
   const { query, push, asPath } = useRouterWithCustomQuery();
   const { entity } = query;
   const { paginationQuery } = usePaginationContext();
@@ -47,9 +47,10 @@ const CrudDataTablePageView = () => {
   );
 
   if (!foundSectionConfig) {
-    push(_PATH_FRONTEND.pathAfterLogin[user.loggedAs]);
+    push(_PATH_FRONTEND.pathAfterLogin(user.loggedAs));
     return <LoadingScreen />;
   }
+
   return (
     <Page title={`Flatmates | ${entity}`}>
       <Box
@@ -67,4 +68,4 @@ const CrudDataTablePageView = () => {
   );
 };
 
-export default CrudDataTablePageView;
+export default CrudPageView;

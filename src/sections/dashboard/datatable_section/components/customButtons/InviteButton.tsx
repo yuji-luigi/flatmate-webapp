@@ -1,17 +1,18 @@
-import { Button, TextInput } from "@mantine/core";
-import React, { useRef } from "react";
-import { FrontendEntity } from "../../../../../types/redux/CrudSliceInterfaces";
-import { SectionConfig } from "../../../../../types/data/json/sections-json";
+import { Button } from "@mantine/core";
 import { useCustomModalContext } from "../../../../../context/modal-context/_ModalContext";
 import { InviteModal } from "./InviteModal";
 import { useLocale } from "../../../../../../hooks/useLocale";
-import { UserType } from "../../../../../lib/enums";
+import useRouterWithCustomQuery from "../../../../../hooks/useRouterWithCustomQuery";
 
-export const InviteButton = (props: { label: string; entity: UserType; className?: string }) => {
-  const { entity, label, className } = props;
+export const InviteButton = (props: { label: string; className?: string }) => {
+  const { label, className } = props;
   const { openModal } = useCustomModalContext();
+  const {
+    query: { entity },
+  } = useRouterWithCustomQuery();
   const { t } = useLocale();
   const handleOpenModal = () => {
+    if (!entity) return;
     openModal({
       // title: t(section.createButton),
       type: "headless",
@@ -21,7 +22,7 @@ export const InviteButton = (props: { label: string; entity: UserType; className
   };
 
   return (
-    <Button className={className} onClick={handleOpenModal}>
+    <Button className={className} onClick={handleOpenModal} {...props}>
       {label}
     </Button>
   );
