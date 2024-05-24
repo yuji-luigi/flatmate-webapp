@@ -29,7 +29,6 @@ export type SectionConfig = {
 };
 
 export type SectionActionData = {
-  key: string;
   label: string;
   type: SectionAction;
   color?: MantineColor;

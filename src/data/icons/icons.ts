@@ -73,6 +73,7 @@ import {
   IconBuildingEstate as propertyManagerBuilding,
   IconMailAi,
   IconUpload,
+  IconLetterA,
 } from "@tabler/icons-react";
 /**
  * use the key name same as the slice name
@@ -83,6 +84,7 @@ export const Icons = {
   notifications: Notification,
   home,
   IconMailAi,
+  IconLetterA,
   database: Database,
   security: Security,
   statistics: Statistic,

@@ -23,11 +23,8 @@ export const propertyManagerSectionConfigs: Record<string, SectionConfig> = {
     ...spaces,
     sectionActions: [
       {
-        key: "create",
         label: "Add Spaces",
         type: "create",
-        color: "blue",
-        leftSection: <Icons.plus />,
       },
     ],
   },
@@ -36,18 +33,16 @@ export const propertyManagerSectionConfigs: Record<string, SectionConfig> = {
     ...inhabitant,
     sectionActions: [
       {
-        key: "create",
         label: "Add Inhabitants",
         type: "create",
-        color: "blue",
-        leftSection: <Icons.plus />,
       },
       {
-        key: "import",
-        label: "Import Inhabitants",
-        leftSection: <Icons.upload />,
+        label: "Import Inhabitants and Spaces",
         type: "import",
-        color: "cyan",
+      },
+      {
+        label: "Invite Inhabitants",
+        type: "invite",
       },
     ],
   },

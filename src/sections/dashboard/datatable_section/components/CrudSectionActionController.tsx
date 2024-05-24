@@ -13,7 +13,7 @@ export const CrudSectionActionContainer = () => {
   if (!user || !entity) return null;
   const sectionConfig = sectionConfigsByUserType[user?.loggedAs][entity];
   return sectionConfig.sectionActions?.map((action: any) => (
-    <CrudSectionActionController key={action.key} action={action} />
+    <CrudSectionActionController key={action.label} action={action} />
   ));
 };
 

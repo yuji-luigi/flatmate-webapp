@@ -3,6 +3,7 @@ import { useCustomModalContext } from "../../../../../context/modal-context/_Mod
 import { InviteModal } from "./InviteModal";
 import { useLocale } from "../../../../../../hooks/useLocale";
 import useRouterWithCustomQuery from "../../../../../hooks/useRouterWithCustomQuery";
+import { Icons } from "../../../../../data/icons/icons";
 
 export const InviteButton = (props: { label: string; className?: string }) => {
   const { label, className } = props;
@@ -22,7 +23,14 @@ export const InviteButton = (props: { label: string; className?: string }) => {
   };
 
   return (
-    <Button className={className} onClick={handleOpenModal} {...props}>
+    <Button
+      className={className}
+      onClick={handleOpenModal}
+      leftSection={<Icons.Send />}
+      color="lime"
+      variant="outline"
+      {...props}
+    >
       {label}
     </Button>
   );

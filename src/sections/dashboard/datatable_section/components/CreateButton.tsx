@@ -12,10 +12,11 @@ import { sleep } from "../../../../utils/helpers/helper-functions";
 import { FrontendEntity } from "../../../../types/redux/CrudSliceInterfaces";
 import { SectionConfig } from "../../../../types/data/json/sections-json";
 import useRouterWithCustomQuery from "../../../../hooks/useRouterWithCustomQuery";
+import { Icons } from "../../../../data/icons/icons";
 
 export const CreateButton = ({
   label,
-  color,
+
   ...props
 }: {
   label: string;
@@ -58,7 +59,14 @@ export const CreateButton = ({
     });
   };
   return (
-    <Button {...props} onClick={handleOpenDrawer} className={classes.button} color={color}>
+    <Button
+      onClick={handleOpenDrawer}
+      className={classes.button}
+      leftSection={<Icons.plus />}
+      variant="outline"
+      color="orange"
+      {...props}
+    >
       <h3>{label}</h3>
     </Button>
   );
