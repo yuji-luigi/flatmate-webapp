@@ -2,14 +2,13 @@ import React from "react";
 import { Modal } from "@mantine/core";
 import HeaderModalForm from "./HeaderModalForm";
 import { useSimpleDisclosureCtx } from "../../../../hooks/useSimpleDisclosureCtx";
-import { SectionDataJsonWithRoles } from "../../../types/general/data/data-table/sectionsJson-type";
 
 export const HeaderCreationModal = ({
   modalType,
   section,
   title,
 }: {
-  section?: SectionDataJsonWithRoles | null;
+  section?: any | null;
   modalType?: "threads" | "maintenances" | null;
   title?: string;
 }) => {

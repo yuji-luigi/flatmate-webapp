@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { HiddenAuthTokenInterface } from "../types/models/auth-token-model";
 import { Entity, entities, userTypes } from "../types/redux/CrudSliceInterfaces";
+import { UserType } from "../lib/enums";
 
 export const ROOT = "/";
 
@@ -12,7 +13,24 @@ export const AUTH = {
 
 export const FRONTEND_ROOT = process.env.NEXT_PUBLIC_FRONTEND_URL;
 
-export const PATH_AFTER_LOGIN = "/dashboard?tab=dashboard";
+export const PATH_DASHBOARD_ROOT = {
+  system_admin: "/system-admin/dashboard",
+  property_manager: "/property-manager/dashboard",
+  maintainer: "/maintainer/dashboard",
+  inhabitant: "/users/dashboard",
+  super_admin: "/super-admin/dashboard",
+};
+
+export const PATH_AFTER_LOGIN = (userType: UserType) =>
+  `${PATH_DASHBOARD_ROOT[userType]}?tab=dashboard`;
+
+const a = {
+  system_admin: "/system-admin/dashboard?tab=dashboard",
+  property_manager: "/property-manager/dashboard?tab=dashboard",
+  maintainer: "/maintainer/dashboard?tab=dashboard",
+  inhabitant: "/users/dashboard?tab=dashboard",
+  super_admin: "/super-admin/dashboard?tab=dashboard",
+};
 
 // export const PATH_ROOT {}
 

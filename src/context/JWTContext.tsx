@@ -129,13 +129,13 @@ function AuthProvider({ children, initialUser }: { children: ReactNode; initialU
       await axiosInstance.post(_PATH_API.auth.login(role), { email, password });
       const rawMe = await axiosInstance.get<AxiosMeResponse>(PATH_AUTH.me);
       const { user } = rawMe.data;
-      // const { query } = router;
       dispatch({
         type: "LOGIN",
         payload: {
           user,
         },
       });
+      return user;
     } catch (error: any) {
       showNotification(NOTIFICATIONS.ERROR.general({ data: error.message || error }));
     }

@@ -2,19 +2,20 @@ import { ReactElement, useEffect } from "react";
 import { GetServerSidePropsContext } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Head from "next/head";
-import Layout from "../../layouts";
-import axiosInstance, { AxiosMeResponse } from "../../utils/axios-instance";
-import { useCrudSliceStore } from "../../redux/features/crud/crudSlice";
-import { PATH_AUTH } from "../../path/path-api";
-import { DashboardTabPanels } from "../../layouts/dashboard/sections-in-tabs/default-tabs/DashboardRootTabPanels";
-import { toTitleCase } from "../../lib/toTitleCase";
-import { MeUser } from "../../types/models/space-model";
-import useAuth from "../../../hooks/useAuth";
-import { _PATH_FRONTEND } from "../../path/path-frontend";
-import { AllModels } from "../../types/models/allmodels";
-import { useLocale } from "../../../hooks/useLocale";
-import { dashboardTabsByUserType } from "../../layouts/dashboard/sections-in-tabs/tabList";
-import useRouterWithCustomQuery from "../../hooks/useRouterWithCustomQuery";
+import Layout from "../../../layouts";
+import axiosInstance, { AxiosMeResponse } from "../../../utils/axios-instance";
+import { useCrudSliceStore } from "../../../redux/features/crud/crudSlice";
+import { PATH_AUTH } from "../../../path/path-api";
+import { DashboardTabPanels } from "../../../layouts/dashboard/sections-in-tabs/default-tabs/DashboardRootTabPanels";
+import { toTitleCase } from "../../../lib/toTitleCase";
+import { MeUser } from "../../../types/models/space-model";
+import useAuth from "../../../../hooks/useAuth";
+import { _PATH_FRONTEND } from "../../../path/path-frontend";
+import { AllModels } from "../../../types/models/allmodels";
+import { useLocale } from "../../../../hooks/useLocale";
+import { dashboardTabsByUserType } from "../../../layouts/dashboard/sections-in-tabs/tabList";
+import useRouterWithCustomQuery from "../../../hooks/useRouterWithCustomQuery";
+import LoadingScreen from "../../../components/screen/LoadingScreen";
 
 const DashboardPage = ({ initialUser }: { initialUser: MeUser }) => {
   const { setCrudDocument, setCrudDocuments } = useCrudSliceStore();
@@ -41,6 +42,9 @@ const DashboardPage = ({ initialUser }: { initialUser: MeUser }) => {
       totalDocuments: maintenances.length,
     });
   };
+  if (!initialUser) {
+    return <LoadingScreen />;
+  }
   const role = initialUser.loggedAs;
   const title =
     dashboardTabsByUserType[role].find((tabConfig) => tabConfig.value === tab)?.htmlTitle ||

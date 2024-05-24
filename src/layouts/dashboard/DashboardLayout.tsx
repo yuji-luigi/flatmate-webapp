@@ -11,9 +11,11 @@ import { dashboardTabsByUserType } from "./sections-in-tabs/tabList";
 import classes from "./DashboardLayout.module.css";
 import { PATH_CLIENT, _PATH_FRONTEND } from "../../path/path-frontend";
 import useAuth from "../../../hooks/useAuth";
+import LoadingScreen from "../../components/screen/LoadingScreen";
 
 const DashboardLayout = ({ children }: { children: ReactNode }) => {
   // const { setCurrentTab, currentTab } = useTabContext()
+
   const { isOpen } = useLayoutContext();
   const { user } = useAuth();
   const router = useRouter();
@@ -44,14 +46,20 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
     setCurrentTab(router.query.tab as string);
   }, [router.query.tab]);
 
+  if (!user?.loggedAs) {
+    router.push(PATH_CLIENT.login);
+    return <LoadingScreen />;
+  }
   const handleChangeTab = (value: string | null) => {
-    router.replace(`${_PATH_FRONTEND.dashboard.root}?tab=${value}`);
+    router.push({
+      pathname: _PATH_FRONTEND.pathAfterLogin(user.loggedAs),
+      query: { tab: value },
+    });
   };
 
   if (user?.loggedAs === "system_admin") {
     router.push(_PATH_FRONTEND.systemAdmin.root);
   }
-
   return (
     <Tabs
       onChange={handleChangeTab}

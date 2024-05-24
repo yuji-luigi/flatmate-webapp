@@ -1,45 +1,48 @@
+import { curryConcatString } from "../../lib/contcatString";
 import { NavConfig } from "../../types/data/json/sections-json";
 import { spaces } from "../section-config/sectionBaseConfigs";
 
+const concatPMRootPath = curryConcatString(`/property-manager`);
+
 export const propertyManagerNavConfig: NavConfig[] = [
-  {
-    key: "dashboard",
-    contents: [
-      {
-        title: "Dashboard",
-        link: "/dashboard?tab=dashboard",
-        icon: "home",
-      },
-    ],
-  },
-  {
-    key: "setups",
-    name: "setups",
-    hide: false,
-    contents: [
-      {
-        title: "Maintainers",
-        link: "/dashboard/maintainer",
-        icon: "maintenance",
-        hide: false,
-      },
-    ],
-  },
+  // {
+  //   name: "Dashboard",
+  //   key: "dashboard",
+  //   contents: [
+  //     {
+  //       title: "Dashboard",
+  //       link: concatPMRootPath("/dashboard?tab=dashboard"),
+  //       icon: "home",
+  //     },
+  //     {
+  //       title: "Maintenance",
+  //       link: concatPMRootPath("/dashboard?tab=maintenances"),
+  //       icon: "home",
+  //     },
+  //   ],
+  // },
+
   {
     key: "admin",
-    name: "admin",
+    name: "Manage Property",
     hide: false,
     contents: [
       {
         title: "Building",
-        link: "/dashboard/spaces",
+        link: concatPMRootPath("/dashboard/spaces"),
         icon: "buildings",
         hide: false,
       },
       {
         title: "Inhabitants",
-        link: "/dashboard/inhabitant",
+        link: concatPMRootPath("/dashboard/inhabitant"),
         icon: "user",
+        hide: false,
+      },
+      {
+        title: "Maintainers",
+        link: concatPMRootPath("/dashboard/maintainer"),
+        icon: "maintenance",
         hide: false,
       },
     ],

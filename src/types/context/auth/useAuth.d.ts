@@ -65,7 +65,7 @@ export interface RegisterData {
   // role: string | null;
 }
 export type Register = (data: RegisterData) => Promise<void>;
-export type Login = (email?: string, password?: string, role: Role) => Promise<void>;
+export type Login = (email?: string, password?: string, role: Role) => Promise<MeUser | undefined>;
 
 export interface AuthContextInterface extends JWTContextState {
   method: string;

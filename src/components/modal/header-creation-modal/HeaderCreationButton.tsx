@@ -22,7 +22,7 @@ export function HeaderCreationButton() {
     query: { entity },
   } = useRouterWithCustomQuery();
   const { setSubmitting } = useCrudSliceStore();
-  // const { submitting } = useCrudSelectors(entity!);
+
   if (!user) return null;
   const handleOpenModal = (type: "threads" | "maintenances") => {
     const found = sectionsJson.dataTable[type];
@@ -30,18 +30,6 @@ export function HeaderCreationButton() {
     setModalType(type);
     open();
   };
-  // const handleClose = () => {
-  //   close();
-  //   if (submitting) {
-  //     notifications.hide("submit");
-  //     notifications.show({
-  //       title: "Upload is cancelled",
-  //       message: "Upload cancelled because you closed a popup",
-  //     });
-  //   }
-  //   setSubmitting(false);
-  // };
-
   return (
     <>
       <Menu shadow="lg">

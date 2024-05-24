@@ -58,7 +58,7 @@ export const UserRegisterCard = ({
       });
       const { data } = rawRes.data;
       await sleep(1000);
-      push(PATH_AFTER_LOGIN);
+      push(PATH_AFTER_LOGIN(data.loggedAs));
     } catch (error: any) {
       showNotification({
         ...constructErrorNotificationData,

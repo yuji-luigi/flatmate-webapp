@@ -47,7 +47,6 @@ const Layout = ({
       </ClientProvider>
     );
   }
-
   return (
     <AuthGuard>
       {/* <CookieContextProvider> */}

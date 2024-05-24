@@ -42,23 +42,20 @@ import {
 } from "../../../types/redux/dispatch-args";
 import { AllModels } from "../../../types/models/allmodels";
 
-export const reduxdb: Reduxdb = [...frontendEntities, "placeholder"].reduce<Reduxdb>(
-  (totalData, entity) => {
-    totalData = {
-      ...totalData,
-      [entity]: {
-        entity,
-        documentsArray: [],
-        totalDocuments: 0,
-        singleCrudDocument: null,
-        singleCrudDocuments: [],
-        isChildrenTree: false,
-      },
-    };
-    return totalData;
-  },
-  {} as Reduxdb
-);
+export const reduxdb: Reduxdb = frontendEntities.reduce<Reduxdb>((totalData, entity) => {
+  totalData = {
+    ...totalData,
+    [entity]: {
+      entity,
+      documentsArray: [],
+      totalDocuments: 0,
+      singleCrudDocument: null,
+      singleCrudDocuments: [],
+      isChildrenTree: false,
+    },
+  };
+  return totalData;
+}, {} as Reduxdb);
 
 const initialState: CrudState = {
   reduxdb,

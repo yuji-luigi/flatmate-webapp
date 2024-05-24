@@ -14,7 +14,7 @@ import { Role } from "../../types/models/space-model";
 
 function LoginForm({ role }: { role: Role }) {
   const { resetCurrentSpace, setCurrentOrganization } = useCookieContext();
-  const { login } = useAuth();
+  const { login, user } = useAuth();
   const router = useRouter();
   const { push, query } = router;
 
@@ -34,16 +34,11 @@ function LoginForm({ role }: { role: Role }) {
       resetCurrentSpace();
       setCurrentOrganization(null);
       // the hook handle the redirect see jwt-context.tsx
-      await login(values.email, values.password, role);
-      if (query.redirect && query.redirect !== "no") {
-        push(query.redirect as string);
-        return;
+      const meUser = await login(values.email, values.password, role);
+      if (meUser) {
+        router.push(_PATH_FRONTEND.pathAfterLogin(meUser.loggedAs));
       }
-      if (role === "inhabitant") {
-        push(_PATH_FRONTEND.pathAfterLoginInhabitant);
-        return;
-      }
-      push(_PATH_FRONTEND.pathAfterLogin);
+      throw new Error("Login failed");
     } catch (error: any) {
       notifications.show({
         title: "Error",
