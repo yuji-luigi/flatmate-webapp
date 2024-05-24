@@ -9,7 +9,7 @@ import { useCookieContext } from "../../context/CookieContext";
 import { useTabContext } from "../../context/tab-context/TabContextProvider";
 import { dashboardTabsByUserType } from "./sections-in-tabs/tabList";
 import classes from "./DashboardLayout.module.css";
-import { PATH_CLIENT, _PATH_FRONTEND } from "../../path/path-frontend";
+import { PATH_CLIENT, PATH_DASHBOARD_ROOT, _PATH_FRONTEND } from "../../path/path-frontend";
 import useAuth from "../../../hooks/useAuth";
 import LoadingScreen from "../../components/screen/LoadingScreen";
 
@@ -52,7 +52,7 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
   }
   const handleChangeTab = (value: string | null) => {
     router.push({
-      pathname: _PATH_FRONTEND.pathAfterLogin(user.loggedAs),
+      pathname: PATH_DASHBOARD_ROOT[user.loggedAs],
       query: { tab: value },
     });
   };
