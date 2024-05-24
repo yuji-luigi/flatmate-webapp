@@ -1,3 +1,4 @@
+import { UploadIcon } from "@modulz/radix-icons";
 import {
   Icon2fa as Authentication,
   IconBellRinging as Notification,
@@ -71,6 +72,7 @@ import {
   IconCalendarBolt as events,
   IconBuildingEstate as propertyManagerBuilding,
   IconMailAi,
+  IconUpload,
 } from "@tabler/icons-react";
 /**
  * use the key name same as the slice name
@@ -99,7 +101,7 @@ export const Icons = {
   comments: Comment,
   funds: Fund,
   wallet: Fund,
-  upload: Fund,
+  upload: IconUpload,
   fundRules: FundRule,
   instances: Instance,
   proposals: Proposal,

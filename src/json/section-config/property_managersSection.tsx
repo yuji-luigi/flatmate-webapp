@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+import { Icons } from "../../data/icons/icons";
 import { SectionConfig } from "../../types/data/json/sections-json";
 import { FrontendEntity } from "../../types/redux/CrudSliceInterfaces";
 import { checks, inhabitant, maintainer, maintenances, spaces } from "./sectionBaseConfigs";
@@ -17,22 +19,33 @@ const cardListSections: FrontendEntity[] = [
   "maintenances",
 ];
 export const propertyManagerSectionConfigs: Record<string, SectionConfig> = {
-  spaces,
+  spaces: {
+    ...spaces,
+    sectionActions: [
+      {
+        key: "create",
+        label: "Add Spaces",
+        type: "create",
+        color: "blue",
+        leftSection: <Icons.plus />,
+      },
+    ],
+  },
+
   inhabitant: {
     ...inhabitant,
-    createButtonType: "invite",
     sectionActions: [
       {
         key: "create",
         label: "Add Inhabitants",
-        icon: "plus",
         type: "create",
         color: "blue",
+        leftSection: <Icons.plus />,
       },
       {
         key: "import",
         label: "Import Inhabitants",
-        icon: "plus",
+        leftSection: <Icons.upload />,
         type: "import",
         color: "cyan",
       },

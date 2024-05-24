@@ -18,7 +18,7 @@ export const CrudSectionActionContainer = () => {
 };
 
 const buttons: Record<string, (props: any) => JSX.Element> = {
-  custom: (props: any) => <>custom</>,
+  custom: (props: any) => <>Should not be custom inside of json. not to create dependency cycle</>,
   create: CreateButton,
   invite: InviteButton,
   import: ImportButton,

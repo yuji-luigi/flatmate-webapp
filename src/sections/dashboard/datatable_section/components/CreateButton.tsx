@@ -13,7 +13,14 @@ import { FrontendEntity } from "../../../../types/redux/CrudSliceInterfaces";
 import { SectionConfig } from "../../../../types/data/json/sections-json";
 import useRouterWithCustomQuery from "../../../../hooks/useRouterWithCustomQuery";
 
-export const CreateButton = ({ label, color }: { label: string; color?: MantineColor }) => {
+export const CreateButton = ({
+  label,
+  color,
+  ...props
+}: {
+  label: string;
+  color?: MantineColor;
+}) => {
   const { selectCrudDocument, setCrudDocuments } = useCrudSliceStore();
   const { openDrawer } = useDrawerContext();
   const { openConfirmModal } = useCustomModalContext();
@@ -51,7 +58,7 @@ export const CreateButton = ({ label, color }: { label: string; color?: MantineC
     });
   };
   return (
-    <Button onClick={handleOpenDrawer} className={classes.button} color={color}>
+    <Button {...props} onClick={handleOpenDrawer} className={classes.button} color={color}>
       <h3>{label}</h3>
     </Button>
   );
