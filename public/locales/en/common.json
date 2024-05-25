@@ -89,5 +89,9 @@
 	"of": "of",
 	"Issue": "Issue",
 	"Import Units": "Import Units",
-	"Add Inhabitants": "Add Flatmates"
+	"Add Inhabitants": "Add Flatmates",
+	"Unit": "Unità",
+	"Condominium": "Condominium",
+	"OwnerLabel": "Property Owner",
+	"MateLabel": "Tenant"
 }

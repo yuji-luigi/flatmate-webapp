@@ -89,5 +89,9 @@
 	"of": "di",
 	"Issue": "Ticket",
 	"Import Units": "Carica Units",
-	"Add Inhabitants": "Aggiungi Flatmates"
+	"Add Inhabitants": "Aggiungi Flatmates",
+	"Unit": "Unità",
+	"Condominium": "Condominio",
+	"OwnerLabel": "Proprietario",
+	"MateLabel": "Inquilino"
 }

@@ -14,7 +14,7 @@ export const unitsTableData: Array<FormFieldTypes> = [
   {
     id: "ownerName",
     name: "ownerName",
-    label: "Owner Name",
+    label: "OwnerLabel",
     placeholder: "First name",
     type: "text",
     required: true,
@@ -23,7 +23,7 @@ export const unitsTableData: Array<FormFieldTypes> = [
   {
     id: "mateName",
     name: "mateName",
-    label: "Mate Name",
+    label: "MateLabel",
     placeholder: "First name",
     type: "text",
     required: true,
