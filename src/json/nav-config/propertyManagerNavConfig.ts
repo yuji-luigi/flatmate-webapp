@@ -40,6 +40,12 @@ export const propertyManagerNavConfig: NavConfig[] = [
         hide: false,
       },
       {
+        title: "Units",
+        link: concatPMRootPath("/dashboard/units"),
+        icon: "Door",
+        hide: false,
+      },
+      {
         title: "Maintainers",
         link: concatPMRootPath("/dashboard/maintainer"),
         icon: "maintenance",

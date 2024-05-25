@@ -15,8 +15,6 @@ interface Prop {
   options: ComboboxData;
 }
 const CrudSelect = ({ formField, form, ...others }: Prop) => {
-  // const options = useGetSelectOptions(formField as SelectFormType);
-
   const SelectComponent = formField.multi ? MultiSelect : Select;
   return (
     <SelectComponent

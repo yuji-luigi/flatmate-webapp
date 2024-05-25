@@ -130,6 +130,7 @@ function SelectMainSpaceModal() {
 
 function SubmitImportButton({ children, file }: { children: React.ReactNode; file?: File | null }) {
   const { setCrudDocuments } = useCrudSliceStore();
+  const { closeModal } = useCustomModalContext();
   if (!file) {
     return <AlertCustom color="red">No file selected</AlertCustom>;
   }
@@ -149,10 +150,11 @@ function SubmitImportButton({ children, file }: { children: React.ReactNode; fil
       color: "green",
     });
     setCrudDocuments({
-      entity: "inhabitant",
+      entity: "units",
       documents: rawRes.data.data,
       totalDocuments: rawRes.data.totalDocuments,
     });
+    closeModal();
   };
 
   return <Button onClick={handleImportInhabitantUnit}>{children}</Button>;

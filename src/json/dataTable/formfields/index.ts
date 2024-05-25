@@ -21,6 +21,7 @@ import { rolesTableData as roles } from "./roleTableData";
 import { FormFieldTypes } from "../../../types/general/data/data-table/form-field-type/formField-types";
 import { inhabitantTableData as inhabitant } from "./inhabitantTableData";
 import { propertyManagerTableData as property_manager } from "./propertyManagerTableData";
+import { unitsTableData as units } from "./unitsTableData";
 
 // /**
 //  * typing support when making conditions in jsx (tabelcell component)
@@ -45,6 +46,7 @@ export enum FieldTypes {
 const allFormFields: Record<string, FormFieldTypes[]> = {
   billing,
   users,
+  units,
   statistics,
   notifications,
   buildings,

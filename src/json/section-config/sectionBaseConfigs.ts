@@ -1,3 +1,4 @@
+import { title } from "process";
 import { SectionConfig } from "../../types/data/json/sections-json";
 import { FrontendEntity } from "../../types/redux/CrudSliceInterfaces";
 const sectionConfigBases: Record<FrontendEntity, SectionConfig> = {
@@ -85,6 +86,37 @@ const sectionConfigBases: Record<FrontendEntity, SectionConfig> = {
     title: "Property Managers",
     createButton: "",
   },
+  units: {
+    title: "Units",
+    createButton: "",
+  },
+  system_admin: {
+    title: "",
+    subtitle: undefined,
+    sectionActions: undefined,
+    createButton: undefined,
+    createButtonType: undefined,
+    importButton: undefined,
+    hide: undefined,
+  },
+  super_admin: {
+    title: "",
+    subtitle: undefined,
+    sectionActions: undefined,
+    createButton: undefined,
+    createButtonType: undefined,
+    importButton: undefined,
+    hide: undefined,
+  },
+  placeholder: {
+    title: "",
+    subtitle: undefined,
+    sectionActions: undefined,
+    createButton: undefined,
+    createButtonType: undefined,
+    importButton: undefined,
+    hide: undefined,
+  },
 };
 
 export const {
@@ -109,4 +141,5 @@ export const {
   posts,
   home,
   property_manager,
+  units,
 } = sectionConfigBases;

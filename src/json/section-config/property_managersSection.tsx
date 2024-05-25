@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import { Icons } from "../../data/icons/icons";
 import { SectionConfig } from "../../types/data/json/sections-json";
 import { FrontendEntity } from "../../types/redux/CrudSliceInterfaces";
-import { checks, inhabitant, maintainer, maintenances, spaces } from "./sectionBaseConfigs";
+import { checks, inhabitant, maintainer, maintenances, spaces, units } from "./sectionBaseConfigs";
 
 const dataTableSections: FrontendEntity[] = [
   "spaces",
@@ -42,6 +42,15 @@ export const propertyManagerSectionConfigs: Record<string, SectionConfig> = {
       {
         label: "Invite Inhabitants",
         type: "invite",
+      },
+    ],
+  },
+  units: {
+    ...units,
+    sectionActions: [
+      {
+        label: "import Units and Spaces",
+        type: "import-inhabitant-unit",
       },
     ],
   },
