@@ -87,5 +87,7 @@
 	"$system_admin": "Amministratore di Sistema",
 	"InviteGridNotRegistered": "non registrato per questo condominio",
 	"of": "di",
-	"Issue": "Issue"
+	"Issue": "Ticket",
+	"Import Units": "Carica Units",
+	"Add Inhabitants": "Aggiungi Flatmates"
 }

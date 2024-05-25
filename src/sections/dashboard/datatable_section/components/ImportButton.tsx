@@ -9,8 +9,9 @@ import { PATH_API } from "../../../../path/path-api";
 import { sleep } from "../../../../utils/helpers/helper-functions";
 import useRouterWithCustomQuery from "../../../../hooks/useRouterWithCustomQuery";
 import { Icons } from "../../../../data/icons/icons";
+import { SectionActionData } from "../../../../types/data/json/sections-json";
 
-export const ImportButton = ({ label, ...props }: { label: string }) => {
+export const ImportButton = ({ label, type, ...buttonProps }: SectionActionData) => {
   const { setCrudDocuments } = useCrudSliceStore();
   const { openConfirmModal } = useCustomModalContext();
   const fileInput = useRef<HTMLInputElement>(null);
@@ -76,7 +77,7 @@ export const ImportButton = ({ label, ...props }: { label: string }) => {
         className={classes.button}
         color="blue"
         leftSection={<Icons.upload />}
-        {...props}
+        {...buttonProps}
       >
         <h3>{label}</h3>
       </Button>

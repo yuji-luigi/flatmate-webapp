@@ -87,5 +87,7 @@
 	"$system_admin": "System Admin",
 	"InviteGridNotRegistered": "is Not Registered for this Condominium.",
 	"of": "of",
-	"Issue": "Issue"
+	"Issue": "Issue",
+	"Import Units": "Import Units",
+	"Add Inhabitants": "Add Flatmates"
 }

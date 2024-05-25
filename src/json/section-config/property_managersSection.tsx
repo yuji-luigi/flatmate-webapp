@@ -37,8 +37,7 @@ export const propertyManagerSectionConfigs: Record<string, SectionConfig> = {
         type: "create",
       },
       {
-        label: "Import Inhabitants and Spaces",
-        type: "import",
+        type: "import-inhabitant-unit",
       },
       {
         label: "Invite Inhabitants",

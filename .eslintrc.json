@@ -5,16 +5,16 @@
     "es2020": true
   },
   "extends": [
-    "mantine",
-    "next/core-web-vitals",
-    "plugin:@next/next/recommended",
-    "plugin:jest/recommended",
-    "plugin:storybook/recommended"
+    // "mantine",
+    // "next/core-web-vitals",
+    // "plugin:@next/next/recommended",
+    // "plugin:jest/recommended",
+    // "plugin:storybook/recommended"
   ],
-  "plugins": [
-    "testing-library",
-    "jest"
-  ],
+  // "plugins": [
+  //   "testing-library",
+  //   "jest"
+  // ],
   "overrides": [
     {
       "files": [
@@ -25,7 +25,7 @@
       ]
     }
   ],
-  "parser": "@typescript-eslint/parser",
+  // "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "project": "./tsconfig.json",
     "sourceType": "module",

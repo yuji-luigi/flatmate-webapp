@@ -1,4 +1,4 @@
-import { Button } from "@mantine/core";
+import { Button, ButtonProps } from "@mantine/core";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { PATH_CLIENT } from "../../../../path/path-frontend";
@@ -10,14 +10,14 @@ const isChoosePage = (path: string) =>
  *
  * @description regular login button. color dark
  */
-export const SignUpButton = () => {
+export const SignUpButton = (props?: ButtonProps) => {
   const { pathname } = useRouter();
 
   if (pathname === PATH_CLIENT.signup) {
     return null;
   }
   return (
-    <Button component={Link} href={PATH_CLIENT.signup}>
+    <Button component={Link} href={PATH_CLIENT.signup} {...props}>
       Sign up
     </Button>
   );

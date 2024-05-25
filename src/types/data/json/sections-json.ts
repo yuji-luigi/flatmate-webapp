@@ -29,10 +29,11 @@ export type SectionConfig = {
 };
 
 export type SectionActionData = {
-  label: string;
-  type: SectionAction;
+  label?: string;
+  type: SectionAction | CustomSectionAction;
   color?: MantineColor;
   variant?: ButtonVariant;
 } & ButtonProps;
 
 type SectionAction = "import" | "custom" | "default" | "invite" | "create";
+type CustomSectionAction = "import-inhabitant-unit";

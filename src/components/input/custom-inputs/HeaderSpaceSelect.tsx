@@ -20,7 +20,6 @@ interface OrganizationSpaceSelectProps {
   size?: "xs" | "sm" | "md" | "lg" | "xl";
   labels?: { organization: string; space: string };
   form?: UseFormReturnType<Record<string, unknown>> | null;
-  className?: string;
   // organizationsLabel?: string;
   // spacesLabel?: string;
 }
@@ -30,7 +29,6 @@ const HeaderSpaceSelect = ({
   size = "xs",
   labels,
   form = null,
-  className,
 }: OrganizationSpaceSelectProps) => {
   // const [opened, { toggle }] = useDisclosure(false);
   const { reInitialize } = useAuth();
@@ -56,28 +54,26 @@ const HeaderSpaceSelect = ({
     fetchCrudDocuments({});
   }, []);
   return (
-    <Box className={className}>
-      <Select
-        name="space"
-        size={size}
-        clearable
-        disabled={!spaces.length}
-        label={labels?.space}
-        data={spaces.map((space) => ({ value: space._id, label: space.name }))}
-        onChange={(value) => {
-          if (value === null) {
-            handleDeleteSpaceCookie();
-            return;
-          }
-          getSpaceCookieFromApi(value || "");
-          if (form) {
-            form.setFieldValue("space", value || "");
-          }
-        }}
-        value={currentSpace?._id || null}
-        style={style}
-      />
-    </Box>
+    <Select
+      name="space"
+      size={size}
+      clearable
+      disabled={!spaces.length}
+      label={labels?.space}
+      data={spaces.map((space) => ({ value: space._id, label: space.name }))}
+      onChange={(value) => {
+        if (value === null) {
+          handleDeleteSpaceCookie();
+          return;
+        }
+        getSpaceCookieFromApi(value || "");
+        if (form) {
+          form.setFieldValue("space", value || "");
+        }
+      }}
+      value={currentSpace?._id || null}
+      style={style}
+    />
   );
 };
 

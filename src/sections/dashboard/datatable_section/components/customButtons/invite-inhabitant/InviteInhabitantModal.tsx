@@ -2,28 +2,28 @@ import { Alert, Box, Button, LoadingOverlay, Modal, Stack, TextInput } from "@ma
 import { useRef, useState } from "react";
 import { hideNotification, showNotification } from "@mantine/notifications";
 import { set } from "nprogress";
-import axiosInstance from "../../../../../utils/axios-instance";
-import { _PATH_API } from "../../../../../path/path-api";
-import { FrontendEntity } from "../../../../../types/redux/CrudSliceInterfaces";
-import { useCookieContext } from "../../../../../context/CookieContext";
+import axiosInstance from "../../../../../../utils/axios-instance";
+import { _PATH_API } from "../../../../../../path/path-api";
+import { FrontendEntity } from "../../../../../../types/redux/CrudSliceInterfaces";
+import { useCookieContext } from "../../../../../../context/CookieContext";
 import {
   ERROR_GENERAL,
   LOADING_GENERAL,
   SUCCESS_GENERAL,
-} from "../../../../../data/showNofification/notificationObjects";
-import { useLocale } from "../../../../../../hooks/useLocale";
-import { Icons } from "../../../../../data/icons/icons";
-import { useCustomModalContext } from "../../../../../context/modal-context/_ModalContext";
-import { CurrentSpace } from "../../../../../types/context/auth/useAuth";
-import { AlertCustom } from "../../../../../components/alert/AlertCustom";
-import { sleep } from "../../../../../utils/helpers/helper-functions";
-import { useCrudSliceStore } from "../../../../../redux/features/crud/crudSlice";
+} from "../../../../../../data/showNofification/notificationObjects";
+import { useLocale } from "../../../../../../../hooks/useLocale";
+import { Icons } from "../../../../../../data/icons/icons";
+import { useCustomModalContext } from "../../../../../../context/modal-context/_ModalContext";
+import { CurrentSpace } from "../../../../../../types/context/auth/useAuth";
+import { AlertCustom } from "../../../../../../components/alert/AlertCustom";
+import { sleep } from "../../../../../../utils/helpers/helper-functions";
+import { useCrudSliceStore } from "../../../../../../redux/features/crud/crudSlice";
 
 type InviteModalProps = {
   entity: FrontendEntity;
 };
 
-export const InviteModal: React.FC<InviteModalProps> = (props: InviteModalProps) => {
+export const InviteInhabitantModal: React.FC<InviteModalProps> = (props: InviteModalProps) => {
   const { isOpenModal: opened, closeModal: close, modalData } = useCustomModalContext();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);

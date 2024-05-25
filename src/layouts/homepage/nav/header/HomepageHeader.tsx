@@ -70,15 +70,15 @@ export function HomepageHeader() {
 
   const logNav = user ? (
     <>
+      <LoginButton variant="outlined" />
       <Button variant="default" component={Link} href={PATH_CLIENT.logout}>
         Logout
       </Button>
-      <LoginButton variant="outlined" />
     </>
   ) : (
     <>
-      <LoginButton />
-      <SignUpButton />
+      <LoginButton variant="outlined" />
+      <SignUpButton variant="default" />
     </>
   );
 

@@ -1,6 +1,7 @@
 import { link } from "fs";
 import { Role } from "../types/models/space-model";
 import { FrontendEntity } from "../types/redux/CrudSliceInterfaces";
+import { inhabitant } from "../json/section-config/sectionBaseConfigs";
 
 export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 export type GetPathFunc = (path: string) => string;
@@ -59,6 +60,7 @@ export enum PATH_API {
   threads = "threads",
   maintenances = "maintenances",
   statistics = "statistics",
+  inhabitant = "inhabitant",
 }
 
 const all = (entity: string) => `${entity}`;
@@ -182,6 +184,9 @@ export const _PATH_API = {
     acceptByLogin: (linkId: string) => `${PATH_API.invitations}/accept-by-login/${linkId}`,
     acceptByRegister: (linkId: string) => `${PATH_API.invitations}/register/${linkId}`,
     acceptByLinkId: (linkId: string) => `${PATH_API.invitations}/accept/${linkId}`,
+  },
+  inhabitant: {
+    importExcel: `${PATH_API.inhabitant}/${PATH_API.importExcel}`,
   },
 } as const;
 

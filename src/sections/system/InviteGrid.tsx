@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 import { UserRoles, UserType } from "../../lib/enums";
 import { useCrudSelectors } from "../../redux/features/crud/crudSlice";
 import { UserByUserType } from "../../types/models/user-by-user-type";
-import { InviteButton } from "../dashboard/datatable_section/components/customButtons/InviteButton";
+import { InviteButton } from "../dashboard/datatable_section/components/customButtons/invite-by-entity/CrudInviteButton";
 import classes from "./InviteGrid.module.css";
 import { useLocale } from "../../../hooks/useLocale";
 

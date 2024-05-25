@@ -10,18 +10,11 @@ import axiosInstance from "../../../../utils/axios-instance";
 import { PATH_API } from "../../../../path/path-api";
 import { sleep } from "../../../../utils/helpers/helper-functions";
 import { FrontendEntity } from "../../../../types/redux/CrudSliceInterfaces";
-import { SectionConfig } from "../../../../types/data/json/sections-json";
+import { SectionActionData, SectionConfig } from "../../../../types/data/json/sections-json";
 import useRouterWithCustomQuery from "../../../../hooks/useRouterWithCustomQuery";
 import { Icons } from "../../../../data/icons/icons";
 
-export const CreateButton = ({
-  label,
-
-  ...props
-}: {
-  label: string;
-  color?: MantineColor;
-}) => {
+export const CreateButton = ({ label, type, ...props }: SectionActionData) => {
   const { selectCrudDocument, setCrudDocuments } = useCrudSliceStore();
   const { openDrawer } = useDrawerContext();
   const { openConfirmModal } = useCustomModalContext();
