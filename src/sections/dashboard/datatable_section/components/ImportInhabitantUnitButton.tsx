@@ -133,7 +133,7 @@ function SubmitImportButton({ children, file }: { children: React.ReactNode; fil
   if (!file) {
     return <AlertCustom color="red">No file selected</AlertCustom>;
   }
-  const handleImportInhabitantUnitconfirmEvent = async () => {
+  const handleImportInhabitantUnit = async () => {
     const formData = new FormData();
     formData.append("file", file);
     const rawRes = await axiosInstance.post(`inhabitant/${PATH_API.importExcel}`, formData, {
