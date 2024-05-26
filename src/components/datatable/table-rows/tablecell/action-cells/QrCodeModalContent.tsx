@@ -9,24 +9,29 @@ import { NOTIFICATIONS } from "../../../../../data/showNofification/notification
 import { QrCodeView } from "../../../../qr-code/QrCodeView";
 import { useCustomModalContext } from "../../../../../context/modal-context/_ModalContext";
 import { getEntityFromUrl, sleep } from "../../../../../utils/helpers/helper-functions";
+import { useLocale } from "../../../../../../hooks/useLocale";
+import useRouterWithCustomQuery from "../../../../../hooks/useRouterWithCustomQuery";
 
 export const QrCodeModalContent = ({
   authToken,
-  rowData,
+  row,
 }: {
   authToken: HiddenAuthTokenInterface;
-  rowData: MongooseBaseModel;
+  row: MongooseBaseModel;
 }) => {
   const { closeModal } = useCustomModalContext();
   const [isLoading, setIsLoading] = useState(false);
-  const _entity = getEntityFromUrl();
+  const {
+    query: { entity: _entity },
+  } = useRouterWithCustomQuery();
+  const { t } = useLocale();
   const sendEmailToUser = async () => {
     try {
       if (_entity === "users") {
         setIsLoading(true);
         showNotification(NOTIFICATIONS.LOADING.email);
         const rawResult = await axiosInstance.get(
-          _PATH_API[_entity].sendTokenEmail({ _id: rowData._id })
+          _PATH_API[_entity].sendTokenEmail({ _id: row._id })
         );
         await sleep(700);
         setIsLoading(false);
@@ -54,7 +59,9 @@ export const QrCodeModalContent = ({
       {qrCodeView}
       <Stack gap={16} px={80} mt={24}>
         <Button onClick={sendEmailToUser}>{sendText}</Button>
-        <Button variant="outline">Back</Button>
+        <Button onClick={closeModal} variant="outline">
+          {t("Close")}
+        </Button>
         <LoadingOverlay visible={isLoading} />
       </Stack>
     </>

@@ -14,15 +14,23 @@ import axiosInstance, { AxiosResDataGeneric } from "../../../../../utils/axios-i
 import { _PATH_FRONTEND } from "../../../../../path/path-frontend";
 import { QrCodeModalContent } from "./QrCodeModalContent";
 import { MongooseBaseModel } from "../../../../../types/models/mongoose-base-model";
+import { FrontendEntity } from "../../../../../types/redux/CrudSliceInterfaces";
 
-export const QrCodeButton = ({ rowData }: { rowData: MongooseBaseModel }) => {
+export const QrCodeButton = ({
+  row,
+  entity,
+}: {
+  row: MongooseBaseModel;
+  entity: FrontendEntity;
+}) => {
   const { openConfirmModal } = useCustomModalContext();
-  const { _id } = rowData;
+  const { _id } = row;
 
   const generateQrCode = async () => {
     try {
+      // TODO: make a endpoint string locally and map that to the actual endpoint
       const rawAuthToken = await axiosInstance.get<AxiosResDataGeneric<HiddenAuthTokenInterface>>(
-        _PATH_API.users.getAuthToken(_id)
+        _PATH_API.invitations.getAuthTokenByEntityRowId({ rowId: _id, entity })
       );
 
       const payload = rawAuthToken.data.data;
@@ -30,7 +38,7 @@ export const QrCodeButton = ({ rowData }: { rowData: MongooseBaseModel }) => {
       openConfirmModal({
         title: "QR Code",
         type: "custom",
-        children: <QrCodeModalContent authToken={payload} rowData={rowData} />,
+        children: <QrCodeModalContent authToken={payload} row={row} />,
         // onConfirm: () => {},
       });
     } catch (error: any) {
@@ -42,7 +50,6 @@ export const QrCodeButton = ({ rowData }: { rowData: MongooseBaseModel }) => {
       });
     }
   };
-  return <div>QrcodeButton component to setup</div>;
   return (
     <ActionIcon color="white" onClick={generateQrCode}>
       <IconQrcode />

@@ -53,6 +53,7 @@ export const propertyManagerSectionConfigs: Record<string, SectionConfig> = {
         type: "import-inhabitant-unit",
       },
     ],
+    rowActions: ["qr_code", "modify"],
   },
   maintainer,
   checks,

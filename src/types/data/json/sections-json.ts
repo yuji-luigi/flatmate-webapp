@@ -22,6 +22,7 @@ export type SectionConfig = {
   title: string;
   subtitle?: string;
   sectionActions?: SectionActionData[];
+  rowActions: RowAction[];
   createButton?: string;
   createButtonType?: string; // TODO: enum
   importButton?: string;
@@ -37,3 +38,4 @@ export type SectionActionData = {
 
 type SectionAction = "import" | "custom" | "default" | "invite" | "create";
 type CustomSectionAction = "import-inhabitant-unit";
+export type RowAction = "modify" | "delete" | "qr_code";

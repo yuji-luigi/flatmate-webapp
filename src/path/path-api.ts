@@ -184,6 +184,8 @@ export const _PATH_API = {
     acceptByLogin: (linkId: string) => `${PATH_API.invitations}/accept-by-login/${linkId}`,
     acceptByRegister: (linkId: string) => `${PATH_API.invitations}/register/${linkId}`,
     acceptByLinkId: (linkId: string) => `${PATH_API.invitations}/accept/${linkId}`,
+    getAuthTokenByEntityRowId: ({ rowId, entity }: { rowId: string; entity: string }) =>
+      `${PATH_API.invitations}/${entity}/auth-token/${rowId}`,
   },
   inhabitant: {
     importExcel: `${PATH_API.inhabitant}/${PATH_API.importExcel}`,
