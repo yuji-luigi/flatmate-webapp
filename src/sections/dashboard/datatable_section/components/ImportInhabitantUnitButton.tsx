@@ -93,6 +93,7 @@ function SelectMainSpaceModal() {
         <HeadlessModalTitle
           title={t("Import Units")}
           subtitle={currentSpace && currentSpace.name}
+          icon={<Icons.propertyManagerBuilding size={60} />}
         />
 
         <HeaderSpaceSelect />

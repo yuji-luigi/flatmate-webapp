@@ -11,13 +11,7 @@ const dataTableSections: FrontendEntity[] = [
   "checks",
   "maintenances",
 ];
-const cardListSections: FrontendEntity[] = [
-  "spaces",
-  "inhabitant",
-  "maintainer",
-  "checks",
-  "maintenances",
-];
+
 export const propertyManagerSectionConfigs: Record<string, SectionConfig> = {
   spaces: {
     ...spaces,
@@ -27,8 +21,8 @@ export const propertyManagerSectionConfigs: Record<string, SectionConfig> = {
         type: "create",
       },
     ],
+    rowActions: ["modify", "delete"],
   },
-
   inhabitant: {
     ...inhabitant,
     sectionActions: [
@@ -44,10 +38,15 @@ export const propertyManagerSectionConfigs: Record<string, SectionConfig> = {
         type: "invite",
       },
     ],
+    rowActions: ["qr_code", "modify"],
   },
   units: {
     ...units,
     sectionActions: [
+      {
+        label: "Letters",
+        type: "print-qr-unit",
+      },
       {
         label: "import Units and Spaces",
         type: "import-inhabitant-unit",

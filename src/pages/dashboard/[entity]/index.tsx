@@ -14,10 +14,12 @@ CrudPage.getLayout = function getLayout(page: ReactElement) {
 };
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const translationObj = await serverSideTranslations(context.locale || "it", ["common"], null, [
-    "it",
-    "en",
-  ]);
+  const translationObj = await serverSideTranslations(
+    context.locale || "it",
+    ["common", "crud-section"],
+    null,
+    ["it", "en"]
+  );
   return {
     props: {
       ...translationObj,

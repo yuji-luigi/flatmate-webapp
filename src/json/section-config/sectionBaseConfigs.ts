@@ -1,6 +1,7 @@
 import { title } from "process";
 import { SectionConfig } from "../../types/data/json/sections-json";
 import { FrontendEntity } from "../../types/redux/CrudSliceInterfaces";
+
 const sectionConfigBases: Record<FrontendEntity, SectionConfig> = {
   spaces: {
     title: "Spaces",

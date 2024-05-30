@@ -38,3 +38,7 @@
   border-radius: var(--radius-card);
   border: 1px solid var(--mantine-color-default-border);
 }
+
+.hidden {
+  display: none;
+}

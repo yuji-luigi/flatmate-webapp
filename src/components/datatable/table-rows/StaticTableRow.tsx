@@ -10,6 +10,7 @@ import classes from "../header/StaticTableHeader.module.css";
 import { useCustomMQuery } from "../../../../hooks/useCustomMQuery";
 import { AllModels } from "../../../types/models/allmodels";
 import { Entity } from "../../../types/redux/CrudSliceInterfaces";
+import { MongooseBaseModel } from "../../../types/models/mongoose-base-model";
 
 export function StaticTableRow({
   rowData,
@@ -19,7 +20,7 @@ export function StaticTableRow({
 }: {
   actions?: any;
   overridingEntity?: Entity;
-  rowData: AllModels;
+  rowData: MongooseBaseModel;
   sectionFormFields: Array<FormFieldTypes>;
 }) {
   /** use hook context */

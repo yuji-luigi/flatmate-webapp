@@ -1,0 +1,215 @@
+import { Box, Button, Group, Loader, Modal, Stack } from "@mantine/core";
+import React, { useCallback, useRef } from "react";
+import { showNotification } from "@mantine/notifications";
+import { useCrudSelectors, useCrudSliceStore } from "../../../../redux/features/crud/crudSlice";
+import classes from "../../../../styles/global-useStyles.module.css";
+import { useCustomModalContext } from "../../../../context/modal-context/_ModalContext";
+import axiosInstance from "../../../../utils/axios-instance";
+import { PATH_API } from "../../../../path/path-api";
+import { sleep } from "../../../../utils/helpers/helper-functions";
+import useRouterWithCustomQuery from "../../../../hooks/useRouterWithCustomQuery";
+import { Icons } from "../../../../data/icons/icons";
+import { SectionActionData } from "../../../../types/data/json/sections-json";
+import { useLocale } from "../../../../../hooks/useLocale";
+import { UnitInterface } from "../../../../types/models/unit-model";
+import DownloadUnitPdfLink, {
+  DownloadUnitPdf,
+  UnitPdf,
+} from "../../../../components/react-pdf/DownloadUnitPdf";
+import { pdf, PDFViewer } from "@react-pdf/renderer";
+import { useReactToPrint } from "react-to-print";
+import { IconDownload, IconPrinter } from "@tabler/icons-react";
+import { HeadlessModal } from "../../../../components/modal/headless/HeadlessModal";
+import { HeadlessModalTitle } from "../../../../components/modal/headless/HeadlessModalTitle";
+import { useMediaQuery } from "@mantine/hooks";
+
+export const PrintUnitQrCodeButton = ({ label, type, ...buttonProps }: SectionActionData) => {
+  const { setCrudDocuments } = useCrudSliceStore();
+  const { crudDocuments: units } = useCrudSelectors<UnitInterface>("units");
+  const { openModal, closeModal, openConfirmModal, isOpenModal } = useCustomModalContext();
+  const { t } = useLocale();
+  const pdfRef = useRef();
+  const fileInput = useRef<HTMLInputElement>(null);
+  const {
+    query: { entity },
+  } = useRouterWithCustomQuery();
+
+  const handleOpenModal = () => {
+    openModal({
+      type: "headless",
+      centered: true,
+      size: "lg",
+      children: <OnClickHandlerModal fileRef={pdfRef} />,
+    });
+  };
+  // const handleOpenModal = useReactToPrint({
+  //   documentTitle: "condominio",
+  //   content: () => pdfRef.current,
+  // });
+
+  // return (
+  //   <DownloadUnitPdfLink
+  //     sender={{
+  //       name: "Sender Name",
+  //       address: "Sender Address",
+  //       state: "Sender State",
+  //       postalCode: "Sender Postal Code",
+  //     }}
+  //     destinations={units.map((unit) => ({
+  //       name: unit.ownerName || "Owner Name",
+  //       address: unit.name,
+  //       state: unit.space.address,
+  //       postalCode: unit.space.name,
+  //     }))}
+  //   />
+  // );
+  const handleOpenAndPrint = async () => {
+    // Create a PDF document
+    const blob = await pdf(
+      <DownloadUnitPdf
+        sender={{
+          name: "Sender Name",
+          address: "Sender Address",
+          state: "Sender State",
+          postalCode: "Sender Postal Code",
+        }}
+        destinations={units.map((unit) => ({
+          name: unit.ownerName || "Owner Name",
+          address: unit.name,
+          state: unit.space.address,
+          postalCode: unit.space.name,
+        }))}
+      />
+    ).toBlob();
+
+    // Create a URL for the Blob
+    const url = URL.createObjectURL(blob);
+
+    // Open the URL in a new window
+    const newWindow = window.open(url, "_blank");
+
+    if (newWindow) {
+      newWindow.onload = () => {
+        newWindow.focus(); // Ensure the window is in focus
+        newWindow.print(); // Trigger the print dialog
+      };
+    }
+  };
+  return (
+    <>
+      <Button
+        variant="outline"
+        onClick={handleOpenModal}
+        className={classes.button}
+        color="green"
+        leftSection={
+          <Group gap={4}>
+            <IconDownload /> <IconPrinter />
+          </Group>
+        }
+        {...buttonProps}
+      >
+        <h3>{t(label || "Print QR-Code With Address")}</h3>
+      </Button>
+    </>
+  );
+};
+
+function OnClickHandlerModal({ fileRef }: { fileRef: React.RefObject<any> }) {
+  const isMobile = useMediaQuery("(max-width: 600px)");
+  const { t } = useLocale("crud-section");
+  return (
+    <HeadlessModal>
+      <Stack gap={34} py={32} px={16}>
+        <HeadlessModalTitle
+          title={t("OnClickHandlerModal-title")}
+          subtitle={t("OnClickHandlerModal-desc")}
+        />
+        <Box
+          display="flex"
+          style={{
+            flexDirection: isMobile ? "column" : "row",
+            gap: 8,
+            width: "100%",
+            marginTop: 16,
+          }}
+        >
+          <PrintUnitsButton />
+          <DownloadUnitsButton fileRef={fileRef} />
+        </Box>
+      </Stack>
+    </HeadlessModal>
+  );
+}
+
+function PrintUnitsButton() {
+  const { t } = useLocale();
+
+  const { crudDocuments: units } = useCrudSelectors<UnitInterface>("units");
+  const handlePrint = async () => {
+    // Create a PDF document
+    const blob = await pdf(
+      <DownloadUnitPdf
+        sender={{
+          name: "Sender Name",
+          address: "Sender Address",
+          state: "Sender State",
+          postalCode: "Sender Postal Code",
+        }}
+        destinations={units.map((unit) => ({
+          name: unit.ownerName || "Owner Name",
+          address: unit.name,
+          state: unit.space.address,
+          postalCode: unit.space.name,
+        }))}
+      />
+    ).toBlob();
+    // Create a URL for the Blob
+    const url = URL.createObjectURL(blob);
+
+    // Open the URL in a new window
+    const newWindow = window.open(url, "_blank");
+
+    if (newWindow) {
+      newWindow.onload = () => {
+        newWindow.focus(); // Ensure the window is in focus
+        newWindow.print(); // Trigger the print dialog
+      };
+    }
+  };
+  return (
+    <Button onClick={handlePrint} fullWidth variant="outline" leftSection={<IconPrinter />}>
+      {t("Print")}
+    </Button>
+  );
+}
+
+function DownloadUnitsButton({ fileRef }: { fileRef: React.RefObject<any> }) {
+  const { t } = useLocale();
+  const { crudDocuments: units } = useCrudSelectors<UnitInterface>("units");
+  return (
+    <DownloadUnitPdfLink
+      loader={
+        <Button disabled fullWidth leftSection={<Loader />}>
+          {t("Download")}
+        </Button>
+      }
+      sender={{
+        name: "Sender Name",
+        address: "Sender Address",
+        state: "Sender State",
+        postalCode: "Sender Postal Code",
+      }}
+      destinations={units.map((unit) => ({
+        name: unit.ownerName || "Owner Name",
+        address: unit.name,
+        state: unit.space.address,
+        postalCode: unit.space.name,
+      }))}
+    >
+      <Button fullWidth leftSection={<IconDownload />}>
+        {t("Download")}
+      </Button>
+    </DownloadUnitPdfLink>
+  );
+}
