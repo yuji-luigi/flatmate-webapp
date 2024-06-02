@@ -1,27 +1,20 @@
-import { Box, Button, Group, Loader, Modal, Stack } from "@mantine/core";
-import React, { useCallback, useRef } from "react";
-import { showNotification } from "@mantine/notifications";
+import { Box, Button, Group, Loader, Stack } from "@mantine/core";
+import React, { useRef } from "react";
 import { useCrudSelectors, useCrudSliceStore } from "../../../../redux/features/crud/crudSlice";
 import classes from "../../../../styles/global-useStyles.module.css";
 import { useCustomModalContext } from "../../../../context/modal-context/_ModalContext";
-import axiosInstance from "../../../../utils/axios-instance";
-import { PATH_API } from "../../../../path/path-api";
-import { sleep } from "../../../../utils/helpers/helper-functions";
 import useRouterWithCustomQuery from "../../../../hooks/useRouterWithCustomQuery";
-import { Icons } from "../../../../data/icons/icons";
 import { SectionActionData } from "../../../../types/data/json/sections-json";
 import { useLocale } from "../../../../../hooks/useLocale";
 import { UnitInterface } from "../../../../types/models/unit-model";
-import DownloadUnitPdfLink, {
-  DownloadUnitPdf,
-  UnitPdf,
-} from "../../../../components/react-pdf/DownloadUnitPdf";
-import { pdf, PDFViewer } from "@react-pdf/renderer";
-import { useReactToPrint } from "react-to-print";
+import DownloadUnitPdfLink, { UnitsPdf } from "../../../../components/react-pdf/units/UnitsPdf";
+import { pdf } from "@react-pdf/renderer";
 import { IconDownload, IconPrinter } from "@tabler/icons-react";
 import { HeadlessModal } from "../../../../components/modal/headless/HeadlessModal";
 import { HeadlessModalTitle } from "../../../../components/modal/headless/HeadlessModalTitle";
 import { useMediaQuery } from "@mantine/hooks";
+import axiosInstance from "../../../../utils/axios-instance";
+import { _PATH_API } from "../../../../path/path-api";
 
 export const PrintUnitQrCodeButton = ({ label, type, ...buttonProps }: SectionActionData) => {
   const { setCrudDocuments } = useCrudSliceStore();
@@ -66,7 +59,7 @@ export const PrintUnitQrCodeButton = ({ label, type, ...buttonProps }: SectionAc
   const handleOpenAndPrint = async () => {
     // Create a PDF document
     const blob = await pdf(
-      <DownloadUnitPdf
+      <UnitsPdf
         sender={{
           name: "Sender Name",
           address: "Sender Address",
@@ -147,9 +140,12 @@ function PrintUnitsButton() {
 
   const { crudDocuments: units } = useCrudSelectors<UnitInterface>("units");
   const handlePrint = async () => {
+    const rawAllUnitsOfBuildingWithQrcode = await axiosInstance.get(_PATH_API.units.withAuthToken);
+    console.log(rawAllUnitsOfBuildingWithQrcode.data.data);
+    return;
     // Create a PDF document
     const blob = await pdf(
-      <DownloadUnitPdf
+      <UnitsPdf
         sender={{
           name: "Sender Name",
           address: "Sender Address",

@@ -61,6 +61,7 @@ export enum PATH_API {
   maintenances = "maintenances",
   statistics = "statistics",
   inhabitant = "inhabitant",
+  units = "units",
 }
 
 const all = (entity: string) => `${entity}`;
@@ -189,6 +190,12 @@ export const _PATH_API = {
   },
   inhabitant: {
     importExcel: `${PATH_API.inhabitant}/${PATH_API.importExcel}`,
+  },
+  units: {
+    root: PATH_API.units,
+    byId: (id: string) => `${PATH_API.units}/${id}`,
+    withAuthTokenById: (idUnit: string) => `${PATH_API.units}/auth-token${idUnit}`,
+    withAuthToken: `${PATH_API.units}/auth-token`,
   },
 } as const;
 
