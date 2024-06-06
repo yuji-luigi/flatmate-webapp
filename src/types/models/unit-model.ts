@@ -4,7 +4,7 @@ import { MongooseBaseModel } from "./mongoose-base-model";
 export interface UnitInterface extends MongooseBaseModel {
   name: string;
   ownerName?: string;
-  mateName?: string;
+  tenantName?: string;
   unitSpace: string;
   space: {
     name: string;

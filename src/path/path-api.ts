@@ -194,8 +194,8 @@ export const _PATH_API = {
   units: {
     root: PATH_API.units,
     byId: (id: string) => `${PATH_API.units}/${id}`,
-    withAuthTokenById: (idUnit: string) => `${PATH_API.units}/auth-token${idUnit}`,
-    withAuthToken: `${PATH_API.units}/auth-token`,
+    withAuthTokenById: (idUnit: string) => `${PATH_API.units}/${idUnit}/auth-tokens`,
+    withAuthToken: `${PATH_API.units}/auth-tokens`,
   },
 } as const;
 

@@ -13,8 +13,9 @@ import { IconDownload, IconPrinter } from "@tabler/icons-react";
 import { HeadlessModal } from "../../../../components/modal/headless/HeadlessModal";
 import { HeadlessModalTitle } from "../../../../components/modal/headless/HeadlessModalTitle";
 import { useMediaQuery } from "@mantine/hooks";
-import axiosInstance from "../../../../utils/axios-instance";
+import axiosInstance, { AxiosResDataGeneric } from "../../../../utils/axios-instance";
 import { _PATH_API } from "../../../../path/path-api";
+import { AuthTokenModel } from "../../../../types/models/auth-token-model";
 
 export const PrintUnitQrCodeButton = ({ label, type, ...buttonProps }: SectionActionData) => {
   const { setCrudDocuments } = useCrudSliceStore();
@@ -135,14 +136,16 @@ function OnClickHandlerModal({ fileRef }: { fileRef: React.RefObject<any> }) {
   );
 }
 
+type UnitWithAuthToken = UnitInterface & { authToken: AuthTokenModel };
 function PrintUnitsButton() {
   const { t } = useLocale();
 
   const { crudDocuments: units } = useCrudSelectors<UnitInterface>("units");
   const handlePrint = async () => {
-    const rawAllUnitsOfBuildingWithQrcode = await axiosInstance.get(_PATH_API.units.withAuthToken);
+    const rawAllUnitsOfBuildingWithQrcode = await axiosInstance.get<
+      AxiosResDataGeneric<UnitWithAuthToken[]>
+    >(_PATH_API.units.withAuthToken);
     console.log(rawAllUnitsOfBuildingWithQrcode.data.data);
-    return;
     // Create a PDF document
     const blob = await pdf(
       <UnitsPdf
@@ -157,6 +160,7 @@ function PrintUnitsButton() {
           address: unit.name,
           state: unit.space.address,
           postalCode: unit.space.name,
+          authToken: unit.authToken,
         }))}
       />
     ).toBlob();

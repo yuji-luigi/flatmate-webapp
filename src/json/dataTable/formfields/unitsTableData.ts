@@ -21,8 +21,8 @@ export const unitsTableData: Array<FormFieldTypes> = [
     priority: 1,
   },
   {
-    id: "mateName",
-    name: "mateName",
+    id: "tenantName",
+    name: "tenantName",
     label: "MateLabel",
     placeholder: "First name",
     type: "text",

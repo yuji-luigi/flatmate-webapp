@@ -1,3 +1,5 @@
+import { AuthTokenModel } from "./models/auth-token-model";
+
 export interface AddressInfo {
   name: string;
   address: string;
@@ -5,4 +7,5 @@ export interface AddressInfo {
   postalCode: string;
   cityCode?: string;
   stateCode?: string;
+  authToken?: AuthTokenModel;
 }
