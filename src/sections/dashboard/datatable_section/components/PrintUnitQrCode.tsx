@@ -145,7 +145,6 @@ function PrintUnitsButton() {
     const rawAllUnitsOfBuildingWithQrcode = await axiosInstance.get<
       AxiosResDataGeneric<UnitWithAuthToken[]>
     >(_PATH_API.units.withAuthToken);
-    console.log(rawAllUnitsOfBuildingWithQrcode.data.data);
     // Create a PDF document
     const blob = await pdf(
       <UnitsPdf
@@ -155,7 +154,7 @@ function PrintUnitsButton() {
           state: "Sender State",
           postalCode: "Sender Postal Code",
         }}
-        destinations={units.map((unit) => ({
+        destinations={rawAllUnitsOfBuildingWithQrcode.data.data.map((unit) => ({
           name: unit.ownerName || "Owner Name",
           address: unit.name,
           state: unit.space.address,

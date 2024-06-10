@@ -1,22 +1,53 @@
 import { Page, Text, View, StyleSheet } from "@react-pdf/renderer";
 import { AddressInfo } from "../../../types/address-info";
 import { useLocale } from "../../../../hooks/useLocale";
+import { QrCodeViewForPdf } from "../../qr-code/QRCodeForPdf";
 
 // Create styles
 const styles = StyleSheet.create({
   page: {
     flexDirection: "column",
-    backgroundColor: "#fff",
-    padding: 20,
+    backgroundColor: "transparent",
+    padding: "1.5cm",
+  },
+  mainSection: {
+    flexDirection: "column",
+    // flexDirection: "row",
+    marginTop: "auto",
+    // justifyContent: "space-between",
+    alignItems: "center",
+    justifyContent: "center",
+    height: "30%",
+  },
+  qrcodeSection: {
+    justifyContent: "center",
+    margin: "auto",
+    display: "flex",
+    paddingBottom: "1.5cm",
+
+    width: "100%",
   },
   addressSection: {
-    margin: 10,
-    marginTop: "5cm",
-    marginLeft: "auto",
     display: "flex",
-    maxWidth: "6cm",
-    padding: 10,
-    // flexGrow: 1,
+    // maxWidth: "6cm",
+    marginTop: "auto",
+    marginLeft: "auto",
+    paddingBottom: "1.5cm",
+    width: "50%",
+  },
+  textLg: {
+    fontSize: 24,
+  },
+  textMd: {
+    fontSize: 16,
+  },
+  textSm: {
+    fontSize: 12,
+  },
+  textCenter: {
+    textAlign: "center",
+    margin: "auto",
+    width: "100%",
   },
 
   address: {
@@ -32,32 +63,11 @@ const styles = StyleSheet.create({
   invoice: {
     fontSize: 12,
   },
-  // table: {
-  //   display: "table",
-  //   width: "auto",
-  //   borderStyle: "solid",
-  //   borderWidth: 1,
-  //   borderColor: "#bfbfbf",
-  //   borderRightWidth: 0,
-  //   borderBottomWidth: 0,
-  // },
-  // tableRow: {
-  //   margin: "auto",
-  //   flexDirection: "row",
-  // },
-  // tableCol: {
-  //   width: "25%",
-  //   borderStyle: "solid",
-  //   borderWidth: 1,
-  //   borderLeftWidth: 0,
-  //   borderTopWidth: 0,
-  //   borderColor: "#bfbfbf",
-  // },
-  // tableCell: {
-  //   margin: "auto",
-  //   marginTop: 5,
-  //   fontSize: 10,
-  // },
+  bottomSection: {
+    margin: 10,
+    padding: 10,
+    height: "70%",
+  },
 });
 
 export function UnitPdfFrontPage({
@@ -68,28 +78,35 @@ export function UnitPdfFrontPage({
   destination: AddressInfo;
 }) {
   const { t } = useLocale();
+  console.log("destination.authToken", destination.authToken);
   return (
     <Page size="A4" style={styles.page}>
-      <View style={styles.addressSection}>
-        {/* <Text style={styles.address}>
-          {sender.name}
-          {"\n"}
-          {sender.address}
-          {sender.cityCode && `(${sender.cityCode})`}
-          {"\n"}
-          {sender.state}, {sender.stateCode && `(${sender.stateCode})`} {sender.postalCode}
-        </Text> */}
-        <Text style={styles.address}>
-          {destination.name}
-          {"\n"}
-          {destination.address}
-          {destination.cityCode && `(${destination.cityCode})`}
-          {"\n"}
-          {destination.state}, {destination.stateCode && `(${destination.stateCode})`}{" "}
-          {destination.postalCode}
-        </Text>
+      <View style={styles.mainSection}>
+        {destination.authToken && (
+          <View style={styles.qrcodeSection}>
+            <Text style={{ ...styles.textMd, ...styles.textCenter, marginBottom: "0.2cm" }}>
+              {t("Scan the code and register Flatmate")}
+            </Text>
+            <Text style={{ ...styles.textCenter, ...styles.textSm }}>
+              {t("Get notified to know where our spending goes!")}
+            </Text>
+            <QrCodeViewForPdf authToken={destination.authToken} />
+          </View>
+        )}
+        <View style={styles.addressSection}>
+          <Text style={styles.address}>
+            {destination.name}
+            {"\n"}
+            {destination.address}
+            {destination.cityCode && `(${destination.cityCode})`}
+            {"\n"}
+            {destination.state}, {destination.stateCode && `(${destination.stateCode})`}{" "}
+            {destination.postalCode}
+          </Text>
+        </View>
       </View>
-      <View style={styles.section}>
+
+      <View style={styles.bottomSection}>
         <Text style={styles.content}>
           {t("Dear ")}. {destination.name},{"\n\n"}
           [Your letter content goes here...]

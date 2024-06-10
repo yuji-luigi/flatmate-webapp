@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { HiddenAuthTokenInterface } from "../types/models/auth-token-model";
-import { Entity, entities, userTypes } from "../types/redux/CrudSliceInterfaces";
+import { Entity, FrontendEntity, entities, userTypes } from "../types/redux/CrudSliceInterfaces";
 import { UserType } from "../lib/enums";
 
 export const ROOT = "/";
@@ -119,8 +119,13 @@ export const _PATH_FRONTEND = {
   },
   authTokens: {
     dashboard: PATH_CLIENT.authTokens,
-    qrCode: ({ entity, authToken }: { entity: Entity; authToken: HiddenAuthTokenInterface }) =>
-      `${FRONTEND_ROOT}/auth-tokens/${entity}/${authToken.linkId}/${authToken._id}`,
+    qrCode: ({
+      entity,
+      authToken,
+    }: {
+      entity: FrontendEntity;
+      authToken: HiddenAuthTokenInterface;
+    }) => `${FRONTEND_ROOT}/auth-tokens/${entity}/${authToken.linkId}/${authToken._id}`,
   },
   maintenances: {
     root: PATH_CLIENT.maintenances,
