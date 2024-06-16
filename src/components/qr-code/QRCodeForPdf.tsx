@@ -28,7 +28,7 @@ export const QrCodeViewForPdf: React.FC<QrCodeViewProps> = ({ authToken }) => {
   React.useEffect(() => {
     const generateQrCode = async () => {
       const qrCodeUrl = await QRCode.toDataURL(
-        _PATH_FRONTEND.authTokens.qrCode({ entity: "inhabitant", authToken })
+        _PATH_FRONTEND.authTokens.invitationQrCode(authToken)
       );
       setQrCodeDataUrl(qrCodeUrl);
     };

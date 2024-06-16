@@ -1,4 +1,4 @@
-import { Box, Button, Group, Loader, Stack } from "@mantine/core";
+import { Box, Button, Group, Loader, Stack, Transition } from "@mantine/core";
 import React, { useRef } from "react";
 import { useCrudSelectors, useCrudSliceStore } from "../../../../redux/features/crud/crudSlice";
 import classes from "../../../../styles/global-useStyles.module.css";
@@ -16,6 +16,8 @@ import { useMediaQuery } from "@mantine/hooks";
 import axiosInstance, { AxiosResDataGeneric } from "../../../../utils/axios-instance";
 import { _PATH_API } from "../../../../path/path-api";
 import { AuthTokenModel } from "../../../../types/models/auth-token-model";
+import HeaderSpaceSelect from "../../../../components/input/custom-inputs/HeaderSpaceSelect";
+import { useCookieContext } from "../../../../context/CookieContext";
 
 export const PrintUnitQrCodeButton = ({ label, type, ...buttonProps }: SectionActionData) => {
   const { setCrudDocuments } = useCrudSliceStore();
@@ -57,38 +59,39 @@ export const PrintUnitQrCodeButton = ({ label, type, ...buttonProps }: SectionAc
   //     }))}
   //   />
   // );
-  const handleOpenAndPrint = async () => {
-    // Create a PDF document
-    const blob = await pdf(
-      <UnitsPdf
-        sender={{
-          name: "Sender Name",
-          address: "Sender Address",
-          state: "Sender State",
-          postalCode: "Sender Postal Code",
-        }}
-        destinations={units.map((unit) => ({
-          name: unit.ownerName || "Owner Name",
-          address: unit.name,
-          state: unit.space.address,
-          postalCode: unit.space.name,
-        }))}
-      />
-    ).toBlob();
 
-    // Create a URL for the Blob
-    const url = URL.createObjectURL(blob);
+  // const handleOpenAndPrint = async () => {
+  //   // Create a PDF document
+  //   const blob = await pdf(
+  //     <UnitsPdf
+  //       sender={{
+  //         name: "Sender Name",
+  //         address: "Sender Address",
+  //         state: "Sender State",
+  //         postalCode: "Sender Postal Code",
+  //       }}
+  //       destinations={units.map((unit) => ({
+  //         name: unit.ownerName || "Owner Name",
+  //         address: unit.name,
+  //         state: unit.space.address,
+  //         postalCode: unit.space.name,
+  //       }))}
+  //     />
+  //   ).toBlob();
 
-    // Open the URL in a new window
-    const newWindow = window.open(url, "_blank");
+  //   // Create a URL for the Blob
+  //   const url = URL.createObjectURL(blob);
 
-    if (newWindow) {
-      newWindow.onload = () => {
-        newWindow.focus(); // Ensure the window is in focus
-        newWindow.print(); // Trigger the print dialog
-      };
-    }
-  };
+  //   // Open the URL in a new window
+  //   const newWindow = window.open(url, "_blank");
+
+  //   if (newWindow) {
+  //     newWindow.onload = () => {
+  //       newWindow.focus(); // Ensure the window is in focus
+  //       newWindow.print(); // Trigger the print dialog
+  //     };
+  //   }
+  // };
   return (
     <>
       <Button
@@ -112,25 +115,38 @@ export const PrintUnitQrCodeButton = ({ label, type, ...buttonProps }: SectionAc
 function OnClickHandlerModal({ fileRef }: { fileRef: React.RefObject<any> }) {
   const isMobile = useMediaQuery("(max-width: 600px)");
   const { t } = useLocale("crud-section");
+  const { currentSpace } = useCookieContext();
   return (
     <HeadlessModal>
-      <Stack gap={34} py={32} px={16}>
+      <Stack gap={24} py={32} px={16} pt={0}>
         <HeadlessModalTitle
+          style={{ marginBottom: 8 }}
           title={t("OnClickHandlerModal-title")}
           subtitle={t("OnClickHandlerModal-desc")}
         />
-        <Box
-          display="flex"
-          style={{
-            flexDirection: isMobile ? "column" : "row",
-            gap: 8,
-            width: "100%",
-            marginTop: 16,
-          }}
+        <HeaderSpaceSelect size="md" />
+        <Transition
+          mounted={!!currentSpace}
+          duration={800}
+          transition="slide-up"
+          timingFunction="ease-in-out"
         >
-          <PrintUnitsButton />
-          <DownloadUnitsButton fileRef={fileRef} />
-        </Box>
+          {(styles) => (
+            <div style={styles} className="fieldset">
+              <Box
+                display="flex"
+                style={{
+                  flexDirection: isMobile ? "column" : "row",
+                  gap: 8,
+                  width: "100%",
+                }}
+              >
+                <PrintUnitsButton />
+                <DownloadUnitsButton fileRef={fileRef} />
+              </Box>
+            </div>
+          )}
+        </Transition>
       </Stack>
     </HeadlessModal>
   );

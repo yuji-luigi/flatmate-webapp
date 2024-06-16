@@ -20,7 +20,12 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "downlevelIteration": true
+    "downlevelIteration": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "include": [
     "next-env.d.ts",
@@ -29,6 +34,8 @@
     "src/**/*.d.ts",
     "src/theme/cssVariableResolver.js",
     "i18n.js",
+    ".next/types/**/*.ts",
+    "src/__app__/layouttsx"
   ],
   "exclude": [
     "node_modules",

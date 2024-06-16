@@ -1,3 +1,4 @@
+"use client";
 import React, { ReactNode, useEffect, useRef, useState } from "react";
 import { Box, Tabs } from "@mantine/core";
 import { useRouter } from "next/router";

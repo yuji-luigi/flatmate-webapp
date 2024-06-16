@@ -20,17 +20,7 @@ const dataTableSections: FrontendEntity[] = [
   "maintenances",
 ];
 
-export const propertyManagerSectionConfigs: Record<string, SectionConfig> = {
-  spaces: {
-    ...spaces,
-    sectionActions: [
-      {
-        label: "Add Spaces",
-        type: "create",
-      },
-    ],
-    rowActions: ["modify", "delete"],
-  },
+export const system_adminSectionConfigs: Record<string, SectionConfig> = {
   inhabitant: {
     ...inhabitant,
     sectionActions: [
@@ -48,22 +38,16 @@ export const propertyManagerSectionConfigs: Record<string, SectionConfig> = {
     ],
     rowActions: ["qr_code", "modify"],
   },
-  units: {
-    ...units,
+  maintainer,
+  property_manager: {
+    ...property_manager,
     sectionActions: [
       {
-        label: "Letters",
-        type: "print-qr-unit",
-      },
-      {
-        label: "import Units and Spaces",
-        type: "import-inhabitant-unit",
+        label: "Invite Property Manager",
+        type: "invite",
       },
     ],
-    rowActions: ["qr_code", "modify"],
   },
-  maintainer,
-  property_manager,
   checks,
   maintenances,
 };

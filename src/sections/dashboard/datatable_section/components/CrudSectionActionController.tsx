@@ -6,7 +6,7 @@ import useAuth from "../../../../../hooks/useAuth";
 import { CreateButton } from "./CreateButton";
 import { ImportButton } from "./ImportButton";
 import { ImportInhabitantUnitButton } from "./ImportInhabitantUnitButton";
-import { PrintUnitQrCodeButton } from "./PrintUnitQrCode";
+import { PrintUnitQrCodeButton } from "./PrintUnitQrCodeButton";
 
 export const CrudSectionActionContainer = () => {
   const { query } = useRouterWithCustomQuery();

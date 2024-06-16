@@ -17,7 +17,7 @@ export const PATH_DASHBOARD_ROOT = {
   system_admin: "/system-admin/dashboard",
   property_manager: "/property-manager/dashboard",
   maintainer: "/maintainer/dashboard",
-  inhabitant: "/users/dashboard",
+  inhabitant: "/inhabitant/dashboard",
   super_admin: "/super-admin/dashboard",
 };
 
@@ -119,6 +119,8 @@ export const _PATH_FRONTEND = {
   },
   authTokens: {
     dashboard: PATH_CLIENT.authTokens,
+    invitationQrCode: (authToken: HiddenAuthTokenInterface) =>
+      `${FRONTEND_ROOT}/auth/invitation/${authToken.linkId}`,
     qrCode: ({
       entity,
       authToken,

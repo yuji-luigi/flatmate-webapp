@@ -2,6 +2,7 @@ import { Page, Text, View, StyleSheet } from "@react-pdf/renderer";
 import { AddressInfo } from "../../../types/address-info";
 import { useLocale } from "../../../../hooks/useLocale";
 import { QrCodeViewForPdf } from "../../qr-code/QRCodeForPdf";
+import { _PATH_FRONTEND } from "../../../path/path-frontend";
 
 // Create styles
 const styles = StyleSheet.create({
@@ -78,7 +79,6 @@ export function UnitPdfFrontPage({
   destination: AddressInfo;
 }) {
   const { t } = useLocale();
-  console.log("destination.authToken", destination.authToken);
   return (
     <Page size="A4" style={styles.page}>
       <View style={styles.mainSection}>
@@ -91,6 +91,9 @@ export function UnitPdfFrontPage({
               {t("Get notified to know where our spending goes!")}
             </Text>
             <QrCodeViewForPdf authToken={destination.authToken} />
+            <Text style={{ fontSize: 6, textAlign: "center" }}>
+              {_PATH_FRONTEND.authTokens.invitationQrCode(destination.authToken)}
+            </Text>
           </View>
         )}
         <View style={styles.addressSection}>

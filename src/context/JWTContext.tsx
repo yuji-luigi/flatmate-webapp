@@ -166,7 +166,7 @@ function AuthProvider({ children, initialUser }: { children: ReactNode; initialU
     deleteCookie("jwt");
     deleteCookie("space");
     await axiosInstance.get(PATH_AUTH.logout, { withCredentials: true });
-    push(_PATH_FRONTEND.auth.login);
+    // push(_PATH_FRONTEND.auth.login);
     // localStorage.removeItem('accessToken');
     // localStorage.removeItem('spaceToken');
 
