@@ -12,7 +12,6 @@ export const NavList: React.FC<NavListProps> = (props: NavListProps) => {
   const { section } = props;
   const { user } = useAuth();
   // const show = user?.isSuperAdmin;
-  console.log(section.name);
   return (
     <>
       {true && !section.hide && (

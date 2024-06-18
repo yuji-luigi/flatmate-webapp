@@ -421,7 +421,6 @@ const useTotalDocumentsCount = (entity: FrontendEntity): number => {
 
 /** if it has a parent returns true. ex- space instances can be either a parent or a child */
 const useIsChildrenTree = (entity: FrontendEntity): boolean => {
-  console.log("entity", entity);
   return useAppSelector((state) => state.crud.reduxdb[entity].isChildrenTree);
 };
 

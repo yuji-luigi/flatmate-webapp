@@ -17,4 +17,10 @@ export interface InvitationAuth {
 
 export const invitationStatuses = ["pending", "accepted", "declined"] as const;
 
+export const INVITATION_STATUS = {
+  PENDING: "pending",
+  ACCEPTED: "accepted",
+  DECLINED: "declined",
+} as const;
+
 type InvitationStatus = (typeof invitationStatuses)[number];
