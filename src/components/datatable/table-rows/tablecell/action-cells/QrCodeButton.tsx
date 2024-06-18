@@ -8,6 +8,7 @@ import axiosInstance, { AxiosResDataGeneric } from "../../../../../utils/axios-i
 import { QrCodeModalContent } from "./QrCodeModalContent";
 import { MongooseBaseModel } from "../../../../../types/models/mongoose-base-model";
 import { FrontendEntity } from "../../../../../types/redux/CrudSliceInterfaces";
+import { INVITATION_STATUS } from "../../../../../types/models/invitation-model";
 
 export const QrCodeButton = ({
   row,
@@ -21,9 +22,11 @@ export const QrCodeButton = ({
 
   const generateQrCode = async () => {
     try {
+      console.log(_id);
       // TODO: make a endpoint string locally and map that to the actual endpoint
       const rawAuthToken = await axiosInstance.get<AxiosResDataGeneric<HiddenAuthTokenInterface>>(
-        _PATH_API.invitations.getAuthTokenByEntityRowId({ rowId: _id, entity })
+        _PATH_API.invitations.getAuthTokenByEntityRowId({ rowId: _id, entity }),
+        { params: { status: INVITATION_STATUS.PENDING } }
       );
 
       const payload = rawAuthToken.data.data;
