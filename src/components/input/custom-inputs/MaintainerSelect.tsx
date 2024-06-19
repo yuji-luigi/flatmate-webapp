@@ -4,7 +4,7 @@ import useSWR from "swr";
 import { CustomFormFieldType } from "../../../types/general/data/data-table/form-field-type/formField-types";
 import { UseFormReturnTypeCustom } from "../input_interfaces/useForm_interface";
 import axiosInstance, { AxiosResDataGeneric } from "../../../utils/axios-instance";
-import { PATH_API } from "../../../path/path-api";
+import { apiEndpointRootsEnum } from "../../../path/path-api";
 import { useCookieContext } from "../../../context/CookieContext";
 import { MaintainerModel } from "../../../types/models/maintainer-model";
 
@@ -14,7 +14,7 @@ interface Props {
 }
 const fetchMaintainersOfBuilding = async (/* buildingId: string */) => {
   const res = await axiosInstance.get<AxiosResDataGeneric<MaintainerModel[]>>(
-    `${PATH_API.maintainersSpace}`
+    `${apiEndpointRootsEnum.maintainersSpace}`
   );
   return res.data.data.map((maintainer) => ({
     value: maintainer._id,

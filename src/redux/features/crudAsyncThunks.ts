@@ -5,7 +5,11 @@
  * */
 
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { PATH_API, PATH_API_DATA_TABLE, PATH_API_DATA_TABLE_ROOT } from "../../path/path-api";
+import {
+  apiEndpointRootsEnum,
+  PATH_API_DATA_TABLE,
+  PATH_API_DATA_TABLE_ROOT,
+} from "../../path/path-api";
 import axiosInstance, { AxiosResData, uploadConfig } from "../../utils/axios-instance";
 import { UploadModel } from "../../types/models/upload-model";
 import {
@@ -120,7 +124,7 @@ export const fetchLinkedChildrenWithPagination = createAsyncThunk(
   "cruds/dataTable/fetchCrudDocumentsWithPagination",
   async ({ entity, query, /* isChildrenTree = true, */ parentId }: FetchLinkedChildrenPayload) => {
     const res = await axiosInstance.get<AxiosResData>(
-      `/${entity}/${PATH_API_DATA_TABLE_ROOT}/${PATH_API.linkedChildren}/${parentId}${query || ""}`
+      `/${entity}/${PATH_API_DATA_TABLE_ROOT}/${apiEndpointRootsEnum.linkedChildren}/${parentId}${query || ""}`
     );
     return {
       entity,
@@ -198,7 +202,7 @@ export const addLinkedChildrenDocumentDataTable = createAsyncThunk(
   "crud/withPagination/addLinkedChildrenDocument",
   async ({ entity, newDocument, parentId, query = "" }: AddCrudPayload) => {
     /** handle endpoint by checking if parentId is passed */
-    const endPoint = `${entity}/${PATH_API_DATA_TABLE_ROOT}/${PATH_API.linkedChildren}/${parentId}`;
+    const endPoint = `${entity}/${PATH_API_DATA_TABLE_ROOT}/${apiEndpointRootsEnum.linkedChildren}/${parentId}`;
     const res = await axiosInstance.post(`${endPoint}${query}`, newDocument);
     const payload = {
       // entity: res.data.collection,
@@ -258,7 +262,7 @@ export const deleteLinkedChildDocumentWithPagination = createAsyncThunk(
      * returns new crudDocuments with limit number
      *  */
     const res = await axiosInstance.delete(
-      `/${entity}/${PATH_API_DATA_TABLE_ROOT}/${PATH_API.linkedChildren}/${documentId}${query}`
+      `/${entity}/${PATH_API_DATA_TABLE_ROOT}/${apiEndpointRootsEnum.linkedChildren}/${documentId}${query}`
     );
     const payload = {
       // entity: res.data.collection,

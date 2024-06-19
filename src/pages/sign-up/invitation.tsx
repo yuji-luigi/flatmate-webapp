@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect } from "react";
 import { Box } from "@mantine/core";
 import useRouterWithCustomQuery from "../../hooks/useRouterWithCustomQuery";
 import axiosInstance, { AxiosResDataGeneric } from "../../utils/axios-instance";
-import { _PATH_API } from "../../path/path-api";
+import { apiEndpoint } from "../../path/path-api";
 import Layout from "../../layouts";
 import Page from "../../components/Page";
 
@@ -23,7 +23,7 @@ const SignUpByInvitationPage = () => {
       return;
     }
     axiosInstance
-      .get<AxiosResDataGeneric<InvitationLocal>>(_PATH_API.auth.getInvitationByLinkId(linkId))
+      .get<AxiosResDataGeneric<InvitationLocal>>(apiEndpoint.auth.getInvitationByLinkId(linkId))
       .then((res) => {
         setInvitation(res.data.data);
       });

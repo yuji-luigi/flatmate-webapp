@@ -3,7 +3,7 @@ import { UseFormReturnType } from "@mantine/form";
 import { showNotification, useNotifications } from "@mantine/notifications";
 import { title } from "process";
 import axiosInstance from "../../../../../../utils/axios-instance";
-import { _PATH_API } from "../../../../../../path/path-api";
+import { apiEndpoint } from "../../../../../../path/path-api";
 import { NOTIFICATIONS } from "../../../../../../data/showNofification/notificationObjects";
 import { useLocale } from "../../../../../../../hooks/useLocale";
 import { useCustomModalContext } from "../../../../../../context/modal-context/_ModalContext";
@@ -32,7 +32,7 @@ export const SubmitByRoleButton: React.FC<SubmitByRoleButtonProps> = (
     // case update user: (user, space are present update the accessController of the user)
     const data = form.values.accessController as Record<string, boolean>;
     if (user && space) {
-      const rawAccessControl = await axiosInstance.post(_PATH_API.accessPermissions.root, data);
+      const rawAccessControl = await axiosInstance.post(apiEndpoint.accessPermissions.root, data);
       showNotification({ message: t("Access Control updated"), title: t("Success") });
     }
     // case creation of a new user.

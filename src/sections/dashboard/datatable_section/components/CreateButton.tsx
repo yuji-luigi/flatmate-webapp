@@ -7,7 +7,7 @@ import { useDrawerContext } from "../../../../context/DataTableDrawerContext";
 import classes from "../../../../styles/global-useStyles.module.css";
 import { useCustomModalContext } from "../../../../context/modal-context/_ModalContext";
 import axiosInstance from "../../../../utils/axios-instance";
-import { PATH_API } from "../../../../path/path-api";
+import { apiEndpointRootsEnum } from "../../../../path/path-api";
 import { sleep } from "../../../../utils/helpers/helper-functions";
 import { FrontendEntity } from "../../../../types/redux/CrudSliceInterfaces";
 import { SectionActionData, SectionConfig } from "../../../../types/data/json/sections-json";
@@ -33,11 +33,15 @@ export const CreateButton = ({ label, type, ...props }: SectionActionData) => {
     if (!entity) return;
     const formData = new FormData();
     formData.append("file", file);
-    const rawRes = await axiosInstance.post(`${entity}/${PATH_API.importExcel}`, formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
+    const rawRes = await axiosInstance.post(
+      `${entity}/${apiEndpointRootsEnum.importExcel}`,
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
     await sleep(1000);
     console.log(rawRes.data.data);
     showNotification({

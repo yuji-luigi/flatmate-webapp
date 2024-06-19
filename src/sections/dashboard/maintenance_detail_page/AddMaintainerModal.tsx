@@ -5,7 +5,7 @@ import { AxiosError } from "axios";
 import { useForm } from "@mantine/form";
 import { useRouter } from "next/router";
 import { hideNotification, notifications } from "@mantine/notifications";
-import { PATH_API, _PATH_API } from "../../../path/path-api";
+import { apiEndpointRootsEnum, apiEndpoint } from "../../../path/path-api";
 import axiosInstance from "../../../utils/axios-instance";
 import { useCookieContext } from "../../../context/CookieContext";
 import LoadingScreen from "../../../components/screen/LoadingScreen";
@@ -18,7 +18,7 @@ import { SelectOption } from "../../../types/general/data/data-table/form-field-
 import { useFetchSwr } from "../../../../hooks/useFetch";
 
 const fetchMainSpaces = async () => {
-  const res = await axiosInstance.get(`${PATH_API.getSpaceSelections}`);
+  const res = await axiosInstance.get(`${apiEndpointRootsEnum.getSpaceSelections}`);
   return res.data.data;
 };
 
@@ -45,7 +45,7 @@ const AddMaintainerModal = () => {
     data,
     error: errorSwr,
     isLoading,
-  } = useFetchSwr<SpaceModel[]>({ path: PATH_API.getSpaceSelections, method: "get" });
+  } = useFetchSwr<SpaceModel[]>({ path: apiEndpointRootsEnum.getSpaceSelections, method: "get" });
 
   if (!data || isLoading) return <LoadingScreen />;
   const spaces = data.data;
@@ -68,7 +68,7 @@ const AddMaintainerModal = () => {
     // call api to add maintainer with axiosInstance in utils
     try {
       const rawMaintainer = await axiosInstance.post(
-        _PATH_API.maintainers.spaces(crudDocument._id),
+        apiEndpoint.maintainers.spaces(crudDocument._id),
         form.values
       );
       // update crud document

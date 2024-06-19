@@ -3,7 +3,7 @@ import { deleteCookie } from "cookies-next";
 import { useRouter } from "next/router";
 import { showNotification } from "@mantine/notifications";
 import axiosInstance, { AxiosMeResponse } from "../utils/axios-instance";
-import { _PATH_API, PATH_AUTH } from "../path/path-api";
+import { apiEndpoint, PATH_AUTH } from "../path/path-api";
 import {
   JWTContextReducerAction,
   JWTContextState,
@@ -126,7 +126,7 @@ function AuthProvider({ children, initialUser }: { children: ReactNode; initialU
    * TODO: commented to be removed */
   const login: Login = async (email, password, role) => {
     try {
-      await axiosInstance.post(_PATH_API.auth.login(role), { email, password });
+      await axiosInstance.post(apiEndpoint.auth.login(role), { email, password });
       const rawMe = await axiosInstance.get<AxiosMeResponse>(PATH_AUTH.me);
       const { user } = rawMe.data;
       dispatch({

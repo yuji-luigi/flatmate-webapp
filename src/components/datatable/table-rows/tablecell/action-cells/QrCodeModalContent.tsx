@@ -2,7 +2,7 @@ import { Stack, Button, Text, LoadingOverlay } from "@mantine/core";
 import { useState } from "react";
 import { hideNotification, showNotification } from "@mantine/notifications";
 import { HiddenAuthTokenInterface } from "../../../../../types/models/auth-token-model";
-import { _PATH_API } from "../../../../../path/path-api";
+import { apiEndpoint } from "../../../../../path/path-api";
 import axiosInstance from "../../../../../utils/axios-instance";
 import { MongooseBaseModel } from "../../../../../types/models/mongoose-base-model";
 import { NOTIFICATIONS } from "../../../../../data/showNofification/notificationObjects";
@@ -31,7 +31,7 @@ export const QrCodeModalContent = ({
         setIsLoading(true);
         showNotification(NOTIFICATIONS.LOADING.email);
         const rawResult = await axiosInstance.get(
-          _PATH_API[_entity].sendTokenEmail({ _id: row._id })
+          apiEndpoint[_entity].sendTokenEmail({ _id: row._id })
         );
         await sleep(700);
         setIsLoading(false);

@@ -6,13 +6,13 @@ import { Icons } from "../../../../data/icons/icons";
 
 import { NotificationDrawer } from "./NotificationDrawer";
 import axiosInstance, { AxiosResDataGeneric } from "../../../../utils/axios-instance";
-import { _PATH_API } from "../../../../path/path-api";
+import { apiEndpoint } from "../../../../path/path-api";
 import { NotificationModel } from "../../../../types/models/notification-model";
 import { useCookieContext } from "../../../../context/CookieContext";
 
 const fetchNotifications = async () => {
   const res = await axiosInstance.get<AxiosResDataGeneric<NotificationModel[]>>(
-    _PATH_API.notifications.root
+    apiEndpoint.notifications.root
   );
   return res.data.data;
 };
@@ -22,7 +22,7 @@ export const HeaderNotificationButton = () => {
   const { currentSpace, currentOrganization } = useCookieContext();
 
   const { data } = useSWR(
-    () => [currentSpace, currentOrganization, _PATH_API.notifications.root],
+    () => [currentSpace, currentOrganization, apiEndpoint.notifications.root],
     fetchNotifications,
     {}
   );

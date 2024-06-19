@@ -4,7 +4,7 @@ import { UseFormReturnType } from "@mantine/form";
 import { showNotification } from "@mantine/notifications";
 import { get } from "http";
 import axiosInstance from "../../../utils/axios-instance";
-import { PATH_API } from "../../../path/path-api";
+import { apiEndpointRootsEnum } from "../../../path/path-api";
 import { useCookieContext } from "../../../context/CookieContext";
 import { convertToSelectItems } from "../../../utils/helpers/helper-functions";
 import { useCrudSelectors, useCrudSliceStore } from "../../../redux/features/crud/crudSlice";
@@ -38,14 +38,16 @@ const HeaderSpaceSelect = ({
   // const [spaces, setSpaces] = useState<ComboboxItem[]>([]);
 
   const handleDeleteSpaceCookie = async () => {
-    await axiosInstance.delete(PATH_API.getSpaceSelections);
+    await axiosInstance.delete(apiEndpointRootsEnum.getSpaceSelections);
     setCurrentSpace(null);
     await reInitialize();
   };
 
   const getSpaceCookieFromApi = async (spaceId: string) => {
     // case select is cleared
-    const response = await axiosInstance.get(`${PATH_API.getSpaceSelections}/${spaceId}`);
+    const response = await axiosInstance.get(
+      `${apiEndpointRootsEnum.getSpaceSelections}/${spaceId}`
+    );
     setCurrentSpace(response.data.data.space);
     await reInitialize();
   };

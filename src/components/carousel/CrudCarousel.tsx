@@ -3,7 +3,7 @@ import { ActionIcon, Box, Button, Group, Overlay } from "@mantine/core";
 import Image from "next/image";
 import { Fragment, useRef, useState } from "react";
 import { Icons } from "../../data/icons/icons";
-import { PATH_API } from "../../path/path-api";
+import { apiEndpointRootsEnum } from "../../path/path-api";
 import { useCrudSelectors } from "../../redux/features/crud/crudSlice";
 import axiosInstance from "../../utils/axios-instance";
 import ImageSlide from "./ImageSlide";
@@ -35,7 +35,7 @@ function CrudCarousel({
     }
     if (window.confirm("Are you sure you want to delete this image?") && crudDocument) {
       const res = await axiosInstance.delete(
-        `${PATH_API.uploads}/${entity}/${crudDocument._id}/${formField.name}/${image._id}`
+        `${apiEndpointRootsEnum.uploads}/${entity}/${crudDocument._id}/${formField.name}/${image._id}`
       );
       console.log(res.data.data);
     }

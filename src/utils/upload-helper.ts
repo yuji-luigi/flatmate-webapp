@@ -1,7 +1,7 @@
 /* eslint-disable no-continue */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable guard-for-in */
-import { PATH_API } from "../path/path-api";
+import { apiEndpointRootsEnum } from "../path/path-api";
 import { MixedMediaType, UploadingMediaType } from "../types/data/media/media-types";
 import { FileWithPreview } from "../types/files/file-types";
 import { Sections } from "../types/general/data/sections-type";
@@ -129,7 +129,7 @@ export async function uploadFileAndGetModelId(
   // ): Promise<string[]> {
 ): Promise<Record<string, string[]>> {
   const rawUpload = await axiosInstance.post(
-    `${PATH_API.uploads}/${entity}`,
+    `${apiEndpointRootsEnum.uploads}/${entity}`,
     uploadingData,
     uploadConfig
   );
@@ -179,7 +179,7 @@ export async function handleUploadWithoutLogin({
   space: string;
   organizationName: string;
   entity: Sections;
-  endpoint: PATH_API;
+  endpoint: apiEndpointRootsEnum;
 }) {
   const formData = new FormData();
   if (Array.isArray(files)) {

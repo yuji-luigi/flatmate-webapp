@@ -3,7 +3,7 @@ import { IconQrcode } from "@tabler/icons-react";
 import { showNotification } from "@mantine/notifications";
 import { HiddenAuthTokenInterface } from "../../../../../types/models/auth-token-model";
 import { useCustomModalContext } from "../../../../../context/modal-context/_ModalContext";
-import { _PATH_API } from "../../../../../path/path-api";
+import { apiEndpoint } from "../../../../../path/path-api";
 import axiosInstance, { AxiosResDataGeneric } from "../../../../../utils/axios-instance";
 import { QrCodeModalContent } from "./QrCodeModalContent";
 import { MongooseBaseModel } from "../../../../../types/models/mongoose-base-model";
@@ -25,7 +25,7 @@ export const QrCodeButton = ({
       console.log(_id);
       // TODO: make a endpoint string locally and map that to the actual endpoint
       const rawAuthToken = await axiosInstance.get<AxiosResDataGeneric<HiddenAuthTokenInterface>>(
-        _PATH_API.invitations.getAuthTokenByEntityRowId({ rowId: _id, entity }),
+        apiEndpoint.invitations.getAuthTokenByEntityRowId({ rowId: _id, entity }),
         { params: { status: INVITATION_STATUS.PENDING } }
       );
 

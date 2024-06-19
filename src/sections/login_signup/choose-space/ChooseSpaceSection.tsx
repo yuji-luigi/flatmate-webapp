@@ -8,7 +8,7 @@ import { PATH_CLIENT, _PATH_FRONTEND } from "../../../path/path-frontend";
 import classes2 from "../../../styles/global-useStyles.module.css";
 import { SpaceModel } from "../../../types/models/space-model";
 import axiosInstance, { AxiosResDataGeneric } from "../../../utils/axios-instance";
-import { PATH_API } from "../../../path/path-api";
+import { apiEndpointRootsEnum } from "../../../path/path-api";
 import useAuth from "../../../../hooks/useAuth";
 import classes from "./ChooseSpaceSection.module.css";
 import { useCookieContext } from "../../../context/CookieContext";
@@ -22,7 +22,7 @@ export const ChooseSpaceSection = ({ spaces }: { spaces: SpaceModel[] }) => {
 
   const handleSpaceSelected = async (spaceId: string) => {
     const rawSpace = await axiosInstance.get<AxiosResDataGeneric<{ space: CurrentSpace }>>(
-      `${PATH_API.getSpaceSelections}/${spaceId}`
+      `${apiEndpointRootsEnum.getSpaceSelections}/${spaceId}`
     );
     setCurrentSpace(rawSpace.data.data.space);
     router.push(_PATH_FRONTEND.dashboard.root);

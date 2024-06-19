@@ -1,7 +1,7 @@
 import { Button } from "@mantine/core";
 import { UseFormReturnType } from "@mantine/form";
 import { showNotification } from "@mantine/notifications";
-import { _PATH_API } from "../../../../../../path/path-api";
+import { apiEndpoint } from "../../../../../../path/path-api";
 import axiosInstance from "../../../../../../utils/axios-instance";
 import { useLocale } from "../../../../../../../hooks/useLocale";
 import { useCustomModalContext } from "../../../../../../context/modal-context/_ModalContext";
@@ -43,7 +43,7 @@ export const SubmitAllRoleButton: React.FC<SubmitAllRoleButtonProps> = (
 
     // case update user: (user, space are present update the accessController of the user)
     if (user && space) {
-      const rawAccessControl = await axiosInstance.post(_PATH_API.accessPermissions.root, {
+      const rawAccessControl = await axiosInstance.post(apiEndpoint.accessPermissions.root, {
         user,
         space,
       });

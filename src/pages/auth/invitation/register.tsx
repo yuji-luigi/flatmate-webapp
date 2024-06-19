@@ -20,7 +20,7 @@ import useRouterWithCustomQuery from "../../../hooks/useRouterWithCustomQuery";
 import { PATH_IMAGE } from "../../../lib/image-paths";
 import Page from "../../../components/Page";
 import axiosInstance from "../../../utils/axios-instance";
-import { _PATH_API } from "../../../path/path-api";
+import { apiEndpoint } from "../../../path/path-api";
 import { sleep } from "../../../utils/helpers/helper-functions";
 import { GetServerSidePropsContext } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -33,6 +33,9 @@ const InvitationLoginPage = () => {
   const { t: tn } = useLocale("notification");
   const { t: ta } = useLocale("auth");
   const { query } = useRouterWithCustomQuery();
+  const decodedRedirectStr = decodeURIComponent(query.redirect as string);
+  const withoutEmail = decodedRedirectStr.includes("withEmail=false");
+  console.log({ withoutEmail });
   const form = useForm({
     initialValues: {
       name: "",
@@ -59,6 +62,7 @@ const InvitationLoginPage = () => {
       setApiError("");
     },
   });
+
   const linkId = query.redirect?.split("/").pop();
 
   const handleSubmit = async (values: (typeof form)["values"]) => {
@@ -69,7 +73,14 @@ const InvitationLoginPage = () => {
 
     try {
       const { status, ...dto } = values;
-      await axiosInstance.post(_PATH_API.invitations.acceptByRegister(linkId), dto);
+      if (withoutEmail) {
+        await axiosInstance.post(
+          apiEndpoint.invitations.preRegisterWithEmailVerification(linkId),
+          dto
+        );
+        return;
+      }
+      await axiosInstance.post(apiEndpoint.invitations.acceptByRegister(linkId), dto);
       await sleep(1000);
       form.setValues({ ...values, status: "" });
       push(_PATH_FRONTEND.auth.invitationAcceptSuccess(linkId));

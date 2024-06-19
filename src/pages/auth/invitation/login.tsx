@@ -6,7 +6,7 @@ import Layout from "../../../layouts";
 import { useLocale } from "../../../../hooks/useLocale";
 import { _PATH_FRONTEND } from "../../../path/path-frontend";
 import useRouterWithCustomQuery from "../../../hooks/useRouterWithCustomQuery";
-import { _PATH_API } from "../../../path/path-api";
+import { apiEndpoint } from "../../../path/path-api";
 import axiosInstance from "../../../utils/axios-instance";
 import Page from "../../../components/Page";
 import { PATH_IMAGE } from "../../../lib/image-paths";
@@ -39,7 +39,7 @@ const InvitationLoginPage = () => {
       throw new Error("Something went wrong. (no redirect parameter)");
     }
     try {
-      await axiosInstance.post(_PATH_API.invitations.acceptByLogin(linkId), form.values);
+      await axiosInstance.post(apiEndpoint.invitations.acceptByLogin(linkId), form.values);
       push(query.redirect);
     } catch (error: any) {
       setFormError(error.message || error);

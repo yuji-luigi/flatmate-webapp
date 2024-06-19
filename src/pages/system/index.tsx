@@ -3,7 +3,7 @@ import React, { ReactElement, useEffect } from "react";
 import { GetServerSidePropsContext } from "next/types";
 import SystemAdminDashboardLayout from "../../layouts/system-admin-dashboard-layout/SystemAdminDashboardLayout";
 import axiosInstance from "../../utils/axios-instance";
-import { _PATH_API } from "../../path/path-api";
+import { apiEndpoint } from "../../path/path-api";
 import useAuth from "../../../hooks/useAuth";
 import { SystemTop } from "../../sections/system";
 import { useCrudSliceStore } from "../../redux/features/crud/crudSlice";
@@ -34,7 +34,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     }
     if (cookies?.spaceId) {
       const { cookie } = context.req.headers;
-      const res = await axiosInstance.get(_PATH_API.auth.systemAdminCheck(cookies.spaceId), {
+      const res = await axiosInstance.get(apiEndpoint.auth.systemAdminCheck(cookies.spaceId), {
         headers: {
           cookie,
         },

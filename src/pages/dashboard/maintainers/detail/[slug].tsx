@@ -10,7 +10,7 @@ import ProfileCoverGeneric, {
 import { useCrudSelectors, useCrudSliceStore } from "../../../../redux/features/crud/crudSlice";
 import { getEntityFromUrl } from "../../../../utils/helpers/helper-functions";
 import axiosInstance from "../../../../utils/axios-instance";
-import { PATH_API } from "../../../../path/path-api";
+import { apiEndpointRootsEnum } from "../../../../path/path-api";
 import AboutCard from "../../../../components/profile/side/AboutCard";
 import ProfileSide from "../../../../components/profile/side/ProfileSide";
 import { RANDOM_UPLOAD_MODELS } from "../../../../lib/image-paths";
@@ -30,7 +30,7 @@ import { MaintainerModel } from "../../../../types/models/maintainer-model";
 
 const getMaintainer = async (slug?: string) => {
   if (!slug) return null;
-  const res = await axiosInstance.get(`${PATH_API.maintainersSlug}/${slug}`);
+  const res = await axiosInstance.get(`${apiEndpointRootsEnum.maintainersSlug}/${slug}`);
   return res.data.data;
 };
 
