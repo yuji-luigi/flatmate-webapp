@@ -1,4 +1,4 @@
-import { View, Image, StyleSheet } from "@react-pdf/renderer";
+import { View, Image, StyleSheet, Text } from "@react-pdf/renderer";
 import QRCode from "qrcode";
 import React from "react";
 import { AuthTokenModel } from "../../types/models/auth-token-model";
@@ -7,13 +7,14 @@ import { _PATH_FRONTEND } from "../../path/path-frontend";
 const styles = StyleSheet.create({
   qrCodeContainer: {
     display: "flex",
+    flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
     padding: "0.2cm",
   },
   qrCodeImage: {
-    width: 100,
-    height: 100,
+    // width: 100,
+    height: "100%",
     objectFit: "contain",
   },
 });
@@ -43,6 +44,7 @@ export const QrCodeViewForPdf: React.FC<QrCodeViewProps> = ({ authToken }) => {
   return (
     <View style={styles.qrCodeContainer}>
       <Image style={styles.qrCodeImage} src={qrCodeDataUrl} />
+      <Text>{authToken.nonce}</Text>
     </View>
   );
 };

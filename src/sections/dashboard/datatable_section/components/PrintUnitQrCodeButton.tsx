@@ -14,7 +14,7 @@ import { HeadlessModal } from "../../../../components/modal/headless/HeadlessMod
 import { HeadlessModalTitle } from "../../../../components/modal/headless/HeadlessModalTitle";
 import { useMediaQuery } from "@mantine/hooks";
 import axiosInstance, { AxiosResDataGeneric } from "../../../../utils/axios-instance";
-import { _PATH_API } from "../../../../path/path-api";
+import { apiEndpoint } from "../../../../path/path-api";
 import { AuthTokenModel } from "../../../../types/models/auth-token-model";
 import HeaderSpaceSelect from "../../../../components/input/custom-inputs/HeaderSpaceSelect";
 import { useCookieContext } from "../../../../context/CookieContext";
@@ -160,7 +160,7 @@ function PrintUnitsButton() {
   const handlePrint = async () => {
     const rawAllUnitsOfBuildingWithQrcode = await axiosInstance.get<
       AxiosResDataGeneric<UnitWithAuthToken[]>
-    >(_PATH_API.units.withAuthToken);
+    >(apiEndpoint.units.withAuthToken);
     // Create a PDF document
     const blob = await pdf(
       <UnitsPdf

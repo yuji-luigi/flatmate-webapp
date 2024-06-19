@@ -9,10 +9,10 @@ import { CopyDivWithToolTip } from "../copy-div/CopyDivWithTooltip";
 export const QrCodeView = ({ authToken }: { authToken: HiddenAuthTokenInterface }) => {
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
-      <CopyDivWithToolTip textToCopy={_PATH_FRONTEND.authTokens.invitationQrCode(authToken)}>
+      <CopyDivWithToolTip textToCopy={_PATH_FRONTEND.authTokens.invitationWithoutEmail(authToken)}>
         <QRCode
           style={{ padding: "10px" }}
-          value={_PATH_FRONTEND.authTokens.invitationQrCode(authToken)}
+          value={_PATH_FRONTEND.authTokens.invitationWithoutEmail(authToken)}
         />
       </CopyDivWithToolTip>
     </div>
