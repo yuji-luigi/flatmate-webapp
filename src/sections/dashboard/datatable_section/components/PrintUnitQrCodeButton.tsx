@@ -18,6 +18,7 @@ import { apiEndpoint } from "../../../../path/path-api";
 import { AuthTokenModel } from "../../../../types/models/auth-token-model";
 import HeaderSpaceSelect from "../../../../components/input/custom-inputs/HeaderSpaceSelect";
 import { useCookieContext } from "../../../../context/CookieContext";
+import { _PATH_FRONTEND } from "../../../../path/path-frontend";
 
 export const PrintUnitQrCodeButton = ({ label, type, ...buttonProps }: SectionActionData) => {
   const { setCrudDocuments } = useCrudSliceStore();
@@ -157,6 +158,7 @@ function PrintUnitsButton() {
   const { t } = useLocale();
 
   const { crudDocuments: units } = useCrudSelectors<UnitInterface>("units");
+
   const handlePrint = async () => {
     const rawAllUnitsOfBuildingWithQrcode = await axiosInstance.get<
       AxiosResDataGeneric<UnitWithAuthToken[]>
@@ -176,6 +178,7 @@ function PrintUnitsButton() {
           state: unit.space.address,
           postalCode: unit.space.name,
           authToken: unit.authToken,
+          qrcodeUrl: _PATH_FRONTEND.authTokens.invitationWithoutEmail(unit.authToken),
         }))}
       />
     ).toBlob();

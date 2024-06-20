@@ -6,7 +6,7 @@ import { apiEndpoint } from "../../../../../path/path-api";
 import axiosInstance from "../../../../../utils/axios-instance";
 import { MongooseBaseModel } from "../../../../../types/models/mongoose-base-model";
 import { NOTIFICATIONS } from "../../../../../data/showNofification/notificationObjects";
-import { QrCodeView } from "../../../../qr-code/QrCodeView";
+import { QrCodeView } from "../../../../qr-code/QrCodeViewRegular";
 import { useCustomModalContext } from "../../../../../context/modal-context/_ModalContext";
 import { getEntityFromUrl, sleep } from "../../../../../utils/helpers/helper-functions";
 import { useLocale } from "../../../../../../hooks/useLocale";

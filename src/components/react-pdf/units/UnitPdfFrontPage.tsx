@@ -82,7 +82,7 @@ export function UnitPdfFrontPage({
   return (
     <Page size="A4" style={styles.page}>
       <View style={styles.mainSection}>
-        {destination.authToken && (
+        {destination.authToken && destination.qrcodeUrl && (
           <View style={styles.qrcodeSection}>
             <Text style={{ ...styles.textMd, ...styles.textCenter, marginBottom: "0.2cm" }}>
               {t("Scan the code and register Flatmate")}
@@ -90,10 +90,8 @@ export function UnitPdfFrontPage({
             <Text style={{ ...styles.textCenter, ...styles.textSm }}>
               {t("Get notified to know where our spending goes!")}
             </Text>
-            <QrCodeViewForPdf authToken={destination.authToken} />
-            <Text style={{ fontSize: 6, textAlign: "center" }}>
-              {_PATH_FRONTEND.authTokens.invitationQrCode(destination.authToken)}
-            </Text>
+            <QrCodeViewForPdf authToken={destination.authToken} qrcodeUrl={destination.qrcodeUrl} />
+            <Text style={{ fontSize: 6, textAlign: "center" }}>{destination.qrcodeUrl}</Text>
           </View>
         )}
         <View style={styles.addressSection}>

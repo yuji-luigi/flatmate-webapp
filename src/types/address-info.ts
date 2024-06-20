@@ -8,4 +8,5 @@ export interface AddressInfo {
   cityCode?: string;
   stateCode?: string;
   authToken?: AuthTokenModel;
+  qrcodeUrl?: string;
 }

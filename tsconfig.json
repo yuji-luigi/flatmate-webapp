@@ -35,7 +35,7 @@
     "src/theme/cssVariableResolver.js",
     "i18n.js",
     ".next/types/**/*.ts",
-    "src/__app__/layouttsx"
+    "src/app/layouttsx"
   ],
   "exclude": [
     "node_modules",

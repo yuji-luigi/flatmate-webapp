@@ -21,21 +21,19 @@ const styles = StyleSheet.create({
 
 interface QrCodeViewProps {
   authToken: AuthTokenModel; // Adjust type as needed
+  qrcodeUrl: string;
 }
 
-export const QrCodeViewForPdf: React.FC<QrCodeViewProps> = ({ authToken }) => {
+export const QrCodeViewForPdf: React.FC<QrCodeViewProps> = ({ authToken, qrcodeUrl }) => {
   const [qrCodeDataUrl, setQrCodeDataUrl] = React.useState<string | null>(null);
 
   React.useEffect(() => {
     const generateQrCode = async () => {
-      const qrCodeUrl = await QRCode.toDataURL(
-        _PATH_FRONTEND.authTokens.invitationQrCode(authToken)
-      );
+      const qrCodeUrl = await QRCode.toDataURL(qrcodeUrl);
       setQrCodeDataUrl(qrCodeUrl);
     };
-
     generateQrCode();
-  }, [authToken]);
+  }, [qrcodeUrl]);
 
   if (!qrCodeDataUrl) {
     return null; // or a loading spinner
