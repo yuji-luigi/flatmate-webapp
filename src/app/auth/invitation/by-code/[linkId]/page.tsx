@@ -3,6 +3,7 @@ import { apiEndpoint } from "../../../../../path/path-api";
 import { MeUser } from "../../../../../types/models/space-model";
 import { cookies } from "next/headers";
 import { InvitationByCodePageWrapper } from "./InvitationByCodePageWrapper";
+import { useParams } from "next/navigation";
 
 // server side check
 const CheckAcceptInvitationPage = async () => {
@@ -21,7 +22,6 @@ const CheckAcceptInvitationPage = async () => {
       console.error("Error in CheckAcceptInvitationPage", error);
       return { data: {} };
     });
-
   return <InvitationByCodePageWrapper initialUser={response.data} />;
 };
 
