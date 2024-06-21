@@ -59,48 +59,31 @@ export async function CheckAcceptInvitationPage({ params, searchParams }: Props)
   const redirectUrl = encodeURIComponent(fullUrl || "no");
   const { linkId } = params;
 
-  // try {
-  //   redirect("/404");
-  //   return;
   if (typeof linkId !== "string") {
     console.error("linkId is not a string");
     return redirect("/404");
   }
 
-  if (jwt && typeof linkId === "string") {
-    // call invitations/accept/:linkId with jwt without calling me.
-    try {
-      await axiosInstance.get<AxiosMeResponse>(apiEndpoint.invitations.acceptByLinkId(linkId), {
-        headers: {
-          cookie,
-        },
-      });
-      // return router.push(_PATH_FRONTEND.auth.invitationAcceptSuccess(linkId));
-      return redirect(_PATH_FRONTEND.auth.invitationAcceptSuccess(linkId));
-      // {
-      //   redirect: {
-      //     destination: _PATH_FRONTEND.auth.invitationAcceptSuccess(linkId),
-      //     permanent: false,
-      //   },
-      // };
-    } catch (error) {
-      // can be a different user jwt so redirect to invitation login
-      // console.error(error);
-    }
-  }
+  // if (jwt && typeof linkId === "string") {
+  // await axiosInstance.get<AxiosMeResponse>(apiEndpoint.invitations.acceptByLinkId(linkId), {
+  //   headers: {
+  //     cookie,
+  //   },
+  // });
+  // .then((_) => {
+  //   return redirect(_PATH_FRONTEND.auth.invitationAcceptSuccess(linkId));
+  // })
+  // .catch((error) => {
+  //   console.error("error", error);
+  // });
+  // }
   const rawInvitation = await axiosInstance.get<AxiosResDataGeneric<InvitationAuth>>(
     apiEndpoint.invitations.byLinkId(linkId)
   );
   if (rawInvitation.data.data.status !== "pending") {
     return redirect(_PATH_FRONTEND.auth.invitationNonValid);
   }
-  console.log(_PATH_FRONTEND.auth.invitationLogin);
-  // return redirect("/auth/invitation/login");
   return redirect(`${_PATH_FRONTEND.auth.invitationLogin}?redirect=${redirectUrl}`);
-  // } catch (error) {
-  //   console.error("Error in CheckAcceptInvitationPage", error);
-  //   return null;
-  // }
 }
 
 export default CheckAcceptInvitationPage;
