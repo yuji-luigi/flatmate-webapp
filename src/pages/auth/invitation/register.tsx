@@ -28,7 +28,7 @@ import { useRouter } from "next/router";
 
 const InvitationLoginPage = () => {
   const [apiError, setApiError] = React.useState("");
-  const { push } = useRouter();
+  const { push, locale } = useRouter();
   const { t } = useLocale();
   const { t: tn } = useLocale("notification");
   const { t: ta } = useLocale("auth");
@@ -74,10 +74,10 @@ const InvitationLoginPage = () => {
     try {
       const { status, ...dto } = values;
       if (withoutEmail) {
-        await axiosInstance.post(
-          apiEndpoint.invitations.preRegisterWithEmailVerification(linkId),
-          dto
-        );
+        await axiosInstance.post(apiEndpoint.invitations.preRegisterWithEmailVerification(linkId), {
+          ...dto,
+          locale,
+        });
         return;
       }
       await axiosInstance.post(apiEndpoint.invitations.acceptByRegister(linkId), dto);
