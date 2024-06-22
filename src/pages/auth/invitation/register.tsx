@@ -64,7 +64,7 @@ const InvitationLoginPage = () => {
   });
 
   const linkId = query.redirect?.split("/").pop();
-
+  //
   const handleSubmit = async (values: (typeof form)["values"]) => {
     form.setValues({ ...values, status: "loading" });
     if (typeof linkId !== "string") {

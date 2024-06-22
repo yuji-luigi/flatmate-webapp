@@ -1,14 +1,8 @@
-import axiosInstance, {
-  AxiosMeResponse,
-  AxiosResDataGeneric,
-} from "../../../../../utils/axios-instance";
+import axiosInstance, { AxiosResDataGeneric } from "../../../../../utils/axios-instance";
 import { apiEndpoint } from "../../../../../path/path-api";
-import { MeUser } from "../../../../../types/models/space-model";
 import { cookies, headers } from "next/headers";
-import { InvitationByCodePageWrapper } from "./InvitationByCodePageWrapper";
 import { redirect } from "next/navigation";
 import { _PATH_FRONTEND } from "../../../../../path/path-frontend";
-import LoadingScreen from "../../../../../components/screen/LoadingScreen";
 import { InvitationAuth } from "../../../../../types/models/invitation-model";
 
 export const metadata = {
@@ -52,10 +46,7 @@ export async function CheckAcceptInvitationPage({ params, searchParams }: Props)
   const host = headersInstance.get("host");
   const protocol = headersInstance.get("x-forwarded-proto") || "http";
 
-  const pathname = headersInstance.get("x-original-uri") || "/";
-  const searchParamsString = new URLSearchParams(searchParams as Record<string, string>).toString();
-
-  const fullUrl = `${protocol}://${host}${pathname}?${searchParamsString}`;
+  const fullUrl = headersInstance.get("x-forwarded-url");
   const redirectUrl = encodeURIComponent(fullUrl || "no");
   const { linkId } = params;
 
