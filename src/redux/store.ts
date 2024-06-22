@@ -5,7 +5,7 @@ import spaceSelectionSlice from "./features/crud/spaceSelectionSlice";
 // import { rootReducer } from './rootReducer';
 // import { useDispatch, useSelector } from 'react-redux';
 
-export const store = configureStore({
+export const reduxStore = configureStore({
   // reducer: rootReducer,
   reducer: {
     crud: crudReducer,
@@ -14,7 +14,7 @@ export const store = configureStore({
   },
 });
 
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
-export const appDispatch = store.dispatch;
-export default store;
+export type RootState = ReturnType<typeof reduxStore.getState>;
+export type AppDispatch = typeof reduxStore.dispatch;
+export const appDispatch = reduxStore.dispatch;
+export default reduxStore;
