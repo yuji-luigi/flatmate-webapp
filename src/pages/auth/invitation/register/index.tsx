@@ -13,15 +13,15 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import { useForm } from "@mantine/form";
-import Layout from "../../../layouts";
-import { useLocale } from "../../../../hooks/useLocale";
-import { _PATH_FRONTEND } from "../../../path/path-frontend";
-import useRouterWithCustomQuery from "../../../hooks/useRouterWithCustomQuery";
-import { PATH_IMAGE } from "../../../lib/image-paths";
-import Page from "../../../components/Page";
-import axiosInstance from "../../../utils/axios-instance";
-import { apiEndpoint } from "../../../path/path-api";
-import { sleep } from "../../../utils/helpers/helper-functions";
+import Layout from "../../../../layouts";
+import { useLocale } from "../../../../../hooks/useLocale";
+import { _PATH_FRONTEND } from "../../../../path/path-frontend";
+import useRouterWithCustomQuery from "../../../../hooks/useRouterWithCustomQuery";
+import { PATH_IMAGE } from "../../../../lib/image-paths";
+import Page from "../../../../components/Page";
+import axiosInstance from "../../../../utils/axios-instance";
+import { apiEndpoint } from "../../../../path/path-api";
+import { sleep } from "../../../../utils/helpers/helper-functions";
 import { GetServerSidePropsContext } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";
@@ -78,11 +78,13 @@ const InvitationLoginPage = () => {
           ...dto,
           locale,
         });
+        form.setValues({ ...values, status: "" });
+        push(_PATH_FRONTEND.auth.emailVerificationPending);
         return;
       }
       await axiosInstance.post(apiEndpoint.invitations.acceptByRegister(linkId), dto);
       await sleep(1000);
-      form.setValues({ ...values, status: "" });
+      // form.setValues({ ...values, status: "" });
       push(_PATH_FRONTEND.auth.invitationAcceptSuccess(linkId));
     } catch (error: any) {
       await sleep(1000);
