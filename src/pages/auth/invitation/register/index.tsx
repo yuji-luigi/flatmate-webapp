@@ -35,7 +35,6 @@ const InvitationLoginPage = () => {
   const { query } = useRouterWithCustomQuery();
   const decodedRedirectStr = decodeURIComponent(query.redirect as string);
   const withoutEmail = decodedRedirectStr.includes("withEmail=false");
-  console.log({ withoutEmail });
   const form = useForm({
     initialValues: {
       name: "",
@@ -183,6 +182,30 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     null,
     ["it", "en"]
   );
+
+  if (context.query.withNonce === "true") {
+    try {
+      await axiosInstance.get(apiEndpoint.authTokens.checkByCookie, {
+        headers: {
+          cookie: context.req.headers.cookie,
+        },
+        withCredentials: true,
+      });
+      return {
+        props: {
+          ...translationObj,
+        },
+      };
+    } catch (error) {
+      return {
+        redirect: {
+          destination: _PATH_FRONTEND.auth.logout,
+          permanent: false,
+        },
+      };
+    }
+  }
+
   return {
     props: {
       ...translationObj,

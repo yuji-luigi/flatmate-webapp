@@ -1,7 +1,10 @@
 import { Stack, Button, Text, LoadingOverlay } from "@mantine/core";
 import { useState } from "react";
 import { hideNotification, showNotification } from "@mantine/notifications";
-import { HiddenAuthTokenInterface } from "../../../../../types/models/auth-token-model";
+import {
+  AuthTokenModel,
+  HiddenAuthTokenInterface,
+} from "../../../../../types/models/auth-token-model";
 import { apiEndpoint } from "../../../../../path/path-api";
 import axiosInstance from "../../../../../utils/axios-instance";
 import { MongooseBaseModel } from "../../../../../types/models/mongoose-base-model";
@@ -11,6 +14,7 @@ import { useCustomModalContext } from "../../../../../context/modal-context/_Mod
 import { getEntityFromUrl, sleep } from "../../../../../utils/helpers/helper-functions";
 import { useLocale } from "../../../../../../hooks/useLocale";
 import useRouterWithCustomQuery from "../../../../../hooks/useRouterWithCustomQuery";
+import { TFunction } from "next-i18next";
 
 export const QrCodeModalContent = ({
   authToken,
@@ -59,7 +63,8 @@ export const QrCodeModalContent = ({
       {qrCodeView}
       <Stack gap={16} px={80} mt={24}>
         <Button onClick={sendEmailToUser}>{sendText}</Button>
-        <Button onClick={closeModal} variant="outline">
+        <RenewButton authToken={authToken} t={t} />
+        <Button onClick={closeModal} variant="subtle">
           {t("Close")}
         </Button>
         <LoadingOverlay visible={isLoading} />
@@ -67,3 +72,18 @@ export const QrCodeModalContent = ({
     </>
   );
 };
+
+function RenewButton({ t, authToken }: { t: TFunction; authToken: AuthTokenModel }) {
+  const callRenewApi = async () => {
+    await axiosInstance.post(
+      apiEndpoint.authTokens.renew,
+      {},
+      { params: { _id: { $in: [authToken._id] } } }
+    );
+  };
+  return (
+    <Button onClick={callRenewApi} variant="outline">
+      {t("Renew QR-code")}
+    </Button>
+  );
+}

@@ -133,10 +133,16 @@ export const apiEndpoint = {
   authTokens: {
     root: apiEndpointRootsEnum.authTokens,
     sendEmail: () => all(apiEndpointRootsEnum.authTokens),
-    verifyPin: ({ linkId, _id, entity }: { linkId?: string; _id?: string; entity: string }) =>
-      `${apiEndpointRootsEnum.authTokens}/verify-pin/${linkId}/${_id}/${entity}`,
+    renew: `${apiEndpointRootsEnum.authTokens}/renew`,
+    verifyPin: ({ linkId, _id, entity }: { linkId?: string; _id?: string; entity?: string }) => {
+      if (_id && entity) {
+        return `${apiEndpointRootsEnum.authTokens}/verify-pin/${linkId}/${_id}/${entity}`;
+      }
+      return `${apiEndpointRootsEnum.authTokens}/verify-pin/${linkId}`;
+    },
     getById: (_id: string) => byId(apiEndpointRootsEnum.authTokens, _id),
     verifUser: (_id: string) => byId(apiEndpointRootsEnum.authTokens, _id),
+    checkByCookie: byId(apiEndpointRootsEnum.authTokens, "check-by-cookie"),
     checkMaintainerFromMaintenance: ({
       linkId,
       authTokenId,

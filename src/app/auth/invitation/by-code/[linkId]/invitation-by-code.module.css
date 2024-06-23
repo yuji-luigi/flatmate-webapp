@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  height: 100dvh;
+  gap: 1rem;
+  padding-block: 5rem;
+  @media (max-width: $mantine-breakpoint-sm) {
+    padding-block: 2rem;
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+}
