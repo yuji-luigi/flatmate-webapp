@@ -114,7 +114,8 @@ export const _PATH_FRONTEND = {
     chooseRootSpace: CHOOSE_ROOT_SPACE,
     invitationLogin: "/auth/invitation/login",
     invitationRegister: "/auth/invitation/register",
-    invitationRegisterWithNonce: "/auth/invitation/register?withNonce=true",
+    invitationRegisterWithNonce: (redirectUrl: string) =>
+      `/auth/invitation/register?withNonce=true&redirect=${redirectUrl}`,
     invitationAcceptSuccess: (linkId: string) => `/auth/invitation/${linkId}/accept-success`,
     emailVerificationPending: "/auth/email-verification/pending",
     invitationNonValid: "/auth/invitation/non-valid",

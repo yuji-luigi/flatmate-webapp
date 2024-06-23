@@ -19,6 +19,7 @@ const LOCALE_IMAGES = {
 export const PATH_IMAGE = {
   notFound: "/images/notfound.jpg",
   rootSpaceCard1: "/images/haussmann-buildings3.png",
+  sendingEmail: "/images/sending-email.png",
   // flatmateLogo1: '/images/flatmate_circle_logo_yellow.png',
   flatmateLogo1: "/images/logos/logo2.png",
   faviconsvg: "/favicon.svg",

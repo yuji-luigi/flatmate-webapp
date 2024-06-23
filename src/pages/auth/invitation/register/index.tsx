@@ -34,7 +34,7 @@ const InvitationLoginPage = () => {
   const { t: ta } = useLocale("auth");
   const { query } = useRouterWithCustomQuery();
   const decodedRedirectStr = decodeURIComponent(query.redirect as string);
-  const withoutEmail = decodedRedirectStr.includes("withEmail=false");
+  const withNonce = query.withNonce === "true";
   const form = useForm({
     initialValues: {
       name: "",
@@ -72,7 +72,9 @@ const InvitationLoginPage = () => {
 
     try {
       const { status, ...dto } = values;
-      if (withoutEmail) {
+      // switch the request based on the withNonce query parameter
+      // case with nonce call endpoint where email verification is needed
+      if (withNonce) {
         await axiosInstance.post(apiEndpoint.invitations.preRegisterWithEmailVerification(linkId), {
           ...dto,
           locale,
@@ -81,6 +83,7 @@ const InvitationLoginPage = () => {
         push(_PATH_FRONTEND.auth.emailVerificationPending);
         return;
       }
+
       await axiosInstance.post(apiEndpoint.invitations.acceptByRegister(linkId), dto);
       await sleep(1000);
       // form.setValues({ ...values, status: "" });
@@ -183,6 +186,8 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     ["it", "en"]
   );
 
+  // 1. check for auth-token cookie
+  // case cookie is present then authorize
   if (context.query.withNonce === "true") {
     try {
       await axiosInstance.get(apiEndpoint.authTokens.checkByCookie, {

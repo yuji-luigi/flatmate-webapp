@@ -4,7 +4,7 @@ import axiosInstance from "../../../../../utils/axios-instance";
 import classes from "./invitation-by-code.module.css";
 import { Box, Button, Container, PinInput, Text, Title } from "@mantine/core";
 import InvitationByCodeError from "./error";
-import { cookies } from "next/headers";
+import { cookies, headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { _PATH_FRONTEND } from "../../../../../path/path-frontend";
 
@@ -47,7 +47,10 @@ export function InvitationByCodePage({ params, searchParams }: Props) {
       console.error(error);
       throw new Error(error.message || "Something went wrong.");
     }
-    redirect(_PATH_FRONTEND.auth.invitationRegisterWithNonce);
+    const headersInstance = headers();
+    const fullUrl = headersInstance.get("x-forwarded-url");
+    const redirectUrl = encodeURIComponent(fullUrl || "no");
+    redirect(_PATH_FRONTEND.auth.invitationRegisterWithNonce(redirectUrl));
   }
   return (
     <Container className={classes.container}>
