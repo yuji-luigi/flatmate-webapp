@@ -8,12 +8,16 @@ import i18n from "../../../../i18n";
 import { ReactNode } from "react";
 import { Provider as ReduxProvider } from "react-redux";
 import reduxStore from "../../../redux/store";
+import { Notifications } from "@mantine/notifications";
 
 export const ClientSideWrapper = ({ children }: { children: ReactNode }) => {
   return (
     <ReduxProvider store={reduxStore}>
       <I18nextProvider i18n={i18n}>
-        <MantineProviderCustom>{children}</MantineProviderCustom>
+        <MantineProviderCustom>
+          <Notifications />
+          {children}
+        </MantineProviderCustom>
       </I18nextProvider>
     </ReduxProvider>
   );
