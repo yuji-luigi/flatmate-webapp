@@ -1,13 +1,15 @@
 import { Card, LoadingOverlay, Stack, Group, Title, PinInput, Container } from "@mantine/core";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import { PATH_IMAGE } from "../../../lib/image-paths";
 import { useParams } from "next/navigation";
 import axiosInstance from "../../../utils/axios-instance";
 import { useCrudSliceStore } from "../../../redux/features/crud/crudSlice";
-import { apiEndpointRootsEnum } from "../../../path/path-api";
+import { apiEndpoint, apiEndpointRootsEnum } from "../../../path/path-api";
 import { MaintainerCompleteRegisterCard } from "../../../sections/nonce-check/m-file-upload/maintainer-complete-register/MaintainerCompleteRegisterCard";
 import classes from "./PinVerificationCard.module.css";
+import { showNotification } from "@mantine/notifications";
+import { Icons } from "../../../data/icons/icons";
 /**
  * @description Send pin code after verified get maintenance and set maintenance in redux store
  */
@@ -19,57 +21,33 @@ export const PinVerificationCard = (props: {
   const query = useParams();
   const [isCompleteRegister, setIsCompleteRegister] = useState<boolean>(false);
   const { setCrudDocument } = useCrudSliceStore();
-  const endpoint =
-    query?.linkId && query?.id
-      ? `${apiEndpointRootsEnum.maintenanceFileUpload}/${query.linkId}/${query.id}`
-      : "";
+  const endpoint = apiEndpoint.authTokens.verifyPin({ linkId: query?.linkId as string });
   const [submitting, setSubmitting] = useState<boolean>(false);
-  // const { linkId, id } = query;
   const handleChange = (value: string) => {
     if (value.length === 6) {
       setSubmitting(true);
-      // handleSubmit(value);
+
+      handleSubmit(value);
     }
   };
 
-  // const handleSubmit = useCallback(
-  //   async (value: string) => {
-  //     try {
-  //       if (typeof linkId !== "string" || typeof id !== "string") return;
-
-  //       // first check maintainer has completed the register.
-  //       const rawMaintainerCheck = await axiosInstance.post(
-  //         apiEndpoint.authTokens.checkMaintainerFromMaintenance({ linkId, authTokenId: id }),
-  //         { pin: value }
-  //       );
-  //       if (rawMaintainerCheck.data.success === false && rawMaintainerCheck.data.data) {
-  //         setIsCompleteRegister(true);
-  //         setCrudDocument({ entity: "maintainers", document: rawMaintainerCheck.data.data });
-  //         setCrudDocument({
-  //           entity: "maintenances",
-  //           document: rawMaintainerCheck.data.maintenance,
-  //         });
-  //         return;
-  //       }
-  //       const rawRes = await axiosInstance.post<
-  //         AxiosResDataGeneric<{ maintenance: MaintenanceModel }>
-  //       >(endpoint, { pin: value });
-  //       setCrudDocument({ entity: "maintenances", document: rawRes.data.data.maintenance });
-  //       await sleep(1000);
-  //       setPinOk(true);
-  //     } catch (error: any) {
-  //       showNotification({
-  //         icon: <Icons.alert />,
-  //         title: "Error",
-  //         message: error.message || error,
-  //         color: "red",
-  //       });
-  //     } finally {
-  //       setSubmitting(false);
-  //     }
-  //   },
-  //   [endpoint, id, linkId, setCrudDocument, setPinOk]
-  // );
+  const handleSubmit = useCallback(
+    async (value: string) => {
+      try {
+        await axiosInstance.post(endpoint, { nonce: value });
+      } catch (error: any) {
+        showNotification({
+          icon: <Icons.alert />,
+          title: "Error",
+          message: error.message || error,
+          color: "red",
+        });
+      } finally {
+        setSubmitting(false);
+      }
+    },
+    [endpoint, query?.linkId, setCrudDocument, setPinOk]
+  );
   useEffect(() => {
     if (!endpoint) return;
     axiosInstance.get(endpoint).then((res) => {

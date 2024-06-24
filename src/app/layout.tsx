@@ -15,6 +15,7 @@ import "../styles/components.css";
 import "../styles/layout.css";
 import "../styles/base.css";
 import "../styles/utility.css";
+import { Notifications } from "@mantine/notifications";
 
 export const metadata = {
   title: "Flatmates",

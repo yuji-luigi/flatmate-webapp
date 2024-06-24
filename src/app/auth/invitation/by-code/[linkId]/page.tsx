@@ -9,6 +9,7 @@ import { redirect } from "next/navigation";
 //   title: "Invited to join the team!",
 //   description: "Success! You have been invited to join the team!",
 // };
+
 type Props = {
   params: { linkId: string };
   searchParams: { [key: string]: string | string[] | undefined };
