@@ -7,5 +7,6 @@ export interface AuthTokenModel {
   linkId: string;
   active: boolean;
 }
-
-export type HiddenAuthTokenInterface = Omit<AuthTokenModel, "nonce">;
+// TODO: WHY IT WAS HIDDEN NONCE?
+export type HiddenAuthTokenInterface = AuthTokenModel;
+// export type HiddenAuthTokenInterface = Omit<AuthTokenModel, "nonce">;

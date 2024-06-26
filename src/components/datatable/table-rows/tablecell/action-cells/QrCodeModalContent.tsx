@@ -1,12 +1,12 @@
 import { Stack, Button, Text, LoadingOverlay } from "@mantine/core";
 import { useState } from "react";
-import { hideNotification, showNotification } from "@mantine/notifications";
+import { hideNotification, showNotification, cleanNotifications } from "@mantine/notifications";
 import {
   AuthTokenModel,
   HiddenAuthTokenInterface,
 } from "../../../../../types/models/auth-token-model";
 import { apiEndpoint } from "../../../../../path/path-api";
-import axiosInstance from "../../../../../utils/axios-instance";
+import axiosInstance, { AxiosResDataGeneric } from "../../../../../utils/axios-instance";
 import { MongooseBaseModel } from "../../../../../types/models/mongoose-base-model";
 import { NOTIFICATIONS } from "../../../../../data/showNofification/notificationObjects";
 import { QrCodeView } from "../../../../qr-code/QrCodeViewRegular";
@@ -15,7 +15,9 @@ import { getEntityFromUrl, sleep } from "../../../../../utils/helpers/helper-fun
 import { useLocale } from "../../../../../../hooks/useLocale";
 import useRouterWithCustomQuery from "../../../../../hooks/useRouterWithCustomQuery";
 import { TFunction } from "next-i18next";
-
+import { set } from "nprogress";
+import { pendingInvitationStatuses } from "../../../../../types/models/invitation-model";
+//TODO: save selected row in redux or global state(maybe signal)
 export const QrCodeModalContent = ({
   authToken,
   row,
@@ -23,6 +25,7 @@ export const QrCodeModalContent = ({
   authToken: HiddenAuthTokenInterface;
   row: MongooseBaseModel;
 }) => {
+  const [authTokenState, setAuthTokenState] = useState<HiddenAuthTokenInterface>(authToken);
   const { closeModal } = useCustomModalContext();
   const [isLoading, setIsLoading] = useState(false);
   const {
@@ -53,8 +56,8 @@ export const QrCodeModalContent = ({
   let qrCodeView = <Text>Qrcode is not available</Text>;
   let sendText = "send new QR-code to user";
 
-  if (authToken?.active) {
-    qrCodeView = <QrCodeView authToken={authToken} />;
+  if (authTokenState?.active) {
+    qrCodeView = <QrCodeView authToken={authTokenState} />;
     sendText = "Send QR-code mail";
   }
 
@@ -63,7 +66,12 @@ export const QrCodeModalContent = ({
       {qrCodeView}
       <Stack gap={16} px={80} mt={24}>
         <Button onClick={sendEmailToUser}>{sendText}</Button>
-        <RenewButton authToken={authToken} t={t} />
+        <RenewButton
+          authToken={authTokenState}
+          setAuthTokenState={setAuthTokenState}
+          t={t}
+          row={row}
+        />
         <Button onClick={closeModal} variant="subtle">
           {t("Close")}
         </Button>
@@ -73,16 +81,48 @@ export const QrCodeModalContent = ({
   );
 };
 
-function RenewButton({ t, authToken }: { t: TFunction; authToken: AuthTokenModel }) {
+function RenewButton({
+  t,
+  authToken,
+  setAuthTokenState,
+  row,
+}: {
+  t: TFunction;
+  authToken: AuthTokenModel;
+  setAuthTokenState: (authToken: AuthTokenModel) => void;
+  row: MongooseBaseModel;
+}) {
+  const [loading, setLoading] = useState(false);
   const callRenewApi = async () => {
-    await axiosInstance.post(
-      apiEndpoint.authTokens.renew,
-      {},
-      { params: { _id: { $in: [authToken._id] } } }
-    );
+    setLoading(true);
+    try {
+      await axiosInstance.post(
+        apiEndpoint.authTokens.renew,
+        {},
+        { params: { _id: { $in: [authToken._id] } } }
+      );
+      const rawAuthToken = await axiosInstance.get<AxiosResDataGeneric<HiddenAuthTokenInterface>>(
+        apiEndpoint.invitations.getAuthTokenByEntityRowId({
+          rowId: row._id,
+          entity: "units",
+        }),
+        { params: { status: { $in: pendingInvitationStatuses } } }
+      );
+
+      const payload = rawAuthToken.data.data;
+      setAuthTokenState(payload);
+      showNotification(NOTIFICATIONS.SUCCESS.genericFn({ title: t("QR-code renewed") }));
+    } catch (error: any) {
+      showNotification(NOTIFICATIONS.ERROR.general({ data: error.message || error }));
+    } finally {
+      await sleep(700);
+      setLoading(false);
+      cleanNotifications();
+    }
   };
+
   return (
-    <Button onClick={callRenewApi} variant="outline">
+    <Button loading={loading} onClick={callRenewApi} variant="outline">
       {t("Renew QR-code")}
     </Button>
   );

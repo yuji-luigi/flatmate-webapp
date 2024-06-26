@@ -1,11 +1,17 @@
 "use client";
 import { Grid, Tabs, Container, Transition } from "@mantine/core";
 import { t } from "i18next";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { PageHeader } from "../../../../components/profile/CoverWithoutCard";
 import { CheckInputTabCard } from "../../../../sections/nonce-check/m-file-upload/verified-m-file/invoice-receipt-input/CheckInputTabCard";
 import { MaintenanceTab } from "../../../../sections/nonce-check/m-file-upload/verified-m-file/maintenance-tab/MaintenanceTab";
 import { PinVerificationCard } from "../../../_component/card/PinVerificationCard";
+import Page from "../../../../components/Page";
+import axios from "axios";
+import axiosInstance from "../../../../utils/axios-instance";
+import { apiEndpoint } from "../../../../path/path-api";
+import { showNotification } from "@mantine/notifications";
+import { NOTIFICATIONS } from "../../../../data/showNofification/notificationObjects";
 
 const classes = {};
 const maintenance = {};
@@ -15,63 +21,44 @@ type Props = {
 };
 const EmailVerificationPage = ({ params, searchParams }: Props) => {
   const [pinOk, setPinOk] = useState<boolean>(false);
-  const { linkId, authTokenType } = params;
+
+  useEffect(() => {
+    pinOk &&
+      axiosInstance
+        .get(apiEndpoint.authTokens.checkByCookie)
+        .then((_) => showNotification(NOTIFICATIONS.SUCCESS.generic));
+  }, [pinOk]);
+
   return (
-    <>
-      <PinVerificationCard pinOk={pinOk} setPinOk={setPinOk} />
-      <TransitionContainer pinOk={pinOk}>
-        {pinOk && (
-          <Grid align="stretch" gutter="md">
-            <Grid.Col style={{ display: "flex", flexDirection: "column", gap: 16 }} span={12}>
-              <PageHeader space={maintenance.space} maintenance={maintenance} />
-              <Tabs
-                classNames={{
-                  tab: "default-tab",
-                  list: "default-tab-list",
-                  panel: "default-tab-panel",
-                  root: "default-tab-root",
-                  tabLabel: "default-tab-label",
-                  tabSection: "default-tab-section",
-                }}
-                defaultValue="maintenance"
-              >
-                <Tabs.List>
-                  <Tabs.Tab value="maintenance">{t("Maintenance")}</Tabs.Tab>
-                  <Tabs.Tab value="invoice">{t("Invoice")}</Tabs.Tab>
-                  <Tabs.Tab value="building">{t("About Building")}</Tabs.Tab>
-                  <Tabs.Tab value="overview">{t("Overview")}</Tabs.Tab>
-                </Tabs.List>
-                <Tabs.Panel value="maintenance">
-                  <div>
-                    <MaintenanceTab maintenance={maintenance} />
-                  </div>
-                </Tabs.Panel>
-                <Tabs.Panel value="invoice">
-                  <CheckInputTabCard />
-                </Tabs.Panel>
-                <Tabs.Panel value="building">
-                  <BuildingInfo />
-                </Tabs.Panel>
-                <Tabs.Panel value="overview">
-                  <Overview />
-                </Tabs.Panel>
-              </Tabs>
-            </Grid.Col>
-          </Grid>
-        )}
-      </TransitionContainer>
-    </>
+    <Page>
+      <Container className="unnamed-container">
+        <TransitionContainer mounted={!pinOk}>
+          <PinVerificationCard pinOk={pinOk} setPinOk={setPinOk} />
+        </TransitionContainer>
+        <TransitionContainer mounted={pinOk}>
+          {pinOk && (
+            <Grid align="stretch" gutter="md">
+              pin valid
+            </Grid>
+          )}
+        </TransitionContainer>
+      </Container>
+    </Page>
   );
 };
 
 export default EmailVerificationPage;
 
-function TransitionContainer({ pinOk, children }: { pinOk: boolean; children: React.ReactNode }) {
+function TransitionContainer({
+  mounted,
+  children,
+}: {
+  mounted: boolean;
+  children: React.ReactNode;
+}) {
   return (
-    <Container className={classes.container} style={{ marginInline: "auto" }}>
-      <Transition mounted={pinOk} duration={500} transition="slide-up" timingFunction="ease-in-out">
-        {(styles) => <div style={styles}>{children}</div>}
-      </Transition>
-    </Container>
+    <Transition mounted={mounted} duration={500} transition="slide-up" timingFunction="ease-in-out">
+      {(styles) => <div style={styles}>{children}</div>}
+    </Transition>
   );
 }

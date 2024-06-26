@@ -95,7 +95,7 @@ const InvitationLoginPage = () => {
     }
   };
   return (
-    <Page title={t("Invited!")} className="main-container grid-center">
+    <Page title={t("Invited!")} className="login-page-container grid-center">
       <Stack>
         <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
           <Card data-page-loading={form.values.status === "loading"} className="login-card">

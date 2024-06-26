@@ -13,7 +13,7 @@ import { Notifications } from "@mantine/notifications";
 export const ClientSideWrapper = ({ children }: { children: ReactNode }) => {
   return (
     <ReduxProvider store={reduxStore}>
-      <I18nextProvider i18n={i18n}>
+      <I18nextProvider defaultNS={["common", "notification"]} i18n={i18n}>
         <MantineProviderCustom>
           <Notifications />
           {children}

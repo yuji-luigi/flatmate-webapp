@@ -10,17 +10,19 @@ export const CopyDivWithToolTip = ({
   textToCopy,
 }: {
   children: ReactNode;
-  textToCopy: string;
+  textToCopy: string | undefined;
 }) => {
   const { t } = useLocale();
   const [tooltipText, setTooltipText] = useState(t("copy"));
+  if (!textToCopy) return children;
+
   const handleCopy = () => {
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard
         .writeText(textToCopy)
         .then(() => {
           setTooltipText(t("Copied"));
-          setTimeout(() => setTooltipText(t("copy url")), 2000); // Reset tooltip text after 2 seconds
+          setTimeout(() => setTooltipText(t("copy")), 2000); // Reset tooltip text after 2 seconds
         })
         .catch((err) => {
           console.error("Failed to copy: ", err);
@@ -37,7 +39,7 @@ export const CopyDivWithToolTip = ({
       try {
         document.execCommand("copy");
         setTooltipText(t("Copied"));
-        setTimeout(() => setTooltipText(t("copy url")), 2000); // Reset tooltip text after 2 seconds
+        setTimeout(() => setTooltipText(t("copy")), 2000); // Reset tooltip text after 2 seconds
       } catch (err) {
         console.error("Fallback: Oops, unable to copy", err);
       }
@@ -49,7 +51,7 @@ export const CopyDivWithToolTip = ({
       <Tooltip label={tooltipText}>
         <div
           style={{
-            background: "white",
+            // background: "white",
             display: "flex",
             justifyContent: "center",
             cursor: "pointer",

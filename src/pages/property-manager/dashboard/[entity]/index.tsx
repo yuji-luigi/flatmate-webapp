@@ -2,7 +2,7 @@ import { GetServerSidePropsContext } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import React, { ReactElement } from "react";
 import Layout from "../../../../layouts";
-import CrudPageView from "../../../../components/crud/CrutPageView";
+import CrudPageView from "../../../../components/crud/CrudPageView";
 
 const PropertyManagerCrudPage = () => {
   return <CrudPageView />;

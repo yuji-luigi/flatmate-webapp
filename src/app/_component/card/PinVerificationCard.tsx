@@ -10,31 +10,34 @@ import { MaintainerCompleteRegisterCard } from "../../../sections/nonce-check/m-
 import classes from "./PinVerificationCard.module.css";
 import { showNotification } from "@mantine/notifications";
 import { Icons } from "../../../data/icons/icons";
+import { useLocale } from "../../../../hooks/useLocale";
 /**
  * @description Send pin code after verified get maintenance and set maintenance in redux store
  */
 export const PinVerificationCard = (props: {
   setPinOk: (bool: boolean) => void;
   pinOk: boolean;
+  verifyPinCallback?: () => void;
 }) => {
   const { setPinOk } = props;
+  const { t } = useLocale();
   const query = useParams();
-  const [isCompleteRegister, setIsCompleteRegister] = useState<boolean>(false);
   const { setCrudDocument } = useCrudSliceStore();
   const endpoint = apiEndpoint.authTokens.verifyPin({ linkId: query?.linkId as string });
   const [submitting, setSubmitting] = useState<boolean>(false);
+
   const handleChange = (value: string) => {
     if (value.length === 6) {
       setSubmitting(true);
-
       handleSubmit(value);
     }
   };
-
+  // TODO: PASS CALL BACK AND CHANGE STATE OF PINOK CONSIDER API RESPONSE.
   const handleSubmit = useCallback(
     async (value: string) => {
       try {
         await axiosInstance.post(endpoint, { nonce: value });
+        setPinOk(true);
       } catch (error: any) {
         showNotification({
           icon: <Icons.alert />,
@@ -48,44 +51,33 @@ export const PinVerificationCard = (props: {
     },
     [endpoint, query?.linkId, setCrudDocument, setPinOk]
   );
-  useEffect(() => {
-    if (!endpoint) return;
-    axiosInstance.get(endpoint).then((res) => {
-      console.log(res.data.data);
-    });
-  }, [endpoint]);
-  return (
-    <Container className={classes.container}>
-      {!isCompleteRegister && (
-        <Card className={classes.card}>
-          <LoadingOverlay visible={submitting} />
-          <Stack>
-            <Group justify="center">
-              <Image
-                priority={false}
-                src={PATH_IMAGE.unlock}
-                width={120}
-                height={120}
-                alt="unlock image"
-              />
-            </Group>
-            <Stack justify="center" mt={24}>
-              <Title className={classes.heading}>Enter the pin code</Title>
-              <Group justify="center">
-                <PinInput
-                  disabled={submitting}
-                  size="sm"
-                  length={6}
-                  type="number"
-                  onChange={handleChange}
-                />
-              </Group>
-            </Stack>
-          </Stack>
-        </Card>
-      )}
 
-      <MaintainerCompleteRegisterCard isCompleteRegister={isCompleteRegister} {...props} />
-    </Container>
+  return (
+    <Card className={classes.card}>
+      <LoadingOverlay visible={submitting} />
+      <Stack>
+        <Group justify="center">
+          <Image
+            priority={false}
+            src={PATH_IMAGE.unlock}
+            width={120}
+            height={120}
+            alt="unlock image"
+          />
+        </Group>
+        <Stack justify="center" mt={24}>
+          <Title className={classes.heading}>{t("Enter the pin code")}</Title>
+          <Group justify="center">
+            <PinInput
+              disabled={submitting}
+              size="sm"
+              length={6}
+              type="number"
+              onChange={handleChange}
+            />
+          </Group>
+        </Stack>
+      </Stack>
+    </Card>
   );
 };

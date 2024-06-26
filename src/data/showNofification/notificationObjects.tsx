@@ -1,5 +1,5 @@
+import { NotificationData } from "@mantine/notifications";
 import { Icons } from "../icons/icons";
-
 type ErrorArgs = {
   data?: any;
   ms?: number;
@@ -62,6 +62,7 @@ export const NOTIFICATIONS = {
   },
   SUCCESS: {
     generic: SUCCESS_GENERAL,
+    genericFn: (data: Partial<NotificationData>) => ({ ...SUCCESS_GENERAL, ...data }),
     email: {
       ...SUCCESS_GENERAL,
       title: "Success",

@@ -46,7 +46,7 @@ const InvitationLoginPage = () => {
     }
   };
   return (
-    <Page title={t("Invited!")} className="main-container grid-center">
+    <Page title={t("Invited!")} className="login-page-container grid-center">
       <form onSubmit={handleSubmit}>
         <Card className="login-card">
           <Group justify="space-between">
