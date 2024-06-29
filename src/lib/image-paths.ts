@@ -25,6 +25,8 @@ export const PATH_IMAGE = {
   faviconsvg: "/favicon.svg",
   noData: "/images/no-data.png",
   error: "/images/error.png",
+  loading: "/images/loading.svg",
+  success: "/images/success.svg",
   FILES: {
     pdf: "/file_images/pdf.png",
     pdf1: "/file_images/pdf_1.png",

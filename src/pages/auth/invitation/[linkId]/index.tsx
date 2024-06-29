@@ -16,11 +16,17 @@ import { apiEndpoint } from "../../../../path/path-api";
 import { MeUser } from "../../../../types/models/space-model";
 import { _PATH_FRONTEND } from "../../../../path/path-frontend";
 import { InvitationAuth } from "../../../../types/models/invitation-model";
-import CheckAcceptInvitationPageView from "../../../../sections/app-router/auth/invitation/CheckAcceptInitationPageView";
+import { CheckAcceptInvitationPageView } from "../../../../sections/app-router/auth/invitation/CheckAcceptInitationPageView";
 
 // server side check
-const CheckAcceptInvitationPage = ({ initialUser }: { initialUser: MeUser }) => {
-  return <CheckAcceptInvitationPageView initialUser={initialUser} />;
+const CheckAcceptInvitationPage = ({
+  initialUser,
+  params,
+}: {
+  initialUser: MeUser;
+  params: { linkId: string };
+}) => {
+  return <CheckAcceptInvitationPageView initialUser={initialUser} linkId={params.linkId} />;
 };
 
 export default CheckAcceptInvitationPage;

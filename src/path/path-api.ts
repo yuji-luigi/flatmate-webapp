@@ -135,8 +135,8 @@ export const apiEndpoint = {
     sendEmail: () => all(apiEndpointRootsEnum.authTokens),
     renew: `${apiEndpointRootsEnum.authTokens}/renew`,
     /** payload {nonce: string} */
-    verifyEmailVerification: ({ linkId }: { linkId: string }) =>
-      `${apiEndpointRootsEnum.authTokens}/verify-email-verification/${linkId}`,
+    verifyEmailInhabitant: ({ linkId }: { linkId: string }) =>
+      `${apiEndpointRootsEnum.authTokens}/verify-email/inhabitant/${linkId}`,
     verifyPin: ({ linkId, _id, entity }: { linkId?: string; _id?: string; entity?: string }) => {
       if (_id && entity) {
         return `${apiEndpointRootsEnum.authTokens}/verify-pin/${linkId}/${_id}/${entity}`;
