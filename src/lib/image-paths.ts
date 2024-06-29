@@ -19,10 +19,14 @@ const LOCALE_IMAGES = {
 export const PATH_IMAGE = {
   notFound: "/images/notfound.jpg",
   rootSpaceCard1: "/images/haussmann-buildings3.png",
+  sendingEmail: "/images/sending-email.png",
   // flatmateLogo1: '/images/flatmate_circle_logo_yellow.png',
   flatmateLogo1: "/images/logos/logo2.png",
   faviconsvg: "/favicon.svg",
   noData: "/images/no-data.png",
+  error: "/images/error.png",
+  loading: "/images/loading.svg",
+  success: "/images/success.svg",
   FILES: {
     pdf: "/file_images/pdf.png",
     pdf1: "/file_images/pdf_1.png",

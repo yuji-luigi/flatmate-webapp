@@ -22,6 +22,7 @@ export type SectionConfig = {
   title: string;
   subtitle?: string;
   sectionActions?: SectionActionData[];
+  rowActions?: RowAction[];
   createButton?: string;
   createButtonType?: string; // TODO: enum
   importButton?: string;
@@ -35,5 +36,13 @@ export type SectionActionData = {
   variant?: ButtonVariant;
 } & ButtonProps;
 
-type SectionAction = "import" | "custom" | "default" | "invite" | "create";
+export type SectionAction =
+  | "import"
+  | "custom"
+  | "invite"
+  | "create"
+  | "print-qr-unit"
+  | "import-inhabitant-unit";
+
 type CustomSectionAction = "import-inhabitant-unit";
+export type RowAction = "modify" | "delete" | "qr_code";

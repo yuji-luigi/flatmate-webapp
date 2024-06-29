@@ -2,7 +2,7 @@ import { Button, ButtonProps } from "@mantine/core";
 import { useRouter } from "next/router";
 import { PATH_CLIENT } from "../../../../path/path-frontend";
 import useAuth from "../../../../../hooks/useAuth";
-import { _PATH_API } from "../../../../path/path-api";
+import { apiEndpoint } from "../../../../path/path-api";
 import axiosInstance, { AxiosResDataGeneric } from "../../../../utils/axios-instance";
 import { MeUser } from "../../../../types/models/space-model";
 
@@ -16,7 +16,7 @@ export const LoginButton = (props?: ButtonProps) => {
   const handleLogin = async () => {
     if (user?.loggedAs === "system_admin") {
       const rawRes = await axiosInstance.get<AxiosResDataGeneric<MeUser>>(
-        _PATH_API.auth.systemAdminExit
+        apiEndpoint.auth.systemAdminExit
       );
       updateUser(rawRes.data.data);
     }

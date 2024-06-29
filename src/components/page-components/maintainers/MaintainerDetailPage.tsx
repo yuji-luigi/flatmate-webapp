@@ -19,14 +19,14 @@ import { CoverDataProp } from "../../profile/CoverWithoutCard";
 import ProfileCoverGeneric from "../../profile/ProfileCoverGeneric";
 import AboutCard from "../../profile/side/AboutCard";
 import ProfileSide from "../../profile/side/ProfileSide";
-import { PATH_API } from "../../../path/path-api";
+import { apiEndpointRootsEnum } from "../../../path/path-api";
 import axiosInstance from "../../../utils/axios-instance";
 import classes from "../../../styles/global-useStyles.module.css";
 import useRouterWithCustomQuery from "../../../hooks/useRouterWithCustomQuery";
 
 const getMaintainer = async (slug?: string) => {
   if (!slug) return null;
-  const res = await axiosInstance.get(`${PATH_API.maintainersSlug}/${slug}`);
+  const res = await axiosInstance.get(`${apiEndpointRootsEnum.maintainersSlug}/${slug}`);
   return res.data.data;
 };
 

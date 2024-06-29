@@ -6,7 +6,7 @@
 
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axiosInstance, { AxiosResData, AxiosResDataGeneric } from "../../utils/axios-instance";
-import { _PATH_API } from "../../path/path-api";
+import { apiEndpoint } from "../../path/path-api";
 import { SpaceModel } from "../../types/models/space-model";
 
 export type FetchSpaceSelectionPayload = {
@@ -18,7 +18,7 @@ export const fetchSpaceSelections = createAsyncThunk(
   "spaceSelections/fetchSpaceSelections",
   async ({ query, queryObject = {} }: FetchSpaceSelectionPayload) => {
     const res = await axiosInstance.get<AxiosResDataGeneric<SpaceModel[]>>(
-      `${_PATH_API.spaceSelections.root}${query || ""}`,
+      `${apiEndpoint.spaceSelections.root}${query || ""}`,
       queryObject
     );
     return {
@@ -31,7 +31,7 @@ export const selectSpaceSelection = createAsyncThunk(
   "spaceSelections/selectSpaceSelection",
   async (id: string) => {
     const res = await axiosInstance.put<AxiosResDataGeneric<SpaceModel[]>>(
-      _PATH_API.spaceSelections.byId(id)
+      apiEndpoint.spaceSelections.byId(id)
     );
     return {
       documents: res.data.data,

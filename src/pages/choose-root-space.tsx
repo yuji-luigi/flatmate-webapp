@@ -6,7 +6,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { GetServerSidePropsContext } from "next";
 import { PATH_CLIENT, _PATH_FRONTEND } from "../path/path-frontend";
 import axiosInstance, { AxiosMeResponse, AxiosResDataGeneric } from "../utils/axios-instance";
-import { PATH_API, PATH_AUTH, _PATH_API } from "../path/path-api";
+import { apiEndpointRootsEnum, PATH_AUTH, apiEndpoint } from "../path/path-api";
 
 import Layout from "../layouts";
 import { SpaceModel, UserModel } from "../types/models/space-model";
@@ -74,7 +74,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 }
 export const fetchSpaceSelections = async (userId?: string | null) => {
   const res = await axiosInstance.get<AxiosResDataGeneric<SpaceModel[]>>(
-    PATH_API.getSpaceSelections
+    apiEndpointRootsEnum.getSpaceSelections
   );
   return res.data?.data;
 };

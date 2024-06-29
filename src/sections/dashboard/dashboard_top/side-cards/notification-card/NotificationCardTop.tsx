@@ -7,7 +7,7 @@ import CardWithTitle from "../../../../../components/profile/side/CardWithTitle"
 import { SimpleLinkTile } from "../../../../../components/list/SimpleLinkTile";
 import { useCustomMQuery } from "../../../../../../hooks/useCustomMQuery";
 import { Icons } from "../../../../../data/icons/icons";
-import { _PATH_API } from "../../../../../path/path-api";
+import { apiEndpoint } from "../../../../../path/path-api";
 import axiosInstance, { AxiosResDataGeneric } from "../../../../../utils/axios-instance";
 import { NotificationModel } from "../../../../../types/models/notification-model";
 import { _PATH_FRONTEND } from "../../../../../path/path-frontend";
@@ -15,7 +15,7 @@ import { NotificationDrawer } from "../../../../../layouts/dashboard/header/noti
 
 const fetchNotifications = async () => {
   const res = await axiosInstance.get<AxiosResDataGeneric<NotificationModel[]>>(
-    _PATH_API.notifications.root
+    apiEndpoint.notifications.root
   );
   return res.data.data;
 };
@@ -25,7 +25,7 @@ export const NotificationCardTop = () => {
 
   const { isMobile } = useCustomMQuery();
   const title = !isMobile ? "Notifications" : <Icons.alert />;
-  const { data } = useSWR(() => _PATH_API.notifications.root, fetchNotifications, {});
+  const { data } = useSWR(() => apiEndpoint.notifications.root, fetchNotifications, {});
   const { t } = useTranslation("common");
 
   return (

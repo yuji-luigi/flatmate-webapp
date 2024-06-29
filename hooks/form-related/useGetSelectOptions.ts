@@ -9,7 +9,7 @@ import { MongooseBaseModel } from "../../src/types/models/mongoose-base-model";
 // import { useCrudSlice } from '../redux-hooks/useCrudSlice';
 
 export const useGetSelectOptions = (
-  formField: SelectFormType | StaticSelectFormFieldType
+  formField: SelectFormType
 ): Array<{ value: string; label: string } | string> | [] => {
   // const options: Array<SelectOption> = [];
   // const [idleDocuments, setIdleDocuments] = useState<SelectOption[]>([]);
@@ -36,9 +36,5 @@ export const useGetSelectOptions = (
     return options;
   }
 
-  if (formField.type === "static-select") {
-    /** static-select type must have options Array<SelectOptions> */
-    return formField.options;
-  }
   return [];
 };

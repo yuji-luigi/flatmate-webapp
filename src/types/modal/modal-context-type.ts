@@ -38,6 +38,7 @@ export interface RegularModalParams extends BaseModalData {
   };
   onCancel?: () => void;
   onConfirm: (data: any) => void | Promise<void>;
+  withCloseButton?: boolean;
 }
 
 export interface CrudModalData extends BaseModalData {

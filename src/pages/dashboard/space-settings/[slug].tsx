@@ -14,7 +14,7 @@ import ProfileCoverGeneric, {
 
 import { SpaceSettingForm } from "../../../sections/dashboard/space_setting_section/SpaceSettingForm";
 import axiosInstance from "../../../utils/axios-instance";
-import { _PATH_API } from "../../../path/path-api";
+import { apiEndpoint } from "../../../path/path-api";
 import LoadingScreen from "../../../components/screen/LoadingScreen";
 
 import { SpaceSettingMaintainersSection } from "../../../sections/dashboard/space_setting_section/maintainers_section/SpaceSettingMaintainersSection";
@@ -40,7 +40,7 @@ const SpaceSettingSinglePage = () => {
   useEffect(() => {
     if (currentSpace && currentSpace.slug) {
       router.push(`${PATH_CLIENT.spaceSettings}/${currentSpace.slug}`);
-      axiosInstance.get(`${_PATH_API.spaces.settings}/${currentSpace?.slug}`).then((rawRes) => {
+      axiosInstance.get(`${apiEndpoint.spaces.settings}/${currentSpace?.slug}`).then((rawRes) => {
         const { data } = rawRes.data;
         setIsSpaceAdmin(data.isSpaceAdmin);
         setCrudDocument({ entity: "spaces", document: data.space });

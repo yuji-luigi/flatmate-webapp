@@ -57,7 +57,7 @@ export const CheckInputTabCard = () => {
       //
       if (isCustomFiles(fileData)) {
         // call api endpoint where OCR space + AI json generation. Get total + subtotals + taxes + (possibly other data) as response.data.data
-        // const rawOcrData = await axiosInstance.post(_PATH_API.checks.ocrMaintenance, fileData, {
+        // const rawOcrData = await axiosInstance.post(apiEndpoint.checks.ocrMaintenance, fileData, {
         //   headers: {
         //     'Content-Type': 'multipart/form-data',
         //   },
@@ -68,9 +68,9 @@ export const CheckInputTabCard = () => {
         //   space: maintenance.space.name,
         //   organizationName: maintenance.organization.name,
         //   entity: 'maintenances',
-        //   endpoint: PATH_API.uploadsMaintenance,
+        //   endpoint: apiEndpointRootsEnum.uploadsMaintenance,
         // });
-        // const rawCheck = await axiosInstance.post(`${PATH_API.checks}`, {
+        // const rawCheck = await axiosInstance.post(`${apiEndpointRootsEnum.checks}`, {
         //   maintenance,
         //   ...form.values,
         //   files: uploadIds,

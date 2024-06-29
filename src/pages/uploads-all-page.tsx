@@ -2,7 +2,7 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import axiosInstance, { AxiosResDataGeneric } from "../utils/axios-instance";
-import { _PATH_API } from "../path/path-api";
+import { apiEndpoint } from "../path/path-api";
 import { UploadModel } from "../types/models/upload-model";
 
 const AllUploadPage = () => {
@@ -12,7 +12,7 @@ const AllUploadPage = () => {
     if (user?.role === "super_admin") {
       const fetchAllUploads = async () => {
         const res = await axiosInstance.get<AxiosResDataGeneric<UploadModel[]>>(
-          _PATH_API.uploads.all
+          apiEndpoint.uploads.all
         );
         const { data } = res.data;
 

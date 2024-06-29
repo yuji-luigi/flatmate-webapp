@@ -12,7 +12,7 @@ import axiosInstance, {
   AxiosMeResponse,
   AxiosResDataGeneric,
 } from "../../../../utils/axios-instance";
-import { _PATH_API } from "../../../../path/path-api";
+import { apiEndpoint } from "../../../../path/path-api";
 import { MeUser } from "../../../../types/models/space-model";
 import { _PATH_FRONTEND } from "../../../../path/path-frontend";
 import { InvitationAuth } from "../../../../types/models/invitation-model";
@@ -75,7 +75,7 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
       throw new Error("Invitation link is not valid");
     }
     const rawInvitation = await axiosInstance.get<AxiosResDataGeneric<InvitationAuth | null>>(
-      _PATH_API.invitations.byLinkId(linkId)
+      apiEndpoint.invitations.byLinkId(linkId)
     );
     if (rawInvitation.data.data) {
       return {

@@ -19,6 +19,7 @@ export const entities = [
   "roles",
   "accessPermissions",
   "invitations",
+  "units",
 ] as const;
 
 export const userTypes = [
@@ -56,6 +57,7 @@ export const singleEntities: Record<FrontendEntity, string> = {
   system_admin: "system_admin",
   super_admin: "super_admin",
   placeholder: "placeholder",
+  units: "unit",
 } as const;
 
 export const frontendEntities = [...entities, ...sections, ...userTypes, "placeholder"] as const;

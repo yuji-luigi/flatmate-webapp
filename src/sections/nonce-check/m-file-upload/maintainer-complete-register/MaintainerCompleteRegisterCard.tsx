@@ -10,7 +10,7 @@ import { MaintainerModel } from "../../../../types/models/maintainer-model";
 import { StepperDemo } from "../../../../components/stepper/StepperDemo";
 import { StepperGeneric } from "../../../../components/stepper/StepperGeneric";
 import { PasswordFormType } from "../../../../types/general/data/data-table/form-field-type/formField-types";
-import { _PATH_API } from "../../../../path/path-api";
+import { apiEndpoint } from "../../../../path/path-api";
 import axiosInstance from "../../../../utils/axios-instance";
 import { MaintenanceModel } from "../../../../types/models/maintenance-check-type";
 
@@ -69,7 +69,7 @@ export const MaintainerCompleteRegisterCard = (props: {
     try {
       const { space } = maintenance;
       const { organization } = maintenance;
-      const rawRes = await axiosInstance.post(_PATH_API.auth.registerMaintainer, {
+      const rawRes = await axiosInstance.post(apiEndpoint.auth.registerMaintainer, {
         ...form.values,
         _id: maintainer._id,
         organization,

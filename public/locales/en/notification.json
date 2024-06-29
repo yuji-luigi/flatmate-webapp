@@ -3,5 +3,6 @@
 	"Select file first": "Please select a file first",
 	"Please wait": "Please wait",
 	"User not found. Please register first.": "User not found. Please register first.",
-	"We could not find your invitation. Please check your email.": "We could not find your invitation. Please check your email."
+	"We could not find your invitation. Please check your email.": "We could not find your invitation. Please check your email.",
+	"qr_code_expired": "Qr-code has expired. Please contact the person who invited you to generate a new qr-code."
 }

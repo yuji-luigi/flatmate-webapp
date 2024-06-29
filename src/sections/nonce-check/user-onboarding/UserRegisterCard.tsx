@@ -10,7 +10,7 @@ import { UseFormReturnTypeCustom } from "../../../components/input/input_interfa
 import allFormFields from "../../../json/dataTable/formfields";
 import { getDefaultValues } from "../../../utils/getDefaultValues";
 import axiosInstance from "../../../utils/axios-instance";
-import { _PATH_API } from "../../../path/path-api";
+import { apiEndpoint } from "../../../path/path-api";
 import { constructErrorNotificationData } from "../../../data/showNofification/notificationObjects";
 import { PATH_AFTER_LOGIN } from "../../../path/path-frontend";
 import { sleep } from "../../../utils/helpers/helper-functions";
@@ -50,7 +50,7 @@ export const UserRegisterCard = ({
         });
         return;
       }
-      const rawRes = await axiosInstance.put(_PATH_API.users.onBoarding(user._id), form.values);
+      const rawRes = await axiosInstance.put(apiEndpoint.users.onBoarding(user._id), form.values);
       showNotification({
         title: "Success",
         message: "You have successfully registered",

@@ -2,7 +2,7 @@ import React from "react";
 
 import { useRouter } from "next/router";
 import { Table } from "@mantine/core";
-import { ActionCells } from "./ActionCells";
+import { ActionCells } from "./action-cell/ActionCells";
 // import { useCrudSlice } from '../../../../hooks/redux-hooks/useCrudSlice';
 import { TableCellDecorator } from "../TableCellDecorator";
 import { FormFieldTypes } from "../../../types/general/data/data-table/form-field-type/formField-types";
@@ -10,6 +10,7 @@ import classes from "../header/StaticTableHeader.module.css";
 import { useCustomMQuery } from "../../../../hooks/useCustomMQuery";
 import { AllModels } from "../../../types/models/allmodels";
 import { Entity } from "../../../types/redux/CrudSliceInterfaces";
+import { MongooseBaseModel } from "../../../types/models/mongoose-base-model";
 
 export function StaticTableRow({
   rowData,
@@ -19,7 +20,7 @@ export function StaticTableRow({
 }: {
   actions?: any;
   overridingEntity?: Entity;
-  rowData: AllModels;
+  rowData: MongooseBaseModel;
   sectionFormFields: Array<FormFieldTypes>;
 }) {
   /** use hook context */
