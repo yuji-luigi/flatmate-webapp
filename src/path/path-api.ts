@@ -154,6 +154,8 @@ export const apiEndpoint = {
       authTokenId: string;
     }) =>
       `${apiEndpointRootsEnum.authTokens}/maintenances/check/maintainer/${linkId}/${authTokenId}`,
+    invitationUnit: ({ unitId }: { unitId: string }) =>
+      `${apiEndpointRootsEnum.authTokens}/invitations/units/${unitId}`,
   },
   users: {
     root: apiEndpointRootsEnum.users,

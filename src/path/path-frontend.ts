@@ -117,7 +117,7 @@ export const _PATH_FRONTEND = {
     invitationRegisterWithNonce: (redirectUrl: string) =>
       `/auth/invitation/register?withNonce=true&redirect=${redirectUrl}`,
     invitationAcceptSuccess: (linkId: string) => `/auth/invitation/${linkId}/accept-success`,
-    emailVerificationPending: "/auth/email-verification/pending",
+    emailVerificationPending: "/auth/verification-emails/pending",
     invitationNonValid: "/auth/invitation/non-valid",
   },
   authTokens: {

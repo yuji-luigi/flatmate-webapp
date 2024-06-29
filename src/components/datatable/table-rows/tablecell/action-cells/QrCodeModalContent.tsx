@@ -96,6 +96,15 @@ function RenewButton({
   const callRenewApi = async () => {
     setLoading(true);
     try {
+      if (!authToken) {
+        // re-generate the authToken
+        const rawAuthToken = await axiosInstance.post(
+          apiEndpoint.authTokens.invitationUnit({ unitId: row._id })
+        );
+        setAuthTokenState(rawAuthToken.data.data);
+        showNotification(NOTIFICATIONS.SUCCESS.genericFn({ title: t("New Qr-code created!") }));
+        return;
+      }
       await axiosInstance.post(
         apiEndpoint.authTokens.renew,
         {},
@@ -113,6 +122,7 @@ function RenewButton({
       setAuthTokenState(payload);
       showNotification(NOTIFICATIONS.SUCCESS.genericFn({ title: t("QR-code renewed") }));
     } catch (error: any) {
+      await sleep(500);
       showNotification(NOTIFICATIONS.ERROR.general({ data: error.message || error }));
     } finally {
       await sleep(700);
