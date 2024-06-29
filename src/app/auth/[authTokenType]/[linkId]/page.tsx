@@ -10,8 +10,10 @@ import Page from "../../../../components/Page";
 import axios from "axios";
 import axiosInstance from "../../../../utils/axios-instance";
 import { apiEndpoint } from "../../../../path/path-api";
-import { showNotification } from "@mantine/notifications";
+import { showNotification, cleanNotifications } from "@mantine/notifications";
 import { NOTIFICATIONS } from "../../../../data/showNofification/notificationObjects";
+import { useParams } from "next/navigation";
+import { sleep } from "../../../../utils/helpers/helper-functions";
 
 const classes = {};
 const maintenance = {};
@@ -21,6 +23,7 @@ type Props = {
 };
 const EmailVerificationPage = ({ params, searchParams }: Props) => {
   const [pinOk, setPinOk] = useState<boolean>(false);
+  const query = useParams();
 
   useEffect(() => {
     pinOk &&
@@ -29,11 +32,34 @@ const EmailVerificationPage = ({ params, searchParams }: Props) => {
         .then((_) => showNotification(NOTIFICATIONS.SUCCESS.generic));
   }, [pinOk]);
 
+  const endpoint = apiEndpoint.authTokens.verifyEmailVerification({
+    linkId: query?.linkId as string,
+  });
+
+  const handleVerifyPin = async (pin: string) => {
+    try {
+      showNotification(NOTIFICATIONS.LOADING.general);
+      await axiosInstance.post(endpoint, { nonce: pin });
+      await sleep(750);
+      cleanNotifications();
+      showNotification(NOTIFICATIONS.SUCCESS.generic);
+    } catch (error) {
+      showNotification(NOTIFICATIONS.ERROR.general());
+    } finally {
+      await sleep(750);
+      cleanNotifications();
+    }
+  };
+
   return (
     <Page>
       <Container className="unnamed-container">
         <TransitionContainer mounted={!pinOk}>
-          <PinVerificationCard pinOk={pinOk} setPinOk={setPinOk} />
+          <PinVerificationCard
+            verifyPinCallback={handleVerifyPin}
+            pinOk={pinOk}
+            setPinOk={setPinOk}
+          />
         </TransitionContainer>
         <TransitionContainer mounted={pinOk}>
           {pinOk && (

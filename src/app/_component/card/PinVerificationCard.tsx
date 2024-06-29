@@ -8,22 +8,19 @@ import { useCrudSliceStore } from "../../../redux/features/crud/crudSlice";
 import { apiEndpoint, apiEndpointRootsEnum } from "../../../path/path-api";
 import { MaintainerCompleteRegisterCard } from "../../../sections/nonce-check/m-file-upload/maintainer-complete-register/MaintainerCompleteRegisterCard";
 import classes from "./PinVerificationCard.module.css";
-import { showNotification } from "@mantine/notifications";
+import { cleanNotifications, showNotification } from "@mantine/notifications";
 import { Icons } from "../../../data/icons/icons";
 import { useLocale } from "../../../../hooks/useLocale";
+import { sleep } from "../../../utils/helpers/helper-functions";
 /**
  * @description Send pin code after verified get maintenance and set maintenance in redux store
  */
 export const PinVerificationCard = (props: {
   setPinOk: (bool: boolean) => void;
   pinOk: boolean;
-  verifyPinCallback?: () => void;
+  verifyPinCallback?: (pin: string) => Promise<void> | ((pin: string) => void);
 }) => {
-  const { setPinOk } = props;
   const { t } = useLocale();
-  const query = useParams();
-  const { setCrudDocument } = useCrudSliceStore();
-  const endpoint = apiEndpoint.authTokens.verifyPin({ linkId: query?.linkId as string });
   const [submitting, setSubmitting] = useState<boolean>(false);
 
   const handleChange = (value: string) => {
@@ -32,24 +29,18 @@ export const PinVerificationCard = (props: {
       handleSubmit(value);
     }
   };
-  // TODO: PASS CALL BACK AND CHANGE STATE OF PINOK CONSIDER API RESPONSE.
   const handleSubmit = useCallback(
     async (value: string) => {
       try {
-        await axiosInstance.post(endpoint, { nonce: value });
-        setPinOk(true);
-      } catch (error: any) {
-        showNotification({
-          icon: <Icons.alert />,
-          title: "Error",
-          message: error.message || error,
-          color: "red",
-        });
+        if (props.verifyPinCallback) {
+          await props.verifyPinCallback(value);
+        }
       } finally {
+        await sleep(750);
         setSubmitting(false);
       }
     },
-    [endpoint, query?.linkId, setCrudDocument, setPinOk]
+    [props.verifyPinCallback]
   );
 
   return (
