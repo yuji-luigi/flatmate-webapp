@@ -12,54 +12,21 @@ import axiosInstance, {
   AxiosMeResponse,
   AxiosResDataGeneric,
 } from "../../../../utils/axios-instance";
-import { _PATH_API } from "../../../../path/path-api";
+import { apiEndpoint } from "../../../../path/path-api";
 import { MeUser } from "../../../../types/models/space-model";
 import { _PATH_FRONTEND } from "../../../../path/path-frontend";
 import { InvitationAuth } from "../../../../types/models/invitation-model";
+import { CheckAcceptInvitationPageView } from "../../../../sections/app-router/auth/invitation/CheckAcceptInitationPageView";
 
 // server side check
-const CheckAcceptInvitationPage = ({ initialUser }: { initialUser: MeUser }) => {
-  const { linkId } = useRouterWithCustomQuery().query;
-  const { t } = useLocale();
-  const userType = "Property Manager";
-  const condo = "Luigi mansion";
-  useEffect(() => {
-    if (!linkId) return;
-    if (initialUser) {
-      // axiosInstance.post(_PATH_API.invitations(linkId)).then((res) => {
-      //   console.log(res);
-      // });
-    }
-  }, [linkId]);
-  return (
-    <Page title={t("Invitation")}>
-      <section
-        style={{
-          padding: "var(--padding-main)",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: "var(--flex-gap)",
-          margin: "auto",
-          width: "fit-content",
-        }}
-      >
-        <Image
-          src="/images/success.png"
-          width={400}
-          height={200}
-          style={{ objectFit: "contain" }}
-          alt="accept request"
-        />
-        <h3>
-          {t("Now you are")} {userType} {t("of")} {condo}{" "}
-        </h3>
-        <Button component={Link} href={_PATH_FRONTEND.dashboard.home}>
-          {t("Go to dashboard")}
-        </Button>
-      </section>
-    </Page>
-  );
+const CheckAcceptInvitationPage = ({
+  initialUser,
+  params,
+}: {
+  initialUser: MeUser;
+  params: { linkId: string };
+}) => {
+  return <CheckAcceptInvitationPageView initialUser={initialUser} linkId={params.linkId} />;
 };
 
 export default CheckAcceptInvitationPage;
@@ -72,54 +39,65 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { jwt } = context.req.cookies;
   const redirectUrl = encodeURIComponent(context.req.url || "no");
   const { linkId } = context.query;
-  if (typeof linkId !== "string") {
-    console.error("linkId is not a string");
-    return {
-      redirect: {
-        destination: "404",
-      },
-    };
-  }
-
-  if (jwt && typeof context.query.linkId === "string") {
-    // call invitations/accept/:linkId with jwt without calling me.
-    try {
-      await axiosInstance.get<AxiosMeResponse>(
-        _PATH_API.invitations.acceptByLinkId(context.query.linkId),
-        {
-          headers: {
-            cookie: context.req.headers.cookie,
-          },
-        }
-      );
+  try {
+    if (typeof linkId !== "string") {
+      console.error("linkId is not a string");
       return {
         redirect: {
-          destination: _PATH_FRONTEND.auth.invitationAcceptSuccess(linkId),
+          destination: "404",
+        },
+      };
+    }
+
+    if (jwt && typeof context.query.linkId === "string") {
+      // call invitations/accept/:linkId with jwt without calling me.
+      try {
+        await axiosInstance.get<AxiosMeResponse>(
+          apiEndpoint.invitations.acceptByLinkId(context.query.linkId),
+          {
+            headers: {
+              cookie: context.req.headers.cookie,
+            },
+          }
+        );
+        return {
+          redirect: {
+            destination: _PATH_FRONTEND.auth.invitationAcceptSuccess(linkId),
+            permanent: false,
+          },
+        };
+      } catch (error) {
+        // can be a different user jwt so redirect to invitation login
+        console.error(error);
+      }
+    }
+
+    const rawInvitation = await axiosInstance.get<AxiosResDataGeneric<InvitationAuth>>(
+      apiEndpoint.invitations.byLinkId(linkId)
+    );
+    if (rawInvitation.data.data.status !== "pending") {
+      return {
+        redirect: {
+          destination: _PATH_FRONTEND.auth.invitationNonValid,
           permanent: false,
         },
       };
-    } catch (error) {
-      // can be a different user jwt so redirect to invitation login
-      console.error(error);
     }
-  }
-  const rawInvitation = await axiosInstance.get<AxiosResDataGeneric<InvitationAuth>>(
-    _PATH_API.invitations.byLinkId(linkId)
-  );
-  if (rawInvitation.data.data.status !== "pending") {
+
+    //NOTE: if next does not provide correct url. this does not work. in dev it worked
     return {
       redirect: {
-        destination: _PATH_FRONTEND.auth.invitationNonValid,
+        destination: `${_PATH_FRONTEND.auth.invitationLogin}?redirect=${redirectUrl}`,
+        permanent: false,
+      },
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      redirect: {
+        destination: "/404",
         permanent: false,
       },
     };
   }
-
-  //NOTE: if next does not provide correct url. this does not work. in dev it worked
-  return {
-    redirect: {
-      destination: `${_PATH_FRONTEND.auth.invitationLogin}?redirect=${redirectUrl}`,
-      permanent: false,
-    },
-  };
 }

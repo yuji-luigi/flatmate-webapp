@@ -7,6 +7,7 @@ import {
 } from "../../types/redux/CrudSliceInterfaces";
 import { OptionalRecord } from "../../types/utils/OptionalRecord";
 import { propertyManagerSectionConfigs } from "./property_managersSection";
+import { system_adminSectionConfigs } from "./system_adminSection";
 
 const customSection: OptionalRecord<FrontendEntity, Partial<SectionConfig>> = {
   property_manager: {},
@@ -27,7 +28,7 @@ const _sections = {
   "card-list": frontendEntities.reduce(reducer, {} as Record<FrontendEntity, SectionConfig>),
 };
 export const sectionConfigsByUserType: Record<string, Record<string, SectionConfig>> = {
-  // system_admin: [],
+  system_admin: system_adminSectionConfigs,
   // inhabitant: [],
   property_manager: propertyManagerSectionConfigs,
   // maintainer: [],

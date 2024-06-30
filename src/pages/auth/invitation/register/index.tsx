@@ -13,26 +13,28 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import { useForm } from "@mantine/form";
-import Layout from "../../../layouts";
-import { useLocale } from "../../../../hooks/useLocale";
-import { _PATH_FRONTEND } from "../../../path/path-frontend";
-import useRouterWithCustomQuery from "../../../hooks/useRouterWithCustomQuery";
-import { PATH_IMAGE } from "../../../lib/image-paths";
-import Page from "../../../components/Page";
-import axiosInstance from "../../../utils/axios-instance";
-import { _PATH_API } from "../../../path/path-api";
-import { sleep } from "../../../utils/helpers/helper-functions";
+import Layout from "../../../../layouts";
+import { useLocale } from "../../../../../hooks/useLocale";
+import { _PATH_FRONTEND } from "../../../../path/path-frontend";
+import useRouterWithCustomQuery from "../../../../hooks/useRouterWithCustomQuery";
+import { PATH_IMAGE } from "../../../../lib/image-paths";
+import Page from "../../../../components/Page";
+import axiosInstance from "../../../../utils/axios-instance";
+import { apiEndpoint } from "../../../../path/path-api";
+import { sleep } from "../../../../utils/helpers/helper-functions";
 import { GetServerSidePropsContext } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";
 
 const InvitationLoginPage = () => {
   const [apiError, setApiError] = React.useState("");
-  const { push } = useRouter();
+  const { push, locale } = useRouter();
   const { t } = useLocale();
   const { t: tn } = useLocale("notification");
   const { t: ta } = useLocale("auth");
   const { query } = useRouterWithCustomQuery();
+  const decodedRedirectStr = decodeURIComponent(query.redirect as string);
+  const withNonce = query.withNonce === "true";
   const form = useForm({
     initialValues: {
       name: "",
@@ -59,8 +61,9 @@ const InvitationLoginPage = () => {
       setApiError("");
     },
   });
-  const linkId = query.redirect?.split("/").pop();
 
+  const linkId = query.redirect?.split("/").pop();
+  //
   const handleSubmit = async (values: (typeof form)["values"]) => {
     form.setValues({ ...values, status: "loading" });
     if (typeof linkId !== "string") {
@@ -69,9 +72,21 @@ const InvitationLoginPage = () => {
 
     try {
       const { status, ...dto } = values;
-      await axiosInstance.post(_PATH_API.invitations.acceptByRegister(linkId), dto);
+      // switch the request based on the withNonce query parameter
+      // case with nonce call endpoint where email verification is needed
+      if (withNonce) {
+        await axiosInstance.post(apiEndpoint.invitations.preRegisterWithEmailVerification(linkId), {
+          ...dto,
+          locale,
+        });
+        form.setValues({ ...values, status: "" });
+        push(_PATH_FRONTEND.auth.emailVerificationPending);
+        return;
+      }
+
+      await axiosInstance.post(apiEndpoint.invitations.acceptByRegister(linkId), dto);
       await sleep(1000);
-      form.setValues({ ...values, status: "" });
+      // form.setValues({ ...values, status: "" });
       push(_PATH_FRONTEND.auth.invitationAcceptSuccess(linkId));
     } catch (error: any) {
       await sleep(1000);
@@ -80,7 +95,7 @@ const InvitationLoginPage = () => {
     }
   };
   return (
-    <Page title={t("Invited!")} className="main-container grid-center">
+    <Page title={t("Invited!")} className="login-page-container grid-center">
       <Stack>
         <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
           <Card data-page-loading={form.values.status === "loading"} className="login-card">
@@ -170,6 +185,32 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     null,
     ["it", "en"]
   );
+
+  // 1. check for auth-token cookie
+  // case cookie is present then authorize
+  if (context.query.withNonce === "true") {
+    try {
+      await axiosInstance.get(apiEndpoint.authTokens.checkByCookie, {
+        headers: {
+          cookie: context.req.headers.cookie,
+        },
+        withCredentials: true,
+      });
+      return {
+        props: {
+          ...translationObj,
+        },
+      };
+    } catch (error) {
+      return {
+        redirect: {
+          destination: _PATH_FRONTEND.auth.logout,
+          permanent: false,
+        },
+      };
+    }
+  }
+
   return {
     props: {
       ...translationObj,

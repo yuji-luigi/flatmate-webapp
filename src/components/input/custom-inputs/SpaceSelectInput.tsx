@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { UseFormReturnType } from "@mantine/form";
 import { showNotification } from "@mantine/notifications";
 import axiosInstance from "../../../utils/axios-instance";
-import { PATH_API } from "../../../path/path-api";
+import { apiEndpointRootsEnum } from "../../../path/path-api";
 import { convertToSelectItems } from "../../../utils/helpers/helper-functions";
 import { useItemSlice } from "../../../redux/features/crud/selectedItemSlice";
 import { SpaceModel } from "../../../types/models/space-model";
@@ -39,7 +39,7 @@ const SpaceSelectInput = ({
   const handleGetSpaces = async () => {
     try {
       // if (isSuperAdmin) return;
-      const response = await axiosInstance.get(`${PATH_API.getSpaceSelections}`);
+      const response = await axiosInstance.get(`${apiEndpointRootsEnum.getSpaceSelections}`);
       const selectOptions = convertToSelectItems(response.data.data);
       setSpaces(selectOptions);
       setCrudDocuments({ entity: "spaces", documents: response.data.data });

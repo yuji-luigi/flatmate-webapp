@@ -5,7 +5,7 @@ import { useCrudSliceStore } from "../../../../redux/features/crud/crudSlice";
 import classes from "../../../../styles/global-useStyles.module.css";
 import { useCustomModalContext } from "../../../../context/modal-context/_ModalContext";
 import axiosInstance from "../../../../utils/axios-instance";
-import { PATH_API } from "../../../../path/path-api";
+import { apiEndpointRootsEnum } from "../../../../path/path-api";
 import { sleep } from "../../../../utils/helpers/helper-functions";
 import useRouterWithCustomQuery from "../../../../hooks/useRouterWithCustomQuery";
 import { Icons } from "../../../../data/icons/icons";
@@ -93,6 +93,7 @@ function SelectMainSpaceModal() {
         <HeadlessModalTitle
           title={t("Import Units")}
           subtitle={currentSpace && currentSpace.name}
+          icon={<Icons.propertyManagerBuilding size={60} />}
         />
 
         <HeaderSpaceSelect />
@@ -130,17 +131,22 @@ function SelectMainSpaceModal() {
 
 function SubmitImportButton({ children, file }: { children: React.ReactNode; file?: File | null }) {
   const { setCrudDocuments } = useCrudSliceStore();
+  const { closeModal } = useCustomModalContext();
   if (!file) {
     return <AlertCustom color="red">No file selected</AlertCustom>;
   }
-  const handleImportInhabitantUnitconfirmEvent = async () => {
+  const handleImportInhabitantUnit = async () => {
     const formData = new FormData();
     formData.append("file", file);
-    const rawRes = await axiosInstance.post(`inhabitant/${PATH_API.importExcel}`, formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
+    const rawRes = await axiosInstance.post(
+      `inhabitant/${apiEndpointRootsEnum.importExcel}`,
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
     await sleep(1000);
     console.log(rawRes.data.data);
     showNotification({
@@ -149,10 +155,11 @@ function SubmitImportButton({ children, file }: { children: React.ReactNode; fil
       color: "green",
     });
     setCrudDocuments({
-      entity: "inhabitant",
+      entity: "units",
       documents: rawRes.data.data,
       totalDocuments: rawRes.data.totalDocuments,
     });
+    closeModal();
   };
 
   return <Button onClick={handleImportInhabitantUnit}>{children}</Button>;

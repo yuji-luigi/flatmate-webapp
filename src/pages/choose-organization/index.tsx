@@ -6,7 +6,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Link from "next/link";
 import { _PATH_FRONTEND } from "../../path/path-frontend";
 import axiosInstance, { AxiosMeResponse } from "../../utils/axios-instance";
-import { PATH_AUTH, _PATH_API } from "../../path/path-api";
+import { PATH_AUTH, apiEndpoint } from "../../path/path-api";
 import Layout from "../../layouts";
 import {
   MeUser,
@@ -73,7 +73,7 @@ const ChooseOrganizationPage = (props: { initialUser: MeUser }) => {
 
   useEffect(() => {
     if (!initialUser) return;
-    axiosInstance.get(`${_PATH_API.organizations.selections}`).then((res) => {
+    axiosInstance.get(`${apiEndpoint.organizations.selections}`).then((res) => {
       setOrganizations(res.data.data);
     });
   }, [initialUser?.loggedAs]);

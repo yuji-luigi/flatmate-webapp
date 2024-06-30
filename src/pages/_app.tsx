@@ -39,20 +39,21 @@ import { useLocale } from "../../hooks/useLocale";
 import { NprogressBar } from "../components/progress-bar/NprogressBar";
 import { CurrentEntityContextProvider } from "../context/CurrentEntityContext";
 import { CookieContextProvider } from "../context/CookieContext";
+import { MantineProviderCustom } from "../components/theme/MantineProviderCustom";
 
-const resolver: CSSVariablesResolver = (theme) => ({
-  variables: {
-    "--mantine-hero-height": theme.other.heroHeight,
-  },
-  light: {
-    "--mantine-color-body": theme.colors.gray[3],
-    "--mantine-color-primary": theme.colors.yellow[5],
-  },
-  dark: {
-    "--mantine-color-primary": theme.colors.yellow[5],
-    // '--mantine-color-body': 'red',
-  },
-});
+// const resolver: CSSVariablesResolver = (theme) => ({
+//   variables: {
+//     "--mantine-hero-height": theme.other.heroHeight,
+//   },
+//   light: {
+//     "--mantine-color-body": theme.colors.gray[3],
+//     "--mantine-color-primary": theme.colors.yellow[5],
+//   },
+//   dark: {
+//     "--mantine-color-primary": theme.colors.yellow[5],
+//     // '--mantine-color-body': 'red',
+//   },
+// });
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
 };
@@ -79,7 +80,7 @@ function App(props: AppProps) {
 
       <AuthProvider initialUser={pageProps.initialUser}>
         <ReduxProvider store={reduxStore}>
-          <MantineProvider
+          {/* <MantineProvider
             defaultColorScheme="dark"
             theme={{
               // colors: myColors,
@@ -93,7 +94,8 @@ function App(props: AppProps) {
             // withGlobalStyles
             cssVariablesResolver={resolver}
             withCssVariables
-          >
+          > */}
+          <MantineProviderCustom>
             <CurrentEntityContextProvider>
               <DashboardLayoutContextProvider>
                 <PaginationContextProvider>
@@ -123,7 +125,8 @@ function App(props: AppProps) {
                 </PaginationContextProvider>
               </DashboardLayoutContextProvider>
             </CurrentEntityContextProvider>
-          </MantineProvider>
+          </MantineProviderCustom>
+          {/* </MantineProvider> */}
         </ReduxProvider>
       </AuthProvider>
     </>

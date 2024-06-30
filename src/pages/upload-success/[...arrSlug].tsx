@@ -1,7 +1,7 @@
 import { Container, Title, Text, Group, LoadingOverlay } from "@mantine/core";
 import { useRouter } from "next/router";
 import useSWR from "swr";
-import { PATH_API } from "../../path/path-api";
+import { apiEndpointRootsEnum } from "../../path/path-api";
 import axiosInstance, { AxiosResDataGeneric } from "../../utils/axios-instance";
 import { CheckInterface } from "../../types/models/maintenance-check-type";
 import { MaintainerModel } from "../../types/models/maintainer-model";
@@ -16,7 +16,7 @@ const fileFetcher = async (arrSlug?: string[]) => {
     const path = arrSlug.join("/");
     const rawCheck = await axiosInstance.get<
       AxiosResDataGeneric<{ check: CheckInterface; maintenance: MaintainerModel }>
-    >(`${PATH_API.checks}/${path}`);
+    >(`${apiEndpointRootsEnum.checks}/${path}`);
     return rawCheck.data.data;
   } catch (error: any) {
     throw error.message;

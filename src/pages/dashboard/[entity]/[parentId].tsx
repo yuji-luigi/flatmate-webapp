@@ -29,7 +29,7 @@ const ChildrenTablePage = () => {
   const { setBreadcrumbs, setChildrenBreadcrumbs } = useLayoutContext();
 
   // const { data, error } = useSWR(
-  //   `/${PATH_API.linkedChildren}/${query.entity}/${query.parentId}`,
+  //   `/${apiEndpointRootsEnum.linkedChildren}/${query.entity}/${query.parentId}`,
   //   fetcher
   // );
   const { data: parentData, error: parentError } = useSWR<MongooseBaseModel & { name: string }>(

@@ -3,7 +3,7 @@ import { useRef, useState } from "react";
 import { hideNotification, showNotification } from "@mantine/notifications";
 import { set } from "nprogress";
 import axiosInstance from "../../../../../../utils/axios-instance";
-import { _PATH_API } from "../../../../../../path/path-api";
+import { apiEndpoint } from "../../../../../../path/path-api";
 import { FrontendEntity } from "../../../../../../types/redux/CrudSliceInterfaces";
 import { useCookieContext } from "../../../../../../context/CookieContext";
 import {
@@ -54,7 +54,7 @@ export const InviteInhabitantModal: React.FC<InviteModalProps> = (props: InviteM
       message: t("Sending invitation..."),
     });
     try {
-      const rawResult = await axiosInstance.post(`${_PATH_API.invitations.root}/${entity}`, {
+      const rawResult = await axiosInstance.post(`${apiEndpoint.invitations.root}/${entity}`, {
         email: emailRef.current?.value,
         space: currentSpace._id,
       });

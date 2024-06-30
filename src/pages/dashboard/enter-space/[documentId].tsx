@@ -3,14 +3,14 @@ import React from "react";
 import useSWR from "swr";
 import { json } from "stream/consumers";
 import Link from "next/link";
-import { PATH_API } from "../../../path/path-api";
+import { apiEndpointRootsEnum } from "../../../path/path-api";
 import axiosInstance from "../../../utils/axios-instance";
 // import { useCurrentSpaceContext } from '../../../context/CurrentSpaceContext';
 import { useCookieContext } from "../../../context/CookieContext";
 import { PATH_CLIENT, _PATH_FRONTEND } from "../../../path/path-frontend";
 
 const getSpaceAsCookie = async (crudId: string) => {
-  const res = await axiosInstance.get(`${PATH_API.getSpaceSelections}/${crudId}`, {
+  const res = await axiosInstance.get(`${apiEndpointRootsEnum.getSpaceSelections}/${crudId}`, {
     withCredentials: true,
   });
 

@@ -1,7 +1,15 @@
-.main-container {
+.login-page-container {
   max-width: var(--max-width);
   min-height: calc(100vh - 60px);
   margin: auto;
+}
+
+.unnamed-container {
+  padding-block: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .grid-center {

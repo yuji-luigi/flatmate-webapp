@@ -1,18 +1,20 @@
 import { useEffect } from "react";
 import { Table } from "@mantine/core";
-import { ActionCells } from "./ActionCells";
+import { ActionCells } from "./action-cell/ActionCells";
 import { TableCellDecorator } from "../TableCellDecorator";
 import { useCrudSliceStore } from "../../../redux/features/crud/crudSlice";
 import { FormFieldTypes } from "../../../types/general/data/data-table/form-field-type/formField-types";
 import { MongooseBaseModel } from "../../../types/models/mongoose-base-model";
 import { Entity } from "../../../types/redux/CrudSliceInterfaces";
 import useRouterWithCustomQuery from "../../../hooks/useRouterWithCustomQuery";
+import { useGetSectionConfig } from "../../../hooks/useGetSectionConfig";
 
 export function CrudTableRow({
   rowData,
   sectionFormFields,
+  // overridingEntity
 }: {
-  overridingEntity?: Entity;
+  // overridingEntity?: Entity;
   rowData: MongooseBaseModel;
   sectionFormFields: Array<FormFieldTypes>;
 }) {
@@ -32,6 +34,9 @@ export function CrudTableRow({
     },
     []
   );
+  const sectionConfig = useGetSectionConfig();
+  /** use hook useCrudSlice */
+
   return (
     <Table.Tr key={rowData._id}>
       {/*
@@ -44,10 +49,9 @@ export function CrudTableRow({
           </Table.Td>
         )
       )}
-      {/*
-          Action cells defined here(modify, delete button)
-      */}
-      <ActionCells rowData={rowData} overridingEntity={entity} />
+      {!!sectionConfig?.rowActions?.length && (
+        <ActionCells rowData={rowData} overridingEntity={entity} />
+      )}
     </Table.Tr>
   );
 }

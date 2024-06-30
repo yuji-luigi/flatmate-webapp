@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { HiddenAuthTokenInterface } from "../types/models/auth-token-model";
-import { Entity, entities, userTypes } from "../types/redux/CrudSliceInterfaces";
+import { Entity, FrontendEntity, entities, userTypes } from "../types/redux/CrudSliceInterfaces";
 import { UserType } from "../lib/enums";
 
 export const ROOT = "/";
@@ -17,7 +17,7 @@ export const PATH_DASHBOARD_ROOT = {
   system_admin: "/system-admin/dashboard",
   property_manager: "/property-manager/dashboard",
   maintainer: "/maintainer/dashboard",
-  inhabitant: "/users/dashboard",
+  inhabitant: "/inhabitant/dashboard",
   super_admin: "/super-admin/dashboard",
 };
 
@@ -114,13 +114,25 @@ export const _PATH_FRONTEND = {
     chooseRootSpace: CHOOSE_ROOT_SPACE,
     invitationLogin: "/auth/invitation/login",
     invitationRegister: "/auth/invitation/register",
+    invitationRegisterWithNonce: (redirectUrl: string) =>
+      `/auth/invitation/register?withNonce=true&redirect=${redirectUrl}`,
     invitationAcceptSuccess: (linkId: string) => `/auth/invitation/${linkId}/accept-success`,
+    emailVerificationPending: "/auth/verification-emails/pending",
     invitationNonValid: "/auth/invitation/non-valid",
   },
   authTokens: {
     dashboard: PATH_CLIENT.authTokens,
-    qrCode: ({ entity, authToken }: { entity: Entity; authToken: HiddenAuthTokenInterface }) =>
-      `${FRONTEND_ROOT}/auth-tokens/${entity}/${authToken.linkId}/${authToken._id}`,
+    invitationQrCode: (authToken: HiddenAuthTokenInterface) =>
+      `${FRONTEND_ROOT}/auth/invitation/${authToken.linkId}`,
+    qrCode: ({
+      entity,
+      authToken,
+    }: {
+      entity: FrontendEntity;
+      authToken: HiddenAuthTokenInterface;
+    }) => `${FRONTEND_ROOT}/auth-tokens/${entity}/${authToken.linkId}/${authToken._id}`,
+    invitationWithoutEmail: (authToken: HiddenAuthTokenInterface) =>
+      `${FRONTEND_ROOT}/auth/invitation/by-code/${authToken.linkId}?withEmail=false`,
   },
   maintenances: {
     root: PATH_CLIENT.maintenances,

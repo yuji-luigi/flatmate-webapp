@@ -5,7 +5,7 @@ import Image from "next/image";
 import { showNotification } from "@mantine/notifications";
 import { PATH_IMAGE } from "../../../lib/image-paths";
 import classes from "./PinVerifCard.module.css";
-import { _PATH_API } from "../../../path/path-api";
+import { apiEndpoint } from "../../../path/path-api";
 import axiosInstance, { AxiosResDataGeneric } from "../../../utils/axios-instance";
 import { Icons } from "../../../data/icons/icons";
 import { useCrudSliceStore } from "../../../redux/features/crud/crudSlice";
@@ -31,7 +31,7 @@ export const UserRegisterPinVerifCard = ({ setPinOk }: PinVerifCardProps) => {
     async (value: string) => {
       try {
         const rawRes = await axiosInstance.post<AxiosResDataGeneric<boolean>>(
-          _PATH_API.authTokens.verifyPin({
+          apiEndpoint.authTokens.verifyPin({
             _id: query.id || "",
             linkId: query.linkId,
             entity: "users",

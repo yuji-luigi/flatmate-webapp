@@ -1,0 +1,43 @@
+import { Group, ActionIcon } from "@mantine/core";
+import { IconPencil, IconTrash } from "@tabler/icons-react";
+import { useRouter } from "next/router";
+import useAuth from "../../../../../hooks/useAuth";
+import { useCustomModalContext } from "../../../../context/modal-context/_ModalContext";
+import { usePaginationContext } from "../../../../context/PaginationContext";
+import { useGetSectionConfig } from "../../../../hooks/useGetSectionConfig";
+import useRouterWithCustomQuery from "../../../../hooks/useRouterWithCustomQuery";
+import { useCrudSliceStore } from "../../../../redux/features/crud/crudSlice";
+import { MongooseBaseModel } from "../../../../types/models/mongoose-base-model";
+import { FrontendEntity } from "../../../../types/redux/CrudSliceInterfaces";
+import { QrCodeButton } from "../tablecell/action-cells/QrCodeButton";
+import { useDrawerContext } from "../../../../context/DataTableDrawerContext";
+import { ActionCellController } from "./ActionCellController";
+
+export function ActionCells({
+  rowData,
+  overridingEntity,
+}: {
+  rowData: MongooseBaseModel;
+  overridingEntity?: FrontendEntity | null;
+}) {
+  const router = useRouter();
+  const parentId = router.query.parentId as string;
+
+  const {
+    query: { entity },
+  } = useRouterWithCustomQuery();
+  const sectionConfig = useGetSectionConfig();
+  if (!entity) {
+    throw new Error("entity query is used in non crud page");
+  }
+
+  return (
+    <td>
+      <Group gap={0} justify="center" align="center">
+        {sectionConfig?.rowActions.map((action) => (
+          <ActionCellController action={action} row={rowData} entity={entity} parentId={parentId} />
+        ))}
+      </Group>
+    </td>
+  );
+}

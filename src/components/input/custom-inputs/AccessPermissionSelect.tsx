@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { UseFormReturnType } from "@mantine/form";
 import { showNotification } from "@mantine/notifications";
 import axiosInstance from "../../../utils/axios-instance";
-import { PATH_API, _PATH_API } from "../../../path/path-api";
+import { apiEndpointRootsEnum, apiEndpoint } from "../../../path/path-api";
 import { useCookieContext } from "../../../context/CookieContext";
 import { convertToSelectItems } from "../../../utils/helpers/helper-functions";
 import useAuth from "../../../../hooks/useAuth";
@@ -39,30 +39,32 @@ const OrganizationSpaceSelect = ({
   const [spaces, setSpaces] = useState<ComboboxItem[]>([]);
 
   const deleteHeaderCookies = async () => {
-    await axiosInstance.delete(PATH_API.getSpaceSelections);
+    await axiosInstance.delete(apiEndpointRootsEnum.getSpaceSelections);
     setCurrentOrganization(null);
     setCurrentSpace(null);
     setSpaces([]);
   };
 
   const handleDeleteSpaceCookie = async () => {
-    await axiosInstance.delete(PATH_API.getSpaceSelections);
+    await axiosInstance.delete(apiEndpointRootsEnum.getSpaceSelections);
     setCurrentSpace(null);
   };
 
   const getSpaceCookieFromApi = async (spaceId: string) => {
     if (spaceId === "") {
-      await axiosInstance.delete(PATH_API.getSpaceSelections);
+      await axiosInstance.delete(apiEndpointRootsEnum.getSpaceSelections);
       resetCurrentSpace();
       return;
     }
-    const response = await axiosInstance.get(`${PATH_API.getSpaceSelections}/${spaceId}`);
+    const response = await axiosInstance.get(
+      `${apiEndpointRootsEnum.getSpaceSelections}/${spaceId}`
+    );
     setCurrentSpace(response.data.data.space);
   };
 
   const handleGetSpaces = async () => {
     try {
-      const response = await axiosInstance.get(`${PATH_API.getSpaceSelections}`);
+      const response = await axiosInstance.get(`${apiEndpointRootsEnum.getSpaceSelections}`);
       const selectOptions = convertToSelectItems(response.data.data);
       setSpaces(selectOptions);
     } catch (error) {

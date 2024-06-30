@@ -7,7 +7,7 @@ import { useCookieContext } from "../../../context/CookieContext";
 import { getEntityFromUrl, sleep } from "../../../utils/helpers/helper-functions";
 import { MaintainerModel } from "../../../types/models/maintainer-model";
 import axiosInstance from "../../../utils/axios-instance";
-import { PATH_API, _PATH_API } from "../../../path/path-api";
+import { apiEndpointRootsEnum, apiEndpoint } from "../../../path/path-api";
 import { useCustomModalContext } from "../../../context/modal-context/_ModalContext";
 import { useLocale } from "../../../../hooks/useLocale";
 import { Icons } from "../../../data/icons/icons";
@@ -42,7 +42,7 @@ export const FavoriteMaintainerButton = ({ onClick }: { onClick: () => void }) =
 
       const config: AxiosRequestConfig = {
         method: hasSpace ? "delete" : "post",
-        url: _PATH_API.maintainers.space(maintainer._id),
+        url: apiEndpoint.maintainers.space(maintainer._id),
         ...(hasSpace
           ? { data: { space: currentSpace._id } }
           : { data: { space: currentSpace._id } }),
@@ -119,7 +119,7 @@ export const FavoriteMaintainerButton = ({ onClick }: { onClick: () => void }) =
   //       );
   //     }
   //     const res = await axiosInstance.delete(
-  //       `${PATH_API.maintainersSpace}?maintainer=${maintainer._id}&space=${currentSpace._id}`
+  //       `${apiEndpointRootsEnum.maintainersSpace}?maintainer=${maintainer._id}&space=${currentSpace._id}`
   //     );
   //     setCrudDocument({ entity: _entity, maintainer: res.data.data });
   //     notifications.show({

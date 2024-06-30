@@ -37,6 +37,7 @@ function LoginForm({ role }: { role: Role }) {
       const meUser = await login(values.email, values.password, role);
       if (meUser) {
         router.push(_PATH_FRONTEND.pathAfterLogin(meUser.loggedAs));
+        return;
       }
       throw new Error("Login failed");
     } catch (error: any) {

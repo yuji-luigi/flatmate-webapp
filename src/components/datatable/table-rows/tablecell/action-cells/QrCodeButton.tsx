@@ -1,28 +1,34 @@
-import { ActionIcon, Box, Button, Card, Group, Stack } from "@mantine/core";
+import { ActionIcon } from "@mantine/core";
 import { IconQrcode } from "@tabler/icons-react";
-import React, { useState } from "react";
-import QRCode from "react-qr-code";
 import { showNotification } from "@mantine/notifications";
-import {
-  AuthTokenModel,
-  HiddenAuthTokenInterface,
-} from "../../../../../types/models/auth-token-model";
+import { HiddenAuthTokenInterface } from "../../../../../types/models/auth-token-model";
 import { useCustomModalContext } from "../../../../../context/modal-context/_ModalContext";
-import { API_BASE_URL, PATH_API, _PATH_API } from "../../../../../path/path-api";
-import { getEntityFromUrl } from "../../../../../utils/helpers/helper-functions";
+import { apiEndpoint } from "../../../../../path/path-api";
 import axiosInstance, { AxiosResDataGeneric } from "../../../../../utils/axios-instance";
-import { _PATH_FRONTEND } from "../../../../../path/path-frontend";
 import { QrCodeModalContent } from "./QrCodeModalContent";
 import { MongooseBaseModel } from "../../../../../types/models/mongoose-base-model";
+import { FrontendEntity } from "../../../../../types/redux/CrudSliceInterfaces";
+import {
+  INVITATION_STATUS,
+  pendingInvitationStatuses,
+} from "../../../../../types/models/invitation-model";
 
-export const QrCodeButton = ({ rowData }: { rowData: MongooseBaseModel }) => {
+export const QrCodeButton = ({
+  row,
+  entity,
+}: {
+  row: MongooseBaseModel;
+  entity: FrontendEntity;
+}) => {
   const { openConfirmModal } = useCustomModalContext();
-  const { _id } = rowData;
+  const { _id } = row;
 
   const generateQrCode = async () => {
     try {
+      // TODO: make a endpoint string locally and map that to the actual endpoint
       const rawAuthToken = await axiosInstance.get<AxiosResDataGeneric<HiddenAuthTokenInterface>>(
-        _PATH_API.users.getAuthToken(_id)
+        apiEndpoint.invitations.getAuthTokenByEntityRowId({ rowId: _id, entity }),
+        { params: { status: { $in: pendingInvitationStatuses } } }
       );
 
       const payload = rawAuthToken.data.data;
@@ -30,7 +36,7 @@ export const QrCodeButton = ({ rowData }: { rowData: MongooseBaseModel }) => {
       openConfirmModal({
         title: "QR Code",
         type: "custom",
-        children: <QrCodeModalContent authToken={payload} rowData={rowData} />,
+        children: <QrCodeModalContent authToken={payload} row={row} />,
         // onConfirm: () => {},
       });
     } catch (error: any) {
@@ -42,7 +48,6 @@ export const QrCodeButton = ({ rowData }: { rowData: MongooseBaseModel }) => {
       });
     }
   };
-  return <div>QrcodeButton component to setup</div>;
   return (
     <ActionIcon color="white" onClick={generateQrCode}>
       <IconQrcode />

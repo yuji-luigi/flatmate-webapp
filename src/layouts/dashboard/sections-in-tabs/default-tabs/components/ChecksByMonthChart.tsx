@@ -11,7 +11,7 @@ import { LabelLayerCustom } from "../../../../../components/chart/custom-layer/L
 import { LabelLayer } from "../../../../../components/chart/custom-layer/CustomLayer";
 import { FromToDateQueryInputs } from "../../../../../components/input/filter-inputs/FromToDateQueryInputs";
 import axiosInstance from "../../../../../utils/axios-instance";
-import { _PATH_API } from "../../../../../path/path-api";
+import { apiEndpoint } from "../../../../../path/path-api";
 import { PATH_IMAGE } from "../../../../../lib/image-paths";
 import { NothingFoundBackground } from "../../../../../components/errors/nothing-found/NothingFoundBackground";
 
@@ -35,7 +35,7 @@ export const ChecksByMonthChart = () => {
     };
   });
   const handleQueryByDate = async (values: { [key: string]: null | Date }) => {
-    const rawRes = await axiosInstance.get(_PATH_API.statistics.byMonth, { params: values });
+    const rawRes = await axiosInstance.get(apiEndpoint.statistics.byMonth, { params: values });
     setCrudDocument({ entity: "statistics", document: rawRes.data.data });
   };
   const currentDate = new Date();

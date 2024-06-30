@@ -4,6 +4,8 @@
 	"Register": "Register",
 	"from": "from",
 	"to": "to",
+	"Print": "Print",
+	"Download": "Download",
 	"choose-building-title": "Which building to operate?",
 	"Completed": "Completed",
 	"In progress": "In progress",
@@ -89,5 +91,9 @@
 	"of": "of",
 	"Issue": "Issue",
 	"Import Units": "Import Units",
-	"Add Inhabitants": "Add Flatmates"
+	"Add Inhabitants": "Add Flatmates",
+	"Unit": "Unità",
+	"Condominium": "Condominium",
+	"OwnerLabel": "Property Owner",
+	"MateLabel": "Tenant"
 }

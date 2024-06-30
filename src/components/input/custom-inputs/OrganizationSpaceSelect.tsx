@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { UseFormReturnType } from "@mantine/form";
 import { showNotification } from "@mantine/notifications";
 import axiosInstance from "../../../utils/axios-instance";
-import { PATH_API, _PATH_API } from "../../../path/path-api";
+import { apiEndpointRootsEnum, apiEndpoint } from "../../../path/path-api";
 import { useCookieContext } from "../../../context/CookieContext";
 import { convertToSelectItems } from "../../../utils/helpers/helper-functions";
 import useAuth from "../../../../hooks/useAuth";
@@ -43,21 +43,21 @@ const OrganizationSpaceSelect = ({
   const isSuperAdmin = true;
 
   const deleteHeaderCookies = async () => {
-    await axiosInstance.delete(`${PATH_API.organizationCookie}`);
-    await axiosInstance.delete(PATH_API.getSpaceSelections);
+    await axiosInstance.delete(`${apiEndpointRootsEnum.organizationCookie}`);
+    await axiosInstance.delete(apiEndpointRootsEnum.getSpaceSelections);
     setCurrentOrganization(null);
     setCurrentSpace(null);
     setSpaces([]);
   };
 
   const handleDeleteSpaceCookie = async () => {
-    await axiosInstance.delete(PATH_API.getSpaceSelections);
+    await axiosInstance.delete(apiEndpointRootsEnum.getSpaceSelections);
     setCurrentSpace(null);
   };
 
   const getOrganizations = async () => {
     try {
-      const response = await axiosInstance.get(_PATH_API.organizations.selections);
+      const response = await axiosInstance.get(apiEndpoint.organizations.selections);
       const selectOptions = convertToSelectItems(response.data.data);
       setOrganizations(selectOptions);
     } catch (error) {
@@ -72,9 +72,11 @@ const OrganizationSpaceSelect = ({
   /** get spaces options and reset the cookie of space. show all the info of organization without querying by space. */
   const handleOnSelectOrganization = async (organizationId: string) => {
     try {
-      const response = await axiosInstance.get(`${PATH_API.organizationCookie}/${organizationId}`);
+      const response = await axiosInstance.get(
+        `${apiEndpointRootsEnum.organizationCookie}/${organizationId}`
+      );
       const selectOptions = convertToSelectItems(response.data.data);
-      await axiosInstance.delete(`${PATH_API.getSpaceSelections}`);
+      await axiosInstance.delete(`${apiEndpointRootsEnum.getSpaceSelections}`);
       setCurrentSpace(null);
       setSpaces(selectOptions);
       setCurrentOrganization(organizationId);
@@ -85,18 +87,20 @@ const OrganizationSpaceSelect = ({
 
   const getSpaceCookieFromApi = async (spaceId: string) => {
     if (spaceId === "") {
-      await axiosInstance.delete(PATH_API.getSpaceSelections);
+      await axiosInstance.delete(apiEndpointRootsEnum.getSpaceSelections);
       resetCurrentSpace();
       return;
     }
-    const response = await axiosInstance.get(`${PATH_API.getSpaceSelections}/${spaceId}`);
+    const response = await axiosInstance.get(
+      `${apiEndpointRootsEnum.getSpaceSelections}/${spaceId}`
+    );
     setCurrentSpace(response.data.data.space);
   };
 
   const handleGetSpaces = async () => {
     try {
       // if (isSuperAdmin) return;
-      const response = await axiosInstance.get(`${PATH_API.getSpaceSelections}`);
+      const response = await axiosInstance.get(`${apiEndpointRootsEnum.getSpaceSelections}`);
       const selectOptions = convertToSelectItems(response.data.data);
       setSpaces(selectOptions);
     } catch (error) {

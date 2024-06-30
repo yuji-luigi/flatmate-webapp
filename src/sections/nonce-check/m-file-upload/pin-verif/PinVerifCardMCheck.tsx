@@ -19,7 +19,7 @@ import { Icons } from "../../../../data/icons/icons";
 import { useCrudSliceStore } from "../../../../redux/features/crud/crudSlice";
 import { sleep } from "../../../../utils/helpers/helper-functions";
 import { MaintenanceModel } from "../../../../types/models/maintenance-check-type";
-import { PATH_API, _PATH_API } from "../../../../path/path-api";
+import { apiEndpointRootsEnum, apiEndpoint } from "../../../../path/path-api";
 import { MaintainerCompleteRegisterCard } from "../maintainer-complete-register/MaintainerCompleteRegisterCard";
 
 /**
@@ -34,7 +34,9 @@ export const PinVerifCardMCheck = (props: {
   const [isCompleteRegister, setIsCompleteRegister] = useState<boolean>(false);
   const { setCrudDocument } = useCrudSliceStore();
   const endpoint =
-    query.linkId && query.id ? `${PATH_API.maintenanceFileUpload}/${query.linkId}/${query.id}` : "";
+    query.linkId && query.id
+      ? `${apiEndpointRootsEnum.maintenanceFileUpload}/${query.linkId}/${query.id}`
+      : "";
   const [submitting, setSubmitting] = useState<boolean>(false);
   const { linkId, id } = query;
   const handleChange = (value: string) => {
@@ -51,7 +53,7 @@ export const PinVerifCardMCheck = (props: {
 
         // first check maintainer has completed the register.
         const rawMaintainerCheck = await axiosInstance.post(
-          _PATH_API.authTokens.checkMaintainerFromMaintenance({ linkId, authTokenId: id }),
+          apiEndpoint.authTokens.checkMaintainerFromMaintenance({ linkId, authTokenId: id }),
           { pin: value }
         );
         if (rawMaintainerCheck.data.success === false && rawMaintainerCheck.data.data) {

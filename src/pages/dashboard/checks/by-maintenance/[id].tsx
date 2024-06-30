@@ -6,7 +6,7 @@ import { useTranslation } from "next-i18next";
 import { ChecksGrid } from "../../../../sections/dashboard/checks/ChecksGrid";
 import Layout from "../../../../layouts";
 import axiosInstance, { AxiosResDataGeneric } from "../../../../utils/axios-instance";
-import { _PATH_API } from "../../../../path/path-api";
+import { apiEndpoint } from "../../../../path/path-api";
 import { CheckInterface, MaintenanceModel } from "../../../../types/models/maintenance-check-type";
 import { PageTitle } from "../../../../components/text/PageTitle";
 import useRouterWithCustomQuery from "../../../../hooks/useRouterWithCustomQuery";
@@ -16,7 +16,7 @@ const fileFetcher = async (entity?: string, id?: string) => {
   try {
     const rawCheck = await axiosInstance.get<
       AxiosResDataGeneric<{ checks: CheckInterface[]; maintenance: MaintenanceModel }>
-    >(`${_PATH_API.checks.byMaintenanceId(id)}`);
+    >(`${apiEndpoint.checks.byMaintenanceId(id)}`);
     return rawCheck.data.data;
   } catch (error: any) {
     throw error.message;

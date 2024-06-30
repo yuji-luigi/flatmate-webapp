@@ -86,6 +86,10 @@ const nextConfig = (phase) => {
     // trailingSlash: true,
     swcMinify: true,
     env,
+    // webpack: (config) => {
+    //   config.resolve.alias.canvas = false;
+    //   return config;
+    // },
     // webpack,
     reactStrictMode: false,
 
