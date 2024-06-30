@@ -6,6 +6,7 @@ import {
   LinkChildrenFormFieldType,
   TextFormType,
 } from "../../../types/general/data/data-table/form-field-type/formField-types";
+import { useLocale } from "../../../../hooks/useLocale";
 
 interface Prop {
   formField: TextFormType | LinkChildrenFormFieldType;
@@ -13,6 +14,7 @@ interface Prop {
 }
 const CrudTextInput = ({ formField, form, ...others }: Prop) => {
   const { id, name, label, placeholder, type, ...formOthers } = formField;
+  const { t } = useLocale();
   // return null;
   return (
     <TextInput

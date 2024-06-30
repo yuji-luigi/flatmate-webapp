@@ -35,6 +35,7 @@ type Col = {
 };
 
 export type FormTypes =
+  | "unit-user"
   | "text"
   | "text-area"
   | "text-on-hover"

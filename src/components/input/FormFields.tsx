@@ -16,6 +16,7 @@ import { AccessPermissionFormButton } from "./crud-inputs/customs/access-permiss
 import { SpaceAutoSelect } from "./custom-inputs/SpaceAutoSelect";
 import DynamicSelectOptionHandler from "./crud-inputs/select-inputs/handler/DynamicSelectOptionHandler";
 import StaticSelectOptionHandler from "./crud-inputs/select-inputs/handler/StaticSelectOptionHandler";
+import { UnitUserInput } from "./custom-inputs/unit-user-input/UnitUserInput";
 
 interface Props {
   formField: FormFieldTypes;
@@ -27,7 +28,6 @@ interface Props {
 }
 const FormFields = ({ formField, form, ...others }: Props) => {
   const formType = formField.type;
-
   switch (formType) {
     case "number":
     case "text":
@@ -60,7 +60,8 @@ const FormFields = ({ formField, form, ...others }: Props) => {
       return <AccessPermissionFormButton form={form} formField={formField} {...others} />;
     case "space-auto-select":
       return <SpaceAutoSelect form={form} formField={formField} {...others} />;
-
+    case "unit-user":
+      return <UnitUserInput form={form} formField={formField} {...others} />;
     case "custom":
       // eslint-disable-next-line no-case-declarations
       const CustomComponent = formField.component;

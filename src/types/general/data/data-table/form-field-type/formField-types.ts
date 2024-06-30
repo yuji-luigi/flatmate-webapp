@@ -5,7 +5,6 @@ import {
   TextInputProps,
   TextareaProps,
 } from "@mantine/core";
-import { TablerIconsProps } from "@tabler/icons-react";
 import React from "react";
 import { Sections } from "../../sections-type";
 
@@ -13,7 +12,7 @@ import { BaseFormType } from "./base-form-type";
 import { FrontendEntity } from "../../../../redux/CrudSliceInterfaces";
 
 export type StaticOption = ComboboxItem & {
-  icon?: (props?: TablerIconsProps) => JSX.Element;
+  icon?: (props?: any) => JSX.Element;
 };
 
 export type TextFormType = {
@@ -116,11 +115,17 @@ export type SpaceSelectAuto = {
   type: "space-auto-select";
   multi?: boolean;
 } & BaseFormType;
+
 export type GeoApiInput = {
   type: "geo-api";
 } & BaseFormType;
 
+export type UnitUserInputFormField = {
+  type: "unit-user";
+} & BaseFormType;
+
 export type FormFieldTypes =
+  | UnitUserInputFormField
   | TextFormType
   | SelectFormType
   | StaticSelectFormFieldType

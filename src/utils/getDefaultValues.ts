@@ -19,7 +19,6 @@ export function getDefaultValues(
      *  to populate formFields.
      */
     if (crudDocument && _get(crudDocument, path)) {
-      console.log(path, crudDocument[path]);
       /** check if is a object  (field.type === select then fall into here.) */
       if (typeof crudDocument[path] === "object") {
         const newObj = _set(

@@ -1,7 +1,17 @@
+import { MaintainerSelect } from "../../../components/input/custom-inputs/MaintainerSelect";
 import { FormFieldTypes } from "../../../types/general/data/data-table/form-field-type/formField-types";
 
 export const unitsTableData: Array<FormFieldTypes> = [
   // company info
+  // {
+  //   id: "user",
+  //   name: "user",
+  //   label: "User",
+  //   placeholder: "First name",
+  //   type: "unit-user",
+  //   required: true,
+  //   priority: 1,
+  // },
   {
     id: "name",
     name: "name",

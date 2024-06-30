@@ -26,13 +26,14 @@ import useAuth from "../../../hooks/useAuth";
 import { Entity } from "../../types/redux/CrudSliceInterfaces";
 import { sectionsJson } from "../../json/section-config/sectionsConfig";
 import useRouterWithCustomQuery from "../../hooks/useRouterWithCustomQuery";
+import { useLocale } from "../../../hooks/useLocale";
 
 export function CrudDrawerDefault({ overridingEntity }: { overridingEntity?: Entity }) {
   const [submitting, setSubmitting] = useState(false);
   const { user } = useAuth();
   const { query } = useRouterWithCustomQuery();
   const entity = overridingEntity || (query.entity as Entity);
-
+  const { t } = useLocale();
   const parentId = query.parentId as string;
   const paginationQuery = usePaginationQuery();
   const sectionFormFields: FormFieldTypes[] = allFormFields[entity];
@@ -203,7 +204,7 @@ export function CrudDrawerDefault({ overridingEntity }: { overridingEntity?: Ent
             <FormFields
               // initialValues={initialValues}
               form={form}
-              formField={formField}
+              formField={{ ...formField, label: t(formField.label) }}
               key={formField.id}
             />
           ))}
