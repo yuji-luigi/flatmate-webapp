@@ -1,20 +1,29 @@
 import { Axios, AxiosRequestConfig } from "axios";
 import useSWR, { SWRConfiguration } from "swr";
-import axiosInstance, { AxiosResDataGeneric } from "../src/utils/axios-instance";
+import axiosInstance, {
+  AxiosResDataGeneric,
+  fetcher,
+  fetcherWithoutData,
+} from "../src/utils/axios-instance";
 
 export type FetchMethods = "POST" | "GET" | "PUT" | "PATCH";
-const useFetch = async ({ path, method }: { path: string; method: FetchMethods }) => {
-  const res = await fetch(path, {
-    method,
-  });
-  const data = await res.json();
-  return data;
-};
 
-export default useFetch;
+export function useFetch<T>(
+  path: string,
+  configs: {
+    swrConfig?: SWRConfiguration;
+    axiosConfig?: AxiosRequestConfig;
+    withData?: boolean;
+  } = { withData: true }
+) {
+  const { swrConfig, axiosConfig, withData } = configs;
+  // TODO: necessary useMemo?
+  return useSWR([path, axiosConfig, withData], fetcher, swrConfig);
+}
+
 type AxiosMethods = "post" | "get" | "delete" | "put" | "patch";
 
-export function useFetchSwr<Data = any, Payload = any>({
+export function useRequest<Data = any, Payload = any>({
   path,
   method,
   payload = {} as Payload,
@@ -29,13 +38,13 @@ export function useFetchSwr<Data = any, Payload = any>({
 }) {
   return useSWR<AxiosResDataGeneric<Data>>(
     [method, path, payload, axiosConfig],
-    fetcher,
+    requestor,
     swrConfig
   );
 }
 
 type URL = string;
-async function fetcher<Data, Payload>(
+async function requestor<Data, Payload>(
   args: [AxiosMethods, URL, Payload, AxiosRequestConfig]
 ): Promise<Data> {
   const [method, path, payload, axiosConfig] = args;
