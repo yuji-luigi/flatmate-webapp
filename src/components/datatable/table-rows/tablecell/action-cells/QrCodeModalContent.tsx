@@ -107,7 +107,7 @@ function RenewButton({
       }
       await axiosInstance.post(
         apiEndpoint.authTokens.renew,
-        {},
+        { space: row.space._id },
         { params: { _id: { $in: [authToken._id] } } }
       );
       const rawAuthToken = await axiosInstance.get<AxiosResDataGeneric<HiddenAuthTokenInterface>>(
