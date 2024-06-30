@@ -14,6 +14,7 @@ interface Prop {
   formField: SelectFormType;
   form: UseFormReturnTypeCustom;
 }
+/**@description always dynamic select from FlatMate api */
 const DynamicSelectOptionHandler = ({ formField, form, ...others }: Prop) => {
   const options = useGetSelectOptions(formField);
   return <CrudSelect options={options} formField={formField} form={form} />;

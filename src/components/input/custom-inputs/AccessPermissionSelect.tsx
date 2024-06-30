@@ -1,13 +1,11 @@
-import { Box, ComboboxItem, MantineStyleProp, Select, TextInput } from "@mantine/core";
-import React, { useEffect, useState } from "react";
-import { useRouter } from "next/router";
+import { Box, ComboboxItem, MantineStyleProp, Select } from "@mantine/core";
+import { useEffect, useState } from "react";
 import { UseFormReturnType } from "@mantine/form";
 import { showNotification } from "@mantine/notifications";
 import axiosInstance from "../../../utils/axios-instance";
-import { apiEndpointRootsEnum, apiEndpoint } from "../../../path/path-api";
+import { apiEndpointRootsEnum } from "../../../path/path-api";
 import { useCookieContext } from "../../../context/CookieContext";
 import { convertToSelectItems } from "../../../utils/helpers/helper-functions";
-import useAuth from "../../../../hooks/useAuth";
 
 interface OrganizationSpaceSelectProps {
   style?: MantineStyleProp;

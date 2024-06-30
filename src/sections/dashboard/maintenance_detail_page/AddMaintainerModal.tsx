@@ -15,7 +15,7 @@ import { getEntityFromUrl, sleep } from "../../../utils/helpers/helper-functions
 import { useCustomModalContext } from "../../../context/modal-context/_ModalContext";
 import { SpaceModel } from "../../../types/models/space-model";
 import { SelectOption } from "../../../types/general/data/data-table/form-field-type/formField-types";
-import { useFetchSwr } from "../../../../hooks/useFetch";
+import { useRequest } from "../../../../hooks/useFetch";
 
 const fetchMainSpaces = async () => {
   const res = await axiosInstance.get(`${apiEndpointRootsEnum.getSpaceSelections}`);
@@ -45,7 +45,7 @@ const AddMaintainerModal = () => {
     data,
     error: errorSwr,
     isLoading,
-  } = useFetchSwr<SpaceModel[]>({ path: apiEndpointRootsEnum.getSpaceSelections, method: "get" });
+  } = useRequest<SpaceModel[]>({ path: apiEndpointRootsEnum.getSpaceSelections, method: "get" });
 
   if (!data || isLoading) return <LoadingScreen />;
   const spaces = data.data;
