@@ -1,4 +1,4 @@
-import axios, { AxiosInstance, AxiosResponse } from "axios";
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { Sections } from "../types/general/data/sections-type";
 import { API_BASE_URL } from "../path/path-api";
 import { AllModels } from "../types/models/allmodels";
@@ -48,6 +48,29 @@ axiosInstance.interceptors.response.use(
       (error.response && error.response.data) || "Server error: connection not established."
     )
 );
+
+export const fetcherWithoutData = async (url: string) => {
+  try {
+    const response = await axiosInstance.get(url);
+    return response.data;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const fetcher = async (
+  data: [string, undefined | AxiosRequestConfig, boolean],
+  config?: AxiosRequestConfig
+) => {
+  try {
+    const [url, config, withData] = data as [string, AxiosRequestConfig, boolean];
+    const response = await axiosInstance.get(url, config);
+    if (withData) return response.data;
+    return response;
+  } catch (error) {
+    return error;
+  }
+};
 
 export const uploadConfig = {
   headers: {
