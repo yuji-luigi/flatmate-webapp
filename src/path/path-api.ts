@@ -1,6 +1,6 @@
 import { link } from "fs";
 import { Role } from "../types/models/space-model";
-import { FrontendEntity } from "../types/redux/CrudSliceInterfaces";
+import { entities, FrontendEntity } from "../types/redux/CrudSliceInterfaces";
 import { inhabitant } from "../json/section-config/sectionBaseConfigs";
 
 export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -68,6 +68,17 @@ const all = (entity: string) => `${entity}`;
 const byId = (entity: string, _id: string) => `${entity}/${_id}`;
 const getExcelEndpoint = (excelRoute: string, entity: string) => `${excelRoute}/${entity}`;
 // const getQrCodeEndpoint = ({qrCodeRoute, entity}) => `${qrCodeRoute}/${entity}`;
+
+export const crudApiEndpoint = entities.reduce(
+  (acc, entity) => {
+    acc[entity] = {
+      root: all(entity),
+      byId: (id: string) => byId(entity, id),
+    };
+    return acc;
+  },
+  {} as Record<FrontendEntity, { root: string; byId: (id: string) => string }>
+);
 
 export const apiEndpoint = {
   // pseudo entity spaceSelections
