@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useForm } from "@mantine/form";
 import Layout from "../../../layouts";
 import { useLocale } from "../../../../hooks/useLocale";
-import { _PATH_FRONTEND } from "../../../path/path-frontend";
+import { _PATH_FRONTEND, FRONTEND_ROOT, PATH_AFTER_LOGIN } from "../../../path/path-frontend";
 import useRouterWithCustomQuery from "../../../hooks/useRouterWithCustomQuery";
 import { apiEndpoint } from "../../../path/path-api";
 import axiosInstance from "../../../utils/axios-instance";
@@ -13,12 +13,14 @@ import { PATH_IMAGE } from "../../../lib/image-paths";
 import Image from "next/image";
 import { GetServerSidePropsContext } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import useAuth from "../../../../hooks/useAuth";
 
 const InvitationLoginPage = () => {
   const { t, locale } = useLocale();
   const { t: tn } = useLocale("notification");
   console.log({ locale });
   const { query, push } = useRouterWithCustomQuery();
+  const { login } = useAuth();
   const [formError, setFormError] = useState("");
   const form = useForm({
     initialValues: { email: "", password: "" },
@@ -39,8 +41,17 @@ const InvitationLoginPage = () => {
       throw new Error("Something went wrong. (no redirect parameter)");
     }
     try {
-      await axiosInstance.post(apiEndpoint.invitations.acceptByLogin(linkId), form.values);
-      push(query.redirect);
+      // TODO:(?Not sure)  1, call normal login. 2. get jwt. 3. come back to this page. 4. call acceptByLogin. 5. <success>log user in. <fail> show error.
+      // NOW:   1. call acceptByLogin. 2. <success> redirect to query.redirect. <fail> show error.
+      // NOTE: linkId to find invitation. the invitation in backend controls the operation all in serverside.
+      const rawRes = await axiosInstance.post(
+        apiEndpoint.invitations.acceptByLogin(linkId),
+        form.values
+      );
+      const { userType } = rawRes.data.data;
+      await login(form.values.email, form.values.password, userType);
+      push(PATH_AFTER_LOGIN(userType));
+      // push(query.redirect);
     } catch (error: any) {
       setFormError(error.message || error);
     }
