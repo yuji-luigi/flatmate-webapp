@@ -74,6 +74,7 @@ const InvitationLoginPage = () => {
       const { status, ...dto } = values;
       // switch the request based on the withNonce query parameter
       // case with nonce call endpoint where email verification is needed
+      // The endpoint must be the same. handle registration with email verification in the backend for each userType.
       if (withNonce) {
         await axiosInstance.post(apiEndpoint.invitations.preRegisterWithEmailVerification(linkId), {
           ...dto,
