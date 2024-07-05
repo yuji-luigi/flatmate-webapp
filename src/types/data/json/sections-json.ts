@@ -49,4 +49,4 @@ export type RowAction = {
   label?: string;
   type: RowActionType;
 };
-export type RowActionType = "modify" | "delete" | "qr_code";
+export type RowActionType = "modify" | "delete" | "qr_code" | "remove_unit_user";

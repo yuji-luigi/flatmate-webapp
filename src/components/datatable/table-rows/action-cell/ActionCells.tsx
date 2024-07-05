@@ -34,8 +34,15 @@ export function ActionCells({
     throw new Error("entity query is used in non crud page");
   }
   return (
-    <td>
-      <Menu shadow="md" width={200}>
+    <>
+      <Menu
+        shadow="md"
+        position="left-start"
+        offset={0}
+        trigger="hover"
+        openDelay={100}
+        closeDelay={100}
+      >
         <Menu.Target>
           <div>
             <IconButton icon={<IconDotsVertical />} />
@@ -54,7 +61,7 @@ export function ActionCells({
           ))}
         </Menu.Dropdown>
       </Menu>
-    </td>
+    </>
   );
   return (
     <td>

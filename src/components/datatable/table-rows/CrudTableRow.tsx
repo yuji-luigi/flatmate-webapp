@@ -50,7 +50,9 @@ export function CrudTableRow({
         )
       )}
       {!!sectionConfig?.rowActions?.length && (
-        <ActionCells rowData={rowData} overridingEntity={entity} />
+        <Table.Td>
+          <ActionCells rowData={rowData} overridingEntity={entity} />
+        </Table.Td>
       )}
     </Table.Tr>
   );

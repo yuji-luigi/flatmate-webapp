@@ -40,7 +40,7 @@ export const EditActionCell: React.FC<ActionCellProps> = ({
       <Menu.Item
         leftSection={
           <ActionIcon>
-            <IconPencil size={16} stroke={1.5} />
+            <IconPencil stroke={1.5} />
           </ActionIcon>
         }
         onClick={onModify}
@@ -51,7 +51,7 @@ export const EditActionCell: React.FC<ActionCellProps> = ({
   }
   return (
     <ActionIcon onClick={onModify}>
-      <IconPencil size={16} stroke={1.5} />
+      <IconPencil stroke={1.5} />
     </ActionIcon>
   );
 };

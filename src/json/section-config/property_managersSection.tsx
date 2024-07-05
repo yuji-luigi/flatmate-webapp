@@ -69,6 +69,7 @@ export const propertyManagerSectionConfigs: Record<string, SectionConfig> = {
     rowActions: [
       { label: "Modify", type: "modify" },
       { label: "QR-Code", type: "qr_code" },
+      { label: "Remove user from unit", type: "remove_unit_user" },
     ],
   },
   maintainer,
