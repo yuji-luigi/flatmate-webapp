@@ -1,7 +1,7 @@
 import { NotificationData } from "@mantine/notifications";
 import { Icons } from "../icons/icons";
 type ErrorArgs = {
-  data?: any;
+  message?: any;
   ms?: number;
   id?: string;
 };
@@ -18,7 +18,7 @@ export const ERROR_GENERAL = {
 export const LOADING_GENERAL = {
   id: "loading-general",
   title: "Loading",
-  message: "Finishing operation...",
+  // message: "Finishing operation...",
   color: "blue",
   loading: true,
 };
@@ -43,6 +43,14 @@ export const constructErrorNotificationData = (
     message: data || data?.message || "connection error",
     autoClose: ms,
   };
+};
+
+export const ERROR_NOTIFICATION = {
+  title: "Error",
+  color: "red",
+  icon: <Icons.alert />,
+  message: "connection error",
+  autoClose: 5000,
 };
 
 export const NOTIFICATIONS = {
@@ -71,9 +79,11 @@ export const NOTIFICATIONS = {
     },
   },
   ERROR: {
+    construct: constructErrorNotificationData,
+    // TODO: DEPRECATE
     general: (
       args: ErrorArgs = {
-        data: { message: "Something went wrong" },
+        message: "Something went wrong, please try again or contact support",
         ms: 2000,
         id: "error",
       }

@@ -36,7 +36,10 @@ export const system_adminSectionConfigs: Record<string, SectionConfig> = {
         type: "invite",
       },
     ],
-    rowActions: ["qr_code", "modify"],
+    rowActions: [
+      { label: "Modify", type: "modify" },
+      { label: "QR-Code", type: "qr_code" },
+    ],
   },
   maintainer,
   property_manager: {

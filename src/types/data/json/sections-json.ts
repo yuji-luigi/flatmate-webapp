@@ -45,4 +45,8 @@ export type SectionAction =
   | "import-inhabitant-unit";
 
 type CustomSectionAction = "import-inhabitant-unit";
-export type RowAction = "modify" | "delete" | "qr_code";
+export type RowAction = {
+  label?: string;
+  type: RowActionType;
+};
+export type RowActionType = "modify" | "delete" | "qr_code";

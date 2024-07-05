@@ -1,4 +1,4 @@
-import { RowAction } from "../../../../types/data/json/sections-json";
+import { RowAction, RowActionType } from "../../../../types/data/json/sections-json";
 import { MongooseBaseModel } from "../../../../types/models/mongoose-base-model";
 import { FrontendEntity } from "../../../../types/redux/CrudSliceInterfaces";
 import { QrCodeButton } from "../tablecell/action-cells/QrCodeButton";
@@ -18,11 +18,21 @@ export const ActionCellController: React.FC<ActionCellControllerProps> = ({
   entity,
   ...other
 }: ActionCellControllerProps) => {
-  const Action = ActionButtons[action];
-  return <Action row={row} entity={entity} {...other} />;
+  const Action = ActionButtons[action.type];
+  return <Action row={row} entity={entity} {...other} action={action} />;
+};
+
+export const ActionMenuController: React.FC<ActionCellControllerProps> = ({
+  action,
+  row,
+  entity,
+  ...other
+}: ActionCellControllerProps) => {
+  const Action = ActionButtons[action.type];
+  return <Action row={row} entity={entity} {...other} action={action} isMenu />;
 };
 const ActionButtons = {
   delete: DeleteActionCell,
   modify: EditActionCell,
   qr_code: QrCodeButton,
-};
+} as const;

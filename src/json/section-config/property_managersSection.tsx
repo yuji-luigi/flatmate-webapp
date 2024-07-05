@@ -29,7 +29,10 @@ export const propertyManagerSectionConfigs: Record<string, SectionConfig> = {
         type: "create",
       },
     ],
-    rowActions: ["modify", "delete"],
+    rowActions: [
+      { label: "Modify", type: "modify" },
+      { label: "Delete", type: "delete" },
+    ],
   },
   inhabitant: {
     ...inhabitant,
@@ -46,7 +49,10 @@ export const propertyManagerSectionConfigs: Record<string, SectionConfig> = {
         type: "invite",
       },
     ],
-    rowActions: ["qr_code", "modify"],
+    rowActions: [
+      { label: "Modify", type: "modify" },
+      { label: "QR-Code", type: "qr_code" },
+    ],
   },
   units: {
     ...units,
@@ -60,7 +66,10 @@ export const propertyManagerSectionConfigs: Record<string, SectionConfig> = {
         type: "import-inhabitant-unit",
       },
     ],
-    rowActions: ["qr_code", "modify"],
+    rowActions: [
+      { label: "Modify", type: "modify" },
+      { label: "QR-Code", type: "qr_code" },
+    ],
   },
   maintainer,
   property_manager,

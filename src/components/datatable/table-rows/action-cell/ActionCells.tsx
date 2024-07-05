@@ -1,5 +1,5 @@
-import { Group, ActionIcon } from "@mantine/core";
-import { IconPencil, IconTrash } from "@tabler/icons-react";
+import { Group, ActionIcon, Button, Menu, rem } from "@mantine/core";
+import { IconDotsVertical, IconPencil, IconSettings, IconTrash } from "@tabler/icons-react";
 import { useRouter } from "next/router";
 import useAuth from "../../../../../hooks/useAuth";
 import { useCustomModalContext } from "../../../../context/modal-context/_ModalContext";
@@ -11,7 +11,10 @@ import { MongooseBaseModel } from "../../../../types/models/mongoose-base-model"
 import { FrontendEntity } from "../../../../types/redux/CrudSliceInterfaces";
 import { QrCodeButton } from "../tablecell/action-cells/QrCodeButton";
 import { useDrawerContext } from "../../../../context/DataTableDrawerContext";
-import { ActionCellController } from "./ActionCellController";
+import { ActionCellController, ActionMenuController } from "./ActionCellController";
+import { Icons } from "../../../../data/icons/icons";
+import { IconButton } from "../../../button/IconButton";
+import { Fragment } from "react";
 
 export function ActionCells({
   rowData,
@@ -30,11 +33,33 @@ export function ActionCells({
   if (!entity) {
     throw new Error("entity query is used in non crud page");
   }
+  return (
+    <td>
+      <Menu shadow="md" width={200}>
+        <Menu.Target>
+          <div>
+            <IconButton icon={<IconDotsVertical />} />
+          </div>
+        </Menu.Target>
 
+        <Menu.Dropdown>
+          {sectionConfig?.rowActions?.map((action) => (
+            <ActionMenuController
+              key={action.type}
+              action={action}
+              row={rowData}
+              entity={entity}
+              parentId={parentId}
+            />
+          ))}
+        </Menu.Dropdown>
+      </Menu>
+    </td>
+  );
   return (
     <td>
       <Group gap={0} justify="center" align="center">
-        {sectionConfig?.rowActions.map((action) => (
+        {sectionConfig?.rowActions?.map((action) => (
           <ActionCellController action={action} row={rowData} entity={entity} parentId={parentId} />
         ))}
       </Group>

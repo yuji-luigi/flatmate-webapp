@@ -14,14 +14,17 @@ import Image from "next/image";
 import { GetServerSidePropsContext } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import useAuth from "../../../../hooks/useAuth";
+import { NotificationPageView } from "../../../components/page-components/NotificationPageView";
+import { UserType } from "../../../lib/enums";
 
 const InvitationLoginPage = () => {
   const { t, locale } = useLocale();
   const { t: tn } = useLocale("notification");
-  console.log({ locale });
+  const [success, setSuccess] = useState<UserType | false>(false);
   const { query, push } = useRouterWithCustomQuery();
   const { login } = useAuth();
   const [formError, setFormError] = useState("");
+  const router = useRouterWithCustomQuery();
   const form = useForm({
     initialValues: { email: "", password: "" },
     validate: {
@@ -50,12 +53,35 @@ const InvitationLoginPage = () => {
       );
       const { userType } = rawRes.data.data;
       await login(form.values.email, form.values.password, userType);
-      push(PATH_AFTER_LOGIN(userType));
-      // push(query.redirect);
+      setSuccess(userType);
+      // push(PATH_AFTER_LOGIN(userType));
     } catch (error: any) {
       setFormError(error.message || error);
     }
   };
+  if (success) {
+    return (
+      <Page title={t("Invitation completed")}>
+        <NotificationPageView
+          title={t("Invitation completed. You will be redirected to your dashboard.")}
+          description={t(
+            "You have successfully accepted the invitation. If you are not redirected, click the button below."
+          )}
+          imageUrl={PATH_IMAGE.loading}
+          redirectOption={{
+            router,
+            sec: 5,
+            redirectPath: _PATH_FRONTEND.dashboard.home(success),
+          }}
+          CTA={
+            <Button onClick={() => push(_PATH_FRONTEND.dashboard.home(success))}>
+              {t("Go now")}
+            </Button>
+          }
+        />
+      </Page>
+    );
+  }
   return (
     <Page title={t("Invited!")} className="login-page-container grid-center">
       <form onSubmit={handleSubmit}>
