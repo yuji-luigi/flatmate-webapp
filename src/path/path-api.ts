@@ -224,6 +224,7 @@ export const apiEndpoint = {
     byId: (id: string) => `${apiEndpointRootsEnum.units}/${id}`,
     withAuthTokenById: (idUnit: string) => `${apiEndpointRootsEnum.units}/${idUnit}/auth-tokens`,
     withAuthToken: `${apiEndpointRootsEnum.units}/auth-tokens`,
+    userById: (idUnit: string) => `${apiEndpointRootsEnum.units}/${idUnit}/users`,
   },
 } as const;
 

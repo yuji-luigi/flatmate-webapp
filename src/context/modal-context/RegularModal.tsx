@@ -34,23 +34,22 @@ export const RegularModal = (props: RegularModalProps) => {
   const confirmStyle = modalData.style?.confirm ? modalData.style.confirm : {};
   return (
     <>
-      {modalData.children}
-      <Stack>
-        <Box
-          display="flex"
-          style={{ flexDirection: isMobile ? "column" : "row", gap: 8, justifyContent: "end" }}
+      <div>{modalData.children}</div>
+      <Box
+        display="flex"
+        pt={25}
+        style={{ flexDirection: isMobile ? "column" : "row", gap: 8, justifyContent: "end" }}
+      >
+        <Button variant="outline" style={modalData.style?.cancel} onClick={handleCancel}>
+          {modalData.labels?.cancel || "Cancel"}
+        </Button>
+        <Button
+          style={{ backgroundColor: isAlert ? "red" : "", ...confirmStyle }}
+          onClick={handleConfirm}
         >
-          <Button variant="outline" style={modalData.style?.cancel} onClick={handleCancel}>
-            {modalData.labels?.cancel || "Cancel"}
-          </Button>
-          <Button
-            style={{ backgroundColor: isAlert ? "red" : "", ...confirmStyle }}
-            onClick={handleConfirm}
-          >
-            {modalData.labels?.confirm || "Confirm"}
-          </Button>
-        </Box>
-      </Stack>
+          {modalData.labels?.confirm || "Confirm"}
+        </Button>
+      </Box>
       {submitting && <LoadingOverlay visible />}
     </>
   );

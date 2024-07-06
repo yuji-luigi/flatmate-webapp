@@ -25,7 +25,6 @@ export function ActionCells({
 }) {
   const router = useRouter();
   const parentId = router.query.parentId as string;
-
   const {
     query: { entity },
   } = useRouterWithCustomQuery();

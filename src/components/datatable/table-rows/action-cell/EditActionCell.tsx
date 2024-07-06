@@ -37,14 +37,7 @@ export const EditActionCell: React.FC<ActionCellProps> = ({
   };
   if (isMenu) {
     return (
-      <Menu.Item
-        leftSection={
-          <ActionIcon>
-            <IconPencil stroke={1.5} />
-          </ActionIcon>
-        }
-        onClick={onModify}
-      >
+      <Menu.Item leftSection={<IconPencil color={action.color} stroke={1.5} />} onClick={onModify}>
         {t(action.label || "Delete")}
       </Menu.Item>
     );

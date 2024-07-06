@@ -47,6 +47,7 @@ export type SectionAction =
 type CustomSectionAction = "import-inhabitant-unit";
 export type RowAction = {
   label?: string;
+  color?: MantineColor;
   type: RowActionType;
 };
 export type RowActionType = "modify" | "delete" | "qr_code" | "remove_unit_user";

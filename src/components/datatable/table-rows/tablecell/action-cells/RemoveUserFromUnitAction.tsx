@@ -15,13 +15,53 @@ import {
 import { ActionCellProps } from "../../action-cell/action-cell-types";
 import { t } from "i18next";
 import { useLocale } from "../../../../../../hooks/useLocale";
+import { useCrudSliceStore } from "../../../../../redux/features/crud/crudSlice";
 
 export const RemoveUserFromUnitAction = ({ row, entity, isMenu, action }: ActionCellProps) => {
   const { openConfirmModal } = useCustomModalContext();
+  const { updateOneCrudDocument } = useCrudSliceStore();
   const { t } = useLocale();
+  const deleteConfirm = () => {
+    axiosInstance
+      .delete(apiEndpoint.units.userById(row._id))
+      .then((res) => {
+        updateOneCrudDocument({
+          entity: "units",
+          updatedDocument: res.data.data,
+        });
+        showNotification({
+          title: "Success",
+          message: "User removed",
+          color: "green",
+        });
+      })
+      .catch((err) => {
+        showNotification({
+          title: "Error",
+          message: "An error occurred while removing the user",
+          color: "red",
+        });
+      });
+  };
+  const handleOnClick = () => {
+    openConfirmModal({
+      title: "Remove User",
+      type: "alert",
+      centered: true,
+      labels: {
+        cancel: "Cancel",
+        confirm: "Remove",
+      },
+      children: <Text>Are you sure you want to remove this user from the unit?</Text>,
+      onConfirm: deleteConfirm,
+      opened: false,
+    });
+  };
+
   if (isMenu) {
     return (
       <Menu.Item
+        onClick={handleOnClick}
         leftSection={
           <ActionIcon color="white">
             <IconUserCancel />
