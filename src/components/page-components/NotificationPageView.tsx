@@ -36,7 +36,9 @@ export const NotificationPageView = ({
   }, []);
   return (
     <Stack justify="center" align="center" style={{ height: "100%" }}>
-      <Title ta="center">{title}</Title>
+      <Title size={24} ta="center">
+        {title}
+      </Title>
       {imageUrl && (
         <Stack justify="center" gap={0}>
           <img

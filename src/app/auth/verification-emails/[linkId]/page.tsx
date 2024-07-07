@@ -1,25 +1,17 @@
 "use client";
-import { Grid, Tabs, Container, Transition, Text, Button } from "@mantine/core";
+import { Container, Transition, Text, Button } from "@mantine/core";
 import { t } from "i18next";
 import React, { useEffect, useState } from "react";
-import { PageHeader } from "../../../../components/profile/CoverWithoutCard";
-import { CheckInputTabCard } from "../../../../sections/nonce-check/m-file-upload/verified-m-file/invoice-receipt-input/CheckInputTabCard";
-import { MaintenanceTab } from "../../../../sections/nonce-check/m-file-upload/verified-m-file/maintenance-tab/MaintenanceTab";
-import { PinVerificationCard } from "../../../_component/card/PinVerificationCard";
 import Page from "../../../../components/Page";
-import axios from "axios";
 import axiosInstance from "../../../../utils/axios-instance";
 import { apiEndpoint } from "../../../../path/path-api";
 import { showNotification, cleanNotifications } from "@mantine/notifications";
 import { NOTIFICATIONS } from "../../../../data/showNofification/notificationObjects";
-import { useParams } from "next/navigation";
 import { sleep } from "../../../../utils/helpers/helper-functions";
 import { NotificationPageView } from "../../../../components/page-components/NotificationPageView";
 import { PATH_IMAGE } from "../../../../lib/image-paths";
 import Link from "next/link";
 import { _PATH_FRONTEND } from "../../../../path/path-frontend";
-import { ErrorBoundary } from "next/dist/client/components/error-boundary";
-import ErrorVerificationEmail from "./Error";
 
 const classes = {};
 const maintenance = {};
@@ -33,18 +25,12 @@ const EmailVerificationPage = ({ params, searchParams }: Props) => {
 
   useEffect(() => {
     handleVerify();
-    // axiosInstance
-    //   .get(apiEndpoint.authTokens.verifyEmailInhabitant({ linkId: params.linkId }))
-    //   .then((_) => showNotification(NOTIFICATIONS.SUCCESS.generic));
   }, []);
 
-  // const endpoint = apiEndpoint.authTokens.verifyEmailInhabitant({
-  //   linkId: query?.linkId as string,
-  // });
   const handleVerify = async () => {
     try {
       const rawRes = await axiosInstance.post(
-        apiEndpoint.authTokens.verifyEmailInhabitant({ linkId: params.linkId })
+        apiEndpoint.verificationEmails.verifyByLinkId(params.linkId)
       );
       await sleep(750);
       cleanNotifications();

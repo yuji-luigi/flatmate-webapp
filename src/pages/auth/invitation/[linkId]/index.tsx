@@ -1,13 +1,5 @@
-import React, { useEffect } from "react";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { GetServerSidePropsContext } from "next";
-import Image from "next/image";
-import { Button } from "@mantine/core";
-import { request } from "http";
-import Link from "next/link";
-import useRouterWithCustomQuery from "../../../../hooks/useRouterWithCustomQuery";
-import Page from "../../../../components/Page";
-import { useLocale } from "../../../../../hooks/useLocale";
 import axiosInstance, {
   AxiosMeResponse,
   AxiosResDataGeneric,

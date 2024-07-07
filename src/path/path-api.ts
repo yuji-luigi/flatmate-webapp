@@ -146,8 +146,7 @@ export const apiEndpoint = {
     sendEmail: () => all(apiEndpointRootsEnum.authTokens),
     renew: `${apiEndpointRootsEnum.authTokens}/renew`,
     /** payload {nonce: string} */
-    verifyEmailInhabitant: ({ linkId }: { linkId: string }) =>
-      `${apiEndpointRootsEnum.authTokens}/verify-email/inhabitant/${linkId}`,
+
     verifyPin: ({ linkId, _id, entity }: { linkId?: string; _id?: string; entity?: string }) => {
       if (_id && entity) {
         return `${apiEndpointRootsEnum.authTokens}/verify-pin/${linkId}/${_id}/${entity}`;
@@ -215,6 +214,9 @@ export const apiEndpoint = {
     acceptByLinkId: (linkId: string) => `${apiEndpointRootsEnum.invitations}/accept/${linkId}`,
     getAuthTokenByEntityRowId: ({ rowId, entity }: { rowId: string; entity: string }) =>
       `${apiEndpointRootsEnum.invitations}/${entity}/auth-token/${rowId}`,
+  },
+  verificationEmails: {
+    verifyByLinkId: (linkId: string) => `/verification-emails/verify/${linkId}`,
   },
   inhabitant: {
     importExcel: `${apiEndpointRootsEnum.inhabitant}/${apiEndpointRootsEnum.importExcel}`,

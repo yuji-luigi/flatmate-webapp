@@ -1,7 +1,5 @@
 import { Button, ComboboxData, Group, LoadingOverlay, MultiSelect, Stack } from "@mantine/core";
 import React, { useState } from "react";
-import useSWR from "swr";
-import { AxiosError } from "axios";
 import { useForm } from "@mantine/form";
 import { useRouter } from "next/router";
 import { hideNotification, notifications } from "@mantine/notifications";
@@ -14,8 +12,8 @@ import { useCrudSelectors, useCrudSliceStore } from "../../../redux/features/cru
 import { getEntityFromUrl, sleep } from "../../../utils/helpers/helper-functions";
 import { useCustomModalContext } from "../../../context/modal-context/_ModalContext";
 import { SpaceModel } from "../../../types/models/space-model";
-import { SelectOption } from "../../../types/general/data/data-table/form-field-type/formField-types";
-import { useRequest } from "../../../../hooks/useFetch";
+import { useFetch } from "../../../../hooks/useFetch";
+import { MaintainerModel } from "../../../types/models/maintainer-model";
 
 const fetchMainSpaces = async () => {
   const res = await axiosInstance.get(`${apiEndpointRootsEnum.getSpaceSelections}`);
@@ -33,7 +31,7 @@ const AddMaintainerModal = () => {
   const { user } = useAuth();
   const router = useRouter();
   const _entity = getEntityFromUrl();
-  const { crudDocument, crudError, crudStatus } = useCrudSelectors(_entity);
+  const { crudDocument, crudError, crudStatus } = useCrudSelectors<MaintainerModel>(_entity);
   const { setCrudDocument, resetCrudStatus } = useCrudSliceStore();
 
   const form = useForm({
@@ -45,7 +43,7 @@ const AddMaintainerModal = () => {
     data,
     error: errorSwr,
     isLoading,
-  } = useRequest<SpaceModel[]>({ path: apiEndpointRootsEnum.getSpaceSelections, method: "get" });
+  } = useFetch<SpaceModel[]>(apiEndpointRootsEnum.getSpaceSelections);
 
   if (!data || isLoading) return <LoadingScreen />;
   const spaces = data.data;
@@ -64,7 +62,7 @@ const AddMaintainerModal = () => {
       color: "blue",
       loading: true,
     });
-    if (form.values.spaces.length === 0) return;
+    if (form.values.spaces.length === 0 || !crudDocument) return;
     // call api to add maintainer with axiosInstance in utils
     try {
       const rawMaintainer = await axiosInstance.post(
