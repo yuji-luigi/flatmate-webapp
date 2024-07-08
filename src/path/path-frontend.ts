@@ -131,8 +131,8 @@ export const _PATH_FRONTEND = {
       entity: FrontendEntity;
       authToken: HiddenAuthTokenInterface;
     }) => `${FRONTEND_ROOT}/auth-tokens/${entity}/${authToken.linkId}/${authToken._id}`,
-    invitationWithoutEmail: (authToken: HiddenAuthTokenInterface) =>
-      `${FRONTEND_ROOT}/auth/invitation/by-code/${authToken.linkId}?withEmail=false`,
+    invitationWithoutEmail: (authToken: HiddenAuthTokenInterface | undefined) =>
+      `${FRONTEND_ROOT}/auth/invitation/by-code/${authToken?.linkId}?withEmail=false`,
   },
   maintenances: {
     root: PATH_CLIENT.maintenances,

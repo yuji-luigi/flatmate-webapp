@@ -1,4 +1,4 @@
-import { View, Image, StyleSheet, Text } from "@react-pdf/renderer";
+import { View, Image, StyleSheet, Text } from "@alexandernanberg/react-pdf-renderer";
 import QRCode from "qrcode";
 import React from "react";
 import { AuthTokenModel } from "../../types/models/auth-token-model";

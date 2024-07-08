@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@alexandernanberg/react-pdf-renderer':
+        specifier: 4.0.0-canary-2
+        version: 4.0.0-canary-2(react@19.0.0-rc-58af67a8f8-20240628)
       '@babel/core':
         specifier: ^7.24.7
         version: 7.24.7
@@ -272,6 +275,11 @@ packages:
 
   '@adobe/css-tools@4.4.0':
     resolution: {integrity: sha512-Ff9+ksdQQB3rMncgqDK78uLznstjyfIf2Arnh22pW8kBpLs6rpKDwgnZT46hin5Hl1WzazzK64DOrhSwYpS7bQ==}
+
+  '@alexandernanberg/react-pdf-renderer@4.0.0-canary-2':
+    resolution: {integrity: sha512-89OVjYNcIsbfloEd8n9v629Ij28+hRTXJ6y6ukOnnknMRrIYuLO7eVpfBOY7BBSkQTaJIA02THTiS2u3Y9HCYA==}
+    peerDependencies:
+      react: ^19.0.0
 
   '@ampproject/remapping@2.3.0':
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
@@ -4149,6 +4157,9 @@ packages:
   scheduler@0.25.0-rc-58af67a8f8-20240628:
     resolution: {integrity: sha512-eVsdTsnTC5Lx5H+SLQdlo78LEUWcFJqVqSBp/l6A8kU3iAJTXlEKRhMX+dsk+cNI+kLjhH8L0D67bJnXH+YduA==}
 
+  scheduler@0.25.0-rc-fb9a90fa48-20240614:
+    resolution: {integrity: sha512-HHqQ/SqbeiDfXXVKgNxTpbQTD4n7IUb4hZATvHjp03jr3TF7igehCyHdOjeYTrzIseLO93cTTfSb5f4qWcirMQ==}
+
   schema-utils@3.3.0:
     resolution: {integrity: sha512-pN/yOAvcC+5rQ5nERGuwrjLlYvLTbCibnZ1I7B1LaiAz9BRBlE9GMgE/eqV30P7aJQUf7Ddimy/RsbYO/GrVGg==}
     engines: {node: '>= 10.13.0'}
@@ -4880,6 +4891,22 @@ packages:
 snapshots:
 
   '@adobe/css-tools@4.4.0': {}
+
+  '@alexandernanberg/react-pdf-renderer@4.0.0-canary-2(react@19.0.0-rc-58af67a8f8-20240628)':
+    dependencies:
+      '@babel/runtime': 7.24.7
+      '@react-pdf/font': 2.5.1
+      '@react-pdf/layout': 3.12.1
+      '@react-pdf/pdfkit': 3.1.10
+      '@react-pdf/primitives': 3.1.1
+      '@react-pdf/render': 3.4.4
+      '@react-pdf/types': 2.5.0
+      events: 3.3.0
+      queue: 6.0.2
+      react: 19.0.0-rc-58af67a8f8-20240628
+      scheduler: 0.25.0-rc-fb9a90fa48-20240614
+    transitivePeerDependencies:
+      - encoding
 
   '@ampproject/remapping@2.3.0':
     dependencies:
@@ -9576,6 +9603,8 @@ snapshots:
       object-assign: 4.1.1
 
   scheduler@0.25.0-rc-58af67a8f8-20240628: {}
+
+  scheduler@0.25.0-rc-fb9a90fa48-20240614: {}
 
   schema-utils@3.3.0:
     dependencies:
