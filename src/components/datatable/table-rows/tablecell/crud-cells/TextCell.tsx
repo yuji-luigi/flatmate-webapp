@@ -24,22 +24,4 @@ export const TextCell = ({
       {cellValue}
     </Text>
   );
-  // TODO: see if it works
-  // if (cellConfig.type === "static-select") {
-  //   const Icon = cellConfig.options?.find(
-  //     (option: StaticOption) => option.value === cellValue
-  //   )?.icon;
-  //   const dataHidden = !!(cellConfig.type === "static-select" && Icon);
-  //   const text = cellConfig.options?.find(
-  //     (option: StaticOption) => option.value === cellValue
-  //   )?.label;
-  //   displayValue = (
-  //     <Box className={classes.staticSelectBox}>
-  //       {Icon && <Icon className={classes.icon} />}
-  //       <Text className={classes.text} data-hidden={dataHidden}>
-  //         {t(text || "")}
-  //       </Text>
-  //     </Box>
-  //   );
-  // }
 };

@@ -19,7 +19,6 @@ export function useFetch<T>(
   } = { withData: true }
 ) {
   const { swrConfig, axiosConfig, withData } = configs;
-  // TODO: necessary useMemo?
   return useSWR([path, axiosConfig, withData], fetcher, swrConfig);
 }
 

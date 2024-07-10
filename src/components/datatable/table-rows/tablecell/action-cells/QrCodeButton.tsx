@@ -21,7 +21,6 @@ export const QrCodeButton = ({ row, entity, isMenu, action }: ActionCellProps) =
 
   const generateQrCode = async () => {
     try {
-      // TODO: make a endpoint string locally and map that to the actual endpoint
       const rawAuthToken = await axiosInstance.get<AxiosResDataGeneric<HiddenAuthTokenInterface>>(
         apiEndpoint.invitations.getAuthTokenByEntityRowId({ rowId: _id, entity }),
         { params: { status: { $in: pendingInvitationStatuses } } }

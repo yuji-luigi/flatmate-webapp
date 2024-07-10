@@ -1,6 +1,6 @@
 import { Stack, Button, Text, LoadingOverlay } from "@mantine/core";
 import { useState } from "react";
-import { hideNotification, showNotification, cleanNotifications } from "@mantine/notifications";
+import { hideNotification, showNotification } from "@mantine/notifications";
 import {
   AuthTokenModel,
   HiddenAuthTokenInterface,
@@ -14,13 +14,12 @@ import {
 } from "../../../../../data/showNofification/notificationObjects";
 import { QrCodeView } from "../../../../qr-code/QrCodeViewRegular";
 import { useCustomModalContext } from "../../../../../context/modal-context/_ModalContext";
-import { getEntityFromUrl, sleep } from "../../../../../utils/helpers/helper-functions";
+import { sleep } from "../../../../../utils/helpers/helper-functions";
 import { useLocale } from "../../../../../../hooks/useLocale";
 import useRouterWithCustomQuery from "../../../../../hooks/useRouterWithCustomQuery";
 import { TFunction } from "next-i18next";
-import { set } from "nprogress";
 import { pendingInvitationStatuses } from "../../../../../types/models/invitation-model";
-//TODO: save selected row in redux or global state(maybe signal)
+
 export const QrCodeModalContent = ({
   authToken,
   row,
