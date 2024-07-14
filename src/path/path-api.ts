@@ -169,6 +169,7 @@ export const apiEndpoint = {
   },
   users: {
     root: apiEndpointRootsEnum.users,
+    changeLocale: `${apiEndpointRootsEnum.users}/change-locale`,
     sendTokenEmail: ({ _id }: { _id: string }) =>
       `${apiEndpointRootsEnum.users}/${_id}/send-token-email`,
     updateById: (_id: string) => byId(apiEndpointRootsEnum.users, _id),

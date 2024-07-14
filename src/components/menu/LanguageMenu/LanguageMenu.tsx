@@ -4,6 +4,8 @@ import { IconChevronDown } from "@tabler/icons-react";
 import classes from "./LanguageMenu.module.css";
 import { PATH_IMAGE } from "../../../lib/image-paths";
 import { useLocale } from "../../../../hooks/useLocale";
+import axiosInstance from "../../../utils/axios-instance";
+import { apiEndpoint } from "../../../path/path-api";
 
 const { LOCALE_IMAGES } = PATH_IMAGE;
 const data = [
@@ -21,6 +23,7 @@ export function LanguageMenu() {
   const handleSelected = (item: Language) => {
     setSelected(item);
     changeLanguage(item.value);
+    axiosInstance.post(apiEndpoint.users.changeLocale, { locale: item.value });
   };
   const items = data.map((item) => (
     <Menu.Item
