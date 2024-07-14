@@ -139,7 +139,7 @@ function PrintUnitsButton({ units }: { units: UnitWithAuthToken[] }) {
             state: unit.space.address,
             postalCode: unit.space.name,
             authToken: unit.authToken,
-            qrcodeUrl: _PATH_FRONTEND.authTokens.invitationWithoutEmail(unit.authToken),
+            qrcodeUrl: _PATH_FRONTEND.authTokens.invitationWithoutEmail(unit.authToken.linkId),
           }))}
         />
       ).toBlob();
@@ -193,7 +193,7 @@ function DownloadUnitsButton({
         state: unit.space.address,
         postalCode: unit.space.name,
         authToken: unit.authToken,
-        qrcodeUrl: _PATH_FRONTEND.authTokens.invitationWithoutEmail(unit.authToken),
+        qrcodeUrl: _PATH_FRONTEND.authTokens.invitationWithoutEmail(unit.authToken.linkId),
       }))}
     >
       <Button fullWidth leftSection={<IconDownload />}>

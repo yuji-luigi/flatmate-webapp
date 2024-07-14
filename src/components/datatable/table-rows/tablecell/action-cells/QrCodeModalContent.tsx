@@ -52,7 +52,7 @@ export const QrCodeModalContent = ({
       console.error(error);
       setIsLoading(false);
       await sleep(700);
-      showNotification(NOTIFICATIONS.ERROR.general({ data: error.message || error }));
+      showNotification(NOTIFICATIONS.ERROR.general({ message: error.message || error }));
     }
   };
   let qrCodeView = <Text>Qrcode is not available</Text>;

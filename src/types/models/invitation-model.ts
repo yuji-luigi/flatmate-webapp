@@ -1,6 +1,6 @@
 import { UserType } from "../../lib/enums";
 
-export const pendingInvitationStatuses = ["pending", "pending-register"] as const;
+export const pendingInvitationStatuses = ["pending", "pending-email-verification"] as const;
 
 type InvitationStatus =
   | (typeof pendingInvitationStatuses)[number]
