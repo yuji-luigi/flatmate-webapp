@@ -7,7 +7,7 @@ const SignUpStepTwo = ({ form }: { form: UseFormReturnType<IInitialValues> }) =>
   const { t } = useLocale("sign-up");
   return (
     <>
-      <SimpleRow title={t("name")} content={form.values.name} top />
+      <SimpleRow title={t("name")} content={form.values.name} />
       <SimpleRow title={t("surname")} content={form.values.surname} />
       <SimpleRow title={t("email")} content={form.values.email} />
       <SimpleRow title={t("role")} content={form.values.role} />

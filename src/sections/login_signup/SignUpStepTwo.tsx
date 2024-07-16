@@ -29,7 +29,7 @@ const SignUpStepTwo = ({ form }: { form: UseFormReturnType<IInitialValues> }) =>
         timingFunction="ease-in-out"
       >
         {(styles) => (
-          <div style={styles} className="fieldset">
+          <div style={styles}>
             <>
               <TextInput
                 required
@@ -63,7 +63,7 @@ const SignUpStepTwo = ({ form }: { form: UseFormReturnType<IInitialValues> }) =>
         timingFunction="ease-in-out"
       >
         {(styles) => (
-          <div style={styles} className="fieldset">
+          <div style={styles}>
             <Switch name="isPublic" label={<SwitchLabel />} {...form.getInputProps("isPublic")} />
           </div>
         )}

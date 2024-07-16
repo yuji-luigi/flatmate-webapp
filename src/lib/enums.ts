@@ -102,3 +102,6 @@ export type UserType = (typeof userTypes)[number];
 export const LOCAL_STORAGE_KEYS = {
   LOCALE: "i18nextLng",
 } as const;
+
+export const isUserType = (type: string | undefined): type is UserType =>
+  userTypes.includes(type as UserType);
