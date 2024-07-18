@@ -74,20 +74,29 @@ const InvitationLoginPage = () => {
       const { status, ...dto } = values;
       // switch the request based on the withNonce query parameter
       // case with nonce call endpoint where email verification is needed
-      if (withNonce) {
-        await axiosInstance.post(apiEndpoint.invitations.preRegisterWithEmailVerification(linkId), {
-          ...dto,
-          locale,
-        });
-        form.setValues({ ...values, status: "" });
+      // The endpoint must be the same. handle registration with email verification in the backend for each userType.
+      // if (withNonce) {
+      //   await axiosInstance.post(apiEndpoint.invitations.preRegisterWithEmailVerification(linkId), {
+      //     ...dto,
+      //     locale,
+      //   });
+      //   form.setValues({ ...values, status: "" });
+      //   push(_PATH_FRONTEND.auth.emailVerificationPending);
+      //   return;
+      // }
+
+      const rawRes = await axiosInstance.post<{
+        code: "invitation-accepted" | "need-verification-email";
+      }>(apiEndpoint.invitations.acceptByRegister(linkId), dto);
+      await sleep(1000);
+      if (rawRes.data.code === "need-verification-email") {
         push(_PATH_FRONTEND.auth.emailVerificationPending);
         return;
       }
-
-      await axiosInstance.post(apiEndpoint.invitations.acceptByRegister(linkId), dto);
-      await sleep(1000);
-      // form.setValues({ ...values, status: "" });
-      push(_PATH_FRONTEND.auth.invitationAcceptSuccess(linkId));
+      if (rawRes.data.code === "invitation-accepted") {
+        push(_PATH_FRONTEND.auth.invitationAcceptSuccess(linkId));
+      }
+      throw new Error("Something went wrong");
     } catch (error: any) {
       await sleep(1000);
       form.setValues({ ...values, status: "" });

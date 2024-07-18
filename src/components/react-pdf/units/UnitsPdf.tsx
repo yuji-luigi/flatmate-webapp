@@ -1,5 +1,12 @@
 import React, { forwardRef, Fragment, ReactNode } from "react";
-import { Page, Text, View, Document, StyleSheet, PDFDownloadLink } from "@react-pdf/renderer";
+import {
+  Page,
+  Text,
+  View,
+  Document,
+  StyleSheet,
+  PDFDownloadLink,
+} from "@alexandernanberg/react-pdf-renderer";
 import { Box, Group, Loader, Skeleton } from "@mantine/core";
 import { AddressInfo } from "../../../types/address-info";
 import { UnitPdfFrontPage } from "./UnitPdfFrontPage";
@@ -21,7 +28,7 @@ export const UnitsPdf = ({ sender, destinations }: UnitsPdfProps) => {
 };
 
 /**
- *  NOTE: Must be wrapped in Document component provided by @react-pdf/renderer
+ *  NOTE: Must be wrapped in Document component provided by @alexandernanberg/react-pdf-renderer
  * */
 export function UnitPdfSingle({ destination, sender }: UnitPdfPageProps) {
   return (

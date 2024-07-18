@@ -1,4 +1,4 @@
-import { Page, Text, View, StyleSheet } from "@react-pdf/renderer";
+import { Page, Text, View, StyleSheet } from "@alexandernanberg/react-pdf-renderer";
 import { AddressInfo } from "../../../types/address-info";
 import { useLocale } from "../../../../hooks/useLocale";
 import { QrCodeViewForPdf } from "../../qr-code/QRCodeForPdf";

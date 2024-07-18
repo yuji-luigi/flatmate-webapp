@@ -5,24 +5,23 @@ import {
   deleteLinkedChildDocumentWithPagination,
   deleteCrudDocumentWithPagination,
 } from "../../../../redux/features/crudAsyncThunks";
-import { ActionIcon, Text } from "@mantine/core";
+import { ActionIcon, Menu, Text } from "@mantine/core";
 import { MongooseBaseModel } from "../../../../types/models/mongoose-base-model";
 import { FrontendEntity } from "../../../../types/redux/CrudSliceInterfaces";
 import { IconPencil } from "@tabler/icons-react";
 import { useCrudSliceStore } from "../../../../redux/features/crud/crudSlice";
 import { useDrawerContext } from "../../../../context/DataTableDrawerContext";
+import { ActionCellProps } from "./action-cell-types";
+import { useLocale } from "../../../../../hooks/useLocale";
 
-type DeleteActionCellProps = {
-  row: MongooseBaseModel;
-  entity: FrontendEntity;
-  parentId?: string;
-};
-
-export const EditActionCell: React.FC<DeleteActionCellProps> = ({
+export const EditActionCell: React.FC<ActionCellProps> = ({
   row,
   entity,
   parentId,
-}: DeleteActionCellProps) => {
+  isMenu,
+  action,
+}: ActionCellProps) => {
+  const { t } = useLocale();
   const {
     selectCrudDocument,
     deleteCrudDocumentWithPagination,
@@ -36,10 +35,16 @@ export const EditActionCell: React.FC<DeleteActionCellProps> = ({
     selectCrudDocument({ entity, document: row });
     openDrawer();
   };
-
+  if (isMenu) {
+    return (
+      <Menu.Item leftSection={<IconPencil color={action.color} stroke={1.5} />} onClick={onModify}>
+        {t(action.label || "Delete")}
+      </Menu.Item>
+    );
+  }
   return (
     <ActionIcon onClick={onModify}>
-      <IconPencil size={16} stroke={1.5} />
+      <IconPencil stroke={1.5} />
     </ActionIcon>
   );
 };

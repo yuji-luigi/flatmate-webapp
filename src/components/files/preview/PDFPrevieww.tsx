@@ -1,5 +1,5 @@
 import React from "react";
-import { Document, PDFViewer, Page, usePDF } from "@react-pdf/renderer";
+import { Document, PDFViewer, Page, usePDF } from "@alexandernanberg/react-pdf-renderer";
 import ErrorBoundary from "../../util-components/ErrorBoundary";
 
 export function PDFPreview(props: { file: any }) {

@@ -81,40 +81,40 @@ export function SignUpForm() {
       >
         {t("Register")}
       </Title>
-      <Text color="dimmed" size="sm" ta="center" mt={5}>
+      <Text color="dimmed" size="sm" ta="center" mt={5} mb={10}>
         {t("Already have an account?")} <LinkStyled href="/login">{t("Login")}</LinkStyled>
       </Text>
-      <Paper withBorder shadow="md" p={24} mt={10} radius="md">
-        <form onSubmit={form.onSubmit((values) => onSubmit(values))}>
-          <fieldset aria-disabled={isLoading} className="fieldset">
+      <fieldset aria-disabled={isLoading} className="fieldset">
+        <Paper withBorder shadow="md" p={24} radius="md">
+          <form onSubmit={form.onSubmit((values) => onSubmit(values))}>
             {steps === 0 && <SignUpStepOne form={form} />}
             {steps === 1 && <SignUpStepTwo form={form} />}
             {steps === MAX_STEP && <SignUpConfirm form={form} />}
-          </fieldset>
 
-          <Flex mt="xl" gap="md">
-            <Button disabled={steps <= 0} type="button" fullWidth onClick={handlePrev} mt="xl">
-              {t("Prev")}
-            </Button>
-            <Button
-              disabled={steps >= MAX_STEP}
-              type="button"
-              fullWidth
-              onClick={handleNext}
-              mt="xl"
-            >
-              {t("Next")}
-            </Button>
-          </Flex>
-          {steps === MAX_STEP && (
-            <>
-              <Button type="submit" fullWidth mt="xs">
-                {t("Register")}
+            <Flex mt="xl" gap="md">
+              <Button disabled={steps <= 0} type="button" fullWidth onClick={handlePrev} mt="xl">
+                {t("Prev")}
               </Button>
-            </>
-          )}
-        </form>
-      </Paper>
+              <Button
+                disabled={steps >= MAX_STEP}
+                type="button"
+                fullWidth
+                onClick={handleNext}
+                mt="xl"
+              >
+                {t("Next")}
+              </Button>
+            </Flex>
+            {steps === MAX_STEP && (
+              <>
+                <Button type="submit" fullWidth mt="xs">
+                  {t("Register")}
+                </Button>
+              </>
+            )}
+          </form>
+        </Paper>
+      </fieldset>
     </Container>
   );
 }

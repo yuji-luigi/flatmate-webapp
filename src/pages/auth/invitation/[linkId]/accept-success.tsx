@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect } from "react";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { GetServerSidePropsContext } from "next";
 import Image from "next/image";
-import { Box, Button } from "@mantine/core";
+import { Box, Button, Text } from "@mantine/core";
 import { request } from "http";
 import Link from "next/link";
 import useRouterWithCustomQuery from "../../../../hooks/useRouterWithCustomQuery";
@@ -53,8 +53,9 @@ const AcceptInvitationPage = ({
           <h3>
             {t("Now you are")} {userType} {t("of")} {condo}{" "}
           </h3>
-          <Button component={Link} href={_PATH_FRONTEND.dashboard.home}>
-            {t("Go to dashboard")}
+          <Text>{t("Please login and check your dashboard")}</Text>
+          <Button component={Link} href={_PATH_FRONTEND.auth.logout}>
+            {t("Login")}
           </Button>
         </Box>
       </section>

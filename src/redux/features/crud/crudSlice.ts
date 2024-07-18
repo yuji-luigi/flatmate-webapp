@@ -83,7 +83,7 @@ export const crudSlice = createSlice({
       const { newDocument, entity } = action.payload;
       state.reduxdb[entity].documentsArray = [...state.reduxdb[entity].documentsArray, newDocument];
     },
-    setOneInArrayInStore: (state, action: PayloadAction<UpdateCrudDocumentInStorePayload>) => {
+    updateOneCrudDocument: (state, action: PayloadAction<UpdateCrudDocumentInStorePayload>) => {
       const { updatedDocument, entity } = action.payload;
       const documentIndex = state.reduxdb[entity].documentsArray.findIndex(
         (doc) => doc._id === updatedDocument._id
@@ -308,7 +308,7 @@ export const {
   deleteCrud,
   resetStatus,
   setCrudDocument,
-  setOneInArrayInStore,
+  updateOneCrudDocument,
 } = crudSlice.actions;
 
 export default crudSlice.reducer;
@@ -322,8 +322,8 @@ export const useCrudSliceStore = () => {
       appDispatch(crudSlice.actions.addOneInStore(data));
     },
     /** update single document in array without calling api. with already new document fetched. or updated in some how */
-    setOneInArrayInStore(data: UpdateCrudDocumentInStorePayload) {
-      appDispatch(crudSlice.actions.setOneInArrayInStore(data));
+    updateOneCrudDocument(data: UpdateCrudDocumentInStorePayload) {
+      appDispatch(crudSlice.actions.updateOneCrudDocument(data));
     },
     /** get documents from api and set in documentsArray in redux */
     fetchCrudDocuments(data: FetchCrudPayload) {
@@ -448,7 +448,7 @@ export const useCrudSelectors = <ModelType = MongooseBaseModel>(
 
   useEffect(() => {
     if (crudError) {
-      showNotification(NOTIFICATIONS.ERROR.general({ data: crudError, ms: 5000 }));
+      showNotification(NOTIFICATIONS.ERROR.general({ message: crudError, ms: 5000 }));
       resetCrudStatus();
     }
     // if (submitting) {

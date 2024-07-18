@@ -1,4 +1,5 @@
 import { UserType } from "../../lib/enums";
+import { AuthTokenModel } from "./auth-token-model";
 import { MongooseBaseModel } from "./mongoose-base-model";
 
 export interface UnitInterface extends MongooseBaseModel {
@@ -6,6 +7,7 @@ export interface UnitInterface extends MongooseBaseModel {
   ownerName?: string;
   tenantName?: string;
   unitSpace: string;
+  authToken?: AuthTokenModel;
   space: {
     name: string;
     address: string;

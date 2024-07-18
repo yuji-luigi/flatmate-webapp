@@ -41,8 +41,8 @@ const InvitationNoMoreValidPage = ({ initialUser }: { initialUser: MeUser }) => 
         <Text variant="h5">
           {t("You may have accepted or declined already. Please ask administrator")}
         </Text>
-        <Button component={Link} href={_PATH_FRONTEND.dashboard.home}>
-          {t("Go to dashboard")}
+        <Button component={Link} href={_PATH_FRONTEND.homepage.root}>
+          {t("Home")}
         </Button>
       </section>
     </Page>

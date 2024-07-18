@@ -1,6 +1,6 @@
 import { Stack, Button, Text, LoadingOverlay } from "@mantine/core";
 import { useState } from "react";
-import { hideNotification, showNotification, cleanNotifications } from "@mantine/notifications";
+import { hideNotification, showNotification } from "@mantine/notifications";
 import {
   AuthTokenModel,
   HiddenAuthTokenInterface,
@@ -8,16 +8,18 @@ import {
 import { apiEndpoint } from "../../../../../path/path-api";
 import axiosInstance, { AxiosResDataGeneric } from "../../../../../utils/axios-instance";
 import { MongooseBaseModel } from "../../../../../types/models/mongoose-base-model";
-import { NOTIFICATIONS } from "../../../../../data/showNofification/notificationObjects";
+import {
+  ERROR_NOTIFICATION,
+  NOTIFICATIONS,
+} from "../../../../../data/showNofification/notificationObjects";
 import { QrCodeView } from "../../../../qr-code/QrCodeViewRegular";
 import { useCustomModalContext } from "../../../../../context/modal-context/_ModalContext";
-import { getEntityFromUrl, sleep } from "../../../../../utils/helpers/helper-functions";
+import { sleep } from "../../../../../utils/helpers/helper-functions";
 import { useLocale } from "../../../../../../hooks/useLocale";
 import useRouterWithCustomQuery from "../../../../../hooks/useRouterWithCustomQuery";
 import { TFunction } from "next-i18next";
-import { set } from "nprogress";
 import { pendingInvitationStatuses } from "../../../../../types/models/invitation-model";
-//TODO: save selected row in redux or global state(maybe signal)
+
 export const QrCodeModalContent = ({
   authToken,
   row,
@@ -50,7 +52,7 @@ export const QrCodeModalContent = ({
       console.error(error);
       setIsLoading(false);
       await sleep(700);
-      showNotification(NOTIFICATIONS.ERROR.general({ data: error.message || error }));
+      showNotification(NOTIFICATIONS.ERROR.general({ message: error.message || error }));
     }
   };
   let qrCodeView = <Text>Qrcode is not available</Text>;
@@ -65,7 +67,7 @@ export const QrCodeModalContent = ({
     <>
       {qrCodeView}
       <Stack gap={16} px={80} mt={24}>
-        <Button onClick={sendEmailToUser}>{sendText}</Button>
+        {/* <Button onClick={sendEmailToUser}>{sendText}</Button> */}
         <RenewButton
           authToken={authTokenState}
           setAuthTokenState={setAuthTokenState}
@@ -123,11 +125,10 @@ function RenewButton({
       showNotification(NOTIFICATIONS.SUCCESS.genericFn({ title: t("QR-code renewed") }));
     } catch (error: any) {
       await sleep(500);
-      showNotification(NOTIFICATIONS.ERROR.general({ data: error.message || error }));
+      showNotification({ ...ERROR_NOTIFICATION, message: error.message || error });
     } finally {
       await sleep(700);
       setLoading(false);
-      cleanNotifications();
     }
   };
 

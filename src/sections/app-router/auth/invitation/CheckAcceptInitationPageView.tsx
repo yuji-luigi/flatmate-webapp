@@ -1,20 +1,12 @@
 "use client";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import Image from "next/image";
 import { Button } from "@mantine/core";
-import { request } from "http";
 import Link from "next/link";
-import useRouterWithCustomQuery from "../../../../hooks/useRouterWithCustomQuery";
 import Page from "../../../../components/Page";
 import { useLocale } from "../../../../../hooks/useLocale";
-import axiosInstance, {
-  AxiosMeResponse,
-  AxiosResDataGeneric,
-} from "../../../../utils/axios-instance";
-import { apiEndpoint } from "../../../../path/path-api";
 import { MeUser } from "../../../../types/models/space-model";
 import { _PATH_FRONTEND } from "../../../../path/path-frontend";
-import { InvitationAuth } from "../../../../types/models/invitation-model";
 
 // server side check
 export const CheckAcceptInvitationPageView = ({

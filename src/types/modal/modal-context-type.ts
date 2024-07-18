@@ -37,7 +37,7 @@ export interface RegularModalParams extends BaseModalData {
     cancel: React.CSSProperties;
   };
   onCancel?: () => void;
-  onConfirm: (data: any) => void | Promise<void>;
+  onConfirm: ((data: any) => void) | (() => Promise<void>);
   withCloseButton?: boolean;
 }
 
