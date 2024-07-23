@@ -125,20 +125,16 @@ function AuthProvider({ children, initialUser }: { children: ReactNode; initialU
   /** redirect or navigation logic is in this function.
    * TODO: commented to be removed */
   const login: Login = async (email, password, role) => {
-    try {
-      await axiosInstance.post(apiEndpoint.auth.login(role), { email, password });
-      const rawMe = await axiosInstance.get<AxiosMeResponse>(PATH_AUTH.me);
-      const { user } = rawMe.data;
-      dispatch({
-        type: "LOGIN",
-        payload: {
-          user,
-        },
-      });
-      return user;
-    } catch (error: any) {
-      showNotification(NOTIFICATIONS.ERROR.general({ data: error.message || error }));
-    }
+    await axiosInstance.post(apiEndpoint.auth.login(role), { email, password });
+    const rawMe = await axiosInstance.get<AxiosMeResponse>(PATH_AUTH.me);
+    const { user } = rawMe.data;
+    dispatch({
+      type: "LOGIN",
+      payload: {
+        user,
+      },
+    });
+    return user;
   };
 
   const register: Register = async (formData: RegisterData) => {

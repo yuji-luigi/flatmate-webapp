@@ -8,8 +8,10 @@ import { useLocale } from "../../../hooks/useLocale";
 
 export const InviteGrid = ({ children, userType }: { children: ReactNode; userType: UserType }) => {
   const { t } = useLocale();
-  const { crudDocuments, crudStatus } = useCrudSelectors<UserByUserType>(userType);
+  const { crudDocuments = [], crudStatus, crudError } = useCrudSelectors<UserByUserType>(userType);
   if (crudStatus === "loading") return <div>Loading...</div>;
+  if (crudError) return <div>Error...</div>;
+
   const userTypeText = t(`$${userType}`);
   const message =
     crudDocuments?.length === 0
