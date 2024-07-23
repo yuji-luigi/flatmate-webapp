@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/yuji-luigi/flatmate-webapp/compare/flatmates-webapp-v1.1.0...flatmates-webapp-v1.1.1) (2024-07-23)
+
+
+### Bug Fixes
+
+* super admin view fix ([d8b6a53](https://github.com/yuji-luigi/flatmate-webapp/commit/d8b6a53a8f53c3090673827674f2a555f62c0e24))
+
 ## [1.1.0](https://github.com/yuji-luigi/flatmate-webapp/compare/flatmates-webapp-v1.0.2...flatmates-webapp-v1.1.0) (2024-07-18)
 
 
