@@ -7,6 +7,7 @@ import {
 } from "../../types/redux/CrudSliceInterfaces";
 import { OptionalRecord } from "../../types/utils/OptionalRecord";
 import { propertyManagerSectionConfigs } from "./property_managersSection";
+import { superAdminSectionConfigs } from "./superAdminSection";
 import { system_adminSectionConfigs } from "./system_adminSection";
 
 const customSection: OptionalRecord<FrontendEntity, Partial<SectionConfig>> = {
@@ -32,7 +33,7 @@ export const sectionConfigsByUserType: Record<string, Record<string, SectionConf
   // inhabitant: [],
   property_manager: propertyManagerSectionConfigs,
   // maintainer: [],
-  // super_admin: [],
+  super_admin: superAdminSectionConfigs,
 };
 // here mutate the object and set custom values
 // _sections.dataTable.property_manager.title = "Property Managers";

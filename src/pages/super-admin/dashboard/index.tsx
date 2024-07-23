@@ -1,12 +1,12 @@
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import React, { ReactElement, useEffect } from "react";
 import { GetServerSidePropsContext } from "next/types";
-import SystemAdminDashboardLayout from "../../layouts/system-admin-dashboard-layout/SystemAdminDashboardLayout";
-import axiosInstance, { AxiosMeResponse } from "../../utils/axios-instance";
-import { apiEndpoint } from "../../path/path-api";
-import useAuth from "../../../hooks/useAuth";
-import { SystemTop } from "../../sections/system";
-import { useCrudSliceStore } from "../../redux/features/crud/crudSlice";
+import SystemAdminDashboardLayout from "../../../layouts/system-admin-dashboard-layout/SystemAdminDashboardLayout";
+import axiosInstance, { AxiosMeResponse } from "../../../utils/axios-instance";
+import { apiEndpoint } from "../../../path/path-api";
+import useAuth from "../../../../hooks/useAuth";
+import { SystemTop } from "../../../sections/system";
+import { useCrudSliceStore } from "../../../redux/features/crud/crudSlice";
 
 const SystemAdminHome = () => {
   const { user } = useAuth();

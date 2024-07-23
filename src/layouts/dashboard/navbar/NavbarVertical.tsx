@@ -39,7 +39,7 @@ export function NavbarVertical() {
           </div>
           <Stack>
             {navConfigs[user.loggedAs].map((section, i) => (
-              <NavList key={section.key} section={section} />
+              <NavList key={section.name || section.key} section={section} />
             ))}
             {user.isSystemAdmin && <SystemAdminSwitch />}
           </Stack>

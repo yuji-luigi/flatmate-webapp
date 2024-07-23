@@ -12,7 +12,7 @@ export const CrudSectionActionContainer = () => {
   const { query } = useRouterWithCustomQuery();
   const { user } = useAuth();
   const entity = query.entity;
-  if (!user || !entity) return null;
+  if (!user || !entity || entity === "placeholder") return null;
   const sectionConfig = sectionConfigsByUserType[user?.loggedAs][entity];
   return sectionConfig.sectionActions?.map((action: SectionActionData) => (
     <CrudSectionActionController key={action.type} action={action} />
