@@ -52,6 +52,8 @@ export const reduxdb: Reduxdb = frontendEntities.reduce<Reduxdb>((totalData, ent
       singleCrudDocument: null,
       singleCrudDocuments: [],
       isChildrenTree: false,
+      isLoading: false,
+      error: null,
     },
   };
   return totalData;
@@ -133,13 +135,15 @@ export const crudSlice = createSlice({
       /**
        * FETCH DOCUMENTS
        */
-      .addCase(fetchCrudDocumentsWithPagination.pending, (state) => {
+      .addCase(fetchCrudDocumentsWithPagination.pending, (state, action) => {
+        state.reduxdb[action.meta.arg.entity].isLoading = true;
         state.status = "loading";
       })
       .addCase(
         fetchCrudDocumentsWithPagination.fulfilled,
         (state, action: PayloadAction<SetCrudDocumentsPayload>) => {
           const { entity, documents, totalDocuments, isChildrenTree = false } = action.payload;
+          state.reduxdb[entity].isLoading = false;
           state.status = "succeed";
           state.reduxdb[entity].isChildrenTree = isChildrenTree;
           state.reduxdb[entity].documentsArray = documents;
@@ -148,7 +152,9 @@ export const crudSlice = createSlice({
       )
       .addCase(fetchCrudDocumentsWithPagination.rejected, (state, action) => {
         state.status = "failed";
-        state.error = action.error.message;
+        state.reduxdb[action.meta.arg.entity].isLoading = false;
+
+        state.reduxdb[action.meta.arg.entity].error = action.error.message;
       })
       .addCase(fetchCrudDocuments.pending, (state) => {
         state.status = "loading";
@@ -439,7 +445,9 @@ export const useCrudSelectors = <ModelType = MongooseBaseModel>(
   // ) as ModelType[];
   const crudMessage = useCrudMessage();
   const crudStatus = useCrudStatus();
-  const crudError = useCrudError();
+  // const crudError = useCrudError();
+  const crudError = useAppSelector((state) => state.crud.reduxdb[entity].error);
+  const isLoading = useAppSelector((state) => state.crud.reduxdb[entity].isLoading);
   const totalDocumentsCount = useTotalDocumentsCount(_entity);
   const isChildrenTree = useIsChildrenTree(_entity);
   const crudDocument = useCrudDocument<ModelType>(_entity);
@@ -473,6 +481,7 @@ export const useCrudSelectors = <ModelType = MongooseBaseModel>(
     /** number of total documents in queried array from db. */
     totalDocumentsCount,
     submitting,
+    isLoading,
   };
 };
 

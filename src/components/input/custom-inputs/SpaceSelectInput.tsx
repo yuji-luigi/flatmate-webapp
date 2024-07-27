@@ -8,6 +8,7 @@ import { convertToSelectItems } from "../../../utils/helpers/helper-functions";
 import { useItemSlice } from "../../../redux/features/crud/selectedItemSlice";
 import { SpaceModel } from "../../../types/models/space-model";
 import { useCrudSelectors, useCrudSliceStore } from "../../../redux/features/crud/crudSlice";
+import { useCookieContext } from "../../../context/CookieContext";
 
 interface SpaceSelectInputProps {
   style?: MantineStyleProp;
@@ -74,7 +75,7 @@ const SpaceSelectInput = ({
       label={labels?.space}
       data={spaces}
       placeholder={placeholder}
-      value={get?.space?._id || null}
+      value={get?.space?._id || currentSpace?._id || null}
       onChange={handleChange}
       style={style}
       className={className}

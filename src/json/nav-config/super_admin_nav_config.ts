@@ -9,12 +9,6 @@ export const super_admin_nav_configs: NavConfig[] = [
     hide: false,
     contents: [
       {
-        title: "Settings",
-        link: "/super-admin/dashboard/dataTable/settings",
-        icon: "settings",
-        hide: false,
-      },
-      {
         title: "Threads",
         link: POSTS("threads"),
         icon: "posts",
@@ -124,18 +118,18 @@ export const super_admin_nav_configs: NavConfig[] = [
         hide: true,
         icon: "dataTable",
       },
-      {
-        entity: "organizations",
-        entitySingle: "organization",
-        title: "organizations",
-        subtitle: "subtitle",
-        navbarTitle: "organizations",
-        link: "/super-admin/dashboard/dataTable/organizations",
-        importButton: "",
-        createButton: "New Owner",
-        icon: "Dashboard",
-        hide: false,
-      },
+      // {
+      //   entity: "organizations",
+      //   entitySingle: "organization",
+      //   title: "organizations",
+      //   subtitle: "subtitle",
+      //   navbarTitle: "organizations",
+      //   link: "/super-admin/dashboard/dataTable/organizations",
+      //   importButton: "",
+      //   createButton: "New Owner",
+      //   icon: "Dashboard",
+      //   hide: false,
+      // },
     ],
   },
 ];

@@ -21,16 +21,16 @@ export const PATH_DASHBOARD_ROOT = {
   super_admin: "/super-admin/dashboard",
 };
 
-export const PATH_AFTER_LOGIN = (userType: UserType) =>
-  `${PATH_DASHBOARD_ROOT[userType]}?tab=dashboard`;
-
-const a = {
-  system_admin: "/system-admin/dashboard?tab=dashboard",
-  property_manager: "/property-manager/dashboard?tab=dashboard",
-  maintainer: "/maintainer/dashboard?tab=dashboard",
-  inhabitant: "/users/dashboard?tab=dashboard",
-  super_admin: "/super-admin/dashboard?tab=dashboard",
+export const PATH_AFTER_LOGIN_PARAMS = {
+  system_admin: "?tab=dashboard",
+  property_manager: "?tab=dashboard",
+  maintainer: "?tab=dashboard",
+  inhabitant: "?tab=posts",
+  super_admin: "?tab=dashboard",
 };
+
+export const PATH_AFTER_LOGIN = (userType: UserType) =>
+  `${PATH_DASHBOARD_ROOT[userType]}${PATH_AFTER_LOGIN_PARAMS[userType]}`;
 
 // export const PATH_ROOT {}
 

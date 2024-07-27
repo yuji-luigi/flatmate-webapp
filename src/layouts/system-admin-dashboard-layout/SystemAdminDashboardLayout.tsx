@@ -11,6 +11,12 @@ import useAuth from "../../../hooks/useAuth";
 import { NavbarVertical } from "../dashboard/navbar/NavbarVertical";
 import useRouterWithCustomQuery from "../../hooks/useRouterWithCustomQuery";
 
+//  TODO: no more redirecting logic
+// useEffect to call api to set cookie as the userType of the page.
+//  create endpoint that sets(not toggles) the cookie to the userType of the page.
+// remove redirecting.
+// use this layout for all type of users.
+// pass userType as prop to the layout to hit the correct endpoint.
 const SystemAdminDashboardLayout = ({
   children,
   onlySuperAdmin = false,
@@ -62,7 +68,6 @@ const SystemAdminDashboardLayout = ({
   if (user && !user.isSuperAdmin && user.loggedAs !== "system_admin") {
     router.push(_PATH_FRONTEND.dashboard.root);
   }
-
   return (
     <Tabs
       onChange={handleChangeTab}

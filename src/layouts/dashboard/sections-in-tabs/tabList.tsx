@@ -5,19 +5,20 @@ import { SpaceMaintenanceSection } from "./SpaceMaintenanceSection";
 import { SpacePostSection } from "./SpacePostSection";
 import { UserRoles } from "../../../lib/enums";
 import { property_managerTabList } from "./property-manager-tabs";
+import { SpaceFeedSection } from "./SpaceFeedSection";
 
 const inhabitant: TabList[] = [
+  {
+    label: "Feed",
+    value: "posts",
+    icon: <Icons.article size="1.5rem" />,
+    component: SpaceFeedSection,
+  },
   {
     label: "Dashboard",
     value: "dashboard",
     icon: <Icons.reportAnalytics size="1.5rem" />,
     component: DashboardSection,
-  },
-  {
-    label: "Posts",
-    value: "posts",
-    icon: <Icons.article size="1.5rem" />,
-    component: SpacePostSection,
   },
   {
     label: "Maintenance",

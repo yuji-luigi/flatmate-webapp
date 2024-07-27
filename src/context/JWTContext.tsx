@@ -18,6 +18,7 @@ import { _PATH_FRONTEND } from "../path/path-frontend";
 import { MeUser, Role, UserModel } from "../types/models/space-model";
 import { NOTIFICATIONS } from "../data/showNofification/notificationObjects";
 import { sleep } from "../utils/helpers/helper-functions";
+import { useCookieContext } from "./CookieContext";
 
 const initialState: JWTContextState = {
   isAuthenticated: false,
@@ -71,7 +72,7 @@ const AuthContext = createContext<AuthContextInterface>({
   ...initialState,
   method: "jwt",
   logout: () => Promise.resolve(),
-  login: () => Promise.resolve(),
+  login: (email?: string, password?: string) => Promise.resolve({} as MeUser),
   register: () => Promise.resolve(),
   reInitialize: () => Promise.resolve(),
   updateUser: () => {},
