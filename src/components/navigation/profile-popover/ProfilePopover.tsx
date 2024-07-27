@@ -8,21 +8,9 @@ import classes from "./ProfilePopover.module.css";
 import { LanguageMenu } from "../../menu/LanguageMenu/LanguageMenu";
 import { MenuSuperAdminSwitch } from "./MenuSuperAdminSwitch";
 
-const popoverList = [
-  {
-    title: "Edit profile",
-    icon: <Icons.user />,
-    link: "/profile",
-  },
-  {
-    title: "Setting condominium",
-    icon: <Icons.buildings />,
-    link: PATH_CLIENT.spaceSettings,
-  },
-];
 export function ProfilePopover() {
   const { user } = useAuth();
-
+  const popoverList = useGetPopoverList();
   return (
     <Menu position="bottom" withArrow shadow="md">
       <div className={classes.grid}>
@@ -60,3 +48,14 @@ export function ProfilePopover() {
     </Menu>
   );
 }
+
+const useGetPopoverList = () => {
+  const { user } = useAuth();
+  return [
+    {
+      title: "Edit profile",
+      icon: <Icons.user />,
+      link: `/${user?.loggedAs}/profile`,
+    },
+  ];
+};
