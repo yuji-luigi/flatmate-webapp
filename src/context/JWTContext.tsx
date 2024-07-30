@@ -85,6 +85,7 @@ function AuthProvider({ children, initialUser }: { children: ReactNode; initialU
     isAuthenticated: !!initialUser,
     isInitialized: !!initialUser,
   });
+
   const router = useRouter();
   const { push } = router;
   useEffect(() => {
