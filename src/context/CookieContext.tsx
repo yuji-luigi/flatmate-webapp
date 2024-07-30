@@ -85,11 +85,8 @@ export const CookieContextProvider = ({ children }: { children: ReactNode }) => 
   <CookieContext.Provider value={useStore()}>{children}</CookieContext.Provider>
 );
 
-type UseCookieCtxParams = {
-  reFetchCrudDocuments?: boolean;
-  url?: string;
-};
 export const useCookieContext = (/* args?: UseCookieCtxParams */) => {
-  if (!CookieContext) console.log("CookieContext is not defined");
-  return useContext(CookieContext);
+  const context = useContext(CookieContext);
+  if (!context) throw new Error("cookie context must be used within a CookieContextProvider");
+  return context;
 };

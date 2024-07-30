@@ -1,27 +1,23 @@
-import { Menu, ActionIcon } from "@mantine/core";
+import { Menu, ActionIcon, Tooltip } from "@mantine/core";
 
 import { useState } from "react";
 import { Icons } from "../../../data/icons/icons";
 
 import { FONT_SIZES } from "../../../lib/enums";
-import { useCrudSliceStore } from "../../../redux/features/crud/crudSlice";
 import { useSimpleDisclosureCtx } from "../../../../hooks/useSimpleDisclosureCtx";
 import { HeaderCreationModal } from "./HeaderCreationModal";
 import classes from "./HeaderCreationButton.module.css";
 import useAuth from "../../../../hooks/useAuth";
-import useRouterWithCustomQuery from "../../../hooks/useRouterWithCustomQuery";
 import { sectionsJson } from "../../../json/section-config/sectionsConfig";
 import { SectionConfig } from "../../../types/data/json/sections-json";
+import { useLocale } from "../../../../hooks/useLocale";
 
 export function HeaderCreationButton() {
   const { user } = useAuth();
+  const { t } = useLocale();
   const { close, open, opened } = useSimpleDisclosureCtx();
   const [modalType, setModalType] = useState<"threads" | "maintenances" | null>(null);
   const [section, setSection] = useState<SectionConfig | null>(null);
-  const {
-    query: { entity },
-  } = useRouterWithCustomQuery();
-  const { setSubmitting } = useCrudSliceStore();
 
   if (!user) return null;
   const handleOpenModal = (type: "threads" | "maintenances") => {
@@ -54,12 +50,14 @@ export function HeaderCreationButton() {
           >
             Add maintenance
           </Menu.Item>
-          <Menu.Item
-            style={{ fontSize: FONT_SIZES.menuItems }}
-            leftSection={<Icons.messageDots size={FONT_SIZES.menuItems} />}
-          >
-            Send message
-          </Menu.Item>
+          <Tooltip label={t("Coming soon")}>
+            <Menu.Item
+              style={{ fontSize: FONT_SIZES.menuItems, opacity: 0.5, cursor: "default" }}
+              leftSection={<Icons.messageDots size={FONT_SIZES.menuItems} />}
+            >
+              Send message
+            </Menu.Item>
+          </Tooltip>
         </Menu.Dropdown>
       </Menu>
       <HeaderCreationModal modalType={modalType} section={section} />
