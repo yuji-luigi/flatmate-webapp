@@ -19,6 +19,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  white-space: nowrap;
   & p {
     text-decoration: none;
   }
@@ -41,4 +42,9 @@
   gap: 4px;
   align-items: center;
   /* height: 100%; */
+}
+
+p.invitation-info-text {
+  text-decoration: none;
+  font-size: 0.8rem;
 }

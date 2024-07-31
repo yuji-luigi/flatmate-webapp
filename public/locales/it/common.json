@@ -95,5 +95,7 @@
 	"Unit": "Unità",
 	"Condominium": "Condominio",
 	"OwnerLabel": "Proprietario",
-	"MateLabel": "Inquilino"
+	"MateLabel": "Inquilino",
+	"Pending": "In attesa",
+	"Waiting invitation acceptance": "In attesa di accettazione dell'invito"
 }
