@@ -95,5 +95,7 @@
 	"Unit": "Unità",
 	"Condominium": "Condominium",
 	"OwnerLabel": "Property Owner",
-	"MateLabel": "Tenant"
+	"MateLabel": "Tenant",
+	"Building": "Strutture",
+	"Wing-building": "Wing/building"
 }

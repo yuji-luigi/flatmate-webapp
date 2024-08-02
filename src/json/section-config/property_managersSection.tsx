@@ -34,26 +34,26 @@ export const propertyManagerSectionConfigs: Record<string, SectionConfig> = {
       { label: "Delete", type: "delete" },
     ],
   },
-  inhabitant: {
-    ...inhabitant,
-    sectionActions: [
-      {
-        label: "Add Inhabitants",
-        type: "create",
-      },
-      {
-        type: "import-inhabitant-unit",
-      },
-      {
-        label: "Invite Inhabitants",
-        type: "invite",
-      },
-    ],
-    rowActions: [
-      { label: "Modify", type: "modify" },
-      { label: "QR-Code", type: "qr_code" },
-    ],
-  },
+  // inhabitant: {
+  //   ...inhabitant,
+  //   sectionActions: [
+  //     {
+  //       label: "Add Inhabitants",
+  //       type: "create",
+  //     },
+  //     {
+  //       type: "import-inhabitant-unit",
+  //     },
+  //     {
+  //       label: "Invite Inhabitants",
+  //       type: "invite",
+  //     },
+  //   ],
+  //   rowActions: [
+  //     { label: "Modify", type: "modify" },
+  //     { label: "QR-Code", type: "qr_code" },
+  //   ],
+  // },
   units: {
     ...units,
     sectionActions: [
@@ -72,8 +72,8 @@ export const propertyManagerSectionConfigs: Record<string, SectionConfig> = {
       { label: "Remove user from unit", type: "remove_unit_user" },
     ],
   },
-  maintainer,
-  property_manager,
-  checks,
-  maintenances,
+  // maintainer,
+  // property_manager,
+  // checks,
+  // maintenances,
 };

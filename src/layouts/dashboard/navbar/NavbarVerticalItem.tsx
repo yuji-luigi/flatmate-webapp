@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { Icons } from "../../../data/icons/icons";
 import classes from "./NavbarVertical.module.css";
 import { NavConfigContent } from "../../../types/data/json/sections-json";
+import { useLocale } from "../../../../hooks/useLocale";
 
 type NavbarVerticalItemProp = {
   navbarContent: NavConfigContent;
@@ -14,6 +15,7 @@ type NavbarVerticalItemProp = {
 
 export const NavbarVerticalItem = (props: NavbarVerticalItemProp) => {
   const { navbarContent } = props;
+  const { t } = useLocale();
   // return null;
   const Icon = Icons[navbarContent.icon] || Icons.home;
   const { asPath } = useRouter();
@@ -24,7 +26,7 @@ export const NavbarVerticalItem = (props: NavbarVerticalItemProp) => {
     <Link className={classes.link} data-active={isActive || undefined} href={navbarContent.link}>
       <Group align="center">
         <Icon className={classes.linkIcon} stroke={1.5} />
-        {navbarContent.title}
+        {t(navbarContent.title)}
       </Group>
     </Link>
   );

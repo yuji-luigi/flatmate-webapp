@@ -97,5 +97,7 @@
 	"OwnerLabel": "Proprietario",
 	"MateLabel": "Inquilino",
 	"Pending": "In attesa",
-	"Waiting invitation acceptance": "In attesa di accettazione dell'invito"
+	"Waiting invitation acceptance": "In attesa di accettazione dell'invito",
+	"Units/Inhabitants": "Unità/Inquilini",
+	"Wing-building": "Ala/Edificio"
 }
