@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.2.0](https://github.com/yuji-luigi/flatmate-webapp/compare/flatmates-webapp-v1.1.1...flatmates-webapp-v1.2.0) (2024-09-01)
+
+
+### Features
+
+* Add InhabitantProfilePage component ([e7b15ea](https://github.com/yuji-luigi/flatmate-webapp/commit/e7b15eabf2c40812f710cf0d0b9ad4e389a6b4ec))
+
+
+### Bug Fixes
+
+* change hero image ([3d0b15e](https://github.com/yuji-luigi/flatmate-webapp/commit/3d0b15ecbe301e449b96ca76650b953bc87a9cb8))
+* init inhabitant profile page with app router ([735569d](https://github.com/yuji-luigi/flatmate-webapp/commit/735569d630d1ecb2e32955ef68617bf093c1e43d))
+* nav configs ([9eba264](https://github.com/yuji-luigi/flatmate-webapp/commit/9eba264c3a603bb714fa6949b2285d298dbf610c))
+* super-admin routing and inhabitant after login logic ([24e28e5](https://github.com/yuji-luigi/flatmate-webapp/commit/24e28e5782405ce4f6019c3cd4771a0b73249729))
+* translation ([32a30b4](https://github.com/yuji-luigi/flatmate-webapp/commit/32a30b4f88a2891759f87e496f979cd7667d3476))
+* ui ([9a5608f](https://github.com/yuji-luigi/flatmate-webapp/commit/9a5608ff4895d6b58d7a92432883a780eb51070b))
+
 ## [1.1.1](https://github.com/yuji-luigi/flatmate-webapp/compare/flatmates-webapp-v1.1.0...flatmates-webapp-v1.1.1) (2024-07-23)
 
 
