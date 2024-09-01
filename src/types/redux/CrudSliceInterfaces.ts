@@ -22,6 +22,8 @@ export const entities = [
   "units",
 ] as const;
 
+export const customEntities = ["feeds"] as const;
+
 export const userTypes = [
   "inhabitant",
   "property_manager",
@@ -58,9 +60,16 @@ export const singleEntities: Record<FrontendEntity, string> = {
   super_admin: "super_admin",
   placeholder: "placeholder",
   units: "unit",
+  feeds: "feed",
 } as const;
 
-export const frontendEntities = [...entities, ...sections, ...userTypes, "placeholder"] as const;
+export const frontendEntities = [
+  ...entities,
+  ...sections,
+  ...userTypes,
+  ...customEntities,
+  "placeholder",
+] as const;
 export type Entity = (typeof entities)[number];
 
 export function isFrontendEntity(entity: any): entity is Entity {
@@ -80,6 +89,8 @@ export interface ReduxDbEntity {
   isChildrenTree: boolean;
   /** _id of singleCrudDocuments  */
   singleCrudDocuments: string[] | [];
+  isLoading: boolean;
+  error: string | null | undefined;
 }
 
 export interface Statistics {

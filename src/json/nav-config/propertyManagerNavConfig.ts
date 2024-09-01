@@ -33,24 +33,24 @@ export const propertyManagerNavConfig: NavConfig[] = [
         icon: "buildings",
         hide: false,
       },
+      // {
+      //   title: "Inhabitants",
+      //   link: concatPMRootPath("/dashboard/inhabitant"),
+      //   icon: "user",
+      //   hide: false,
+      // },
       {
-        title: "Inhabitants",
-        link: concatPMRootPath("/dashboard/inhabitant"),
-        icon: "user",
-        hide: false,
-      },
-      {
-        title: "Units",
+        title: "Units/Inhabitants",
         link: concatPMRootPath("/dashboard/units"),
         icon: "Door",
         hide: false,
       },
-      {
-        title: "Maintainers",
-        link: concatPMRootPath("/dashboard/maintainer"),
-        icon: "maintenance",
-        hide: false,
-      },
+      // {
+      //   title: "Maintainers",
+      //   link: concatPMRootPath("/dashboard/maintainer"),
+      //   icon: "maintenance",
+      //   hide: false,
+      // },
     ],
   },
 ];

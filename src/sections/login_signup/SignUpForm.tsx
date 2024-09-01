@@ -31,7 +31,6 @@ export function SignUpForm() {
   const onSubmit = async (data: RegisterData) => {
     try {
       setIsLoading(true);
-      // const {email, password, name, surname} = data;
       await register(data);
       notifications.show({
         title: "Registered!",

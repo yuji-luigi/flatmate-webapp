@@ -1,6 +1,6 @@
 {
 	"condominium managerFlatmates": "Condominium manager Flatmates",
-	"Flatmates condominium manager": "Condominium manager Flatmates",
+	"Flatmates condominium manager": "Flatmates gestionale condominiale",
 	"from": "da",
 	"Register": "Registrati",
 	"to": "a",
@@ -95,5 +95,11 @@
 	"Unit": "Unità",
 	"Condominium": "Condominio",
 	"OwnerLabel": "Proprietario",
-	"MateLabel": "Inquilino"
+	"MateLabel": "Inquilino",
+	"Pending": "In attesa",
+	"Waiting invitation acceptance": "In attesa di accettazione dell'invito",
+	"Units/Inhabitants": "Unità/Inquilini",
+	"Wing-building": "Ala/Edificio",
+	"Floor": "Piano",
+	"actions": "azioni"
 }

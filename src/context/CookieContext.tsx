@@ -3,6 +3,7 @@ import { createContext, ReactNode, useContext, useEffect, useRef, useState } fro
 import { CurrentSpace } from "../types/context/auth/useAuth";
 import { CookieContextState } from "../types/context/cookie-context";
 import { isString } from "../utils/type-guard/isString";
+import useAuth from "../../hooks/useAuth";
 
 export const CookieContext = createContext<CookieContextState>({
   currentSpace: null,
@@ -19,6 +20,7 @@ const useStore = () => {
   const [currentOrganization, setCurrentOrganization] = useState<string | null>(null);
   const prevSpaceRef = useRef(currentSpace);
   const prevOrgRef = useRef(currentOrganization);
+  const { user } = useAuth();
 
   const hasSpaceChanged = prevSpaceRef.current !== currentSpace;
   const hasOrgChanged = prevOrgRef.current !== currentOrganization;
@@ -33,15 +35,21 @@ const useStore = () => {
   }, []);
 
   useEffect(() => {
-    if (!currentSpace) initializeCurrentSpaceFromMemory();
-  }, []);
+    if (!currentSpace) initializeCurrentSpaceFromCookie();
+  }, [user]);
 
-  const initializeCurrentSpaceFromMemory = () => {
+  const initializeCurrentSpaceFromCookie = () => {
     const spaceId = getCookie("spaceId");
     const spaceName = localStorage.getItem("spaceName");
     const spaceAddress = localStorage.getItem("spaceAddress");
     const spaceSlug = localStorage.getItem("spaceSlug");
     const spaceImage = localStorage.getItem("spaceImage");
+    console.log({
+      spaceId,
+      spaceName,
+      spaceAddress,
+      spaceSlug,
+    });
     if (isString(spaceId) && isString(spaceName) && isString(spaceSlug)) {
       setCurrentSpace({
         _id: spaceId,
@@ -63,7 +71,7 @@ const useStore = () => {
   return {
     currentSpace,
     setCurrentSpace: handleSetCurrentSpace,
-    handleSetCurrentSpace: initializeCurrentSpaceFromMemory,
+    handleSetCurrentSpace: initializeCurrentSpaceFromCookie,
     resetCurrentSpace: () => {
       setCurrentSpace(null);
     },
@@ -77,11 +85,8 @@ export const CookieContextProvider = ({ children }: { children: ReactNode }) => 
   <CookieContext.Provider value={useStore()}>{children}</CookieContext.Provider>
 );
 
-type UseCookieCtxParams = {
-  reFetchCrudDocuments?: boolean;
-  url?: string;
-};
 export const useCookieContext = (/* args?: UseCookieCtxParams */) => {
-  if (!CookieContext) console.log("CookieContext is not defined");
-  return useContext(CookieContext);
+  const context = useContext(CookieContext);
+  if (!context) throw new Error("cookie context must be used within a CookieContextProvider");
+  return context;
 };

@@ -12,11 +12,11 @@ export const systemAdminNavConfig: NavConfig[] = [
         link: _PATH_FRONTEND.systemAdmin.dataTable.property_manager.root,
         icon: "propertyManagerBuilding",
       },
-      {
-        title: "Maintainer",
-        link: _PATH_FRONTEND.systemAdmin["card-list"].maintainer.root,
-        icon: "IconShovel",
-      },
+      // {
+      //   title: "Maintainer",
+      //   link: _PATH_FRONTEND.systemAdmin["card-list"].maintainer.root,
+      //   icon: "IconShovel",
+      // },
       {
         title: "Inhabitant",
         link: _PATH_FRONTEND.systemAdmin.dataTable.inhabitant.root,

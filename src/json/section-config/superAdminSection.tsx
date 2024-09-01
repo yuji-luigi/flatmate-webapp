@@ -10,6 +10,7 @@ import {
   property_manager,
   spaces,
   units,
+  uploads,
   users,
 } from "./sectionBaseConfigs";
 
@@ -76,4 +77,5 @@ export const superAdminSectionConfigs: Record<string, SectionConfig> = {
   },
   checks,
   maintenances,
+  uploads,
 };

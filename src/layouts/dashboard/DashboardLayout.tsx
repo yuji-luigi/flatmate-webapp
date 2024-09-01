@@ -1,14 +1,11 @@
 "use client";
-import React, { ReactNode, useEffect, useRef, useState } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 import { Box, Tabs } from "@mantine/core";
 import { useRouter } from "next/router";
-import { set } from "nprogress";
 import { DashboardHeaderSearch } from "./header/DashboardHeaderSearch";
 import { NavbarVertical } from "./navbar/NavbarVertical";
 import useLayoutContext from "../../../hooks/useLayoutContext";
 import { useCookieContext } from "../../context/CookieContext";
-import { useTabContext } from "../../context/tab-context/TabContextProvider";
-import { dashboardTabsByUserType } from "./sections-in-tabs/tabList";
 import classes from "./DashboardLayout.module.css";
 import { PATH_CLIENT, PATH_DASHBOARD_ROOT, _PATH_FRONTEND } from "../../path/path-frontend";
 import useAuth from "../../../hooks/useAuth";
